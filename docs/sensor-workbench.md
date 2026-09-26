@@ -77,7 +77,7 @@ signals. This replaces the current run, so save first if needed.
 | Control | What to look for |
 | --- | --- |
 | **Pose & vibration** | Select an IMU; tilt moves gravity between XYZ axes, and vibration adds an oscillation. A stationary IMU still measures gravity. |
-| **Magnetic field & infrasound** | Select Magnetometer or Infrasound to view the separate USB head and its modeled signals. |
+| **Magnetic field & infrasound** | Select Magnetometer or Infrasound to view the separate Burrowlark (DAQUSB-01) USB head and its modeled signals. |
 | **Fault injection** | Apply a sensor fault and inspect status, events and missing-data gaps. Start a new run to return to a clean baseline. |
 | **Top / Orbit**, drag, scroll | Change the camera only. These gestures do not stimulate sensors or change recorded samples. |
 

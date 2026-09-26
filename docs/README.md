@@ -16,7 +16,7 @@
 - [JLCPCB assembly](jlcpcb-assembly.md): upload files, selected parts, placement and manufacturing requirements.
 - [Physical bench procedure](bench-procedure.md): power, fit, timing and noise measurements.
 - [A2 ASIC HAT](design-a0.md), [Coldfoot module](coldfoot-integration.md) and [A2 validation limits](validation.md).
-- [USB sensor head](usb-sensor-head.md): magnetometer, optional infrasound and firmware interface.
+- [Burrowlark DAQUSB-01 USB sensor head](usb-sensor-head.md): magnetometer, optional infrasound and firmware interface.
 
 ## Interfaces and reproducible builds
 

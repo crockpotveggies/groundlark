@@ -1,10 +1,10 @@
-# Remote sensor-head firmware
+# Burrowlark DAQUSB-01 firmware
 
-Planned firmware for the USB-C board's microcontroller: magnetometer acquisition,
-optional infrasound input, USB descriptors/transport, and recovery from resets
-and disconnects. The authoritative interface is the existing
-[USB sensor-head contract](../../docs/usb-sensor-head.md), with messages and
-framing in the [sensor data contract](../../docs/sensor-contract.md).
+Planned firmware for the Burrowlark (DAQUSB-01) USB-C board's microcontroller:
+magnetometer acquisition, optional infrasound input, USB descriptors/transport,
+and recovery from resets and disconnects. The authoritative interface is the existing
+[Burrowlark circuit and firmware contract](../../docs/usb-sensor-head.md), with
+messages and framing in the [sensor data contract](../../docs/sensor-contract.md).
 Candidate Nanopb bounds exist; actual C/ARM/USB memory fit still needs validation.
 
 Firmware implementation, enumeration tests and physical USB validation are pending.

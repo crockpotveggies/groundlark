@@ -55,8 +55,9 @@ isolated. Its side-1 low output can reach 0.71 V; verify the selected Pi's input
 threshold (design requirement VIL ≥0.8 V). Pi-side I2C uses the Pi's pull-ups;
 sensor-side and remote buses have 4.7 kohm pull-ups. Begin at 100 kHz.
 
-The remote head is independently powered from the Pi USB port: a 500 mA-hold
-PTC feeds an AP2112K-3.3 LDO with 2.2 uF input and 4.7 uF output capacitance.
+The Burrowlark (DAQUSB-01) remote head is independently powered from the Pi USB
+port: a 500 mA-hold PTC feeds an AP2112K-3.3 LDO with 2.2 uF input and 4.7 uF
+output capacitance.
 An STM32F042K6 reads the sensors over local I2C. TPS22919 switches sensor power
 off before enumeration and during USB suspend. Separate 5.1 kohm CC resistors
 support either USB-C cable orientation; USBLC6 arrays protect data and CC lines.

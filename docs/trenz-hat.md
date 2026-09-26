@@ -15,7 +15,8 @@ See the [geophone circuit and acquisition](geophone-input.md).
 DAQHAT-01 is an **85 × 56 mm, six-layer FR-4** alternative to the A2 Coldfoot ASIC HAT.
 Electrical source: [`hw/elec/hat_trenz.ato`](../hw/elec/hat_trenz.ato).
 CAD: [`groundlark-daqhat-01.kicad_pcb`](../hw/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb).
-The original ASIC HAT and remote USB sensor head remain separate builds.
+The original ASIC HAT and [Burrowlark (DAQUSB-01) USB sensor head](usb-sensor-head.md)
+remain separate builds.
 
 ## Stack and sensor placement
 

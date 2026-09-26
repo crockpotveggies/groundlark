@@ -8,8 +8,8 @@ The sensor contracts and Pi acquisition application are executable:
 - [interfaces/](interfaces/README.md): Protobuf schemas, semantic validation and bounded USB framing.
 - [pi/](pi/README.md): Pi device configuration, sensor drivers/adapters, acquisition,
   calibration and timestamps. Coldfoot host integration is deferred.
-- [field-head/](field-head/README.md): microcontroller firmware for the remote
-  USB-C magnetometer/infrasound board.
+- [field-head/](field-head/README.md): microcontroller firmware for Burrowlark
+  (DAQUSB-01), the remote USB-C magnetometer/infrasound board.
 - [fpga/](fpga/README.md): Trenz pin/connectivity qualification and minimal test
   bitstreams; accelerator implementation is deferred.
 - [tests/](tests/README.md): portable replay, fault injection and host integration.

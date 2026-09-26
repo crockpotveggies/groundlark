@@ -2,7 +2,7 @@
 
 | Location | Purpose |
 | --- | --- |
-| `hw/ato.yaml` | Three atopile build targets: ASIC HAT, USB field head, Trenz HAT. |
+| `hw/ato.yaml` | Three atopile build targets: ASIC HAT, Burrowlark DAQUSB-01 USB field head, Trenz HAT. |
 | `hw/elec/` | Electrical source and atomic part definitions. |
 | `hw/layout/`, `hw/layout*.json` | Compiled connectivity and mechanical placement inputs. |
 | `hw/boards/` | Routed KiCad projects, review schematics, BOMs, 3D previews and recorded validation. |
@@ -13,7 +13,7 @@
 | `sw/interfaces/` | Versioned Protobuf, compatibility baseline, reference validation/framing. |
 | `sw/tools/` | Offline schema and software check entrypoint. |
 | `sw/pi/` | Pi drivers/configuration, acquisition, calibration and recording/replay. |
-| `sw/field-head/` | Planned USB microcontroller firmware. |
+| `sw/field-head/` | Planned Burrowlark DAQUSB-01 USB microcontroller firmware. |
 | `sw/fpga/` | Trenz SPI echo bitstream, host-link checks and board constraints. |
 | `sw/tests/` | Contract, acquisition, recording, recovery and FPGA-link tests. |
 | `sw/ui/` | Python/NiceGUI workbench, locked optional dependencies and display assets. |

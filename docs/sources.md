@@ -37,7 +37,7 @@ Freerouting 1.9.0 is from [the upstream release](https://github.com/freerouting/
 
 The Coldfoot references are the user's existing sibling `coldfoot_soc` workspace, including uncommitted current implementation state. They have not been copied as a new chip specification or modified by this task. See [the integration note](coldfoot-integration.md) for paths and limitations.
 
-## A2 USB sensor head
+## Burrowlark DAQUSB-01 USB sensor head
 
 See [USB circuit and manufacturer references](usb-sensor-head.md). The former PCA9615 cable has been removed from both boards.
 

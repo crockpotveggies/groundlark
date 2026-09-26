@@ -7,7 +7,8 @@ The A2 results below do not certify DAQHAT-01.
 circuit is authored in atopile; the native KiCad layout and review schematic
 are derived from its compiled pins. Coldfoot silicon was not changed.
 
-A2 puts USB-C only on the remote sensor head and removes the HAT cable interface.
+A2 puts USB-C only on the Burrowlark (DAQUSB-01) remote sensor head and removes
+the HAT cable interface.
 The USB head requires firmware before it can enumerate. See [its circuit and
 firmware contract](usb-sensor-head.md). USB connector mechanical holes are marked
 on all copper layers in the local footprint, matching KiCad's multilayer PCB

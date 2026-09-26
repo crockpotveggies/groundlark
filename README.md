@@ -24,8 +24,8 @@ supports UART, reset and switched Pi-driven JTAG without external ribbon cables.
 Pi 4 initially uses SPI6; native quad transfers require a different host solution.
 An SPI echo bitstream is implemented; accelerated sensor processing remains future work.
 
-The [USB-C sensor head](docs/usb-sensor-head.md) carries an RM3100 magnetometer
-and optional DLVR infrasound sensor. It connects to the Pi for power and data;
+The [Burrowlark (DAQUSB-01) USB-C sensor head](docs/usb-sensor-head.md) carries
+an RM3100 magnetometer and optional DLVR infrasound sensor. It connects to the Pi for power and data;
 its MCU firmware is still pending. These sensors are separate from the HAT.
 The [A2 ASIC HAT](docs/design-a0.md) and [Coldfoot integration](docs/coldfoot-integration.md)
 are retained as a separate design; current hardware work focuses on the FPGA stack.
@@ -80,5 +80,5 @@ for Linux commands, test scope, five-run retention and cleanup.
 Hardware sources: [DAQHAT-01 circuit](hw/elec/hat_trenz.ato),
 [KiCad PCB](hw/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb),
 [A2 HAT](hw/boards/groundlark-hat/groundlark-hat.kicad_pcb), and
-[USB head](hw/boards/groundlark-field-head/groundlark-field-head.kicad_pcb).
+[Burrowlark DAQUSB-01](hw/boards/groundlark-field-head/groundlark-field-head.kicad_pcb).
 See [build instructions](docs/build.md) and [source references](docs/sources.md).

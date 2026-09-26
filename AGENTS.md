@@ -44,7 +44,8 @@ Do not invoke `bootstrap_trenz.py` or `pack_trenz.py` as validation: they overwr
 authoring inputs. Do not silently reroute or rewrite checked CAD during tests.
 
 The accelerometer HAT uses Pi drivers/runtime software; it has no separate
-microcontroller firmware. Firmware belongs to the remote USB sensor head.
+microcontroller firmware. The remote USB magnetometer/infrasound sensor board is
+named Burrowlark, model DAQUSB-01. Firmware belongs to that USB sensor head.
 The Trenz variant needs an FPGA bitstream. Pi acquisition/simulation and bounded
 recovery are implemented; USB-head firmware and physical qualification remain pending. A DAQHAT-01
 SPI echo bitstream is implemented and simulated; accelerated models and native

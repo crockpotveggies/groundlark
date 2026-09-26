@@ -1,9 +1,15 @@
-# A2 USB sensor head
+# Burrowlark DAQUSB-01 — USB sensor head
 
-Only the 70 × 45 mm remote board has USB-C. Connect it directly to an existing
-Raspberry Pi USB host port with a USB data cable. The HAT communicates with the
-Pi over its 40-pin header and retains the run-1 Coldfoot module. There is no USB
-connector, cable power output or PCA9615 transceiver on the HAT.
+**Burrowlark** (model **DAQUSB-01**) is Groundlark's 70 × 45 mm remote USB-C
+sensor board, carrying an RM3100 magnetometer and an optional DLVR infrasound
+sensor. Its circuit source is [`hw/elec/field_head.ato`](../hw/elec/field_head.ato),
+its native CAD is in [`hw/boards/groundlark-field-head/`](../hw/boards/groundlark-field-head/),
+and its firmware belongs in [`sw/field-head/`](../sw/field-head/README.md).
+
+Connect Burrowlark directly to an existing Raspberry Pi USB host port with a
+USB data cable. The HAT communicates with the Pi over its 40-pin header; the
+A2 ASIC HAT retains the run-1 Coldfoot module. There is no USB connector, cable
+power output or PCA9615 transceiver on the HAT.
 
 ## Circuit
 

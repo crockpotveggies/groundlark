@@ -60,7 +60,7 @@ and a nonblocking USB CDC TTY. The initial profile is:
 | --- | --- |
 | Three LSM6DSO | 26 Hz, ±2 g, ±250 dps; identity/reset/readback; BDU/address increment; signed temperature, gyro and acceleration. |
 | ADS122C04 geophone input | I²C 0x40; 330 SPS, PGA64, internal 2.048 V reference; signed 24-bit counts, conversion counter and inverted-data integrity checks. |
-| USB head | Receive v1 identity/configuration/batches/status over framed CDC; real firmware is still required. |
+| Burrowlark DAQUSB-01 USB head | Receive v1 identity/configuration/batches/status over framed CDC; real firmware is still required. |
 
 SCL3300 and MAX-M10S code is retained for legacy use and is not part of the
 current HAT profile. GNSS/PPS references later in this guide concern that legacy path.
