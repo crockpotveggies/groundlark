@@ -39,8 +39,10 @@ is patched and no electrical check is disabled. Component ratings use `assert
 `assemble_pcb.py` resets routing, applies mechanical placement, adds the outline
 and plane rules, and exports Specctra. It reads the compiled native KiCad board;
 it does not create connections from a Python netlist. Save manual layout changes
-before rerunning it. Electrical source is `hw/elec/*.ato`; `hw/layout.json` has no pin
-net assignments. Review BOM presentation metadata when changing a selected MPN.
+before rerunning it. Electrical source is in each product's `elec/` directory,
+with common definitions in `hw/shared/elec/`. Each product's
+`layout/placement.json` has no pin net assignments. Review BOM presentation
+metadata when changing a selected MPN.
 
 The checked route sessions are supplied with both boards. Reconstruct the
 delivered layout after `assemble_pcb.py` with:
@@ -66,8 +68,8 @@ For a changed placement/circuit, reroute each board and repeat the checks:
 
 ```sh
 xvfb-run -a java -jar hw/tools/freerouting-1.9.0.jar \
-  -de hw/boards/groundlark-hat/groundlark-hat.dsn \
-  -do hw/boards/groundlark-hat/groundlark-hat.ses -mp 25 -mt 1 -da
+  -de hw/groundlark-coldfoot-hat/boards/groundlark-hat/groundlark-hat.dsn \
+  -do hw/groundlark-coldfoot-hat/boards/groundlark-hat/groundlark-hat.ses -mp 25 -mt 1 -da
 # Repeat for groundlark-field-head.
 python3 hw/tools/import_routes.py
 python3 hw/tools/trim_dangling.py
@@ -93,13 +95,13 @@ Render the actual PCB with KiCad (repeat for the field head):
 ```sh
 xvfb-run -a kicad-cli pcb render --width 1800 --height 1000 \
   --quality high --background opaque --rotate 325,0,25 --zoom 0.9 \
-  -o hw/boards/groundlark-hat/3d.png \
-  hw/boards/groundlark-hat/groundlark-hat.kicad_pcb
+  -o hw/groundlark-coldfoot-hat/boards/groundlark-hat/3d.png \
+  hw/groundlark-coldfoot-hat/boards/groundlark-hat/groundlark-hat.kicad_pcb
 ```
 
 The KiCad project opens directly in PCB Editor; use Alt+3 for its interactive 3D
 viewer. Stock models require KiCad's 3D packages. Custom envelopes are portable
-under `hw/models/`. Prototype render geometry is not mechanical signoff.
+under `hw/shared/models/`. Prototype render geometry is not mechanical signoff.
 
 Do not use the empty BOM emitted by atopile's automatic picker: this design uses
 manual manufacturer parts. The explicit per-board `bom.csv` files are the review

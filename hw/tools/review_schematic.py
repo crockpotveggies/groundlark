@@ -1,5 +1,6 @@
 """Emit paginated review schematics from the compiled/routed board connectivity."""
 from pathlib import Path
+from project_paths import board_dir
 import json,types,collections,sys
 from kicad_support import save_board
 import pcbnew as p
@@ -7,7 +8,7 @@ from kicad_support import schematic,uid
 ROOT=Path(__file__).resolve().parents[2]
 def main():
     for name in sys.argv[1:] or ['groundlark-hat','groundlark-field-head']:
-        folder=ROOT/'hw/boards'/name;path=folder/(name+'.kicad_pcb');b=p.LoadBoard(str(path))
+        folder=board_dir(name);path=folder/(name+'.kicad_pcb');b=p.LoadBoard(str(path))
         data=json.loads((folder/'electrical.json').read_text());fps={f.GetReference():f for f in b.GetFootprints()}
         degree=collections.Counter(pad.GetNetname() for f in b.GetFootprints() for pad in f.Pads() if pad.GetNumber())
         counts=collections.Counter();parts=[]

@@ -154,6 +154,10 @@ After updating the repository, rerun setup with its check option.
 
 See [sensor software](sensor-software.md) for data and timing semantics and
 [UI source notes](../sw/ui/README.md) for checks and asset provenance.
+
+The scene reads the FPGA HAT and Burrowlark placement files from their respective
+product directories under `hw/`. Moving these files requires updating the scene's
+paths and asset provenance together; see the [project map](project-layout.md).
 The [portable lab](portable-lab.md) is the separate Docker-based full regression
 environment; it is optional for using this UI.
 Setup uses the official [uv installer options](https://docs.astral.sh/uv/reference/installer/)

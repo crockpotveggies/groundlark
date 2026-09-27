@@ -13,7 +13,7 @@ import subprocess
 import pcbnew as p
 
 ROOT=Path(__file__).resolve().parents[2]
-SOURCE=ROOT/'hw/boards/groundlark-daqhat-01/pi-trenz-stack-concept.kicad_pcb'
+SOURCE=ROOT/'hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/pi-trenz-stack-concept.kicad_pcb'
 CACHE=ROOT/'.local/readme-render'
 OUTPUT=ROOT/'docs/images/groundlark-stack-geophone.png'
 
@@ -44,8 +44,8 @@ def cylinder(a,b,r,color):
 def main():
     CACHE.mkdir(parents=True,exist_ok=True)
     native=SOURCE.with_name('groundlark-daqhat-01.kicad_pcb')
-    model_dir=ROOT/'hw/models'
-    inputs=[SOURCE,native,ROOT/'hw/layout-trenz.json',Path(__file__),
+    model_dir=ROOT/'hw/shared/models'
+    inputs=[SOURCE,native,ROOT/'hw/groundlark-fpga-hat/layout/placement.json',Path(__file__),
             model_dir/'trenz/STP-TE0712-03-No Variations.step',
             model_dir/'Pi4_stack_concept.wrl',model_dir/'Pi_ESQ_120_23.wrl',
             model_dir/'Trenz_spacers.wrl',model_dir/'LSHM_50_4mm.wrl',model_dir/'LSHM_30_4mm.wrl']

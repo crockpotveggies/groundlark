@@ -1,0 +1,1166 @@
+# Trenz TE0712-03-81I36-A variant. Electrical source of truth.
+#pragma experiment("TRAITS")
+import has_designator
+import ElectricPower
+from "host_link_parts.ato" import LINK_SUP
+from "host_link_parts.ato" import LINK_NAND
+from "host_link_parts.ato" import LINK_AND
+from "host_link_parts.ato" import LINK_IO
+from "host_link_parts.ato" import LINK_MUX
+from "geophone_parts.ato" import GEO_ADC
+from "geophone_parts.ato" import GEO_CONN
+from "geophone_parts.ato" import GEO_ESD
+from "geophone_parts.ato" import GEO_R1K
+from "geophone_parts.ato" import GEO_R1M
+from "geophone_parts.ato" import GEO_R22
+from "geophone_parts.ato" import GEO_C100N
+from "geophone_parts.ato" import GEO_C1N
+import has_net_name_suggestion
+from "../../shared/elec/parts.ato" import CF_C75
+from "../../shared/elec/parts.ato" import CF_C76
+from "../../shared/elec/parts.ato" import CF_C77
+from "../../shared/elec/parts.ato" import CF_Q1
+from "../../shared/elec/parts.ato" import CF_R61
+from "../../shared/elec/parts.ato" import CF_R62
+from "../../shared/elec/parts.ato" import CF_R63
+from "../../shared/elec/parts.ato" import CF_R64
+from "../../shared/elec/parts.ato" import CF_R65
+from "../../shared/elec/parts.ato" import CF_R66
+from "../../shared/elec/parts.ato" import CF_U51
+from "../../shared/elec/parts.ato" import CF_U52
+from "../../shared/elec/parts.ato" import P_1
+from "../../shared/elec/parts.ato" import P_10
+from "../../shared/elec/parts.ato" import P_11
+from "../../shared/elec/parts.ato" import P_12
+from "../../shared/elec/parts.ato" import P_13
+from "../../shared/elec/parts.ato" import P_14
+from "../../shared/elec/parts.ato" import P_2
+from "../../shared/elec/parts.ato" import P_20
+from "../../shared/elec/parts.ato" import P_21
+from "../../shared/elec/parts.ato" import P_22
+from "../../shared/elec/parts.ato" import P_23
+from "../../shared/elec/parts.ato" import P_24
+from "../../shared/elec/parts.ato" import P_25
+from "../../shared/elec/parts.ato" import P_26
+from "../../shared/elec/parts.ato" import P_29
+from "../../shared/elec/parts.ato" import P_3
+from "../../shared/elec/parts.ato" import P_30
+from "../../shared/elec/parts.ato" import P_32
+from "../../shared/elec/parts.ato" import P_4
+from "../../shared/elec/parts.ato" import P_5
+from "../../shared/elec/parts.ato" import P_6
+from "../../shared/elec/parts.ato" import P_7
+from "../../shared/elec/parts.ato" import P_8
+from "../../shared/elec/parts.ato" import P_9
+from "trenz_parts.ato" import TZ100
+from "trenz_parts.ato" import TZ60
+from "trenz_parts.ato" import TZ_FUSE
+from "trenz_parts.ato" import TZ_JP
+from "trenz_parts.ato" import TZ_POWER
+
+module TrenzHat:
+    signal LINK_ARMED_REQUEST
+    signal FPGA_LINK_CS_N
+    signal FPGA_LINK_DQ0
+    signal FPGA_LINK_DQ1
+    signal FPGA_LINK_DQ2
+    signal FPGA_LINK_DQ3
+    signal FPGA_LINK_SCLK
+    signal LINK_CS_N
+    signal LINK_DQ0
+    signal LINK_DQ1
+    signal LINK_DQ2
+    signal LINK_DQ3
+    signal LINK_FPGA_GOOD
+    signal LINK_JTAG_SEL
+    signal LINK_OE_N
+    signal LINK_PI_GOOD
+    signal LINK_REQUEST
+    signal LINK_SCLK
+    signal PI_LINK_CS_N
+    signal PI_LINK_DQ0
+    signal PI_LINK_DQ1
+    signal PI_LINK_DQ2
+    signal PI_LINK_DQ3
+    signal PI_LINK_SCLK
+    signal EEP_WP
+    signal EXT_3V3
+    signal FPGA_3V3
+    signal FPGA_CONFIG_RESET_N
+    signal FPGA_EN1
+    signal FPGA_IO_ENABLE
+    signal FPGA_JTAGEN
+    signal FPGA_MODE
+    signal FPGA_NOSEQ
+    signal FPGA_PGOOD
+    signal FPGA_RESET_GATE
+    signal FPGA_RESET_GPIO
+    signal FPGA_RESET_N
+    signal FPGA_UART_DRIVE
+    signal FPGA_UART_RX
+    signal FPGA_UART_TX
+    signal FPGA_VIN
+    signal GND
+    signal GEO_DRDY_N
+    signal GEO_P
+    signal GEO_N
+    signal GEO_AIN_P
+    signal GEO_AIN_N
+    signal GEO_VCM
+    signal GEO_AVDD
+    signal I2C_SCL
+    signal I2C_SDA
+    signal ID_SCL
+    signal ID_SDA
+    signal IMU1_CS
+    signal IMU1_INT
+    signal IMU2_CS
+    signal IMU2_INT
+    signal IMU3_CS
+    signal IMU3_INT
+    signal JTAG_TCK
+    signal JTAG_TDI
+    signal JTAG_TDO
+    signal JTAG_TMS
+    signal PI_3V3
+    signal PI_5V
+    signal PI_GEO_DRDY_N
+    signal PI_I2C_SCL
+    signal PI_I2C_SDA
+    signal PI_IMU1_CS
+    signal PI_IMU1_INT
+    signal PI_IMU2_CS
+    signal PI_IMU2_INT
+    signal PI_IMU3_CS
+    signal PI_IMU3_INT
+    signal PI_SPI_MISO
+    signal PI_SPI_MOSI
+    signal PI_SPI_SCLK
+    signal PI_UART_RX
+    signal PI_UART_TX
+    signal SENSOR_OE_N
+    signal SENS_3V3
+    signal SPI_MISO
+    signal SPI_MOSI
+    signal SPI_SCLK
+
+    sensor_supply = new ElectricPower
+    sensor_supply.hv ~ SENS_3V3
+    sensor_supply.lv ~ GND
+    sensor_supply.voltage = 3.18V to 3.42V
+    assert sensor_supply.voltage within 3.0V to 3.6V
+    pi_supply = new ElectricPower
+    pi_supply.hv ~ PI_3V3
+    pi_supply.lv ~ GND
+    pi_supply.voltage = 3.135V to 3.465V
+    input_supply = new ElectricPower
+    input_supply.hv ~ PI_5V
+    input_supply.lv ~ GND
+    input_supply.voltage = 4.75V to 5.25V
+    assert input_supply.voltage within 4.0V to 5.5V
+
+    # 01-host-power
+    # Raspberry Pi 40-pin: Samtec ESQ-120-23-G-D
+    j1 = new P_1
+    trait j1 has_designator<designator="J1">
+    j1.p1 ~ PI_3V3
+    j1.p2 ~ PI_5V
+    j1.p3 ~ PI_I2C_SDA
+    j1.p4 ~ PI_5V
+    j1.p5 ~ PI_I2C_SCL
+    j1.p6 ~ GND
+    j1.p7 ~ PI_GEO_DRDY_N
+    j1.p8 ~ PI_UART_TX
+    j1.p9 ~ GND
+    j1.p10 ~ PI_UART_RX
+    j1.p11 ~ FPGA_RESET_GPIO
+    j1.p12 ~ PI_LINK_CS_N
+    j1.p13 ~ PI_IMU1_INT
+    j1.p14 ~ GND
+    j1.p15 ~ PI_IMU2_INT
+    j1.p16 ~ PI_IMU3_INT
+    j1.p17 ~ PI_3V3
+    # J1.18: spare BCM24, intentionally unconnected
+    j1.p19 ~ PI_SPI_MOSI
+    j1.p20 ~ GND
+    j1.p21 ~ PI_SPI_MISO
+    j1.p22 ~ FPGA_IO_ENABLE
+    j1.p23 ~ PI_SPI_SCLK
+    j1.p24 ~ PI_IMU1_CS
+    j1.p25 ~ GND
+    j1.p26 ~ PI_IMU2_CS
+    j1.p27 ~ ID_SDA
+    j1.p28 ~ ID_SCL
+    j1.p29 ~ PI_IMU3_CS
+    j1.p30 ~ GND
+    # J1.31: spare BCM6, intentionally unconnected
+    j1.p32 ~ PI_LINK_DQ3
+    # J1.33: spare BCM13, intentionally unconnected
+    j1.p34 ~ GND
+    j1.p35 ~ PI_LINK_DQ1
+    j1.p36 ~ PI_LINK_DQ2
+    j1.p37 ~ SENSOR_OE_N
+    j1.p38 ~ PI_LINK_DQ0
+    j1.p39 ~ GND
+    j1.p40 ~ PI_LINK_SCLK
+    # 24LC32A: 24LC32A-I/SN
+    u1 = new P_2
+    trait u1 has_designator<designator="U1">
+    u1.p1 ~ GND
+    u1.p2 ~ GND
+    u1.p3 ~ GND
+    u1.p4 ~ GND
+    u1.p5 ~ ID_SDA
+    u1.p6 ~ ID_SCL
+    u1.p7 ~ EEP_WP
+    u1.p8 ~ PI_3V3
+    # 3.9k: RC0603FR-073K9L
+    r1 = new P_3
+    trait r1 has_designator<designator="R1">
+    r1.p1 ~ ID_SDA
+    r1.p2 ~ PI_3V3
+    # 3.9k: RC0603FR-073K9L
+    r2 = new P_3
+    trait r2 has_designator<designator="R2">
+    r2.p1 ~ ID_SCL
+    r2.p2 ~ PI_3V3
+    # 1k: RC0603FR-071KL
+    r3 = new P_4
+    trait r3 has_designator<designator="R3">
+    r3.p1 ~ EEP_WP
+    r3.p2 ~ PI_3V3
+    # EEPROM write enable: EEPROM write enable
+    jp1 = new P_5
+    trait jp1 has_designator<designator="JP1">
+    jp1.p1 ~ EEP_WP
+    jp1.p2 ~ GND
+    # 100n: GRM188R71H104KA93D
+    c1 = new P_6
+    trait c1 has_designator<designator="C1">
+    c1.p1 ~ PI_3V3
+    c1.p2 ~ GND
+    # 10u: GRM21BR61A106KE19L
+    c2 = new P_7
+    trait c2 has_designator<designator="C2">
+    c2.p1 ~ PI_3V3
+    c2.p2 ~ GND
+    # 10u: GRM21BR61A106KE19L
+    c3 = new P_7
+    trait c3 has_designator<designator="C3">
+    c3.p1 ~ PI_5V
+    c3.p2 ~ GND
+
+    # 02-motion-array
+    # LSM6DSOTR: LSM6DSOTR
+    u11 = new P_8
+    trait u11 has_designator<designator="U11">
+    u11.p1 ~ SPI_MISO
+    u11.p2 ~ GND
+    u11.p3 ~ GND
+    u11.p4 ~ IMU1_INT
+    u11.p5 ~ SENS_3V3
+    u11.p6 ~ GND
+    u11.p7 ~ GND
+    u11.p8 ~ SENS_3V3
+    # U11.9: intentionally unconnected
+    # U11.10: intentionally unconnected
+    # U11.11: intentionally unconnected
+    u11.p12 ~ IMU1_CS
+    u11.p13 ~ SPI_SCLK
+    u11.p14 ~ SPI_MOSI
+    # 100n: GRM155R71C104KA88D
+    c12 = new P_9
+    trait c12 has_designator<designator="C12">
+    c12.p1 ~ SENS_3V3
+    c12.p2 ~ GND
+    # 100n: GRM155R71C104KA88D
+    c13 = new P_9
+    trait c13 has_designator<designator="C13">
+    c13.p1 ~ SENS_3V3
+    c13.p2 ~ GND
+    # 10k: RC0603FR-0710KL
+    r11 = new P_10
+    trait r11 has_designator<designator="R11">
+    r11.p1 ~ IMU1_CS
+    r11.p2 ~ SENS_3V3
+    # LSM6DSOTR: LSM6DSOTR
+    u12 = new P_8
+    trait u12 has_designator<designator="U12">
+    u12.p1 ~ SPI_MISO
+    u12.p2 ~ GND
+    u12.p3 ~ GND
+    u12.p4 ~ IMU2_INT
+    u12.p5 ~ SENS_3V3
+    u12.p6 ~ GND
+    u12.p7 ~ GND
+    u12.p8 ~ SENS_3V3
+    # U12.9: intentionally unconnected
+    # U12.10: intentionally unconnected
+    # U12.11: intentionally unconnected
+    u12.p12 ~ IMU2_CS
+    u12.p13 ~ SPI_SCLK
+    u12.p14 ~ SPI_MOSI
+    # 100n: GRM155R71C104KA88D
+    c14 = new P_9
+    trait c14 has_designator<designator="C14">
+    c14.p1 ~ SENS_3V3
+    c14.p2 ~ GND
+    # 100n: GRM155R71C104KA88D
+    c15 = new P_9
+    trait c15 has_designator<designator="C15">
+    c15.p1 ~ SENS_3V3
+    c15.p2 ~ GND
+    # 10k: RC0603FR-0710KL
+    r12 = new P_10
+    trait r12 has_designator<designator="R12">
+    r12.p1 ~ IMU2_CS
+    r12.p2 ~ SENS_3V3
+    # LSM6DSOTR: LSM6DSOTR
+    u13 = new P_8
+    trait u13 has_designator<designator="U13">
+    u13.p1 ~ SPI_MISO
+    u13.p2 ~ GND
+    u13.p3 ~ GND
+    u13.p4 ~ IMU3_INT
+    u13.p5 ~ SENS_3V3
+    u13.p6 ~ GND
+    u13.p7 ~ GND
+    u13.p8 ~ SENS_3V3
+    # U13.9: intentionally unconnected
+    # U13.10: intentionally unconnected
+    # U13.11: intentionally unconnected
+    u13.p12 ~ IMU3_CS
+    u13.p13 ~ SPI_SCLK
+    u13.p14 ~ SPI_MOSI
+    # 100n: GRM155R71C104KA88D
+    c16 = new P_9
+    trait c16 has_designator<designator="C16">
+    c16.p1 ~ SENS_3V3
+    c16.p2 ~ GND
+    # 100n: GRM155R71C104KA88D
+    c17 = new P_9
+    trait c17 has_designator<designator="C17">
+    c17.p1 ~ SENS_3V3
+    c17.p2 ~ GND
+    # 10k: RC0603FR-0710KL
+    r13 = new P_10
+    trait r13 has_designator<designator="R13">
+    r13.p1 ~ IMU3_CS
+    r13.p2 ~ SENS_3V3
+    # 03-geophone: passive vertical Racotech RGI-4.5Hz, 395 ohm, 23.4 V/(m/s).
+    # Internal PGA/reference; no borrowed Raspberry Shake low-frequency extension.
+    u22 = new GEO_ADC
+    trait u22 has_designator<designator="U22">
+    u22.p1 ~ GND
+    u22.p2 ~ GND
+    u22.p3 ~ SENS_3V3
+    u22.p4 ~ GND
+    u22.p5 ~ GND
+    u22.p10 ~ GEO_AIN_N
+    u22.p11 ~ GEO_AIN_P
+    u22.p12 ~ GEO_AVDD
+    u22.p13 ~ SENS_3V3
+    u22.p14 ~ GEO_DRDY_N
+    u22.p15 ~ I2C_SDA
+    u22.p16 ~ I2C_SCL
+    j90 = new GEO_CONN
+    trait j90 has_designator<designator="J90">
+    j90.p1 ~ GEO_P
+    j90.p2 ~ GEO_N
+    j90.p3 ~ GND
+    d90 = new GEO_ESD
+    trait d90 has_designator<designator="D90">
+    d90.p1 ~ GEO_P
+    d90.p2 ~ GEO_N
+    d90.p3 ~ GND
+    r90 = new GEO_R1K
+    trait r90 has_designator<designator="R90">
+    r90.p1 ~ GEO_P
+    r90.p2 ~ GEO_AIN_P
+    r91 = new GEO_R1K
+    trait r91 has_designator<designator="R91">
+    r91.p1 ~ GEO_N
+    r91.p2 ~ GEO_AIN_N
+    c90 = new GEO_C100N
+    trait c90 has_designator<designator="C90">
+    c90.p1 ~ GEO_AIN_P
+    c90.p2 ~ GEO_AIN_N
+    c91 = new GEO_C1N
+    trait c91 has_designator<designator="C91">
+    c91.p1 ~ GEO_AIN_P
+    c91.p2 ~ GND
+    c92 = new GEO_C1N
+    trait c92 has_designator<designator="C92">
+    c92.p1 ~ GEO_AIN_N
+    c92.p2 ~ GND
+    r92 = new GEO_R1M
+    trait r92 has_designator<designator="R92">
+    r92.p1 ~ GEO_AIN_P
+    r92.p2 ~ GEO_VCM
+    r93 = new GEO_R1M
+    trait r93 has_designator<designator="R93">
+    r93.p1 ~ GEO_AIN_N
+    r93.p2 ~ GEO_VCM
+    r94 = new P_10
+    trait r94 has_designator<designator="R94">
+    r94.p1 ~ GEO_AVDD
+    r94.p2 ~ GEO_VCM
+    r95 = new P_10
+    trait r95 has_designator<designator="R95">
+    r95.p1 ~ GEO_VCM
+    r95.p2 ~ GND
+    c93 = new P_7
+    trait c93 has_designator<designator="C93">
+    c93.p1 ~ GEO_VCM
+    c93.p2 ~ GND
+    r96 = new GEO_R22
+    trait r96 has_designator<designator="R96">
+    r96.p1 ~ SENS_3V3
+    r96.p2 ~ GEO_AVDD
+    c94 = new P_7
+    trait c94 has_designator<designator="C94">
+    c94.p1 ~ GEO_AVDD
+    c94.p2 ~ GND
+    c95 = new P_6
+    trait c95 has_designator<designator="C95">
+    c95.p1 ~ GEO_AVDD
+    c95.p2 ~ GND
+    c96 = new P_6
+    trait c96 has_designator<designator="C96">
+    c96.p1 ~ SENS_3V3
+    c96.p2 ~ GND
+    r97 = new P_10
+    trait r97 has_designator<designator="R97">
+    r97.p1 ~ GEO_DRDY_N
+    r97.p2 ~ SENS_3V3
+
+    # 04-remote-sensors
+    # 100n: GRM188R71H104KA93D
+    # 100n: GRM188R71H104KA93D
+    # 390: RC0603FR-07390RL
+    # 120: RC0603FR-07120RL
+    # 390: RC0603FR-07390RL
+    # 390: RC0603FR-07390RL
+    # 120: RC0603FR-07120RL
+    # 390: RC0603FR-07390RL
+    # 05-fpga-interface
+    # 47: RC0603FR-0747RL
+    # 47: RC0603FR-0747RL
+    # 47: RC0603FR-0747RL
+    # FPGA UART service ONLY
+    j4 = new P_20
+    trait j4 has_designator<designator="J4">
+    j4.p1 ~ GND
+    j4.p2 ~ FPGA_UART_RX
+    j4.p3 ~ FPGA_UART_TX
+    j4.p4 ~ FPGA_RESET_N
+
+    # 06-supply-isolation
+    # TLV1117LV33DCYR: TLV1117LV33DCYR
+    u40 = new P_21
+    trait u40 has_designator<designator="U40">
+    u40.p1 ~ GND
+    u40.p2 ~ SENS_3V3
+    u40.p3 ~ PI_5V
+    # 10u: GRM21BR61A106KE19L
+    c40 = new P_7
+    trait c40 has_designator<designator="C40">
+    c40.p1 ~ PI_5V
+    c40.p2 ~ GND
+    # 100n: GRM188R71H104KA93D
+    c41 = new P_6
+    trait c41 has_designator<designator="C41">
+    c41.p1 ~ PI_5V
+    c41.p2 ~ GND
+    # 22u: GRM31CR61A226KE19L
+    c42 = new P_22
+    trait c42 has_designator<designator="C42">
+    c42.p1 ~ SENS_3V3
+    c42.p2 ~ GND
+    # 100n: GRM188R71H104KA93D
+    c43 = new P_6
+    trait c43 has_designator<designator="C43">
+    c43.p1 ~ SENS_3V3
+    c43.p2 ~ GND
+    # SN74LVC8T245PWR: SN74LVC8T245PWR
+    u41 = new P_23
+    trait u41 has_designator<designator="U41">
+    u41.p1 ~ PI_3V3
+    u41.p2 ~ PI_3V3
+    u41.p11 ~ GND
+    u41.p12 ~ GND
+    u41.p13 ~ GND
+    u41.p22 ~ SENSOR_OE_N
+    u41.p23 ~ SENS_3V3
+    u41.p24 ~ SENS_3V3
+    u41.p3 ~ PI_SPI_MOSI
+    u41.p21 ~ SPI_MOSI
+    u41.p4 ~ PI_SPI_SCLK
+    u41.p20 ~ SPI_SCLK
+    u41.p5 ~ PI_IMU1_CS
+    u41.p19 ~ IMU1_CS
+    u41.p6 ~ PI_IMU2_CS
+    u41.p18 ~ IMU2_CS
+    u41.p7 ~ PI_IMU3_CS
+    u41.p17 ~ IMU3_CS
+    u41.p8 ~ GND
+    # U41.16: unused output, intentionally unconnected
+    u41.p9 ~ GND
+    # U41.15: unused output, intentionally unconnected
+    u41.p10 ~ GND
+    # U41.14: intentionally unconnected
+    # SN74LVC8T245PWR: SN74LVC8T245PWR
+    u42 = new P_23
+    trait u42 has_designator<designator="U42">
+    u42.p1 ~ PI_3V3
+    u42.p2 ~ GND
+    u42.p11 ~ GND
+    u42.p12 ~ GND
+    u42.p13 ~ GND
+    u42.p22 ~ SENSOR_OE_N
+    u42.p23 ~ SENS_3V3
+    u42.p24 ~ SENS_3V3
+    u42.p3 ~ PI_SPI_MISO
+    u42.p21 ~ SPI_MISO
+    u42.p4 ~ PI_IMU1_INT
+    u42.p20 ~ IMU1_INT
+    u42.p5 ~ PI_IMU2_INT
+    u42.p19 ~ IMU2_INT
+    u42.p6 ~ PI_IMU3_INT
+    u42.p18 ~ IMU3_INT
+    # U42.7: unused output, intentionally unconnected
+    u42.p17 ~ GND
+    u42.p8 ~ PI_GEO_DRDY_N
+    u42.p16 ~ GEO_DRDY_N
+    # U42.9: intentionally unconnected
+    u42.p15 ~ GND
+    # U42.10: intentionally unconnected
+    u42.p14 ~ GND
+    # 100n: GRM188R71H104KA93D
+    c44 = new P_6
+    trait c44 has_designator<designator="C44">
+    c44.p1 ~ PI_3V3
+    c44.p2 ~ GND
+    # 100n: GRM188R71H104KA93D
+    c45 = new P_6
+    trait c45 has_designator<designator="C45">
+    c45.p1 ~ SENS_3V3
+    c45.p2 ~ GND
+    # 100n: GRM188R71H104KA93D
+    c46 = new P_6
+    trait c46 has_designator<designator="C46">
+    c46.p1 ~ PI_3V3
+    c46.p2 ~ GND
+    # 100n: GRM188R71H104KA93D
+    c47 = new P_6
+    trait c47 has_designator<designator="C47">
+    c47.p1 ~ SENS_3V3
+    c47.p2 ~ GND
+    # 10k: RC0603FR-0710KL
+    r50 = new P_10
+    trait r50 has_designator<designator="R50">
+    r50.p1 ~ SENSOR_OE_N
+    r50.p2 ~ PI_3V3
+    # 100k: RC0603FR-07100KL
+    r51 = new P_24
+    trait r51 has_designator<designator="R51">
+    r51.p1 ~ SPI_MISO
+    r51.p2 ~ GND
+    # ISO1640BDR: ISO1640BDR
+    u43 = new P_25
+    trait u43 has_designator<designator="U43">
+    u43.p1 ~ PI_3V3
+    u43.p2 ~ PI_I2C_SDA
+    u43.p3 ~ PI_I2C_SCL
+    u43.p4 ~ GND
+    u43.p5 ~ GND
+    u43.p6 ~ I2C_SCL
+    u43.p7 ~ I2C_SDA
+    u43.p8 ~ SENS_3V3
+    # 100n: GRM188R71H104KA93D
+    c48 = new P_6
+    trait c48 has_designator<designator="C48">
+    c48.p1 ~ PI_3V3
+    c48.p2 ~ GND
+    # 100n: GRM188R71H104KA93D
+    c49 = new P_6
+    trait c49 has_designator<designator="C49">
+    c49.p1 ~ SENS_3V3
+    c49.p2 ~ GND
+    # 4.7k: RC0603FR-074K7L
+    r52 = new P_26
+    trait r52 has_designator<designator="R52">
+    r52.p1 ~ I2C_SDA
+    r52.p2 ~ SENS_3V3
+    # 4.7k: RC0603FR-074K7L
+    r53 = new P_26
+    trait r53 has_designator<designator="R53">
+    r53.p1 ~ I2C_SCL
+    r53.p2 ~ SENS_3V3
+    # MF-MSMF050-2: MF-MSMF050-2
+    # 4.7u: GRM21BR71A475KA73L
+    # 04-remote-sensors
+    # USBLC6-2SC6: USBLC6-2SC6
+    # USBLC6-2SC6: USBLC6-2SC6
+    # 06-supply-isolation
+    # SENS_3V3: SENS_3V3
+    tp1 = new P_29
+    trait tp1 has_designator<designator="TP1">
+    tp1.p1 ~ SENS_3V3
+    # GND: GND
+    tp2 = new P_30
+    trait tp2 has_designator<designator="TP2">
+    tp2.p1 ~ GND
+    # SENSOR_OE_N: SENSOR_OE_N
+    tp4 = new P_32
+    trait tp4 has_designator<designator="TP4">
+    tp4.p1 ~ SENSOR_OE_N
+    u1.power ~ pi_supply
+    u11.power ~ sensor_supply
+    u11.io ~ sensor_supply
+    u12.power ~ sensor_supply
+    u12.io ~ sensor_supply
+    u13.power ~ sensor_supply
+    u13.io ~ sensor_supply
+    u22.digital ~ sensor_supply
+    u22.analog.voltage = 3.3V +/- 5%
+    u40.input_power ~ input_supply
+    u40.output_power ~ sensor_supply
+    u41.host_power ~ pi_supply
+    u41.sensor_power ~ sensor_supply
+    u42.host_power ~ pi_supply
+    u42.sensor_power ~ sensor_supply
+    u43.host_power ~ pi_supply
+    u43.sensor_power ~ sensor_supply
+
+    u51 = new CF_U51
+    trait u51 has_designator<designator="U51">
+    u51.p1 ~ FPGA_UART_TX
+    u51.p2 ~ GND
+    u51.p3 ~ PI_3V3
+    u51.p4 ~ PI_UART_RX
+    u51.p5 ~ PI_UART_TX
+    u51.p6 ~ FPGA_IO_ENABLE
+    u51.p7 ~ FPGA_3V3
+    u51.p8 ~ FPGA_UART_DRIVE
+    # 100n / GRM188R71H104KA93D
+    c75 = new CF_C75
+    trait c75 has_designator<designator="C75">
+    c75.p1 ~ PI_3V3
+    c75.p2 ~ GND
+    # 100n / GRM188R71H104KA93D
+    c76 = new CF_C76
+    trait c76 has_designator<designator="C76">
+    c76.p1 ~ FPGA_3V3
+    c76.p2 ~ GND
+    # 47 / RC0603FR-0747RL
+    r61 = new CF_R61
+    trait r61 has_designator<designator="R61">
+    r61.p1 ~ FPGA_UART_DRIVE
+    r61.p2 ~ FPGA_UART_RX
+    # 100k / RC0603FR-07100KL
+    r62 = new CF_R62
+    trait r62 has_designator<designator="R62">
+    r62.p1 ~ FPGA_IO_ENABLE
+    r62.p2 ~ GND
+    # 10k / RC0603FR-0710KL
+    r63 = new CF_R63
+    trait r63 has_designator<designator="R63">
+    r63.p1 ~ FPGA_UART_RX
+    r63.p2 ~ FPGA_3V3
+    # TLV803EA30DBZR / TLV803EA30DBZR
+    u52 = new CF_U52
+    trait u52 has_designator<designator="U52">
+    u52.p1 ~ GND
+    u52.p2 ~ FPGA_RESET_N
+    u52.p3 ~ FPGA_3V3
+    # 100n / GRM188R71H104KA93D
+    c77 = new CF_C77
+    trait c77 has_designator<designator="C77">
+    c77.p1 ~ FPGA_3V3
+    c77.p2 ~ GND
+    # 10k / RC0603FR-0710KL
+    r64 = new CF_R64
+    trait r64 has_designator<designator="R64">
+    r64.p1 ~ FPGA_RESET_N
+    r64.p2 ~ FPGA_3V3
+    # 2N7002 / 2N7002
+    q1 = new CF_Q1
+    trait q1 has_designator<designator="Q1">
+    q1.p1 ~ FPGA_RESET_GATE
+    q1.p2 ~ GND
+    q1.p3 ~ FPGA_RESET_N
+    # 1k / RC0603FR-071KL
+    r65 = new CF_R65
+    trait r65 has_designator<designator="R65">
+    r65.p1 ~ FPGA_RESET_GPIO
+    r65.p2 ~ FPGA_RESET_GATE
+    # 100k / RC0603FR-07100KL
+    r66 = new CF_R66
+    trait r66 has_designator<designator="R66">
+    r66.p1 ~ FPGA_RESET_GATE
+    r66.p2 ~ GND
+
+    # J80: LSHM-150-04.0-L-DV-A-S-K-TR; Mates JM1; opposite parity; 8 mm board surface gap
+    j80 = new TZ100
+    trait j80 has_designator<designator="J80">
+    j80.p2 ~ FPGA_VIN
+    j80.p4 ~ FPGA_VIN
+    j80.p6 ~ FPGA_VIN
+    j80.p10 ~ FPGA_3V3
+    j80.p12 ~ FPGA_3V3
+    j80.p14 ~ FPGA_VIN
+    j80.p16 ~ FPGA_VIN
+    j80.p13 ~ FPGA_3V3
+    j80.p8 ~ FPGA_NOSEQ
+    j80.p27 ~ FPGA_EN1
+    j80.p29 ~ FPGA_PGOOD
+    j80.p31 ~ FPGA_MODE
+    j80.p90 ~ FPGA_JTAGEN
+
+    # J81: LSHM-150-04.0-L-DV-A-S-K-TR; Mates JM2; opposite parity; 8 mm board surface gap
+    j81 = new TZ100
+    trait j81 has_designator<designator="J81">
+    j81.p1 ~ FPGA_VIN
+    j81.p3 ~ FPGA_VIN
+    j81.p5 ~ FPGA_VIN
+    j81.p7 ~ FPGA_VIN
+    j81.p2 ~ FPGA_3V3
+    j81.p4 ~ FPGA_3V3
+    j81.p8 ~ FPGA_3V3
+    j81.p10 ~ FPGA_3V3
+    j81.p9 ~ FPGA_3V3
+    j81.p11 ~ FPGA_3V3
+    j81.p92 ~ FPGA_3V3
+    j81.p94 ~ JTAG_TMS
+    j81.p96 ~ JTAG_TDI
+    j81.p98 ~ JTAG_TDO
+    j81.p100 ~ JTAG_TCK
+    j81.p17 ~ FPGA_CONFIG_RESET_N
+    j81.p12 ~ FPGA_UART_RX
+    j81.p14 ~ FPGA_UART_TX
+    j81.p13 ~ FPGA_RESET_N
+
+    # J82: LSHM-130-04.0-L-DV-A-S-K-TR; Mates JM3; opposite parity; 8 mm board surface gap
+    j82 = new TZ60
+    trait j82 has_designator<designator="J82">
+
+    # J83: 1715721; REGULATED 3.3 V ONLY; current-limited external supply, 3 A initial operating budget
+    j83 = new TZ_POWER
+    trait j83 has_designator<designator="J83">
+    j83.p1 ~ EXT_3V3
+    j83.p2 ~ GND
+
+    # F80: 0467005.NR; 5 A fast fuse; not reverse-polarity or overvoltage protection
+    f80 = new TZ_FUSE
+    trait f80 has_designator<designator="F80">
+    f80.p1 ~ EXT_3V3
+    f80.p2 ~ FPGA_VIN
+
+    # JP80: TSW-102-07-G-S; Fit shunt to DISABLE module; open enables on-board sequence
+    jp80 = new TZ_JP
+    trait jp80 has_designator<designator="JP80">
+    jp80.p1 ~ FPGA_EN1
+    jp80.p2 ~ GND
+
+    # JP81: TSW-102-07-G-S; Fit shunt to request module configuration reset
+    jp81 = new TZ_JP
+    trait jp81 has_designator<designator="JP81">
+    jp81.p1 ~ FPGA_CONFIG_RESET_N
+    jp81.p2 ~ GND
+
+    r80 = new P_10
+    trait r80 has_designator<designator="R80">
+    r80.p1 ~ FPGA_JTAGEN
+    r80.p2 ~ GND
+
+    r81 = new P_10
+    trait r81 has_designator<designator="R81">
+    r81.p1 ~ FPGA_NOSEQ
+    r81.p2 ~ GND
+
+    c80 = new P_22
+    trait c80 has_designator<designator="C80">
+    c80.p1 ~ FPGA_VIN
+    c80.p2 ~ GND
+
+    c81 = new P_22
+    trait c81 has_designator<designator="C81">
+    c81.p1 ~ FPGA_VIN
+    c81.p2 ~ GND
+
+    c82 = new P_22
+    trait c82 has_designator<designator="C82">
+    c82.p1 ~ FPGA_VIN
+    c82.p2 ~ GND
+
+    c83 = new P_6
+    trait c83 has_designator<designator="C83">
+    c83.p1 ~ FPGA_VIN
+    c83.p2 ~ GND
+
+    c84 = new P_13
+    trait c84 has_designator<designator="C84">
+    c84.p1 ~ FPGA_3V3
+    c84.p2 ~ GND
+
+    c85 = new P_13
+    trait c85 has_designator<designator="C85">
+    c85.p1 ~ FPGA_3V3
+    c85.p2 ~ GND
+
+    fpga_supply = new ElectricPower
+    fpga_supply.hv ~ FPGA_3V3
+    fpga_supply.lv ~ GND
+    fpga_supply.voltage = 3.201V to 3.399V
+    assert fpga_supply.voltage within 3.0V to 3.6V
+    external_supply = new ElectricPower
+    external_supply.hv ~ FPGA_VIN
+    external_supply.lv ~ GND
+    external_supply.voltage = 3.201V to 3.399V
+    assert external_supply.voltage within 3.201V to 3.399V
+    trait EEP_WP has_net_name_suggestion<name="EEP_WP", level="EXPECTED">
+    trait EXT_3V3 has_net_name_suggestion<name="EXT_3V3", level="EXPECTED">
+    trait FPGA_3V3 has_net_name_suggestion<name="FPGA_3V3", level="EXPECTED">
+    trait FPGA_CONFIG_RESET_N has_net_name_suggestion<name="FPGA_CONFIG_RESET_N", level="EXPECTED">
+    trait FPGA_EN1 has_net_name_suggestion<name="FPGA_EN1", level="EXPECTED">
+    trait FPGA_IO_ENABLE has_net_name_suggestion<name="FPGA_IO_ENABLE", level="EXPECTED">
+    trait FPGA_JTAGEN has_net_name_suggestion<name="FPGA_JTAGEN", level="EXPECTED">
+    trait FPGA_MODE has_net_name_suggestion<name="FPGA_MODE", level="EXPECTED">
+    trait FPGA_NOSEQ has_net_name_suggestion<name="FPGA_NOSEQ", level="EXPECTED">
+    trait FPGA_PGOOD has_net_name_suggestion<name="FPGA_PGOOD", level="EXPECTED">
+    trait FPGA_RESET_GATE has_net_name_suggestion<name="FPGA_RESET_GATE", level="EXPECTED">
+    trait FPGA_RESET_GPIO has_net_name_suggestion<name="FPGA_RESET_GPIO", level="EXPECTED">
+    trait FPGA_RESET_N has_net_name_suggestion<name="FPGA_RESET_N", level="EXPECTED">
+    trait FPGA_UART_DRIVE has_net_name_suggestion<name="FPGA_UART_DRIVE", level="EXPECTED">
+    trait FPGA_UART_RX has_net_name_suggestion<name="FPGA_UART_RX", level="EXPECTED">
+    trait FPGA_UART_TX has_net_name_suggestion<name="FPGA_UART_TX", level="EXPECTED">
+    trait FPGA_VIN has_net_name_suggestion<name="FPGA_VIN", level="EXPECTED">
+    trait GND has_net_name_suggestion<name="GND", level="EXPECTED">
+    trait GEO_DRDY_N has_net_name_suggestion<name="GEO_DRDY_N", level="EXPECTED">
+    trait I2C_SCL has_net_name_suggestion<name="I2C_SCL", level="EXPECTED">
+    trait I2C_SDA has_net_name_suggestion<name="I2C_SDA", level="EXPECTED">
+    trait ID_SCL has_net_name_suggestion<name="ID_SCL", level="EXPECTED">
+    trait ID_SDA has_net_name_suggestion<name="ID_SDA", level="EXPECTED">
+    trait IMU1_CS has_net_name_suggestion<name="IMU1_CS", level="EXPECTED">
+    trait IMU1_INT has_net_name_suggestion<name="IMU1_INT", level="EXPECTED">
+    trait IMU2_CS has_net_name_suggestion<name="IMU2_CS", level="EXPECTED">
+    trait IMU2_INT has_net_name_suggestion<name="IMU2_INT", level="EXPECTED">
+    trait IMU3_CS has_net_name_suggestion<name="IMU3_CS", level="EXPECTED">
+    trait IMU3_INT has_net_name_suggestion<name="IMU3_INT", level="EXPECTED">
+    trait JTAG_TCK has_net_name_suggestion<name="JTAG_TCK", level="EXPECTED">
+    trait JTAG_TDI has_net_name_suggestion<name="JTAG_TDI", level="EXPECTED">
+    trait JTAG_TDO has_net_name_suggestion<name="JTAG_TDO", level="EXPECTED">
+    trait JTAG_TMS has_net_name_suggestion<name="JTAG_TMS", level="EXPECTED">
+    trait PI_3V3 has_net_name_suggestion<name="PI_3V3", level="EXPECTED">
+    trait PI_5V has_net_name_suggestion<name="PI_5V", level="EXPECTED">
+    trait PI_GEO_DRDY_N has_net_name_suggestion<name="PI_GEO_DRDY_N", level="EXPECTED">
+    trait PI_I2C_SCL has_net_name_suggestion<name="PI_I2C_SCL", level="EXPECTED">
+    trait PI_I2C_SDA has_net_name_suggestion<name="PI_I2C_SDA", level="EXPECTED">
+    trait PI_IMU1_CS has_net_name_suggestion<name="PI_IMU1_CS", level="EXPECTED">
+    trait PI_IMU1_INT has_net_name_suggestion<name="PI_IMU1_INT", level="EXPECTED">
+    trait PI_IMU2_CS has_net_name_suggestion<name="PI_IMU2_CS", level="EXPECTED">
+    trait PI_IMU2_INT has_net_name_suggestion<name="PI_IMU2_INT", level="EXPECTED">
+    trait PI_IMU3_CS has_net_name_suggestion<name="PI_IMU3_CS", level="EXPECTED">
+    trait PI_IMU3_INT has_net_name_suggestion<name="PI_IMU3_INT", level="EXPECTED">
+    trait PI_SPI_MISO has_net_name_suggestion<name="PI_SPI_MISO", level="EXPECTED">
+    trait PI_SPI_MOSI has_net_name_suggestion<name="PI_SPI_MOSI", level="EXPECTED">
+    trait PI_SPI_SCLK has_net_name_suggestion<name="PI_SPI_SCLK", level="EXPECTED">
+    trait PI_UART_RX has_net_name_suggestion<name="PI_UART_RX", level="EXPECTED">
+    trait PI_UART_TX has_net_name_suggestion<name="PI_UART_TX", level="EXPECTED">
+    trait SENSOR_OE_N has_net_name_suggestion<name="SENSOR_OE_N", level="EXPECTED">
+    trait SENS_3V3 has_net_name_suggestion<name="SENS_3V3", level="EXPECTED">
+    trait SPI_MISO has_net_name_suggestion<name="SPI_MISO", level="EXPECTED">
+    trait SPI_MOSI has_net_name_suggestion<name="SPI_MOSI", level="EXPECTED">
+    trait SPI_SCLK has_net_name_suggestion<name="SPI_SCLK", level="EXPECTED">
+    j80.p1 ~ GND
+    j80.p7 ~ GND
+    j80.p19 ~ GND
+    j80.p25 ~ GND
+    j80.p30 ~ GND
+    j80.p33 ~ GND
+    j80.p43 ~ GND
+    j80.p54 ~ GND
+    j80.p53 ~ GND
+    j80.p64 ~ GND
+    j80.p63 ~ GND
+    j80.p74 ~ GND
+    j80.p73 ~ GND
+    j80.p83 ~ GND
+    j80.p89 ~ GND
+    j81.p19 ~ GND
+    j81.p40 ~ GND
+    j81.p39 ~ GND
+    j81.p50 ~ GND
+    j81.p49 ~ GND
+    j81.p60 ~ GND
+    j81.p59 ~ GND
+    j81.p70 ~ GND
+    j81.p69 ~ GND
+    j81.p80 ~ GND
+    j81.p79 ~ GND
+    j81.p89 ~ GND
+    j82.p6 ~ GND
+    j82.p5 ~ GND
+    j82.p12 ~ GND
+    j82.p11 ~ GND
+    j82.p18 ~ GND
+    j82.p17 ~ GND
+    j82.p24 ~ GND
+    j82.p23 ~ GND
+    j82.p30 ~ GND
+    j82.p29 ~ GND
+    j82.p36 ~ GND
+    j82.p35 ~ GND
+    j82.p46 ~ GND
+    j82.p45 ~ GND
+    j80.p101 ~ GND
+    j81.p101 ~ GND
+    j82.p61 ~ GND
+
+
+    trait GEO_P has_net_name_suggestion<name="GEO_P", level="EXPECTED">
+    trait GEO_N has_net_name_suggestion<name="GEO_N", level="EXPECTED">
+    trait GEO_AIN_P has_net_name_suggestion<name="GEO_AIN_P", level="EXPECTED">
+    trait GEO_AIN_N has_net_name_suggestion<name="GEO_AIN_N", level="EXPECTED">
+    trait GEO_VCM has_net_name_suggestion<name="GEO_VCM", level="EXPECTED">
+    trait GEO_AVDD has_net_name_suggestion<name="GEO_AVDD", level="EXPECTED">
+
+    # 07-internal-link: SPI6/QSPI reservation, selectable native FPGA JTAG.
+    u100 = new LINK_MUX
+    trait u100 has_designator<designator="U100">
+    u100.p1 ~ LINK_JTAG_SEL
+    u100.p2 ~ FPGA_LINK_SCLK
+    u100.p3 ~ JTAG_TCK
+    u100.p4 ~ LINK_SCLK
+    u100.p5 ~ FPGA_LINK_DQ0
+    u100.p6 ~ JTAG_TDI
+    u100.p7 ~ LINK_DQ0
+    u100.p8 ~ GND
+    u100.p9 ~ LINK_DQ1
+    u100.p10 ~ JTAG_TDO
+    u100.p11 ~ FPGA_LINK_DQ1
+    u100.p12 ~ LINK_DQ2
+    u100.p13 ~ JTAG_TMS
+    u100.p14 ~ FPGA_LINK_DQ2
+    u100.p15 ~ LINK_OE_N
+    u100.p16 ~ FPGA_3V3
+
+    u101 = new LINK_MUX
+    trait u101 has_designator<designator="U101">
+    u101.p1 ~ LINK_JTAG_SEL
+    u101.p2 ~ FPGA_LINK_CS_N
+    u101.p4 ~ LINK_CS_N
+    u101.p5 ~ FPGA_LINK_DQ3
+    u101.p7 ~ LINK_DQ3
+    u101.p8 ~ GND
+    u101.p9 ~ GND
+    u101.p10 ~ GND
+    u101.p11 ~ GND
+    u101.p12 ~ GND
+    u101.p13 ~ GND
+    u101.p14 ~ GND
+    u101.p15 ~ LINK_OE_N
+    u101.p16 ~ FPGA_3V3
+
+    u102 = new LINK_IO
+    trait u102 has_designator<designator="U102">
+    u102.p1 ~ GND
+    u102.p2 ~ GND
+    u102.p3 ~ GND
+    u102.p4 ~ LINK_JTAG_SEL
+    u102.p5 ~ LINK_REQUEST
+    u102.p6 ~ GND
+    u102.p7 ~ GND
+    u102.p8 ~ GND
+    u102.p9 ~ GND
+    u102.p10 ~ GND
+    u102.p11 ~ GND
+    u102.p12 ~ GND
+    u102.p14 ~ PI_I2C_SCL
+    u102.p15 ~ PI_I2C_SDA
+    u102.p16 ~ PI_3V3
+
+    u103 = new LINK_NAND
+    trait u103 has_designator<designator="U103">
+    u103.p1 ~ LINK_ARMED_REQUEST
+    u103.p2 ~ GND
+    u103.p3 ~ LINK_PI_GOOD
+    u103.p4 ~ LINK_OE_N
+    u103.p5 ~ FPGA_3V3
+    u103.p6 ~ LINK_FPGA_GOOD
+
+    u104 = new LINK_SUP
+    trait u104 has_designator<designator="U104">
+    u104.p1 ~ GND
+    u104.p2 ~ LINK_PI_GOOD
+    u104.p3 ~ PI_3V3
+
+    u105 = new LINK_SUP
+    trait u105 has_designator<designator="U105">
+    u105.p1 ~ GND
+    u105.p2 ~ LINK_FPGA_GOOD
+    u105.p3 ~ FPGA_3V3
+
+    c100 = new P_6
+    trait c100 has_designator<designator="C100">
+    c100.p1 ~ FPGA_3V3
+    c100.p2 ~ GND
+
+    c101 = new P_6
+    trait c101 has_designator<designator="C101">
+    c101.p1 ~ FPGA_3V3
+    c101.p2 ~ GND
+
+    c102 = new P_6
+    trait c102 has_designator<designator="C102">
+    c102.p1 ~ PI_3V3
+    c102.p2 ~ GND
+
+    c103 = new P_6
+    trait c103 has_designator<designator="C103">
+    c103.p1 ~ FPGA_3V3
+    c103.p2 ~ GND
+
+    c104 = new P_6
+    trait c104 has_designator<designator="C104">
+    c104.p1 ~ PI_3V3
+    c104.p2 ~ GND
+
+    c105 = new P_6
+    trait c105 has_designator<designator="C105">
+    c105.p1 ~ FPGA_3V3
+    c105.p2 ~ GND
+
+    r100 = new GEO_R22
+    trait r100 has_designator<designator="R100">
+    r100.p1 ~ PI_LINK_SCLK
+    r100.p2 ~ LINK_SCLK
+
+    r101 = new GEO_R22
+    trait r101 has_designator<designator="R101">
+    r101.p1 ~ PI_LINK_DQ0
+    r101.p2 ~ LINK_DQ0
+
+    r102 = new GEO_R22
+    trait r102 has_designator<designator="R102">
+    r102.p1 ~ PI_LINK_DQ1
+    r102.p2 ~ LINK_DQ1
+
+    r103 = new GEO_R22
+    trait r103 has_designator<designator="R103">
+    r103.p1 ~ PI_LINK_DQ2
+    r103.p2 ~ LINK_DQ2
+
+    r104 = new GEO_R22
+    trait r104 has_designator<designator="R104">
+    r104.p1 ~ PI_LINK_CS_N
+    r104.p2 ~ LINK_CS_N
+
+    r105 = new GEO_R22
+    trait r105 has_designator<designator="R105">
+    r105.p1 ~ PI_LINK_DQ3
+    r105.p2 ~ LINK_DQ3
+
+    r106 = new P_10
+    trait r106 has_designator<designator="R106">
+    r106.p1 ~ LINK_JTAG_SEL
+    r106.p2 ~ GND
+
+    r107 = new P_10
+    trait r107 has_designator<designator="R107">
+    r107.p1 ~ LINK_REQUEST
+    r107.p2 ~ GND
+
+    r108 = new P_10
+    trait r108 has_designator<designator="R108">
+    r108.p1 ~ LINK_OE_N
+    r108.p2 ~ FPGA_3V3
+
+    r109 = new P_10
+    trait r109 has_designator<designator="R109">
+    r109.p1 ~ LINK_PI_GOOD
+    r109.p2 ~ GND
+
+    r110 = new P_10
+    trait r110 has_designator<designator="R110">
+    r110.p1 ~ LINK_FPGA_GOOD
+    r110.p2 ~ GND
+
+    r111 = new P_10
+    trait r111 has_designator<designator="R111">
+    r111.p1 ~ FPGA_LINK_CS_N
+    r111.p2 ~ FPGA_3V3
+
+    r112 = new CF_R62
+    trait r112 has_designator<designator="R112">
+    r112.p1 ~ FPGA_LINK_SCLK
+    r112.p2 ~ GND
+
+    r113 = new P_10
+    trait r113 has_designator<designator="R113">
+    r113.p1 ~ JTAG_TMS
+    r113.p2 ~ FPGA_3V3
+
+    r114 = new CF_R62
+    trait r114 has_designator<designator="R114">
+    r114.p1 ~ JTAG_TCK
+    r114.p2 ~ GND
+
+    r115 = new P_10
+    trait r115 has_designator<designator="R115">
+    r115.p1 ~ JTAG_TDI
+    r115.p2 ~ FPGA_3V3
+
+    r116 = new CF_R62
+    trait r116 has_designator<designator="R116">
+    r116.p1 ~ FPGA_LINK_DQ2
+    r116.p2 ~ GND
+
+    r117 = new CF_R62
+    trait r117 has_designator<designator="R117">
+    r117.p1 ~ FPGA_LINK_DQ3
+    r117.p2 ~ GND
+
+    j81.p21 ~ FPGA_LINK_SCLK
+    j81.p23 ~ FPGA_LINK_CS_N
+    j81.p22 ~ FPGA_LINK_DQ0
+    j81.p24 ~ FPGA_LINK_DQ1
+    j81.p26 ~ FPGA_LINK_DQ2
+    j81.p28 ~ FPGA_LINK_DQ3
+    trait FPGA_LINK_CS_N has_net_name_suggestion<name="FPGA_LINK_CS_N", level="EXPECTED">
+    trait FPGA_LINK_DQ0 has_net_name_suggestion<name="FPGA_LINK_DQ0", level="EXPECTED">
+    trait FPGA_LINK_DQ1 has_net_name_suggestion<name="FPGA_LINK_DQ1", level="EXPECTED">
+    trait FPGA_LINK_DQ2 has_net_name_suggestion<name="FPGA_LINK_DQ2", level="EXPECTED">
+    trait FPGA_LINK_DQ3 has_net_name_suggestion<name="FPGA_LINK_DQ3", level="EXPECTED">
+    trait FPGA_LINK_SCLK has_net_name_suggestion<name="FPGA_LINK_SCLK", level="EXPECTED">
+    trait LINK_CS_N has_net_name_suggestion<name="LINK_CS_N", level="EXPECTED">
+    trait LINK_DQ0 has_net_name_suggestion<name="LINK_DQ0", level="EXPECTED">
+    trait LINK_DQ1 has_net_name_suggestion<name="LINK_DQ1", level="EXPECTED">
+    trait LINK_DQ2 has_net_name_suggestion<name="LINK_DQ2", level="EXPECTED">
+    trait LINK_DQ3 has_net_name_suggestion<name="LINK_DQ3", level="EXPECTED">
+    trait LINK_FPGA_GOOD has_net_name_suggestion<name="LINK_FPGA_GOOD", level="EXPECTED">
+    trait LINK_JTAG_SEL has_net_name_suggestion<name="LINK_JTAG_SEL", level="EXPECTED">
+    trait LINK_OE_N has_net_name_suggestion<name="LINK_OE_N", level="EXPECTED">
+    trait LINK_PI_GOOD has_net_name_suggestion<name="LINK_PI_GOOD", level="EXPECTED">
+    trait LINK_REQUEST has_net_name_suggestion<name="LINK_REQUEST", level="EXPECTED">
+    trait LINK_SCLK has_net_name_suggestion<name="LINK_SCLK", level="EXPECTED">
+    trait PI_LINK_CS_N has_net_name_suggestion<name="PI_LINK_CS_N", level="EXPECTED">
+    trait PI_LINK_DQ0 has_net_name_suggestion<name="PI_LINK_DQ0", level="EXPECTED">
+    trait PI_LINK_DQ1 has_net_name_suggestion<name="PI_LINK_DQ1", level="EXPECTED">
+    trait PI_LINK_DQ2 has_net_name_suggestion<name="PI_LINK_DQ2", level="EXPECTED">
+    trait PI_LINK_DQ3 has_net_name_suggestion<name="PI_LINK_DQ3", level="EXPECTED">
+    trait PI_LINK_SCLK has_net_name_suggestion<name="PI_LINK_SCLK", level="EXPECTED">
+
+    u106 = new LINK_AND
+    trait u106 has_designator<designator="U106">
+    u106.p1 ~ LINK_REQUEST
+    u106.p2 ~ FPGA_IO_ENABLE
+    u106.p3 ~ GND
+    u106.p4 ~ LINK_ARMED_REQUEST
+    u106.p5 ~ FPGA_3V3
+    c106 = new P_6
+    trait c106 has_designator<designator="C106">
+    c106.p1 ~ FPGA_3V3
+    c106.p2 ~ GND
+    trait LINK_ARMED_REQUEST has_net_name_suggestion<name="LINK_ARMED_REQUEST", level="EXPECTED">

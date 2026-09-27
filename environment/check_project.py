@@ -20,7 +20,7 @@ def check(root=ROOT):
     for path in documents:
         # Vendored README snapshots refer to the upstream tree, only part of
         # which is retained here. Preserve them verbatim and check our own docs.
-        if path.is_relative_to(root / "hw/vendor"):
+        if path.is_relative_to(root / "hw/shared/vendor"):
             continue
         text = path.read_text(encoding="utf-8")
         for link in re.findall(r"\[[^\]]*\]\(([^)]+)\)", text):
@@ -31,7 +31,9 @@ def check(root=ROOT):
             if not (path.parent / target).exists():
                 errors.append(f"{path.relative_to(root)}: missing link {link}")
             counts["markdown_links"] += 1
-    for path in (root / "hw/boards").rglob("*"):
+    cad_folders = [folder for product in (root / "hw").iterdir() if product.is_dir()
+                   for folder in (product / "boards", product / "layout") if folder.is_dir()]
+    for path in (path for folder in cad_folders for path in folder.rglob("*")):
         if path.suffix != ".kicad_pcb" and path.name not in ("fp-lib-table", "sym-lib-table"):
             continue
         for ref in re.findall(r'"\$\{KIPRJMOD\}/([^"\n]+)"', path.read_text(encoding="utf-8")):

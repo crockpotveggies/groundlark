@@ -8,7 +8,7 @@ import pcbnew
 class GPIOFaultTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        board = pcbnew.LoadBoard(str(audit.ROOT / 'hw/layout/trenz_hat/trenz_hat.kicad_pcb'))
+        board = pcbnew.LoadBoard(str(audit.ROOT / 'hw/groundlark-fpga-hat/layout/trenz_hat/trenz_hat.kicad_pcb'))
         cls.original = {(f.GetReference(),p.GetNumber()):p.GetNetname()
                         for f in board.GetFootprints() for p in f.Pads() if p.GetNumber()}
 
@@ -23,7 +23,7 @@ class GPIOFaultTests(unittest.TestCase):
     def test_atomic_footprint_uuid_repair(self):
         from kicad_support import unique_ids
         b=pcbnew.BOARD()
-        original=pcbnew.FootprintLoad(str(audit.ROOT/'hw/elec'),'Package_SO__TSSOP-16_4.4x5mm_P0.65mm')
+        original=pcbnew.FootprintLoad(str(audit.ROOT/'hw/shared/elec'),'Package_SO__TSSOP-16_4.4x5mm_P0.65mm')
         for ref in ('U100','U101'):
             f=pcbnew.FOOTPRINT(original)
             f.SetReference(ref);b.Add(f)

@@ -8,8 +8,29 @@ from lab import MARKER, clean, lab_lock, managed_runs, source_files, write_json,
 
 
 class LabSafetyTests(unittest.TestCase):
+    def test_product_sources_are_staged_without_generated_packages(self):
+        inputs = [
+            'hw/groundlark-fpga-hat/elec/hat_trenz.ato',
+            'hw/groundlark-coldfoot-hat/elec/hat.ato',
+            'hw/burrowlark-usb/elec/field_head.ato',
+            'hw/shared/elec/parts.ato',
+        ]
+        excluded = [
+            'hw/releases/groundlark-fpga-hat/example.ato',
+            'hw/groundlark-fpga-hat/build/example.ato',
+        ]
+        for rel in inputs + excluded:
+            path = self.root / rel
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text('fixture')
+        staged = source_files(self.root)
+        for rel in inputs:
+            self.assertIn(self.root / rel, staged)
+        for rel in excluded:
+            self.assertNotIn(self.root / rel, staged)
+
     def test_native_custom_rules_are_in_validation_snapshot(self):
-        board=self.root/'hw/boards/groundlark-daqhat-01'
+        board=self.root/'hw/groundlark-fpga-hat/boards/groundlark-daqhat-01'
         board.mkdir(parents=True)
         rule=board/'groundlark-daqhat-01.kicad_dru'
         rule.write_text('(version 1)')
@@ -121,7 +142,7 @@ class LabSafetyTests(unittest.TestCase):
     def test_input_allowlist_excludes_generated_trees(self):
         source = Path(self.temp.name) / "source"
         source.mkdir()
-        for rel in (".local/legacy/.venv/lib/fake.py", ".lab/runs/report.json", "hw/models/large.step", "hw/logs/old.log", "hw/build/cache.py", "sw/build/schema.binpb", "sw/build/generated.py"):
+        for rel in (".local/legacy/.venv/lib/fake.py", ".lab/runs/report.json", "hw/shared/models/large.step", "hw/logs/old.log", "hw/build/cache.py", "sw/build/schema.binpb", "sw/build/generated.py"):
             path = source / rel
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text("not an input")
@@ -145,13 +166,13 @@ class LabSafetyTests(unittest.TestCase):
         for profile in ('full','quick'):
             self.assertIn('routing-replay',dict(commands(profile)))
         root=Path(self.temp.name)
-        self.assertIn(root/'hw/boards/groundlark-daqhat-01/groundlark-daqhat-01.ses',source_files(root))
+        self.assertIn(root/'hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.ses',source_files(root))
 
     def test_assembly_regression_inputs_are_staged_without_release_archives(self):
         source=Path(self.temp.name)/'assembly-source'
-        expected=['hw/assembly/daqhat-01-jlcpcb-parts.json',
-                  'hw/assembly/daqhat-01-jlcpcb-placement.json',
-                  'hw/boards/groundlark-daqhat-01/verification.json',
+        expected=['hw/assembly/groundlark-fpga-hat/daqhat-01-jlcpcb-parts.json',
+                  'hw/assembly/groundlark-fpga-hat/daqhat-01-jlcpcb-placement.json',
+                  'hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/verification.json',
                   'hw/tests/test_jlcpcb_export_integration.py']
         excluded=['hw/releases/old/BOM-review.csv','.local/placement-review/old.json']
         for rel in expected+excluded:

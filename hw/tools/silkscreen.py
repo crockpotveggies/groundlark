@@ -9,7 +9,7 @@ MODEL_CENTER = (94.5, 104.8)
 
 
 def add_logo(board):
-    footprint = p.FootprintLoad(str(ROOT / 'hw/libraries/Groundlark.pretty'), 'Logo_Groundlark_7mm')
+    footprint = p.FootprintLoad(str(ROOT / 'hw/shared/libraries/Groundlark.pretty'), 'Logo_Groundlark_7mm')
     if footprint is None:
         raise RuntimeError('Missing Groundlark silkscreen artwork')
     for previous in list(board.Groups()):

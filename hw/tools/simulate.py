@@ -1,11 +1,11 @@
 """Run explicit, bounded ngspice support-circuit simulations.
 
 These are behavioral/passive models, not vendor LDO or sensor silicon models.
-See hw/simulation/README.md for model scope, assumptions and acceptance criteria.
+See hw/shared/simulation/README.md for model scope, assumptions and acceptance criteria.
 """
 from pathlib import Path
 import subprocess,json,re,itertools,math
-ROOT=Path(__file__).resolve().parents[2]; OUT=ROOT/'hw/simulation';OUT.mkdir(exist_ok=True)
+ROOT=Path(__file__).resolve().parents[2]; OUT=ROOT/'hw/shared/simulation';OUT.mkdir(exist_ok=True)
 results=[]
 def run(name,body,checks):
     deck='Groundlark A2 supporting circuit: '+name+'\n'+body+'\n.end\n'

@@ -2,7 +2,7 @@
 
 The carrier uses wafer.space's **run-1 `1x1-cob/1x1-mezzanine`**, per the user's
 selection. The earlier run-2 half-slot mismatch is superseded by this selection.
-Vendor CAD is retained under `hw/vendor/wafer-space/`.
+Vendor CAD is retained under `hw/shared/vendor/wafer-space/`.
 
 [Run-1 audit](run1-module-pin-audit.csv) records actual PCB nets.
 [Coldfoot mapping](coldfoot-run1-map.csv) joins them to the local

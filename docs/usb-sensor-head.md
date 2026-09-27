@@ -2,8 +2,8 @@
 
 **Burrowlark** (model **DAQUSB-01**) is Groundlark's 70 × 45 mm remote USB-C
 sensor board, carrying an RM3100 magnetometer and an optional DLVR infrasound
-sensor. Its circuit source is [`hw/elec/field_head.ato`](../hw/elec/field_head.ato),
-its native CAD is in [`hw/boards/groundlark-field-head/`](../hw/boards/groundlark-field-head/),
+sensor. Its circuit source is [`hw/burrowlark-usb/elec/field_head.ato`](../hw/burrowlark-usb/elec/field_head.ato),
+its native CAD is in [`hw/burrowlark-usb/boards/groundlark-field-head/`](../hw/burrowlark-usb/boards/groundlark-field-head),
 and its firmware belongs in [`sw/field-head/`](../sw/field-head/README.md).
 
 Connect Burrowlark directly to an existing Raspberry Pi USB host port with a

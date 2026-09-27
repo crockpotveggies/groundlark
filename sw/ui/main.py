@@ -61,8 +61,8 @@ def chart_options(title):
 
 def board_scene(scene, select):
     """Real KiCad DAQHAT-01 geometry plus pick targets/custom envelopes at authored XY."""
-    layout = json.loads((ROOT / "hw/layout-trenz.json").read_text())["groundlark-daqhat-01"]
-    remote = json.loads((ROOT / "hw/layout.json").read_text())["groundlark-field-head"]
+    layout = json.loads((ROOT / "hw/groundlark-fpga-hat/layout/placement.json").read_text())["groundlark-daqhat-01"]
+    remote = json.loads((ROOT / "hw/burrowlark-usb/layout/placement.json").read_text())["groundlark-field-head"]
     targets, rings = {}, {}
     with scene:
         with scene.group() as hat:

@@ -8,8 +8,8 @@ from collections import Counter
 import csv,json,subprocess,xml.etree.ElementTree as ET
 import pcbnew as p
 from gpio_audit import check as check_gpio
-ROOT=Path(__file__).resolve().parents[2];F=ROOT/'hw/boards/groundlark-daqhat-01';N=F.name
-board=p.LoadBoard(str(F/(N+'.kicad_pcb')));compiled=p.LoadBoard(str(ROOT/'hw/layout/trenz_hat/trenz_hat.kicad_pcb'))
+ROOT=Path(__file__).resolve().parents[2];F=ROOT/'hw/groundlark-fpga-hat/boards/groundlark-daqhat-01';N=F.name
+board=p.LoadBoard(str(F/(N+'.kicad_pcb')));compiled=p.LoadBoard(str(ROOT/'hw/groundlark-fpga-hat/layout/trenz_hat/trenz_hat.kicad_pcb'))
 def pins(b):
     result={}
     for f in b.GetFootprints():
@@ -25,7 +25,7 @@ fixture={
  'J81':{2:'FPGA_VIN',4:'FPGA_VIN',6:'FPGA_VIN',8:'FPGA_VIN',1:'FPGA_3V3',3:'FPGA_3V3',7:'FPGA_3V3',9:'FPGA_3V3',10:'FPGA_3V3',12:'FPGA_3V3',91:'FPGA_3V3',11:'FPGA_UART_RX',13:'FPGA_UART_TX',14:'FPGA_RESET_N',18:'FPGA_CONFIG_RESET_N',93:'JTAG_TMS',95:'JTAG_TDI',97:'JTAG_TDO',99:'JTAG_TCK'}}
 gpio_report=check_gpio(bp)
 check_gpio(cp)
-spec=json.loads((ROOT/'hw/layout-trenz.json').read_text())[N]
+spec=json.loads((ROOT/'hw/groundlark-fpga-hat/layout/placement.json').read_text())[N]
 from host_link_checks import verify_parts
 with (F/'bom.csv').open(newline='',encoding='utf8') as stream:
     gpio_report['host_link_component_checks']=verify_parts(spec,list(csv.DictReader(stream)),board)
@@ -49,7 +49,7 @@ assert bp[('R62','1')]=='FPGA_IO_ENABLE' and bp[('R62','2')]=='GND'
 assert bp[('J83','1')]=='EXT_3V3' and bp[('F80','2')]=='FPGA_VIN'
 assert len({'PI_5V','PI_3V3','EXT_3V3','FPGA_VIN','FPGA_3V3'} & set(bp.values()))==5
 # Shared sensor circuitry must preserve A2 pad connectivity exactly.
-base=pins(p.LoadBoard(str(ROOT/'hw/boards/groundlark-hat/groundlark-hat.kicad_pcb')))
+base=pins(p.LoadBoard(str(ROOT/'hw/groundlark-coldfoot-hat/boards/groundlark-hat/groundlark-hat.kicad_pcb')))
 sensor_refs={'U11','U12','U13','U40','U41','U42','U43'}
 degrees=Counter(base.values())
 for k,n in base.items():

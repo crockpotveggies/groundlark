@@ -11,7 +11,7 @@ import json
 import math
 
 ROOT=Path(__file__).resolve().parents[2]
-BOARD=ROOT/'hw/boards/groundlark-daqhat-01'
+BOARD=ROOT/'hw/groundlark-fpga-hat/boards/groundlark-daqhat-01'
 
 
 def response(hz, f0=4.5, sensitivity=23.4, damping=.7, coil=395,

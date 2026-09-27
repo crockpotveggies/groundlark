@@ -2,7 +2,7 @@ from pathlib import Path
 import sexpdata as sx,json,csv
 from inspect_references import children,child
 ROOT=Path(__file__).resolve().parents[2]
-b=sx.load(open(ROOT/'hw/vendor/wafer-space/1x1-mezzanine.kicad_pcb'))
+b=sx.load(open(ROOT/'hw/shared/vendor/wafer-space/1x1-mezzanine.kicad_pcb'))
 rows=[]
 for fp in children(b,'footprint'):
     props={x[1]:x[2] for x in children(fp,'property')}

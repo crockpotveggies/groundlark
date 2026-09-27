@@ -5,11 +5,12 @@ Run only when intentionally resetting this variant's circuit and placement.
 Vendor module pin numbers are mapped to opposite-parity carrier pad numbers.
 """
 from pathlib import Path
+from project_paths import load_layout
 import re,json,copy,types
 import pcbnew as p
 from kicad_support import libsym
-ROOT=Path(__file__).resolve().parents[2];E=ROOT/'hw/elec'
-old=(E/'hat.ato').read_text()
+ROOT=Path(__file__).resolve().parents[2];E=ROOT/'hw/shared/elec'
+old=(ROOT/'hw/groundlark-coldfoot-hat/elec/hat.ato').read_text()
 body=old.split('    sensor_supply =')[1].split('    # Run-1 1x1 Coldfoot carrier')[0]
 body='    sensor_supply ='+body
 body+=old[old.index('    u51 = new'):old.index('    # 25MHz /')]
@@ -17,7 +18,7 @@ body=body.replace('CF_','FPGA_')
 body=body.replace('05-coldfoot-interface','05-fpga-interface').replace('Coldfoot UART','FPGA UART')
 # Atomic definitions stay shared with A2.
 body=re.sub(r'new FPGA_', 'new CF_',body)
-parts=json.loads((ROOT/'hw/layout.json').read_text())['groundlark-hat']['parts']
+parts=load_layout('groundlark-hat', 'groundlark-field-head')['groundlark-hat']['parts']
 keep={'U51','C75','C76','R61','R62','R63','U52','C77','R64','Q1','R65','R66'}
 parts=[copy.deepcopy(x) for x in parts if not (x['type'] or '').startswith('CF_') or x['ref'] in keep]
 for x in parts:
@@ -93,11 +94,11 @@ body+='    external_supply = new ElectricPower\n    external_supply.hv ~ FPGA_VI
 signals=sorted(set(re.findall(r'~ ([A-Z][A-Z_0-9]*)',body)))
 imports=sorted(set(re.findall(r'= new (\w+)',body))-{'ElectricPower'})
 header='# Trenz TE0712-03-81I36-A variant. Electrical source of truth.\n#pragma experiment("TRAITS")\nimport has_designator\nimport ElectricPower\nimport has_net_name_suggestion\n'
-header+=''.join(f'from "{"trenz_parts.ato" if x in newtypes else "parts.ato"}" import {x}\n' for x in imports)
+header+=''.join(f'from "{"trenz_parts.ato" if x in newtypes else "../../shared/elec/parts.ato"}" import {x}\n' for x in imports)
 header+='\nmodule TrenzHat:\n'+''.join(f'    signal {x}\n' for x in signals)+'\n'
 body+=''.join(f'    trait {x} has_net_name_suggestion<name="{x}", level="EXPECTED">\n' for x in signals)
-(E/'hat_trenz.ato').write_text(header+body)
-(E/'trenz_parts.ato').write_text('# Manufacturer-selected carrier components.\n#pragma experiment("TRAITS")\nimport is_atomic_part\nimport has_designator_prefix\n\n'+'\n'.join(newtypes.values()))
+(ROOT/'hw/groundlark-fpga-hat/elec/hat_trenz.ato').write_text(header+body)
+(ROOT/'hw/groundlark-fpga-hat/elec/trenz_parts.ato').write_text('# Manufacturer-selected carrier components.\n#pragma experiment("TRAITS")\nimport is_atomic_part\nimport has_designator_prefix\n\n'+'\n'.join(newtypes.values()).replace('footprint="', 'footprint="../../shared/elec/').replace('symbol="', 'symbol="../../shared/elec/'))
 # Pi-outline revision: module is centered over the right-hand sensor circuitry.
 fixed={'J80':([55,44],0),'J81':([55,12],0),'J82':([34,28],90),
  'H80':([33,11],0),'H81':([77,11],0),'H82':([33,45],0),'H83':([77,45],0),
@@ -112,6 +113,6 @@ for meta in parts:
     if meta['ref'] in fixed:meta['xy'],meta['angle']=fixed[meta['ref']]
     if meta['ref']=='J85':meta['note']='3.3 V spare I/O at accessible lower edge'
     if meta['ref']=='J83':meta['note']='REGULATED 3.3 V ONLY; external current-limited supply; 3 A initial operating budget'
-(ROOT/'hw/layout-trenz.json').write_text(json.dumps({'groundlark-daqhat-01':{'target':'trenz_hat','size':[85,56],'parts':parts}},indent=2))
+(ROOT/'hw/groundlark-fpga-hat/layout/placement.json').write_text(json.dumps({'groundlark-daqhat-01':{'target':'trenz_hat','size':[85,56],'parts':parts}},indent=2))
 (ROOT/'docs/trenz-pin-map.json').write_text(json.dumps(audit,indent=2))
 print('Authored',len(parts),'parts;',len(audit),'mapped module connections')

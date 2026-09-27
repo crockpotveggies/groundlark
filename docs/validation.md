@@ -28,7 +28,7 @@ These rules are not a selected manufacturer's stackup or acceptance criteria.
 | groundlark-field-head | 131 | 0 | 0 | 0 | 0 | 348 |
 
 Evidence: each board's `validation.json`, `drc.json`, `erc.json` and exported
-`schematic-netlist.xml` under `hw/boards/`. `hw/tools/check_design.py` checks source,
+`schematic-netlist.xml` under each product's `boards/` directory. `hw/tools/check_design.py` checks source,
 schematic and PCB pin agreement, independent Pi header corner coordinates and
 the actual KiCad ERC/DRC engines. Library keepouts omitted during atopile board
 conversion are restored before layout checks. No DRC violations are excluded.
@@ -41,7 +41,7 @@ conversion are restored before layout checks. No DRC violations are excluded.
   are rejected.
 - **27 ngspice cases pass**: rail/load/USB cable corners, I2C rise time, UART RC,
   USB CC resistor corners, ideal buck power stage and behavioral reset.
-  See [simulation scope](../hw/simulation/README.md) and the actual decks/logs.
+  See [simulation scope](../hw/shared/simulation/README.md) and the actual decks/logs.
 - Native KiCad schematics, assembly previews and 3D renders were visually
   inspected. Custom module/socket bodies are simplified dimensioned envelopes.
 - [Artifact hashes](artifact-manifest.json) identify the checked sources and CAD.

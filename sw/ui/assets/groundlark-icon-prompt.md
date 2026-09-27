@@ -1,7 +1,7 @@
 # Groundlark favicon
 
 The PCB uses a monochrome trace of this mark, without the navy tile. Its native
-KiCad artwork is `hw/libraries/Groundlark.pretty/Logo_Groundlark_7mm.kicad_mod`.
+KiCad artwork is `hw/shared/libraries/Groundlark.pretty/Logo_Groundlark_7mm.kicad_mod`.
 The mark is 7 mm wide, centered at (94.5, 100.7) mm on F.SilkS; the model label
 is centered below it at (94.5, 104.8) mm. `hw/tools/silkscreen.py` places the
 artwork as board graphics, so it adds no BOM or assembly placement entries.

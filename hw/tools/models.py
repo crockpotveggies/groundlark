@@ -5,8 +5,9 @@ Coldfoot PCB envelope follows the actual run-1 14x16mm outline and 3mm mating
 stack; die/encapsulation is a visualization envelope, not a wirebond drawing.
 """
 from pathlib import Path
+from project_paths import board_dir
 import pcbnew as p
-ROOT=Path(__file__).resolve().parents[2];DEST=ROOT/'hw/models';DEST.mkdir(exist_ok=True)
+ROOT=Path(__file__).resolve().parents[2];DEST=ROOT/'hw/shared/models';DEST.mkdir(exist_ok=True)
 def box(x,y,z,w,d,h,color):
     return f'Transform {{ translation {x/2.54} {y/2.54} {z/2.54} children [ Shape {{ appearance Appearance {{ material Material {{ diffuseColor {color} }} }} geometry Box {{ size {w/2.54} {d/2.54} {h/2.54} }} }} ] }}\n'
 def write(name,geometry): (DEST/(name+'.wrl')).write_text('#VRML V2.0 utf8\n# Simplified mechanical envelope; dimensions in 0.1 inch model units.\n'+geometry)
@@ -25,12 +26,12 @@ for i in range(20):
         socket+=box(x,-i*2.54,.5,.64,.64,2,'0.65 0.52 0.22')
 write('Pi_bottom_socket',socket)
 for name in ['groundlark-hat','groundlark-field-head']:
-    path=ROOT/'hw/boards'/name/(name+'.kicad_pcb');b=p.LoadBoard(str(path))
+    path=board_dir(name)/(name+'.kicad_pcb');b=p.LoadBoard(str(path))
     custom={'U20':'SCL3300','U21':'MAX_M10S','F1':'PTC1812','J5':'Coldfoot_Run1','J1':'Pi_bottom_socket'} if name.endswith('-hat') else {'U2':'PNI14190','U3':'DLVR_option','F1':'PTC1812'}
     missing=[]
     for fp in b.GetFootprints():
         if fp.GetReference() in custom:
-            fp.Models().clear();m=p.FP_3DMODEL();m.m_Filename='${KIPRJMOD}/../../models/'+custom[fp.GetReference()]+'.wrl';m.m_Show=True;fp.Models().push_back(m)
+            fp.Models().clear();m=p.FP_3DMODEL();m.m_Filename='${KIPRJMOD}/../../../shared/models/'+custom[fp.GetReference()]+'.wrl';m.m_Show=True;fp.Models().push_back(m)
         else:
             for model in fp.Models():
                 model.m_Filename=model.m_Filename.replace('${KICAD7_3DMODEL_DIR}','${KICAD9_3DMODEL_DIR}')

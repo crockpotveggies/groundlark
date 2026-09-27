@@ -12,11 +12,11 @@ Reviewed 2026-09-23. These references support component selection and pin assign
 | [PNI RM3100 breakout manual](https://www.pnisensor.com/wp-content/uploads/RM3100-Breakout-Board-User-Manual-r07.pdf) | Complete PNI 14190 module, I2C strap pins, row spacing, axis conventions and magnetic measurement behavior |
 | [All Sensors DLVR DS-0300](https://www.allsensors.com/hubfs/Product-Data-Sheets/DS-0300.pdf) | Pressure range, E1BS package, digital interface and ordering-code options |
 | [Raspberry Pi HAT+ specification](https://pip-assets.raspberrypi.com/categories/1215-raspberry-pi-hat/documents/RP-008281-DS-1-hat-plus-specification.pdf?disposition=inline) | Header ID bus, standby power-state requirements and EEPROM expectations |
-| [KiCad Raspberry Pi HAT template](https://github.com/KiCad/kicad-templates/tree/master/Projects/raspberrypi_hat) | Reference outline and header/mounting-hole geometry; snapshot in `hw/reference/` |
+| [KiCad Raspberry Pi HAT template](https://github.com/KiCad/kicad-templates/tree/master/Projects/raspberrypi_hat) | Reference outline and header/mounting-hole geometry; snapshot in `hw/shared/reference/` |
 
-Selected PDFs are cached under `hw/reference/`, together with extracted text and selected mechanical illustrations. Supplier datasheets retain their owners' copyright. Do not infer a redistribution license from their inclusion as working references.
+Selected PDFs are cached under `hw/shared/reference/`, together with extracted text and selected mechanical illustrations. Supplier datasheets retain their owners' copyright. Do not infer a redistribution license from their inclusion as working references.
 
-The wafer.space source files are unmodified reference copies and retain the upstream Apache-2.0 `LICENSE`. A2 uses the selected run-1 mating footprint from its example motherboard, with documented coordinate normalization. Standard footprints come from KiCad; the license notice is retained in `hw/libraries/KICAD-COPYRIGHT`. Custom sensor footprints follow the named supplier drawings; simplified 3D envelopes are project-authored and are not supplier-certified models.
+The wafer.space source files are unmodified reference copies and retain the upstream Apache-2.0 `LICENSE`. A2 uses the selected run-1 mating footprint from its example motherboard, with documented coordinate normalization. Standard footprints come from KiCad; the license notice is retained in `hw/shared/libraries/KICAD-COPYRIGHT`. Custom sensor footprints follow the named supplier drawings; simplified 3D envelopes are project-authored and are not supplier-certified models.
 
 Freerouting 1.9.0 is from [the upstream release](https://github.com/freerouting/freerouting/releases/tag/v1.9.0). A2 uses atopile 0.15.9, KiCad 9.0.9/pcbnew, ngspice and Python under WSL Ubuntu 24.04. Tool environments and jars are local dependencies, not authored design files.
 

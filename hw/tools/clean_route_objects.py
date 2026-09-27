@@ -1,7 +1,7 @@
 """Remove exact duplicate conductors and sub-micron router roundoff segments."""
 from pathlib import Path
 import pcbnew as p
-ROOT=Path(__file__).resolve().parents[2];path=ROOT/'hw/boards/groundlark-hat/groundlark-hat.kicad_pcb'
+ROOT=Path(__file__).resolve().parents[2];path=ROOT/'hw/groundlark-coldfoot-hat/boards/groundlark-hat/groundlark-hat.kicad_pcb'
 b=p.LoadBoard(str(path));seen={};removed=0
 for t in list(b.GetTracks()):
     if t.GetClass()=='PCB_VIA':key=('via',t.GetNetname(),tuple(t.GetPosition()),t.GetWidth(p.F_Cu),t.GetDrillValue())

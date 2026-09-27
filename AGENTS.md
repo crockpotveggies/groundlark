@@ -37,8 +37,18 @@ regressions after assembly exporter/registry changes; the integration test rebui
 both full and overlay exports without depending on ignored release archives.
 See `docs/jlcpcb-assembly.md`. Offline tests never establish current inventory.
 
-Electrical connectivity is authored in `hw/elec/*.ato`; placement metadata is
-in `hw/layout*.json`. The routed boards and review schematics are in `hw/boards/`.
+Hardware products live in `hw/groundlark-fpga-hat/`, `hw/groundlark-coldfoot-hat/`,
+`hw/burrowlark-usb/` and `hw/skylark-usb/`. Coldfoot remains deferred; Skylark is
+planned USB hardware with no circuit or CAD yet. Do not infer a build target from
+the presence of a product directory. Preserve the existing model identifiers.
+Electrical connectivity is authored in each product's `elec/*.ato`; shared atomic
+parts live in `hw/shared/elec/`. Placement metadata is in each product's
+`layout/placement.json`. Routed boards and review schematics are in its `boards/`.
+Shared libraries, models and references live in `hw/shared/`. Build targets remain
+in `hw/ato.yaml`; run direct atopile commands from the repository root. Shared
+tools/tests remain in `hw/tools/` and `hw/tests/`; use `project_paths.py` for product
+paths. Group procurement overrides and ignored releases by product under
+`hw/assembly/` and `hw/releases/` respectively. Firmware remains under `sw/`.
 Keep custom model/library paths relative and preserve the existing 3D artifacts.
 Do not invoke `bootstrap_trenz.py` or `pack_trenz.py` as validation: they overwrite
 authoring inputs. Do not silently reroute or rewrite checked CAD during tests.

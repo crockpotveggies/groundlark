@@ -17,7 +17,7 @@ from jlcpcb_bom import REGISTRY, build_bom, check_upload_roundtrip, load_registr
 from jlcpcb_placement import MAPPINGS, correct_placements
 
 ROOT = Path(__file__).resolve().parents[2]
-BOARD_DIR = ROOT / 'hw/boards/groundlark-daqhat-01'
+BOARD_DIR = ROOT / 'hw/groundlark-fpga-hat/boards/groundlark-daqhat-01'
 BOARD = BOARD_DIR / 'groundlark-daqhat-01.kicad_pcb'
 LAYERS = ['F.Cu', *[f'In{i}.Cu' for i in range(1, 5)], 'B.Cu',
           'F.Paste', 'B.Paste', 'F.SilkS', 'B.SilkS', 'F.Mask', 'B.Mask', 'Edge.Cuts']
@@ -122,7 +122,7 @@ def export(out, quantity):
     if out.exists() and any(out.iterdir()):
         raise ValueError('Output must be new or empty; preserve earlier packages')
     out.mkdir(parents=True, exist_ok=True)
-    source_paths = [BOARD, BOARD.with_suffix('.kicad_pro'), BOARD.with_suffix('.kicad_dru'), ROOT/'hw/layout-trenz.json', BOARD_DIR / 'bom.csv',
+    source_paths = [BOARD, BOARD.with_suffix('.kicad_pro'), BOARD.with_suffix('.kicad_dru'), ROOT/'hw/groundlark-fpga-hat/layout/placement.json', BOARD_DIR / 'bom.csv',
                     BOARD_DIR / 'verification.json']
     before = {str(f.relative_to(ROOT)): sha(f) for f in source_paths}
     validated = json.loads((BOARD_DIR / 'verification.json').read_text())['input_sha256']
@@ -141,7 +141,7 @@ def export(out, quantity):
     process=inspect(BOARD)
     if process['standard_process_issues']:
         raise ValueError(process['standard_process_issues'])
-    stackup=json.loads((ROOT/'hw/layout-trenz.json').read_text())[BOARD_DIR.name]['stackup']
+    stackup=json.loads((ROOT/'hw/groundlark-fpga-hat/layout/placement.json').read_text())[BOARD_DIR.name]['stackup']
     refs = {f.GetReference(): f for f in b.GetFootprints()}
     with (BOARD_DIR / 'bom.csv').open(newline='', encoding='utf-8') as stream:
         source = list(csv.DictReader(stream))

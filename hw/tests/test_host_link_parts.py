@@ -14,9 +14,9 @@ from host_link_checks import verify_parts
 
 class HostLinkPartsTests(unittest.TestCase):
     def setUp(self):
-        folder=ROOT/'hw/boards/groundlark-daqhat-01'
+        folder=ROOT/'hw/groundlark-fpga-hat/boards/groundlark-daqhat-01'
         self.board=pcbnew.LoadBoard(str(folder/'groundlark-daqhat-01.kicad_pcb'))
-        self.spec=json.loads((ROOT/'hw/layout-trenz.json').read_text())['groundlark-daqhat-01']
+        self.spec=json.loads((ROOT/'hw/groundlark-fpga-hat/layout/placement.json').read_text())['groundlark-daqhat-01']
         with (folder/'bom.csv').open(newline='',encoding='utf8') as stream:self.bom=list(csv.DictReader(stream))
 
     def test_complete_parts_fixture(self):

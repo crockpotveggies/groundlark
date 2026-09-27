@@ -4,6 +4,7 @@ This restricted SES snapshot is consumed by import_routes.py. The native KiCad
 board remains authoritative; this is not an autorouter or a fabrication export.
 """
 from pathlib import Path
+from project_paths import board_dir
 import sys,collections
 import pcbnew as p
 import sexpdata as sx
@@ -11,7 +12,7 @@ ROOT=Path(__file__).resolve().parents[2]
 S=sx.Symbol
 
 def main(name):
-    folder=ROOT/'hw/boards'/name;b=p.LoadBoard(str(folder/(name+'.kicad_pcb')))
+    folder=board_dir(name);b=p.LoadBoard(str(folder/(name+'.kicad_pcb')))
     ordered=[p.F_Cu,*[b.GetLayerID(f'In{i}.Cu') for i in range(1,b.GetCopperLayerCount()-1)],p.B_Cu]
     placement=[S('placement'),[S('resolution'),S('um'),1000]]
     for f in sorted(b.GetFootprints(),key=lambda f:f.GetReference()):

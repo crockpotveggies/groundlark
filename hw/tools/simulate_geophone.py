@@ -5,7 +5,7 @@ performance qualification. Component tolerances and sensor damping are swept.
 """
 from pathlib import Path
 import json, math, re, subprocess
-ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'hw/simulation/geophone'
+ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'hw/groundlark-fpga-hat/simulation/geophone'
 
 
 def main():

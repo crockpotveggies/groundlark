@@ -32,7 +32,7 @@ cooler clearance for the ordered socket before assembly.
 `assembly_fit.py` checks four support envelopes against the actual underside
 components, socket, modeled Pi ports and selected heatsink. It reserves 0.5 mm
 for support clearance and 1 mm for component/port seating uncertainty.
-The [generated report](../hw/boards/groundlark-daqhat-01/prefab-review.json)
+The [generated report](../hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/prefab-review.json)
 records margins. Use supports at (3.5,3.5), (61.5,3.5), (3.5,52.5), (61.5,52.5)
 mm. Trim through-hole tails to <=2 mm below the HAT; the model allows 0.2 mm extra.
 

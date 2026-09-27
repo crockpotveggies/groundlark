@@ -18,6 +18,9 @@ else:
     import fcntl
     import resource
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'hw/tools'))
+from project_paths import board_dir, compiled_dir, placement_path, PRODUCTS
+
 MARKER = "groundlark-lab-v1"
 RUN_RE = re.compile(r"\d{8}T\d{6}Z-[0-9a-f]{8}")
 BOARDS = ("groundlark-hat", "groundlark-field-head", "groundlark-daqhat-01")
@@ -121,12 +124,14 @@ def clean(root, keep=5, apply=False):
 
 
 def source_files(source):
-    files = [source / "hw" / name for name in ("ato.yaml", "layout.json", "layout-trenz.json")]
+    files = [source / "hw/ato.yaml"] + [placement_path(b, source) for b in BOARDS]
+    files.append(source / "hw/groundlark-coldfoot-hat/layout/fixed-routes.json")
     for folder, patterns in {
-        "hw/elec": ("*.ato", "*.kicad_mod", "*.kicad_sym"),
+        "hw/shared/elec": ("*.ato", "*.kicad_mod", "*.kicad_sym"),
+        **{f"hw/{product}/elec": ("*.ato",) for product in PRODUCTS.values()},
         "hw/tools": ("*.py",), "hw/tests": ("*.py",), "docs": ("*.csv",),
         "hw/assembly": ("*.json",),
-        "hw/libraries": ("*.kicad_mod", "*.kicad_sym"),
+        "hw/shared/libraries": ("*.kicad_mod", "*.kicad_sym"),
         "sw/interfaces": ("*.proto", "*.yaml", "*.binpb", "*.py", "*.options"),
         "sw/tools": ("*.py",), "sw/tests": ("*.py", "*.json"),
         "sw/pi": ("*.py", "*.json", "*.dts", "*.cfg"),
@@ -135,14 +140,14 @@ def source_files(source):
         for pattern in patterns:
             files.extend((source / folder).rglob(pattern))
     files.append(source / "hw/tests/overvoltage.ato")
-    files.append(source / "hw/boards/groundlark-daqhat-01/groundlark-daqhat-01.ses")
-    files.append(source / "hw/boards/groundlark-daqhat-01/verification.json")
+    files.append(source / "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.ses")
+    files.append(source / "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/verification.json")
     for target in TARGETS:
-        folder = source / "hw/layout" / target
+        folder = compiled_dir(target, source)
         files.append(folder / f"{target}.kicad_pcb")
         files.extend(folder.glob("*-lib-table"))
     for board in BOARDS:
-        folder = source / "hw/boards" / board
+        folder = board_dir(board, source)
         files.extend(folder.glob("*.kicad_sch"))
         files.extend(folder.glob("*.kicad_sym"))
         files.extend(folder.glob("*.kicad_dru"))
@@ -167,8 +172,8 @@ def stage(source, workspace, report):
         no_links(path)
         if path.is_file():
             manifest[str(path.relative_to(source))] = hashlib.sha256(path.read_bytes()).hexdigest()
-    for name in ("simulation", "logs"):
-        (workspace / "hw" / name).mkdir(exist_ok=True)
+    for name in ("shared/simulation", "groundlark-fpga-hat/simulation", "logs"):
+        (workspace / "hw" / name).mkdir(parents=True, exist_ok=True)
     write_json(report / "inputs.sha256.json", manifest)
     return manifest
 
@@ -214,13 +219,14 @@ def commands(profile):
 def collect(workspace, report, profile):
     files = [workspace / "sw/build" / name for name in ("verification.json", "demo.ssrec", "demo-summary.json", "hat-signals.ssrec", "hat-signals.json", "acquisition-stress.json")]
     for pattern in ("*.json", "*.cir", "*.log"):
-        files.extend((workspace / "hw/simulation").rglob(pattern))
+        for folder in ("hw/shared/simulation", "hw/groundlark-fpga-hat/simulation"):
+            files.extend((workspace / folder).rglob(pattern))
     for board in BOARDS:
-        folder = workspace / "hw/boards" / board
+        folder = board_dir(board, workspace)
         files.extend(folder / name for name in ("drc.json", "erc.json", "validation.json", "schematic-netlist.xml", "engineering.json", "prefab-review.json", "replay.json", "fabrication-audit.json"))
     if profile == "full":
         for target in TARGETS:
-            files.append(workspace / "hw/layout" / target / f"{target}.kicad_pcb")
+            files.append(compiled_dir(target, workspace) / f"{target}.kicad_pcb")
     for path in files:
         if path.is_file():
             no_links(path)

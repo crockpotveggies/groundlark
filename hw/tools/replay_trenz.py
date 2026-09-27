@@ -1,5 +1,6 @@
 """Rebuild native DAQHAT-01 copper from authored placement + complete SES in a temp tree."""
 from pathlib import Path
+from project_paths import board_dir
 import collections
 import json
 import shutil
@@ -10,7 +11,7 @@ import pcbnew as p
 
 ROOT=Path(__file__).resolve().parents[2]
 NAME='groundlark-daqhat-01'
-FOLDER=ROOT/'hw/boards'/NAME
+FOLDER=board_dir(NAME)
 
 def copper(board):
     records=[]
@@ -28,11 +29,11 @@ def copper(board):
 def main():
     with tempfile.TemporaryDirectory(prefix='groundlark-replay-') as tmp:
         dst=Path(tmp)
-        for folder in ['hw/tools','hw/elec','hw/libraries','hw/layout/trenz_hat']:
+        for folder in ['hw/tools','hw/shared/elec','hw/shared/libraries','hw/groundlark-fpga-hat/layout/trenz_hat']:
             shutil.copytree(ROOT/folder,dst/folder)
-        f=dst/'hw/boards'/NAME;f.mkdir(parents=True)
+        f=board_dir(NAME, dst);f.mkdir(parents=True)
         (dst/'hw/logs').mkdir()
-        shutil.copy2(ROOT/'hw/layout-trenz.json',dst/'hw/layout-trenz.json')
+        shutil.copy2(ROOT/'hw/groundlark-fpga-hat/layout/placement.json',dst/'hw/groundlark-fpga-hat/layout/placement.json')
         shutil.copy2(FOLDER/(NAME+'.ses'),f/(NAME+'.ses'))
         for args in [['assemble_pcb.py','--trenz'],['import_routes.py',NAME],['trenz_power.py']]:
             subprocess.run([sys.executable,str(dst/'hw/tools'/args[0]),*args[1:]],check=True)

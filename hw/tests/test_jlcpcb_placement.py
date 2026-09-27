@@ -56,7 +56,7 @@ class NativeConnectorTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         import pcbnew as p
-        cls.path=ROOT/'hw/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb'
+        cls.path=ROOT/'hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb'
         cls.board_bytes=cls.path.read_bytes()
         cls.geometry=board_geometry(p.LoadBoard(str(cls.path)))
         with cls.path.with_name('bom.csv').open(newline='') as stream:

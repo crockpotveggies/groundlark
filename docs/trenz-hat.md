@@ -2,7 +2,7 @@
 
 The front silkscreen carries a 7 mm monochrome Groundlark lark/waveform above
 the model name. It is native KiCad polygon artwork, included in layout rebuilds
-without adding BOM parts. See the [current 3D view](../hw/boards/groundlark-daqhat-01/3d.png).
+without adding BOM parts. See the [current 3D view](../hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/3d.png).
 
 **DAQHAT-01 revision:** six internal QSPI-reserved wires, retained UART and
 switched Pi-driven JTAG replace external expansion connectors and ribbons.
@@ -13,8 +13,8 @@ An external Racotech vertical geophone uses an ADS122C04 input; GNSS is not fitt
 See the [geophone circuit and acquisition](geophone-input.md).
 
 DAQHAT-01 is an **85 × 56 mm, six-layer FR-4** alternative to the A2 Coldfoot ASIC HAT.
-Electrical source: [`hw/elec/hat_trenz.ato`](../hw/elec/hat_trenz.ato).
-CAD: [`groundlark-daqhat-01.kicad_pcb`](../hw/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb).
+Electrical source: [`hw/groundlark-fpga-hat/elec/hat_trenz.ato`](../hw/groundlark-fpga-hat/elec/hat_trenz.ato).
+CAD: [`groundlark-daqhat-01.kicad_pcb`](../hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb).
 The original ASIC HAT and [Burrowlark (DAQUSB-01) USB sensor head](usb-sensor-head.md)
 remain separate builds.
 
@@ -128,9 +128,9 @@ is claimed. See [JLCPCB assembly](jlcpcb-assembly.md) for upload and process req
 
 ## Verification and release limits
 
-Current results are recorded in [validation.json](../hw/boards/groundlark-daqhat-01/validation.json),
-[engineering.json](../hw/boards/groundlark-daqhat-01/engineering.json), and
-[prefab-review.json](../hw/boards/groundlark-daqhat-01/prefab-review.json).
+Current results are recorded in [validation.json](../hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/validation.json),
+[engineering.json](../hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/engineering.json), and
+[prefab-review.json](../hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/prefab-review.json).
 The portable lab checks circuit compilation, independent pin fixtures, ERC/DRC,
 route connectivity, sensor regressions, power/geophone models and stack envelopes.
 These checks do not establish physical power, timing, noise or thermal performance.

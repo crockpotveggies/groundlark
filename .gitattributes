@@ -8,4 +8,4 @@
 *.wrl -text
 *.glb binary
 # Native exported BOM bytes are bound to the reviewed CAD validation hashes.
-hw/boards/**/bom.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+hw/*/boards/**/bom.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

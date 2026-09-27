@@ -27,7 +27,7 @@ class AssemblyExportIntegrationTests(unittest.TestCase):
             manifest=json.loads((base/'manifest.json').read_text())
             # A reviewed procurement update intentionally changes this hash;
             # source CAD hashes must still match, as tested separately.
-            manifest['source_sha256']['hw/assembly/daqhat-01-jlcpcb-parts.json']='0'*64
+            manifest['source_sha256']['hw/assembly/groundlark-fpga-hat/daqhat-01-jlcpcb-parts.json']='0'*64
             (base/'manifest.json').write_text(json.dumps(manifest))
             # Simulate a previously uploaded BOM with the old unavailable choices.
             bom=read_csv(base/'BOM-review.csv')

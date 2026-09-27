@@ -25,7 +25,7 @@ class SingleHATTests(unittest.TestCase):
             with self.assertRaises(ValueError): check_single_outline(bad)
 
     def test_package_audit_rejects_batch_and_component_multiplication(self):
-        with (ROOT/'hw/boards/groundlark-daqhat-01/bom.csv').open(newline='') as stream:
+        with (ROOT/'hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/bom.csv').open(newline='') as stream:
             bom, procurement, selections = build_bom(list(csv.DictReader(stream)), 1)
         manifest = dict(requested_assembled_HATs=1, requested_fabricated_HATs=1,
                         boards_per_gerber_design=1, panelized=False,

@@ -8,7 +8,7 @@ from pathlib import Path
 import json,subprocess
 from kicad_support import save_board
 import pcbnew as p
-ROOT=Path(__file__).resolve().parents[2];F=ROOT/'hw/boards/groundlark-daqhat-01';PATH=F/'groundlark-daqhat-01.kicad_pcb'
+ROOT=Path(__file__).resolve().parents[2];F=ROOT/'hw/groundlark-fpga-hat/boards/groundlark-daqhat-01';PATH=F/'groundlark-daqhat-01.kicad_pcb'
 b=p.LoadBoard(str(PATH));nets=b.GetNetsByName()
 def v(x,y):return p.VECTOR2I(p.FromMM(x+50),p.FromMM(y+50))
 def track(a,c,net,width):

@@ -5,7 +5,7 @@ import json
 import re
 import subprocess
 
-OUT=Path(__file__).resolve().parents[1]/'simulation/host-link'
+OUT=Path(__file__).resolve().parents[1]/'groundlark-fpga-hat/simulation/host-link'
 OUT.mkdir(parents=True,exist_ok=True)
 results=[]
 

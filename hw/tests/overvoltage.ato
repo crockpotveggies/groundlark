@@ -2,7 +2,7 @@
 #pragma experiment("TRAITS")
 import ElectricPower
 import has_designator
-from "../elec/parts.ato" import P_8
+from "../shared/elec/parts.ato" import P_8
 
 module InvalidVoltage:
     rail = new ElectricPower

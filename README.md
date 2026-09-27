@@ -1,10 +1,20 @@
 <img src="sw/ui/assets/groundlark-wordmark.svg" alt="Groundlark — lark and seismic waveform" width="440">
 
-# Groundlark — an open source seismic acquisition platform with support for FPGAs and BISCUT AI chips
+# Groundlark — open hardware for seismic and environmental monitoring
 
-Groundlark is an open hardware seismic acquisition platform combining a
-Raspberry Pi, a three-IMU DAQHAT-01 sensor HAT, a Trenz Artix-7 200T FPGA module,
-and a passive geophone.
+Groundlark is a family of hardware boards and companion software for seismic
+and environmental monitoring. Each board has its own hardware directory, with
+shared component libraries, interfaces and validation tools.
+
+| Board | Purpose | Status |
+| --- | --- | --- |
+| [Groundlark FPGA HAT](hw/groundlark-fpga-hat/README.md) — DAQHAT-01 | Three XYZ IMUs, geophone input and Trenz FPGA interface. | Active prototype; Pi acquisition and SPI echo implemented; physical qualification pending. |
+| [Groundlark Coldfoot HAT](hw/groundlark-coldfoot-hat/README.md) | Separate A2 ASIC HAT design. | Retained; Coldfoot integration deferred. |
+| [Burrowlark USB](hw/burrowlark-usb/README.md) — DAQUSB-01 | USB magnetometer and optional infrasound sensor head. | Hardware design present; MCU firmware and physical qualification pending. |
+| [Skylark USB](hw/skylark-usb/README.md) | Outdoor air-quality accessory for particles, SO₂, H₂S and basic environmental measurements. | Planned; no circuit, PCB or firmware yet. USB only; camera omitted. |
+
+Current development focuses on sensor acquisition with the Raspberry Pi,
+DAQHAT-01 and Trenz Artix-7 200T stack, plus an external passive geophone.
 
 ![Groundlark: Raspberry Pi, DAQHAT-01 and Trenz FPGA stack with Racotech geophone](docs/images/groundlark-stack-geophone.png)
 
@@ -67,7 +77,7 @@ The UI simulates and replays; physical acquisition uses the [Pi software](docs/s
 
 | Directory | Contents |
 | --- | --- |
-| [hw/](hw/README.md) | Atopile circuits, KiCad boards, models, hardware checks and SPICE. |
+| [hw/](hw/README.md) | Four product directories, shared component resources, hardware checks and SPICE. |
 | [sw/](sw/README.md) | Pi acquisition, contracts, simulator, FPGA and remote firmware interfaces. |
 | [docs/](docs/README.md) | Setup, hardware specifications, assembly, interfaces and testing instructions. |
 | [environment/](docs/portable-lab.md) | Pinned Docker test environment and bounded cleanup tooling. |
@@ -77,8 +87,8 @@ Use `./lab.ps1 test -Profile software` for sensor contracts, acquisition,
 recording/replay and recovery. See the [portable lab guide](docs/portable-lab.md)
 for Linux commands, test scope, five-run retention and cleanup.
 
-Hardware sources: [DAQHAT-01 circuit](hw/elec/hat_trenz.ato),
-[KiCad PCB](hw/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb),
-[A2 HAT](hw/boards/groundlark-hat/groundlark-hat.kicad_pcb), and
-[Burrowlark DAQUSB-01](hw/boards/groundlark-field-head/groundlark-field-head.kicad_pcb).
+Hardware sources: [DAQHAT-01 circuit](hw/groundlark-fpga-hat/elec/hat_trenz.ato),
+[KiCad PCB](hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb),
+[A2 HAT](hw/groundlark-coldfoot-hat/boards/groundlark-hat/groundlark-hat.kicad_pcb), and
+[Burrowlark DAQUSB-01](hw/burrowlark-usb/boards/groundlark-field-head/groundlark-field-head.kicad_pcb).
 See [build instructions](docs/build.md) and [source references](docs/sources.md).

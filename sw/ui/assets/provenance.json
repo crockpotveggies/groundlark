@@ -1,11 +1,22 @@
 {
   "kicad": "9.0.9",
   "sha256": {
-    "hw/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb": "3952c7d0cf4d95ebcdd851cdab9f00aabde3fcb983c0ea10d56c12514a60ed54",
-    "hw/layout-trenz.json": "7be790e7ca0322325bc99663af03292d861b324382fa00be39e86332fbb9aa57",
-    "hw/layout.json": "a5f15c47ad1f85f4eacae98adf1adf89b0aba2c788657f630eb1633db892ff7d",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb": "25cd1426319831eb6a0fb8683af4dbdf135f72b1e4e53d37e63fe377e1a75510",
+    "hw/groundlark-fpga-hat/layout/placement.json": "7be790e7ca0322325bc99663af03292d861b324382fa00be39e86332fbb9aa57",
     "sw/ui/assets/daqhat-01.glb": "047620c190b57e1713c2b97440a78074aa180a91bfc64c563a4a3adad127b4f4",
-    "sw/ui/geophone_scene.py": "3b331a1ea15c55bf2ed3064ece509e086553d5b39c827f26ff19ce35613b45fd"
+    "sw/ui/geophone_scene.py": "3b331a1ea15c55bf2ed3064ece509e086553d5b39c827f26ff19ce35613b45fd",
+    "hw/burrowlark-usb/layout/placement.json": "61502651d94f65edad7e1ab3fbc6a6be59421ab04044f33a9736ce3321b6fdee"
   },
-  "metadata_review": "Three-IMU/no-inclinometer DAQHAT-01; C12/C13/C16 repositioned and bypass/ground paths shortened. Sensor positions and axes retained. Native renders visually reviewed; GLB uses existing UI connector envelopes for unsupported VRML bodies. Physical qualification pending. External Racotech can: nominal 25.4 mm diameter x 33 mm height; illustrative terminals and lead to J90. Can and ADC share sensor 9 selection; no acquisition change."
+  "metadata_review": "Three-IMU/no-inclinometer DAQHAT-01; C12/C13/C16 repositioned and bypass/ground paths shortened. Sensor positions and axes retained. Native renders visually reviewed; GLB uses existing UI connector envelopes for unsupported VRML bodies. Physical qualification pending. External Racotech can: nominal 25.4 mm diameter x 33 mm height; illustrative terminals and lead to J90. Can and ADC share sensor 9 selection; no acquisition change.",
+  "source_relocation": {
+    "reason": "Product directories and relative resource paths changed; normalized native CAD, placement data, model bytes and rendered assets are unchanged.",
+    "prior_source_sha256": {
+      "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb": "3952c7d0cf4d95ebcdd851cdab9f00aabde3fcb983c0ea10d56c12514a60ed54",
+      "hw/groundlark-fpga-hat/layout/placement.json": "7be790e7ca0322325bc99663af03292d861b324382fa00be39e86332fbb9aa57",
+      "hw/layout.json": "a5f15c47ad1f85f4eacae98adf1adf89b0aba2c788657f630eb1633db892ff7d",
+      "sw/ui/assets/daqhat-01.glb": "047620c190b57e1713c2b97440a78074aa180a91bfc64c563a4a3adad127b4f4",
+      "sw/ui/geophone_scene.py": "3b331a1ea15c55bf2ed3064ece509e086553d5b39c827f26ff19ce35613b45fd"
+    },
+    "render_regenerated": false
+  }
 }

@@ -13,6 +13,8 @@ from faebryk.core.solver import Solver
 import faebryk.core.node as fabll
 import faebryk.library._F as F
 ROOT=Path(__file__).resolve().parents[2]
+# Match atopile's worker working directory when resolving per-build layout paths.
+os.chdir(ROOT/'hw')
 negative='--negative' in sys.argv
 if not negative and '--target' not in sys.argv:
     for name in ['hat','field_head']:

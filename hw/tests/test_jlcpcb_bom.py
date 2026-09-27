@@ -13,7 +13,7 @@ from jlcpcb_package import check_reference_sets, write_csv, export
 
 class ExactAssemblyBOMTests(unittest.TestCase):
     def setUp(self):
-        with (ROOT/'hw/boards/groundlark-daqhat-01/bom.csv').open(newline='') as f:
+        with (ROOT/'hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/bom.csv').open(newline='') as f:
             self.source = list(csv.DictReader(f))
         self.registry = load_registry()
 
@@ -80,7 +80,7 @@ class ExactAssemblyBOMTests(unittest.TestCase):
 
     def test_f80_routed_lands_fit_1206_fuse_not_old_0603_selection(self):
         import pcbnew as p
-        board=p.LoadBoard(str(ROOT/'hw/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb'))
+        board=p.LoadBoard(str(ROOT/'hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb'))
         fuse=next(f for f in board.GetFootprints() if f.GetReference()=='F80')
         pads=sorted(fuse.Pads(),key=lambda pad:pad.GetNumber())
         self.assertEqual(len(pads),2)

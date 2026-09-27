@@ -16,4 +16,5 @@ logs/
 build/
 hw/tests/standalone_*/
 hw/layout/*/*-backups/
+hw/*/layout/*/*-backups/
 *.kicad_pcb-bak

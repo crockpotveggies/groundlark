@@ -1,7 +1,7 @@
 """Bounded passive interface and DC input-budget checks; not FPGA simulation."""
 from pathlib import Path
 import subprocess,re,json,itertools
-ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'hw/simulation/trenz';OUT.mkdir(exist_ok=True)
+ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'hw/groundlark-fpga-hat/simulation/trenz';OUT.mkdir(exist_ok=True)
 results=[]
 def run(name,body):
     path=OUT/(name+'.cir');path.write_text('Groundlark Trenz support check: '+name+'\n'+body+'\n.end\n')

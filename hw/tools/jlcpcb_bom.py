@@ -12,7 +12,7 @@ from pathlib import Path
 from urllib.parse import urlsplit, unquote
 
 ROOT = Path(__file__).resolve().parents[2]
-REGISTRY = ROOT / 'hw/assembly/daqhat-01-jlcpcb-parts.json'
+REGISTRY = ROOT / 'hw/assembly/groundlark-fpga-hat/daqhat-01-jlcpcb-parts.json'
 UPLOAD_FIELDS = ['Comment', 'Designator', 'Footprint', 'JLCPCB Part #',
                  'Manufacturer', 'MPN', 'Description']
 

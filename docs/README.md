@@ -22,7 +22,7 @@
 
 - [Sensor data contract](sensor-contract.md) and [schema tools](../sw/interfaces/README.md).
 - [GNSS timing](utc-timing.md): legacy hardware/recording support; GNSS is absent from DAQHAT-01.
-- [Hardware build](build.md), [portable tests](portable-lab.md) and [SPICE scope](../hw/simulation/README.md).
+- [Hardware build](build.md), [portable tests](portable-lab.md) and [SPICE scope](../hw/shared/simulation/README.md).
 - [Component and vendor references](sources.md).
 
 The hardware is an engineering prototype. Modeled tests do not replace physical

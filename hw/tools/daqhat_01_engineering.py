@@ -4,7 +4,7 @@ import math
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-BOARD = ROOT / "hw/boards/groundlark-daqhat-01"
+BOARD = ROOT / "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01"
 
 
 def microstrip(width, height, thickness, er):
@@ -76,7 +76,7 @@ def power_interfaces(pins):
 
 def main():
     import pcbnew as p
-    spec = json.loads((ROOT / "hw/layout-trenz.json").read_text())[BOARD.name]
+    spec = json.loads((ROOT / "hw/groundlark-fpga-hat/layout/placement.json").read_text())[BOARD.name]
     board = p.LoadBoard(str(BOARD / (BOARD.name + ".kicad_pcb")))
     pins = {(f.GetReference(), pad.GetNumber()):pad.GetNetname() for f in board.GetFootprints() for pad in f.Pads()}
     power_checks = power_interfaces(pins)

@@ -12,7 +12,7 @@ from pathlib import Path
 from jlcpcb_smd_placement import register_smd
 
 ROOT = Path(__file__).resolve().parents[2]
-MAPPINGS = ROOT / 'hw/assembly/daqhat-01-jlcpcb-placement.json'
+MAPPINGS = ROOT / 'hw/assembly/groundlark-fpga-hat/daqhat-01-jlcpcb-placement.json'
 
 
 def load_mappings(path=MAPPINGS):

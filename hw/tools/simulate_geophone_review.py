@@ -12,7 +12,7 @@ ROOT=Path(__file__).resolve().parents[2]
 
 
 def main():
-    out=ROOT/'hw/simulation/geophone-review';out.mkdir(exist_ok=True)
+    out=ROOT/'hw/groundlark-fpga-hat/simulation/geophone-review';out.mkdir(exist_ok=True)
     cases=[]
     for number,(rail,cap,amplitude) in enumerate(itertools.product((3.135,3.465),(8e-6,12e-6),(.002,.050))):
         deck=f'''Geophone passive startup and pulse recovery; no ADC overload model

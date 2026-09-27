@@ -1,25 +1,28 @@
 """Publish the checked artifact state, with hashes and explicit model limits."""
 from pathlib import Path
+from project_paths import board_dir, placement_path
 import json,hashlib,datetime
 ROOT=Path(__file__).resolve().parents[2]
 rows=[]
 for name in ['groundlark-hat','groundlark-field-head']:
-    r=json.loads((ROOT/'hw/boards'/name/'validation.json').read_text())
+    r=json.loads((board_dir(name)/'validation.json').read_text())
     assert not r['connectivity_errors'] and not r['drc_errors'] and not r['erc_findings'] and not r['unconnected_items'],r
     warnings=sum(r['drc_findings_by_type'].values())
     rows.append(f"| {name} | {r['atopile_pin_checks']} | {r['erc_findings']} | {r['drc_errors']} | {warnings} | {r['unconnected_items']} | {r['tracks_and_vias']} |")
-sim=json.loads((ROOT/'hw/simulation/results.json').read_text());assert len(sim['cases'])==27 and all(not x['failures'] for x in sim['cases'])
-cir=json.loads((ROOT/'hw/simulation/circuit-checks.json').read_text());assert all(x['circuit_invariants']=='PASS' for x in cir['boards'])
+sim=json.loads((ROOT/'hw/shared/simulation/results.json').read_text());assert len(sim['cases'])==27 and all(not x['failures'] for x in sim['cases'])
+cir=json.loads((ROOT/'hw/shared/simulation/circuit-checks.json').read_text());assert all(x['circuit_invariants']=='PASS' for x in cir['boards'])
 pos=(ROOT/'hw/logs/constraint-solve.log').read_text();neg=(ROOT/'hw/logs/negative-voltage.log').read_text()
 assert 'PASS: explicit upstream constraint solve hat' in pos and 'PASS: explicit upstream constraint solve field_head' in pos
 assert 'PASS: upstream solver rejected 5V' in neg
-files=list((ROOT/'hw/elec').glob('*.ato'))+[ROOT/'hw/ato.yaml',ROOT/'hw/layout.json',ROOT/'hw/layout-fixed-routes.json']
+files=list((ROOT/'hw/shared/elec').glob('*.ato'))+[ROOT/'hw/ato.yaml',placement_path('groundlark-hat'),placement_path('groundlark-field-head'),ROOT/'hw/groundlark-coldfoot-hat/layout/fixed-routes.json']
+for product in ('groundlark-coldfoot-hat', 'burrowlark-usb'):
+    files.extend((ROOT/'hw'/product/'elec').glob('*.ato'))
 files.extend((ROOT/'hw/tools').glob('*.py'))
-files.extend((ROOT/'hw/simulation').glob('*.cir'))
+files.extend((ROOT/'hw/shared/simulation').glob('*.cir'))
 for name in ['groundlark-hat','groundlark-field-head']:
-    folder=ROOT/'hw/boards'/name
+    folder=board_dir(name)
     files.extend([folder/(name+'.kicad_pcb'),folder/(name+'.kicad_pro'),folder/(name+'.ses'),*folder.glob('*.kicad_sch'),folder/'drc.json',folder/'erc.json',folder/'validation.json',folder/'bom.csv'])
-files.extend([ROOT/'hw/simulation/results.json',ROOT/'hw/simulation/circuit-checks.json'])
+files.extend([ROOT/'hw/shared/simulation/results.json',ROOT/'hw/shared/simulation/circuit-checks.json'])
 manifest={'created_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'sha256':{str(f.relative_to(ROOT)):hashlib.sha256(f.read_bytes()).hexdigest() for f in files}}
 (ROOT/'docs/artifact-manifest.json').write_text(json.dumps(manifest,indent=2))
 text='''# A2 validation and release gates
@@ -47,7 +50,7 @@ These rules are not a selected manufacturer's stackup or acceptance criteria.
 '''+ '\n'.join(rows)+'''
 
 Evidence: each board's `validation.json`, `drc.json`, `erc.json` and exported
-`schematic-netlist.xml` under `hw/boards/`. `hw/tools/check_design.py` checks source,
+`schematic-netlist.xml` under each product's `boards/`. `hw/tools/check_design.py` checks source,
 schematic and PCB pin agreement, independent Pi header corner coordinates and
 the actual KiCad ERC/DRC engines. Library keepouts omitted during atopile board
 conversion are restored before layout checks. No DRC violations are excluded.
@@ -60,7 +63,7 @@ conversion are restored before layout checks. No DRC violations are excluded.
   are rejected.
 - **27 ngspice cases pass**: rail/load/USB cable corners, I2C rise time, UART RC,
   USB CC resistor corners, ideal buck power stage and behavioral reset.
-  See [simulation scope](../hw/simulation/README.md) and the actual decks/logs.
+  See [simulation scope](../hw/shared/simulation/README.md) and the actual decks/logs.
 - Native KiCad schematics, assembly previews and 3D renders were visually
   inspected. Custom module/socket bodies are simplified dimensioned envelopes.
 - [Artifact hashes](artifact-manifest.json) identify the checked sources and CAD.

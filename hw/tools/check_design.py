@@ -3,6 +3,7 @@
 This does not perform analog simulation, SI/PI signoff or bench validation.
 """
 from pathlib import Path
+from project_paths import compiled_dir
 from collections import Counter
 import json,subprocess,xml.etree.ElementTree as ET
 import pcbnew as pcb
@@ -10,7 +11,7 @@ import pcbnew as pcb
 ROOT=Path(__file__).resolve().parents[2]
 def main():
     board_failures=[]
-    for folder in [ROOT/'hw/boards/groundlark-hat',ROOT/'hw/boards/groundlark-field-head']:
+    for folder in [ROOT/'hw/groundlark-coldfoot-hat/boards/groundlark-hat',ROOT/'hw/burrowlark-usb/boards/groundlark-field-head']:
         name=folder.name
         subprocess.run(['kicad-cli','sch','export','netlist','--format','kicadxml','-o',str(folder/'schematic-netlist.xml'),str(folder/(name+'.kicad_sch'))],check=True)
         tree=ET.parse(folder/'schematic-netlist.xml')
@@ -22,7 +23,7 @@ def main():
         actual={(fp.GetReference(),pad.GetNumber()):pad.GetNetname() for fp in board.GetFootprints() for pad in fp.Pads() if pad.GetNumber()}
         degree=Counter(actual.values())
         target='hat' if name.endswith('-hat') else 'field_head'
-        compiled=pcb.LoadBoard(str(ROOT/'hw/layout'/target/(target+'.kicad_pcb')))
+        compiled=pcb.LoadBoard(str(compiled_dir(target)/(target+'.kicad_pcb')))
         compiler_pins={(fp.GetReference(),pad.GetNumber()):pad.GetNetname() for fp in compiled.GetFootprints() for pad in fp.Pads() if pad.GetNumber()}
         failures=[];checks=0
         for key,net in compiler_pins.items():

@@ -6,7 +6,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 from imu_layout import review, shortest
 import pcbnew as p
 
-BOARD = Path(__file__).resolve().parents[1] / 'boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb'
+BOARD = Path(__file__).resolve().parents[1] / 'groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb'
 
 
 class ImuBypassTests(unittest.TestCase):

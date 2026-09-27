@@ -1,10 +1,11 @@
 """Place atopile's compiled KiCad footprints; never reconstruct electrical nets.
 
-hw/layout.json contains mechanical placement/BOM presentation only. Connectivity
+Each product's layout/placement.json contains mechanical placement/BOM presentation only. Connectivity
 is read exclusively from the compiled .ato board. Derived schematics are for
-review; electrical changes must be made in hw/elec/*.ato and rebuilt.
+review; electrical changes must be made in hw/<product>/elec/*.ato and rebuilt.
 """
 from pathlib import Path
+from project_paths import board_dir, compiled_dir, load_layout
 import json,csv,re,types,shutil,sys,sexpdata as sx
 from kicad_support import save_board
 import pcbnew as p
@@ -12,7 +13,7 @@ from kicad_support import add_shape,add_text,schematic,uid,v,unique_ids
 from restore_keepouts import restore
 from fixed_routes import add as add_fixed_fanout
 from silkscreen import add_logo, MODEL_CENTER
-ROOT=Path(__file__).resolve().parents[2];HW=ROOT/'hw/boards'
+ROOT=Path(__file__).resolve().parents[2]
 
 def export_dsn(b,path,signal_via_mm=(.6,.3),ground_layers=None,track_mm=.15,clearance_mm=.15):
     layers=b.GetCopperLayerCount()
@@ -66,13 +67,13 @@ def export_dsn(b,path,signal_via_mm=(.6,.3),ground_layers=None,track_mm=.15,clea
     path.write_text(sx.dumps(tree).replace('(string_quote quote)','(string_quote ")').replace('__LB__','[').replace('__RB__',']'))
 
 def main():
-    layoutfile='hw/layout-trenz.json' if '--trenz' in sys.argv else 'hw/layout.json'
-    for name,spec in json.loads((ROOT/layoutfile).read_text()).items():
+    names = ('groundlark-daqhat-01',) if '--trenz' in sys.argv else ('groundlark-hat', 'groundlark-field-head')
+    for name,spec in load_layout(*names).items():
         if len(sys.argv)>1 and '--trenz' not in sys.argv and name not in sys.argv[1:]:continue
         target=spec.get('target','hat' if name.endswith('-hat') else 'field_head')
         ishat=target in ('hat','trenz_hat')
-        folder=HW/name;folder.mkdir(exist_ok=True)
-        b=p.LoadBoard(str(ROOT/'hw/layout'/target/(target+'.kicad_pcb')))
+        folder=board_dir(name);folder.mkdir(parents=True,exist_ok=True)
+        b=p.LoadBoard(str(compiled_dir(target)/(target+'.kicad_pcb')))
         assert b.GetFootprints(),'Run ato build first'
         layers=spec.get('copper_layers',6 if ishat else 4)
         ground_layers=spec.get('ground_layers',['In1.Cu',f'In{layers-2}.Cu'])
@@ -91,13 +92,13 @@ def main():
             meta=dict(meta);typ=meta.pop('type');ref=meta['ref']
             if ref not in fps:
                 assert not typ,('Missing compiled component',ref)
-                fp=p.FootprintLoad(str(ROOT/'hw/elec'),meta['local_fp']);fp.SetReference(ref);b.Add(fp)
+                fp=p.FootprintLoad(str(ROOT/'hw/shared/elec'),meta['local_fp']);fp.SetReference(ref);b.Add(fp)
             else:fp=fps[ref]
             if target=='field_head' and ref=='J1':
                 # Restore the complete manufacturer footprint geometry after
                 # compiler conversion, retaining each compiled physical pin net.
                 old=fp;pin_nets={pad.GetNumber():pad.GetNet() for pad in old.Pads() if pad.GetNumber()}
-                fp=p.FootprintLoad(str(ROOT/'hw/elec'),meta['local_fp'])
+                fp=p.FootprintLoad(str(ROOT/'hw/shared/elec'),meta['local_fp'])
                 assert {pad.GetNumber() for pad in fp.Pads() if pad.GetNumber()}==set(pin_nets)
                 fp.SetReference(ref);b.Add(fp)
                 for pad in fp.Pads():
@@ -160,8 +161,8 @@ def main():
         # Stock models are resolved by KiCad 9. Portable custom models are added
         # by hw/tools/models.py after routing, without changing connectivity.
         path=folder/(name+'.kicad_pcb');unique_ids(b);save_board(str(path),b)
-        lib=ROOT/'hw/libraries'/'Groundlark.pretty';lib.mkdir(exist_ok=True)
-        for fpfile in (ROOT/'hw/elec').glob('*.kicad_mod'):shutil.copyfile(fpfile,lib/fpfile.name)
+        lib=ROOT/'hw/shared/libraries'/'Groundlark.pretty';lib.mkdir(exist_ok=True)
+        for fpfile in (ROOT/'hw/shared/elec').glob('*.kicad_mod'):shutil.copyfile(fpfile,lib/fpfile.name)
         derived={'size':spec['size'],'parts':parts};schematic(name,derived,folder)
         for sch in folder.glob('*.kicad_sch'):
             s=sch.read_text().replace('A0 DRAFT','A2 PROTOTYPE').replace('Engineering draft - module interface and fabrication release on hold.','Atopile-derived circuit review schematic - prototype, not released.')
@@ -170,7 +171,7 @@ def main():
         with open(folder/'bom.csv','w',newline='') as f:
             writer=csv.writer(f);writer.writerow(['Reference','Value','MPN','Footprint','DNP','Note'])
             for x in parts:writer.writerow([x.ref,x.value,x.mpn,x.local_fp,x.dnp,x.note])
-        (folder/'fp-lib-table').write_text('(fp_lib_table (version 7) (lib (name "Groundlark") (type "KiCad") (uri "${KIPRJMOD}/../../libraries/Groundlark.pretty") (options "") (descr "Atopile atomic parts")))')
+        (folder/'fp-lib-table').write_text('(fp_lib_table (version 7) (lib (name "Groundlark") (type "KiCad") (uri "${KIPRJMOD}/../../../shared/libraries/Groundlark.pretty") (options "") (descr "Atopile atomic parts")))')
         project={'meta':{'filename':name+'.kicad_pro','version':1},'board':{'design_settings':{'rules':{'min_clearance':.15,'min_track_width':.15,'min_via_diameter':signal_via[0],'min_through_hole_diameter':signal_via[1],'min_copper_edge_clearance':.3,'min_microvia_diameter':.3,'min_microvia_drill':.1}}},'net_settings':{'classes':[{'name':'Default','clearance':.15,'track_width':.15,'via_diameter':signal_via[0],'via_drill':signal_via[1],'microvia_diameter':.3,'microvia_drill':.1,'diff_pair_width':.2,'diff_pair_gap':.2,'diff_pair_via_gap':.25}],'meta':{'version':3}}}
         project['board']['design_settings']['rules'].update(fab.get('rules',{}))
         project['net_settings']['classes'][0].update(clearance=clearance_mm,track_width=track_mm)

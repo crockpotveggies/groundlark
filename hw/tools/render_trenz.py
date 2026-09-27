@@ -1,7 +1,7 @@
 """Render actual KiCad geometry and explicitly conceptual assembly models."""
 from pathlib import Path
 import subprocess,sys
-ROOT=Path(__file__).resolve().parents[2];F=ROOT/'hw/boards/groundlark-daqhat-01'
+ROOT=Path(__file__).resolve().parents[2];F=ROOT/'hw/groundlark-fpga-hat/boards/groundlark-daqhat-01'
 (ROOT/'hw/logs').mkdir(parents=True,exist_ok=True)
 for pcb,png,angle,zoom in [
  ('groundlark-daqhat-01','3d-bottom','145,0,205','.9'),

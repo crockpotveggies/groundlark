@@ -1,5 +1,6 @@
 """Independent circuit invariants against the actual atopile-compiled PCB."""
 from pathlib import Path
+from project_paths import compiled_dir, load_layout
 import csv,json,re
 import pcbnew as p
 ROOT=Path(__file__).resolve().parents[2]
@@ -34,11 +35,11 @@ def validate_hat(pins):
     require(pins,'U41',{2:'PI_3V3'});require(pins,'U42',{2:'GND'})
 
 def main():
-    metadata=json.loads((ROOT/'hw/layout.json').read_text());source=(ROOT/'hw/elec/parts.ato').read_text()
+    metadata=load_layout('groundlark-hat', 'groundlark-field-head');source=(ROOT/'hw/shared/elec/parts.ato').read_text()
     blocks={m[1]:m[2] for m in re.finditer(r'^component (\w+):\n(.*?)(?=^component |\Z)',source,re.M|re.S)}
     reports=[]
     for name,meta in metadata.items():
-        target='hat' if name.endswith('-hat') else 'field_head';b=p.LoadBoard(str(ROOT/'hw/layout'/target/(target+'.kicad_pcb')))
+        target='hat' if name.endswith('-hat') else 'field_head';b=p.LoadBoard(str(compiled_dir(target)/(target+'.kicad_pcb')))
         pins={(f.GetReference(),pad.GetNumber()):pad.GetNetname() for f in b.GetFootprints() for pad in f.Pads() if pad.GetNumber()}
         for part in meta['parts']:
             if not part['type']:continue
@@ -72,5 +73,5 @@ def main():
             for n in [4,5]:require(pins,f'C{n}',{1:'V3_SENSOR',2:'GND'})
         reports.append({'board':name,'compiled_pins':len(pins),'source_bom_agreement':'PASS','circuit_invariants':'PASS'})
     result={'boards':reports,'negative_mutations':['missing supervisor bypass rejected','5V on Coldfoot UART VCC rejected']}
-    (ROOT/'hw/simulation/circuit-checks.json').write_text(json.dumps(result,indent=2));print(json.dumps(result,indent=2))
+    (ROOT/'hw/shared/simulation/circuit-checks.json').write_text(json.dumps(result,indent=2));print(json.dumps(result,indent=2))
 if __name__=='__main__':main()

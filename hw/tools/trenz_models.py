@@ -6,8 +6,8 @@ routing. Does not change the circuit or create a fictitious routed board.
 from pathlib import Path
 from kicad_support import save_board
 import pcbnew as p
-ROOT=Path(__file__).resolve().parents[2];M=ROOT/'hw/models'
-F=ROOT/'hw/boards/groundlark-daqhat-01';NAME='groundlark-daqhat-01'
+ROOT=Path(__file__).resolve().parents[2];M=ROOT/'hw/shared/models'
+F=ROOT/'hw/groundlark-fpga-hat/boards/groundlark-daqhat-01';NAME='groundlark-daqhat-01'
 def box(x,y,z,w,d,h,color):
     return f'Transform {{ translation {x/2.54} {y/2.54} {z/2.54} children [ Shape {{ appearance Appearance {{ material Material {{ diffuseColor {color} }} }} geometry Box {{ size {w/2.54} {d/2.54} {h/2.54} }} }} ] }}\n'
 def cylinder(x,y,z,r,h,color):
@@ -32,7 +32,7 @@ b=p.LoadBoard(str(F/(NAME+'.kicad_pcb')))
 title=b.GetTitleBlock();title.SetRevision('DAQHAT-01 6L');title.SetDate('2026-09-25');b.SetTitleBlock(title)
 custom={'J1':'Pi_ESQ_120_23','J80':'LSHM_50_4mm','J81':'LSHM_50_4mm','J82':'LSHM_30_4mm'}
 for fp in b.GetFootprints():
-    if fp.GetReference() in custom:model(fp,'${KIPRJMOD}/../../models/'+custom[fp.GetReference()]+'.wrl')
+    if fp.GetReference() in custom:model(fp,'${KIPRJMOD}/../../../shared/models/'+custom[fp.GetReference()]+'.wrl')
     else:
         for m in fp.Models():m.m_Filename=m.m_Filename.replace('${KICAD7_3DMODEL_DIR}','${KICAD9_3DMODEL_DIR}')
 # Mark each underside bank without covering the fine-pitch pads.
@@ -40,11 +40,11 @@ for item in list(b.GetDrawings()):
     if isinstance(item,p.PCB_TEXT) and (item.GetText().startswith('GPIO J8') or item.GetText() in ('JTAG','PI / FPGA LINK')):b.Delete(item)
 save_board(str(F/(NAME+'.kicad_pcb')),b)
 # Actual carrier + manufacturer's module geometry; separate assembly view file.
-add(b,'MODEL_TE0712','${KIPRJMOD}/../../models/trenz/STP-TE0712-03-No Variations.step',(80,98),(0,0,9.6099917))
+add(b,'MODEL_TE0712','${KIPRJMOD}/../../../shared/models/trenz/STP-TE0712-03-No Variations.step',(80,98),(0,0,9.6099917))
 st=''
 for x,y in [(33,11),(77,11),(33,45),(77,45)]:
     st+=cylinder(x,-y,4,2.5,8,'0.7 0.72 0.74')
-write('Trenz_spacers',st);add(b,'MODEL_SPACERS','${KIPRJMOD}/../../models/Trenz_spacers.wrl',(50,50))
+write('Trenz_spacers',st);add(b,'MODEL_SPACERS','${KIPRJMOD}/../../../shared/models/Trenz_spacers.wrl',(50,50))
 save_board(str(F/'trenz-mounted.kicad_pcb'),b)
 # Pi 4 concept with unmounted SSQ-120-02-G-D socket used as a 1:1 riser.
 # Its 8.51 mm body adds clearance; 4.93 mm square tails mate into HAT J1.
@@ -67,20 +67,20 @@ for x,y,w,d,h in [(76,-10.5,21,16,15.5),(76,-29,21,15,16),(76,-47,21,15,16),(11,
 for x,y in [(3.5,3.5),(61.5,3.5),(3.5,52.5),(61.5,52.5)]:
     pi+=cylinder(x,-y,(z-1.6)/2,2.4,27.179,'0.69 0.7 0.72')
 for x,y in [(12,11),(20,42),(45,15),(57,43),(62,20)]:pi+=box(x,-y,z+.5,4,3,1,'0.12 0.13 0.14')
-write('Pi4_stack_concept',pi);add(b,'MODEL_PI4','${KIPRJMOD}/../../models/Pi4_stack_concept.wrl',(50,50))
+write('Pi4_stack_concept',pi);add(b,'MODEL_PI4','${KIPRJMOD}/../../../shared/models/Pi4_stack_concept.wrl',(50,50))
 save_board(str(F/'pi-trenz-stack-concept.kicad_pcb'),b)
 # Separate service-envelope view: bounding volumes, not exact mated solids.
 # The ordinary stack remains uncluttered and does not imply flex fit approval.
 service=box(14.19,-50.9,9.2+11.1/2,12.22,16.1,11.1,'0.12 0.5 0.23')
 write('DAQHAT_01_service_envelopes',service)
-add(b,'MODEL_SERVICE','${KIPRJMOD}/../../models/DAQHAT_01_service_envelopes.wrl',(50,50))
+add(b,'MODEL_SERVICE','${KIPRJMOD}/../../../shared/models/DAQHAT_01_service_envelopes.wrl',(50,50))
 save_board(str(F/'stack-service-envelopes.kicad_pcb'),b)
 for fp in list(b.GetFootprints()):
     if fp.GetReference() in ('MODEL_SERVICE',):b.Delete(fp)
 # Exploded view separates assemblies; spacer bodies are hidden intentionally.
 for fp in list(b.GetFootprints()):
-    if fp.GetReference()=='MODEL_TE0712':model(fp,'${KIPRJMOD}/../../models/trenz/STP-TE0712-03-No Variations.step',(0,0,27.6099917))
-    elif fp.GetReference()=='MODEL_PI4':model(fp,'${KIPRJMOD}/../../models/Pi4_stack_concept.wrl',(0,0,-20))
+    if fp.GetReference()=='MODEL_TE0712':model(fp,'${KIPRJMOD}/../../../shared/models/trenz/STP-TE0712-03-No Variations.step',(0,0,27.6099917))
+    elif fp.GetReference()=='MODEL_PI4':model(fp,'${KIPRJMOD}/../../../shared/models/Pi4_stack_concept.wrl',(0,0,-20))
     elif fp.GetReference()=='MODEL_SPACERS':b.Delete(fp)
 save_board(str(F/'stack-exploded.kicad_pcb'),b)
 print('Models attached; actual HAT, mounted Trenz and conceptual Pi stack saved')

@@ -6,7 +6,7 @@ This modifies placement only, never electrical connectivity.
 from pathlib import Path
 import json,math
 import pcbnew as p
-ROOT=Path(__file__).resolve().parents[2];path=ROOT/'hw/layout-trenz.json';data=json.loads(path.read_text());spec=data['groundlark-daqhat-01']
+ROOT=Path(__file__).resolve().parents[2];path=ROOT/'hw/groundlark-fpga-hat/layout/placement.json';data=json.loads(path.read_text());spec=data['groundlark-daqhat-01']
 parts=spec['parts'];by={m['ref']:m for m in parts}
 by['JP1'].update(xy=[23,53],angle=90)
 by['F80'].update(xy=[17,8.5],angle=0)
@@ -26,7 +26,7 @@ desired.update({'C1':[73,29],'C2':[59,8],'C3':[65,8],'R1':[72,18],'R2':[76,18],'
  'C80':[55,51],'C81':[43,8],'C82':[50,8],'C83':[53,8],
  'C84':[43,16],'C85':[56,39],'R80':[73,16],'R81':[39,40]})
 def bounds(m,xy=None,angle=None):
-    f=p.FootprintLoad(str(ROOT/'hw/elec'),m['local_fp']);x,y=xy or m['xy'];f.SetPosition(p.VECTOR2I(p.FromMM(x),p.FromMM(y)));f.SetOrientationDegrees(m['angle'] if angle is None else angle)
+    f=p.FootprintLoad(str(ROOT/'hw/shared/elec'),m['local_fp']);x,y=xy or m['xy'];f.SetPosition(p.VECTOR2I(p.FromMM(x),p.FromMM(y)));f.SetOrientationDegrees(m['angle'] if angle is None else angle)
     rects=[s.GetBoundingBox() for s in f.GraphicalItems() if s.GetLayer()==p.F_CrtYd]
     if not rects:rects=[f.GetBoundingBox(False,False)]
     return (min(p.ToMM(r.GetX()) for r in rects),min(p.ToMM(r.GetY()) for r in rects),max(p.ToMM(r.GetRight()) for r in rects),max(p.ToMM(r.GetBottom()) for r in rects))

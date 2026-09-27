@@ -42,7 +42,7 @@ The package retains manufacturing holds and is not a fabrication approval.
 
 ## BOM mapping and selected parts
 
-The [exact-part registry](../hw/assembly/daqhat-01-jlcpcb-parts.json) binds each
+The [exact-part registry](../hw/assembly/groundlark-fpga-hat/daqhat-01-jlcpcb-parts.json) binds each
 reference to its source value/footprint and approved manufacturer, MPN and C-code.
 Catalog listing does not reserve stock or guarantee assembly eligibility.
 Recheck allocation at ordering; do not accept automatic substitutes.
@@ -80,7 +80,7 @@ does not qualify this part. See [stack assembly](stack-assembly.md).
 ## Placement conventions
 
 The exporter fits supplier numbered pads to native footprints using the frozen
-[catalog geometry](../hw/assembly/daqhat-01-jlcpcb-placement.json). It accounts
+[catalog geometry](../hw/assembly/groundlark-fpga-hat/daqhat-01-jlcpcb-placement.json). It accounts
 for bottom-side projection and preserves absolute component positions.
 Use its CPL rather than raw KiCad angles or manual per-reference offsets.
 

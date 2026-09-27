@@ -1,19 +1,23 @@
 requires-atopile: "0.15.9"
 paths:
-  src: elec
-  layout: layout
+  src: .
+  layout: build/layout
 builds:
   trenz_hat:
     standardize_designators: false
     keep_net_names: false
-    entry: elec/hat_trenz.ato:TrenzHat
+    entry: groundlark-fpga-hat/elec/hat_trenz.ato:TrenzHat
+    paths:
+      layout: groundlark-fpga-hat/layout/trenz_hat/trenz_hat.kicad_pcb
   hat:
     standardize_designators: false
     keep_net_names: false
-    entry: elec/hat.ato:Hat
+    entry: groundlark-coldfoot-hat/elec/hat.ato:Hat
+    paths:
+      layout: groundlark-coldfoot-hat/layout/hat/hat.kicad_pcb
   field_head:
     standardize_designators: false
     keep_net_names: false
-    entry: elec/field_head.ato:FieldHead
-
-
+    entry: burrowlark-usb/elec/field_head.ato:FieldHead
+    paths:
+      layout: burrowlark-usb/layout/field_head/field_head.kicad_pcb

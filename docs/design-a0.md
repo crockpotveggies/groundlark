@@ -1,8 +1,8 @@
 # Groundlark A2 design
 
 **Atopile engineering prototype, 2026-09-23.** This document replaces the earlier
-A0 description in place. Electrical source is in `hw/elec/`; native KiCad boards,
-derived review schematics, explicit BOMs and reports are in `hw/boards/`.
+A0 description in place. Electrical source is in `hw/shared/elec/`; native KiCad boards,
+derived review schematics, explicit BOMs and reports are in each product's `boards/` directory.
 
 The Raspberry Pi acquires, timestamps, calibrates and records samples, then
 encodes suitable features/events for the existing Coldfoot host runtime. Direct

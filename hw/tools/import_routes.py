@@ -5,6 +5,7 @@ through-via/straight-track format and native HDI snapshot used here, checks plac
 on unknown route objects. Run check_design.py afterwards: import is not signoff.
 """
 from pathlib import Path
+from project_paths import board_dir
 import sys,re,json
 from kicad_support import save_board
 import pcbnew as p
@@ -18,7 +19,7 @@ def child(n,key): return next(iter(children(n,key)))
 def vec(x,y): return p.VECTOR2I(round(x),round(y))
 
 def main(name):
-    folder=ROOT/'hw/boards'/name; path=folder/(name+'.kicad_pcb')
+    folder=board_dir(name); path=folder/(name+'.kicad_pcb')
     b=p.LoadBoard(str(path)); s=sx.load(open(folder/(name+'.ses')))
     native_snapshot=str(s[1]).endswith('.native-full')
     routes=child(s,'routes'); res=child(routes,'resolution')
