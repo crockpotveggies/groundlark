@@ -1,5 +1,5 @@
-# Nanopb candidate allocation bounds. Firmware selection still needs a linked
-# STM32 image, stack watermark and USB-buffer RAM/flash measurements.
+# Nanopb candidate bounds for other producers. Skylark uses a bounded C encoder
+# checked against the reference decoder; physical stack/USB qualification remains.
 groundlark.sensor.v1.Envelope.device_id max_length:32
 groundlark.sensor.v1.Identity.firmware_version max_length:32
 groundlark.sensor.v1.Identity.sensors max_count:8
@@ -11,3 +11,8 @@ groundlark.sensor.v1.GnssRaw.nav_pvt max_size:92
 groundlark.sensor.v1.SampleBatch.samples max_count:4
 groundlark.sensor.v1.SampleBatch.calibration_id max_length:32
 groundlark.sensor.v1.DeviceStatus.detail max_length:96
+
+groundlark.sensor.v1.ParticulateRaw.response max_size:32
+groundlark.sensor.v1.ClimateRaw.response max_size:6
+groundlark.sensor.v1.BarometerRaw.response max_size:6
+groundlark.sensor.v1.BarometerRaw.calibration max_size:21

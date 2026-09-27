@@ -165,7 +165,7 @@ class ScenarioTests(unittest.TestCase):
         self.assertEqual(adapter.read().quality, 3)
         now = 100
         self.assertEqual(adapter.read().quality, 1)
-        for controls in ({"10": "disconnect"}, {"1": "unknown"}, {"1": []}):
+        for controls in ({"17": "disconnect"}, {"1": "unknown"}, {"1": []}):
             with self.assertRaises(ValueError): Scenario({"version": 1, "initial": {"sensor_faults": controls}})
 
     def test_actual_application_records_events_and_reproduces_from_metadata(self):

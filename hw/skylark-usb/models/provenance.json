@@ -1,0 +1,41 @@
+{
+  "generator": "hw/tools/skylark_models.py",
+  "kind": "simplified dimension envelopes, not supplier STEP",
+  "cell_body_mm": [
+    31.5,
+    15.5
+  ],
+  "socket_rim_above_pcb_mm": 5.69,
+  "board_mm": [
+    90,
+    100,
+    1.6
+  ],
+  "qualification": "Physical mating, retention, airflow and enclosure fit not qualified.",
+  "models": {
+    "ADC.wrl": "c75f3a14738ddd0c0c4248042863f36d3678f1291e57060b31479b411f6ffcdc",
+    "AnalogSwitch.wrl": "1783b68657c823cfdff98b795e604b522b87c2358de47b32d63e63c77d893da9",
+    "BMP.wrl": "4c2530b56fa2d1b8227fb3111b074067c466cd3f796760cd5d76f9cb2744337e",
+    "BUTTON.wrl": "4d2f8068ae58241ba8d1f424f8abcc7252ebf1cb3fdd2fa9c0001a855eeaf732",
+    "C0603.wrl": "73e419595428f66d5517d1c06cca7a4c5f320f66738ed05cc167af2d2d394d3c",
+    "C0805.wrl": "b45d9e4905268bfcafe6a39d5a81295c57344baab7ca2585ca67c31970c0fe90",
+    "DebugHeader.wrl": "a5a6211e2b345910146943264d19e5a0584fcec11dda509a447b5e01987145f9",
+    "ESD.wrl": "1783b68657c823cfdff98b795e604b522b87c2358de47b32d63e63c77d893da9",
+    "FUSE.wrl": "0afd9ee45bdaa5966b2666bf2ede7754b20b4218e949546bba3878999a769100",
+    "H2S.wrl": "e6843e2457bd5c7b62a033b372c75ad83884e40c1b199e18ae612cee1c79bb60",
+    "JFET.wrl": "2d5b0d432f128c6dc52960e593227c43e3eee8b3cccf2b992d4c1824704ce8ab",
+    "LDO.wrl": "1783b68657c823cfdff98b795e604b522b87c2358de47b32d63e63c77d893da9",
+    "MCU.wrl": "7ba530ca1977ab9e6129f61b154bb18554a995c0568f9c816f5aea91d5a0e70f",
+    "MOS.wrl": "2d5b0d432f128c6dc52960e593227c43e3eee8b3cccf2b992d4c1824704ce8ab",
+    "OPA1.wrl": "1783b68657c823cfdff98b795e604b522b87c2358de47b32d63e63c77d893da9",
+    "OPA2.wrl": "6a1aaf555e1716b4b43b4c5f8d2aab364e276f4a0c1c373677ec36b2088d01ee",
+    "PMS.wrl": "b967af3217f45ee532827fa11e0839c835aeccc74b6bb1125464a4c86c690b9c",
+    "R.wrl": "535d8cb7876436b214bb69d460b2ce4b205f078f4115a29d616de227221bb419",
+    "REF.wrl": "2d5b0d432f128c6dc52960e593227c43e3eee8b3cccf2b992d4c1824704ce8ab",
+    "SHT.wrl": "f24aac10e4c7cb4c50ee76d24deddca38f039d37181dace884e22f6a7a1f821c",
+    "SO2.wrl": "949c974e6ef4a0b577dbc62cd6312298dbf783074e658a1968b7eb06aa2e3754",
+    "SWITCH.wrl": "1783b68657c823cfdff98b795e604b522b87c2358de47b32d63e63c77d893da9",
+    "StatusLED.wrl": "2101a5b629b59f88698ea2f42f0ef6a352b98d9b37e132f735db0577fa819622",
+    "USB.wrl": "bf62770cb1f235c9c9b136f4d7c62d9bb52d0611ce5b16e1e2cc5b54fecc8b47"
+  }
+}

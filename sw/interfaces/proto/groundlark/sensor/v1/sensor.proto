@@ -19,6 +19,7 @@ enum Board {
   BOARD_UNSPECIFIED = 0;
   BOARD_DAQHAT_01 = 1;
   BOARD_USB_HEAD = 2;
+  BOARD_SKYLARK_USB = 3;
 }
 
 enum SensorId {
@@ -32,6 +33,13 @@ enum SensorId {
   SENSOR_ID_MAGNETOMETER = 7;
   SENSOR_ID_PRESSURE = 8;
   SENSOR_ID_GEOPHONE = 9;
+  SENSOR_ID_SO2_WORKING = 10;
+  SENSOR_ID_SO2_AUXILIARY = 11;
+  SENSOR_ID_H2S_WORKING = 12;
+  SENSOR_ID_H2S_AUXILIARY = 13;
+  SENSOR_ID_PARTICULATE = 14;
+  SENSOR_ID_AMBIENT_CLIMATE = 15;
+  SENSOR_ID_BAROMETER = 16;
 }
 
 enum ClockDomain {
@@ -143,6 +151,28 @@ message GeophoneRaw {
   optional uint32 conversion_counter = 2;
 }
 
+message GasRaw {
+  optional sint32 counts = 1;
+  optional uint32 conversion_counter = 2;
+}
+
+message ParticulateRaw {
+  // Complete 32-byte PMS5003 frame, including header and checksum.
+  bytes response = 1;
+}
+
+message ClimateRaw {
+  // SHT40 temperature and humidity words with their CRC bytes.
+  bytes response = 1;
+}
+
+message BarometerRaw {
+  // BMP390 pressure then temperature registers, little-endian uint24.
+  bytes response = 1;
+  // Unmodified factory trim registers 0x31..0x45.
+  bytes calibration = 2;
+}
+
 message Calibrated {
   Vector3d acceleration_m_s2 = 1;
   Vector3d angular_rate_rad_s = 2;
@@ -163,6 +193,10 @@ message Sample {
     PressureRaw pressure = 13;
     GnssRaw gnss = 14;
     GeophoneRaw geophone = 15;
+    GasRaw gas = 16;
+    ParticulateRaw particulate = 17;
+    ClimateRaw climate = 18;
+    BarometerRaw barometer = 19;
   }
   Calibrated calibrated = 20;
 }

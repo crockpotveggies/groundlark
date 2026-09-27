@@ -1,0 +1,29 @@
+{
+  "renderer": "Blender 4.0.2 / Cycles",
+  "samples": 256,
+  "denoiser": "OpenImageDenoise",
+  "resolution": [
+    2400,
+    1600
+  ],
+  "scope": "Native PCB and authored component envelopes in STEP-derived Rev G tray; bell beside it. Fasteners and cable dressing illustrative. No physical fit or weather qualification.",
+  "pcb_pose": "PCB top-left (-45,0,135) mm; front normal -Y; rear surface Y=1.6 mm.",
+  "sha256": {
+    "hw/skylark-usb/mechanical/bell/render_readme.py": "c54be3c8eac6cd3188cd6bd350d5709486e0b68df8f420b16107e5d029480746",
+    "sw/ui/assets/skylark-provenance.json": "2ba08700f64ea44d0294026a72c4439716e692183161a450af89eff317f71e0c",
+    "hw/releases/skylark-bell-r7/provenance.json": "00c071468d6fd64c52f2955dd67488d500a1d29833cdefebab85a4572098a939",
+    "hw/skylark-usb/mechanical/bell/enclosure.py": "ff0f7f5b6ac1b8a657d7c66ce1fbb0a804692aa219cfab861e818e2195e90468",
+    "hw/releases/skylark-bell-r7/assembly-parts/bottom.stl": "75ddb4b241fdbc4b4ab3d42ca6a3e000224ced8951060ce5605eaee98c08c0ce",
+    "hw/releases/skylark-bell-r7/assembly-parts/cable-left.stl": "75cdfa9e88c65633afc6c1fb4d6431556b61ecd898fc8609ae5e424c26e6cbec",
+    "hw/releases/skylark-bell-r7/assembly-parts/cable-right.stl": "dca5b57f1cbad6e81879954cb40b923ebf72098525b3d860d0985195be397c3d",
+    "hw/releases/skylark-bell-r7/assembly-parts/cell-retainer.stl": "b4c1abbcd03e0bf44bde79303787e134d7f6bf86bc2f36725f81695300c1b3d1",
+    "hw/releases/skylark-bell-r7/assembly-parts/gas-splash-cover.stl": "74546b1dfbe58d87ab190a3f23344bd0cb421375f4312790d7b5ec95679454a0",
+    "hw/releases/skylark-bell-r7/assembly-parts/hood.stl": "49b2873326a7035c06328e78652a651ed5d944418763d9c7b77e750692fb60dd",
+    "hw/releases/skylark-bell-r7/assembly-parts/pcb-carrier.stl": "5b72237cd321566547685d48117d167b673339cb8b89627b0d975bc06aad56ee",
+    "hw/releases/skylark-bell-r7/assembly-parts/pms-cradle.stl": "5fe720d7f8661288cffd0c4439f3a63dfc3504bf68e9598d05cc7749ad5924b2",
+    "hw/releases/skylark-bell-r7/assembly-parts/pms-exhaust-extension.stl": "b298ea9c7bb25450e217fee49402b53afce59be30d819fe4e4b1b3672b1ab1b9",
+    "hw/releases/skylark-bell-r7/assembly-parts/ref-pms5003.stl": "674c80857fd967150fcc0f6864e099b75b87174f524ae364c76e1be1b0926faa",
+    "sw/ui/assets/skylark.glb": "2dafa1055d9534a0dd8cb54f65b080195d2226abfda69ab56302e735a4b87d0a"
+  },
+  "output_sha256": "adf5a2b6dd3fc0a1d61193da1971659abada06900fb78775fe60f5511dca0b20"
+}

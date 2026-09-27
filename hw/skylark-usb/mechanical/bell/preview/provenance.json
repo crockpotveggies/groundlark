@@ -1,0 +1,46 @@
+{
+  "renderer": "4.0.2",
+  "source": "STEP-derived enclosure meshes; simplified electronics envelopes; illustrative cables and fasteners",
+  "render_source_sha256": "525d3c1bdadcf439748038c8f167ff67810054e96197fd6a04223c2b98e0b083",
+  "cad_provenance_sha256": "3e5d9a6a309301d8e4268c21583e9a0d9892e58215cbbc76a4b9baa1df2f1f88",
+  "images": {
+    "bottom-vents.png": "8e89a3ee9a3a4cde52a45c46aca41cb63dcaa153cc2d668cf2485ce38723ebff",
+    "closed.png": "5a04d78c3dfd231c510eeee9eca037bc3e705fad97b6f84058cd3c375c3fabce",
+    "open.png": "2a01730b33e5ea6af12334016b773fdf24e7a43fbab7118c2742177c04a8dee5",
+    "rear-detail.png": "43f43ad9a1ece32cfdedc4b199f52ccd36e11a7a8e8ab55109fe5caed1906af1",
+    "rear.png": "08ce607ddc063970ded212292beb5131cdc0c827ec6e37b08d725a951390319e",
+    "tray-parts.png": "f2a10fc4f8e3ea41ea4d7748611fe4c68719450433ed162a8ecae770bb91a75f"
+  },
+  "image_render_source_sha256": {
+    "bottom-vents.png": "525d3c1bdadcf439748038c8f167ff67810054e96197fd6a04223c2b98e0b083",
+    "closed.png": "525d3c1bdadcf439748038c8f167ff67810054e96197fd6a04223c2b98e0b083",
+    "open.png": "525d3c1bdadcf439748038c8f167ff67810054e96197fd6a04223c2b98e0b083",
+    "rear-detail.png": "525d3c1bdadcf439748038c8f167ff67810054e96197fd6a04223c2b98e0b083",
+    "rear.png": "525d3c1bdadcf439748038c8f167ff67810054e96197fd6a04223c2b98e0b083",
+    "tray-parts.png": "525d3c1bdadcf439748038c8f167ff67810054e96197fd6a04223c2b98e0b083"
+  },
+  "sources": {
+    "enclosure.py": "ff0f7f5b6ac1b8a657d7c66ce1fbb0a804692aa219cfab861e818e2195e90468",
+    "render.py": "525d3c1bdadcf439748038c8f167ff67810054e96197fd6a04223c2b98e0b083"
+  },
+  "pcb_sha256": "5d457be536c001b11b4704435b016cf1fbc4d862682d2086a4a7f384b1b57ba6",
+  "placement_sha256": "bf6d39b090e95c39e5097ca44be508c617298f25acfe6b04351f2fee6360989b",
+  "pcb_artwork_update": {
+    "previous_pcb_sha256": "78c59bc699ac096c9ffcd4ad239fb9c7854a8e57b6fb5714ff74aab91dfab320",
+    "current_pcb_sha256": "5d457be536c001b11b4704435b016cf1fbc4d862682d2086a4a7f384b1b57ba6",
+    "verification": "Serialized PCB comparison: only F.SilkS artwork and its group added; all existing board items unchanged. Enclosure geometry and envelope renders do not include silkscreen."
+  },
+  "line_ending_normalization": {
+    "verification": "Only CRLF to LF; decoded lines, geometry and assets unchanged. Matches repository .gitattributes.",
+    "inputs": {
+      "hw/skylark-usb/layout/placement.json": {
+        "before": "ba04d002b5a37d4ecaa72976349ef3715886f2d5ca397b12ec5f0d1376a72acf",
+        "after": "bf6d39b090e95c39e5097ca44be508c617298f25acfe6b04351f2fee6360989b"
+      },
+      "hw/skylark-usb/mechanical/bell/enclosure.py": {
+        "before": "42c74867ed23c20b33b7e00de94476acd7677b557560e886192316a556d313c7",
+        "after": "ff0f7f5b6ac1b8a657d7c66ce1fbb0a804692aa219cfab861e818e2195e90468"
+      }
+    }
+  }
+}

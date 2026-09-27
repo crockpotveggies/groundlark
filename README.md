@@ -6,53 +6,85 @@ Groundlark is a family of hardware boards and companion software for seismic
 and environmental monitoring. Each board has its own hardware directory, with
 shared component libraries, interfaces and validation tools.
 
-| Board | Purpose | Status |
-| --- | --- | --- |
-| [Groundlark FPGA HAT](hw/groundlark-fpga-hat/README.md) — DAQHAT-01 | Three XYZ IMUs, geophone input and Trenz FPGA interface. | Active prototype; Pi acquisition and SPI echo implemented; physical qualification pending. |
-| [Groundlark Coldfoot HAT](hw/groundlark-coldfoot-hat/README.md) | Separate A2 ASIC HAT design. | Retained; Coldfoot integration deferred. |
-| [Burrowlark USB](hw/burrowlark-usb/README.md) — DAQUSB-01 | USB magnetometer and optional infrasound sensor head. | Hardware design present; MCU firmware and physical qualification pending. |
-| [Skylark USB](hw/skylark-usb/README.md) | Outdoor air-quality accessory for particles, SO₂, H₂S and basic environmental measurements. | Planned; no circuit, PCB or firmware yet. USB only; camera omitted. |
+The family has **three products and four hardware designs**: Groundlark has
+separate FPGA and Coldfoot HAT variants; Skylark and Burrowlark are USB sensor
+heads. All share the sensor contracts, simulation tools and local workbench.
 
-Current development focuses on sensor acquisition with the Raspberry Pi,
-DAQHAT-01 and Trenz Artix-7 200T stack, plus an external passive geophone.
+## Groundlark
 
 ![Groundlark: Raspberry Pi, DAQHAT-01 and Trenz FPGA stack with Racotech geophone](docs/images/groundlark-stack-geophone.png)
 
-The image uses current HAT CAD and the vendor Trenz model. The Pi, baseline
-socket and geophone are conceptual geometry; lead routing is illustrative.
-The J1 procurement substitute needs a physical stack-height check.
+**Seismic monitoring on a Raspberry Pi.** The active
+[Groundlark FPGA HAT](hw/groundlark-fpga-hat/README.md), model **DAQHAT-01**, is an
+85 × 56 mm, six-layer FR-4 board with three XYZ LSM6DSO IMUs and an ADS122C04
+input for an external Racotech geophone. The stack is **Pi → HAT → Trenz
+Artix-7 200T FPGA**. Pi acquisition works independently of a configured FPGA.
 
-## Hardware
+The [internal FPGA link](docs/fpga-host-link.md) provides six QSPI wires, UART,
+reset and switched Pi-driven JTAG. An SPI echo bitstream is implemented;
+accelerated sensor processing and native quad transfers remain future work.
+The FPGA needs a separate regulated 3.3 V-class supply within the
+[hardware guide's](docs/trenz-hat.md) voltage and power limits.
 
-The [DAQHAT-01](docs/trenz-hat.md) is an 85 × 56 mm, six-layer FR-4 carrier with
-three XYZ LSM6DSO IMUs and one ADS122C04 input for an external Racotech geophone.
-The stack is **Pi → HAT → Trenz FPGA**. It requires a separate regulated
-3.3 V-class FPGA supply; follow the guide's voltage and power limits.
+The [Groundlark Coldfoot HAT](hw/groundlark-coldfoot-hat/README.md) is a separate,
+retained A2 ASIC design. Coldfoot integration is deferred while development
+focuses on sensor acquisition with the Pi/DAQHAT-01/Trenz stack.
 
-The [internal FPGA link](docs/fpga-host-link.md) reserves six QSPI wires and
-supports UART, reset and switched Pi-driven JTAG without external ribbon cables.
-Pi 4 initially uses SPI6; native quad transfers require a different host solution.
-An SPI echo bitstream is implemented; accelerated sensor processing remains future work.
+**Status:** active prototype. Physical power, fit, timing, noise and thermal
+qualification remain pending. See the [stack assembly guide](docs/stack-assembly.md),
+[JLCPCB instructions](docs/jlcpcb-assembly.md) and [bench procedure](docs/bench-procedure.md).
+The JLCPCB package targets one assembled HAT; sourcing, placement and J1 fit
+checks remain open. Fabrication packages stay local in ignored `hw/releases/`.
 
-The [Burrowlark (DAQUSB-01) USB-C sensor head](docs/usb-sensor-head.md) carries
-an RM3100 magnetometer and optional DLVR infrasound sensor. It connects to the Pi for power and data;
-its MCU firmware is still pending. These sensors are separate from the HAT.
-The [A2 ASIC HAT](docs/design-a0.md) and [Coldfoot integration](docs/coldfoot-integration.md)
-are retained as a separate design; current hardware work focuses on the FPGA stack.
+*Render: current HAT CAD and vendor Trenz model; the Pi, socket and geophone are
+conceptual geometry. Lead routing is illustrative; J1 stack height needs a physical check.*
 
-Use the [stack assembly guide](docs/stack-assembly.md) and
-[JLCPCB instructions](docs/jlcpcb-assembly.md) for mechanical and manufacturing details.
-The JLCPCB package targets **one assembled HAT**. Upload the corrected BOM and
-CPL together. Supplier quantity, sourcing, placement and J1 fit checks remain open.
-Fabrication packages stay local under ignored `hw/releases/`.
+## Skylark
 
-Physical power, fit, timing, noise and thermal qualification remain pending.
-The [bench procedure](docs/bench-procedure.md) describes the required measurements.
+![Skylark USB: populated vertical PCB and gas cells in the removable tray, with the white bell enclosure beside it](docs/images/skylark-assembly.png)
+
+**Outdoor air-quality monitoring over USB.** [Skylark USB](hw/skylark-usb/README.md)
+combines a vertical **90 × 100 mm PCB** with a removable sensor tray and a
+**130 × 94 × 185 mm bell enclosure**.
+
+- **Particles:** Plantower PMS5003, with separate downward-facing inlet and exhaust paths.
+- **Gases:** socketed SGX-7SO2-AQ-20 sulfur dioxide and SGX-7H2S-AQ-25 hydrogen sulfide cells.
+- **Weather:** SHT40 temperature/humidity and BMP390 barometric pressure.
+- **Connection:** USB-C power and data through an STM32F072 microcontroller.
+- **Housing:** printable bell, rear M4 keyhole mounts and a removable tray with
+  separate PMS cradle and splash cover. Bottom ventilation is sheltered by a 25 mm skirt.
+
+[Prototype firmware](sw/skylark/README.md) implements sensor acquisition and
+USB streaming. The shared workbench includes Skylark simulation, recording/replay,
+board-specific tests and an interactive 3D PCB. Gas data retains separate raw
+working and auxiliary electrode counts; concentrations require calibration.
+
+**Status:** Rev A PCB, Rev G enclosure and prototype firmware are implemented.
+Physical fit, USB power behavior, analog performance, gas response and weather
+resistance still require qualification. The ventilated enclosure has no assigned
+IP rating. Follow the [PCB guide](hw/skylark-usb/README.md) and
+[enclosure assembly instructions](hw/skylark-usb/mechanical/bell/README.md).
+
+*Render: native PCB artwork and authored component models in the CAD-derived
+tray, with the bell set beside it. Component bodies are dimension envelopes;
+fasteners and cable dressing are illustrative. [Render provenance](docs/images/skylark-assembly.json).*
+
+## Burrowlark
+
+**Remote magnetic and infrasound sensing over USB.**
+[Burrowlark USB](hw/burrowlark-usb/README.md), model **DAQUSB-01**, carries an
+RM3100 magnetometer and an optional DLVR infrasound sensor. It connects to the
+Pi through USB-C for power and data, keeping these sensors separate from the HAT.
+
+**Status:** hardware design and workbench simulation are present; MCU firmware
+and physical qualification remain pending. See the
+[USB sensor-head guide](docs/usb-sensor-head.md) for interfaces and assembly details.
 
 ## Sensor workbench
 
-The dark-mode Python UI includes a selectable 3D HAT and geophone, six virtual
-sensor streams, raw-data charts, stimulus/fault controls and recording/replay.
+The dark-mode Python UI lets you switch between Groundlark, Skylark and
+Burrowlark, with interactive 3D views, raw-data charts, stimulus/fault controls,
+board-specific tests and recording/replay.
 No hardware or Docker is required. Follow the
 [beginner walkthrough](docs/sensor-workbench.md) to create your first signal.
 
@@ -69,7 +101,8 @@ Open **http://127.0.0.1:8080**. Tools and dependencies stay in ignored `.local/`
 
 This is an actual browser screenshot with simulated data. Select the geophone
 can or its HAT input to highlight both and inspect the same ADC stream.
-**Test HAT signals** runs eight simulated seconds through production Pi drivers
+Use the **Board** selector for the FPGA HAT, Burrowlark or Skylark.
+**Test selected board** runs the selected board’s checks; the HAT test runs eight simulated seconds through production Pi drivers
 on modeled buses, with signal checks and downloadable recordings/results.
 The UI simulates and replays; physical acquisition uses the [Pi software](docs/sensor-software.md).
 
@@ -89,6 +122,7 @@ for Linux commands, test scope, five-run retention and cleanup.
 
 Hardware sources: [DAQHAT-01 circuit](hw/groundlark-fpga-hat/elec/hat_trenz.ato),
 [KiCad PCB](hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb),
-[A2 HAT](hw/groundlark-coldfoot-hat/boards/groundlark-hat/groundlark-hat.kicad_pcb), and
-[Burrowlark DAQUSB-01](hw/burrowlark-usb/boards/groundlark-field-head/groundlark-field-head.kicad_pcb).
+[A2 HAT](hw/groundlark-coldfoot-hat/boards/groundlark-hat/groundlark-hat.kicad_pcb),
+[Burrowlark DAQUSB-01](hw/burrowlark-usb/boards/groundlark-field-head/groundlark-field-head.kicad_pcb), and
+[Skylark USB](hw/skylark-usb/boards/skylark-usb/skylark-usb.kicad_pcb).
 See [build instructions](docs/build.md) and [source references](docs/sources.md).

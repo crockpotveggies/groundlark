@@ -18,7 +18,7 @@ Pi sensor drivers on modeled register/packet buses. It measures frequency, gain,
 phase, gravity, gyro/tilt consistency, inter-IMU agreement, GNSS motion and sample
 timing. Negative controls prove that physically wrong but well-framed data fail.
 The software profile retains `hat-signals.ssrec` and `hat-signals.json`; the UI's
-**Test HAT signals** button runs the same analyzer and displays its exact capture.
+**Test selected board** button runs the same analyzer and displays its exact capture.
 These thresholds apply to ideal models, not unqualified physical hardware.
 
 `test_fifo.py` checks independent FIFO tag vectors, buffered sample preservation,
@@ -56,3 +56,13 @@ restoration and SIGTERM isolation. `test_fpga_evidence.py` injects timing and
 report-coverage failures. The FPGA stage additionally runs the real Python client
 against RTL pins, rather than relying only on a byte-level mock peer.
 Physical qualification follows the [bench procedure](../../docs/bench-procedure.md).
+
+`test_skylark.py` compiles the actual Skylark C drivers and encoder on Linux,
+then validates their output with the independent Python protobuf/COBS receiver.
+Fixtures cover startup missing data, checksums, ADC counter discontinuities,
+absent devices, queue overflow, suspend/reconnect, and suspend during sensor
+configuration. A two-page flash fixture interrupts each word erase and halfword
+write around page rollover. The native stream also passes through standalone
+USB capture and workbench replay. These checks do not emulate STM32 instructions
+or establish physical USB timing. The profile additionally links an ARM image
+and retains its ELF, binary, map and size/hash metadata.

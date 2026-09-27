@@ -232,3 +232,28 @@ references and computes a digest of message bytes. A final `acquisition_summary`
 event marks normal completion. A complete prefix without that event is readable
 but incomplete; partial/corrupt records fail. USB arrival time never replaces
 remote acquisition time.
+
+## Skylark USB
+
+[Skylark firmware](../sw/skylark/README.md) supports the Rev A STM32F072 board.
+It uses the existing framing, session checks and `.ssrec` format. The portable
+software profile builds its ARM image and runs native C sensor/journal fault
+fixtures. This is software verification; USB enumeration and physical sensor
+qualification remain pending. Burrowlark firmware remains pending.
+
+After generating the current descriptor, use the existing entry point:
+
+```sh
+python sw/tools/sensor.py simulate --board skylark --seconds 8 --output sw/build/air-sim.ssrec
+python sw/tools/sensor.py usb --board skylark --usb /dev/ttyACM0 --seconds 120 --output sw/build/air-field.ssrec
+python sw/tools/sensor.py replay sw/build/air-field.ssrec
+```
+
+The standalone `usb` command needs no HAT profile, GPIO, FPGA or Pi sensor
+enable. It accepts an explicit Linux CDC path and uses the shared bounded
+receiver with board identity filtering. Use a new output filename; 8 MiB is the
+default capture limit. The workbench opens these captures and can switch between
+board simulations/tests. Sensor IDs 10–16 retain separate gas working/auxiliary,
+complete PMS/SHT responses and BMP raw/trim bytes. Gas concentration calibration
+is not supplied. Native firmware's 60-second gas/30-second PM warmup is explicit
+missing data; the ideal UI model intentionally has no physical warmup delay.

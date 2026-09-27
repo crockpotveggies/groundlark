@@ -8,7 +8,7 @@ LOGO_CENTER = (94.5, 100.7)
 MODEL_CENTER = (94.5, 104.8)
 
 
-def add_logo(board):
+def add_logo(board, center=LOGO_CENTER):
     footprint = p.FootprintLoad(str(ROOT / 'hw/shared/libraries/Groundlark.pretty'), 'Logo_Groundlark_7mm')
     if footprint is None:
         raise RuntimeError('Missing Groundlark silkscreen artwork')
@@ -28,6 +28,6 @@ def add_logo(board):
         shape.SetFilled(True)
         shape.SetWidth(0)
         shape.SetLayer(p.F_SilkS)
-        shape.Move(v(*LOGO_CENTER))
+        shape.Move(v(*center))
         board.Add(shape)
         group.AddItem(shape)

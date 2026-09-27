@@ -43,6 +43,10 @@ def main():
             assert 'nominal 25.4' in page, 'Missing geophone visualization description'
             with urlopen(f"http://127.0.0.1:{port}/board-assets/daqhat-01.glb", timeout=10) as response:
                 assert response.read(4) == b"glTF"
+            assert 'Test selected board' in page and 'Skylark USB' in page
+            assert 'Air quality stimulus' in page and 'Coldfoot integration is deferred' in page
+            with urlopen(f"http://127.0.0.1:{port}/board-assets/skylark.glb", timeout=10) as response:
+                assert response.read(4) == b'glTF'
             assert 'href="/favicon.ico"' in page
             with urlopen(f"http://127.0.0.1:{port}/favicon.ico", timeout=3) as response:
                 icon = response.read()

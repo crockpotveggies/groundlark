@@ -38,9 +38,11 @@ both full and overlay exports without depending on ignored release archives.
 See `docs/jlcpcb-assembly.md`. Offline tests never establish current inventory.
 
 Hardware products live in `hw/groundlark-fpga-hat/`, `hw/groundlark-coldfoot-hat/`,
-`hw/burrowlark-usb/` and `hw/skylark-usb/`. Coldfoot remains deferred; Skylark is
-planned USB hardware with no circuit or CAD yet. Do not infer a build target from
-the presence of a product directory. Preserve the existing model identifiers.
+`hw/burrowlark-usb/` and `hw/skylark-usb/`. Coldfoot remains deferred. Skylark Rev A
+uses the `skylark` target: a vertical USB PCB with socketed SGX SO2/H2S cells,
+an external PMS5003, SHT40 and BMP390. Preserve its direct USB route, sensor-finger
+keepouts, socket pin-view checks and native SES snapshot. Prototype firmware and
+the Rev G bell enclosure are implemented; physical qualification remains pending. Preserve the existing model identifiers.
 Electrical connectivity is authored in each product's `elec/*.ato`; shared atomic
 parts live in `hw/shared/elec/`. Placement metadata is in each product's
 `layout/placement.json`. Routed boards and review schematics are in its `boards/`.
@@ -57,7 +59,7 @@ The accelerometer HAT uses Pi drivers/runtime software; it has no separate
 microcontroller firmware. The remote USB magnetometer/infrasound sensor board is
 named Burrowlark, model DAQUSB-01. Firmware belongs to that USB sensor head.
 The Trenz variant needs an FPGA bitstream. Pi acquisition/simulation and bounded
-recovery are implemented; USB-head firmware and physical qualification remain pending. A DAQHAT-01
+recovery are implemented; Burrowlark firmware and physical qualification remain pending. Skylark STM32 firmware is implemented in `sw/skylark/`, with native C driver/journal tests and an ARM build in the shared software profile. A DAQHAT-01
 SPI echo bitstream is implemented and simulated; accelerated models and native
 quad remain future work. Do not claim emulation or
 fabrication readiness from CAD/SPICE checks.
@@ -84,7 +86,7 @@ The Buf baseline is a compatibility fixture, not routine generated output.
 Do not refresh it just to bypass a breaking change. Generated descriptors belong
 in ignored `sw/build/` inside the lab. Follow `docs/sensor-software.md` for runtime,
 loss and recovery rules. Linux drivers have modeled-bus tests; physical sensor
-qualification and MCU firmware remain pending.
+qualification and Burrowlark MCU firmware remain pending. Preserve Skylark raw WE/AE channels, startup missing data, USB power sequencing and boot-journal identity across updates.
 
 The optional live FIFO path pairs IMU tags by slot counter, preserves buffered
 samples and rejects overrun/parity/timestamp faults. Retain unknown loss and timing

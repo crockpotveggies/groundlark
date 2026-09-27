@@ -46,10 +46,10 @@ def batch(device, boot, sensor, sequence, acquired, raw=None, quality=1, revisio
     b.sensor_id, b.configuration_revision = sensor, revision
     if dropped is not None: b.dropped_before = dropped
     s = b.samples.add(sequence=sequence, quality=quality if raw is not None else 2)
-    s.time.domain = 2 if sensor in (7, 8) else 1
+    s.time.domain = 2 if sensor in (7, 8) or sensor >= 10 else 1
     s.time.acquisition_ns = acquired
     if raw is not None:
-        name = "imu" if sensor <= 4 else {5: "tilt", 6: "gnss", 7: "magnetic", 8: "pressure", 9: "geophone"}[sensor]
+        name = "imu" if sensor <= 4 else {5: "tilt", 6: "gnss", 7: "magnetic", 8: "pressure", 9: "geophone", **{i: "gas" for i in range(10, 14)}, 14: "particulate", 15: "climate", 16: "barometer"}[sensor]
         payload = getattr(s, name)
         for field, value in raw.items():
             if isinstance(value, (tuple, list)):

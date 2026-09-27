@@ -1,0 +1,7 @@
+#VRML V2.0 utf8
+# Simplified dimension envelope; model units = 2.54 mm.
+Transform { translation 0.0 0.0 0.09842519685039369 children [ Shape { appearance Appearance { material Material { diffuseColor 0.68 0.7 0.73 } } geometry Box { size 3.5039370078740157 2.8346456692913384 0.19685039370078738 } } ] }
+Transform { translation 0.0 0.0 1.1811023622047243 children [ Shape { appearance Appearance { material Material { diffuseColor 0.68 0.7 0.73 } } geometry Box { size 3.5039370078740157 2.8346456692913384 0.11811023622047244 } } ] }
+Transform { translation -1.6929133858267715 0.0 0.610236220472441 children [ Shape { appearance Appearance { material Material { diffuseColor 0.68 0.7 0.73 } } geometry Box { size 0.11811023622047244 2.8346456692913384 0.984251968503937 } } ] }
+Transform { translation 1.6929133858267715 0.0 0.610236220472441 children [ Shape { appearance Appearance { material Material { diffuseColor 0.68 0.7 0.73 } } geometry Box { size 0.11811023622047244 2.8346456692913384 0.984251968503937 } } ] }
+Transform { translation 0.0 -0.31496062992125984 0.6299212598425197 children [ Shape { appearance Appearance { material Material { diffuseColor 0.08 0.08 0.085 } } geometry Box { size 2.4803149606299213 1.6535433070866141 0.23622047244094488 } } ] }

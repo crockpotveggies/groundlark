@@ -34,9 +34,9 @@ def validate(message):
     require(kind is not None, "unknown or missing body")
     body = getattr(message, kind)
     if kind == "identity":
-        require(body.board in (1, 2), "unknown board")
+        require(body.board in (1, 2, 3), "unknown board")
         identifier(body.firmware_version)
-        allowed = (set(range(1, 7)) | {9}) if body.board == 1 else {7, 8}
+        allowed = (set(range(1, 7)) | {9}) if body.board == 1 else {7, 8} if body.board == 2 else set(range(10, 17))
         require(1 <= len(body.sensors) <= 8 and len(set(body.sensors)) == len(body.sensors), "sensor list size/duplicates")
         require(set(body.sensors) <= allowed, "sensor does not belong on board")
     elif kind == "configuration":
@@ -44,7 +44,7 @@ def validate(message):
         require(1 <= len(body.sensors) <= 8, "configuration sensor bound")
         require(len({s.sensor_id for s in body.sensors}) == len(body.sensors), "duplicate configuration")
         for sensor in body.sensors:
-            require(1 <= sensor.sensor_id <= 9, "unknown sensor")
+            require(1 <= sensor.sensor_id <= 16, "unknown sensor")
             require((0 < sensor.period_ns <= 60_000_000_000) if sensor.enabled else sensor.period_ns == 0, "invalid sample period")
             data = sensor.register_config
             require(len(data) <= 64 and len(data) % 2 == 0, "invalid register configuration")
@@ -53,7 +53,7 @@ def validate(message):
             require(not data or sensor.sensor_id in (1, 2, 3, 4, 7), "8-bit register snapshot not applicable")
             allowed = ({"acceleration_range_g", "angular_rate_range_dps"} if sensor.sensor_id <= 4 else
                        {5: {"tilt_mode"}, 6: set(), 7: {"cycle_count_x", "cycle_count_y", "cycle_count_z"},
-                        8: {"pressure_min_pa", "pressure_max_pa", "pressure_part_number"}, 9: {"geophone_gain", "geophone_reference_v"}}[sensor.sensor_id])
+                        8: {"pressure_min_pa", "pressure_max_pa", "pressure_part_number"}, 9: {"geophone_gain", "geophone_reference_v"}, **{i: set() for i in range(10, 17)}}[sensor.sensor_id])
             supplied = {field.name for field, _ in sensor.ListFields() if field.number >= 5}
             require(supplied <= allowed, "settings incompatible with sensor")
             if sensor.enabled:
@@ -66,12 +66,14 @@ def validate(message):
                     require(all(1 <= getattr(sensor, field) <= 65535 for field in allowed), "invalid cycle count")
                 elif sensor.sensor_id == 9:
                     require(sensor.geophone_gain == 64 and sensor.geophone_reference_v == 2.048 and sensor.period_ns == 3_030_303, "unsupported geophone profile")
+                elif sensor.sensor_id >= 10:
+                    require(sensor.period_ns == (240_000_000 if sensor.sensor_id < 14 else 1_000_000_000), "unsupported Skylark profile")
                 elif sensor.sensor_id == 8:
                     identifier(sensor.pressure_part_number)
                     require(math.isfinite(sensor.pressure_min_pa) and math.isfinite(sensor.pressure_max_pa)
                             and sensor.pressure_min_pa < sensor.pressure_max_pa, "invalid pressure range")
     elif kind == "status":
-        require(0 <= body.sensor_id <= 9 and 1 <= body.code <= 6, "unknown status")
+        require(0 <= body.sensor_id <= 16 and 1 <= body.code <= 6, "unknown status")
         require(len(body.detail.encode("utf-8")) <= 96 and all(ord(c) >= 32 for c in body.detail), "invalid status detail")
     elif kind == "batch":
         validate_batch(body)
@@ -80,12 +82,12 @@ def validate(message):
 
 def validate_batch(batch):
     sensor = batch.sensor_id
-    require(1 <= sensor <= 9, "unknown sensor")
+    require(1 <= sensor <= 16, "unknown sensor")
     require(batch.configuration_revision > 0, "batch configuration required")
     require(1 <= len(batch.samples) <= 4, "batch must contain 1..4 samples")
     identifier(batch.calibration_id, optional=True)
-    expected = "imu" if sensor <= 4 else {5: "tilt", 6: "gnss", 7: "magnetic", 8: "pressure", 9: "geophone"}[sensor]
-    domain = 2 if sensor in (7, 8) else 1
+    expected = "imu" if sensor <= 4 else {5: "tilt", 6: "gnss", 7: "magnetic", 8: "pressure", 9: "geophone", **{i: "gas" for i in range(10, 14)}, 14: "particulate", 15: "climate", 16: "barometer"}[sensor]
+    domain = 2 if sensor in (7, 8) or sensor >= 10 else 1
     previous = None
     for sample in batch.samples:
         require(sample.HasField("sequence") and sample.HasField("time"), "sequence/time required")
@@ -118,9 +120,21 @@ def validate_batch(batch):
             require(sample.tilt.HasField("device_status") and sample.tilt.device_status <= 65535, "tilt status required")
         elif raw == "magnetic":
             vector(sample.magnetic.counts, 24)
-        elif raw == "geophone":
-            require(sample.geophone.HasField("counts") and -8388608 <= sample.geophone.counts <= 8388607, "geophone count range")
-            require(sample.geophone.HasField("conversion_counter") and sample.geophone.conversion_counter <= 255, "geophone counter required")
+        elif raw in ("geophone", "gas"):
+            data = getattr(sample, raw)
+            require(data.HasField("counts") and -8388608 <= data.counts <= 8388607, "ADC count range")
+            require(data.HasField("conversion_counter") and data.conversion_counter <= 255, "ADC counter required")
+        elif raw == "particulate":
+            data = sample.particulate.response
+            require(len(data) == 32 and data[:4] == b"\x42\x4d\x00\x1c", "PMS frame/header")
+            require(sum(data[:30]) == int.from_bytes(data[30:], "big"), "PMS checksum")
+            require(data[29] == 0 or sample.quality == 4, "PMS device error")
+        elif raw == "climate":
+            data = sample.climate.response
+            require(len(data) == 6, "SHT response length")
+            require(all(sht_crc(data[i:i+2]) == data[i+2] for i in (0, 3)), "SHT CRC")
+        elif raw == "barometer":
+            require(len(sample.barometer.response) == 6 and len(sample.barometer.calibration) == 21, "BMP raw/trim length")
         elif raw == "pressure":
             require(len(sample.pressure.response) == 4, "pressure response must be four bytes")
             if sample.quality in (1, 3):
@@ -131,7 +145,7 @@ def validate_batch(batch):
             require(bool(batch.calibration_id) and sample.quality in (1, 3), "calibration identity/usable raw data required")
             allowed = {"imu": {"acceleration_m_s2", "angular_rate_rad_s", "temperature_k"},
                        "tilt": {"acceleration_m_s2", "angle_rad", "temperature_k"},
-                       "magnetic": {"magnetic_t"}, "pressure": {"pressure_pa", "temperature_k"}, "gnss": set(), "geophone": set()}[raw]
+                       "magnetic": {"magnetic_t"}, "pressure": {"pressure_pa", "temperature_k"}, "gnss": set(), "geophone": set(), "gas": set(), "particulate": set(), "climate": set(), "barometer": set()}[raw]
             fields = sample.calibrated.ListFields()
             require(bool(fields), "empty calibrated measurement")
             for field, value in fields:
@@ -140,3 +154,11 @@ def validate_batch(batch):
                 else:
                     require(math.isfinite(value), "nonfinite calibrated value")
                     if field.name == "temperature_k": require(value >= 0, "negative absolute temperature")
+
+
+def sht_crc(data):
+    crc = 255
+    for byte in data:
+        crc ^= byte
+        for _ in range(8): crc = ((crc << 1) ^ (0x31 if crc & 128 else 0)) & 255
+    return crc

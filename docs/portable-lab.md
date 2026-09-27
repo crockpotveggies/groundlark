@@ -48,7 +48,7 @@ drive-sharing configuration. No host directory is mounted into the container.
 | `full` (default) | Fresh atopile builds for A2, Burrowlark DAQUSB-01 USB field head, and DAQHAT-01; numeric constraint solves; unsafe 5 V IMU rejection; independent hardware regressions; native KiCad ERC/DRC/connectivity; DAQHAT-01 power/clearance and pre-fab review; clean routing replay; SPICE; the software profile (22 stages). |
 | `quick` | Same GPIO/component fault, circuit/PCB consistency, routing replay, SPICE and software checks using saved compiled layouts. Does **not** prove `.ato` changes were rebuilt. |
 | `spice` | 27 A2/field, 14 Trenz, 15 geophone response, 8 geophone transient and 38 host-link switch/RC cases, including expected fault detection. |
-| `software` | RTL and Python-to-RTL co-simulation; recorded Vivado evidence/hash gate; Buf format/lint/build and compatibility; acquisition/replay, modeled driver and Linux TTY/worker fault tests; retained eight-sensor demo. No physical hardware execution. |
+| `software` | RTL and Python-to-RTL co-simulation; recorded Vivado evidence/hash gate; Buf format/lint/build and compatibility; acquisition/replay, modeled driver and Linux TTY/worker fault tests; retained acquisition demo; Skylark native C fault tests and ARM firmware build. No physical hardware execution. |
 
 The runner calls the existing project entrypoints. Routing reconstruction stays
 in a temporary tree; it does not rewrite source CAD, render images, or release fabrication files. A full test
@@ -158,7 +158,14 @@ structure checks, cleanup tests, and full hardware profile on pushes and pull
 requests, with report retention of seven days. It has not been installed because
 the current GitHub login lacks workflow-management scope. The local suite is
 fully usable. The software/full/quick profiles validate the sensor application,
-contracts, framing, recording/replay and bounded recovery. MCU firmware and
-physical device behavior remain outside these checks.
+contracts, framing, recording/replay and bounded recovery. Skylark’s production
+C sensor/encoder and flash-journal code run against native fault fixtures, and
+the STM32 ARM image is linked. Physical device behavior and USB enumeration
+remain outside these checks.
 Buf 1.73.0 is downloaded only during image build and SHA-256 checked; Protobuf
 5.29.6 reuses the existing Python lock. Runtime tests remain offline.
+
+The image also contains native GCC, ARM GCC 12.2.1, newlib headers and a pinned,
+SHA-256 verified libopencm3 source/build. Rebuild with `lab.ps1 build` after this
+toolchain change. Tool versions and the libopencm3 revision are recorded with
+each run. No network access is needed during software tests.

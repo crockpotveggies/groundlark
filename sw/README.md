@@ -10,6 +10,7 @@ The sensor contracts and Pi acquisition application are executable:
   calibration and timestamps. Coldfoot host integration is deferred.
 - [field-head/](field-head/README.md): microcontroller firmware for Burrowlark
   (DAQUSB-01), the remote USB-C magnetometer/infrasound board.
+- [skylark/](skylark/README.md): buildable STM32 USB air-quality firmware, native driver fault tests and shared v1 capture.
 - [fpga/](fpga/README.md): Trenz pin/connectivity qualification and minimal test
   bitstreams; accelerator implementation is deferred.
 - [tests/](tests/README.md): portable replay, fault injection and host integration.
@@ -19,6 +20,5 @@ The sensor contracts and Pi acquisition application are executable:
 Run `./lab.ps1 test -Profile software` after rebuilding the portable image.
 This checks schemas, compatibility, acquisition/replay, modeled bus drivers,
 USB streams and recovery from injected faults. See the
-[software run guide](../docs/sensor-software.md). USB-head firmware, FPGA test
-bitstreams and physical qualification remain pending. Tests do not emulate
+[software run guide](../docs/sensor-software.md). Burrowlark firmware and physical qualification remain pending. Skylark firmware is built and tested against modeled buses; its hardware bring-up remains pending. Tests do not emulate
 Pi/MCU instructions or enumerate a USB sensor head.

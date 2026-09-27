@@ -13,10 +13,11 @@ DEFAULTS = {
     "acceleration_m_s2": [0, 0, 0], "magnetic_ut": [0, 20, -45],
     "pressure_pa": 0, "temperature_c": 25, "pressure_temperature_count": 768,
     "gnss_position": [49, -123, 0], "gnss_velocity_ned_m_s": [0, 0, 0],
+    "so2_ppm": 0, "h2s_ppm": 0, "pm25_ug_m3": 5, "humidity_percent": 50, "ambient_pressure_pa": 101325,
     "geophone_velocity_m_s": 0, "gnss_fix": True, "sensor_faults": {},
 }
 VECTOR_SIGNALS = {"orientation_deg", "head_orientation_deg", "acceleration_m_s2", "magnetic_ut"}
-SCALAR_SIGNALS = {"pressure_pa", "temperature_c"}
+SCALAR_SIGNALS = {"pressure_pa", "temperature_c", "so2_ppm", "h2s_ppm", "pm25_ug_m3", "humidity_percent", "ambient_pressure_pa"}
 WAVE_KEYS = {"offset", "amplitude", "frequency_hz", "phase_deg", "drift_per_s", "noise_peak",
              "pulse_start_s", "pulse_duration_s", "pulse_amplitude"}
 
@@ -57,8 +58,8 @@ def validate_changes(changes):
             if type(value) is not bool: raise ValueError("gnss_fix must be boolean")
         elif name == "sensor_faults":
             actions = {"none", "timeout", "nack", "disconnect", "not_ready", "saturation", "short_read"}
-            if not isinstance(value, dict) or not set(value) <= {str(i) for i in range(1, 10)}:
-                raise ValueError("fault controls require sensor IDs 1..9")
+            if not isinstance(value, dict) or not set(value) <= {str(i) for i in range(1, 17)}:
+                raise ValueError("fault controls require sensor IDs 1..16")
             if any(type(action) is not str or action not in actions for action in value.values()):
                 raise ValueError("unknown timed fault action")
         elif name == "pressure_temperature_count":
@@ -184,6 +185,9 @@ def nav_pvt(now, state, displacement):
 
 
 def reading(sensor, cfg, scenario, now, seed):
+    if sensor >= 10:
+        from .skylark import modeled_reading
+        return modeled_reading(sensor, scenario, now, seed)
     state, displacement = scenario.state_at(now)
     def scalar(name): return signal(state[name], now, seed, sensor, name)[0]
     def vector(name): return [signal(v, now, seed, sensor, f"{name}:{i}")[0] for i, v in enumerate(state[name])]

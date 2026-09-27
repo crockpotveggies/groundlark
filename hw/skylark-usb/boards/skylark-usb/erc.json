@@ -1,0 +1,88 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-09-26T22:35:39-0700",
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "9.0.9",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/dafe1df7-5e39-58a9-9d86-b1c10fa6f345",
+            "violations": []
+        },
+        {
+            "path": "/01_USB_power-page-01/",
+            "uuid_path": "/dafe1df7-5e39-58a9-9d86-b1c10fa6f345/4e92bf3b-cc9f-5617-babe-7f6ea9e3b463",
+            "violations": []
+        },
+        {
+            "path": "/01_USB_power-page-02/",
+            "uuid_path": "/dafe1df7-5e39-58a9-9d86-b1c10fa6f345/c545b53c-4a81-5ab5-80f8-dbce395a3b56",
+            "violations": []
+        },
+        {
+            "path": "/01_USB_power-page-03/",
+            "uuid_path": "/dafe1df7-5e39-58a9-9d86-b1c10fa6f345/f6d08fcf-4d19-5763-8e88-0d24734642f3",
+            "violations": []
+        },
+        {
+            "path": "/02_Controller-page-01/",
+            "uuid_path": "/dafe1df7-5e39-58a9-9d86-b1c10fa6f345/aaa5e82c-d31b-5988-9305-91e2acd000cb",
+            "violations": []
+        },
+        {
+            "path": "/02_Controller-page-02/",
+            "uuid_path": "/dafe1df7-5e39-58a9-9d86-b1c10fa6f345/b5dd861e-40af-519f-92c9-935691103946",
+            "violations": []
+        },
+        {
+            "path": "/03_ADC_reference-page-01/",
+            "uuid_path": "/dafe1df7-5e39-58a9-9d86-b1c10fa6f345/87670d85-ea87-5d88-9c16-bea7aa19d18f",
+            "violations": []
+        },
+        {
+            "path": "/03_ADC_reference-page-02/",
+            "uuid_path": "/dafe1df7-5e39-58a9-9d86-b1c10fa6f345/e7f2d07d-a3bf-5eff-bec3-079d79795f18",
+            "violations": []
+        },
+        {
+            "path": "/04_Analog_reference-page-01/",
+            "uuid_path": "/dafe1df7-5e39-58a9-9d86-b1c10fa6f345/355762cb-5426-5567-9d3e-d33b6f259b0a",
+            "violations": []
+        },
+        {
+            "path": "/04_SO2-page-01/",
+            "uuid_path": "/dafe1df7-5e39-58a9-9d86-b1c10fa6f345/ba9fa2df-14f1-5d01-b250-a34345951bde",
+            "violations": []
+        },
+        {
+            "path": "/04_SO2-page-02/",
+            "uuid_path": "/dafe1df7-5e39-58a9-9d86-b1c10fa6f345/fba23098-6c42-5f5d-abd6-c7297354137a",
+            "violations": []
+        },
+        {
+            "path": "/05_H2S-page-01/",
+            "uuid_path": "/dafe1df7-5e39-58a9-9d86-b1c10fa6f345/ff6b77c3-95f8-5afc-8a6a-99a7ff58b4d5",
+            "violations": []
+        },
+        {
+            "path": "/05_H2S-page-02/",
+            "uuid_path": "/dafe1df7-5e39-58a9-9d86-b1c10fa6f345/c60510a4-912f-56f4-a510-e17dcca6cdbf",
+            "violations": []
+        },
+        {
+            "path": "/06_Environment-page-01/",
+            "uuid_path": "/dafe1df7-5e39-58a9-9d86-b1c10fa6f345/40888c6d-2ce3-5d77-bcb4-504f672fefd3",
+            "violations": []
+        },
+        {
+            "path": "/07_Testpoints-page-01/",
+            "uuid_path": "/dafe1df7-5e39-58a9-9d86-b1c10fa6f345/6b72c693-ea51-529d-a908-bf5a9ea04dc9",
+            "violations": []
+        }
+    ],
+    "source": "skylark-usb.kicad_sch"
+}

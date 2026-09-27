@@ -1,0 +1,10 @@
+(fp_lib_table
+	(version 7)
+	(lib
+		(name "skylark")
+		(type "KiCad")
+		(uri "${KIPRJMOD}/../../../shared/elec/skylark")
+		(options "")
+		(descr "atopile: part lib: skylark")
+	)
+)

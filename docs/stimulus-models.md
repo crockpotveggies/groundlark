@@ -70,12 +70,16 @@ application time are both retained. A sample sees the state at its own time.
 | `geophone_velocity_m_s` | External vertical velocity; constant or steady sinusoid, native 4.5 Hz mechanical response plus passive RC | `0` |
 | `magnetic_ut` | World east/north/up field, microtesla; three signals | `[0,20,-45]` |
 | `pressure_pa` | Differential pressure; scalar signal | `0` |
-| `temperature_c` | IMU/legacy-inclinometer temperature; scalar signal | `25` |
+| `temperature_c` | IMU/legacy-inclinometer and Skylark ambient temperature; scalar signal | `25` |
+| `so2_ppm` / `h2s_ppm` | Nominal Skylark gas stimulus; uncalibrated working/auxiliary ADC outputs | `0` / `0` |
+| `pm25_ug_m3` | Skylark atmospheric PM2.5; synthetic PM1/PM10 ratios | `5` |
+| `humidity_percent` | Skylark relative humidity | `50` |
+| `ambient_pressure_pa` | Skylark absolute barometric pressure | `101325` |
 | `pressure_temperature_count` | Explicit unsigned 11-bit DLVR temperature fixture | `768` |
 | `gnss_position` | Origin latitude degrees, longitude degrees, height metres; numbers only | `[49,-123,0]` |
 | `gnss_velocity_ned_m_s` | Constant north/east/down velocity until changed | `[0,0,0]` |
 | `gnss_fix` | Boolean 3D fix / no fix | `true` |
-| `sensor_faults` | Map of ID strings to held faults: current IDs `"1"`, `"2"`, `"3"`, `"7"`, `"8"`, `"9"`; IDs 4–6 are legacy | `{}` |
+| `sensor_faults` | Map of ID strings to held faults: current IDs `"1"`, `"2"`, `"3"`, `"7"`, `"8"`, `"9"`; IDs 10–16 are Skylark; IDs 4–6 are legacy | `{}` |
 
 Signals accept a constant number or these optional waveform fields:
 
@@ -178,3 +182,12 @@ and pulse controls are rejected for this steady-state model. Constant velocity
 has zero steady output. Each tone applies the Racotech mechanical transfer and
 loaded input RC before ADC quantization. ADC digital filtering and settling are
 not modeled. See [current geophone scope](geophone-input.md).
+
+Use `simulate --board skylark` for the seven air-quality streams. Gas stimulus
+uses a nominal positive-going 1.25 V baseline with 40/34 mV per ppm SO₂/H₂S
+working response and unchanged auxiliary response. This illustrative polarity
+and sensitivity must not be used as field calibration. It omits cell impedance,
+cross-sensitivity, environmental drift and warmup. PM frames use PM1=0.6×PM2.5
+and PM10=1.3×PM2.5; they do not model aerosol composition. SHT transfer equations
+and deliberately synthetic BMP trim provide deterministic raw-byte fixtures.
+The physical firmware handles warmup separately as missing measurements.

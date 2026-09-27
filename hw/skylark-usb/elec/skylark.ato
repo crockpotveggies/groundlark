@@ -1,0 +1,901 @@
+# Skylark Rev A: USB + PMS5003 + two independent four-electrode gas AFEs.
+#pragma experiment("TRAITS")
+import has_designator
+import has_net_name_suggestion
+import ElectricPower
+from "../../shared/elec/skylark/parts.ato" import MCU
+from "../../shared/elec/skylark/parts.ato" import USB
+from "../../shared/elec/skylark/parts.ato" import ESD
+from "../../shared/elec/skylark/parts.ato" import LDO
+from "../../shared/elec/skylark/parts.ato" import SWITCH
+from "../../shared/elec/skylark/parts.ato" import REF
+from "../../shared/elec/skylark/parts.ato" import OPA1
+from "../../shared/elec/skylark/parts.ato" import OPA2
+from "../../shared/elec/skylark/parts.ato" import JFET
+from "../../shared/elec/skylark/parts.ato" import MOS
+from "../../shared/elec/skylark/parts.ato" import ADC
+from "../../shared/elec/skylark/parts.ato" import SHT
+from "../../shared/elec/skylark/parts.ato" import BMP
+from "../../shared/elec/skylark/parts.ato" import PMS
+from "../../shared/elec/skylark/parts.ato" import DebugHeader
+from "../../shared/elec/skylark/parts.ato" import BUTTON
+from "../../shared/elec/skylark/parts.ato" import StatusLED
+from "../../shared/elec/skylark/parts.ato" import TP
+from "../../shared/elec/skylark/parts.ato" import FUSE
+from "../../shared/elec/skylark/parts.ato" import SO2
+from "../../shared/elec/skylark/parts.ato" import H2S
+from "../../shared/elec/skylark/parts.ato" import R_5100
+from "../../shared/elec/skylark/parts.ato" import C_1u
+from "../../shared/elec/skylark/parts.ato" import C_4p7u
+from "../../shared/elec/skylark/parts.ato" import R_80600
+from "../../shared/elec/skylark/parts.ato" import R_100000
+from "../../shared/elec/skylark/parts.ato" import R_10000
+from "../../shared/elec/skylark/parts.ato" import C_100n
+from "../../shared/elec/skylark/parts.ato" import C_10u
+from "../../shared/elec/skylark/parts.ato" import R_4700
+from "../../shared/elec/skylark/parts.ato" import R_1000
+from "../../shared/elec/skylark/parts.ato" import R_22
+from "../../shared/elec/skylark/parts.ato" import R_20
+from "../../shared/elec/skylark/parts.ato" import C_10n
+from "../../shared/elec/skylark/parts.ato" import R_100
+from "../../shared/elec/skylark/parts.ato" import R_20000
+from "../../shared/elec/skylark/parts.ato" import R_1000000
+
+from "../../shared/elec/skylark/parts.ato" import C_470n
+from "../../shared/elec/skylark/parts.ato" import AnalogSwitch
+
+module Skylark:
+    signal VA_SW
+    signal ANA_EN
+    signal CLAMP_HOLD
+    signal ANA_CT
+    signal ADC_DRDY_N
+    signal ADC_RESET_N
+    signal BOOT0
+    signal CC1
+    signal CC2
+    signal CLAMP_GATE
+    signal GND
+    signal H2S_AE
+    signal H2S_AE_ADC
+    signal H2S_AE_OUT
+    signal H2S_AE_SUM
+    signal H2S_CE
+    signal H2S_CE_DRV
+    signal H2S_RE
+    signal H2S_RE_FB
+    signal H2S_WE
+    signal H2S_WE_ADC
+    signal H2S_WE_OUT
+    signal H2S_WE_SUM
+    signal LED_A
+    signal NRST
+    signal PM_5V
+    signal PM_EN
+    signal PM_FAULT_N
+    signal PM_ILIM
+    signal PM_RESET
+    signal PM_RESET_N
+    signal PM_RX
+    signal PM_SET_N
+    signal PM_SLEEP
+    signal PM_TX
+    signal REF_2V5
+    signal SCL
+    signal SDA
+    signal SO2_AE
+    signal SO2_AE_ADC
+    signal SO2_AE_OUT
+    signal SO2_AE_SUM
+    signal SO2_CE
+    signal SO2_CE_DRV
+    signal SO2_RE
+    signal SO2_RE_FB
+    signal SO2_WE
+    signal SO2_WE_ADC
+    signal SO2_WE_OUT
+    signal SO2_WE_SUM
+    signal STATUS
+    signal SWCLK
+    signal SWDIO
+    signal UART_RX
+    signal UART_TX
+    signal USB_5V
+    signal USB_DM
+    signal USB_DP
+    signal USB_VBUS
+    signal V3
+    signal VA
+    signal VBUS_SENSE
+    signal VMID
+    signal VZERO
+
+    digital_supply = new ElectricPower
+    digital_supply.hv ~ V3
+    digital_supply.lv ~ GND
+    digital_supply.voltage = 3.234V to 3.366V
+
+    analog_supply = new ElectricPower
+    analog_supply.hv ~ VA
+    analog_supply.lv ~ GND
+    analog_supply.voltage = 3.05V to 3.366V
+
+    usb_supply = new ElectricPower
+    usb_supply.hv ~ USB_5V
+    usb_supply.lv ~ GND
+    usb_supply.voltage = 4.35V to 5.25V
+
+    j1 = new USB
+    trait j1 has_designator<designator="J1">
+    j1.pA1 ~ GND
+    j1.pA4 ~ USB_VBUS
+    j1.pA5 ~ CC1
+    j1.pA6 ~ USB_DP
+    j1.pA7 ~ USB_DM
+    j1.pA9 ~ USB_VBUS
+    j1.pA12 ~ GND
+    j1.pB1 ~ GND
+    j1.pB4 ~ USB_VBUS
+    j1.pB5 ~ CC2
+    j1.pB6 ~ USB_DP
+    j1.pB7 ~ USB_DM
+    j1.pB9 ~ USB_VBUS
+    j1.pB12 ~ GND
+    j1.pS1 ~ GND
+
+    r1 = new R_5100
+    trait r1 has_designator<designator="R1">
+    r1.p1 ~ CC1
+    r1.p2 ~ GND
+
+    r2 = new R_5100
+    trait r2 has_designator<designator="R2">
+    r2.p1 ~ CC2
+    r2.p2 ~ GND
+
+    d1 = new ESD
+    trait d1 has_designator<designator="D1">
+    d1.p1 ~ USB_DP
+    d1.p2 ~ GND
+    d1.p3 ~ USB_DM
+    d1.p4 ~ USB_DM
+    d1.p5 ~ USB_VBUS
+    d1.p6 ~ USB_DP
+
+    d2 = new ESD
+    trait d2 has_designator<designator="D2">
+    d2.p1 ~ CC1
+    d2.p2 ~ GND
+    d2.p3 ~ CC2
+    d2.p4 ~ CC2
+    d2.p5 ~ USB_VBUS
+    d2.p6 ~ CC1
+
+    f1 = new FUSE
+    trait f1 has_designator<designator="F1">
+    f1.p1 ~ USB_VBUS
+    f1.p2 ~ USB_5V
+
+    u2 = new LDO
+    trait u2 has_designator<designator="U2">
+    u2.p1 ~ USB_5V
+    u2.p2 ~ GND
+    u2.p3 ~ USB_5V
+    u2.p5 ~ V3
+    u2.power ~ usb_supply
+
+    c1 = new C_1u
+    trait c1 has_designator<designator="C1">
+    c1.p1 ~ USB_5V
+    c1.p2 ~ GND
+
+    c2 = new C_4p7u
+    trait c2 has_designator<designator="C2">
+    c2.p1 ~ V3
+    c2.p2 ~ GND
+
+    u3 = new SWITCH
+    trait u3 has_designator<designator="U3">
+    u3.p1 ~ USB_5V
+    u3.p2 ~ GND
+    u3.p3 ~ PM_EN
+    u3.p4 ~ PM_ILIM
+    u3.p5 ~ PM_FAULT_N
+    u3.p6 ~ PM_5V
+    u3.power ~ usb_supply
+
+    r3 = new R_80600
+    trait r3 has_designator<designator="R3">
+    r3.p1 ~ PM_ILIM
+    r3.p2 ~ GND
+
+    r4 = new R_100000
+    trait r4 has_designator<designator="R4">
+    r4.p1 ~ PM_EN
+    r4.p2 ~ GND
+
+    r5 = new R_10000
+    trait r5 has_designator<designator="R5">
+    r5.p1 ~ PM_FAULT_N
+    r5.p2 ~ V3
+
+    c3 = new C_100n
+    trait c3 has_designator<designator="C3">
+    c3.p1 ~ USB_5V
+    c3.p2 ~ GND
+
+    c4 = new C_10u
+    trait c4 has_designator<designator="C4">
+    c4.p1 ~ PM_5V
+    c4.p2 ~ GND
+
+    j2 = new PMS
+    trait j2 has_designator<designator="J2">
+    j2.p1 ~ PM_5V
+    j2.p2 ~ GND
+    j2.p3 ~ PM_SET_N
+    j2.p4 ~ PM_RX
+    j2.p5 ~ PM_TX
+    j2.p6 ~ PM_RESET_N
+    j2.pMP ~ GND
+
+    q5 = new MOS
+    trait q5 has_designator<designator="Q5">
+    q5.p1 ~ PM_SLEEP
+    q5.p2 ~ GND
+    q5.p3 ~ PM_SET_N
+
+    q6 = new MOS
+    trait q6 has_designator<designator="Q6">
+    q6.p1 ~ PM_RESET
+    q6.p2 ~ GND
+    q6.p3 ~ PM_RESET_N
+
+    r6 = new R_100000
+    trait r6 has_designator<designator="R6">
+    r6.p1 ~ PM_SLEEP
+    r6.p2 ~ GND
+
+    r7 = new R_100000
+    trait r7 has_designator<designator="R7">
+    r7.p1 ~ PM_RESET
+    r7.p2 ~ GND
+
+    r8 = new R_4700
+    trait r8 has_designator<designator="R8">
+    r8.p1 ~ UART_TX
+    r8.p2 ~ PM_RX
+
+    r9 = new R_4700
+    trait r9 has_designator<designator="R9">
+    r9.p1 ~ PM_TX
+    r9.p2 ~ UART_RX
+
+    r10 = new R_100000
+    trait r10 has_designator<designator="R10">
+    r10.p1 ~ USB_5V
+    r10.p2 ~ VBUS_SENSE
+
+    r11 = new R_100000
+    trait r11 has_designator<designator="R11">
+    r11.p1 ~ VBUS_SENSE
+    r11.p2 ~ GND
+
+    c5 = new C_100n
+    trait c5 has_designator<designator="C5">
+    c5.p1 ~ VBUS_SENSE
+    c5.p2 ~ GND
+
+    u1 = new MCU
+    trait u1 has_designator<designator="U1">
+    u1.p7 ~ NRST
+    u1.p44 ~ BOOT0
+    u1.p18 ~ ADC_DRDY_N
+    u1.p19 ~ ADC_RESET_N
+    u1.p39 ~ STATUS
+    u1.p42 ~ SCL
+    u1.p43 ~ SDA
+    u1.p1 ~ V3
+    u1.p24 ~ V3
+    u1.p48 ~ V3
+    u1.p23 ~ GND
+    u1.p35 ~ GND
+    u1.p47 ~ GND
+    u1.p9 ~ V3
+    u1.p8 ~ GND
+    u1.p36 ~ V3
+    u1.p10 ~ VBUS_SENSE
+    u1.p12 ~ UART_TX
+    u1.p13 ~ UART_RX
+    u1.p14 ~ PM_EN
+    u1.p15 ~ PM_FAULT_N
+    u1.p16 ~ PM_SLEEP
+    u1.p17 ~ PM_RESET
+    u1.p32 ~ USB_DM
+    u1.p33 ~ USB_DP
+    u1.p34 ~ SWDIO
+    u1.p37 ~ SWCLK
+    u1.power ~ digital_supply
+
+    c6 = new C_100n
+    trait c6 has_designator<designator="C6">
+    c6.p1 ~ V3
+    c6.p2 ~ GND
+
+    c7 = new C_100n
+    trait c7 has_designator<designator="C7">
+    c7.p1 ~ V3
+    c7.p2 ~ GND
+
+    c8 = new C_100n
+    trait c8 has_designator<designator="C8">
+    c8.p1 ~ V3
+    c8.p2 ~ GND
+
+    c9 = new C_100n
+    trait c9 has_designator<designator="C9">
+    c9.p1 ~ V3
+    c9.p2 ~ GND
+
+    c10 = new C_1u
+    trait c10 has_designator<designator="C10">
+    c10.p1 ~ V3
+    c10.p2 ~ GND
+
+    r12 = new R_10000
+    trait r12 has_designator<designator="R12">
+    r12.p1 ~ NRST
+    r12.p2 ~ V3
+
+    c11 = new C_100n
+    trait c11 has_designator<designator="C11">
+    c11.p1 ~ NRST
+    c11.p2 ~ GND
+
+    r13 = new R_10000
+    trait r13 has_designator<designator="R13">
+    r13.p1 ~ BOOT0
+    r13.p2 ~ GND
+
+    sw1 = new BUTTON
+    trait sw1 has_designator<designator="SW1">
+    sw1.p1 ~ NRST
+    sw1.p2 ~ GND
+
+    sw2 = new BUTTON
+    trait sw2 has_designator<designator="SW2">
+    sw2.p1 ~ BOOT0
+    sw2.p2 ~ V3
+
+    j3 = new DebugHeader
+    trait j3 has_designator<designator="J3">
+    j3.p1 ~ V3
+    j3.p2 ~ SWDIO
+    j3.p3 ~ GND
+    j3.p4 ~ SWCLK
+    j3.p5 ~ GND
+    j3.p9 ~ GND
+    j3.p10 ~ NRST
+
+    r14 = new R_1000
+    trait r14 has_designator<designator="R14">
+    r14.p1 ~ STATUS
+    r14.p2 ~ LED_A
+
+    d3 = new StatusLED
+    trait d3 has_designator<designator="D3">
+    d3.p1 ~ GND
+    d3.p2 ~ LED_A
+
+    r15 = new R_10000
+    trait r15 has_designator<designator="R15">
+    r15.p1 ~ ADC_DRDY_N
+    r15.p2 ~ V3
+
+    r16 = new R_10000
+    trait r16 has_designator<designator="R16">
+    r16.p1 ~ ADC_RESET_N
+    r16.p2 ~ V3
+
+    r17 = new R_4700
+    trait r17 has_designator<designator="R17">
+    r17.p1 ~ SDA
+    r17.p2 ~ V3
+
+    r18 = new R_4700
+    trait r18 has_designator<designator="R18">
+    r18.p1 ~ SCL
+    r18.p2 ~ V3
+
+    r19 = new R_22
+    trait r19 has_designator<designator="R19">
+    r19.p1 ~ VA_SW
+    r19.p2 ~ VA
+
+    c12 = new C_10u
+    trait c12 has_designator<designator="C12">
+    c12.p1 ~ VA
+    c12.p2 ~ GND
+
+    u4 = new REF
+    trait u4 has_designator<designator="U4">
+    u4.p1 ~ VA
+    u4.p2 ~ REF_2V5
+    u4.p3 ~ GND
+    u4.power ~ analog_supply
+
+    c13 = new C_1u
+    trait c13 has_designator<designator="C13">
+    c13.p1 ~ REF_2V5
+    c13.p2 ~ GND
+
+    c14 = new C_100n
+    trait c14 has_designator<designator="C14">
+    c14.p1 ~ VA
+    c14.p2 ~ GND
+
+    r20 = new R_10000
+    trait r20 has_designator<designator="R20">
+    r20.p1 ~ REF_2V5
+    r20.p2 ~ VMID
+
+    r21 = new R_10000
+    trait r21 has_designator<designator="R21">
+    r21.p1 ~ VMID
+    r21.p2 ~ GND
+
+    c15 = new C_1u
+    trait c15 has_designator<designator="C15">
+    c15.p1 ~ VMID
+    c15.p2 ~ GND
+
+    u5 = new OPA1
+    trait u5 has_designator<designator="U5">
+    u5.p1 ~ VZERO
+    u5.p2 ~ GND
+    u5.p3 ~ VMID
+    u5.p4 ~ VZERO
+    u5.p5 ~ VA
+    u5.power ~ analog_supply
+
+    c16 = new C_100n
+    trait c16 has_designator<designator="C16">
+    c16.p1 ~ VA
+    c16.p2 ~ GND
+
+    u6 = new ADC
+    trait u6 has_designator<designator="U6">
+    u6.p1 ~ GND
+    u6.p2 ~ GND
+    u6.p3 ~ ADC_RESET_N
+    u6.p4 ~ GND
+    u6.p5 ~ GND
+    u6.p6 ~ H2S_AE_ADC
+    u6.p7 ~ H2S_WE_ADC
+    u6.p8 ~ GND
+    u6.p9 ~ REF_2V5
+    u6.p10 ~ SO2_AE_ADC
+    u6.p11 ~ SO2_WE_ADC
+    u6.p12 ~ VA
+    u6.p13 ~ V3
+    u6.p14 ~ ADC_DRDY_N
+    u6.p15 ~ SDA
+    u6.p16 ~ SCL
+    u6.power ~ analog_supply
+
+    c17 = new C_100n
+    trait c17 has_designator<designator="C17">
+    c17.p1 ~ VA
+    c17.p2 ~ GND
+
+    c18 = new C_100n
+    trait c18 has_designator<designator="C18">
+    c18.p1 ~ V3
+    c18.p2 ~ GND
+
+    c19 = new C_1u
+    trait c19 has_designator<designator="C19">
+    c19.p1 ~ REF_2V5
+    c19.p2 ~ GND
+
+    gs1 = new SO2
+    trait gs1 has_designator<designator="GS1">
+    gs1.pWE ~ SO2_WE
+    gs1.pRE ~ SO2_RE
+    gs1.pCE ~ SO2_CE
+    gs1.pAE ~ SO2_AE
+
+    u7 = new OPA2
+    trait u7 has_designator<designator="U7">
+    u7.p1 ~ SO2_WE_OUT
+    u7.p2 ~ SO2_WE_SUM
+    u7.p3 ~ VZERO
+    u7.p4 ~ GND
+    u7.p5 ~ VZERO
+    u7.p6 ~ SO2_AE_SUM
+    u7.p7 ~ SO2_AE_OUT
+    u7.p8 ~ VA
+    u7.power ~ analog_supply
+
+    u8 = new OPA1
+    trait u8 has_designator<designator="U8">
+    u8.p1 ~ SO2_CE_DRV
+    u8.p2 ~ GND
+    u8.p3 ~ VZERO
+    u8.p4 ~ SO2_RE_FB
+    u8.p5 ~ VA
+    u8.power ~ analog_supply
+
+    r30 = new R_20
+    trait r30 has_designator<designator="R30">
+    r30.p1 ~ SO2_WE
+    r30.p2 ~ SO2_WE_SUM
+
+    r31 = new R_100000
+    trait r31 has_designator<designator="R31">
+    r31.p1 ~ SO2_WE_SUM
+    r31.p2 ~ SO2_WE_OUT
+
+    c30 = new C_100n
+    trait c30 has_designator<designator="C30">
+    c30.p1 ~ SO2_WE_SUM
+    c30.p2 ~ SO2_WE_OUT
+
+    r32 = new R_10000
+    trait r32 has_designator<designator="R32">
+    r32.p1 ~ SO2_WE_OUT
+    r32.p2 ~ SO2_WE_ADC
+
+    c31 = new C_1u
+    trait c31 has_designator<designator="C31">
+    c31.p1 ~ SO2_WE_ADC
+    c31.p2 ~ GND
+
+    q1 = new JFET
+    trait q1 has_designator<designator="Q1">
+    q1.p1 ~ SO2_WE
+    q1.p2 ~ SO2_RE
+    q1.p3 ~ CLAMP_GATE
+
+    r33 = new R_20
+    trait r33 has_designator<designator="R33">
+    r33.p1 ~ SO2_AE
+    r33.p2 ~ SO2_AE_SUM
+
+    r34 = new R_100000
+    trait r34 has_designator<designator="R34">
+    r34.p1 ~ SO2_AE_SUM
+    r34.p2 ~ SO2_AE_OUT
+
+    c33 = new C_100n
+    trait c33 has_designator<designator="C33">
+    c33.p1 ~ SO2_AE_SUM
+    c33.p2 ~ SO2_AE_OUT
+
+    r35 = new R_10000
+    trait r35 has_designator<designator="R35">
+    r35.p1 ~ SO2_AE_OUT
+    r35.p2 ~ SO2_AE_ADC
+
+    c34 = new C_1u
+    trait c34 has_designator<designator="C34">
+    c34.p1 ~ SO2_AE_ADC
+    c34.p2 ~ GND
+
+    q2 = new JFET
+    trait q2 has_designator<designator="Q2">
+    q2.p1 ~ SO2_AE
+    q2.p2 ~ SO2_RE
+    q2.p3 ~ CLAMP_GATE
+
+    r36 = new R_10000
+    trait r36 has_designator<designator="R36">
+    r36.p1 ~ SO2_RE
+    r36.p2 ~ SO2_RE_FB
+
+    r37 = new R_100
+    trait r37 has_designator<designator="R37">
+    r37.p1 ~ SO2_CE_DRV
+    r37.p2 ~ SO2_CE
+
+    c36 = new C_100n
+    trait c36 has_designator<designator="C36">
+    c36.p1 ~ SO2_CE_DRV
+    c36.p2 ~ SO2_RE_FB
+
+    c37 = new C_100n
+    trait c37 has_designator<designator="C37">
+    c37.p1 ~ VA
+    c37.p2 ~ GND
+
+    c38 = new C_100n
+    trait c38 has_designator<designator="C38">
+    c38.p1 ~ VA
+    c38.p2 ~ GND
+
+    gs2 = new H2S
+    trait gs2 has_designator<designator="GS2">
+    gs2.pWE ~ H2S_WE
+    gs2.pRE ~ H2S_RE
+    gs2.pCE ~ H2S_CE
+    gs2.pAE ~ H2S_AE
+
+    u9 = new OPA2
+    trait u9 has_designator<designator="U9">
+    u9.p1 ~ H2S_WE_OUT
+    u9.p2 ~ H2S_WE_SUM
+    u9.p3 ~ VZERO
+    u9.p4 ~ GND
+    u9.p5 ~ VZERO
+    u9.p6 ~ H2S_AE_SUM
+    u9.p7 ~ H2S_AE_OUT
+    u9.p8 ~ VA
+    u9.power ~ analog_supply
+
+    u10 = new OPA1
+    trait u10 has_designator<designator="U10">
+    u10.p1 ~ H2S_CE_DRV
+    u10.p2 ~ GND
+    u10.p3 ~ VZERO
+    u10.p4 ~ H2S_RE_FB
+    u10.p5 ~ VA
+    u10.power ~ analog_supply
+
+    r50 = new R_20
+    trait r50 has_designator<designator="R50">
+    r50.p1 ~ H2S_WE
+    r50.p2 ~ H2S_WE_SUM
+
+    r51 = new R_20000
+    trait r51 has_designator<designator="R51">
+    r51.p1 ~ H2S_WE_SUM
+    r51.p2 ~ H2S_WE_OUT
+
+    c50 = new C_470n
+    trait c50 has_designator<designator="C50">
+    c50.p1 ~ H2S_WE_SUM
+    c50.p2 ~ H2S_WE_OUT
+
+    r52 = new R_10000
+    trait r52 has_designator<designator="R52">
+    r52.p1 ~ H2S_WE_OUT
+    r52.p2 ~ H2S_WE_ADC
+
+    c51 = new C_1u
+    trait c51 has_designator<designator="C51">
+    c51.p1 ~ H2S_WE_ADC
+    c51.p2 ~ GND
+
+    q3 = new JFET
+    trait q3 has_designator<designator="Q3">
+    q3.p1 ~ H2S_WE
+    q3.p2 ~ H2S_RE
+    q3.p3 ~ CLAMP_GATE
+
+    r53 = new R_20
+    trait r53 has_designator<designator="R53">
+    r53.p1 ~ H2S_AE
+    r53.p2 ~ H2S_AE_SUM
+
+    r54 = new R_20000
+    trait r54 has_designator<designator="R54">
+    r54.p1 ~ H2S_AE_SUM
+    r54.p2 ~ H2S_AE_OUT
+
+    c53 = new C_470n
+    trait c53 has_designator<designator="C53">
+    c53.p1 ~ H2S_AE_SUM
+    c53.p2 ~ H2S_AE_OUT
+
+    r55 = new R_10000
+    trait r55 has_designator<designator="R55">
+    r55.p1 ~ H2S_AE_OUT
+    r55.p2 ~ H2S_AE_ADC
+
+    c54 = new C_1u
+    trait c54 has_designator<designator="C54">
+    c54.p1 ~ H2S_AE_ADC
+    c54.p2 ~ GND
+
+    q4 = new JFET
+    trait q4 has_designator<designator="Q4">
+    q4.p1 ~ H2S_AE
+    q4.p2 ~ H2S_RE
+    q4.p3 ~ CLAMP_GATE
+
+    r56 = new R_10000
+    trait r56 has_designator<designator="R56">
+    r56.p1 ~ H2S_RE
+    r56.p2 ~ H2S_RE_FB
+
+    r57 = new R_100
+    trait r57 has_designator<designator="R57">
+    r57.p1 ~ H2S_CE_DRV
+    r57.p2 ~ H2S_CE
+
+    c56 = new C_100n
+    trait c56 has_designator<designator="C56">
+    c56.p1 ~ H2S_CE_DRV
+    c56.p2 ~ H2S_RE_FB
+
+    c57 = new C_100n
+    trait c57 has_designator<designator="C57">
+    c57.p1 ~ VA
+    c57.p2 ~ GND
+
+    c58 = new C_100n
+    trait c58 has_designator<designator="C58">
+    c58.p1 ~ VA
+    c58.p2 ~ GND
+
+    r70 = new R_10000
+    trait r70 has_designator<designator="R70">
+    r70.p1 ~ USB_5V
+    r70.p2 ~ CLAMP_GATE
+
+    r71 = new R_1000000
+    trait r71 has_designator<designator="R71">
+    r71.p1 ~ CLAMP_GATE
+    r71.p2 ~ GND
+
+    u11 = new SHT
+    trait u11 has_designator<designator="U11">
+    u11.p1 ~ SDA
+    u11.p2 ~ SCL
+    u11.p3 ~ V3
+    u11.p4 ~ GND
+    u11.power ~ digital_supply
+
+    c70 = new C_100n
+    trait c70 has_designator<designator="C70">
+    c70.p1 ~ V3
+    c70.p2 ~ GND
+
+    u12 = new BMP
+    trait u12 has_designator<designator="U12">
+    u12.p1 ~ V3
+    u12.p2 ~ SCL
+    u12.p3 ~ GND
+    u12.p4 ~ SDA
+    u12.p5 ~ GND
+    u12.p6 ~ V3
+    u12.p8 ~ GND
+    u12.p9 ~ GND
+    u12.p10 ~ V3
+    u12.power ~ digital_supply
+
+    c71 = new C_100n
+    trait c71 has_designator<designator="C71">
+    c71.p1 ~ V3
+    c71.p2 ~ GND
+
+    c72 = new C_100n
+    trait c72 has_designator<designator="C72">
+    c72.p1 ~ V3
+    c72.p2 ~ GND
+
+    tp1 = new TP
+    trait tp1 has_designator<designator="TP1">
+    tp1.p1 ~ GND
+
+    tp2 = new TP
+    trait tp2 has_designator<designator="TP2">
+    tp2.p1 ~ USB_5V
+
+    tp3 = new TP
+    trait tp3 has_designator<designator="TP3">
+    tp3.p1 ~ V3
+
+    tp4 = new TP
+    trait tp4 has_designator<designator="TP4">
+    tp4.p1 ~ VA
+
+    tp5 = new TP
+    trait tp5 has_designator<designator="TP5">
+    tp5.p1 ~ REF_2V5
+
+    tp6 = new TP
+    trait tp6 has_designator<designator="TP6">
+    tp6.p1 ~ VZERO
+
+    tp7 = new TP
+    trait tp7 has_designator<designator="TP7">
+    tp7.p1 ~ PM_5V
+    trait ADC_DRDY_N has_net_name_suggestion<name="ADC_DRDY_N", level="EXPECTED">
+    trait ADC_RESET_N has_net_name_suggestion<name="ADC_RESET_N", level="EXPECTED">
+    trait BOOT0 has_net_name_suggestion<name="BOOT0", level="EXPECTED">
+    trait CC1 has_net_name_suggestion<name="CC1", level="EXPECTED">
+    trait CC2 has_net_name_suggestion<name="CC2", level="EXPECTED">
+    trait CLAMP_GATE has_net_name_suggestion<name="CLAMP_GATE", level="EXPECTED">
+    trait GND has_net_name_suggestion<name="GND", level="EXPECTED">
+    trait H2S_AE has_net_name_suggestion<name="H2S_AE", level="EXPECTED">
+    trait H2S_AE_ADC has_net_name_suggestion<name="H2S_AE_ADC", level="EXPECTED">
+    trait H2S_AE_OUT has_net_name_suggestion<name="H2S_AE_OUT", level="EXPECTED">
+    trait H2S_AE_SUM has_net_name_suggestion<name="H2S_AE_SUM", level="EXPECTED">
+    trait H2S_CE has_net_name_suggestion<name="H2S_CE", level="EXPECTED">
+    trait H2S_CE_DRV has_net_name_suggestion<name="H2S_CE_DRV", level="EXPECTED">
+    trait H2S_RE has_net_name_suggestion<name="H2S_RE", level="EXPECTED">
+    trait H2S_RE_FB has_net_name_suggestion<name="H2S_RE_FB", level="EXPECTED">
+    trait H2S_WE has_net_name_suggestion<name="H2S_WE", level="EXPECTED">
+    trait H2S_WE_ADC has_net_name_suggestion<name="H2S_WE_ADC", level="EXPECTED">
+    trait H2S_WE_OUT has_net_name_suggestion<name="H2S_WE_OUT", level="EXPECTED">
+    trait H2S_WE_SUM has_net_name_suggestion<name="H2S_WE_SUM", level="EXPECTED">
+    trait LED_A has_net_name_suggestion<name="LED_A", level="EXPECTED">
+    trait NRST has_net_name_suggestion<name="NRST", level="EXPECTED">
+    trait PM_5V has_net_name_suggestion<name="PM_5V", level="EXPECTED">
+    trait PM_EN has_net_name_suggestion<name="PM_EN", level="EXPECTED">
+    trait PM_FAULT_N has_net_name_suggestion<name="PM_FAULT_N", level="EXPECTED">
+    trait PM_ILIM has_net_name_suggestion<name="PM_ILIM", level="EXPECTED">
+    trait PM_RESET has_net_name_suggestion<name="PM_RESET", level="EXPECTED">
+    trait PM_RESET_N has_net_name_suggestion<name="PM_RESET_N", level="EXPECTED">
+    trait PM_RX has_net_name_suggestion<name="PM_RX", level="EXPECTED">
+    trait PM_SET_N has_net_name_suggestion<name="PM_SET_N", level="EXPECTED">
+    trait PM_SLEEP has_net_name_suggestion<name="PM_SLEEP", level="EXPECTED">
+    trait PM_TX has_net_name_suggestion<name="PM_TX", level="EXPECTED">
+    trait REF_2V5 has_net_name_suggestion<name="REF_2V5", level="EXPECTED">
+    trait SCL has_net_name_suggestion<name="SCL", level="EXPECTED">
+    trait SDA has_net_name_suggestion<name="SDA", level="EXPECTED">
+    trait SO2_AE has_net_name_suggestion<name="SO2_AE", level="EXPECTED">
+    trait SO2_AE_ADC has_net_name_suggestion<name="SO2_AE_ADC", level="EXPECTED">
+    trait SO2_AE_OUT has_net_name_suggestion<name="SO2_AE_OUT", level="EXPECTED">
+    trait SO2_AE_SUM has_net_name_suggestion<name="SO2_AE_SUM", level="EXPECTED">
+    trait SO2_CE has_net_name_suggestion<name="SO2_CE", level="EXPECTED">
+    trait SO2_CE_DRV has_net_name_suggestion<name="SO2_CE_DRV", level="EXPECTED">
+    trait SO2_RE has_net_name_suggestion<name="SO2_RE", level="EXPECTED">
+    trait SO2_RE_FB has_net_name_suggestion<name="SO2_RE_FB", level="EXPECTED">
+    trait SO2_WE has_net_name_suggestion<name="SO2_WE", level="EXPECTED">
+    trait SO2_WE_ADC has_net_name_suggestion<name="SO2_WE_ADC", level="EXPECTED">
+    trait SO2_WE_OUT has_net_name_suggestion<name="SO2_WE_OUT", level="EXPECTED">
+    trait SO2_WE_SUM has_net_name_suggestion<name="SO2_WE_SUM", level="EXPECTED">
+    trait STATUS has_net_name_suggestion<name="STATUS", level="EXPECTED">
+    trait SWCLK has_net_name_suggestion<name="SWCLK", level="EXPECTED">
+    trait SWDIO has_net_name_suggestion<name="SWDIO", level="EXPECTED">
+    trait UART_RX has_net_name_suggestion<name="UART_RX", level="EXPECTED">
+    trait UART_TX has_net_name_suggestion<name="UART_TX", level="EXPECTED">
+    trait USB_5V has_net_name_suggestion<name="USB_5V", level="EXPECTED">
+    trait USB_DM has_net_name_suggestion<name="USB_DM", level="EXPECTED">
+    trait USB_DP has_net_name_suggestion<name="USB_DP", level="EXPECTED">
+    trait USB_VBUS has_net_name_suggestion<name="USB_VBUS", level="EXPECTED">
+    trait V3 has_net_name_suggestion<name="V3", level="EXPECTED">
+    trait VA has_net_name_suggestion<name="VA", level="EXPECTED">
+    trait VBUS_SENSE has_net_name_suggestion<name="VBUS_SENSE", level="EXPECTED">
+    trait VMID has_net_name_suggestion<name="VMID", level="EXPECTED">
+    trait VZERO has_net_name_suggestion<name="VZERO", level="EXPECTED">
+
+    # Default-off analog rail and default-engaged electrode clamps permit USB
+    # suspend with the higher-performance amplifiers. Resume requires settling.
+    u1.p25 ~ ANA_EN
+    u1.p26 ~ CLAMP_HOLD
+    u13 = new AnalogSwitch
+    trait u13 has_designator<designator="U13">
+    u13.p1 ~ V3
+    u13.p2 ~ GND
+    u13.p3 ~ ANA_EN
+    u13.p4 ~ ANA_CT
+    u13.p5 ~ VA_SW
+    u13.p6 ~ VA_SW
+    q7 = new MOS
+    trait q7 has_designator<designator="Q7">
+    q7.p1 ~ CLAMP_HOLD
+    q7.p2 ~ GND
+    q7.p3 ~ CLAMP_GATE
+    r72 = new R_100000
+    trait r72 has_designator<designator="R72">
+    r72.p1 ~ ANA_EN
+    r72.p2 ~ GND
+    r73 = new R_10000
+    trait r73 has_designator<designator="R73">
+    r73.p1 ~ V3
+    r73.p2 ~ CLAMP_HOLD
+    c73 = new C_1u
+    trait c73 has_designator<designator="C73">
+    c73.p1 ~ V3
+    c73.p2 ~ GND
+    c74 = new C_10n
+    trait c74 has_designator<designator="C74">
+    c74.p1 ~ ANA_CT
+    c74.p2 ~ GND
+    trait VA_SW has_net_name_suggestion<name="VA_SW", level="EXPECTED">
+    trait ANA_EN has_net_name_suggestion<name="ANA_EN", level="EXPECTED">
+    trait CLAMP_HOLD has_net_name_suggestion<name="CLAMP_HOLD", level="EXPECTED">
+    trait ANA_CT has_net_name_suggestion<name="ANA_CT", level="EXPECTED">

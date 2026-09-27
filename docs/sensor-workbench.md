@@ -1,7 +1,7 @@
 # Run your first Groundlark sensor experiment
 
 The sensor workbench is a local browser app for trying virtual sensors and
-replaying recordings. Click the 3D HAT or geophone, change an input, and watch
+replaying recordings. Choose a board, click a sensor in its 3D view, change an input, and watch
 its signal. **No Raspberry Pi or sensor hardware is required.**
 The header uses the same lark-and-waveform wordmark as the project README.
 
@@ -71,7 +71,8 @@ points; the recording contains the whole run.
 
 ## 4. Try the other sensors
 
-Click **Load rocking + field demo**, then **Start** to explore IMU and remote-head
+Choose **HAT + Burrowlark** in the **Board** menu, then click
+**Load rocking + field demo** and **Start** to explore IMU and remote-head
 signals. This replaces the current run, so save first if needed.
 
 | Control | What to look for |
@@ -80,6 +81,21 @@ signals. This replaces the current run, so save first if needed.
 | **Magnetic field & infrasound** | Select Magnetometer or Infrasound to view the separate Burrowlark (DAQUSB-01) USB head and its modeled signals. |
 | **Fault injection** | Apply a sensor fault and inspect status, events and missing-data gaps. Start a new run to return to a clean baseline. |
 | **Top / Orbit**, drag, scroll | Change the camera only. These gestures do not stimulate sensors or change recorded samples. |
+
+Choose **Skylark USB** to inspect its PCB and gas cells. **Air quality stimulus**
+controls nominal SO₂/H₂S, PM2.5, temperature, humidity and pressure. Press
+**Apply air stimulus**, then **Start**. Gas plots show independent raw working
+and auxiliary counts; the ppm controls are ideal model inputs, not a calibration.
+PM plots show the atmospheric PM1/PM2.5/PM10 fields. Climate/barometer displays
+apply the manufacturer's conversion equations while retaining original bytes.
+The PMS5003 is shown beside the PCB for inspection, not in its mounted bell pose.
+
+![Skylark board test, gas-cell model and recorded missing-data gap](images/skylark-workbench.png)
+
+Changing boards starts a new run, so save the current recording first. The menu
+supports the FPGA HAT, Burrowlark, their combined simulation, and Skylark.
+Coldfoot remains deferred. Choose an individual board to enable its test button.
+Imported recordings select their board automatically.
 
 The HAT has three IMUs and one geophone input. The optional remote head adds
 magnetometer and pressure streams: six sensor streams altogether.
@@ -99,15 +115,22 @@ magnetometer and pressure streams: six sensor streams altogether.
 live in memory, independently in each tab. There is no automatic save database.
 A capture stops at three simulated minutes or its 8 MiB limit.
 
-## 6. Run the built-in HAT check
+## 6. Run a board check
 
-Save your experiment, then press **Test HAT signals**. The app runs eight seconds
+Save your experiment, then press **Test selected board**. With **Groundlark FPGA HAT** selected, the app runs eight seconds
 of modeled input through the production HAT drivers and opens the capture in
 replay. Expect **nine passing checks** covering **3,264 samples** from the three
 IMUs and geophone input. Expand the results for measurements and tolerances;
 download the recording and JSON report from that panel.
 
-This checks driver and recording behavior on modeled buses. It does not prove
+With **Skylark USB** selected, expect seven checks: inventory, gas channels,
+particulate, climate, pressure, isolated failure and replay. Burrowlark has five
+checks. These two USB-board UI tests use ideal sensor stimuli through the shared
+acquisition/controller; the portable software profile separately compiles and
+runs Skylark's actual C drivers/encoder with injected register/UART faults and
+builds the ARM firmware. The report states each test's scope.
+
+The HAT check tests driver and recording behavior on modeled buses. It does not prove
 physical power, fit, timing, noise, sensor accuracy or FPGA operation. The browser
 currently simulates and replays; it does not connect to a real HAT. For real Pi
 acquisition, use the [Linux software guide](sensor-software.md).

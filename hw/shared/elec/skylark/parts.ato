@@ -1,0 +1,445 @@
+# Skylark USB Rev A. Physical pins; see ../README.md for operating limits.
+#pragma experiment("TRAITS")
+import is_atomic_part
+import has_designator_prefix
+import ElectricPower
+
+component MCU:
+    trait is_atomic_part<manufacturer="STMicroelectronics", partnumber="STM32F072CBT6", footprint="Package_QFP__LQFP-48_7x7mm_P0.5mm.kicad_mod", symbol="symbols/MCU.kicad_sym">
+    trait has_designator_prefix<prefix="U">
+    power = new ElectricPower
+    power.hv ~ p24
+    power.lv ~ p23
+    assert power.voltage within 2V to 3.6V
+    signal p7 ~ pin 7
+    signal p44 ~ pin 44
+    signal p5 ~ pin 5
+    signal p6 ~ pin 6
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+    signal p4 ~ pin 4
+    signal p18 ~ pin 18
+    signal p19 ~ pin 19
+    signal p20 ~ pin 20
+    signal p39 ~ pin 39
+    signal p40 ~ pin 40
+    signal p41 ~ pin 41
+    signal p42 ~ pin 42
+    signal p43 ~ pin 43
+    signal p45 ~ pin 45
+    signal p46 ~ pin 46
+    signal p21 ~ pin 21
+    signal p22 ~ pin 22
+    signal p25 ~ pin 25
+    signal p26 ~ pin 26
+    signal p27 ~ pin 27
+    signal p28 ~ pin 28
+    signal p1 ~ pin 1
+    signal p24 ~ pin 24
+    signal p48 ~ pin 48
+    signal p23 ~ pin 23
+    signal p35 ~ pin 35
+    signal p47 ~ pin 47
+    signal p9 ~ pin 9
+    signal p8 ~ pin 8
+    signal p36 ~ pin 36
+    signal p10 ~ pin 10
+    signal p11 ~ pin 11
+    signal p12 ~ pin 12
+    signal p13 ~ pin 13
+    signal p14 ~ pin 14
+    signal p15 ~ pin 15
+    signal p16 ~ pin 16
+    signal p17 ~ pin 17
+    signal p29 ~ pin 29
+    signal p30 ~ pin 30
+    signal p31 ~ pin 31
+    signal p32 ~ pin 32
+    signal p33 ~ pin 33
+    signal p34 ~ pin 34
+    signal p37 ~ pin 37
+    signal p38 ~ pin 38
+
+component USB:
+    trait is_atomic_part<manufacturer="GCT", partnumber="USB4105-GF-A", footprint="Connector_USB__USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal.kicad_mod", symbol="symbols/USB.kicad_sym">
+    trait has_designator_prefix<prefix="U">
+    signal pA1 ~ pin A1
+    signal pA4 ~ pin A4
+    signal pA5 ~ pin A5
+    signal pA6 ~ pin A6
+    signal pA7 ~ pin A7
+    signal pA8 ~ pin A8
+    signal pA9 ~ pin A9
+    signal pA12 ~ pin A12
+    signal pB1 ~ pin B1
+    signal pB4 ~ pin B4
+    signal pB5 ~ pin B5
+    signal pB6 ~ pin B6
+    signal pB7 ~ pin B7
+    signal pB8 ~ pin B8
+    signal pB9 ~ pin B9
+    signal pB12 ~ pin B12
+    signal pS1 ~ pin S1
+
+component ESD:
+    trait is_atomic_part<manufacturer="STMicroelectronics", partnumber="USBLC6-2SC6", footprint="Package_TO_SOT_SMD__SOT-23-6.kicad_mod", symbol="symbols/ESD.kicad_sym">
+    trait has_designator_prefix<prefix="U">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+    signal p4 ~ pin 4
+    signal p5 ~ pin 5
+    signal p6 ~ pin 6
+
+component LDO:
+    trait is_atomic_part<manufacturer="Diodes Incorporated", partnumber="AP2112K-3.3TRG1", footprint="Package_TO_SOT_SMD__SOT-23-5.kicad_mod", symbol="symbols/LDO.kicad_sym">
+    trait has_designator_prefix<prefix="U">
+    power = new ElectricPower
+    power.hv ~ p1
+    power.lv ~ p2
+    assert power.voltage within 2.5V to 6V
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+    signal p4 ~ pin 4
+    signal p5 ~ pin 5
+
+component SWITCH:
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="TPS2553DBVR", footprint="Package_TO_SOT_SMD__SOT-23-6.kicad_mod", symbol="symbols/SWITCH.kicad_sym">
+    trait has_designator_prefix<prefix="U">
+    power = new ElectricPower
+    power.hv ~ p1
+    power.lv ~ p2
+    assert power.voltage within 2.5V to 6.5V
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+    signal p4 ~ pin 4
+    signal p5 ~ pin 5
+    signal p6 ~ pin 6
+
+component REF:
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="REF3025AIDBZR", footprint="Package_TO_SOT_SMD__SOT-23.kicad_mod", symbol="symbols/REF.kicad_sym">
+    trait has_designator_prefix<prefix="R">
+    power = new ElectricPower
+    power.hv ~ p1
+    power.lv ~ p3
+    assert power.voltage within 2.55V to 5.5V
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+
+component OPA1:
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="OPA387DBVR", footprint="Package_TO_SOT_SMD__SOT-23-5.kicad_mod", symbol="symbols/OPA1.kicad_sym">
+    trait has_designator_prefix<prefix="U">
+    power = new ElectricPower
+    power.hv ~ p5
+    power.lv ~ p2
+    assert power.voltage within 1.8V to 5.5V
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+    signal p4 ~ pin 4
+    signal p5 ~ pin 5
+
+component OPA2:
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="OPA2387DGKR", footprint="Package_SO__VSSOP-8_3x3mm_P0.65mm.kicad_mod", symbol="symbols/OPA2.kicad_sym">
+    trait has_designator_prefix<prefix="U">
+    power = new ElectricPower
+    power.hv ~ p8
+    power.lv ~ p4
+    assert power.voltage within 1.8V to 5.5V
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+    signal p4 ~ pin 4
+    signal p5 ~ pin 5
+    signal p6 ~ pin 6
+    signal p7 ~ pin 7
+    signal p8 ~ pin 8
+
+component JFET:
+    trait is_atomic_part<manufacturer="onsemi", partnumber="MMBFJ177LT1G", footprint="Package_TO_SOT_SMD__SOT-23.kicad_mod", symbol="symbols/JFET.kicad_sym">
+    trait has_designator_prefix<prefix="U">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+
+component MOS:
+    trait is_atomic_part<manufacturer="Nexperia", partnumber="2N7002/HAMR", footprint="Package_TO_SOT_SMD__SOT-23.kicad_mod", symbol="symbols/MOS.kicad_sym">
+    trait has_designator_prefix<prefix="U">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+
+component ADC:
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="ADS122C04IPWR", footprint="Package_SO__TSSOP-16_4.4x5mm_P0.65mm.kicad_mod", symbol="symbols/ADC.kicad_sym">
+    trait has_designator_prefix<prefix="U">
+    power = new ElectricPower
+    power.hv ~ p12
+    power.lv ~ p5
+    assert power.voltage within 2.3V to 5.5V
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+    signal p4 ~ pin 4
+    signal p5 ~ pin 5
+    signal p6 ~ pin 6
+    signal p7 ~ pin 7
+    signal p8 ~ pin 8
+    signal p9 ~ pin 9
+    signal p10 ~ pin 10
+    signal p11 ~ pin 11
+    signal p12 ~ pin 12
+    signal p13 ~ pin 13
+    signal p14 ~ pin 14
+    signal p15 ~ pin 15
+    signal p16 ~ pin 16
+
+component SHT:
+    trait is_atomic_part<manufacturer="Sensirion", partnumber="SHT40-AD1F-R2", footprint="SHT40.kicad_mod", symbol="symbols/SHT.kicad_sym">
+    trait has_designator_prefix<prefix="U">
+    power = new ElectricPower
+    power.hv ~ p3
+    power.lv ~ p4
+    assert power.voltage within 1.08V to 3.6V
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+    signal p4 ~ pin 4
+
+component BMP:
+    trait is_atomic_part<manufacturer="Bosch Sensortec", partnumber="BMP390", footprint="BMP390.kicad_mod", symbol="symbols/BMP.kicad_sym">
+    trait has_designator_prefix<prefix="U">
+    power = new ElectricPower
+    power.hv ~ p10
+    power.lv ~ p3
+    assert power.voltage within 1.65V to 3.6V
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+    signal p4 ~ pin 4
+    signal p5 ~ pin 5
+    signal p6 ~ pin 6
+    signal p7 ~ pin 7
+    signal p8 ~ pin 8
+    signal p9 ~ pin 9
+    signal p10 ~ pin 10
+
+component PMS:
+    trait is_atomic_part<manufacturer="JST", partnumber="BM08B-GHS-TBT", footprint="Connector_JST__JST_GH_BM08B-GHS-TBT_1x08-1MP_P1.25mm_Vertical.kicad_mod", symbol="symbols/PMS.kicad_sym">
+    trait has_designator_prefix<prefix="U">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+    signal p4 ~ pin 4
+    signal p5 ~ pin 5
+    signal p6 ~ pin 6
+    signal p7 ~ pin 7
+    signal p8 ~ pin 8
+    signal pMP ~ pin MP
+
+component DebugHeader:
+    trait is_atomic_part<manufacturer="Amphenol", partnumber="20021111-00010T4LF", footprint="Connector_PinHeader_1.27mm__PinHeader_2x05_P1.27mm_Vertical.kicad_mod", symbol="symbols/DebugHeader.kicad_sym">
+    trait has_designator_prefix<prefix="D">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+    signal p4 ~ pin 4
+    signal p5 ~ pin 5
+    signal p6 ~ pin 6
+    signal p7 ~ pin 7
+    signal p8 ~ pin 8
+    signal p9 ~ pin 9
+    signal p10 ~ pin 10
+
+component BUTTON:
+    trait is_atomic_part<manufacturer="E-Switch", partnumber="TL3342F160QG", footprint="Button_Switch_SMD__SW_SPST_TL3342.kicad_mod", symbol="symbols/BUTTON.kicad_sym">
+    trait has_designator_prefix<prefix="U">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component StatusLED:
+    trait is_atomic_part<manufacturer="Lite-On", partnumber="LTST-C191KGKT", footprint="LED_SMD__LED_0603_1608Metric.kicad_mod", symbol="symbols/StatusLED.kicad_sym">
+    trait has_designator_prefix<prefix="U">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component TP:
+    trait is_atomic_part<manufacturer="PCB", partnumber="Test pad 1mm", footprint="TestPoint__TestPoint_Pad_D1.0mm.kicad_mod", symbol="symbols/TP.kicad_sym">
+    trait has_designator_prefix<prefix="U">
+    signal p1 ~ pin 1
+
+component FUSE:
+    trait is_atomic_part<manufacturer="Littelfuse", partnumber="1206L050YR", footprint="Fuse_1206.kicad_mod", symbol="symbols/FUSE.kicad_sym">
+    trait has_designator_prefix<prefix="U">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component SO2:
+    trait is_atomic_part<manufacturer="SGX Sensortech", partnumber="SGX-7SO2-AQ-20", footprint="SGX7_AQ_Socket.kicad_mod", symbol="symbols/SO2.kicad_sym">
+    trait has_designator_prefix<prefix="U">
+    signal pWE ~ pin WE
+    signal pRE ~ pin RE
+    signal pCE ~ pin CE
+    signal pAE ~ pin AE
+
+component H2S:
+    trait is_atomic_part<manufacturer="SGX Sensortech", partnumber="SGX-7H2S-AQ-25", footprint="SGX7_AQ_Socket.kicad_mod", symbol="symbols/H2S.kicad_sym">
+    trait has_designator_prefix<prefix="U">
+    signal pWE ~ pin WE
+    signal pRE ~ pin RE
+    signal pCE ~ pin CE
+    signal pAE ~ pin AE
+
+component R_5100:
+    trait is_atomic_part<manufacturer="Yageo", partnumber="RC0603FR-075K1L", footprint="Resistor_SMD__R_0603_1608Metric.kicad_mod", symbol="symbols/R_5100.kicad_sym">
+    trait has_designator_prefix<prefix="R">
+    resistance: ohm
+    resistance = 5100ohm +/- 1%
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component C_1u:
+    trait is_atomic_part<manufacturer="Murata", partnumber="GRM188R71E105KA12D", footprint="Capacitor_SMD__C_0603_1608Metric.kicad_mod", symbol="symbols/C_1u.kicad_sym">
+    trait has_designator_prefix<prefix="C">
+    capacitance: F
+    capacitance = 1uF +/- 10%
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component C_4p7u:
+    trait is_atomic_part<manufacturer="Murata", partnumber="GRM21BR71A475KA73L", footprint="Capacitor_SMD__C_0805_2012Metric.kicad_mod", symbol="symbols/C_4p7u.kicad_sym">
+    trait has_designator_prefix<prefix="C">
+    capacitance: F
+    capacitance = 4.7uF +/- 10%
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component R_80600:
+    trait is_atomic_part<manufacturer="Yageo", partnumber="RC0603FR-0780K6L", footprint="Resistor_SMD__R_0603_1608Metric.kicad_mod", symbol="symbols/R_80600.kicad_sym">
+    trait has_designator_prefix<prefix="R">
+    resistance: ohm
+    resistance = 80600ohm +/- 1%
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component R_100000:
+    trait is_atomic_part<manufacturer="Yageo", partnumber="RT0603BRD07100KL", footprint="Resistor_SMD__R_0603_1608Metric.kicad_mod", symbol="symbols/R_100000.kicad_sym">
+    trait has_designator_prefix<prefix="R">
+    resistance: ohm
+    resistance = 100000ohm +/- 0.1%
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component R_10000:
+    trait is_atomic_part<manufacturer="Yageo", partnumber="RT0603BRD0710KL", footprint="Resistor_SMD__R_0603_1608Metric.kicad_mod", symbol="symbols/R_10000.kicad_sym">
+    trait has_designator_prefix<prefix="R">
+    resistance: ohm
+    resistance = 10000ohm +/- 0.1%
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component C_100n:
+    trait is_atomic_part<manufacturer="Murata", partnumber="GRM188R71H104KA93D", footprint="Capacitor_SMD__C_0603_1608Metric.kicad_mod", symbol="symbols/C_100n.kicad_sym">
+    trait has_designator_prefix<prefix="C">
+    capacitance: F
+    capacitance = 100nF +/- 10%
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component C_10u:
+    trait is_atomic_part<manufacturer="Murata", partnumber="GRM21BR61A106KE19L", footprint="Capacitor_SMD__C_0805_2012Metric.kicad_mod", symbol="symbols/C_10u.kicad_sym">
+    trait has_designator_prefix<prefix="C">
+    capacitance: F
+    capacitance = 10uF +/- 10%
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component R_4700:
+    trait is_atomic_part<manufacturer="Yageo", partnumber="RC0603FR-074K7L", footprint="Resistor_SMD__R_0603_1608Metric.kicad_mod", symbol="symbols/R_4700.kicad_sym">
+    trait has_designator_prefix<prefix="R">
+    resistance: ohm
+    resistance = 4700ohm +/- 1%
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component R_1000:
+    trait is_atomic_part<manufacturer="Yageo", partnumber="RC0603FR-071KL", footprint="Resistor_SMD__R_0603_1608Metric.kicad_mod", symbol="symbols/R_1000.kicad_sym">
+    trait has_designator_prefix<prefix="R">
+    resistance: ohm
+    resistance = 1000ohm +/- 1%
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component R_22:
+    trait is_atomic_part<manufacturer="Yageo", partnumber="RC0603FR-0722RL", footprint="Resistor_SMD__R_0603_1608Metric.kicad_mod", symbol="symbols/R_22.kicad_sym">
+    trait has_designator_prefix<prefix="R">
+    resistance: ohm
+    resistance = 22ohm +/- 1%
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component R_20:
+    trait is_atomic_part<manufacturer="Yageo", partnumber="RT0603BRD0720RL", footprint="Resistor_SMD__R_0603_1608Metric.kicad_mod", symbol="symbols/R_20.kicad_sym">
+    trait has_designator_prefix<prefix="R">
+    resistance: ohm
+    resistance = 20ohm +/- 0.1%
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component C_10n:
+    trait is_atomic_part<manufacturer="Murata", partnumber="GRM188R71H103KA01D", footprint="Capacitor_SMD__C_0603_1608Metric.kicad_mod", symbol="symbols/C_10n.kicad_sym">
+    trait has_designator_prefix<prefix="C">
+    capacitance: F
+    capacitance = 10nF +/- 10%
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component R_100:
+    trait is_atomic_part<manufacturer="Yageo", partnumber="RC0603FR-07100RL", footprint="Resistor_SMD__R_0603_1608Metric.kicad_mod", symbol="symbols/R_100.kicad_sym">
+    trait has_designator_prefix<prefix="R">
+    resistance: ohm
+    resistance = 100ohm +/- 1%
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component R_20000:
+    trait is_atomic_part<manufacturer="Yageo", partnumber="RT0603BRD0720KL", footprint="Resistor_SMD__R_0603_1608Metric.kicad_mod", symbol="symbols/R_20000.kicad_sym">
+    trait has_designator_prefix<prefix="R">
+    resistance: ohm
+    resistance = 20000ohm +/- 0.1%
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component R_1000000:
+    trait is_atomic_part<manufacturer="Yageo", partnumber="RC0603FR-071ML", footprint="Resistor_SMD__R_0603_1608Metric.kicad_mod", symbol="symbols/R_1000000.kicad_sym">
+    trait has_designator_prefix<prefix="R">
+    resistance: ohm
+    resistance = 1e+06ohm +/- 1%
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+
+component C_470n:
+    trait is_atomic_part<manufacturer="Murata", partnumber="GRM188R71E474KA12D", footprint="Capacitor_SMD__C_0603_1608Metric.kicad_mod", symbol="symbols/C_470n.kicad_sym">
+    trait has_designator_prefix<prefix="C">
+    capacitance: F
+    capacitance = 470nF +/- 10%
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+
+component AnalogSwitch:
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="TPS22918DBVR", footprint="Package_TO_SOT_SMD__SOT-23-6.kicad_mod", symbol="symbols/AnalogSwitch.kicad_sym">
+    trait has_designator_prefix<prefix="U">
+    power = new ElectricPower
+    power.hv ~ p1
+    power.lv ~ p2
+    assert power.voltage within 1V to 5.5V
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+    signal p4 ~ pin 4
+    signal p5 ~ pin 5
+    signal p6 ~ pin 6

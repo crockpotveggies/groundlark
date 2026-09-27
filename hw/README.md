@@ -8,7 +8,7 @@ remain stable so board identity does not depend on its directory name.
 | [Groundlark FPGA HAT](groundlark-fpga-hat/README.md) | DAQHAT-01, 85 × 56 mm | `trenz_hat` | Active prototype; physical qualification pending. |
 | [Groundlark Coldfoot HAT](groundlark-coldfoot-hat/README.md) | A2 ASIC HAT, 120 × 56 mm | `hat` | Retained; integration deferred. |
 | [Burrowlark USB](burrowlark-usb/README.md) | DAQUSB-01, 70 × 45 mm | `field_head` | Hardware design present; firmware pending. |
-| [Skylark USB](skylark-usb/README.md) | Not assigned | None | Planned air-quality accessory; no implemented hardware yet. |
+| [Skylark USB](skylark-usb/README.md) | Rev A, 90 × 100 mm | `skylark` | Routed air-quality prototype, STM32 firmware and Rev G bell enclosure; physical qualification pending. |
 
 ## Product contents
 
@@ -18,8 +18,8 @@ remain stable so board identity does not depend on its directory name.
 - `boards/<board>/`: routed native CAD, review schematics, BOMs, previews and validation evidence.
 - `mechanical/` and `simulation/`: product-specific artifacts where applicable.
 
-Skylark currently contains only its status README. Add implementation directories
-as their contents are created. Stack concept boards are visualization artifacts.
+Skylark includes its circuit, routed PCB, review schematic, BOM and CAD renders.
+Stack concept boards are visualization artifacts.
 
 ## Shared resources and tooling
 
@@ -33,9 +33,8 @@ ignored local fabrication packages, which require explicit authorization to publ
 Disposable runs belong in `.lab/`; local dependencies belong in `.local/`.
 Firmware and host software belong in `sw/`.
 
-`ato.yaml` defines the three implemented targets. Direct atopile commands target
-`hw/` from the repository root and write authoring outputs. Skylark has no build
-target until its circuit is implemented.
+`ato.yaml` defines four implemented targets. Direct atopile commands target
+`hw/` from the repository root and write authoring outputs.
 
 Use the root portable lab for routine checks. See the [build guide](../docs/build.md),
 [Trenz guide](../docs/trenz-hat.md) and [validation limits](../docs/validation.md)

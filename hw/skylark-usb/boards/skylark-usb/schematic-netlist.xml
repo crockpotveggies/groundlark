@@ -1,0 +1,4390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="E">
+  <design>
+    <source>/mnt/p/Personal/groundlark/hw/skylark-usb/boards/skylark-usb/skylark-usb.kicad_sch</source>
+    <date>2026-09-26T22:35:40-0700</date>
+    <tool>Eeschema 9.0.9-9.0.9~ubuntu24.04.1</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>skylark-usb.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="2" name="/01_USB_power-page-01/" tstamps="/4e92bf3b-cc9f-5617-babe-7f6ea9e3b463/">
+      <title_block>
+        <title>skylark-usb / 01_USB_power-page-01</title>
+        <company/>
+        <rev>A PROTOTYPE</rev>
+        <date>2026-09-26</date>
+        <source>01_USB_power-page-01.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="3" name="/01_USB_power-page-02/" tstamps="/c545b53c-4a81-5ab5-80f8-dbce395a3b56/">
+      <title_block>
+        <title>skylark-usb / 01_USB_power-page-02</title>
+        <company/>
+        <rev>A PROTOTYPE</rev>
+        <date>2026-09-26</date>
+        <source>01_USB_power-page-02.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="4" name="/01_USB_power-page-03/" tstamps="/f6d08fcf-4d19-5763-8e88-0d24734642f3/">
+      <title_block>
+        <title>skylark-usb / 01_USB_power-page-03</title>
+        <company/>
+        <rev>A PROTOTYPE</rev>
+        <date>2026-09-26</date>
+        <source>01_USB_power-page-03.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="5" name="/02_Controller-page-01/" tstamps="/aaa5e82c-d31b-5988-9305-91e2acd000cb/">
+      <title_block>
+        <title>skylark-usb / 02_Controller-page-01</title>
+        <company/>
+        <rev>A PROTOTYPE</rev>
+        <date>2026-09-26</date>
+        <source>02_Controller-page-01.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="6" name="/02_Controller-page-02/" tstamps="/b5dd861e-40af-519f-92c9-935691103946/">
+      <title_block>
+        <title>skylark-usb / 02_Controller-page-02</title>
+        <company/>
+        <rev>A PROTOTYPE</rev>
+        <date>2026-09-26</date>
+        <source>02_Controller-page-02.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="7" name="/03_ADC_reference-page-01/" tstamps="/87670d85-ea87-5d88-9c16-bea7aa19d18f/">
+      <title_block>
+        <title>skylark-usb / 03_ADC_reference-page-01</title>
+        <company/>
+        <rev>A PROTOTYPE</rev>
+        <date>2026-09-26</date>
+        <source>03_ADC_reference-page-01.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="8" name="/03_ADC_reference-page-02/" tstamps="/e7f2d07d-a3bf-5eff-bec3-079d79795f18/">
+      <title_block>
+        <title>skylark-usb / 03_ADC_reference-page-02</title>
+        <company/>
+        <rev>A PROTOTYPE</rev>
+        <date>2026-09-26</date>
+        <source>03_ADC_reference-page-02.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="9" name="/04_Analog_reference-page-01/" tstamps="/355762cb-5426-5567-9d3e-d33b6f259b0a/">
+      <title_block>
+        <title>skylark-usb / 04_Analog_reference-page-01</title>
+        <company/>
+        <rev>A PROTOTYPE</rev>
+        <date>2026-09-26</date>
+        <source>04_Analog_reference-page-01.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="10" name="/04_SO2-page-01/" tstamps="/ba9fa2df-14f1-5d01-b250-a34345951bde/">
+      <title_block>
+        <title>skylark-usb / 04_SO2-page-01</title>
+        <company/>
+        <rev>A PROTOTYPE</rev>
+        <date>2026-09-26</date>
+        <source>04_SO2-page-01.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="11" name="/04_SO2-page-02/" tstamps="/fba23098-6c42-5f5d-abd6-c7297354137a/">
+      <title_block>
+        <title>skylark-usb / 04_SO2-page-02</title>
+        <company/>
+        <rev>A PROTOTYPE</rev>
+        <date>2026-09-26</date>
+        <source>04_SO2-page-02.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="12" name="/05_H2S-page-01/" tstamps="/ff6b77c3-95f8-5afc-8a6a-99a7ff58b4d5/">
+      <title_block>
+        <title>skylark-usb / 05_H2S-page-01</title>
+        <company/>
+        <rev>A PROTOTYPE</rev>
+        <date>2026-09-26</date>
+        <source>05_H2S-page-01.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="13" name="/05_H2S-page-02/" tstamps="/c60510a4-912f-56f4-a510-e17dcca6cdbf/">
+      <title_block>
+        <title>skylark-usb / 05_H2S-page-02</title>
+        <company/>
+        <rev>A PROTOTYPE</rev>
+        <date>2026-09-26</date>
+        <source>05_H2S-page-02.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="14" name="/06_Environment-page-01/" tstamps="/40888c6d-2ce3-5d77-bcb4-504f672fefd3/">
+      <title_block>
+        <title>skylark-usb / 06_Environment-page-01</title>
+        <company/>
+        <rev>A PROTOTYPE</rev>
+        <date>2026-09-26</date>
+        <source>06_Environment-page-01.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="15" name="/07_Testpoints-page-01/" tstamps="/6b72c693-ea51-529d-a908-bf5a9ea04dc9/">
+      <title_block>
+        <title>skylark-usb / 07_Testpoints-page-01</title>
+        <company/>
+        <rev>A PROTOTYPE</rev>
+        <date>2026-09-26</date>
+        <source>07_Testpoints-page-01.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="C1">
+      <value>1uF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71E105KA12D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C1" description=""/>
+      <property name="MPN" value="GRM188R71E105KA12D"/>
+      <property name="Sheetname" value="01_USB_power-page-01"/>
+      <property name="Sheetfile" value="01_USB_power-page-01.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-01/" tstamps="/4e92bf3b-cc9f-5617-babe-7f6ea9e3b463/"/>
+      <tstamps>d4964258-fc3c-5f88-ae26-82ea81fb5c6e</tstamps>
+    </comp>
+    <comp ref="C2">
+      <value>4.7uF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0805_2012Metric</footprint>
+      <fields>
+        <field name="MPN">GRM21BR71A475KA73L</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C2" description=""/>
+      <property name="MPN" value="GRM21BR71A475KA73L"/>
+      <property name="Sheetname" value="01_USB_power-page-01"/>
+      <property name="Sheetfile" value="01_USB_power-page-01.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-01/" tstamps="/4e92bf3b-cc9f-5617-babe-7f6ea9e3b463/"/>
+      <tstamps>83396d19-6d69-5a85-b4a3-797c3218370c</tstamps>
+    </comp>
+    <comp ref="D1">
+      <value>USBLC6-2SC6</value>
+      <footprint>Skylark:Package_TO_SOT_SMD__SOT-23-6</footprint>
+      <fields>
+        <field name="MPN">USBLC6-2SC6</field>
+        <field name="Footprint">Skylark:Package_TO_SOT_SMD__SOT-23-6</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_D1" description=""/>
+      <property name="MPN" value="USBLC6-2SC6"/>
+      <property name="Sheetname" value="01_USB_power-page-01"/>
+      <property name="Sheetfile" value="01_USB_power-page-01.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-01/" tstamps="/4e92bf3b-cc9f-5617-babe-7f6ea9e3b463/"/>
+      <tstamps>4e52372a-a18f-5ec5-a662-45f1d23417cd</tstamps>
+    </comp>
+    <comp ref="D2">
+      <value>USBLC6-2SC6</value>
+      <footprint>Skylark:Package_TO_SOT_SMD__SOT-23-6</footprint>
+      <fields>
+        <field name="MPN">USBLC6-2SC6</field>
+        <field name="Footprint">Skylark:Package_TO_SOT_SMD__SOT-23-6</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_D2" description=""/>
+      <property name="MPN" value="USBLC6-2SC6"/>
+      <property name="Sheetname" value="01_USB_power-page-01"/>
+      <property name="Sheetfile" value="01_USB_power-page-01.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-01/" tstamps="/4e92bf3b-cc9f-5617-babe-7f6ea9e3b463/"/>
+      <tstamps>81ce4279-3b05-52b1-a764-9563f9c20eb6</tstamps>
+    </comp>
+    <comp ref="F1">
+      <value>500mA PTC</value>
+      <footprint>Skylark:Fuse_1206</footprint>
+      <fields>
+        <field name="MPN">1206L050YR</field>
+        <field name="Footprint">Skylark:Fuse_1206</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_F1" description=""/>
+      <property name="MPN" value="1206L050YR"/>
+      <property name="Sheetname" value="01_USB_power-page-01"/>
+      <property name="Sheetfile" value="01_USB_power-page-01.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-01/" tstamps="/4e92bf3b-cc9f-5617-babe-7f6ea9e3b463/"/>
+      <tstamps>8ed55f50-0e3d-50f8-8c7f-9592c582d3db</tstamps>
+    </comp>
+    <comp ref="J1">
+      <value>USB4105-GF-A</value>
+      <footprint>Skylark:Connector_USB__USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal</footprint>
+      <fields>
+        <field name="MPN">USB4105-GF-A</field>
+        <field name="Footprint">Skylark:Connector_USB__USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_J1" description=""/>
+      <property name="MPN" value="USB4105-GF-A"/>
+      <property name="Sheetname" value="01_USB_power-page-01"/>
+      <property name="Sheetfile" value="01_USB_power-page-01.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-01/" tstamps="/4e92bf3b-cc9f-5617-babe-7f6ea9e3b463/"/>
+      <tstamps>9a4cd22a-9aeb-5042-b825-19f42ba41e7f</tstamps>
+    </comp>
+    <comp ref="R1">
+      <value>5100R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RC0603FR-075K1L</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R1" description=""/>
+      <property name="MPN" value="RC0603FR-075K1L"/>
+      <property name="Sheetname" value="01_USB_power-page-01"/>
+      <property name="Sheetfile" value="01_USB_power-page-01.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-01/" tstamps="/4e92bf3b-cc9f-5617-babe-7f6ea9e3b463/"/>
+      <tstamps>d5cce202-6af4-56e7-afc2-ef5defbcb9c3</tstamps>
+    </comp>
+    <comp ref="R2">
+      <value>5100R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RC0603FR-075K1L</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R2" description=""/>
+      <property name="MPN" value="RC0603FR-075K1L"/>
+      <property name="Sheetname" value="01_USB_power-page-01"/>
+      <property name="Sheetfile" value="01_USB_power-page-01.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-01/" tstamps="/4e92bf3b-cc9f-5617-babe-7f6ea9e3b463/"/>
+      <tstamps>a6b47de1-92f8-5192-bc68-f4435ee88c99</tstamps>
+    </comp>
+    <comp ref="R3">
+      <value>80600R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RC0603FR-0780K6L</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R3" description=""/>
+      <property name="MPN" value="RC0603FR-0780K6L"/>
+      <property name="Sheetname" value="01_USB_power-page-01"/>
+      <property name="Sheetfile" value="01_USB_power-page-01.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-01/" tstamps="/4e92bf3b-cc9f-5617-babe-7f6ea9e3b463/"/>
+      <tstamps>26e85f24-757f-5858-a16c-dc1e742d33e8</tstamps>
+    </comp>
+    <comp ref="R4">
+      <value>100000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD07100KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R4" description=""/>
+      <property name="MPN" value="RT0603BRD07100KL"/>
+      <property name="Sheetname" value="01_USB_power-page-01"/>
+      <property name="Sheetfile" value="01_USB_power-page-01.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-01/" tstamps="/4e92bf3b-cc9f-5617-babe-7f6ea9e3b463/"/>
+      <tstamps>a8bd3bcb-b2a2-5f1e-8d8e-24b4bc50b6bd</tstamps>
+    </comp>
+    <comp ref="U2">
+      <value>AP2112K-3.3TRG1</value>
+      <footprint>Skylark:Package_TO_SOT_SMD__SOT-23-5</footprint>
+      <fields>
+        <field name="MPN">AP2112K-3.3TRG1</field>
+        <field name="Footprint">Skylark:Package_TO_SOT_SMD__SOT-23-5</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_U2" description=""/>
+      <property name="MPN" value="AP2112K-3.3TRG1"/>
+      <property name="Sheetname" value="01_USB_power-page-01"/>
+      <property name="Sheetfile" value="01_USB_power-page-01.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-01/" tstamps="/4e92bf3b-cc9f-5617-babe-7f6ea9e3b463/"/>
+      <tstamps>2ecbff58-9c62-5d81-a595-d802402fb892</tstamps>
+    </comp>
+    <comp ref="U3">
+      <value>TPS2553DBVR</value>
+      <footprint>Skylark:Package_TO_SOT_SMD__SOT-23-6</footprint>
+      <fields>
+        <field name="MPN">TPS2553DBVR</field>
+        <field name="Footprint">Skylark:Package_TO_SOT_SMD__SOT-23-6</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_U3" description=""/>
+      <property name="MPN" value="TPS2553DBVR"/>
+      <property name="Sheetname" value="01_USB_power-page-01"/>
+      <property name="Sheetfile" value="01_USB_power-page-01.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-01/" tstamps="/4e92bf3b-cc9f-5617-babe-7f6ea9e3b463/"/>
+      <tstamps>308646bd-5b9d-5b0d-a495-49bc7fab8a91</tstamps>
+    </comp>
+    <comp ref="C3">
+      <value>100nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71H104KA93D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C3" description=""/>
+      <property name="MPN" value="GRM188R71H104KA93D"/>
+      <property name="Sheetname" value="01_USB_power-page-02"/>
+      <property name="Sheetfile" value="01_USB_power-page-02.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-02/" tstamps="/c545b53c-4a81-5ab5-80f8-dbce395a3b56/"/>
+      <tstamps>cafbc15d-799e-5d3f-bb52-c30e7a23bc85</tstamps>
+    </comp>
+    <comp ref="C4">
+      <value>10uF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0805_2012Metric</footprint>
+      <fields>
+        <field name="MPN">GRM21BR61A106KE19L</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C4" description=""/>
+      <property name="MPN" value="GRM21BR61A106KE19L"/>
+      <property name="Sheetname" value="01_USB_power-page-02"/>
+      <property name="Sheetfile" value="01_USB_power-page-02.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-02/" tstamps="/c545b53c-4a81-5ab5-80f8-dbce395a3b56/"/>
+      <tstamps>2e9564a4-22bd-5359-9cba-f1ab6232aade</tstamps>
+    </comp>
+    <comp ref="J2">
+      <value>BM08B-GHS-TBT</value>
+      <footprint>Skylark:Connector_JST__JST_GH_BM08B-GHS-TBT_1x08-1MP_P1.25mm_Vertical</footprint>
+      <fields>
+        <field name="MPN">BM08B-GHS-TBT</field>
+        <field name="Footprint">Skylark:Connector_JST__JST_GH_BM08B-GHS-TBT_1x08-1MP_P1.25mm_Vertical</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_J2" description=""/>
+      <property name="MPN" value="BM08B-GHS-TBT"/>
+      <property name="Sheetname" value="01_USB_power-page-02"/>
+      <property name="Sheetfile" value="01_USB_power-page-02.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-02/" tstamps="/c545b53c-4a81-5ab5-80f8-dbce395a3b56/"/>
+      <tstamps>0cbcba84-e96c-5975-99f5-08c6ab12cc52</tstamps>
+    </comp>
+    <comp ref="Q5">
+      <value>2N7002/HAMR</value>
+      <footprint>Skylark:Package_TO_SOT_SMD__SOT-23</footprint>
+      <fields>
+        <field name="MPN">2N7002/HAMR</field>
+        <field name="Footprint">Skylark:Package_TO_SOT_SMD__SOT-23</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_Q5" description=""/>
+      <property name="MPN" value="2N7002/HAMR"/>
+      <property name="Sheetname" value="01_USB_power-page-02"/>
+      <property name="Sheetfile" value="01_USB_power-page-02.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-02/" tstamps="/c545b53c-4a81-5ab5-80f8-dbce395a3b56/"/>
+      <tstamps>b221b574-d3d1-5b09-8d0b-6d622b5b36fd</tstamps>
+    </comp>
+    <comp ref="Q6">
+      <value>2N7002/HAMR</value>
+      <footprint>Skylark:Package_TO_SOT_SMD__SOT-23</footprint>
+      <fields>
+        <field name="MPN">2N7002/HAMR</field>
+        <field name="Footprint">Skylark:Package_TO_SOT_SMD__SOT-23</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_Q6" description=""/>
+      <property name="MPN" value="2N7002/HAMR"/>
+      <property name="Sheetname" value="01_USB_power-page-02"/>
+      <property name="Sheetfile" value="01_USB_power-page-02.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-02/" tstamps="/c545b53c-4a81-5ab5-80f8-dbce395a3b56/"/>
+      <tstamps>460b0f55-5daa-5661-95b3-3559d3a52051</tstamps>
+    </comp>
+    <comp ref="R5">
+      <value>10000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD0710KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R5" description=""/>
+      <property name="MPN" value="RT0603BRD0710KL"/>
+      <property name="Sheetname" value="01_USB_power-page-02"/>
+      <property name="Sheetfile" value="01_USB_power-page-02.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-02/" tstamps="/c545b53c-4a81-5ab5-80f8-dbce395a3b56/"/>
+      <tstamps>c136ac2b-308e-5439-82ca-fcb86bcc888b</tstamps>
+    </comp>
+    <comp ref="R6">
+      <value>100000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD07100KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R6" description=""/>
+      <property name="MPN" value="RT0603BRD07100KL"/>
+      <property name="Sheetname" value="01_USB_power-page-02"/>
+      <property name="Sheetfile" value="01_USB_power-page-02.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-02/" tstamps="/c545b53c-4a81-5ab5-80f8-dbce395a3b56/"/>
+      <tstamps>a4647dc4-aabb-5ca2-86ed-a6cc5bbabcfa</tstamps>
+    </comp>
+    <comp ref="R7">
+      <value>100000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD07100KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R7" description=""/>
+      <property name="MPN" value="RT0603BRD07100KL"/>
+      <property name="Sheetname" value="01_USB_power-page-02"/>
+      <property name="Sheetfile" value="01_USB_power-page-02.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-02/" tstamps="/c545b53c-4a81-5ab5-80f8-dbce395a3b56/"/>
+      <tstamps>4c682a70-eacf-5e0d-85b1-80fd004f555b</tstamps>
+    </comp>
+    <comp ref="R8">
+      <value>4700R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RC0603FR-074K7L</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R8" description=""/>
+      <property name="MPN" value="RC0603FR-074K7L"/>
+      <property name="Sheetname" value="01_USB_power-page-02"/>
+      <property name="Sheetfile" value="01_USB_power-page-02.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-02/" tstamps="/c545b53c-4a81-5ab5-80f8-dbce395a3b56/"/>
+      <tstamps>832e8cc3-187a-50f9-b01f-e1b846ee234d</tstamps>
+    </comp>
+    <comp ref="R9">
+      <value>4700R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RC0603FR-074K7L</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R9" description=""/>
+      <property name="MPN" value="RC0603FR-074K7L"/>
+      <property name="Sheetname" value="01_USB_power-page-02"/>
+      <property name="Sheetfile" value="01_USB_power-page-02.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-02/" tstamps="/c545b53c-4a81-5ab5-80f8-dbce395a3b56/"/>
+      <tstamps>4d879025-b1a7-5169-ad73-4c5ea510c177</tstamps>
+    </comp>
+    <comp ref="R10">
+      <value>100000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD07100KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R10" description=""/>
+      <property name="MPN" value="RT0603BRD07100KL"/>
+      <property name="Sheetname" value="01_USB_power-page-02"/>
+      <property name="Sheetfile" value="01_USB_power-page-02.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-02/" tstamps="/c545b53c-4a81-5ab5-80f8-dbce395a3b56/"/>
+      <tstamps>694555a3-ab24-5487-b61c-be8955a0ec55</tstamps>
+    </comp>
+    <comp ref="R11">
+      <value>100000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD07100KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R11" description=""/>
+      <property name="MPN" value="RT0603BRD07100KL"/>
+      <property name="Sheetname" value="01_USB_power-page-02"/>
+      <property name="Sheetfile" value="01_USB_power-page-02.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-02/" tstamps="/c545b53c-4a81-5ab5-80f8-dbce395a3b56/"/>
+      <tstamps>5a56b6ce-488c-54a2-80af-c42bcdfa2c0f</tstamps>
+    </comp>
+    <comp ref="C5">
+      <value>100nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71H104KA93D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C5" description=""/>
+      <property name="MPN" value="GRM188R71H104KA93D"/>
+      <property name="Sheetname" value="01_USB_power-page-03"/>
+      <property name="Sheetfile" value="01_USB_power-page-03.kicad_sch"/>
+      <sheetpath names="/01_USB_power-page-03/" tstamps="/f6d08fcf-4d19-5763-8e88-0d24734642f3/"/>
+      <tstamps>5420fc4f-3f16-5028-af0d-e25065f96f2c</tstamps>
+    </comp>
+    <comp ref="C6">
+      <value>100nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71H104KA93D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C6" description=""/>
+      <property name="MPN" value="GRM188R71H104KA93D"/>
+      <property name="Sheetname" value="02_Controller-page-01"/>
+      <property name="Sheetfile" value="02_Controller-page-01.kicad_sch"/>
+      <sheetpath names="/02_Controller-page-01/" tstamps="/aaa5e82c-d31b-5988-9305-91e2acd000cb/"/>
+      <tstamps>1567b34e-11ca-5b97-8f33-ca6903f1bf67</tstamps>
+    </comp>
+    <comp ref="C7">
+      <value>100nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71H104KA93D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C7" description=""/>
+      <property name="MPN" value="GRM188R71H104KA93D"/>
+      <property name="Sheetname" value="02_Controller-page-01"/>
+      <property name="Sheetfile" value="02_Controller-page-01.kicad_sch"/>
+      <sheetpath names="/02_Controller-page-01/" tstamps="/aaa5e82c-d31b-5988-9305-91e2acd000cb/"/>
+      <tstamps>48ded916-fc58-5082-b64b-33253e0702e1</tstamps>
+    </comp>
+    <comp ref="C8">
+      <value>100nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71H104KA93D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C8" description=""/>
+      <property name="MPN" value="GRM188R71H104KA93D"/>
+      <property name="Sheetname" value="02_Controller-page-01"/>
+      <property name="Sheetfile" value="02_Controller-page-01.kicad_sch"/>
+      <sheetpath names="/02_Controller-page-01/" tstamps="/aaa5e82c-d31b-5988-9305-91e2acd000cb/"/>
+      <tstamps>a6dab593-5c0d-5100-8db0-402a000c980c</tstamps>
+    </comp>
+    <comp ref="C9">
+      <value>100nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71H104KA93D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C9" description=""/>
+      <property name="MPN" value="GRM188R71H104KA93D"/>
+      <property name="Sheetname" value="02_Controller-page-01"/>
+      <property name="Sheetfile" value="02_Controller-page-01.kicad_sch"/>
+      <sheetpath names="/02_Controller-page-01/" tstamps="/aaa5e82c-d31b-5988-9305-91e2acd000cb/"/>
+      <tstamps>a604fe56-1144-5d24-bc9b-44bd4a1ba0bb</tstamps>
+    </comp>
+    <comp ref="C10">
+      <value>1uF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71E105KA12D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C10" description=""/>
+      <property name="MPN" value="GRM188R71E105KA12D"/>
+      <property name="Sheetname" value="02_Controller-page-01"/>
+      <property name="Sheetfile" value="02_Controller-page-01.kicad_sch"/>
+      <sheetpath names="/02_Controller-page-01/" tstamps="/aaa5e82c-d31b-5988-9305-91e2acd000cb/"/>
+      <tstamps>83e62c23-bdce-555f-803a-eb7f20e4e0c7</tstamps>
+    </comp>
+    <comp ref="C11">
+      <value>100nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71H104KA93D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C11" description=""/>
+      <property name="MPN" value="GRM188R71H104KA93D"/>
+      <property name="Sheetname" value="02_Controller-page-01"/>
+      <property name="Sheetfile" value="02_Controller-page-01.kicad_sch"/>
+      <sheetpath names="/02_Controller-page-01/" tstamps="/aaa5e82c-d31b-5988-9305-91e2acd000cb/"/>
+      <tstamps>d55f5c91-c2f8-544f-80b5-cd7f3e4ae2fc</tstamps>
+    </comp>
+    <comp ref="J3">
+      <value>20021111-00010T4LF</value>
+      <footprint>Skylark:Connector_PinHeader_1.27mm__PinHeader_2x05_P1.27mm_Vertical</footprint>
+      <fields>
+        <field name="MPN">20021111-00010T4LF</field>
+        <field name="Footprint">Skylark:Connector_PinHeader_1.27mm__PinHeader_2x05_P1.27mm_Vertical</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_J3" description=""/>
+      <property name="MPN" value="20021111-00010T4LF"/>
+      <property name="Sheetname" value="02_Controller-page-01"/>
+      <property name="Sheetfile" value="02_Controller-page-01.kicad_sch"/>
+      <sheetpath names="/02_Controller-page-01/" tstamps="/aaa5e82c-d31b-5988-9305-91e2acd000cb/"/>
+      <tstamps>8d7786d2-7c53-5038-92f2-f2bb5f12099b</tstamps>
+    </comp>
+    <comp ref="R12">
+      <value>10000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD0710KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R12" description=""/>
+      <property name="MPN" value="RT0603BRD0710KL"/>
+      <property name="Sheetname" value="02_Controller-page-01"/>
+      <property name="Sheetfile" value="02_Controller-page-01.kicad_sch"/>
+      <sheetpath names="/02_Controller-page-01/" tstamps="/aaa5e82c-d31b-5988-9305-91e2acd000cb/"/>
+      <tstamps>53b39d2a-7d35-583d-8a09-4d2ed5eb3322</tstamps>
+    </comp>
+    <comp ref="R13">
+      <value>10000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD0710KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R13" description=""/>
+      <property name="MPN" value="RT0603BRD0710KL"/>
+      <property name="Sheetname" value="02_Controller-page-01"/>
+      <property name="Sheetfile" value="02_Controller-page-01.kicad_sch"/>
+      <sheetpath names="/02_Controller-page-01/" tstamps="/aaa5e82c-d31b-5988-9305-91e2acd000cb/"/>
+      <tstamps>1abcec70-9a93-5b6b-80cc-33f1952c6c8c</tstamps>
+    </comp>
+    <comp ref="SW1">
+      <value>TL3342F160QG</value>
+      <footprint>Skylark:Button_Switch_SMD__SW_SPST_TL3342</footprint>
+      <fields>
+        <field name="MPN">TL3342F160QG</field>
+        <field name="Footprint">Skylark:Button_Switch_SMD__SW_SPST_TL3342</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_SW1" description=""/>
+      <property name="MPN" value="TL3342F160QG"/>
+      <property name="Sheetname" value="02_Controller-page-01"/>
+      <property name="Sheetfile" value="02_Controller-page-01.kicad_sch"/>
+      <sheetpath names="/02_Controller-page-01/" tstamps="/aaa5e82c-d31b-5988-9305-91e2acd000cb/"/>
+      <tstamps>9a4493d0-5605-54df-b240-c0f90340c809</tstamps>
+    </comp>
+    <comp ref="SW2">
+      <value>TL3342F160QG</value>
+      <footprint>Skylark:Button_Switch_SMD__SW_SPST_TL3342</footprint>
+      <fields>
+        <field name="MPN">TL3342F160QG</field>
+        <field name="Footprint">Skylark:Button_Switch_SMD__SW_SPST_TL3342</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_SW2" description=""/>
+      <property name="MPN" value="TL3342F160QG"/>
+      <property name="Sheetname" value="02_Controller-page-01"/>
+      <property name="Sheetfile" value="02_Controller-page-01.kicad_sch"/>
+      <sheetpath names="/02_Controller-page-01/" tstamps="/aaa5e82c-d31b-5988-9305-91e2acd000cb/"/>
+      <tstamps>8aaeee62-d42c-5216-99c6-8b7338d09263</tstamps>
+    </comp>
+    <comp ref="U1">
+      <value>STM32F072CBT6</value>
+      <footprint>Skylark:Package_QFP__LQFP-48_7x7mm_P0.5mm</footprint>
+      <fields>
+        <field name="MPN">STM32F072CBT6</field>
+        <field name="Footprint">Skylark:Package_QFP__LQFP-48_7x7mm_P0.5mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_U1" description=""/>
+      <property name="MPN" value="STM32F072CBT6"/>
+      <property name="Sheetname" value="02_Controller-page-01"/>
+      <property name="Sheetfile" value="02_Controller-page-01.kicad_sch"/>
+      <sheetpath names="/02_Controller-page-01/" tstamps="/aaa5e82c-d31b-5988-9305-91e2acd000cb/"/>
+      <tstamps>0104e712-f685-5598-a97b-6fbc7e785e3c</tstamps>
+    </comp>
+    <comp ref="D3">
+      <value>LTST-C191KGKT</value>
+      <footprint>Skylark:LED_SMD__LED_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">LTST-C191KGKT</field>
+        <field name="Footprint">Skylark:LED_SMD__LED_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_D3" description=""/>
+      <property name="MPN" value="LTST-C191KGKT"/>
+      <property name="Sheetname" value="02_Controller-page-02"/>
+      <property name="Sheetfile" value="02_Controller-page-02.kicad_sch"/>
+      <sheetpath names="/02_Controller-page-02/" tstamps="/b5dd861e-40af-519f-92c9-935691103946/"/>
+      <tstamps>7422c8a2-0e5b-5aac-89dd-bb625b427cc6</tstamps>
+    </comp>
+    <comp ref="R14">
+      <value>1000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RC0603FR-071KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R14" description=""/>
+      <property name="MPN" value="RC0603FR-071KL"/>
+      <property name="Sheetname" value="02_Controller-page-02"/>
+      <property name="Sheetfile" value="02_Controller-page-02.kicad_sch"/>
+      <sheetpath names="/02_Controller-page-02/" tstamps="/b5dd861e-40af-519f-92c9-935691103946/"/>
+      <tstamps>a5da8528-00c3-5150-98f8-332cfb6664c1</tstamps>
+    </comp>
+    <comp ref="C12">
+      <value>10uF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0805_2012Metric</footprint>
+      <fields>
+        <field name="MPN">GRM21BR61A106KE19L</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C12" description=""/>
+      <property name="MPN" value="GRM21BR61A106KE19L"/>
+      <property name="Sheetname" value="03_ADC_reference-page-01"/>
+      <property name="Sheetfile" value="03_ADC_reference-page-01.kicad_sch"/>
+      <sheetpath names="/03_ADC_reference-page-01/" tstamps="/87670d85-ea87-5d88-9c16-bea7aa19d18f/"/>
+      <tstamps>a5da8340-00c9-5302-b198-5327a0ab2b50</tstamps>
+    </comp>
+    <comp ref="C13">
+      <value>1uF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71E105KA12D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C13" description=""/>
+      <property name="MPN" value="GRM188R71E105KA12D"/>
+      <property name="Sheetname" value="03_ADC_reference-page-01"/>
+      <property name="Sheetfile" value="03_ADC_reference-page-01.kicad_sch"/>
+      <sheetpath names="/03_ADC_reference-page-01/" tstamps="/87670d85-ea87-5d88-9c16-bea7aa19d18f/"/>
+      <tstamps>22f6f644-0b82-562e-b964-c23d04bc94c1</tstamps>
+    </comp>
+    <comp ref="C14">
+      <value>100nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71H104KA93D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C14" description=""/>
+      <property name="MPN" value="GRM188R71H104KA93D"/>
+      <property name="Sheetname" value="03_ADC_reference-page-01"/>
+      <property name="Sheetfile" value="03_ADC_reference-page-01.kicad_sch"/>
+      <sheetpath names="/03_ADC_reference-page-01/" tstamps="/87670d85-ea87-5d88-9c16-bea7aa19d18f/"/>
+      <tstamps>d84f626c-d658-5ffd-bc7b-b8711e8dfdc8</tstamps>
+    </comp>
+    <comp ref="C15">
+      <value>1uF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71E105KA12D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C15" description=""/>
+      <property name="MPN" value="GRM188R71E105KA12D"/>
+      <property name="Sheetname" value="03_ADC_reference-page-01"/>
+      <property name="Sheetfile" value="03_ADC_reference-page-01.kicad_sch"/>
+      <sheetpath names="/03_ADC_reference-page-01/" tstamps="/87670d85-ea87-5d88-9c16-bea7aa19d18f/"/>
+      <tstamps>223e146f-e094-5da5-8d7f-db7f3b42d4c9</tstamps>
+    </comp>
+    <comp ref="R15">
+      <value>10000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD0710KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R15" description=""/>
+      <property name="MPN" value="RT0603BRD0710KL"/>
+      <property name="Sheetname" value="03_ADC_reference-page-01"/>
+      <property name="Sheetfile" value="03_ADC_reference-page-01.kicad_sch"/>
+      <sheetpath names="/03_ADC_reference-page-01/" tstamps="/87670d85-ea87-5d88-9c16-bea7aa19d18f/"/>
+      <tstamps>a37de88f-f958-5df1-a7d9-10a09ad29b29</tstamps>
+    </comp>
+    <comp ref="R16">
+      <value>10000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD0710KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R16" description=""/>
+      <property name="MPN" value="RT0603BRD0710KL"/>
+      <property name="Sheetname" value="03_ADC_reference-page-01"/>
+      <property name="Sheetfile" value="03_ADC_reference-page-01.kicad_sch"/>
+      <sheetpath names="/03_ADC_reference-page-01/" tstamps="/87670d85-ea87-5d88-9c16-bea7aa19d18f/"/>
+      <tstamps>44228d15-7f4b-5faa-aa4d-442271ce7357</tstamps>
+    </comp>
+    <comp ref="R17">
+      <value>4700R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RC0603FR-074K7L</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R17" description=""/>
+      <property name="MPN" value="RC0603FR-074K7L"/>
+      <property name="Sheetname" value="03_ADC_reference-page-01"/>
+      <property name="Sheetfile" value="03_ADC_reference-page-01.kicad_sch"/>
+      <sheetpath names="/03_ADC_reference-page-01/" tstamps="/87670d85-ea87-5d88-9c16-bea7aa19d18f/"/>
+      <tstamps>5a2d97e3-fe58-5b18-a59a-6ae6d6dbf656</tstamps>
+    </comp>
+    <comp ref="R18">
+      <value>4700R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RC0603FR-074K7L</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R18" description=""/>
+      <property name="MPN" value="RC0603FR-074K7L"/>
+      <property name="Sheetname" value="03_ADC_reference-page-01"/>
+      <property name="Sheetfile" value="03_ADC_reference-page-01.kicad_sch"/>
+      <sheetpath names="/03_ADC_reference-page-01/" tstamps="/87670d85-ea87-5d88-9c16-bea7aa19d18f/"/>
+      <tstamps>53f00a37-d4ff-55c5-af4f-295750b281bb</tstamps>
+    </comp>
+    <comp ref="R19">
+      <value>22R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RC0603FR-0722RL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R19" description=""/>
+      <property name="MPN" value="RC0603FR-0722RL"/>
+      <property name="Sheetname" value="03_ADC_reference-page-01"/>
+      <property name="Sheetfile" value="03_ADC_reference-page-01.kicad_sch"/>
+      <sheetpath names="/03_ADC_reference-page-01/" tstamps="/87670d85-ea87-5d88-9c16-bea7aa19d18f/"/>
+      <tstamps>9cb0e6ef-d5b6-530d-8e16-0eb7ca9884a6</tstamps>
+    </comp>
+    <comp ref="R20">
+      <value>10000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD0710KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R20" description=""/>
+      <property name="MPN" value="RT0603BRD0710KL"/>
+      <property name="Sheetname" value="03_ADC_reference-page-01"/>
+      <property name="Sheetfile" value="03_ADC_reference-page-01.kicad_sch"/>
+      <sheetpath names="/03_ADC_reference-page-01/" tstamps="/87670d85-ea87-5d88-9c16-bea7aa19d18f/"/>
+      <tstamps>d2ff6d35-5fce-5698-8b8c-bee8586a216d</tstamps>
+    </comp>
+    <comp ref="R21">
+      <value>10000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD0710KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R21" description=""/>
+      <property name="MPN" value="RT0603BRD0710KL"/>
+      <property name="Sheetname" value="03_ADC_reference-page-01"/>
+      <property name="Sheetfile" value="03_ADC_reference-page-01.kicad_sch"/>
+      <sheetpath names="/03_ADC_reference-page-01/" tstamps="/87670d85-ea87-5d88-9c16-bea7aa19d18f/"/>
+      <tstamps>536fb663-ff66-5c5a-b920-560d44c154b1</tstamps>
+    </comp>
+    <comp ref="U4">
+      <value>REF3025AIDBZR</value>
+      <footprint>Skylark:Package_TO_SOT_SMD__SOT-23</footprint>
+      <fields>
+        <field name="MPN">REF3025AIDBZR</field>
+        <field name="Footprint">Skylark:Package_TO_SOT_SMD__SOT-23</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_U4" description=""/>
+      <property name="MPN" value="REF3025AIDBZR"/>
+      <property name="Sheetname" value="03_ADC_reference-page-01"/>
+      <property name="Sheetfile" value="03_ADC_reference-page-01.kicad_sch"/>
+      <sheetpath names="/03_ADC_reference-page-01/" tstamps="/87670d85-ea87-5d88-9c16-bea7aa19d18f/"/>
+      <tstamps>fe470f40-0781-5963-b606-6b85ad37181f</tstamps>
+    </comp>
+    <comp ref="C16">
+      <value>100nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71H104KA93D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C16" description=""/>
+      <property name="MPN" value="GRM188R71H104KA93D"/>
+      <property name="Sheetname" value="03_ADC_reference-page-02"/>
+      <property name="Sheetfile" value="03_ADC_reference-page-02.kicad_sch"/>
+      <sheetpath names="/03_ADC_reference-page-02/" tstamps="/e7f2d07d-a3bf-5eff-bec3-079d79795f18/"/>
+      <tstamps>bdd9d0aa-9879-5d87-8975-c554bdc05b7d</tstamps>
+    </comp>
+    <comp ref="C17">
+      <value>100nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71H104KA93D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C17" description=""/>
+      <property name="MPN" value="GRM188R71H104KA93D"/>
+      <property name="Sheetname" value="03_ADC_reference-page-02"/>
+      <property name="Sheetfile" value="03_ADC_reference-page-02.kicad_sch"/>
+      <sheetpath names="/03_ADC_reference-page-02/" tstamps="/e7f2d07d-a3bf-5eff-bec3-079d79795f18/"/>
+      <tstamps>356aa40b-b4be-5509-817c-9a6d03aa8283</tstamps>
+    </comp>
+    <comp ref="C18">
+      <value>100nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71H104KA93D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C18" description=""/>
+      <property name="MPN" value="GRM188R71H104KA93D"/>
+      <property name="Sheetname" value="03_ADC_reference-page-02"/>
+      <property name="Sheetfile" value="03_ADC_reference-page-02.kicad_sch"/>
+      <sheetpath names="/03_ADC_reference-page-02/" tstamps="/e7f2d07d-a3bf-5eff-bec3-079d79795f18/"/>
+      <tstamps>7fa01d33-1efa-5397-b511-3781a2ff416c</tstamps>
+    </comp>
+    <comp ref="C19">
+      <value>1uF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71E105KA12D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C19" description=""/>
+      <property name="MPN" value="GRM188R71E105KA12D"/>
+      <property name="Sheetname" value="03_ADC_reference-page-02"/>
+      <property name="Sheetfile" value="03_ADC_reference-page-02.kicad_sch"/>
+      <sheetpath names="/03_ADC_reference-page-02/" tstamps="/e7f2d07d-a3bf-5eff-bec3-079d79795f18/"/>
+      <tstamps>16fd1287-8080-5a39-8d16-e86d30d28a6e</tstamps>
+    </comp>
+    <comp ref="R70">
+      <value>10000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD0710KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R70" description=""/>
+      <property name="MPN" value="RT0603BRD0710KL"/>
+      <property name="Sheetname" value="03_ADC_reference-page-02"/>
+      <property name="Sheetfile" value="03_ADC_reference-page-02.kicad_sch"/>
+      <sheetpath names="/03_ADC_reference-page-02/" tstamps="/e7f2d07d-a3bf-5eff-bec3-079d79795f18/"/>
+      <tstamps>b07332b9-77b5-5625-9aa5-e149e3e41489</tstamps>
+    </comp>
+    <comp ref="R71">
+      <value>1e+06R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RC0603FR-071ML</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R71" description=""/>
+      <property name="MPN" value="RC0603FR-071ML"/>
+      <property name="Sheetname" value="03_ADC_reference-page-02"/>
+      <property name="Sheetfile" value="03_ADC_reference-page-02.kicad_sch"/>
+      <sheetpath names="/03_ADC_reference-page-02/" tstamps="/e7f2d07d-a3bf-5eff-bec3-079d79795f18/"/>
+      <tstamps>8000090c-cae6-51f2-a094-a0a91a907114</tstamps>
+    </comp>
+    <comp ref="U5">
+      <value>OPA387DBVR</value>
+      <footprint>Skylark:Package_TO_SOT_SMD__SOT-23-5</footprint>
+      <fields>
+        <field name="MPN">OPA387DBVR</field>
+        <field name="Footprint">Skylark:Package_TO_SOT_SMD__SOT-23-5</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_U5" description=""/>
+      <property name="MPN" value="OPA387DBVR"/>
+      <property name="Sheetname" value="03_ADC_reference-page-02"/>
+      <property name="Sheetfile" value="03_ADC_reference-page-02.kicad_sch"/>
+      <sheetpath names="/03_ADC_reference-page-02/" tstamps="/e7f2d07d-a3bf-5eff-bec3-079d79795f18/"/>
+      <tstamps>c6c052ee-e61f-55c4-afbc-c10a861e15d1</tstamps>
+    </comp>
+    <comp ref="U6">
+      <value>ADS122C04IPWR</value>
+      <footprint>Skylark:Package_SO__TSSOP-16_4.4x5mm_P0.65mm</footprint>
+      <fields>
+        <field name="MPN">ADS122C04IPWR</field>
+        <field name="Footprint">Skylark:Package_SO__TSSOP-16_4.4x5mm_P0.65mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_U6" description=""/>
+      <property name="MPN" value="ADS122C04IPWR"/>
+      <property name="Sheetname" value="03_ADC_reference-page-02"/>
+      <property name="Sheetfile" value="03_ADC_reference-page-02.kicad_sch"/>
+      <sheetpath names="/03_ADC_reference-page-02/" tstamps="/e7f2d07d-a3bf-5eff-bec3-079d79795f18/"/>
+      <tstamps>0f2d39be-9842-5e06-84a2-639746860c3f</tstamps>
+    </comp>
+    <comp ref="C73">
+      <value>1uF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71E105KA12D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C73" description=""/>
+      <property name="MPN" value="GRM188R71E105KA12D"/>
+      <property name="Sheetname" value="04_Analog_reference-page-01"/>
+      <property name="Sheetfile" value="04_Analog_reference-page-01.kicad_sch"/>
+      <sheetpath names="/04_Analog_reference-page-01/" tstamps="/355762cb-5426-5567-9d3e-d33b6f259b0a/"/>
+      <tstamps>f559c2e3-c3fa-5045-8a2d-a59a9d5c5f17</tstamps>
+    </comp>
+    <comp ref="C74">
+      <value>10nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71H103KA01D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C74" description=""/>
+      <property name="MPN" value="GRM188R71H103KA01D"/>
+      <property name="Sheetname" value="04_Analog_reference-page-01"/>
+      <property name="Sheetfile" value="04_Analog_reference-page-01.kicad_sch"/>
+      <sheetpath names="/04_Analog_reference-page-01/" tstamps="/355762cb-5426-5567-9d3e-d33b6f259b0a/"/>
+      <tstamps>fa461455-bad6-5d69-a2df-4238053b7e46</tstamps>
+    </comp>
+    <comp ref="Q7">
+      <value>2N7002/HAMR</value>
+      <footprint>Skylark:Package_TO_SOT_SMD__SOT-23</footprint>
+      <fields>
+        <field name="MPN">2N7002/HAMR</field>
+        <field name="Footprint">Skylark:Package_TO_SOT_SMD__SOT-23</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_Q7" description=""/>
+      <property name="MPN" value="2N7002/HAMR"/>
+      <property name="Sheetname" value="04_Analog_reference-page-01"/>
+      <property name="Sheetfile" value="04_Analog_reference-page-01.kicad_sch"/>
+      <sheetpath names="/04_Analog_reference-page-01/" tstamps="/355762cb-5426-5567-9d3e-d33b6f259b0a/"/>
+      <tstamps>2cd2acdb-0452-5300-8fbc-9c6f927b17f6</tstamps>
+    </comp>
+    <comp ref="R72">
+      <value>100000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD07100KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R72" description=""/>
+      <property name="MPN" value="RT0603BRD07100KL"/>
+      <property name="Sheetname" value="04_Analog_reference-page-01"/>
+      <property name="Sheetfile" value="04_Analog_reference-page-01.kicad_sch"/>
+      <sheetpath names="/04_Analog_reference-page-01/" tstamps="/355762cb-5426-5567-9d3e-d33b6f259b0a/"/>
+      <tstamps>51fe1130-a4c0-5a7d-8d12-71f86a9cbcd9</tstamps>
+    </comp>
+    <comp ref="R73">
+      <value>10000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD0710KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R73" description=""/>
+      <property name="MPN" value="RT0603BRD0710KL"/>
+      <property name="Sheetname" value="04_Analog_reference-page-01"/>
+      <property name="Sheetfile" value="04_Analog_reference-page-01.kicad_sch"/>
+      <sheetpath names="/04_Analog_reference-page-01/" tstamps="/355762cb-5426-5567-9d3e-d33b6f259b0a/"/>
+      <tstamps>698f3026-31db-5f4f-8704-4c40331e2bee</tstamps>
+    </comp>
+    <comp ref="U13">
+      <value>TPS22918DBVR</value>
+      <footprint>Skylark:Package_TO_SOT_SMD__SOT-23-6</footprint>
+      <fields>
+        <field name="MPN">TPS22918DBVR</field>
+        <field name="Footprint">Skylark:Package_TO_SOT_SMD__SOT-23-6</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_U13" description=""/>
+      <property name="MPN" value="TPS22918DBVR"/>
+      <property name="Sheetname" value="04_Analog_reference-page-01"/>
+      <property name="Sheetfile" value="04_Analog_reference-page-01.kicad_sch"/>
+      <sheetpath names="/04_Analog_reference-page-01/" tstamps="/355762cb-5426-5567-9d3e-d33b6f259b0a/"/>
+      <tstamps>89733251-216f-58e5-a948-a64f0465536a</tstamps>
+    </comp>
+    <comp ref="C30">
+      <value>100nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71H104KA93D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C30" description=""/>
+      <property name="MPN" value="GRM188R71H104KA93D"/>
+      <property name="Sheetname" value="04_SO2-page-01"/>
+      <property name="Sheetfile" value="04_SO2-page-01.kicad_sch"/>
+      <sheetpath names="/04_SO2-page-01/" tstamps="/ba9fa2df-14f1-5d01-b250-a34345951bde/"/>
+      <tstamps>4928be0a-a241-52a1-a730-02dd3cf97ac5</tstamps>
+    </comp>
+    <comp ref="C31">
+      <value>1uF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71E105KA12D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C31" description=""/>
+      <property name="MPN" value="GRM188R71E105KA12D"/>
+      <property name="Sheetname" value="04_SO2-page-01"/>
+      <property name="Sheetfile" value="04_SO2-page-01.kicad_sch"/>
+      <sheetpath names="/04_SO2-page-01/" tstamps="/ba9fa2df-14f1-5d01-b250-a34345951bde/"/>
+      <tstamps>d1380121-fe60-5885-8fcd-aa71415a44a0</tstamps>
+    </comp>
+    <comp ref="C33">
+      <value>100nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71H104KA93D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C33" description=""/>
+      <property name="MPN" value="GRM188R71H104KA93D"/>
+      <property name="Sheetname" value="04_SO2-page-01"/>
+      <property name="Sheetfile" value="04_SO2-page-01.kicad_sch"/>
+      <sheetpath names="/04_SO2-page-01/" tstamps="/ba9fa2df-14f1-5d01-b250-a34345951bde/"/>
+      <tstamps>6a6a6867-7708-5363-bcbf-99dc5ff3dc1b</tstamps>
+    </comp>
+    <comp ref="GS1">
+      <value>SGX-7SO2-AQ-20</value>
+      <footprint>Skylark:SGX7_AQ_Socket</footprint>
+      <fields>
+        <field name="MPN">SGX-7SO2-AQ-20</field>
+        <field name="Footprint">Skylark:SGX7_AQ_Socket</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_GS1" description=""/>
+      <property name="MPN" value="SGX-7SO2-AQ-20"/>
+      <property name="Sheetname" value="04_SO2-page-01"/>
+      <property name="Sheetfile" value="04_SO2-page-01.kicad_sch"/>
+      <sheetpath names="/04_SO2-page-01/" tstamps="/ba9fa2df-14f1-5d01-b250-a34345951bde/"/>
+      <tstamps>f9bb6edf-d6be-529a-8b0f-c85c5956f8d8</tstamps>
+    </comp>
+    <comp ref="Q1">
+      <value>MMBFJ177LT1G</value>
+      <footprint>Skylark:Package_TO_SOT_SMD__SOT-23</footprint>
+      <fields>
+        <field name="MPN">MMBFJ177LT1G</field>
+        <field name="Footprint">Skylark:Package_TO_SOT_SMD__SOT-23</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_Q1" description=""/>
+      <property name="MPN" value="MMBFJ177LT1G"/>
+      <property name="Sheetname" value="04_SO2-page-01"/>
+      <property name="Sheetfile" value="04_SO2-page-01.kicad_sch"/>
+      <sheetpath names="/04_SO2-page-01/" tstamps="/ba9fa2df-14f1-5d01-b250-a34345951bde/"/>
+      <tstamps>605800fc-3f59-564b-93ca-f0983dc04ae7</tstamps>
+    </comp>
+    <comp ref="R30">
+      <value>20R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD0720RL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R30" description=""/>
+      <property name="MPN" value="RT0603BRD0720RL"/>
+      <property name="Sheetname" value="04_SO2-page-01"/>
+      <property name="Sheetfile" value="04_SO2-page-01.kicad_sch"/>
+      <sheetpath names="/04_SO2-page-01/" tstamps="/ba9fa2df-14f1-5d01-b250-a34345951bde/"/>
+      <tstamps>53211c8c-d225-563b-b1b5-5f93e9a01574</tstamps>
+    </comp>
+    <comp ref="R31">
+      <value>100000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD07100KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R31" description=""/>
+      <property name="MPN" value="RT0603BRD07100KL"/>
+      <property name="Sheetname" value="04_SO2-page-01"/>
+      <property name="Sheetfile" value="04_SO2-page-01.kicad_sch"/>
+      <sheetpath names="/04_SO2-page-01/" tstamps="/ba9fa2df-14f1-5d01-b250-a34345951bde/"/>
+      <tstamps>2a7c005d-9b53-536c-9222-10ab495e1b46</tstamps>
+    </comp>
+    <comp ref="R32">
+      <value>10000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD0710KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R32" description=""/>
+      <property name="MPN" value="RT0603BRD0710KL"/>
+      <property name="Sheetname" value="04_SO2-page-01"/>
+      <property name="Sheetfile" value="04_SO2-page-01.kicad_sch"/>
+      <sheetpath names="/04_SO2-page-01/" tstamps="/ba9fa2df-14f1-5d01-b250-a34345951bde/"/>
+      <tstamps>89934b6f-216b-503d-af97-77a9f11c26e8</tstamps>
+    </comp>
+    <comp ref="R33">
+      <value>20R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD0720RL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R33" description=""/>
+      <property name="MPN" value="RT0603BRD0720RL"/>
+      <property name="Sheetname" value="04_SO2-page-01"/>
+      <property name="Sheetfile" value="04_SO2-page-01.kicad_sch"/>
+      <sheetpath names="/04_SO2-page-01/" tstamps="/ba9fa2df-14f1-5d01-b250-a34345951bde/"/>
+      <tstamps>4e797349-de20-5618-873f-88f8d923e25d</tstamps>
+    </comp>
+    <comp ref="R34">
+      <value>100000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD07100KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R34" description=""/>
+      <property name="MPN" value="RT0603BRD07100KL"/>
+      <property name="Sheetname" value="04_SO2-page-01"/>
+      <property name="Sheetfile" value="04_SO2-page-01.kicad_sch"/>
+      <sheetpath names="/04_SO2-page-01/" tstamps="/ba9fa2df-14f1-5d01-b250-a34345951bde/"/>
+      <tstamps>187fea21-55f3-5b5f-88f3-106a9bc198f3</tstamps>
+    </comp>
+    <comp ref="U7">
+      <value>OPA2387DGKR</value>
+      <footprint>Skylark:Package_SO__VSSOP-8_3x3mm_P0.65mm</footprint>
+      <fields>
+        <field name="MPN">OPA2387DGKR</field>
+        <field name="Footprint">Skylark:Package_SO__VSSOP-8_3x3mm_P0.65mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_U7" description=""/>
+      <property name="MPN" value="OPA2387DGKR"/>
+      <property name="Sheetname" value="04_SO2-page-01"/>
+      <property name="Sheetfile" value="04_SO2-page-01.kicad_sch"/>
+      <sheetpath names="/04_SO2-page-01/" tstamps="/ba9fa2df-14f1-5d01-b250-a34345951bde/"/>
+      <tstamps>2e4cefd1-bc9d-5463-91eb-4e7a31ff3613</tstamps>
+    </comp>
+    <comp ref="U8">
+      <value>OPA387DBVR</value>
+      <footprint>Skylark:Package_TO_SOT_SMD__SOT-23-5</footprint>
+      <fields>
+        <field name="MPN">OPA387DBVR</field>
+        <field name="Footprint">Skylark:Package_TO_SOT_SMD__SOT-23-5</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_U8" description=""/>
+      <property name="MPN" value="OPA387DBVR"/>
+      <property name="Sheetname" value="04_SO2-page-01"/>
+      <property name="Sheetfile" value="04_SO2-page-01.kicad_sch"/>
+      <sheetpath names="/04_SO2-page-01/" tstamps="/ba9fa2df-14f1-5d01-b250-a34345951bde/"/>
+      <tstamps>731b9292-25d7-5346-9024-b75d2e079f82</tstamps>
+    </comp>
+    <comp ref="C34">
+      <value>1uF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71E105KA12D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C34" description=""/>
+      <property name="MPN" value="GRM188R71E105KA12D"/>
+      <property name="Sheetname" value="04_SO2-page-02"/>
+      <property name="Sheetfile" value="04_SO2-page-02.kicad_sch"/>
+      <sheetpath names="/04_SO2-page-02/" tstamps="/fba23098-6c42-5f5d-abd6-c7297354137a/"/>
+      <tstamps>99ae541a-7434-5c6a-a5cc-6e7f2a6c31bb</tstamps>
+    </comp>
+    <comp ref="C36">
+      <value>100nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71H104KA93D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C36" description=""/>
+      <property name="MPN" value="GRM188R71H104KA93D"/>
+      <property name="Sheetname" value="04_SO2-page-02"/>
+      <property name="Sheetfile" value="04_SO2-page-02.kicad_sch"/>
+      <sheetpath names="/04_SO2-page-02/" tstamps="/fba23098-6c42-5f5d-abd6-c7297354137a/"/>
+      <tstamps>105c61c4-09b9-5fca-b64d-452802d6255c</tstamps>
+    </comp>
+    <comp ref="C37">
+      <value>100nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71H104KA93D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C37" description=""/>
+      <property name="MPN" value="GRM188R71H104KA93D"/>
+      <property name="Sheetname" value="04_SO2-page-02"/>
+      <property name="Sheetfile" value="04_SO2-page-02.kicad_sch"/>
+      <sheetpath names="/04_SO2-page-02/" tstamps="/fba23098-6c42-5f5d-abd6-c7297354137a/"/>
+      <tstamps>dd268880-8bf5-5b21-a10f-308bd0d916c6</tstamps>
+    </comp>
+    <comp ref="C38">
+      <value>100nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71H104KA93D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C38" description=""/>
+      <property name="MPN" value="GRM188R71H104KA93D"/>
+      <property name="Sheetname" value="04_SO2-page-02"/>
+      <property name="Sheetfile" value="04_SO2-page-02.kicad_sch"/>
+      <sheetpath names="/04_SO2-page-02/" tstamps="/fba23098-6c42-5f5d-abd6-c7297354137a/"/>
+      <tstamps>5b7073d4-0606-5149-9a52-d95c54c6d304</tstamps>
+    </comp>
+    <comp ref="Q2">
+      <value>MMBFJ177LT1G</value>
+      <footprint>Skylark:Package_TO_SOT_SMD__SOT-23</footprint>
+      <fields>
+        <field name="MPN">MMBFJ177LT1G</field>
+        <field name="Footprint">Skylark:Package_TO_SOT_SMD__SOT-23</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_Q2" description=""/>
+      <property name="MPN" value="MMBFJ177LT1G"/>
+      <property name="Sheetname" value="04_SO2-page-02"/>
+      <property name="Sheetfile" value="04_SO2-page-02.kicad_sch"/>
+      <sheetpath names="/04_SO2-page-02/" tstamps="/fba23098-6c42-5f5d-abd6-c7297354137a/"/>
+      <tstamps>9ddeb3e7-1ac5-5daa-8016-35650babae0c</tstamps>
+    </comp>
+    <comp ref="R35">
+      <value>10000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD0710KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R35" description=""/>
+      <property name="MPN" value="RT0603BRD0710KL"/>
+      <property name="Sheetname" value="04_SO2-page-02"/>
+      <property name="Sheetfile" value="04_SO2-page-02.kicad_sch"/>
+      <sheetpath names="/04_SO2-page-02/" tstamps="/fba23098-6c42-5f5d-abd6-c7297354137a/"/>
+      <tstamps>eba4355a-b244-58a4-b471-3d6dda53dc6a</tstamps>
+    </comp>
+    <comp ref="R36">
+      <value>10000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD0710KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R36" description=""/>
+      <property name="MPN" value="RT0603BRD0710KL"/>
+      <property name="Sheetname" value="04_SO2-page-02"/>
+      <property name="Sheetfile" value="04_SO2-page-02.kicad_sch"/>
+      <sheetpath names="/04_SO2-page-02/" tstamps="/fba23098-6c42-5f5d-abd6-c7297354137a/"/>
+      <tstamps>61a902c5-74fe-57b7-a1e7-49fc59423071</tstamps>
+    </comp>
+    <comp ref="R37">
+      <value>100R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RC0603FR-07100RL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R37" description=""/>
+      <property name="MPN" value="RC0603FR-07100RL"/>
+      <property name="Sheetname" value="04_SO2-page-02"/>
+      <property name="Sheetfile" value="04_SO2-page-02.kicad_sch"/>
+      <sheetpath names="/04_SO2-page-02/" tstamps="/fba23098-6c42-5f5d-abd6-c7297354137a/"/>
+      <tstamps>3c3ea7d9-a33c-5c0c-b632-c2e2529c5cd9</tstamps>
+    </comp>
+    <comp ref="C50">
+      <value>470nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71E474KA12D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C50" description=""/>
+      <property name="MPN" value="GRM188R71E474KA12D"/>
+      <property name="Sheetname" value="05_H2S-page-01"/>
+      <property name="Sheetfile" value="05_H2S-page-01.kicad_sch"/>
+      <sheetpath names="/05_H2S-page-01/" tstamps="/ff6b77c3-95f8-5afc-8a6a-99a7ff58b4d5/"/>
+      <tstamps>439b5c5e-62aa-50a3-9dcd-c2d2fec5daf5</tstamps>
+    </comp>
+    <comp ref="C51">
+      <value>1uF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71E105KA12D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C51" description=""/>
+      <property name="MPN" value="GRM188R71E105KA12D"/>
+      <property name="Sheetname" value="05_H2S-page-01"/>
+      <property name="Sheetfile" value="05_H2S-page-01.kicad_sch"/>
+      <sheetpath names="/05_H2S-page-01/" tstamps="/ff6b77c3-95f8-5afc-8a6a-99a7ff58b4d5/"/>
+      <tstamps>5c712ed0-c1df-5ec6-8ea5-4eddf50fa31a</tstamps>
+    </comp>
+    <comp ref="C53">
+      <value>470nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71E474KA12D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C53" description=""/>
+      <property name="MPN" value="GRM188R71E474KA12D"/>
+      <property name="Sheetname" value="05_H2S-page-01"/>
+      <property name="Sheetfile" value="05_H2S-page-01.kicad_sch"/>
+      <sheetpath names="/05_H2S-page-01/" tstamps="/ff6b77c3-95f8-5afc-8a6a-99a7ff58b4d5/"/>
+      <tstamps>cb956024-577a-5958-a4cc-e4a87466e1c1</tstamps>
+    </comp>
+    <comp ref="GS2">
+      <value>SGX-7H2S-AQ-25</value>
+      <footprint>Skylark:SGX7_AQ_Socket</footprint>
+      <fields>
+        <field name="MPN">SGX-7H2S-AQ-25</field>
+        <field name="Footprint">Skylark:SGX7_AQ_Socket</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_GS2" description=""/>
+      <property name="MPN" value="SGX-7H2S-AQ-25"/>
+      <property name="Sheetname" value="05_H2S-page-01"/>
+      <property name="Sheetfile" value="05_H2S-page-01.kicad_sch"/>
+      <sheetpath names="/05_H2S-page-01/" tstamps="/ff6b77c3-95f8-5afc-8a6a-99a7ff58b4d5/"/>
+      <tstamps>673c77bb-c75c-55d8-8320-ec018c407a27</tstamps>
+    </comp>
+    <comp ref="Q3">
+      <value>MMBFJ177LT1G</value>
+      <footprint>Skylark:Package_TO_SOT_SMD__SOT-23</footprint>
+      <fields>
+        <field name="MPN">MMBFJ177LT1G</field>
+        <field name="Footprint">Skylark:Package_TO_SOT_SMD__SOT-23</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_Q3" description=""/>
+      <property name="MPN" value="MMBFJ177LT1G"/>
+      <property name="Sheetname" value="05_H2S-page-01"/>
+      <property name="Sheetfile" value="05_H2S-page-01.kicad_sch"/>
+      <sheetpath names="/05_H2S-page-01/" tstamps="/ff6b77c3-95f8-5afc-8a6a-99a7ff58b4d5/"/>
+      <tstamps>0c4e0180-27e4-5344-aa27-55d30ba8169a</tstamps>
+    </comp>
+    <comp ref="R50">
+      <value>20R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD0720RL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R50" description=""/>
+      <property name="MPN" value="RT0603BRD0720RL"/>
+      <property name="Sheetname" value="05_H2S-page-01"/>
+      <property name="Sheetfile" value="05_H2S-page-01.kicad_sch"/>
+      <sheetpath names="/05_H2S-page-01/" tstamps="/ff6b77c3-95f8-5afc-8a6a-99a7ff58b4d5/"/>
+      <tstamps>f9568d0a-4b1f-5605-a8d9-9a74f72231c0</tstamps>
+    </comp>
+    <comp ref="R51">
+      <value>20000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD0720KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R51" description=""/>
+      <property name="MPN" value="RT0603BRD0720KL"/>
+      <property name="Sheetname" value="05_H2S-page-01"/>
+      <property name="Sheetfile" value="05_H2S-page-01.kicad_sch"/>
+      <sheetpath names="/05_H2S-page-01/" tstamps="/ff6b77c3-95f8-5afc-8a6a-99a7ff58b4d5/"/>
+      <tstamps>ce5b3bac-d9c0-5cd3-a4be-325879db90e8</tstamps>
+    </comp>
+    <comp ref="R52">
+      <value>10000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD0710KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R52" description=""/>
+      <property name="MPN" value="RT0603BRD0710KL"/>
+      <property name="Sheetname" value="05_H2S-page-01"/>
+      <property name="Sheetfile" value="05_H2S-page-01.kicad_sch"/>
+      <sheetpath names="/05_H2S-page-01/" tstamps="/ff6b77c3-95f8-5afc-8a6a-99a7ff58b4d5/"/>
+      <tstamps>ee16a5e5-e774-5595-90ab-9c8795a516ea</tstamps>
+    </comp>
+    <comp ref="R53">
+      <value>20R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD0720RL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R53" description=""/>
+      <property name="MPN" value="RT0603BRD0720RL"/>
+      <property name="Sheetname" value="05_H2S-page-01"/>
+      <property name="Sheetfile" value="05_H2S-page-01.kicad_sch"/>
+      <sheetpath names="/05_H2S-page-01/" tstamps="/ff6b77c3-95f8-5afc-8a6a-99a7ff58b4d5/"/>
+      <tstamps>01cf99b3-e327-59c5-a346-516f9b77ceb4</tstamps>
+    </comp>
+    <comp ref="R54">
+      <value>20000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD0720KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R54" description=""/>
+      <property name="MPN" value="RT0603BRD0720KL"/>
+      <property name="Sheetname" value="05_H2S-page-01"/>
+      <property name="Sheetfile" value="05_H2S-page-01.kicad_sch"/>
+      <sheetpath names="/05_H2S-page-01/" tstamps="/ff6b77c3-95f8-5afc-8a6a-99a7ff58b4d5/"/>
+      <tstamps>a33ad4c1-bff7-595c-b241-9cd46045fed5</tstamps>
+    </comp>
+    <comp ref="U9">
+      <value>OPA2387DGKR</value>
+      <footprint>Skylark:Package_SO__VSSOP-8_3x3mm_P0.65mm</footprint>
+      <fields>
+        <field name="MPN">OPA2387DGKR</field>
+        <field name="Footprint">Skylark:Package_SO__VSSOP-8_3x3mm_P0.65mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_U9" description=""/>
+      <property name="MPN" value="OPA2387DGKR"/>
+      <property name="Sheetname" value="05_H2S-page-01"/>
+      <property name="Sheetfile" value="05_H2S-page-01.kicad_sch"/>
+      <sheetpath names="/05_H2S-page-01/" tstamps="/ff6b77c3-95f8-5afc-8a6a-99a7ff58b4d5/"/>
+      <tstamps>ac19fe40-0bff-5204-96ae-2d57f6b7c68b</tstamps>
+    </comp>
+    <comp ref="U10">
+      <value>OPA387DBVR</value>
+      <footprint>Skylark:Package_TO_SOT_SMD__SOT-23-5</footprint>
+      <fields>
+        <field name="MPN">OPA387DBVR</field>
+        <field name="Footprint">Skylark:Package_TO_SOT_SMD__SOT-23-5</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_U10" description=""/>
+      <property name="MPN" value="OPA387DBVR"/>
+      <property name="Sheetname" value="05_H2S-page-01"/>
+      <property name="Sheetfile" value="05_H2S-page-01.kicad_sch"/>
+      <sheetpath names="/05_H2S-page-01/" tstamps="/ff6b77c3-95f8-5afc-8a6a-99a7ff58b4d5/"/>
+      <tstamps>d1fafe4d-1783-5fbc-a826-766a325bc440</tstamps>
+    </comp>
+    <comp ref="C54">
+      <value>1uF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71E105KA12D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C54" description=""/>
+      <property name="MPN" value="GRM188R71E105KA12D"/>
+      <property name="Sheetname" value="05_H2S-page-02"/>
+      <property name="Sheetfile" value="05_H2S-page-02.kicad_sch"/>
+      <sheetpath names="/05_H2S-page-02/" tstamps="/c60510a4-912f-56f4-a510-e17dcca6cdbf/"/>
+      <tstamps>a130326d-66ab-5769-a266-a40c2aeb8a95</tstamps>
+    </comp>
+    <comp ref="C56">
+      <value>100nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71H104KA93D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C56" description=""/>
+      <property name="MPN" value="GRM188R71H104KA93D"/>
+      <property name="Sheetname" value="05_H2S-page-02"/>
+      <property name="Sheetfile" value="05_H2S-page-02.kicad_sch"/>
+      <sheetpath names="/05_H2S-page-02/" tstamps="/c60510a4-912f-56f4-a510-e17dcca6cdbf/"/>
+      <tstamps>7b65a903-2a5e-5d05-ba8a-d54cf39adfb9</tstamps>
+    </comp>
+    <comp ref="C57">
+      <value>100nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71H104KA93D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C57" description=""/>
+      <property name="MPN" value="GRM188R71H104KA93D"/>
+      <property name="Sheetname" value="05_H2S-page-02"/>
+      <property name="Sheetfile" value="05_H2S-page-02.kicad_sch"/>
+      <sheetpath names="/05_H2S-page-02/" tstamps="/c60510a4-912f-56f4-a510-e17dcca6cdbf/"/>
+      <tstamps>cf5ac64b-9faf-56f7-b35c-da3ed9181a66</tstamps>
+    </comp>
+    <comp ref="C58">
+      <value>100nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71H104KA93D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C58" description=""/>
+      <property name="MPN" value="GRM188R71H104KA93D"/>
+      <property name="Sheetname" value="05_H2S-page-02"/>
+      <property name="Sheetfile" value="05_H2S-page-02.kicad_sch"/>
+      <sheetpath names="/05_H2S-page-02/" tstamps="/c60510a4-912f-56f4-a510-e17dcca6cdbf/"/>
+      <tstamps>72119122-3809-5b36-b16e-6394a4133f1c</tstamps>
+    </comp>
+    <comp ref="Q4">
+      <value>MMBFJ177LT1G</value>
+      <footprint>Skylark:Package_TO_SOT_SMD__SOT-23</footprint>
+      <fields>
+        <field name="MPN">MMBFJ177LT1G</field>
+        <field name="Footprint">Skylark:Package_TO_SOT_SMD__SOT-23</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_Q4" description=""/>
+      <property name="MPN" value="MMBFJ177LT1G"/>
+      <property name="Sheetname" value="05_H2S-page-02"/>
+      <property name="Sheetfile" value="05_H2S-page-02.kicad_sch"/>
+      <sheetpath names="/05_H2S-page-02/" tstamps="/c60510a4-912f-56f4-a510-e17dcca6cdbf/"/>
+      <tstamps>04be0672-9263-5dfc-b317-81c67f84ce2a</tstamps>
+    </comp>
+    <comp ref="R55">
+      <value>10000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD0710KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R55" description=""/>
+      <property name="MPN" value="RT0603BRD0710KL"/>
+      <property name="Sheetname" value="05_H2S-page-02"/>
+      <property name="Sheetfile" value="05_H2S-page-02.kicad_sch"/>
+      <sheetpath names="/05_H2S-page-02/" tstamps="/c60510a4-912f-56f4-a510-e17dcca6cdbf/"/>
+      <tstamps>33854251-d626-54ad-8c72-7516c16e6a7a</tstamps>
+    </comp>
+    <comp ref="R56">
+      <value>10000R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RT0603BRD0710KL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R56" description=""/>
+      <property name="MPN" value="RT0603BRD0710KL"/>
+      <property name="Sheetname" value="05_H2S-page-02"/>
+      <property name="Sheetfile" value="05_H2S-page-02.kicad_sch"/>
+      <sheetpath names="/05_H2S-page-02/" tstamps="/c60510a4-912f-56f4-a510-e17dcca6cdbf/"/>
+      <tstamps>7552cff9-65e5-546e-bf66-2b9546d73e6e</tstamps>
+    </comp>
+    <comp ref="R57">
+      <value>100R</value>
+      <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">RC0603FR-07100RL</field>
+        <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_R57" description=""/>
+      <property name="MPN" value="RC0603FR-07100RL"/>
+      <property name="Sheetname" value="05_H2S-page-02"/>
+      <property name="Sheetfile" value="05_H2S-page-02.kicad_sch"/>
+      <sheetpath names="/05_H2S-page-02/" tstamps="/c60510a4-912f-56f4-a510-e17dcca6cdbf/"/>
+      <tstamps>636b8f1a-eaae-56e5-87d9-314c8ed4f24a</tstamps>
+    </comp>
+    <comp ref="C70">
+      <value>100nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71H104KA93D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C70" description=""/>
+      <property name="MPN" value="GRM188R71H104KA93D"/>
+      <property name="Sheetname" value="06_Environment-page-01"/>
+      <property name="Sheetfile" value="06_Environment-page-01.kicad_sch"/>
+      <sheetpath names="/06_Environment-page-01/" tstamps="/40888c6d-2ce3-5d77-bcb4-504f672fefd3/"/>
+      <tstamps>ae8987ae-20a5-5c72-a0fd-02b57e522bdd</tstamps>
+    </comp>
+    <comp ref="C71">
+      <value>100nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71H104KA93D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C71" description=""/>
+      <property name="MPN" value="GRM188R71H104KA93D"/>
+      <property name="Sheetname" value="06_Environment-page-01"/>
+      <property name="Sheetfile" value="06_Environment-page-01.kicad_sch"/>
+      <sheetpath names="/06_Environment-page-01/" tstamps="/40888c6d-2ce3-5d77-bcb4-504f672fefd3/"/>
+      <tstamps>cfb72310-6668-5731-b46d-142b7678bbc4</tstamps>
+    </comp>
+    <comp ref="C72">
+      <value>100nF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71H104KA93D</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C72" description=""/>
+      <property name="MPN" value="GRM188R71H104KA93D"/>
+      <property name="Sheetname" value="06_Environment-page-01"/>
+      <property name="Sheetfile" value="06_Environment-page-01.kicad_sch"/>
+      <sheetpath names="/06_Environment-page-01/" tstamps="/40888c6d-2ce3-5d77-bcb4-504f672fefd3/"/>
+      <tstamps>2e5608dd-1211-534a-8ad3-29c0291e8d7b</tstamps>
+    </comp>
+    <comp ref="U11">
+      <value>SHT40-AD1F-R2</value>
+      <footprint>Skylark:SHT40</footprint>
+      <fields>
+        <field name="MPN">SHT40-AD1F-R2</field>
+        <field name="Footprint">Skylark:SHT40</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_U11" description=""/>
+      <property name="MPN" value="SHT40-AD1F-R2"/>
+      <property name="Sheetname" value="06_Environment-page-01"/>
+      <property name="Sheetfile" value="06_Environment-page-01.kicad_sch"/>
+      <sheetpath names="/06_Environment-page-01/" tstamps="/40888c6d-2ce3-5d77-bcb4-504f672fefd3/"/>
+      <tstamps>3035667a-2d28-5030-bec0-99c6b6b2cac1</tstamps>
+    </comp>
+    <comp ref="U12">
+      <value>BMP390</value>
+      <footprint>Skylark:BMP390</footprint>
+      <fields>
+        <field name="MPN">BMP390</field>
+        <field name="Footprint">Skylark:BMP390</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_U12" description=""/>
+      <property name="MPN" value="BMP390"/>
+      <property name="Sheetname" value="06_Environment-page-01"/>
+      <property name="Sheetfile" value="06_Environment-page-01.kicad_sch"/>
+      <sheetpath names="/06_Environment-page-01/" tstamps="/40888c6d-2ce3-5d77-bcb4-504f672fefd3/"/>
+      <tstamps>309edeb0-3278-5e3f-897a-5891356f357b</tstamps>
+    </comp>
+    <comp ref="TP1">
+      <value>Test pad 1mm</value>
+      <footprint>Skylark:TestPoint__TestPoint_Pad_D1.0mm</footprint>
+      <fields>
+        <field name="MPN">Test pad 1mm</field>
+        <field name="Footprint">Skylark:TestPoint__TestPoint_Pad_D1.0mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_TP1" description=""/>
+      <property name="MPN" value="Test pad 1mm"/>
+      <property name="Sheetname" value="07_Testpoints-page-01"/>
+      <property name="Sheetfile" value="07_Testpoints-page-01.kicad_sch"/>
+      <sheetpath names="/07_Testpoints-page-01/" tstamps="/6b72c693-ea51-529d-a908-bf5a9ea04dc9/"/>
+      <tstamps>09265a54-2776-5c6f-9a93-dd15d179ef76</tstamps>
+    </comp>
+    <comp ref="TP2">
+      <value>Test pad 1mm</value>
+      <footprint>Skylark:TestPoint__TestPoint_Pad_D1.0mm</footprint>
+      <fields>
+        <field name="MPN">Test pad 1mm</field>
+        <field name="Footprint">Skylark:TestPoint__TestPoint_Pad_D1.0mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_TP2" description=""/>
+      <property name="MPN" value="Test pad 1mm"/>
+      <property name="Sheetname" value="07_Testpoints-page-01"/>
+      <property name="Sheetfile" value="07_Testpoints-page-01.kicad_sch"/>
+      <sheetpath names="/07_Testpoints-page-01/" tstamps="/6b72c693-ea51-529d-a908-bf5a9ea04dc9/"/>
+      <tstamps>0375ed51-4e32-5e4a-a72f-8193f6199aa1</tstamps>
+    </comp>
+    <comp ref="TP3">
+      <value>Test pad 1mm</value>
+      <footprint>Skylark:TestPoint__TestPoint_Pad_D1.0mm</footprint>
+      <fields>
+        <field name="MPN">Test pad 1mm</field>
+        <field name="Footprint">Skylark:TestPoint__TestPoint_Pad_D1.0mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_TP3" description=""/>
+      <property name="MPN" value="Test pad 1mm"/>
+      <property name="Sheetname" value="07_Testpoints-page-01"/>
+      <property name="Sheetfile" value="07_Testpoints-page-01.kicad_sch"/>
+      <sheetpath names="/07_Testpoints-page-01/" tstamps="/6b72c693-ea51-529d-a908-bf5a9ea04dc9/"/>
+      <tstamps>0a774430-05ee-52d2-ab64-202baa4a07cb</tstamps>
+    </comp>
+    <comp ref="TP4">
+      <value>Test pad 1mm</value>
+      <footprint>Skylark:TestPoint__TestPoint_Pad_D1.0mm</footprint>
+      <fields>
+        <field name="MPN">Test pad 1mm</field>
+        <field name="Footprint">Skylark:TestPoint__TestPoint_Pad_D1.0mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_TP4" description=""/>
+      <property name="MPN" value="Test pad 1mm"/>
+      <property name="Sheetname" value="07_Testpoints-page-01"/>
+      <property name="Sheetfile" value="07_Testpoints-page-01.kicad_sch"/>
+      <sheetpath names="/07_Testpoints-page-01/" tstamps="/6b72c693-ea51-529d-a908-bf5a9ea04dc9/"/>
+      <tstamps>91f6bee3-adbd-58bc-9965-5054d7dc6088</tstamps>
+    </comp>
+    <comp ref="TP5">
+      <value>Test pad 1mm</value>
+      <footprint>Skylark:TestPoint__TestPoint_Pad_D1.0mm</footprint>
+      <fields>
+        <field name="MPN">Test pad 1mm</field>
+        <field name="Footprint">Skylark:TestPoint__TestPoint_Pad_D1.0mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_TP5" description=""/>
+      <property name="MPN" value="Test pad 1mm"/>
+      <property name="Sheetname" value="07_Testpoints-page-01"/>
+      <property name="Sheetfile" value="07_Testpoints-page-01.kicad_sch"/>
+      <sheetpath names="/07_Testpoints-page-01/" tstamps="/6b72c693-ea51-529d-a908-bf5a9ea04dc9/"/>
+      <tstamps>a146a473-7317-5f5a-905f-1c1adb1fe964</tstamps>
+    </comp>
+    <comp ref="TP6">
+      <value>Test pad 1mm</value>
+      <footprint>Skylark:TestPoint__TestPoint_Pad_D1.0mm</footprint>
+      <fields>
+        <field name="MPN">Test pad 1mm</field>
+        <field name="Footprint">Skylark:TestPoint__TestPoint_Pad_D1.0mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_TP6" description=""/>
+      <property name="MPN" value="Test pad 1mm"/>
+      <property name="Sheetname" value="07_Testpoints-page-01"/>
+      <property name="Sheetfile" value="07_Testpoints-page-01.kicad_sch"/>
+      <sheetpath names="/07_Testpoints-page-01/" tstamps="/6b72c693-ea51-529d-a908-bf5a9ea04dc9/"/>
+      <tstamps>2a78a358-7652-5431-bd87-3f2a87a92f40</tstamps>
+    </comp>
+    <comp ref="TP7">
+      <value>Test pad 1mm</value>
+      <footprint>Skylark:TestPoint__TestPoint_Pad_D1.0mm</footprint>
+      <fields>
+        <field name="MPN">Test pad 1mm</field>
+        <field name="Footprint">Skylark:TestPoint__TestPoint_Pad_D1.0mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_TP7" description=""/>
+      <property name="MPN" value="Test pad 1mm"/>
+      <property name="Sheetname" value="07_Testpoints-page-01"/>
+      <property name="Sheetfile" value="07_Testpoints-page-01.kicad_sch"/>
+      <sheetpath names="/07_Testpoints-page-01/" tstamps="/6b72c693-ea51-529d-a908-bf5a9ea04dc9/"/>
+      <tstamps>86b744d4-3f53-596c-a172-9e1525b3358f</tstamps>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="Groundlark" part="Part_C1">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">1uF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C10">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">1uF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C11">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C12">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">10uF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C13">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">1uF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C14">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C15">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">1uF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C16">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C17">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C18">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C19">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">1uF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C2">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">4.7uF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C3">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C30">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C31">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">1uF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C33">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C34">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">1uF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C36">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C37">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C38">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C4">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">10uF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C5">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C50">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">470nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C51">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">1uF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C53">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">470nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C54">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">1uF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C56">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C57">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C58">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C6">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C7">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C70">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C71">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C72">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C73">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">1uF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C74">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">10nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C8">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C9">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">100nF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_D1">
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">USBLC6-2SC6</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="IO1" type="passive"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="IO2" type="passive"/>
+        <pin num="4" name="IO2" type="passive"/>
+        <pin num="5" name="VBUS" type="passive"/>
+        <pin num="6" name="IO1" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_D2">
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">USBLC6-2SC6</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="IO1" type="passive"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="IO2" type="passive"/>
+        <pin num="4" name="IO2" type="passive"/>
+        <pin num="5" name="VBUS" type="passive"/>
+        <pin num="6" name="IO1" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_D3">
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">LTST-C191KGKT</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_F1">
+      <fields>
+        <field name="Reference">F</field>
+        <field name="Value">500mA PTC</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="IN" type="passive"/>
+        <pin num="2" name="OUT" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_GS1">
+      <fields>
+        <field name="Reference">G</field>
+        <field name="Value">SGX-7SO2-AQ-20</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="AE" name="Auxiliary" type="passive"/>
+        <pin num="CE" name="Counter" type="passive"/>
+        <pin num="RE" name="Reference" type="passive"/>
+        <pin num="WE" name="Working" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_GS2">
+      <fields>
+        <field name="Reference">G</field>
+        <field name="Value">SGX-7H2S-AQ-25</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="AE" name="Auxiliary" type="passive"/>
+        <pin num="CE" name="Counter" type="passive"/>
+        <pin num="RE" name="Reference" type="passive"/>
+        <pin num="WE" name="Working" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_J1">
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">USB4105-GF-A</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="A1" name="A1" type="passive"/>
+        <pin num="A4" name="A4" type="passive"/>
+        <pin num="A5" name="A5" type="passive"/>
+        <pin num="A6" name="A6" type="passive"/>
+        <pin num="A7" name="A7" type="passive"/>
+        <pin num="A8" name="A8" type="passive"/>
+        <pin num="A9" name="A9" type="passive"/>
+        <pin num="A12" name="A12" type="passive"/>
+        <pin num="B1" name="B1" type="passive"/>
+        <pin num="B4" name="B4" type="passive"/>
+        <pin num="B5" name="B5" type="passive"/>
+        <pin num="B6" name="B6" type="passive"/>
+        <pin num="B7" name="B7" type="passive"/>
+        <pin num="B8" name="B8" type="passive"/>
+        <pin num="B9" name="B9" type="passive"/>
+        <pin num="B12" name="B12" type="passive"/>
+        <pin num="S1" name="S1" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_J2">
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">BM08B-GHS-TBT</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="5V" type="passive"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="SET_N" type="passive"/>
+        <pin num="4" name="PMS_RX" type="passive"/>
+        <pin num="5" name="PMS_TX" type="passive"/>
+        <pin num="6" name="RESET_N" type="passive"/>
+        <pin num="7" name="NC" type="passive"/>
+        <pin num="8" name="NC" type="passive"/>
+        <pin num="MP" name="MOUNT" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_J3">
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">20021111-00010T4LF</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="VTREF" type="passive"/>
+        <pin num="2" name="SWDIO" type="passive"/>
+        <pin num="3" name="GND" type="power_in"/>
+        <pin num="4" name="SWCLK" type="passive"/>
+        <pin num="5" name="GND" type="power_in"/>
+        <pin num="6" name="NC" type="passive"/>
+        <pin num="7" name="KEY_NC" type="passive"/>
+        <pin num="8" name="NC" type="passive"/>
+        <pin num="9" name="GND" type="power_in"/>
+        <pin num="10" name="NRST" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_Q1">
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">MMBFJ177LT1G</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="D" type="passive"/>
+        <pin num="2" name="S" type="passive"/>
+        <pin num="3" name="G" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_Q2">
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">MMBFJ177LT1G</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="D" type="passive"/>
+        <pin num="2" name="S" type="passive"/>
+        <pin num="3" name="G" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_Q3">
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">MMBFJ177LT1G</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="D" type="passive"/>
+        <pin num="2" name="S" type="passive"/>
+        <pin num="3" name="G" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_Q4">
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">MMBFJ177LT1G</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="D" type="passive"/>
+        <pin num="2" name="S" type="passive"/>
+        <pin num="3" name="G" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_Q5">
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">2N7002/HAMR</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="G" type="passive"/>
+        <pin num="2" name="S" type="passive"/>
+        <pin num="3" name="D" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_Q6">
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">2N7002/HAMR</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="G" type="passive"/>
+        <pin num="2" name="S" type="passive"/>
+        <pin num="3" name="D" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_Q7">
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">2N7002/HAMR</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="G" type="passive"/>
+        <pin num="2" name="S" type="passive"/>
+        <pin num="3" name="D" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R1">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">5100R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R10">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">100000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R11">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">100000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R12">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">10000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R13">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">10000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R14">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">1000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R15">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">10000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R16">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">10000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R17">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">4700R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R18">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">4700R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R19">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">22R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R2">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">5100R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R20">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">10000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R21">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">10000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R3">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">80600R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R30">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">20R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R31">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">100000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R32">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">10000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R33">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">20R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R34">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">100000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R35">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">10000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R36">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">10000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R37">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">100R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R4">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">100000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R5">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">10000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R50">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">20R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R51">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">20000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R52">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">10000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R53">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">20R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R54">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">20000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R55">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">10000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R56">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">10000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R57">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">100R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R6">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">100000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R7">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">100000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R70">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">10000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R71">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">1e+06R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R72">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">100000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R73">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">10000R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R8">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">4700R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_R9">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">4700R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_SW1">
+      <fields>
+        <field name="Reference">S</field>
+        <field name="Value">TL3342F160QG</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_SW2">
+      <fields>
+        <field name="Reference">S</field>
+        <field name="Value">TL3342F160QG</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_TP1">
+      <fields>
+        <field name="Reference">T</field>
+        <field name="Value">Test pad 1mm</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="TEST" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_TP2">
+      <fields>
+        <field name="Reference">T</field>
+        <field name="Value">Test pad 1mm</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="TEST" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_TP3">
+      <fields>
+        <field name="Reference">T</field>
+        <field name="Value">Test pad 1mm</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="TEST" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_TP4">
+      <fields>
+        <field name="Reference">T</field>
+        <field name="Value">Test pad 1mm</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="TEST" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_TP5">
+      <fields>
+        <field name="Reference">T</field>
+        <field name="Value">Test pad 1mm</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="TEST" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_TP6">
+      <fields>
+        <field name="Reference">T</field>
+        <field name="Value">Test pad 1mm</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="TEST" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_TP7">
+      <fields>
+        <field name="Reference">T</field>
+        <field name="Value">Test pad 1mm</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="TEST" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_U1">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">STM32F072CBT6</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="VBAT" type="passive"/>
+        <pin num="2" name="PC13" type="passive"/>
+        <pin num="3" name="PC14" type="passive"/>
+        <pin num="4" name="PC15" type="passive"/>
+        <pin num="5" name="PF0" type="passive"/>
+        <pin num="6" name="PF1" type="passive"/>
+        <pin num="7" name="NRST" type="passive"/>
+        <pin num="8" name="VSSA" type="passive"/>
+        <pin num="9" name="VDDA" type="power_in"/>
+        <pin num="10" name="PA0" type="passive"/>
+        <pin num="11" name="PA1" type="passive"/>
+        <pin num="12" name="PA2" type="passive"/>
+        <pin num="13" name="PA3" type="passive"/>
+        <pin num="14" name="PA4" type="passive"/>
+        <pin num="15" name="PA5" type="passive"/>
+        <pin num="16" name="PA6" type="passive"/>
+        <pin num="17" name="PA7" type="passive"/>
+        <pin num="18" name="PB0" type="passive"/>
+        <pin num="19" name="PB1" type="passive"/>
+        <pin num="20" name="PB2" type="passive"/>
+        <pin num="21" name="PB10" type="passive"/>
+        <pin num="22" name="PB11" type="passive"/>
+        <pin num="23" name="VSS" type="power_in"/>
+        <pin num="24" name="VDD" type="power_in"/>
+        <pin num="25" name="PB12" type="passive"/>
+        <pin num="26" name="PB13" type="passive"/>
+        <pin num="27" name="PB14" type="passive"/>
+        <pin num="28" name="PB15" type="passive"/>
+        <pin num="29" name="PA8" type="passive"/>
+        <pin num="30" name="PA9" type="passive"/>
+        <pin num="31" name="PA10" type="passive"/>
+        <pin num="32" name="PA11" type="passive"/>
+        <pin num="33" name="PA12" type="passive"/>
+        <pin num="34" name="PA13" type="passive"/>
+        <pin num="35" name="VSS" type="power_in"/>
+        <pin num="36" name="VDDIO2" type="passive"/>
+        <pin num="37" name="PA14" type="passive"/>
+        <pin num="38" name="PA15" type="passive"/>
+        <pin num="39" name="PB3" type="passive"/>
+        <pin num="40" name="PB4" type="passive"/>
+        <pin num="41" name="PB5" type="passive"/>
+        <pin num="42" name="PB6" type="passive"/>
+        <pin num="43" name="PB7" type="passive"/>
+        <pin num="44" name="BOOT0" type="passive"/>
+        <pin num="45" name="PB8" type="passive"/>
+        <pin num="46" name="PB9" type="passive"/>
+        <pin num="47" name="VSS" type="power_in"/>
+        <pin num="48" name="VDD" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_U10">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">OPA387DBVR</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="OUT" type="passive"/>
+        <pin num="2" name="VSS" type="power_in"/>
+        <pin num="3" name="INP" type="passive"/>
+        <pin num="4" name="INM" type="passive"/>
+        <pin num="5" name="VDD" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_U11">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">SHT40-AD1F-R2</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="SDA" type="passive"/>
+        <pin num="2" name="SCL" type="passive"/>
+        <pin num="3" name="VDD" type="power_in"/>
+        <pin num="4" name="VSS" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_U12">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">BMP390</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="VDDIO" type="power_in"/>
+        <pin num="2" name="SCL" type="passive"/>
+        <pin num="3" name="GND" type="power_in"/>
+        <pin num="4" name="SDA" type="passive"/>
+        <pin num="5" name="I2C_ADDR" type="input"/>
+        <pin num="6" name="CSB" type="input"/>
+        <pin num="7" name="INT" type="passive"/>
+        <pin num="8" name="GND" type="power_in"/>
+        <pin num="9" name="GND" type="power_in"/>
+        <pin num="10" name="VDD" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_U13">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">TPS22918DBVR</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="VIN" type="passive"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="ON" type="passive"/>
+        <pin num="4" name="CT" type="passive"/>
+        <pin num="5" name="QOD" type="passive"/>
+        <pin num="6" name="VOUT" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_U2">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">AP2112K-3.3TRG1</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="VIN" type="passive"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="EN" type="input"/>
+        <pin num="4" name="NC" type="passive"/>
+        <pin num="5" name="VOUT" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_U3">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">TPS2553DBVR</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="IN" type="passive"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="EN" type="input"/>
+        <pin num="4" name="ILIM" type="passive"/>
+        <pin num="5" name="FAULT_N" type="passive"/>
+        <pin num="6" name="OUT" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_U4">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">REF3025AIDBZR</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="IN" type="passive"/>
+        <pin num="2" name="OUT" type="passive"/>
+        <pin num="3" name="GND" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_U5">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">OPA387DBVR</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="OUT" type="passive"/>
+        <pin num="2" name="VSS" type="power_in"/>
+        <pin num="3" name="INP" type="passive"/>
+        <pin num="4" name="INM" type="passive"/>
+        <pin num="5" name="VDD" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_U6">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">ADS122C04IPWR</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="A0" type="passive"/>
+        <pin num="2" name="A1" type="passive"/>
+        <pin num="3" name="RESET_N" type="passive"/>
+        <pin num="4" name="DGND" type="passive"/>
+        <pin num="5" name="AVSS" type="power_in"/>
+        <pin num="6" name="AIN3" type="passive"/>
+        <pin num="7" name="AIN2" type="passive"/>
+        <pin num="8" name="REFN" type="passive"/>
+        <pin num="9" name="REFP" type="passive"/>
+        <pin num="10" name="AIN1" type="passive"/>
+        <pin num="11" name="AIN0" type="passive"/>
+        <pin num="12" name="AVDD" type="power_in"/>
+        <pin num="13" name="DVDD" type="power_in"/>
+        <pin num="14" name="DRDY_N" type="passive"/>
+        <pin num="15" name="SDA" type="passive"/>
+        <pin num="16" name="SCL" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_U7">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">OPA2387DGKR</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="OUT_A" type="passive"/>
+        <pin num="2" name="INM_A" type="passive"/>
+        <pin num="3" name="INP_A" type="passive"/>
+        <pin num="4" name="VSS" type="power_in"/>
+        <pin num="5" name="INP_B" type="passive"/>
+        <pin num="6" name="INM_B" type="passive"/>
+        <pin num="7" name="OUT_B" type="passive"/>
+        <pin num="8" name="VDD" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_U8">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">OPA387DBVR</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="OUT" type="passive"/>
+        <pin num="2" name="VSS" type="power_in"/>
+        <pin num="3" name="INP" type="passive"/>
+        <pin num="4" name="INM" type="passive"/>
+        <pin num="5" name="VDD" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_U9">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">OPA2387DGKR</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="OUT_A" type="passive"/>
+        <pin num="2" name="INM_A" type="passive"/>
+        <pin num="3" name="INP_A" type="passive"/>
+        <pin num="4" name="VSS" type="power_in"/>
+        <pin num="5" name="INP_B" type="passive"/>
+        <pin num="6" name="INM_B" type="passive"/>
+        <pin num="7" name="OUT_B" type="passive"/>
+        <pin num="8" name="VDD" type="power_in"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="Groundlark">
+      <uri>/mnt/p/Personal/groundlark/hw/skylark-usb/boards/skylark-usb/Groundlark.kicad_sym</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="ADC_DRDY_N" class="Default">
+      <node ref="R15" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U1" pin="18" pinfunction="PB0" pintype="passive"/>
+      <node ref="U6" pin="14" pinfunction="DRDY_N" pintype="passive"/>
+    </net>
+    <net code="2" name="ADC_RESET_N" class="Default">
+      <node ref="R16" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U1" pin="19" pinfunction="PB1" pintype="passive"/>
+      <node ref="U6" pin="3" pinfunction="RESET_N" pintype="passive"/>
+    </net>
+    <net code="3" name="ANA_CT" class="Default">
+      <node ref="C74" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U13" pin="4" pinfunction="CT" pintype="passive"/>
+    </net>
+    <net code="4" name="ANA_EN" class="Default">
+      <node ref="R72" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U1" pin="25" pinfunction="PB12" pintype="passive"/>
+      <node ref="U13" pin="3" pinfunction="ON" pintype="passive"/>
+    </net>
+    <net code="5" name="BOOT0" class="Default">
+      <node ref="R13" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="SW2" pin="1" pinfunction="A" pintype="passive"/>
+      <node ref="U1" pin="44" pinfunction="BOOT0" pintype="passive"/>
+    </net>
+    <net code="6" name="CC1" class="Default">
+      <node ref="D2" pin="1" pinfunction="IO1" pintype="passive"/>
+      <node ref="D2" pin="6" pinfunction="IO1" pintype="passive"/>
+      <node ref="J1" pin="A5" pinfunction="A5" pintype="passive"/>
+      <node ref="R1" pin="1" pinfunction="1" pintype="passive"/>
+    </net>
+    <net code="7" name="CC2" class="Default">
+      <node ref="D2" pin="3" pinfunction="IO2" pintype="passive"/>
+      <node ref="D2" pin="4" pinfunction="IO2" pintype="passive"/>
+      <node ref="J1" pin="B5" pinfunction="B5" pintype="passive"/>
+      <node ref="R2" pin="1" pinfunction="1" pintype="passive"/>
+    </net>
+    <net code="8" name="CLAMP_GATE" class="Default">
+      <node ref="Q1" pin="3" pinfunction="G" pintype="passive"/>
+      <node ref="Q2" pin="3" pinfunction="G" pintype="passive"/>
+      <node ref="Q3" pin="3" pinfunction="G" pintype="passive"/>
+      <node ref="Q4" pin="3" pinfunction="G" pintype="passive"/>
+      <node ref="Q7" pin="3" pinfunction="D" pintype="passive"/>
+      <node ref="R70" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R71" pin="1" pinfunction="1" pintype="passive"/>
+    </net>
+    <net code="9" name="CLAMP_HOLD" class="Default">
+      <node ref="Q7" pin="1" pinfunction="G" pintype="passive"/>
+      <node ref="R73" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="U1" pin="26" pinfunction="PB13" pintype="passive"/>
+    </net>
+    <net code="10" name="GND" class="Default">
+      <node ref="C1" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C10" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C11" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C12" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C13" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C14" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C15" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C16" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C17" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C18" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C19" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C2" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C3" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C31" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C34" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C37" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C38" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C4" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C5" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C51" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C54" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C57" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C58" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C6" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C7" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C70" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C71" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C72" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C73" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C74" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C8" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C9" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="D1" pin="2" pinfunction="GND" pintype="power_in"/>
+      <node ref="D2" pin="2" pinfunction="GND" pintype="power_in"/>
+      <node ref="D3" pin="1" pinfunction="K" pintype="passive"/>
+      <node ref="J1" pin="A1" pinfunction="A1" pintype="passive"/>
+      <node ref="J1" pin="A12" pinfunction="A12" pintype="passive"/>
+      <node ref="J1" pin="B1" pinfunction="B1" pintype="passive"/>
+      <node ref="J1" pin="B12" pinfunction="B12" pintype="passive"/>
+      <node ref="J1" pin="S1" pinfunction="S1" pintype="passive"/>
+      <node ref="J2" pin="2" pinfunction="GND" pintype="power_in"/>
+      <node ref="J2" pin="MP" pinfunction="MOUNT" pintype="passive"/>
+      <node ref="J3" pin="3" pinfunction="GND" pintype="power_in"/>
+      <node ref="J3" pin="5" pinfunction="GND" pintype="power_in"/>
+      <node ref="J3" pin="9" pinfunction="GND" pintype="power_in"/>
+      <node ref="Q5" pin="2" pinfunction="S" pintype="passive"/>
+      <node ref="Q6" pin="2" pinfunction="S" pintype="passive"/>
+      <node ref="Q7" pin="2" pinfunction="S" pintype="passive"/>
+      <node ref="R1" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R11" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R13" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R2" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R21" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R3" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R4" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R6" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R7" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R71" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R72" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="SW1" pin="2" pinfunction="B" pintype="passive"/>
+      <node ref="TP1" pin="1" pinfunction="TEST" pintype="passive"/>
+      <node ref="U1" pin="23" pinfunction="VSS" pintype="power_in"/>
+      <node ref="U1" pin="35" pinfunction="VSS" pintype="power_in"/>
+      <node ref="U1" pin="47" pinfunction="VSS" pintype="power_in"/>
+      <node ref="U1" pin="8" pinfunction="VSSA" pintype="passive"/>
+      <node ref="U10" pin="2" pinfunction="VSS" pintype="power_in"/>
+      <node ref="U11" pin="4" pinfunction="VSS" pintype="power_in"/>
+      <node ref="U12" pin="3" pinfunction="GND" pintype="power_in"/>
+      <node ref="U12" pin="5" pinfunction="I2C_ADDR" pintype="input"/>
+      <node ref="U12" pin="8" pinfunction="GND" pintype="power_in"/>
+      <node ref="U12" pin="9" pinfunction="GND" pintype="power_in"/>
+      <node ref="U13" pin="2" pinfunction="GND" pintype="power_in"/>
+      <node ref="U2" pin="2" pinfunction="GND" pintype="power_in"/>
+      <node ref="U3" pin="2" pinfunction="GND" pintype="power_in"/>
+      <node ref="U4" pin="3" pinfunction="GND" pintype="power_in"/>
+      <node ref="U5" pin="2" pinfunction="VSS" pintype="power_in"/>
+      <node ref="U6" pin="1" pinfunction="A0" pintype="passive"/>
+      <node ref="U6" pin="2" pinfunction="A1" pintype="passive"/>
+      <node ref="U6" pin="4" pinfunction="DGND" pintype="passive"/>
+      <node ref="U6" pin="5" pinfunction="AVSS" pintype="power_in"/>
+      <node ref="U6" pin="8" pinfunction="REFN" pintype="passive"/>
+      <node ref="U7" pin="4" pinfunction="VSS" pintype="power_in"/>
+      <node ref="U8" pin="2" pinfunction="VSS" pintype="power_in"/>
+      <node ref="U9" pin="4" pinfunction="VSS" pintype="power_in"/>
+    </net>
+    <net code="11" name="H2S_AE" class="Default">
+      <node ref="GS2" pin="AE" pinfunction="Auxiliary" pintype="passive"/>
+      <node ref="Q4" pin="1" pinfunction="D" pintype="passive"/>
+      <node ref="R53" pin="1" pinfunction="1" pintype="passive"/>
+    </net>
+    <net code="12" name="H2S_AE_ADC" class="Default">
+      <node ref="C54" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="R55" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="U6" pin="6" pinfunction="AIN3" pintype="passive"/>
+    </net>
+    <net code="13" name="H2S_AE_OUT" class="Default">
+      <node ref="C53" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R54" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R55" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U9" pin="7" pinfunction="OUT_B" pintype="passive"/>
+    </net>
+    <net code="14" name="H2S_AE_SUM" class="Default">
+      <node ref="C53" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="R53" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R54" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U9" pin="6" pinfunction="INM_B" pintype="passive"/>
+    </net>
+    <net code="15" name="H2S_CE" class="Default">
+      <node ref="GS2" pin="CE" pinfunction="Counter" pintype="passive"/>
+      <node ref="R57" pin="2" pinfunction="2" pintype="passive"/>
+    </net>
+    <net code="16" name="H2S_CE_DRV" class="Default">
+      <node ref="C56" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="R57" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U10" pin="1" pinfunction="OUT" pintype="passive"/>
+    </net>
+    <net code="17" name="H2S_RE" class="Default">
+      <node ref="GS2" pin="RE" pinfunction="Reference" pintype="passive"/>
+      <node ref="Q3" pin="2" pinfunction="S" pintype="passive"/>
+      <node ref="Q4" pin="2" pinfunction="S" pintype="passive"/>
+      <node ref="R56" pin="1" pinfunction="1" pintype="passive"/>
+    </net>
+    <net code="18" name="H2S_RE_FB" class="Default">
+      <node ref="C56" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R56" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="U10" pin="4" pinfunction="INM" pintype="passive"/>
+    </net>
+    <net code="19" name="H2S_WE" class="Default">
+      <node ref="GS2" pin="WE" pinfunction="Working" pintype="passive"/>
+      <node ref="Q3" pin="1" pinfunction="D" pintype="passive"/>
+      <node ref="R50" pin="1" pinfunction="1" pintype="passive"/>
+    </net>
+    <net code="20" name="H2S_WE_ADC" class="Default">
+      <node ref="C51" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="R52" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="U6" pin="7" pinfunction="AIN2" pintype="passive"/>
+    </net>
+    <net code="21" name="H2S_WE_OUT" class="Default">
+      <node ref="C50" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R51" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R52" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U9" pin="1" pinfunction="OUT_A" pintype="passive"/>
+    </net>
+    <net code="22" name="H2S_WE_SUM" class="Default">
+      <node ref="C50" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="R50" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R51" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U9" pin="2" pinfunction="INM_A" pintype="passive"/>
+    </net>
+    <net code="23" name="LED_A" class="Default">
+      <node ref="D3" pin="2" pinfunction="A" pintype="passive"/>
+      <node ref="R14" pin="2" pinfunction="2" pintype="passive"/>
+    </net>
+    <net code="24" name="NRST" class="Default">
+      <node ref="C11" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="J3" pin="10" pinfunction="NRST" pintype="passive"/>
+      <node ref="R12" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="SW1" pin="1" pinfunction="A" pintype="passive"/>
+      <node ref="U1" pin="7" pinfunction="NRST" pintype="passive"/>
+    </net>
+    <net code="25" name="PM_5V" class="Default">
+      <node ref="C4" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="J2" pin="1" pinfunction="5V" pintype="passive"/>
+      <node ref="TP7" pin="1" pinfunction="TEST" pintype="passive"/>
+      <node ref="U3" pin="6" pinfunction="OUT" pintype="passive"/>
+    </net>
+    <net code="26" name="PM_EN" class="Default">
+      <node ref="R4" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U1" pin="14" pinfunction="PA4" pintype="passive"/>
+      <node ref="U3" pin="3" pinfunction="EN" pintype="input"/>
+    </net>
+    <net code="27" name="PM_FAULT_N" class="Default">
+      <node ref="R5" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U1" pin="15" pinfunction="PA5" pintype="passive"/>
+      <node ref="U3" pin="5" pinfunction="FAULT_N" pintype="passive"/>
+    </net>
+    <net code="28" name="PM_ILIM" class="Default">
+      <node ref="R3" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U3" pin="4" pinfunction="ILIM" pintype="passive"/>
+    </net>
+    <net code="29" name="PM_RESET" class="Default">
+      <node ref="Q6" pin="1" pinfunction="G" pintype="passive"/>
+      <node ref="R7" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U1" pin="17" pinfunction="PA7" pintype="passive"/>
+    </net>
+    <net code="30" name="PM_RESET_N" class="Default">
+      <node ref="J2" pin="6" pinfunction="RESET_N" pintype="passive"/>
+      <node ref="Q6" pin="3" pinfunction="D" pintype="passive"/>
+    </net>
+    <net code="31" name="PM_RX" class="Default">
+      <node ref="J2" pin="4" pinfunction="PMS_RX" pintype="passive"/>
+      <node ref="R8" pin="2" pinfunction="2" pintype="passive"/>
+    </net>
+    <net code="32" name="PM_SET_N" class="Default">
+      <node ref="J2" pin="3" pinfunction="SET_N" pintype="passive"/>
+      <node ref="Q5" pin="3" pinfunction="D" pintype="passive"/>
+    </net>
+    <net code="33" name="PM_SLEEP" class="Default">
+      <node ref="Q5" pin="1" pinfunction="G" pintype="passive"/>
+      <node ref="R6" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U1" pin="16" pinfunction="PA6" pintype="passive"/>
+    </net>
+    <net code="34" name="PM_TX" class="Default">
+      <node ref="J2" pin="5" pinfunction="PMS_TX" pintype="passive"/>
+      <node ref="R9" pin="1" pinfunction="1" pintype="passive"/>
+    </net>
+    <net code="35" name="REF_2V5" class="Default">
+      <node ref="C13" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="C19" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="R20" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="TP5" pin="1" pinfunction="TEST" pintype="passive"/>
+      <node ref="U4" pin="2" pinfunction="OUT" pintype="passive"/>
+      <node ref="U6" pin="9" pinfunction="REFP" pintype="passive"/>
+    </net>
+    <net code="36" name="SCL" class="Default">
+      <node ref="R18" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U1" pin="42" pinfunction="PB6" pintype="passive"/>
+      <node ref="U11" pin="2" pinfunction="SCL" pintype="passive"/>
+      <node ref="U12" pin="2" pinfunction="SCL" pintype="passive"/>
+      <node ref="U6" pin="16" pinfunction="SCL" pintype="passive"/>
+    </net>
+    <net code="37" name="SDA" class="Default">
+      <node ref="R17" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U1" pin="43" pinfunction="PB7" pintype="passive"/>
+      <node ref="U11" pin="1" pinfunction="SDA" pintype="passive"/>
+      <node ref="U12" pin="4" pinfunction="SDA" pintype="passive"/>
+      <node ref="U6" pin="15" pinfunction="SDA" pintype="passive"/>
+    </net>
+    <net code="38" name="SO2_AE" class="Default">
+      <node ref="GS1" pin="AE" pinfunction="Auxiliary" pintype="passive"/>
+      <node ref="Q2" pin="1" pinfunction="D" pintype="passive"/>
+      <node ref="R33" pin="1" pinfunction="1" pintype="passive"/>
+    </net>
+    <net code="39" name="SO2_AE_ADC" class="Default">
+      <node ref="C34" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="R35" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="U6" pin="10" pinfunction="AIN1" pintype="passive"/>
+    </net>
+    <net code="40" name="SO2_AE_OUT" class="Default">
+      <node ref="C33" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R34" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R35" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U7" pin="7" pinfunction="OUT_B" pintype="passive"/>
+    </net>
+    <net code="41" name="SO2_AE_SUM" class="Default">
+      <node ref="C33" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="R33" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R34" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U7" pin="6" pinfunction="INM_B" pintype="passive"/>
+    </net>
+    <net code="42" name="SO2_CE" class="Default">
+      <node ref="GS1" pin="CE" pinfunction="Counter" pintype="passive"/>
+      <node ref="R37" pin="2" pinfunction="2" pintype="passive"/>
+    </net>
+    <net code="43" name="SO2_CE_DRV" class="Default">
+      <node ref="C36" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="R37" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U8" pin="1" pinfunction="OUT" pintype="passive"/>
+    </net>
+    <net code="44" name="SO2_RE" class="Default">
+      <node ref="GS1" pin="RE" pinfunction="Reference" pintype="passive"/>
+      <node ref="Q1" pin="2" pinfunction="S" pintype="passive"/>
+      <node ref="Q2" pin="2" pinfunction="S" pintype="passive"/>
+      <node ref="R36" pin="1" pinfunction="1" pintype="passive"/>
+    </net>
+    <net code="45" name="SO2_RE_FB" class="Default">
+      <node ref="C36" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R36" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="U8" pin="4" pinfunction="INM" pintype="passive"/>
+    </net>
+    <net code="46" name="SO2_WE" class="Default">
+      <node ref="GS1" pin="WE" pinfunction="Working" pintype="passive"/>
+      <node ref="Q1" pin="1" pinfunction="D" pintype="passive"/>
+      <node ref="R30" pin="1" pinfunction="1" pintype="passive"/>
+    </net>
+    <net code="47" name="SO2_WE_ADC" class="Default">
+      <node ref="C31" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="R32" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="U6" pin="11" pinfunction="AIN0" pintype="passive"/>
+    </net>
+    <net code="48" name="SO2_WE_OUT" class="Default">
+      <node ref="C30" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R31" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R32" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U7" pin="1" pinfunction="OUT_A" pintype="passive"/>
+    </net>
+    <net code="49" name="SO2_WE_SUM" class="Default">
+      <node ref="C30" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="R30" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R31" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U7" pin="2" pinfunction="INM_A" pintype="passive"/>
+    </net>
+    <net code="50" name="STATUS" class="Default">
+      <node ref="R14" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U1" pin="39" pinfunction="PB3" pintype="passive"/>
+    </net>
+    <net code="51" name="SWCLK" class="Default">
+      <node ref="J3" pin="4" pinfunction="SWCLK" pintype="passive"/>
+      <node ref="U1" pin="37" pinfunction="PA14" pintype="passive"/>
+    </net>
+    <net code="52" name="SWDIO" class="Default">
+      <node ref="J3" pin="2" pinfunction="SWDIO" pintype="passive"/>
+      <node ref="U1" pin="34" pinfunction="PA13" pintype="passive"/>
+    </net>
+    <net code="53" name="UART_RX" class="Default">
+      <node ref="R9" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="U1" pin="13" pinfunction="PA3" pintype="passive"/>
+    </net>
+    <net code="54" name="UART_TX" class="Default">
+      <node ref="R8" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U1" pin="12" pinfunction="PA2" pintype="passive"/>
+    </net>
+    <net code="55" name="USB_5V" class="Default">
+      <node ref="C1" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="C3" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="F1" pin="2" pinfunction="OUT" pintype="passive"/>
+      <node ref="R10" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="R70" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="TP2" pin="1" pinfunction="TEST" pintype="passive"/>
+      <node ref="U2" pin="1" pinfunction="VIN" pintype="passive"/>
+      <node ref="U2" pin="3" pinfunction="EN" pintype="input"/>
+      <node ref="U3" pin="1" pinfunction="IN" pintype="passive"/>
+    </net>
+    <net code="56" name="USB_DM" class="Default">
+      <node ref="D1" pin="3" pinfunction="IO2" pintype="passive"/>
+      <node ref="D1" pin="4" pinfunction="IO2" pintype="passive"/>
+      <node ref="J1" pin="A7" pinfunction="A7" pintype="passive"/>
+      <node ref="J1" pin="B7" pinfunction="B7" pintype="passive"/>
+      <node ref="U1" pin="32" pinfunction="PA11" pintype="passive"/>
+    </net>
+    <net code="57" name="USB_DP" class="Default">
+      <node ref="D1" pin="1" pinfunction="IO1" pintype="passive"/>
+      <node ref="D1" pin="6" pinfunction="IO1" pintype="passive"/>
+      <node ref="J1" pin="A6" pinfunction="A6" pintype="passive"/>
+      <node ref="J1" pin="B6" pinfunction="B6" pintype="passive"/>
+      <node ref="U1" pin="33" pinfunction="PA12" pintype="passive"/>
+    </net>
+    <net code="58" name="USB_VBUS" class="Default">
+      <node ref="D1" pin="5" pinfunction="VBUS" pintype="passive"/>
+      <node ref="D2" pin="5" pinfunction="VBUS" pintype="passive"/>
+      <node ref="F1" pin="1" pinfunction="IN" pintype="passive"/>
+      <node ref="J1" pin="A4" pinfunction="A4" pintype="passive"/>
+      <node ref="J1" pin="A9" pinfunction="A9" pintype="passive"/>
+      <node ref="J1" pin="B4" pinfunction="B4" pintype="passive"/>
+      <node ref="J1" pin="B9" pinfunction="B9" pintype="passive"/>
+    </net>
+    <net code="59" name="V3" class="Default">
+      <node ref="C10" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="C18" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="C2" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="C6" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="C7" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="C70" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="C71" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="C72" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="C73" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="C8" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="C9" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="J3" pin="1" pinfunction="VTREF" pintype="passive"/>
+      <node ref="R12" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R15" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R16" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R17" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R18" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R5" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R73" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="SW2" pin="2" pinfunction="B" pintype="passive"/>
+      <node ref="TP3" pin="1" pinfunction="TEST" pintype="passive"/>
+      <node ref="U1" pin="1" pinfunction="VBAT" pintype="passive"/>
+      <node ref="U1" pin="24" pinfunction="VDD" pintype="power_in"/>
+      <node ref="U1" pin="36" pinfunction="VDDIO2" pintype="passive"/>
+      <node ref="U1" pin="48" pinfunction="VDD" pintype="power_in"/>
+      <node ref="U1" pin="9" pinfunction="VDDA" pintype="power_in"/>
+      <node ref="U11" pin="3" pinfunction="VDD" pintype="power_in"/>
+      <node ref="U12" pin="1" pinfunction="VDDIO" pintype="power_in"/>
+      <node ref="U12" pin="10" pinfunction="VDD" pintype="power_in"/>
+      <node ref="U12" pin="6" pinfunction="CSB" pintype="input"/>
+      <node ref="U13" pin="1" pinfunction="VIN" pintype="passive"/>
+      <node ref="U2" pin="5" pinfunction="VOUT" pintype="passive"/>
+      <node ref="U6" pin="13" pinfunction="DVDD" pintype="power_in"/>
+    </net>
+    <net code="60" name="VA" class="Default">
+      <node ref="C12" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="C14" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="C16" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="C17" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="C37" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="C38" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="C57" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="C58" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="R19" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="TP4" pin="1" pinfunction="TEST" pintype="passive"/>
+      <node ref="U10" pin="5" pinfunction="VDD" pintype="power_in"/>
+      <node ref="U4" pin="1" pinfunction="IN" pintype="passive"/>
+      <node ref="U5" pin="5" pinfunction="VDD" pintype="power_in"/>
+      <node ref="U6" pin="12" pinfunction="AVDD" pintype="power_in"/>
+      <node ref="U7" pin="8" pinfunction="VDD" pintype="power_in"/>
+      <node ref="U8" pin="5" pinfunction="VDD" pintype="power_in"/>
+      <node ref="U9" pin="8" pinfunction="VDD" pintype="power_in"/>
+    </net>
+    <net code="61" name="VA_SW" class="Default">
+      <node ref="R19" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U13" pin="5" pinfunction="QOD" pintype="passive"/>
+      <node ref="U13" pin="6" pinfunction="VOUT" pintype="passive"/>
+    </net>
+    <net code="62" name="VBUS_SENSE" class="Default">
+      <node ref="C5" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="R10" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R11" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U1" pin="10" pinfunction="PA0" pintype="passive"/>
+    </net>
+    <net code="63" name="VMID" class="Default">
+      <node ref="C15" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="R20" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="R21" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="U5" pin="3" pinfunction="INP" pintype="passive"/>
+    </net>
+    <net code="64" name="VZERO" class="Default">
+      <node ref="TP6" pin="1" pinfunction="TEST" pintype="passive"/>
+      <node ref="U10" pin="3" pinfunction="INP" pintype="passive"/>
+      <node ref="U5" pin="1" pinfunction="OUT" pintype="passive"/>
+      <node ref="U5" pin="4" pinfunction="INM" pintype="passive"/>
+      <node ref="U7" pin="3" pinfunction="INP_A" pintype="passive"/>
+      <node ref="U7" pin="5" pinfunction="INP_B" pintype="passive"/>
+      <node ref="U8" pin="3" pinfunction="INP" pintype="passive"/>
+      <node ref="U9" pin="3" pinfunction="INP_A" pintype="passive"/>
+      <node ref="U9" pin="5" pinfunction="INP_B" pintype="passive"/>
+    </net>
+    <net code="65" name="unconnected-(J1-PadA8)" class="Default">
+      <node ref="J1" pin="A8" pinfunction="A8" pintype="passive+no_connect"/>
+    </net>
+    <net code="66" name="unconnected-(J1-PadB8)" class="Default">
+      <node ref="J1" pin="B8" pinfunction="B8" pintype="passive+no_connect"/>
+    </net>
+    <net code="67" name="unconnected-(J2-NC-Pad7)" class="Default">
+      <node ref="J2" pin="7" pinfunction="NC" pintype="passive+no_connect"/>
+    </net>
+    <net code="68" name="unconnected-(J2-NC-Pad8)" class="Default">
+      <node ref="J2" pin="8" pinfunction="NC" pintype="passive+no_connect"/>
+    </net>
+    <net code="69" name="unconnected-(J3-KEY_NC-Pad7)" class="Default">
+      <node ref="J3" pin="7" pinfunction="KEY_NC" pintype="passive+no_connect"/>
+    </net>
+    <net code="70" name="unconnected-(J3-NC-Pad6)" class="Default">
+      <node ref="J3" pin="6" pinfunction="NC" pintype="passive+no_connect"/>
+    </net>
+    <net code="71" name="unconnected-(J3-NC-Pad8)" class="Default">
+      <node ref="J3" pin="8" pinfunction="NC" pintype="passive+no_connect"/>
+    </net>
+    <net code="72" name="unconnected-(U1-PA1-Pad11)" class="Default">
+      <node ref="U1" pin="11" pinfunction="PA1" pintype="passive+no_connect"/>
+    </net>
+    <net code="73" name="unconnected-(U1-PA8-Pad29)" class="Default">
+      <node ref="U1" pin="29" pinfunction="PA8" pintype="passive+no_connect"/>
+    </net>
+    <net code="74" name="unconnected-(U1-PA9-Pad30)" class="Default">
+      <node ref="U1" pin="30" pinfunction="PA9" pintype="passive+no_connect"/>
+    </net>
+    <net code="75" name="unconnected-(U1-PA10-Pad31)" class="Default">
+      <node ref="U1" pin="31" pinfunction="PA10" pintype="passive+no_connect"/>
+    </net>
+    <net code="76" name="unconnected-(U1-PA15-Pad38)" class="Default">
+      <node ref="U1" pin="38" pinfunction="PA15" pintype="passive+no_connect"/>
+    </net>
+    <net code="77" name="unconnected-(U1-PB2-Pad20)" class="Default">
+      <node ref="U1" pin="20" pinfunction="PB2" pintype="passive+no_connect"/>
+    </net>
+    <net code="78" name="unconnected-(U1-PB4-Pad40)" class="Default">
+      <node ref="U1" pin="40" pinfunction="PB4" pintype="passive+no_connect"/>
+    </net>
+    <net code="79" name="unconnected-(U1-PB5-Pad41)" class="Default">
+      <node ref="U1" pin="41" pinfunction="PB5" pintype="passive+no_connect"/>
+    </net>
+    <net code="80" name="unconnected-(U1-PB8-Pad45)" class="Default">
+      <node ref="U1" pin="45" pinfunction="PB8" pintype="passive+no_connect"/>
+    </net>
+    <net code="81" name="unconnected-(U1-PB9-Pad46)" class="Default">
+      <node ref="U1" pin="46" pinfunction="PB9" pintype="passive+no_connect"/>
+    </net>
+    <net code="82" name="unconnected-(U1-PB10-Pad21)" class="Default">
+      <node ref="U1" pin="21" pinfunction="PB10" pintype="passive+no_connect"/>
+    </net>
+    <net code="83" name="unconnected-(U1-PB11-Pad22)" class="Default">
+      <node ref="U1" pin="22" pinfunction="PB11" pintype="passive+no_connect"/>
+    </net>
+    <net code="84" name="unconnected-(U1-PB14-Pad27)" class="Default">
+      <node ref="U1" pin="27" pinfunction="PB14" pintype="passive+no_connect"/>
+    </net>
+    <net code="85" name="unconnected-(U1-PB15-Pad28)" class="Default">
+      <node ref="U1" pin="28" pinfunction="PB15" pintype="passive+no_connect"/>
+    </net>
+    <net code="86" name="unconnected-(U1-PC13-Pad2)" class="Default">
+      <node ref="U1" pin="2" pinfunction="PC13" pintype="passive+no_connect"/>
+    </net>
+    <net code="87" name="unconnected-(U1-PC14-Pad3)" class="Default">
+      <node ref="U1" pin="3" pinfunction="PC14" pintype="passive+no_connect"/>
+    </net>
+    <net code="88" name="unconnected-(U1-PC15-Pad4)" class="Default">
+      <node ref="U1" pin="4" pinfunction="PC15" pintype="passive+no_connect"/>
+    </net>
+    <net code="89" name="unconnected-(U1-PF0-Pad5)" class="Default">
+      <node ref="U1" pin="5" pinfunction="PF0" pintype="passive+no_connect"/>
+    </net>
+    <net code="90" name="unconnected-(U1-PF1-Pad6)" class="Default">
+      <node ref="U1" pin="6" pinfunction="PF1" pintype="passive+no_connect"/>
+    </net>
+    <net code="91" name="unconnected-(U2-NC-Pad4)" class="Default">
+      <node ref="U2" pin="4" pinfunction="NC" pintype="passive+no_connect"/>
+    </net>
+    <net code="92" name="unconnected-(U12-INT-Pad7)" class="Default">
+      <node ref="U12" pin="7" pinfunction="INT" pintype="passive+no_connect"/>
+    </net>
+  </nets>
+</export>

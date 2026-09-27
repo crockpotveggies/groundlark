@@ -23,8 +23,8 @@ from project_paths import board_dir, compiled_dir, placement_path, PRODUCTS
 
 MARKER = "groundlark-lab-v1"
 RUN_RE = re.compile(r"\d{8}T\d{6}Z-[0-9a-f]{8}")
-BOARDS = ("groundlark-hat", "groundlark-field-head", "groundlark-daqhat-01")
-TARGETS = ("hat", "field_head", "trenz_hat")
+BOARDS = ("groundlark-hat", "groundlark-field-head", "groundlark-daqhat-01", "skylark-usb")
+TARGETS = ("hat", "field_head", "trenz_hat", "skylark")
 MiB = 1024 * 1024
 
 
@@ -132,9 +132,12 @@ def source_files(source):
         "hw/tools": ("*.py",), "hw/tests": ("*.py",), "docs": ("*.csv",),
         "hw/assembly": ("*.json",),
         "hw/shared/libraries": ("*.kicad_mod", "*.kicad_sym"),
+        "hw/skylark-usb/models": ("*.wrl", "*.json"),
         "sw/interfaces": ("*.proto", "*.yaml", "*.binpb", "*.py", "*.options"),
         "sw/tools": ("*.py",), "sw/tests": ("*.py", "*.json"),
         "sw/pi": ("*.py", "*.json", "*.dts", "*.cfg"),
+        "sw/skylark/firmware": ("*.c", "*.h", "*.ld", "Makefile"),
+        "sw/skylark/tests": ("*.c", "*.h"),
         "sw/fpga": ("*.py", "*.sv", "*.xdc", "*.tcl", "*.rpt", "*.json"),
     }.items():
         for pattern in patterns:
@@ -142,6 +145,7 @@ def source_files(source):
     files.append(source / "hw/tests/overvoltage.ato")
     files.append(source / "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.ses")
     files.append(source / "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/verification.json")
+    files.append(source / "hw/skylark-usb/boards/skylark-usb/skylark-usb.ses")
     for target in TARGETS:
         folder = compiled_dir(target, source)
         files.append(folder / f"{target}.kicad_pcb")
@@ -192,6 +196,9 @@ def versions():
         "atopile_python": output(["/opt/atopile/bin/python", "--version"]),
         "atopile": output(["/opt/atopile/bin/python", "-c", "import importlib.metadata as m; print(m.version('atopile'))"]),
         "buf": output(["buf", "--version"]),
+        "gcc": output(["gcc", "-dumpfullversion"]),
+        "arm_gcc": output(["arm-none-eabi-gcc", "-dumpfullversion"]),
+        "libopencm3": Path('/opt/skylark/revision.txt').read_text().strip(),
         "protobuf": output(["/opt/atopile/bin/python", "-c", "import google.protobuf; print(google.protobuf.__version__)"]),
     }
 
@@ -205,7 +212,7 @@ def commands(profile):
         steps.append(("reject-overvoltage", ["/opt/atopile/bin/python", "hw/tools/solve_constraints.py", "--negative"]))
     if profile in ("full", "quick"):
         steps += [("hardware-regressions", ["python3", "-m", "unittest", "discover", "-s", "hw/tests", "-p", "test_*.py"])]
-        steps += [(name, ["python3", f"hw/tools/{name}.py"]) for name in ("check_circuit", "check_design", "check_trenz", "daqhat_01_engineering", "prefab_review")]
+        steps += [(name, ["python3", f"hw/tools/{name}.py"]) for name in ("check_circuit", "check_design", "check_trenz", "daqhat_01_engineering", "prefab_review", "check_skylark")]
         steps.append(("routing-replay", ["python3", "hw/tools/replay_trenz.py"]))
     if profile != "software":
         steps += [(name, ["python3", f"hw/tools/{name}.py"]) for name in ("simulate", "simulate_trenz", "simulate_geophone", "simulate_geophone_review", "simulate_host_link")]
@@ -218,6 +225,7 @@ def commands(profile):
 
 def collect(workspace, report, profile):
     files = [workspace / "sw/build" / name for name in ("verification.json", "demo.ssrec", "demo-summary.json", "hat-signals.ssrec", "hat-signals.json", "acquisition-stress.json")]
+    files += [workspace/'sw/build/skylark-arm'/name for name in ('skylark.elf','skylark.bin','skylark.map','firmware.json')]
     for pattern in ("*.json", "*.cir", "*.log"):
         for folder in ("hw/shared/simulation", "hw/groundlark-fpga-hat/simulation"):
             files.extend((workspace / folder).rglob(pattern))

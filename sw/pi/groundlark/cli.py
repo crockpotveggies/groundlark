@@ -85,7 +85,13 @@ def run(args):
         if record["sensor_id"] in ids: raise ValueError("one active calibration per sensor")
         ids[record["sensor_id"]] = ident
     if not 0 < args.seconds <= 3600 or not 1 <= args.drain_every <= 10000: raise ValueError("run bounds")
-    settings = defaults()
+    board = getattr(args, 'board', 'hat')
+    if simulated and board != 'hat' and args.remote:
+        raise ValueError('--remote applies to the HAT simulation; select the USB board directly')
+    if simulated and board != 'hat':
+        from .workbench import board_configs
+        settings = board_configs(board)
+    else: settings = defaults()
     channels, enable, usb, pps = [], None, None, None
     if simulated:
         # Human-readable JSON may exceed its bounded canonical representation.
@@ -93,7 +99,8 @@ def run(args):
         current = 0
         clock = lambda: current
         for cfg in settings:
-            channels.append(Channel("sim-pi", 1, cfg, Simulated(cfg["sensor_id"], args.seed, faults, scenario, clock)))
+            channels.append(Channel('sim-skylark' if board=='skylark' else 'sim-head' if board=='burrowlark' else 'sim-pi',
+                                    1, cfg, Simulated(cfg["sensor_id"], args.seed, faults, scenario, clock)))
         if args.remote:
             for cfg in defaults(True):
                 channels.append(Channel("sim-head", 2, cfg, Simulated(cfg["sensor_id"], args.seed, faults, scenario, clock)))
@@ -118,7 +125,7 @@ def run(args):
     sessions = Sessions(calibrations)
     metadata = dict(format="groundlark-acquisition-v1", source="simulation" if simulated else "linux-polling",
                     calibrations=list(calibrations.records.values()), timing="poll completion; uncertainty unknown")
-    if simulated: metadata.update(seed=args.seed, faults=faults, remote=args.remote, stimulus_model="ideal-v1", scenario=scenario.export())
+    if simulated: metadata.update(seed=args.seed, faults=faults, remote=args.remote, board=board, stimulus_model="ideal-v1", scenario=scenario.export())
     else:
         metadata["profile"] = profile
         if utc: metadata['utc_capture'] = 'm10-tim-tp-v1'
@@ -192,6 +199,7 @@ def main(argv=None):
         p.add_argument("--max-mib", type=int, default=64)
         p.add_argument("--calibrations", type=Path)
         if name == "simulate":
+            p.add_argument('--board', choices=['hat','burrowlark','skylark'], default='hat')
             p.add_argument("--seed", type=int, default=1)
             p.add_argument("--faults", type=Path)
             p.add_argument("--scenario", type=Path, help="versioned SI stimulus scenario JSON")
@@ -201,6 +209,12 @@ def main(argv=None):
             p.add_argument("--usb")
             p.add_argument('--fifo', action='store_true', help='buffered IMUs with hardware timestamps and IRQ hints; explicit profile required')
             p.add_argument('--utc', action='store_true', help='legacy option; rejected by current DAQHAT-01 hardware')
+    p = commands.add_parser('usb', help='capture a standalone USB board without Pi GPIO or an FPGA')
+    p.add_argument('--board',choices=['skylark','burrowlark'],required=True)
+    p.add_argument('--usb',required=True)
+    p.add_argument('--output',type=Path,required=True)
+    p.add_argument('--seconds',type=float,default=120)
+    p.add_argument('--max-mib',type=int,default=8)
     p = commands.add_parser("replay")
     p.add_argument("recording", type=Path)
     p = commands.add_parser("export-scenario", help="recover controls for another deterministic simulation")
@@ -209,6 +223,9 @@ def main(argv=None):
     args = parser.parse_args(argv)
     try:
         if args.command == "replay": result = replay(args.recording)
+        elif args.command == 'usb':
+            from .usb_capture import capture
+            result = capture(args)
         elif args.command == "export-scenario": result = export_scenario(args.recording, args.output)
         else: result = run(args)
     except (ValueError, OSError, KeyError, TypeError) as error:

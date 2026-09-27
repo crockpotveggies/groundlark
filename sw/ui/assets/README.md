@@ -50,3 +50,31 @@ model bytes and display assets before refreshing their bindings. The current
 `source_relocation` record documents this exception. Startup fails on stale inputs.
 Stock KiCad component geometry retains its upstream attribution/license; see
 [KiCad's library licensing](https://www.kicad.org/libraries/license/).
+
+## Skylark
+
+`skylark.glb` combines the native 90 × 100 mm PCB, holes, silkscreen (including
+the Groundlark favicon), pads and mask with the existing authored package
+models. Both front and rear components are included. The SGX bodies use the
+same 31.5 mm cell diameter and socket standoff as the native CAD render.
+`skylark_scene.py` adds selectable sensor targets and an illustrative PMS5003
+beside the board; this is an exploded inspection view, not enclosure placement.
+
+Regenerate the bare PCB using KiCad 9.0.9:
+
+```sh
+kicad-cli pcb export glb --force --no-dnp --include-pads --include-silkscreen \
+  --include-soldermask --subst-models --output .local/skylark-bare.glb \
+  hw/skylark-usb/boards/skylark-usb/skylark-usb.kicad_pcb
+python sw/ui/build_skylark_model.py .local/skylark-bare.glb
+```
+
+Run the converter in a separate local build environment with `trimesh==4.8.3`
+and `numpy==2.4.3`; these are not runtime/UI dependencies. KiCad cannot import
+these VRML bodies into GLB and reports each missing model. The converter reads
+the bounded Box/IndexedFaceSet subset of the authored models, preserves their
+colors, and places them using the current placement metadata. It rejects
+unsupported geometry. It writes `skylark-provenance.json`, pinning every source
+model, PCB, placement, converter, scene and output. Inspect front/back alignment
+before accepting regenerated assets. Startup validates both board manifests.
+These authored envelopes are display geometry, not supplier-certified models.

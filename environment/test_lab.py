@@ -181,6 +181,18 @@ class LabSafetyTests(unittest.TestCase):
         self.assertTrue({source/rel for rel in expected}<=staged)
         self.assertFalse({source/rel for rel in excluded}&staged)
 
+    def test_skylark_firmware_inputs_exclude_generated_builds(self):
+        source=Path(self.temp.name)/'firmware-source'
+        expected=['sw/skylark/firmware/core.c','sw/skylark/firmware/platform.h',
+                  'sw/skylark/firmware/stm32f072cb.ld','sw/skylark/firmware/Makefile',
+                  'sw/skylark/tests/native.c','sw/skylark/tests/boot.c','sw/tests/test_skylark.py']
+        excluded=['sw/skylark/build/native.c','sw/skylark/build/firmware.json','sw/skylark/build/skylark.elf']
+        for rel in expected+excluded:
+            path=source/rel;path.parent.mkdir(parents=True,exist_ok=True);path.write_text('fixture')
+        staged=set(source_files(source))
+        self.assertTrue({source/rel for rel in expected}<=staged)
+        self.assertFalse({source/rel for rel in excluded}&staged)
+
 
 if __name__ == "__main__":
     unittest.main()

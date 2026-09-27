@@ -1,5 +1,6 @@
 """Offline schema checks and portable contract tests; output only in sw/build/."""
 import json
+import hashlib
 import os
 from pathlib import Path
 import shutil
@@ -37,6 +38,17 @@ def main():
     env = dict(os.environ, PYTHONPATH=os.pathsep.join([str(INTERFACES / "python"), str(ROOT / "sw/pi")]),
                GROUNDLARK_DESCRIPTOR=str(BUILD / "schema.binpb"))
     run(sys.executable, "-m", "unittest", "discover", "-s", str(ROOT / "sw/tests"), "-p", "test_*.py", "-v", env=env)
+    run('make', '-C', str(ROOT/'sw/skylark/firmware'), 'LIBOPENCM3=/opt/skylark/libopencm3',
+        'EXTRA_CFLAGS=-isystem/usr/include/newlib', 'BUILD='+str(BUILD/'skylark-arm'))
+    arm = BUILD/'skylark-arm'
+    size = run('arm-none-eabi-size',str(arm/'skylark.elf'),capture_output=True,text=True).stdout.splitlines()[1].split()
+    text_bytes,data_bytes,bss_bytes=map(int,size[:3])
+    assert text_bytes+data_bytes <= 124*1024 and data_bytes+bss_bytes <= 12*1024
+    (arm/'firmware.json').write_text(json.dumps(dict(
+        target='STM32F072CBT6',flash_bytes=text_bytes+data_bytes,static_ram_bytes=data_bytes+bss_bytes,
+        reserved_boot_journal_bytes=4096,minimum_stack_reserve_bytes=4096,
+        sha256={name:hashlib.sha256((arm/name).read_bytes()).hexdigest() for name in ('skylark.elf','skylark.bin')},
+        scope='ARM link and native C fault fixtures; physical USB/sensor/power qualification pending'),indent=2)+'\n')
     # Run the public application entry point and retain one bounded review artifact.
     demo = BUILD / "demo.ssrec"
     if demo.exists(): demo.unlink()
@@ -59,6 +71,7 @@ def main():
         "breaking_baseline": "sw/interfaces/baseline.binpb", "incompatible_change_rejected": True,
         "application_demo": json.loads(replayed.stdout),
         "hat_signals": json.loads(signal_report.read_text()),
+        "skylark_firmware": "ARM image linked; production C drivers/encoder and flash journal tested with native fault fixtures",
         "scope": "Schemas, software acquisition/replay, modeled sensor buses and injected faults; not physical buses, USB enumeration or MCU emulation"
     }, indent=2) + "\n")
 

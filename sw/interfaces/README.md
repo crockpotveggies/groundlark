@@ -23,3 +23,8 @@ The lab retains a small report with its usual five-run retention/cleanup.
 The [Pi application](../pi/README.md) uses these contracts for modeled/Linux
 adapters, recording/replay and USB input. Real sensor and firmware qualification
 remain separate from software checks.
+
+Skylark adds board ID 3 and sensor IDs 10–16 without changing prior field numbers
+or the frozen baseline. Its firmware emits v1 through a bounded C encoder;
+native tests decode that output with the Python reference runtime. Raw gas
+channels, complete PM/SHT frames, and BMP raw/factory trim remain in recordings.

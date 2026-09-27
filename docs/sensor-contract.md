@@ -1,6 +1,6 @@
 # Sensor contract v1
 
-Status: implemented schema, Python reference checks and USB framing; Pi drivers implemented; USB MCU firmware remains pending. This document owns semantic rules. The
+Status: implemented schema, Python reference checks and USB framing; Pi drivers and Skylark STM32 firmware implemented; Burrowlark firmware and physical qualification remain pending. This document owns semantic rules. The
 [Protobuf schema](../sw/interfaces/proto/groundlark/sensor/v1/sensor.proto) owns
 field numbers/types. Both apply. Coldfoot and a configured FPGA are unnecessary.
 
@@ -29,8 +29,41 @@ Breaking meaning/units requires a new package and envelope version.
 | 6 | Legacy DAQHAT-01 MAX-M10S U21 (absent on DAQHAT-01) | Complete 92-byte UBX NAV-PVT payload, excluding UBX header/checksum |
 | 7 | USB head RM3100 | Signed 24-bit XYZ counts, sign-extended into sint32 |
 | 8 | Optional USB head DLVR | Four original response bytes, preserving pressure, temperature and status bits |
-
 | 9 | DAQHAT-01 ADS122C04 / Racotech vertical | Signed 24-bit ADC count in sint32; required uint8 conversion counter |
+
+Skylark uses board ID 3 and MCU clock domain 2:
+
+| Sensor ID | Model/channel | Raw representation |
+| --- | --- | --- |
+| 10 / 11 | SGX-7SO2-AQ-20 working / auxiliary | Independent signed 24-bit ADC count and required uint8 conversion counter |
+| 12 / 13 | SGX-7H2S-AQ-25 working / auxiliary | Independent signed 24-bit ADC count and required uint8 conversion counter |
+| 14 | PMS5003 | Complete 32-byte frame, including header, length and checksum |
+| 15 | SHT40 | Six original temperature/humidity bytes, including both CRC bytes |
+| 16 | BMP390 | Six pressure/temperature bytes, plus all 21 factory trim bytes |
+
+Skylark's fixed profile uses external 2.5 V reference, gain 1, PGA bypass and
+normal 20 SPS single-shot ADC conversions: AIN0/1/2/3 map to IDs 10/11/12/13.
+Each channel's nominal publication period is 240,000,000 ns. IDs 14–16 use
+1,000,000,000 ns. Other settings are rejected by this profile. Sensor 15 uses
+high precision with no heater; sensor 16 uses pressure ×8 / temperature ×2
+oversampling at 3.125 Hz with IIR off. A different profile needs explicit schema
+and driver support before use. See [firmware operation](../sw/skylark/README.md).
+
+PMS frames require header `42 4d 00 1c`, sum of bytes 0–29 equal to the final
+big-endian uint16, and error byte 29 zero for usable samples. Atmospheric
+PM1/PM2.5/PM10 are the big-endian uint16 fields at offsets 10/12/14 (µg/m³).
+SHT words each use CRC-8 polynomial 0x31, initial 0xFF. BMP raw values are
+unsigned 24-bit little-endian pressure then temperature, with original trim.
+Host display uses Bosch factory compensation and SHT's transfer equations;
+recorded bytes are unchanged. No gas calibration or concentration is implicit.
+
+Firmware identity lists the board's fitted inventory. Failed device probes
+remain in configuration as disabled entries with period zero. Gas-cell presence
+cannot be detected merely by successfully probing the shared ADC. Warmup,
+invalid/stale frames and unavailable conversions produce missing samples with
+no raw payload. Loss is unknown where acquisition history cannot establish it.
+The firmware's MCU timestamps are scheduler timestamps with unknown acquisition
+uncertainty; no host/MCU/UTC correlation is claimed.
 
 ID 9 uses the Pi MONOTONIC_RAW clock, gain 64, reference 2.048 V and nominal
 period 3,030,303 ns (330 SPS). ADC input volts = count × reference / (gain × 2²³).

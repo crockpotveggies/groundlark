@@ -14,12 +14,22 @@ from .runtime import Acquisition, Channel
 from .session import Sessions
 from .simulation import Simulated, defaults
 from .stimulus import Scenario
+from . import skylark
 
 MAX_BYTES = 8 * 1024 * 1024
 MAX_SECONDS = 180
 POINTS = 400
 NAMES = {1: "IMU 1", 2: "IMU 2", 3: "IMU 3", 4: "IMU 4", 5: "Inclinometer",
          7: "Magnetometer", 8: "Infrasound", 9: "Geophone"}
+NAMES.update(skylark.NAMES)
+BOARDS = {"all": "HAT + Burrowlark", "hat": "Groundlark FPGA HAT",
+          "burrowlark": "Burrowlark USB", "skylark": "Skylark USB"}
+
+def board_configs(board):
+    if board not in BOARDS: raise ValueError("Unknown or deferred board")
+    return skylark.defaults() if board == "skylark" else ((defaults() if board in ("all", "hat") else []) +
+                                                        (defaults(True) if board in ("all", "burrowlark") else []))
+
 QUALITY = {1: "Valid", 2: "Missing", 3: "Saturated", 4: "Fault"}
 
 
@@ -48,6 +58,17 @@ def project_sample(sensor, sample):
         p, t = struct.unpack(">HH", raw.response)
         result.update(primary=[p & 0x3fff, None, None], secondary=[t >> 5, None, None],
                       detail=f"Sensor status bits: {p >> 14} • raw DLVR response")
+    elif 10 <= sensor <= 13:
+        result.update(primary=[raw.counts, None, None], detail=f"ADS122C04 counts • conversion {raw.conversion_counter} • gas concentration uncalibrated")
+    elif sensor == 14:
+        result.update(primary=list(struct.unpack_from(">HHH", raw.response, 10)), detail="PMS5003 atmospheric PM1 / PM2.5 / PM10 (µg/m³) • original 32-byte frame retained")
+    elif sensor == 15:
+        temperature = -45 + 175 * int.from_bytes(raw.response[:2], "big") / 65535
+        humidity = max(0, min(100, -6 + 125 * int.from_bytes(raw.response[3:5], "big") / 65535))
+        result.update(primary=[temperature, None, None], secondary=[humidity, None, None], detail="SHT40 °C / %RH • CRC-checked raw frame retained")
+    elif sensor == 16:
+        pressure, temperature = skylark.barometer_units(raw.response, raw.calibration)
+        result.update(primary=[pressure, None, None], secondary=[temperature, None, None], detail="BMP390 Pa / °C • factory compensation; raw frame and trim retained")
     else:
         payload = raw.nav_pvt
         fixed = bool(payload[21] & 1) and payload[20] >= 2
@@ -74,23 +95,27 @@ class TraceSink:
 
 
 class Workbench:
-    def __init__(self, document=None, seed=1):
+    def __init__(self, document=None, seed=1, board="all"):
         self.lock = RLock()
-        self.reset(document, seed)
+        self.reset(document, seed, board)
 
     def clear_traces(self):
-        self.traces = {i: deque(maxlen=POINTS) for i in NAMES if i not in (4, 5)}
+        self.traces = {i: deque(maxlen=POINTS) for i in self.sensor_ids}
         self.events = deque(maxlen=20)
         self.samples = self.missing = 0
 
-    def reset(self, document=None, seed=1):
+    def reset(self, document=None, seed=1, board=None):
         # Validate before replacing the existing run.
+        board = board or getattr(self, "board", "all")
+        configs = board_configs(board)
         scenario = Scenario(document)
         if type(seed) is not int or not 0 <= seed < 1 << 64:
             raise ValueError("Seed must be a nonnegative 64-bit integer")
         with self.lock:
             if hasattr(self, "acquisition"):
                 self.acquisition.close()
+            self.board = board
+            self.sensor_ids = tuple(cfg["sensor_id"] for cfg in configs)
             self.scenario, self.seed = scenario, seed
             self.mode, self.running, self.ended = "Simulate", False, False
             self.now = 0
@@ -100,11 +125,11 @@ class Workbench:
             self.stream = BytesIO()
             self.writer = Writer(self.stream, dict(format="groundlark-acquisition-v1", source="simulation",
                 calibrations=[], timing="poll completion; uncertainty unknown", seed=seed, faults=[],
-                remote=True, stimulus_model="ideal-v1", scenario=scenario.export()), max_bytes=MAX_BYTES)
-            channels = [Channel("sim-pi" if cfg["sensor_id"] not in (7, 8) else "sim-head",
+                remote=board in ("all", "burrowlark"), board=board, stimulus_model="ideal-v1", scenario=scenario.export()), max_bytes=MAX_BYTES)
+            channels = [Channel("sim-skylark" if cfg["sensor_id"] >= 10 else "sim-head" if cfg["sensor_id"] in (7, 8) else "sim-pi",
                 1 if cfg["sensor_id"] not in (7, 8) else 2, cfg,
                 Simulated(cfg["sensor_id"], seed, scenario=scenario, clock=lambda: self.now))
-                for cfg in defaults() + defaults(True)]
+                for cfg in configs]
             self.acquisition = Acquisition(TraceSink(self, self.writer), Sessions(), channels)
             self.acquisition.start(0)
 
@@ -184,6 +209,7 @@ class Workbench:
             raise ValueError("Recording application metadata")
         sessions = Sessions(Calibrations(reader.metadata.get("calibrations", [])))
         first, last, completed = None, 0, False
+        inventory = set()
         for arrived, item in reader:
             first = arrived if first is None else first
             last = arrived
@@ -192,12 +218,17 @@ class Workbench:
             completed = isinstance(item, dict) and item.get("code") == "acquisition_summary"
             if not isinstance(item, dict):
                 sessions.accept(item)
+                if item.WhichOneof("body") == "identity": inventory.update(item.identity.sensors)
             elif item.get("code") == "usb_disconnected" and item.get("device") is not None:
                 sessions.disconnect(item["device"])
         if first is None:
             raise ValueError("Recording contains no records")
+        if not inventory:
+            raise ValueError("Recording contains no sensor identity")
         with self.lock:
             self.acquisition.close()
+            self.sensor_ids = tuple(sorted(inventory))
+            self.board = "skylark" if inventory and inventory <= set(skylark.SENSORS) else "burrowlark" if inventory <= {7, 8} else "hat" if not inventory & {7, 8, *skylark.SENSORS} else "all"
             self.recorded = data
             self.origin, self.duration = first, last - first
             self.mode, self.running, self.error = "Replay", False, "" if completed else "Recording has no completion summary"
@@ -233,4 +264,4 @@ class Workbench:
             latest = {sid: dict(points[-1]) if points else None for sid, points in self.traces.items()}
             return dict(mode=self.mode, running=self.running, ended=self.ended, seconds=self.now / 1e9,
                 duration=self.duration / 1e9, error=self.error, samples=self.samples, missing=self.missing,
-                latest=latest, points=list(self.traces[sensor]), events=list(self.events))
+                latest=latest, points=list(self.traces.get(sensor, ())), events=list(self.events))

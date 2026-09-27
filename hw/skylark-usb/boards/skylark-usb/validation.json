@@ -1,0 +1,119 @@
+{
+  "independent_pin_invariants": "passed",
+  "contacts": 379,
+  "usb_total_copper_length_mm": {
+    "USB_DP": 18.304505768508882,
+    "USB_DM": 17.06450576850888
+  },
+  "pms_current_limit": {
+    "min_mA": 288.86194574165444,
+    "nominal_mA": 328.712471638903,
+    "max_mA": 374.53982405270324
+  },
+  "mechanical_mm": [
+    90,
+    100,
+    1.6
+  ],
+  "analog": {
+    "channels": [
+      {
+        "channel": "SO2 WE",
+        "feedback_pole_hz": 15.915494309189533,
+        "adc_pole_hz": 15.915494309189533,
+        "nominal_50Hz_signal_attenuation_dB": -20.724274764797933,
+        "summing_copper_mm": 11.4375,
+        "sensitivity_V_per_ppm": 0.04
+      },
+      {
+        "channel": "SO2 AE",
+        "feedback_pole_hz": 15.915494309189533,
+        "adc_pole_hz": 15.915494309189533,
+        "nominal_50Hz_signal_attenuation_dB": -20.724274764797933,
+        "summing_copper_mm": 8.655266952966368,
+        "sensitivity_V_per_ppm": 0.04
+      },
+      {
+        "channel": "H2S WE",
+        "feedback_pole_hz": 16.931376924669717,
+        "adc_pole_hz": 15.915494309189533,
+        "nominal_50Hz_signal_attenuation_dB": -20.239149619646042,
+        "summing_copper_mm": 11.4375,
+        "sensitivity_V_per_ppm": 0.034
+      },
+      {
+        "channel": "H2S AE",
+        "feedback_pole_hz": 16.931376924669717,
+        "adc_pole_hz": 15.915494309189533,
+        "nominal_50Hz_signal_attenuation_dB": -20.239149619646042,
+        "summing_copper_mm": 8.655266952966368,
+        "sensitivity_V_per_ppm": 0.034
+      }
+    ],
+    "bypass": [
+      {
+        "device": "U5",
+        "capacitor": "C16",
+        "supply_mm": 1.788199163963567,
+        "ground_to_plane_mm": 0.549999
+      },
+      {
+        "device": "U6",
+        "capacitor": "C17",
+        "supply_mm": 2.5875,
+        "ground_to_plane_mm": 0.55
+      },
+      {
+        "device": "U6",
+        "capacitor": "C18",
+        "supply_mm": 4.0375000000000005,
+        "ground_to_plane_mm": 0
+      },
+      {
+        "device": "U6",
+        "capacitor": "C19",
+        "supply_mm": 2.8875,
+        "ground_to_plane_mm": 0.55
+      },
+      {
+        "device": "U7",
+        "capacitor": "C37",
+        "supply_mm": 2.242462120245875,
+        "ground_to_plane_mm": 0.55
+      },
+      {
+        "device": "U8",
+        "capacitor": "C38",
+        "supply_mm": 2.380074570704097,
+        "ground_to_plane_mm": 0.55
+      },
+      {
+        "device": "U9",
+        "capacitor": "C57",
+        "supply_mm": 2.242462120245875,
+        "ground_to_plane_mm": 0.5499991581529922
+      },
+      {
+        "device": "U10",
+        "capacitor": "C58",
+        "supply_mm": 2.380074570704097,
+        "ground_to_plane_mm": 0.5500009043638019
+      }
+    ],
+    "analog_supply_min_V": 3.05544,
+    "analog_current_budget_mA": 8,
+    "clamp_gate_min_V": 4.306456935430646,
+    "scope": "Calculated signal filtering and CAD geometry only; no qualified detection limit or cell stability model"
+  },
+  "drc_errors": 0,
+  "unconnected_items": 0,
+  "erc_findings": 0,
+  "drc_warnings": [],
+  "status": "ENGINEERING PROTOTYPE; not fabrication released",
+  "limits": [
+    "Firmware and USB enumeration/suspend/eye testing pending",
+    "Gas bias must be confirmed for exact SGX AQ variants; noise, calibration and cross-sensitivity not qualified",
+    "Physical socket fit, retention, outdoor exposure and enclosure airflow untested",
+    "SGX specified pressure range starts at 800 mbar; high-altitude operation requires qualification"
+  ]
+}

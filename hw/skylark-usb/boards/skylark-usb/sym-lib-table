@@ -1,0 +1,1 @@
+(sym_lib_table (version 7) (lib (name "Groundlark") (type "KiCad") (uri "${KIPRJMOD}/Groundlark.kicad_sym") (options "") (descr "Atopile-derived physical pin maps")))

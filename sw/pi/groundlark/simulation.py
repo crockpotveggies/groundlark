@@ -1,19 +1,20 @@
 """Deterministic device models, not electrical or instruction-set emulation."""
 from .sensors import NotReady
 from .stimulus import Scenario, reading
+from .skylark import defaults as skylark_defaults
 
 
 class Simulated:
     def __init__(self, sensor, seed=1, faults=(), scenario=None, clock=None):
-        if type(sensor) is not int or not 1 <= sensor <= 9: raise ValueError("simulated sensor ID")
+        if type(sensor) is not int or not 1 <= sensor <= 16: raise ValueError("simulated sensor ID")
         if type(seed) is not int or not 0 <= seed < 1 << 64: raise ValueError("seed must be uint64")
         self.sensor, self.seed, self.index = sensor, seed, 0
         self.scenario, self.clock = scenario or Scenario(), clock
-        self.settings = next(c for c in defaults(legacy_gnss=True) + defaults(True) + defaults() if c["sensor_id"] == sensor)
+        self.settings = next(c for c in defaults(legacy_gnss=True) + defaults(True) + defaults() + skylark_defaults() if c["sensor_id"] == sensor)
         if len(faults) > 256: raise ValueError("fault fixture bound")
         self.faults = {}
         for f in faults:
-            if set(f) != {"sensor", "sample", "action"} or f["sensor"] not in range(1, 10) or type(f["sample"]) is not int or not 0 <= f["sample"] <= 1_000_000:
+            if set(f) != {"sensor", "sample", "action"} or f["sensor"] not in range(1, 17) or type(f["sample"]) is not int or not 0 <= f["sample"] <= 1_000_000:
                 raise ValueError("fault fixture fields")
             if f["action"] not in ("timeout", "nack", "disconnect", "not_ready", "saturation", "short_read"):
                 raise ValueError("unknown fault action")
@@ -40,9 +41,9 @@ class Simulated:
             if self.sensor <= 5:
                 result.raw["acceleration"] = (32767, *result.raw["acceleration"][1:])
                 if self.sensor == 5: result.raw["device_status"] |= 64
-            elif self.sensor == 9: result.raw["counts"] = 8388607
+            elif self.sensor == 9 or 10 <= self.sensor <= 13: result.raw["counts"] = 8388607
             elif self.sensor == 7: result.raw["counts"] = (8388607, *result.raw["counts"][1:])
-            else: result.raw["response"] = b"\x3f\xff" + result.raw["response"][2:]
+            elif self.sensor == 8: result.raw["response"] = b"\x3f\xff" + result.raw["response"][2:]
         return result
 
     def close(self): pass

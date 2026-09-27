@@ -1,0 +1,3190 @@
+{
+  "source": "atopile compiled PCB; do not edit",
+  "size_mm": [
+    90,
+    100
+  ],
+  "copper_layers": 4,
+  "ground_layers": [
+    "In1.Cu",
+    "In2.Cu"
+  ],
+  "fabrication": {
+    "min_track_mm": 0.15,
+    "min_clearance_mm": 0.15,
+    "min_via_diameter_mm": 0.45,
+    "min_drill_mm": 0.2
+  },
+  "parts": [
+    {
+      "ref": "J1",
+      "type": "USB",
+      "value": "USB4105-GF-A",
+      "mpn": "USB4105-GF-A",
+      "local_fp": "Connector_USB__USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal.kicad_mod",
+      "names": {
+        "A1": "A1",
+        "A4": "A4",
+        "A5": "A5",
+        "A6": "A6",
+        "A7": "A7",
+        "A8": "A8",
+        "A9": "A9",
+        "A12": "A12",
+        "B1": "B1",
+        "B4": "B4",
+        "B5": "B5",
+        "B6": "B6",
+        "B7": "B7",
+        "B8": "B8",
+        "B9": "B9",
+        "B12": "B12",
+        "S1": "S1"
+      },
+      "xy": [
+        35,
+        97.1
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "01_USB_power-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "A1": "GND",
+        "A4": "USB_VBUS",
+        "A5": "CC1",
+        "A6": "USB_DP",
+        "A7": "USB_DM",
+        "A8": null,
+        "A9": "USB_VBUS",
+        "A12": "GND",
+        "B1": "GND",
+        "B4": "USB_VBUS",
+        "B5": "CC2",
+        "B6": "USB_DP",
+        "B7": "USB_DM",
+        "B8": null,
+        "B9": "USB_VBUS",
+        "B12": "GND",
+        "S1": "GND"
+      }
+    },
+    {
+      "ref": "R1",
+      "type": "R_5100",
+      "value": "5100R",
+      "mpn": "RC0603FR-075K1L",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        28,
+        92
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "01_USB_power-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "CC1",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "R2",
+      "type": "R_5100",
+      "value": "5100R",
+      "mpn": "RC0603FR-075K1L",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        42,
+        90.8
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "01_USB_power-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "CC2",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "D1",
+      "type": "ESD",
+      "value": "USBLC6-2SC6",
+      "mpn": "USBLC6-2SC6",
+      "local_fp": "Package_TO_SOT_SMD__SOT-23-6.kicad_mod",
+      "names": {
+        "1": "IO1",
+        "2": "GND",
+        "3": "IO2",
+        "4": "IO2",
+        "5": "VBUS",
+        "6": "IO1"
+      },
+      "xy": [
+        35,
+        87
+      ],
+      "angle": 270,
+      "side": "front",
+      "section": "01_USB_power-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "USB_DP",
+        "2": "GND",
+        "3": "USB_DM",
+        "4": "USB_DM",
+        "5": "USB_VBUS",
+        "6": "USB_DP"
+      }
+    },
+    {
+      "ref": "D2",
+      "type": "ESD",
+      "value": "USBLC6-2SC6",
+      "mpn": "USBLC6-2SC6",
+      "local_fp": "Package_TO_SOT_SMD__SOT-23-6.kicad_mod",
+      "names": {
+        "1": "IO1",
+        "2": "GND",
+        "3": "IO2",
+        "4": "IO2",
+        "5": "VBUS",
+        "6": "IO1"
+      },
+      "xy": [
+        45,
+        94
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "01_USB_power-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "CC1",
+        "2": "GND",
+        "3": "CC2",
+        "4": "CC2",
+        "5": "USB_VBUS",
+        "6": "CC1"
+      }
+    },
+    {
+      "ref": "F1",
+      "type": "FUSE",
+      "value": "500mA PTC",
+      "mpn": "1206L050YR",
+      "local_fp": "Fuse_1206.kicad_mod",
+      "names": {
+        "1": "IN",
+        "2": "OUT"
+      },
+      "xy": [
+        12,
+        91
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "01_USB_power-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "USB_VBUS",
+        "2": "USB_5V"
+      }
+    },
+    {
+      "ref": "U2",
+      "type": "LDO",
+      "value": "AP2112K-3.3TRG1",
+      "mpn": "AP2112K-3.3TRG1",
+      "local_fp": "Package_TO_SOT_SMD__SOT-23-5.kicad_mod",
+      "names": {
+        "1": "VIN",
+        "2": "GND",
+        "3": "EN",
+        "4": "NC",
+        "5": "VOUT"
+      },
+      "xy": [
+        12,
+        82
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "01_USB_power-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "USB_5V",
+        "2": "GND",
+        "3": "USB_5V",
+        "4": null,
+        "5": "V3"
+      }
+    },
+    {
+      "ref": "C1",
+      "type": "C_1u",
+      "value": "1uF",
+      "mpn": "GRM188R71E105KA12D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        8,
+        84
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "01_USB_power-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "USB_5V",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "C2",
+      "type": "C_4p7u",
+      "value": "4.7uF",
+      "mpn": "GRM21BR71A475KA73L",
+      "local_fp": "Capacitor_SMD__C_0805_2012Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        16,
+        83
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "01_USB_power-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "V3",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "U3",
+      "type": "SWITCH",
+      "value": "TPS2553DBVR",
+      "mpn": "TPS2553DBVR",
+      "local_fp": "Package_TO_SOT_SMD__SOT-23-6.kicad_mod",
+      "names": {
+        "1": "IN",
+        "2": "GND",
+        "3": "EN",
+        "4": "ILIM",
+        "5": "FAULT_N",
+        "6": "OUT"
+      },
+      "xy": [
+        66,
+        83
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "01_USB_power-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "USB_5V",
+        "2": "GND",
+        "3": "PM_EN",
+        "4": "PM_ILIM",
+        "5": "PM_FAULT_N",
+        "6": "PM_5V"
+      }
+    },
+    {
+      "ref": "R3",
+      "type": "R_80600",
+      "value": "80600R",
+      "mpn": "RC0603FR-0780K6L",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        70,
+        82
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "01_USB_power-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "PM_ILIM",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "R4",
+      "type": "R_100000",
+      "value": "100000R",
+      "mpn": "RT0603BRD07100KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        62,
+        81
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "01_USB_power-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "PM_EN",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "R5",
+      "type": "R_10000",
+      "value": "10000R",
+      "mpn": "RT0603BRD0710KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        62,
+        85
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "01_USB_power-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "PM_FAULT_N",
+        "2": "V3"
+      }
+    },
+    {
+      "ref": "C3",
+      "type": "C_100n",
+      "value": "100nF",
+      "mpn": "GRM188R71H104KA93D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        65,
+        87
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "01_USB_power-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "USB_5V",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "C4",
+      "type": "C_10u",
+      "value": "10uF",
+      "mpn": "GRM21BR61A106KE19L",
+      "local_fp": "Capacitor_SMD__C_0805_2012Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        72,
+        86
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "01_USB_power-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "PM_5V",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "J2",
+      "type": "PMS",
+      "value": "BM08B-GHS-TBT",
+      "mpn": "BM08B-GHS-TBT",
+      "local_fp": "Connector_JST__JST_GH_BM08B-GHS-TBT_1x08-1MP_P1.25mm_Vertical.kicad_mod",
+      "names": {
+        "1": "5V",
+        "2": "GND",
+        "3": "SET_N",
+        "4": "PMS_RX",
+        "5": "PMS_TX",
+        "6": "RESET_N",
+        "7": "NC",
+        "8": "NC",
+        "MP": "MOUNT"
+      },
+      "xy": [
+        70,
+        93
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "01_USB_power-page-02",
+      "dnp": false,
+      "note": "Numbered 1:1 PMS5003 cable; verify both mating ends. PMS module separately enclosure-mounted.",
+      "pins": {
+        "1": "PM_5V",
+        "2": "GND",
+        "3": "PM_SET_N",
+        "4": "PM_RX",
+        "5": "PM_TX",
+        "6": "PM_RESET_N",
+        "7": null,
+        "8": null,
+        "MP": "GND"
+      }
+    },
+    {
+      "ref": "Q5",
+      "type": "MOS",
+      "value": "2N7002/HAMR",
+      "mpn": "2N7002/HAMR",
+      "local_fp": "Package_TO_SOT_SMD__SOT-23.kicad_mod",
+      "names": {
+        "1": "G",
+        "2": "S",
+        "3": "D"
+      },
+      "xy": [
+        78,
+        82
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "01_USB_power-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "PM_SLEEP",
+        "2": "GND",
+        "3": "PM_SET_N"
+      }
+    },
+    {
+      "ref": "Q6",
+      "type": "MOS",
+      "value": "2N7002/HAMR",
+      "mpn": "2N7002/HAMR",
+      "local_fp": "Package_TO_SOT_SMD__SOT-23.kicad_mod",
+      "names": {
+        "1": "G",
+        "2": "S",
+        "3": "D"
+      },
+      "xy": [
+        84,
+        82
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "01_USB_power-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "PM_RESET",
+        "2": "GND",
+        "3": "PM_RESET_N"
+      }
+    },
+    {
+      "ref": "R6",
+      "type": "R_100000",
+      "value": "100000R",
+      "mpn": "RT0603BRD07100KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        78,
+        78
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "01_USB_power-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "PM_SLEEP",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "R7",
+      "type": "R_100000",
+      "value": "100000R",
+      "mpn": "RT0603BRD07100KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        84,
+        78
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "01_USB_power-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "PM_RESET",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "R8",
+      "type": "R_4700",
+      "value": "4700R",
+      "mpn": "RC0603FR-074K7L",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        57,
+        87
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "01_USB_power-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "UART_TX",
+        "2": "PM_RX"
+      }
+    },
+    {
+      "ref": "R9",
+      "type": "R_4700",
+      "value": "4700R",
+      "mpn": "RC0603FR-074K7L",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        57,
+        90
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "01_USB_power-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "PM_TX",
+        "2": "UART_RX"
+      }
+    },
+    {
+      "ref": "R10",
+      "type": "R_100000",
+      "value": "100000R",
+      "mpn": "RT0603BRD07100KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        10,
+        76
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "01_USB_power-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "USB_5V",
+        "2": "VBUS_SENSE"
+      }
+    },
+    {
+      "ref": "R11",
+      "type": "R_100000",
+      "value": "100000R",
+      "mpn": "RT0603BRD07100KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        10,
+        73
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "01_USB_power-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "VBUS_SENSE",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "C5",
+      "type": "C_100n",
+      "value": "100nF",
+      "mpn": "GRM188R71H104KA93D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        6,
+        75
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "01_USB_power-page-03",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "VBUS_SENSE",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "U1",
+      "type": "MCU",
+      "value": "STM32F072CBT6",
+      "mpn": "STM32F072CBT6",
+      "local_fp": "Package_QFP__LQFP-48_7x7mm_P0.5mm.kicad_mod",
+      "names": {
+        "7": "NRST",
+        "44": "BOOT0",
+        "5": "PF0",
+        "6": "PF1",
+        "2": "PC13",
+        "3": "PC14",
+        "4": "PC15",
+        "18": "PB0",
+        "19": "PB1",
+        "20": "PB2",
+        "39": "PB3",
+        "40": "PB4",
+        "41": "PB5",
+        "42": "PB6",
+        "43": "PB7",
+        "45": "PB8",
+        "46": "PB9",
+        "21": "PB10",
+        "22": "PB11",
+        "25": "PB12",
+        "26": "PB13",
+        "27": "PB14",
+        "28": "PB15",
+        "1": "VBAT",
+        "24": "VDD",
+        "48": "VDD",
+        "23": "VSS",
+        "35": "VSS",
+        "47": "VSS",
+        "9": "VDDA",
+        "8": "VSSA",
+        "36": "VDDIO2",
+        "10": "PA0",
+        "11": "PA1",
+        "12": "PA2",
+        "13": "PA3",
+        "14": "PA4",
+        "15": "PA5",
+        "16": "PA6",
+        "17": "PA7",
+        "29": "PA8",
+        "30": "PA9",
+        "31": "PA10",
+        "32": "PA11",
+        "33": "PA12",
+        "34": "PA13",
+        "37": "PA14",
+        "38": "PA15"
+      },
+      "xy": [
+        34,
+        75
+      ],
+      "angle": 270,
+      "side": "front",
+      "section": "02_Controller-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "V3",
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": "NRST",
+        "8": "GND",
+        "9": "V3",
+        "10": "VBUS_SENSE",
+        "11": null,
+        "12": "UART_TX",
+        "13": "UART_RX",
+        "14": "PM_EN",
+        "15": "PM_FAULT_N",
+        "16": "PM_SLEEP",
+        "17": "PM_RESET",
+        "18": "ADC_DRDY_N",
+        "19": "ADC_RESET_N",
+        "20": null,
+        "21": null,
+        "22": null,
+        "23": "GND",
+        "24": "V3",
+        "25": "ANA_EN",
+        "26": "CLAMP_HOLD",
+        "27": null,
+        "28": null,
+        "29": null,
+        "30": null,
+        "31": null,
+        "32": "USB_DM",
+        "33": "USB_DP",
+        "34": "SWDIO",
+        "35": "GND",
+        "36": "V3",
+        "37": "SWCLK",
+        "38": null,
+        "39": "STATUS",
+        "40": null,
+        "41": null,
+        "42": "SCL",
+        "43": "SDA",
+        "44": "BOOT0",
+        "45": null,
+        "46": null,
+        "47": "GND",
+        "48": "V3"
+      }
+    },
+    {
+      "ref": "C6",
+      "type": "C_100n",
+      "value": "100nF",
+      "mpn": "GRM188R71H104KA93D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        26.5,
+        71
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "02_Controller-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "V3",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "C7",
+      "type": "C_100n",
+      "value": "100nF",
+      "mpn": "GRM188R71H104KA93D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        41,
+        71
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "02_Controller-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "V3",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "C8",
+      "type": "C_100n",
+      "value": "100nF",
+      "mpn": "GRM188R71H104KA93D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        41,
+        79
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "02_Controller-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "V3",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "C9",
+      "type": "C_100n",
+      "value": "100nF",
+      "mpn": "GRM188R71H104KA93D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        26.5,
+        79
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "02_Controller-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "V3",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "C10",
+      "type": "C_1u",
+      "value": "1uF",
+      "mpn": "GRM188R71E105KA12D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        33,
+        65
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "02_Controller-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "V3",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "R12",
+      "type": "R_10000",
+      "value": "10000R",
+      "mpn": "RT0603BRD0710KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        21,
+        71
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "02_Controller-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "NRST",
+        "2": "V3"
+      }
+    },
+    {
+      "ref": "C11",
+      "type": "C_100n",
+      "value": "100nF",
+      "mpn": "GRM188R71H104KA93D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        17,
+        71
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "02_Controller-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "NRST",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "R13",
+      "type": "R_10000",
+      "value": "10000R",
+      "mpn": "RT0603BRD0710KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        44,
+        68.5
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "02_Controller-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "BOOT0",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "SW1",
+      "type": "BUTTON",
+      "value": "TL3342F160QG",
+      "mpn": "TL3342F160QG",
+      "local_fp": "Button_Switch_SMD__SW_SPST_TL3342.kicad_mod",
+      "names": {
+        "1": "A",
+        "2": "B"
+      },
+      "xy": [
+        10,
+        63
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "02_Controller-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "NRST",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "SW2",
+      "type": "BUTTON",
+      "value": "TL3342F160QG",
+      "mpn": "TL3342F160QG",
+      "local_fp": "Button_Switch_SMD__SW_SPST_TL3342.kicad_mod",
+      "names": {
+        "1": "A",
+        "2": "B"
+      },
+      "xy": [
+        20,
+        63
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "02_Controller-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "BOOT0",
+        "2": "V3"
+      }
+    },
+    {
+      "ref": "J3",
+      "type": "DebugHeader",
+      "value": "20021111-00010T4LF",
+      "mpn": "20021111-00010T4LF",
+      "local_fp": "Connector_PinHeader_1.27mm__PinHeader_2x05_P1.27mm_Vertical.kicad_mod",
+      "names": {
+        "1": "VTREF",
+        "2": "SWDIO",
+        "3": "GND",
+        "4": "SWCLK",
+        "5": "GND",
+        "6": "NC",
+        "7": "KEY_NC",
+        "8": "NC",
+        "9": "GND",
+        "10": "NRST"
+      },
+      "xy": [
+        45,
+        83
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "02_Controller-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "V3",
+        "2": "SWDIO",
+        "3": "GND",
+        "4": "SWCLK",
+        "5": "GND",
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": "GND",
+        "10": "NRST"
+      }
+    },
+    {
+      "ref": "R14",
+      "type": "R_1000",
+      "value": "1000R",
+      "mpn": "RC0603FR-071KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        47,
+        73
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "02_Controller-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "STATUS",
+        "2": "LED_A"
+      }
+    },
+    {
+      "ref": "D3",
+      "type": "StatusLED",
+      "value": "LTST-C191KGKT",
+      "mpn": "LTST-C191KGKT",
+      "local_fp": "LED_SMD__LED_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "K",
+        "2": "A"
+      },
+      "xy": [
+        51,
+        73
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "02_Controller-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "GND",
+        "2": "LED_A"
+      }
+    },
+    {
+      "ref": "R15",
+      "type": "R_10000",
+      "value": "10000R",
+      "mpn": "RT0603BRD0710KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        51,
+        65
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "03_ADC_reference-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "ADC_DRDY_N",
+        "2": "V3"
+      }
+    },
+    {
+      "ref": "R16",
+      "type": "R_10000",
+      "value": "10000R",
+      "mpn": "RT0603BRD0710KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        51,
+        62
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "03_ADC_reference-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "ADC_RESET_N",
+        "2": "V3"
+      }
+    },
+    {
+      "ref": "R17",
+      "type": "R_4700",
+      "value": "4700R",
+      "mpn": "RC0603FR-074K7L",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        65,
+        70
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "03_ADC_reference-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "SDA",
+        "2": "V3"
+      }
+    },
+    {
+      "ref": "R18",
+      "type": "R_4700",
+      "value": "4700R",
+      "mpn": "RC0603FR-074K7L",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        65,
+        73
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "03_ADC_reference-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "SCL",
+        "2": "V3"
+      }
+    },
+    {
+      "ref": "R19",
+      "type": "R_22",
+      "value": "22R",
+      "mpn": "RC0603FR-0722RL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        12,
+        54
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "03_ADC_reference-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "VA_SW",
+        "2": "VA"
+      }
+    },
+    {
+      "ref": "C12",
+      "type": "C_10u",
+      "value": "10uF",
+      "mpn": "GRM21BR61A106KE19L",
+      "local_fp": "Capacitor_SMD__C_0805_2012Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        17,
+        54
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "03_ADC_reference-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "VA",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "U4",
+      "type": "REF",
+      "value": "REF3025AIDBZR",
+      "mpn": "REF3025AIDBZR",
+      "local_fp": "Package_TO_SOT_SMD__SOT-23.kicad_mod",
+      "names": {
+        "1": "IN",
+        "2": "OUT",
+        "3": "GND"
+      },
+      "xy": [
+        25,
+        53
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "03_ADC_reference-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "VA",
+        "2": "REF_2V5",
+        "3": "GND"
+      }
+    },
+    {
+      "ref": "C13",
+      "type": "C_1u",
+      "value": "1uF",
+      "mpn": "GRM188R71E105KA12D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        28,
+        56
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "03_ADC_reference-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "REF_2V5",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "C14",
+      "type": "C_100n",
+      "value": "100nF",
+      "mpn": "GRM188R71H104KA93D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        21,
+        53
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "03_ADC_reference-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "VA",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "R20",
+      "type": "R_10000",
+      "value": "10000R",
+      "mpn": "RT0603BRD0710KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        33,
+        51
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "03_ADC_reference-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "REF_2V5",
+        "2": "VMID"
+      }
+    },
+    {
+      "ref": "R21",
+      "type": "R_10000",
+      "value": "10000R",
+      "mpn": "RT0603BRD0710KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        33,
+        54
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "03_ADC_reference-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "VMID",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "C15",
+      "type": "C_1u",
+      "value": "1uF",
+      "mpn": "GRM188R71E105KA12D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        33,
+        57
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "03_ADC_reference-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "VMID",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "U5",
+      "type": "OPA1",
+      "value": "OPA387DBVR",
+      "mpn": "OPA387DBVR",
+      "local_fp": "Package_TO_SOT_SMD__SOT-23-5.kicad_mod",
+      "names": {
+        "1": "OUT",
+        "2": "VSS",
+        "3": "INP",
+        "4": "INM",
+        "5": "VDD"
+      },
+      "xy": [
+        39,
+        53
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "03_ADC_reference-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "VZERO",
+        "2": "GND",
+        "3": "VMID",
+        "4": "VZERO",
+        "5": "VA"
+      }
+    },
+    {
+      "ref": "C16",
+      "type": "C_100n",
+      "value": "100nF",
+      "mpn": "GRM188R71H104KA93D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        42.7,
+        52
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "03_ADC_reference-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "VA",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "U6",
+      "type": "ADC",
+      "value": "ADS122C04IPWR",
+      "mpn": "ADS122C04IPWR",
+      "local_fp": "Package_SO__TSSOP-16_4.4x5mm_P0.65mm.kicad_mod",
+      "names": {
+        "1": "A0",
+        "2": "A1",
+        "3": "RESET_N",
+        "4": "DGND",
+        "5": "AVSS",
+        "6": "AIN3",
+        "7": "AIN2",
+        "8": "REFN",
+        "9": "REFP",
+        "10": "AIN1",
+        "11": "AIN0",
+        "12": "AVDD",
+        "13": "DVDD",
+        "14": "DRDY_N",
+        "15": "SDA",
+        "16": "SCL"
+      },
+      "xy": [
+        52,
+        54
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "03_ADC_reference-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "GND",
+        "2": "GND",
+        "3": "ADC_RESET_N",
+        "4": "GND",
+        "5": "GND",
+        "6": "H2S_AE_ADC",
+        "7": "H2S_WE_ADC",
+        "8": "GND",
+        "9": "REF_2V5",
+        "10": "SO2_AE_ADC",
+        "11": "SO2_WE_ADC",
+        "12": "VA",
+        "13": "V3",
+        "14": "ADC_DRDY_N",
+        "15": "SDA",
+        "16": "SCL"
+      }
+    },
+    {
+      "ref": "C17",
+      "type": "C_100n",
+      "value": "100nF",
+      "mpn": "GRM188R71H104KA93D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        57,
+        54
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "03_ADC_reference-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "VA",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "C18",
+      "type": "C_100n",
+      "value": "100nF",
+      "mpn": "GRM188R71H104KA93D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        57,
+        51
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "03_ADC_reference-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "V3",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "C19",
+      "type": "C_1u",
+      "value": "1uF",
+      "mpn": "GRM188R71E105KA12D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        57.3,
+        57.5
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "03_ADC_reference-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "REF_2V5",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "GS1",
+      "type": "SO2",
+      "value": "SGX-7SO2-AQ-20",
+      "mpn": "SGX-7SO2-AQ-20",
+      "local_fp": "SGX7_AQ_Socket.kicad_mod",
+      "names": {
+        "WE": "Working",
+        "RE": "Reference",
+        "CE": "Counter",
+        "AE": "Auxiliary"
+      },
+      "xy": [
+        24,
+        29
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "04_SO2-page-01",
+      "dnp": false,
+      "note": "Four 0322-0-15-15-34-27-10-0 sockets; top footprint mirrors manufacturer bottom view; no direct cell soldering.",
+      "pins": {
+        "AE": "SO2_AE",
+        "CE": "SO2_CE",
+        "RE": "SO2_RE",
+        "WE": "SO2_WE"
+      }
+    },
+    {
+      "ref": "U7",
+      "type": "OPA2",
+      "value": "OPA2387DGKR",
+      "mpn": "OPA2387DGKR",
+      "local_fp": "Package_SO__VSSOP-8_3x3mm_P0.65mm.kicad_mod",
+      "names": {
+        "1": "OUT_A",
+        "2": "INM_A",
+        "3": "INP_A",
+        "4": "VSS",
+        "5": "INP_B",
+        "6": "INM_B",
+        "7": "OUT_B",
+        "8": "VDD"
+      },
+      "xy": [
+        24,
+        29
+      ],
+      "angle": 0,
+      "side": "back",
+      "section": "04_SO2-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "SO2_WE_OUT",
+        "2": "SO2_WE_SUM",
+        "3": "VZERO",
+        "4": "GND",
+        "5": "VZERO",
+        "6": "SO2_AE_SUM",
+        "7": "SO2_AE_OUT",
+        "8": "VA"
+      }
+    },
+    {
+      "ref": "U8",
+      "type": "OPA1",
+      "value": "OPA387DBVR",
+      "mpn": "OPA387DBVR",
+      "local_fp": "Package_TO_SOT_SMD__SOT-23-5.kicad_mod",
+      "names": {
+        "1": "OUT",
+        "2": "VSS",
+        "3": "INP",
+        "4": "INM",
+        "5": "VDD"
+      },
+      "xy": [
+        15,
+        27
+      ],
+      "angle": 0,
+      "side": "back",
+      "section": "04_SO2-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "SO2_CE_DRV",
+        "2": "GND",
+        "3": "VZERO",
+        "4": "SO2_RE_FB",
+        "5": "VA"
+      }
+    },
+    {
+      "ref": "R30",
+      "type": "R_20",
+      "value": "20R",
+      "mpn": "RT0603BRD0720RL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        21,
+        25.5
+      ],
+      "angle": 0,
+      "side": "back",
+      "section": "04_SO2-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "SO2_WE",
+        "2": "SO2_WE_SUM"
+      }
+    },
+    {
+      "ref": "R31",
+      "type": "R_100000",
+      "value": "100000R",
+      "mpn": "RT0603BRD07100KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        19,
+        30
+      ],
+      "angle": 270,
+      "side": "back",
+      "section": "04_SO2-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "SO2_WE_SUM",
+        "2": "SO2_WE_OUT"
+      }
+    },
+    {
+      "ref": "C30",
+      "type": "C_100n",
+      "value": "100nF",
+      "mpn": "GRM188R71H104KA93D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        17,
+        30
+      ],
+      "angle": 270,
+      "side": "back",
+      "section": "04_SO2-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "SO2_WE_SUM",
+        "2": "SO2_WE_OUT"
+      }
+    },
+    {
+      "ref": "R32",
+      "type": "R_10000",
+      "value": "10000R",
+      "mpn": "RT0603BRD0710KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        62,
+        60
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "04_SO2-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "SO2_WE_OUT",
+        "2": "SO2_WE_ADC"
+      }
+    },
+    {
+      "ref": "C31",
+      "type": "C_1u",
+      "value": "1uF",
+      "mpn": "GRM188R71E105KA12D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        59,
+        60
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "04_SO2-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "SO2_WE_ADC",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "Q1",
+      "type": "JFET",
+      "value": "MMBFJ177LT1G",
+      "mpn": "MMBFJ177LT1G",
+      "local_fp": "Package_TO_SOT_SMD__SOT-23.kicad_mod",
+      "names": {
+        "1": "D",
+        "2": "S",
+        "3": "G"
+      },
+      "xy": [
+        34,
+        30
+      ],
+      "angle": 0,
+      "side": "back",
+      "section": "04_SO2-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "SO2_WE",
+        "2": "SO2_RE",
+        "3": "CLAMP_GATE"
+      }
+    },
+    {
+      "ref": "R33",
+      "type": "R_20",
+      "value": "20R",
+      "mpn": "RT0603BRD0720RL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        30,
+        26
+      ],
+      "angle": 0,
+      "side": "back",
+      "section": "04_SO2-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "SO2_AE",
+        "2": "SO2_AE_SUM"
+      }
+    },
+    {
+      "ref": "R34",
+      "type": "R_100000",
+      "value": "100000R",
+      "mpn": "RT0603BRD07100KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        29,
+        29
+      ],
+      "angle": 270,
+      "side": "back",
+      "section": "04_SO2-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "SO2_AE_SUM",
+        "2": "SO2_AE_OUT"
+      }
+    },
+    {
+      "ref": "C33",
+      "type": "C_100n",
+      "value": "100nF",
+      "mpn": "GRM188R71H104KA93D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        31,
+        29
+      ],
+      "angle": 270,
+      "side": "back",
+      "section": "04_SO2-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "SO2_AE_SUM",
+        "2": "SO2_AE_OUT"
+      }
+    },
+    {
+      "ref": "R35",
+      "type": "R_10000",
+      "value": "10000R",
+      "mpn": "RT0603BRD0710KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        62,
+        63
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "04_SO2-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "SO2_AE_OUT",
+        "2": "SO2_AE_ADC"
+      }
+    },
+    {
+      "ref": "C34",
+      "type": "C_1u",
+      "value": "1uF",
+      "mpn": "GRM188R71E105KA12D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        59,
+        63
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "04_SO2-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "SO2_AE_ADC",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "Q2",
+      "type": "JFET",
+      "value": "MMBFJ177LT1G",
+      "mpn": "MMBFJ177LT1G",
+      "local_fp": "Package_TO_SOT_SMD__SOT-23.kicad_mod",
+      "names": {
+        "1": "D",
+        "2": "S",
+        "3": "G"
+      },
+      "xy": [
+        34,
+        36
+      ],
+      "angle": 0,
+      "side": "back",
+      "section": "04_SO2-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "SO2_AE",
+        "2": "SO2_RE",
+        "3": "CLAMP_GATE"
+      }
+    },
+    {
+      "ref": "R36",
+      "type": "R_10000",
+      "value": "10000R",
+      "mpn": "RT0603BRD0710KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        14,
+        22
+      ],
+      "angle": 0,
+      "side": "back",
+      "section": "04_SO2-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "SO2_RE",
+        "2": "SO2_RE_FB"
+      }
+    },
+    {
+      "ref": "R37",
+      "type": "R_100",
+      "value": "100R",
+      "mpn": "RC0603FR-07100RL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        13,
+        31
+      ],
+      "angle": 0,
+      "side": "back",
+      "section": "04_SO2-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "SO2_CE_DRV",
+        "2": "SO2_CE"
+      }
+    },
+    {
+      "ref": "C36",
+      "type": "C_100n",
+      "value": "100nF",
+      "mpn": "GRM188R71H104KA93D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        11,
+        27
+      ],
+      "angle": 90,
+      "side": "back",
+      "section": "04_SO2-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "SO2_CE_DRV",
+        "2": "SO2_RE_FB"
+      }
+    },
+    {
+      "ref": "C37",
+      "type": "C_100n",
+      "value": "100nF",
+      "mpn": "GRM188R71H104KA93D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        27.5,
+        32
+      ],
+      "angle": 0,
+      "side": "back",
+      "section": "04_SO2-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "VA",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "C38",
+      "type": "C_100n",
+      "value": "100nF",
+      "mpn": "GRM188R71H104KA93D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        18.5,
+        27
+      ],
+      "angle": 90,
+      "side": "back",
+      "section": "04_SO2-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "VA",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "GS2",
+      "type": "H2S",
+      "value": "SGX-7H2S-AQ-25",
+      "mpn": "SGX-7H2S-AQ-25",
+      "local_fp": "SGX7_AQ_Socket.kicad_mod",
+      "names": {
+        "WE": "Working",
+        "RE": "Reference",
+        "CE": "Counter",
+        "AE": "Auxiliary"
+      },
+      "xy": [
+        66,
+        29
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "05_H2S-page-01",
+      "dnp": false,
+      "note": "Four 0322-0-15-15-34-27-10-0 sockets; top footprint mirrors manufacturer bottom view; no direct cell soldering.",
+      "pins": {
+        "AE": "H2S_AE",
+        "CE": "H2S_CE",
+        "RE": "H2S_RE",
+        "WE": "H2S_WE"
+      }
+    },
+    {
+      "ref": "U9",
+      "type": "OPA2",
+      "value": "OPA2387DGKR",
+      "mpn": "OPA2387DGKR",
+      "local_fp": "Package_SO__VSSOP-8_3x3mm_P0.65mm.kicad_mod",
+      "names": {
+        "1": "OUT_A",
+        "2": "INM_A",
+        "3": "INP_A",
+        "4": "VSS",
+        "5": "INP_B",
+        "6": "INM_B",
+        "7": "OUT_B",
+        "8": "VDD"
+      },
+      "xy": [
+        66,
+        29
+      ],
+      "angle": 0,
+      "side": "back",
+      "section": "05_H2S-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "H2S_WE_OUT",
+        "2": "H2S_WE_SUM",
+        "3": "VZERO",
+        "4": "GND",
+        "5": "VZERO",
+        "6": "H2S_AE_SUM",
+        "7": "H2S_AE_OUT",
+        "8": "VA"
+      }
+    },
+    {
+      "ref": "U10",
+      "type": "OPA1",
+      "value": "OPA387DBVR",
+      "mpn": "OPA387DBVR",
+      "local_fp": "Package_TO_SOT_SMD__SOT-23-5.kicad_mod",
+      "names": {
+        "1": "OUT",
+        "2": "VSS",
+        "3": "INP",
+        "4": "INM",
+        "5": "VDD"
+      },
+      "xy": [
+        57,
+        27
+      ],
+      "angle": 0,
+      "side": "back",
+      "section": "05_H2S-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "H2S_CE_DRV",
+        "2": "GND",
+        "3": "VZERO",
+        "4": "H2S_RE_FB",
+        "5": "VA"
+      }
+    },
+    {
+      "ref": "R50",
+      "type": "R_20",
+      "value": "20R",
+      "mpn": "RT0603BRD0720RL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        63,
+        25.5
+      ],
+      "angle": 0,
+      "side": "back",
+      "section": "05_H2S-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "H2S_WE",
+        "2": "H2S_WE_SUM"
+      }
+    },
+    {
+      "ref": "R51",
+      "type": "R_20000",
+      "value": "20000R",
+      "mpn": "RT0603BRD0720KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        61,
+        30
+      ],
+      "angle": 270,
+      "side": "back",
+      "section": "05_H2S-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "H2S_WE_SUM",
+        "2": "H2S_WE_OUT"
+      }
+    },
+    {
+      "ref": "C50",
+      "type": "C_470n",
+      "value": "470nF",
+      "mpn": "GRM188R71E474KA12D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        59,
+        30
+      ],
+      "angle": 270,
+      "side": "back",
+      "section": "05_H2S-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "H2S_WE_SUM",
+        "2": "H2S_WE_OUT"
+      }
+    },
+    {
+      "ref": "R52",
+      "type": "R_10000",
+      "value": "10000R",
+      "mpn": "RT0603BRD0710KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        43,
+        60
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "05_H2S-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "H2S_WE_OUT",
+        "2": "H2S_WE_ADC"
+      }
+    },
+    {
+      "ref": "C51",
+      "type": "C_1u",
+      "value": "1uF",
+      "mpn": "GRM188R71E105KA12D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        46,
+        60
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "05_H2S-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "H2S_WE_ADC",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "Q3",
+      "type": "JFET",
+      "value": "MMBFJ177LT1G",
+      "mpn": "MMBFJ177LT1G",
+      "local_fp": "Package_TO_SOT_SMD__SOT-23.kicad_mod",
+      "names": {
+        "1": "D",
+        "2": "S",
+        "3": "G"
+      },
+      "xy": [
+        76,
+        30
+      ],
+      "angle": 0,
+      "side": "back",
+      "section": "05_H2S-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "H2S_WE",
+        "2": "H2S_RE",
+        "3": "CLAMP_GATE"
+      }
+    },
+    {
+      "ref": "R53",
+      "type": "R_20",
+      "value": "20R",
+      "mpn": "RT0603BRD0720RL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        72,
+        26
+      ],
+      "angle": 0,
+      "side": "back",
+      "section": "05_H2S-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "H2S_AE",
+        "2": "H2S_AE_SUM"
+      }
+    },
+    {
+      "ref": "R54",
+      "type": "R_20000",
+      "value": "20000R",
+      "mpn": "RT0603BRD0720KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        71,
+        29
+      ],
+      "angle": 270,
+      "side": "back",
+      "section": "05_H2S-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "H2S_AE_SUM",
+        "2": "H2S_AE_OUT"
+      }
+    },
+    {
+      "ref": "C53",
+      "type": "C_470n",
+      "value": "470nF",
+      "mpn": "GRM188R71E474KA12D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        73,
+        29
+      ],
+      "angle": 270,
+      "side": "back",
+      "section": "05_H2S-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "H2S_AE_SUM",
+        "2": "H2S_AE_OUT"
+      }
+    },
+    {
+      "ref": "R55",
+      "type": "R_10000",
+      "value": "10000R",
+      "mpn": "RT0603BRD0710KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        43,
+        63
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "05_H2S-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "H2S_AE_OUT",
+        "2": "H2S_AE_ADC"
+      }
+    },
+    {
+      "ref": "C54",
+      "type": "C_1u",
+      "value": "1uF",
+      "mpn": "GRM188R71E105KA12D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        46,
+        63
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "05_H2S-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "H2S_AE_ADC",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "Q4",
+      "type": "JFET",
+      "value": "MMBFJ177LT1G",
+      "mpn": "MMBFJ177LT1G",
+      "local_fp": "Package_TO_SOT_SMD__SOT-23.kicad_mod",
+      "names": {
+        "1": "D",
+        "2": "S",
+        "3": "G"
+      },
+      "xy": [
+        76,
+        36
+      ],
+      "angle": 0,
+      "side": "back",
+      "section": "05_H2S-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "H2S_AE",
+        "2": "H2S_RE",
+        "3": "CLAMP_GATE"
+      }
+    },
+    {
+      "ref": "R56",
+      "type": "R_10000",
+      "value": "10000R",
+      "mpn": "RT0603BRD0710KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        56,
+        22
+      ],
+      "angle": 0,
+      "side": "back",
+      "section": "05_H2S-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "H2S_RE",
+        "2": "H2S_RE_FB"
+      }
+    },
+    {
+      "ref": "R57",
+      "type": "R_100",
+      "value": "100R",
+      "mpn": "RC0603FR-07100RL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        55,
+        31
+      ],
+      "angle": 0,
+      "side": "back",
+      "section": "05_H2S-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "H2S_CE_DRV",
+        "2": "H2S_CE"
+      }
+    },
+    {
+      "ref": "C56",
+      "type": "C_100n",
+      "value": "100nF",
+      "mpn": "GRM188R71H104KA93D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        53,
+        27
+      ],
+      "angle": 90,
+      "side": "back",
+      "section": "05_H2S-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "H2S_CE_DRV",
+        "2": "H2S_RE_FB"
+      }
+    },
+    {
+      "ref": "C57",
+      "type": "C_100n",
+      "value": "100nF",
+      "mpn": "GRM188R71H104KA93D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        69.5,
+        32
+      ],
+      "angle": 0,
+      "side": "back",
+      "section": "05_H2S-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "VA",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "C58",
+      "type": "C_100n",
+      "value": "100nF",
+      "mpn": "GRM188R71H104KA93D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        60.5,
+        27
+      ],
+      "angle": 90,
+      "side": "back",
+      "section": "05_H2S-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "VA",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "R70",
+      "type": "R_10000",
+      "value": "10000R",
+      "mpn": "RT0603BRD0710KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        6,
+        46
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "03_ADC_reference-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "USB_5V",
+        "2": "CLAMP_GATE"
+      }
+    },
+    {
+      "ref": "R71",
+      "type": "R_1000000",
+      "value": "1e+06R",
+      "mpn": "RC0603FR-071ML",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        10,
+        46
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "03_ADC_reference-page-02",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "CLAMP_GATE",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "U11",
+      "type": "SHT",
+      "value": "SHT40-AD1F-R2",
+      "mpn": "SHT40-AD1F-R2",
+      "local_fp": "SHT40.kicad_mod",
+      "names": {
+        "1": "SDA",
+        "2": "SCL",
+        "3": "VDD",
+        "4": "VSS"
+      },
+      "xy": [
+        85,
+        96
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "06_Environment-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "SDA",
+        "2": "SCL",
+        "3": "V3",
+        "4": "GND"
+      }
+    },
+    {
+      "ref": "C70",
+      "type": "C_100n",
+      "value": "100nF",
+      "mpn": "GRM188R71H104KA93D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        85,
+        91
+      ],
+      "angle": 180,
+      "side": "front",
+      "section": "06_Environment-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "V3",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "U12",
+      "type": "BMP",
+      "value": "BMP390",
+      "mpn": "BMP390",
+      "local_fp": "BMP390.kicad_mod",
+      "names": {
+        "1": "VDDIO",
+        "2": "SCL",
+        "3": "GND",
+        "4": "SDA",
+        "5": "I2C_ADDR",
+        "6": "CSB",
+        "7": "INT",
+        "8": "GND",
+        "9": "GND",
+        "10": "VDD"
+      },
+      "xy": [
+        72,
+        65
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "06_Environment-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "V3",
+        "2": "SCL",
+        "3": "GND",
+        "4": "SDA",
+        "5": "GND",
+        "6": "V3",
+        "7": null,
+        "8": "GND",
+        "9": "GND",
+        "10": "V3"
+      }
+    },
+    {
+      "ref": "C71",
+      "type": "C_100n",
+      "value": "100nF",
+      "mpn": "GRM188R71H104KA93D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        76,
+        65
+      ],
+      "angle": 90,
+      "side": "front",
+      "section": "06_Environment-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "V3",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "C72",
+      "type": "C_100n",
+      "value": "100nF",
+      "mpn": "GRM188R71H104KA93D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        72,
+        69
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "06_Environment-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "V3",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "TP1",
+      "type": "TP",
+      "value": "Test pad 1mm",
+      "mpn": "Test pad 1mm",
+      "local_fp": "TestPoint__TestPoint_Pad_D1.0mm.kicad_mod",
+      "names": {
+        "1": "TEST"
+      },
+      "xy": [
+        5,
+        57
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "07_Testpoints-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "GND"
+      }
+    },
+    {
+      "ref": "TP2",
+      "type": "TP",
+      "value": "Test pad 1mm",
+      "mpn": "Test pad 1mm",
+      "local_fp": "TestPoint__TestPoint_Pad_D1.0mm.kicad_mod",
+      "names": {
+        "1": "TEST"
+      },
+      "xy": [
+        5,
+        87
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "07_Testpoints-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "USB_5V"
+      }
+    },
+    {
+      "ref": "TP3",
+      "type": "TP",
+      "value": "Test pad 1mm",
+      "mpn": "Test pad 1mm",
+      "local_fp": "TestPoint__TestPoint_Pad_D1.0mm.kicad_mod",
+      "names": {
+        "1": "TEST"
+      },
+      "xy": [
+        20,
+        82
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "07_Testpoints-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "V3"
+      }
+    },
+    {
+      "ref": "TP4",
+      "type": "TP",
+      "value": "Test pad 1mm",
+      "mpn": "Test pad 1mm",
+      "local_fp": "TestPoint__TestPoint_Pad_D1.0mm.kicad_mod",
+      "names": {
+        "1": "TEST"
+      },
+      "xy": [
+        18,
+        49
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "07_Testpoints-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "VA"
+      }
+    },
+    {
+      "ref": "TP5",
+      "type": "TP",
+      "value": "Test pad 1mm",
+      "mpn": "Test pad 1mm",
+      "local_fp": "TestPoint__TestPoint_Pad_D1.0mm.kicad_mod",
+      "names": {
+        "1": "TEST"
+      },
+      "xy": [
+        28,
+        49
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "07_Testpoints-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "REF_2V5"
+      }
+    },
+    {
+      "ref": "TP6",
+      "type": "TP",
+      "value": "Test pad 1mm",
+      "mpn": "Test pad 1mm",
+      "local_fp": "TestPoint__TestPoint_Pad_D1.0mm.kicad_mod",
+      "names": {
+        "1": "TEST"
+      },
+      "xy": [
+        40,
+        49
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "07_Testpoints-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "VZERO"
+      }
+    },
+    {
+      "ref": "TP7",
+      "type": "TP",
+      "value": "Test pad 1mm",
+      "mpn": "Test pad 1mm",
+      "local_fp": "TestPoint__TestPoint_Pad_D1.0mm.kicad_mod",
+      "names": {
+        "1": "TEST"
+      },
+      "xy": [
+        60,
+        94
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "07_Testpoints-page-01",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "PM_5V"
+      }
+    },
+    {
+      "ref": "U13",
+      "type": "AnalogSwitch",
+      "value": "TPS22918DBVR",
+      "mpn": "TPS22918DBVR",
+      "local_fp": "Package_TO_SOT_SMD__SOT-23-6.kicad_mod",
+      "names": {
+        "1": "VIN",
+        "2": "GND",
+        "3": "ON",
+        "4": "CT",
+        "5": "QOD",
+        "6": "VOUT"
+      },
+      "xy": [
+        7,
+        51
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "04_Analog_reference-page-01",
+      "dnp": false,
+      "note": "Analog power sequencing / USB suspend",
+      "pins": {
+        "1": "V3",
+        "2": "GND",
+        "3": "ANA_EN",
+        "4": "ANA_CT",
+        "5": "VA_SW",
+        "6": "VA_SW"
+      }
+    },
+    {
+      "ref": "Q7",
+      "type": "MOS",
+      "value": "2N7002/HAMR",
+      "mpn": "2N7002/HAMR",
+      "local_fp": "Package_TO_SOT_SMD__SOT-23.kicad_mod",
+      "names": {
+        "1": "G",
+        "2": "S",
+        "3": "D"
+      },
+      "xy": [
+        13,
+        46
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "04_Analog_reference-page-01",
+      "dnp": false,
+      "note": "Analog power sequencing / USB suspend",
+      "pins": {
+        "1": "CLAMP_HOLD",
+        "2": "GND",
+        "3": "CLAMP_GATE"
+      }
+    },
+    {
+      "ref": "R72",
+      "type": "R_100000",
+      "value": "100000R",
+      "mpn": "RT0603BRD07100KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        7,
+        54
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "04_Analog_reference-page-01",
+      "dnp": false,
+      "note": "Analog power sequencing / USB suspend",
+      "pins": {
+        "1": "ANA_EN",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "R73",
+      "type": "R_10000",
+      "value": "10000R",
+      "mpn": "RT0603BRD0710KL",
+      "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        13,
+        49
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "04_Analog_reference-page-01",
+      "dnp": false,
+      "note": "Analog power sequencing / USB suspend",
+      "pins": {
+        "1": "V3",
+        "2": "CLAMP_HOLD"
+      }
+    },
+    {
+      "ref": "C73",
+      "type": "C_1u",
+      "value": "1uF",
+      "mpn": "GRM188R71E105KA12D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        10.8,
+        51
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "04_Analog_reference-page-01",
+      "dnp": false,
+      "note": "Analog power sequencing / USB suspend",
+      "pins": {
+        "1": "V3",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "C74",
+      "type": "C_10n",
+      "value": "10nF",
+      "mpn": "GRM188R71H103KA01D",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+      "names": {
+        "1": "1",
+        "2": "2"
+      },
+      "xy": [
+        11,
+        57
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "04_Analog_reference-page-01",
+      "dnp": false,
+      "note": "Analog power sequencing / USB suspend",
+      "pins": {
+        "1": "ANA_CT",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "H1",
+      "type": null,
+      "value": "M3",
+      "mpn": "Mechanical",
+      "local_fp": "MountingHole__MountingHole_3.2mm_M3.kicad_mod",
+      "names": {},
+      "xy": [
+        4,
+        4
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "Mechanical",
+      "dnp": false,
+      "note": "M3 support",
+      "pins": {}
+    },
+    {
+      "ref": "H2",
+      "type": null,
+      "value": "M3",
+      "mpn": "Mechanical",
+      "local_fp": "MountingHole__MountingHole_3.2mm_M3.kicad_mod",
+      "names": {},
+      "xy": [
+        86,
+        4
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "Mechanical",
+      "dnp": false,
+      "note": "M3 support",
+      "pins": {}
+    },
+    {
+      "ref": "H3",
+      "type": null,
+      "value": "M3",
+      "mpn": "Mechanical",
+      "local_fp": "MountingHole__MountingHole_3.2mm_M3.kicad_mod",
+      "names": {},
+      "xy": [
+        4,
+        96
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "Mechanical",
+      "dnp": false,
+      "note": "M3 support",
+      "pins": {}
+    },
+    {
+      "ref": "H4",
+      "type": null,
+      "value": "M3",
+      "mpn": "Mechanical",
+      "local_fp": "MountingHole__MountingHole_3.2mm_M3.kicad_mod",
+      "names": {},
+      "xy": [
+        86,
+        55
+      ],
+      "angle": 0,
+      "side": "front",
+      "section": "Mechanical",
+      "dnp": false,
+      "note": "M3 support",
+      "pins": {}
+    }
+  ]
+}

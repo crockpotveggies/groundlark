@@ -3,6 +3,12 @@ paths:
   src: .
   layout: build/layout
 builds:
+  skylark:
+    standardize_designators: false
+    keep_net_names: false
+    entry: skylark-usb/elec/skylark.ato:Skylark
+    paths:
+      layout: skylark-usb/layout/skylark/skylark.kicad_pcb
   trenz_hat:
     standardize_designators: false
     keep_net_names: false

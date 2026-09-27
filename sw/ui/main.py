@@ -29,12 +29,13 @@ def build_descriptor():
 
 build_descriptor()
 from nicegui import app, run, ui  # noqa: E402
-from groundlark.workbench import MAX_BYTES, NAMES, Workbench  # noqa: E402
-from groundlark.hat_signals import run_bench  # noqa: E402
+from groundlark.workbench import MAX_BYTES, NAMES, BOARDS, Workbench  # noqa: E402
+from groundlark.board_bench import run_bench  # noqa: E402
+from skylark_scene import add_skylark
 from geophone_scene import add_geophone  # noqa: E402
 
 ASSETS = Path(__file__).parent / "assets"
-for relative, expected in json.loads((ASSETS / "provenance.json").read_text())["sha256"].items():
+for relative, expected in {**json.loads((ASSETS / "provenance.json").read_text())["sha256"], **json.loads((ASSETS / "skylark-provenance.json").read_text())["sha256"]}.items():
     if hashlib.sha256((ROOT / relative).read_bytes()).hexdigest() != expected:
         raise RuntimeError(f"Board visualization is stale: {relative}. See sw/ui/assets/README.md.")
 app.add_static_files("/board-assets", ASSETS)
@@ -47,6 +48,11 @@ LABELS = {**{i: ("Acceleration · raw counts", "Angular rate · raw counts") for
           8: ("Differential pressure · raw counts", "Temperature · raw counts")}
 MODELS = {**{i: "LSM6DSO" for i in range(1, 5)}, 5: "SCL3300", 9: "Racotech / ADS122C04", 7: "RM3100", 8: "DLVR · optional"}
 
+LABELS.update({**{i: ("Gas ADC · raw counts", "Uncalibrated") for i in range(10,14)},
+               14: ("Atmospheric particulate · µg/m³", ""), 15: ("Temperature · °C", "Humidity · %RH"),
+               16: ("Pressure · Pa", "Temperature · °C")})
+MODELS.update({10:"SGX-7SO2-AQ-20",11:"SO₂ auxiliary",12:"SGX-7H2S-AQ-25",13:"H₂S auxiliary",
+               14:"PMS5003",15:"SHT40",16:"BMP390"})
 
 def chart_options(title):
     return dict(backgroundColor="transparent", animation=False, color=COLORS,
@@ -107,18 +113,19 @@ def board_scene(scene, select):
                     scene.text(NAMES[sid] + (" · optional" if sid == 8 else ""), "color:white;font-size:12px;pointer-events:none").move(x, y, 1)
             scene.text("REMOTE USB HEAD  /  70 × 45 mm", "color:#a6bfcc;font-size:11px;pointer-events:none").move(0, -2.8, .1)
         head.visible(False)
+        skylark = add_skylark(scene, targets, rings, TEAL)
     def clicked(event):
         for hit in event.hits:
             if hit.object_id in targets:
                 select(targets[hit.object_id])
                 break
     scene.on_click(clicked)
-    return hat, head, rings
+    return hat, head, skylark, rings
 
 
 @ui.page("/")
 def page():
-    engine = Workbench()
+    engine = Workbench(board="hat")
     selected = 1
     busy = False
     verified_capture, signal_report = None, None
@@ -139,19 +146,46 @@ def page():
         nonlocal selected
         selected = sid
         heading.set_text(f"{NAMES[sid]}  /  {MODELS[sid]}")
-        board_label.set_text("DAQHAT-01 sensor HAT" if sid not in (7, 8) else "Remote USB sensor head")
-        hat.visible(sid not in (7, 8))
+        board_label.set_text("Skylark USB" if sid >= 10 else "Remote USB sensor head" if sid in (7,8) else "DAQHAT-01 sensor HAT")
+        hat.visible(sid < 10 and sid not in (7, 8))
+        skylark.visible(sid >= 10)
         head.visible(sid in (7, 8))
         for sensor, highlights in rings.items():
             for ring in highlights:
-                ring.material(TEAL if sensor == sid else "#60788a", 1 if sensor == sid else .25)
+                ring.material(TEAL if sensor == sid or (sensor in (10,12) and sensor+1 == sid) or (sensor in (11,13) and sensor-1 == sid) else "#60788a", 1 if sensor == sid or (sensor in (10,12) and sensor+1 == sid) or (sensor in (11,13) and sensor-1 == sid) else .25)
         for sensor, button in sensor_buttons.items():
-            button.classes(replace="sensor-button selected" if sensor == sid else "sensor-button")
+            if sensor == sid: button.classes(add='selected')
+            else: button.classes(remove='selected')
+            button.set_visibility(sensor in engine.sensor_ids)
         update_charts()
 
     def camera(top=False):
-        scene.move_camera(x=-1.4 if top else 4, y=-.01 if top else -8, z=14 if top else 10,
-                          look_at_x=-1.4, look_at_y=0, look_at_z=.2, up_x=0, up_y=0, up_z=1)
+        sky = selected >= 10
+        scene.move_camera(x=1.5 if sky else -1.4 if top else 4, y=-.01 if top else -8, z=(23 if top else 21) if sky else 14 if top else 10,
+                          look_at_x=1.5 if sky else -1.4, look_at_y=0, look_at_z=.2, up_x=0, up_y=0, up_z=1)
+
+    def sync_board():
+        board_select.set_value(engine.board)
+        for sid, button in sensor_buttons.items(): button.set_visibility(sid in engine.sensor_ids)
+        visible_ids = [sid for sid in engine.sensor_ids if sid in NAMES]
+        fault_sensor.set_options({sid:NAMES[sid] for sid in visible_ids}, value=visible_ids[0] if visible_ids else None)
+        pose_controls.set_visibility(engine.board in ("all","hat","burrowlark"))
+        pose_options = ({"head_orientation_deg": "Remote head pose"} if engine.board == 'burrowlark'
+                        else {"orientation_deg": "HAT pose", "head_orientation_deg": "Remote head pose"} if engine.board == 'all'
+                        else {"orientation_deg": "HAT pose"})
+        pose_target.set_options(pose_options, value=next(iter(pose_options)))
+        field_controls.set_visibility(engine.board in ("all","burrowlark"))
+        geophone_controls.set_visibility(engine.board in ("all","hat"))
+        air_controls.set_visibility(engine.board == "skylark")
+        demo_button.set_visibility(engine.board in ('hat','all','burrowlark'))
+        choose(visible_ids[0] if visible_ids else 1)
+        camera()
+
+    def switch_board():
+        if busy or board_select.value == engine.board: return
+        engine.reset(seed=int(seed.value), board=board_select.value)
+        verification_panel.set_visibility(False)
+        sync_board()
 
     def fresh(document=None):
         nonlocal verified_capture, signal_report
@@ -181,6 +215,7 @@ def page():
             await run.io_bound(engine.load_recording, await event.file.read())
             verified_capture, signal_report = None, None
             verification_panel.set_visibility(False)
+            sync_board()
             ui.notify("Recording validated. Use Play or the replay timeline.")
         except (ValueError, OSError, TypeError, KeyError, RecursionError) as error:
             ui.notify(str(error), type="negative")
@@ -204,19 +239,23 @@ def page():
         nonlocal busy, verified_capture, signal_report
         if busy:
             return
+        if engine.board == 'all':
+            ui.notify('Select an individual board to run its test')
+            return
         busy = True
         engine.pause()
         test_button.disable()
-        test_button.set_text("Testing HAT signals…")
+        test_button.set_text("Testing board…")
+        board_select.disable()
         verification_panel.set_visibility(False)
         try:
-            data, report = await run.io_bound(run_bench)
+            data, report = await run.io_bound(run_bench, engine.board)
             await run.io_bound(engine.load_recording, data)
             await run.io_bound(engine.seek, 8)
             verified_capture, signal_report = data, report
-            choose(2)
-            verification_title.set_text(f'{"PASS" if report["passed"] else "FAIL"} · {sum(c["passed"] for c in report["checks"])}/{len(report["checks"])} HAT signal checks')
-            verification_scope.set_text(f'MODELED SPI / I²C BUSES → ACTUAL PI DRIVERS → ACQUISITION → CHECKED RECORDING · 8 simulated seconds · {report["samples"]:,} HAT samples')
+            sync_board()
+            verification_title.set_text(f'{"PASS" if report["passed"] else "FAIL"} · {sum(c["passed"] for c in report["checks"])}/{len(report["checks"])} board checks')
+            verification_scope.set_text(f'{report["scope"]} · {report["samples"]:,} samples')
             verification_title.style(f'color:{TEAL if report["passed"] else "#ff9a89"}')
             check_badges.clear()
             check_details.clear()
@@ -228,13 +267,14 @@ def page():
                     ui.label(f'{"PASS" if check["passed"] else "FAIL"} · {check["name"]}: {check["detail"]}').classes("small")
                 ui.label(f'Recording SHA-256: {report["recording_sha256"]}').classes("fine-print break-all")
             verification_panel.set_visibility(True)
-            ui.notify("HAT signal test passed; the checked capture is loaded below" if report["passed"] else "HAT signal test failed; inspect the report", type="positive" if report["passed"] else "negative")
+            ui.notify("Board test passed; the checked capture is loaded below" if report["passed"] else "Board test failed; inspect the report", type="positive" if report["passed"] else "negative")
         except (ValueError, OSError) as error:
             ui.notify(str(error), type="negative")
         finally:
             busy = False
             test_button.enable()
-            test_button.set_text("Test HAT signals")
+            test_button.set_text("Test selected board")
+            board_select.enable()
 
     with ui.row().classes("topbar"):
         with ui.column().classes("gap-0"):
@@ -243,7 +283,8 @@ def page():
         ui.space()
         mode = ui.badge("SIMULATION", color="primary").props("outline")
         state_label = ui.label("Ready").classes("muted")
-        test_button = ui.button("Test HAT signals", icon="fact_check", on_click=run_signal_test).props("outline no-caps").tooltip("Replaces this session with a fixed 8-second modeled-bus test; download any current run first")
+        board_select = ui.select(BOARDS, value="hat", label="Board", on_change=lambda: attempt(switch_board)).props("dense outlined").classes("w-56").tooltip('Switching boards starts a new run; save the current recording first')
+        test_button = ui.button("Test selected board", icon="fact_check", on_click=run_signal_test).props("outline no-caps").tooltip("Replaces this session with a board-specific 8-second test; download any current run first")
         play = ui.button("Start", icon="play_arrow", on_click=lambda: attempt(engine.toggle)).props("unelevated no-caps")
         save = ui.button("Finish & save", icon="download", on_click=lambda: attempt(save_recording)).props("outline no-caps")
 
@@ -251,13 +292,13 @@ def page():
         with ui.row().classes("w-full items-center"):
             verification_title = ui.label().classes("section-title")
             ui.space()
-            ui.button("Test recording", icon="download", on_click=lambda: ui.download.content(verified_capture, "hat-signals.ssrec", "application/octet-stream")).props("flat no-caps")
-            ui.button("Report JSON", icon="download", on_click=lambda: ui.download.content(json.dumps(signal_report, indent=2), "hat-signals.json", "application/json")).props("flat no-caps")
+            ui.button("Test recording", icon="download", on_click=lambda: ui.download.content(verified_capture, "board-test.ssrec", "application/octet-stream")).props("flat no-caps")
+            ui.button("Report JSON", icon="download", on_click=lambda: ui.download.content(json.dumps(signal_report, indent=2), "board-test.json", "application/json")).props("flat no-caps")
         verification_scope = ui.label().classes("eyebrow")
         check_badges = ui.row().classes("gap-2")
         with ui.expansion("Measurements & tolerances").classes("w-full"):
             check_details = ui.column().classes("gap-1")
-        ui.label("Bench inputs: 2 Hz / 0.300 m/s² vibration and 0.5 Hz / 5° rocking. No physical HAT connected; remote-head sensors are outside this test.").classes("small muted")
+        ui.label("Offline tests use modeled inputs. The report identifies which drivers and acquisition paths are exercised. Physical qualification remains separate.").classes("small muted")
     verification_panel.set_visibility(False)
 
     with ui.element("div").classes("workspace"):
@@ -265,10 +306,8 @@ def page():
             ui.label("DEVICES").classes("eyebrow")
             ui.label("Select a sensor").classes("section-title")
             sensor_buttons, statuses = {}, {}
-            for sid in (1, 2, 3, 9, 7, 8):
+            for sid in (1, 2, 3, 9, 7, 8, 10, 11, 12, 13, 14, 15, 16):
                 name = NAMES[sid]
-                if sid in (1, 7):
-                    ui.label("DAQHAT-01 HAT · PI / FPGA STACK" if sid == 1 else "REMOTE · USB-C HEAD").classes("group-label")
                 with ui.button(on_click=lambda sid=sid: choose(sid)).props("flat no-caps align=left").classes("sensor-button") as b:
                     with ui.column().classes("gap-0 items-start"):
                         ui.label(name).classes("sensor-name")
@@ -276,7 +315,7 @@ def page():
                 sensor_buttons[sid] = b
             ui.separator().classes("my-2")
             ui.label("MODELED DEVICES").classes("eyebrow")
-            ui.label("No hardware connected. The FPGA is not required for sensor experiments.").classes("small muted")
+            ui.label("No hardware connected. Coldfoot integration is deferred. The FPGA is not required for sensor experiments.").classes("small muted")
             metrics = ui.label("0 samples · 0 missing").classes("small")
             ui.space()
             with ui.expansion("Recordings & scenarios", icon="folder_open").classes("w-full small"):
@@ -296,17 +335,17 @@ def page():
                     ui.button("Orbit", on_click=lambda: camera()).props("flat dense no-caps")
                     ui.button("Top", on_click=lambda: camera(True)).props("flat dense no-caps")
                 scene = ui.scene(height=310, grid=False, camera=ui.scene.perspective_camera(fov=40), background_color="#111c28").classes("w-full rounded-lg")
-                hat, head, rings = board_scene(scene, choose)
+                hat, head, skylark, rings = board_scene(scene, choose)
                 camera()
                 ui.label("Click a sensor to inspect · drag to orbit · scroll to zoom").classes("small muted")
-                ui.label("HAT: KiCad geometry. Geophone: nominal 25.4 × 33 mm body; illustrative terminals/leads. Remote head: simplified geometry. Camera motion does not stimulate sensors.").classes("fine-print")
+                ui.label("HAT: KiCad geometry. Geophone: nominal 25.4 × 33 mm body; illustrative terminals/leads. Remote head: simplified geometry. Skylark: native PCB plus package envelopes; PMS5003 shown beside it for inspection. Camera motion does not stimulate sensors.").classes("fine-print")
             with ui.column().classes("panel chart-panel"):
                 heading = ui.label("IMU 1 / LSM6DSO").classes("section-title")
                 detail = ui.label("Waiting for samples").classes("small muted")
                 with ui.element("div").classes("chart-grid"):
                     primary = ui.echart(chart_options(LABELS[1][0])).classes("chart")
                     secondary = ui.echart(chart_options(LABELS[1][1])).classes("chart")
-                ui.label("Raw counts preserved · gaps mean missing data · time axis is recording arrival time, not synchronized device clocks").classes("fine-print")
+                ui.label("Original sensor data preserved · gaps mean missing data · time axis is recording arrival time, not synchronized device clocks").classes("fine-print")
 
         with ui.column().classes("panel controls-panel"):
             ui.label("STIMULUS LAB").classes("eyebrow")
@@ -315,9 +354,9 @@ def page():
             with ui.row().classes("w-full items-center"):
                 seed = ui.number("Seed", value=1, min=0, max=2**32-1, precision=0).props("dense outlined").classes("seed")
                 ui.button("New run", icon="add", on_click=lambda: attempt(fresh)).props("flat no-caps").tooltip("Replaces the current run; save it first")
-            ui.button("Load rocking + field demo", icon="waves", on_click=lambda: attempt(lambda: fresh(json.loads((ROOT / "sw/pi/profiles/stimulus-demo.json").read_text())))).props("outline no-caps").classes("w-full")
+            demo_button = ui.button("Load rocking + field demo", icon="waves", on_click=lambda: attempt(lambda: fresh(json.loads((ROOT / "sw/pi/profiles/stimulus-demo.json").read_text())))).props("outline no-caps").classes("w-full")
             with ui.column().classes("w-full gap-2") as stimuli:
-                with ui.expansion("Pose & vibration", icon="screen_rotation", value=True).classes("w-full"):
+                with ui.expansion("Pose & vibration", icon="screen_rotation", value=True).classes("w-full") as pose_controls:
                     pose_target = ui.select({"orientation_deg": "HAT pose", "head_orientation_deg": "Remote head pose"}, value="orientation_deg").props("dense outlined").classes("w-full")
                     pose = []
                     for axis in ("Roll", "Pitch", "Yaw"):
@@ -329,17 +368,27 @@ def page():
                     amp = ui.number("Vertical amplitude (m/s²)", value=.3, min=0, max=20, step=.1).props("dense outlined").classes("w-full")
                     frequency = ui.number("Frequency (Hz)", value=2, min=0, max=12, step=.1).props("dense outlined").classes("w-full")
                     ui.button("Apply vibration", on_click=lambda: attempt(lambda: engine.controls({"acceleration_m_s2": [0, 0, {"amplitude": amp.value, "frequency_hz": frequency.value}]}))).props("flat no-caps")
-                with ui.expansion("Magnetic field & infrasound", icon="sensors").classes("w-full"):
+                with ui.expansion("Magnetic field & infrasound", icon="sensors").classes("w-full") as field_controls:
                     fields = [ui.number(f"Field {axis} (µT)", value=value, step=1).props("dense outlined").classes("w-full") for axis, value in zip("XYZ", (0, 20, -45))]
                     ui.button("Apply field", on_click=lambda: attempt(lambda: engine.controls({"magnetic_ut": [f.value for f in fields]}))).props("flat no-caps")
                     pressure = ui.number("Pressure amplitude (Pa)", value=20, min=0, max=500).props("dense outlined").classes("w-full")
                     pressure_hz = ui.number("Pressure frequency (Hz)", value=1, min=0, max=20, step=.1).props("dense outlined").classes("w-full")
                     ui.button("Apply pressure", on_click=lambda: attempt(lambda: engine.controls({"pressure_pa": {"amplitude": pressure.value, "frequency_hz": pressure_hz.value}}))).props("flat no-caps")
-                with ui.expansion("Geophone stimulus", icon="waves").classes("w-full"):
+                with ui.expansion("Geophone stimulus", icon="waves").classes("w-full") as geophone_controls:
                     geo_amp = ui.number("Vertical velocity amplitude (um/s)", value=100, min=0, max=10000)
                     geo_freq = ui.number("Frequency (Hz)", value=10, min=.1, max=100)
                     ui.button("Apply geophone tone", on_click=lambda: attempt(lambda: engine.controls({"geophone_velocity_m_s": {"amplitude": geo_amp.value/1e6, "frequency_hz": geo_freq.value}}))).props("flat no-caps")
                     ui.label("Steady-state response model; changes do not simulate settling.").classes("muted")
+                with ui.expansion("Air quality stimulus", icon="air", value=True).classes("w-full") as air_controls:
+                    air_fields = {}
+                    for key, label, value, low, high in [("so2_ppm","SO₂ stimulus (ppm)",0,0,20),
+                        ("h2s_ppm","H₂S stimulus (ppm)",0,0,25), ("pm25_ug_m3","PM2.5 (µg/m³)",5,0,1000),
+                        ("temperature_c","Ambient temperature (°C)",25,-40,85),
+                        ("humidity_percent","Humidity (%RH)",50,0,100),
+                        ("ambient_pressure_pa","Barometric pressure (Pa)",101325,30000,125000)]:
+                        air_fields[key] = ui.number(label, value=value, min=low, max=high).props("dense outlined").classes("w-full")
+                    ui.button("Apply air stimulus", on_click=lambda: attempt(lambda: engine.controls({key:field.value for key,field in air_fields.items()}))).props("flat no-caps")
+                    ui.label("Gas ppm controls are nominal simulation inputs. Gas plots show uncalibrated ADC counts; field concentration requires cell calibration.").classes("fine-print")
                 with ui.expansion("Fault injection", icon="bug_report").classes("w-full"):
                     fault_sensor = ui.select({sid: name for sid, name in NAMES.items() if sid not in (4, 5)}, value=1, label="Sensor").props("dense outlined").classes("w-full")
                     fault = ui.select(["none", "timeout", "nack", "disconnect", "not_ready", "saturation", "short_read"], value="none", label="Fault").props("dense outlined").classes("w-full")
@@ -375,15 +424,15 @@ def page():
         snap = engine.snapshot(selected)
         for chart, field, label in ((primary, "primary", LABELS[selected][0]), (secondary, "secondary", LABELS[selected][1])):
             chart.options["title"]["text"] = label
-            names = ["Counts", "", ""] if selected in (8, 9) else list("XYZ")
-            chart.options["legend"]["show"] = selected not in (8, 9)
+            names = ["PM1", "PM2.5", "PM10"] if selected == 14 else ["Value", "", ""] if selected in (8,9,10,11,12,13,15,16) else list("XYZ")
+            chart.options["legend"]["show"] = selected in (1,2,3,7,14)
             for axis, series in enumerate(chart.options["series"]):
                 series["name"] = names[axis]
                 series["data"] = [[p["t"], p[field][axis]] for p in snap["points"]]
             chart.update()
-        secondary.set_visibility(selected not in (7, 9))
-        primary.style("grid-column:1 / -1" if selected in (7, 9) else "grid-column:auto")
-        point = snap["latest"][selected]
+        secondary.set_visibility(selected not in (7,9,10,11,12,13,14))
+        primary.style("grid-column:1 / -1" if selected in (7,9,10,11,12,13,14) else "grid-column:auto")
+        point = snap["latest"].get(selected)
         detail.set_text(f'{point["quality"]} · {point["detail"]}' if point else "Waiting for samples")
         heading.set_text(f"{NAMES[selected]}  /  {MODELS[selected]}")
         metrics.set_text(f'{snap["samples"]:,} samples · {snap["missing"]:,} missing')
@@ -400,6 +449,7 @@ def page():
         play.set_enabled(not busy and not snap["ended"])
         play.props(f'icon={"pause" if snap["running"] else "play_arrow"}')
         save.set_enabled(snap["mode"] == "Simulate" and not busy)
+        test_button.set_enabled(not busy and engine.board != 'all')
         for element in stimuli.descendants():
             if hasattr(element, "set_enabled") and not isinstance(element, ui.expansion):
                 element.set_enabled(snap["mode"] == "Simulate" and not snap["ended"])
@@ -420,7 +470,7 @@ def page():
         if not busy:
             await run.io_bound(engine.advance, 50)
 
-    choose(1)
+    sync_board()
     ui.timer(.05, tick)
     ui.timer(.25, update_charts)
     ui.context.client.on_disconnect(engine.pause)

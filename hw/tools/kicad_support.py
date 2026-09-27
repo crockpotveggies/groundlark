@@ -40,7 +40,7 @@ def pin_type(num,part):
     if name in ('VDD','VDDIO','VCC','VCC_IO','V_BCKP','VSS','GND','AVSS','DVSS','DVIO','EMC_GND','VDDA','VDDB','AVDD','DVDD'): return 'power_in'
     if name in ('MISO','SDO'): return 'tri_state'
     if name in ('INT1','TIMEPULSE','DRDY'): return 'output'
-    if name in ('SCLK','SCK','CS','CSB','SDI','MOSI','EN','WP'): return 'input'
+    if name in ('SCLK','SCK','CS','CSB','SDI','MOSI','EN','WP','I2C_ADDR'): return 'input'
     return 'passive'
 
 def libsym(part):
@@ -78,13 +78,14 @@ def schematic(name,spec,folder):
         libs=[];body=[];x=start_x;y=35.56;row_height=0
         for idx,part in enumerate(parts):
             lib,coords,height=libsym(part);libs.append(lib)
+            footprint=('Skylark:'+Path(part.local_fp).stem) if name=='skylark-usb' else ('Groundlark:'+part.local_fp)
             if idx and idx%4==0: x=start_x;y+=row_height+22.86;row_height=0
             row_height=max(row_height,height)
             cy=y+height/2; puid=uid(name+'/'+part.ref)
             body.append(f'''(symbol (lib_id "Groundlark:Part_{part.ref}") (at {x} {cy} 0) (unit 1) (in_bom yes) (on_board yes) (dnp {'yes' if part.dnp else 'no'}) (uuid {puid})
               (property "Reference" {q(part.ref)} (at {x} {y-4} 0) {effects(1.27)})
               (property "Value" {q(part.value)} (at {x} {y-1.5} 0) {effects(1.0)})
-              (property "Footprint" {q('Groundlark:'+part.local_fp)} (at {x} {cy} 0) (effects (font (size 1 1)) hide))
+              (property "Footprint" {q(footprint)} (at {x} {cy} 0) (effects (font (size 1 1)) hide))
               (property "MPN" {q(part.mpn)} (at {x} {cy} 0) (effects (font (size 1 1)) hide))
               (instances (project {q(name)} (path "/{root}/{sid}" (reference {q(part.ref)}) (unit 1)))))''')
             for num,(px,py,side) in coords.items():
@@ -102,6 +103,7 @@ def schematic(name,spec,folder):
             rails=['GND','PI_3V3','PI_5V','SENS_3V3','FPGA_3V3' if name=='groundlark-daqhat-01' else 'CF_3V3'] if name.endswith('-hat') or name=='groundlark-daqhat-01' else ['GND','USB_VBUS','USB_5V','V3','V3_SENSOR']
             # GEO_AVDD is powered through R96; ERC cannot propagate power through a resistor.
             if name=="groundlark-daqhat-01": rails.append("GEO_AVDD")
+            if name=='skylark-usb': rails=['GND','USB_VBUS','USB_5V','V3','VA','PM_5V']
             for k,net in enumerate(rails):
                 xx=35.56+50.8*k; yy=274.32; reference=f'#FLG{k+1:02d}'
                 body.append(f'(symbol (lib_id "Groundlark:PWR_FLAG") (at {xx} {yy} 0) (unit 1) (in_bom no) (on_board no) (uuid {uid(name+reference)}) (property "Reference" "{reference}" (at {xx} {yy} 0) (effects (font (size 1 1)) hide)) (property "Value" "PWR_FLAG" (at {xx} {yy} 0) (effects (font (size 1 1)) hide)) (instances (project {q(name)} (path "/{root}/{sid}" (reference "{reference}") (unit 1)))))')
@@ -109,9 +111,12 @@ def schematic(name,spec,folder):
         all_libs.extend(libs)
         revision='DAQHAT-01' if name=='groundlark-daqhat-01' else 'A2 PROTOTYPE'
         date='2026-09-24' if name=='groundlark-daqhat-01' else '2026-09-23'
+        if name=='skylark-usb': revision,date='A PROTOTYPE','2026-09-26'
         header=f'(kicad_sch (version 20230121) (generator eeschema) (uuid {sid}) (paper "A3") (title_block (title {q(("Groundlark DAQHAT-01" if name=="groundlark-daqhat-01" else name)+" / "+section)}) (date {q(date)}) (rev {q(revision)}))'
         (folder/file).write_text(header+'\n(lib_symbols\n'+'\n'.join(libs)+')\n'+'\n'.join(body)+'\n)',encoding='utf-8')
     note='Atopile-derived review schematic - prototype, not released.\nThe Pi hosts acquisition and Coldfoot processing; the USB head has a local MCU.\nGlobal net labels connect functional sheets.'
+    if name=='skylark-usb':
+        note='Atopile-derived review schematic - Skylark USB Rev A prototype, not released.\nPMS5003 / SGX SO2 and H2S / SHT40 / BMP390. Firmware and physical qualification pending.\nGlobal net labels connect functional sheets; raw working and auxiliary electrodes are acquired separately.'
     if name=='groundlark-daqhat-01':
         note='Atopile-derived review schematic - DAQHAT-01 geophone / internal-link prototype, not released.\nPi sensor acquisition; SPI6 / quad wiring, UART and switched Pi JTAG; Coldfoot integration deferred.\nGlobal net labels connect functional sheets.'
     rootbody.append(f'(text {q(note)} (at 30 25 0) {effects(1.5,"left")} (uuid {uid(name+"note")}))')
