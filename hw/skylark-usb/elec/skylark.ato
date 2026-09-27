@@ -44,7 +44,14 @@ from "../../shared/elec/skylark/parts.ato" import R_1000000
 from "../../shared/elec/skylark/parts.ato" import C_470n
 from "../../shared/elec/skylark/parts.ato" import AnalogSwitch
 
+from "../../shared/elec/skylark/parts.ato" import C_100n_C0G
+from "../../shared/elec/skylark/parts.ato" import ClampNPN
+from "../../shared/elec/skylark/parts.ato" import GateDiode
+
 module Skylark:
+    signal CLAMP_BASE
+    signal GUARD
+    signal GATE_SUPPLY
     signal VA_SW
     signal ANA_EN
     signal CLAMP_HOLD
@@ -536,7 +543,7 @@ module Skylark:
     r31.p1 ~ SO2_WE_SUM
     r31.p2 ~ SO2_WE_OUT
 
-    c30 = new C_100n
+    c30 = new C_100n_C0G
     trait c30 has_designator<designator="C30">
     c30.p1 ~ SO2_WE_SUM
     c30.p2 ~ SO2_WE_OUT
@@ -567,7 +574,7 @@ module Skylark:
     r34.p1 ~ SO2_AE_SUM
     r34.p2 ~ SO2_AE_OUT
 
-    c33 = new C_100n
+    c33 = new C_100n_C0G
     trait c33 has_designator<designator="C33">
     c33.p1 ~ SO2_AE_SUM
     c33.p2 ~ SO2_AE_OUT
@@ -598,7 +605,7 @@ module Skylark:
     r37.p1 ~ SO2_CE_DRV
     r37.p2 ~ SO2_CE
 
-    c36 = new C_100n
+    c36 = new C_100n_C0G
     trait c36 has_designator<designator="C36">
     c36.p1 ~ SO2_CE_DRV
     c36.p2 ~ SO2_RE_FB
@@ -651,7 +658,7 @@ module Skylark:
     r51.p1 ~ H2S_WE_SUM
     r51.p2 ~ H2S_WE_OUT
 
-    c50 = new C_470n
+    c50 = new C_100n_C0G
     trait c50 has_designator<designator="C50">
     c50.p1 ~ H2S_WE_SUM
     c50.p2 ~ H2S_WE_OUT
@@ -682,7 +689,7 @@ module Skylark:
     r54.p1 ~ H2S_AE_SUM
     r54.p2 ~ H2S_AE_OUT
 
-    c53 = new C_470n
+    c53 = new C_100n_C0G
     trait c53 has_designator<designator="C53">
     c53.p1 ~ H2S_AE_SUM
     c53.p2 ~ H2S_AE_OUT
@@ -713,7 +720,7 @@ module Skylark:
     r57.p1 ~ H2S_CE_DRV
     r57.p2 ~ H2S_CE
 
-    c56 = new C_100n
+    c56 = new C_100n_C0G
     trait c56 has_designator<designator="C56">
     c56.p1 ~ H2S_CE_DRV
     c56.p2 ~ H2S_RE_FB
@@ -730,13 +737,13 @@ module Skylark:
 
     r70 = new R_10000
     trait r70 has_designator<designator="R70">
-    r70.p1 ~ USB_5V
+    r70.p1 ~ GATE_SUPPLY
     r70.p2 ~ CLAMP_GATE
 
-    r71 = new R_1000000
+    r71 = new R_100000
     trait r71 has_designator<designator="R71">
     r71.p1 ~ CLAMP_GATE
-    r71.p2 ~ GND
+    r71.p2 ~ VZERO
 
     u11 = new SHT
     trait u11 has_designator<designator="U11">
@@ -874,10 +881,10 @@ module Skylark:
     u13.p4 ~ ANA_CT
     u13.p5 ~ VA_SW
     u13.p6 ~ VA_SW
-    q7 = new MOS
+    q7 = new ClampNPN
     trait q7 has_designator<designator="Q7">
-    q7.p1 ~ CLAMP_HOLD
-    q7.p2 ~ GND
+    q7.p1 ~ CLAMP_BASE
+    q7.p2 ~ VZERO
     q7.p3 ~ CLAMP_GATE
     r72 = new R_100000
     trait r72 has_designator<designator="R72">
@@ -899,3 +906,63 @@ module Skylark:
     trait ANA_EN has_net_name_suggestion<name="ANA_EN", level="EXPECTED">
     trait CLAMP_HOLD has_net_name_suggestion<name="CLAMP_HOLD", level="EXPECTED">
     trait ANA_CT has_net_name_suggestion<name="ANA_CT", level="EXPECTED">
+
+    # Q7 holds gates just above VZERO; a grounded gate would forward-bias them.
+    r74 = new R_10000
+    trait r74 has_designator<designator="R74">
+    r74.p1 ~ CLAMP_HOLD
+    r74.p2 ~ CLAMP_BASE
+    # Block a collapsing USB supply from actively pulling gates below VZERO.
+    d4 = new GateDiode
+    trait d4 has_designator<designator="D4">
+    d4.p1 ~ USB_5V
+    d4.p3 ~ GATE_SUPPLY
+    trait CLAMP_BASE has_net_name_suggestion<name="CLAMP_BASE", level="EXPECTED">
+    trait GATE_SUPPLY has_net_name_suggestion<name="GATE_SUPPLY", level="EXPECTED">
+
+    c80 = new C_100n_C0G
+    trait c80 has_designator<designator="C80">
+    c80.p1 ~ H2S_WE_SUM
+    c80.p2 ~ H2S_WE_OUT
+
+    c81 = new C_100n_C0G
+    trait c81 has_designator<designator="C81">
+    c81.p1 ~ H2S_WE_SUM
+    c81.p2 ~ H2S_WE_OUT
+
+    c82 = new C_100n_C0G
+    trait c82 has_designator<designator="C82">
+    c82.p1 ~ H2S_WE_SUM
+    c82.p2 ~ H2S_WE_OUT
+
+    c83 = new C_100n_C0G
+    trait c83 has_designator<designator="C83">
+    c83.p1 ~ H2S_WE_SUM
+    c83.p2 ~ H2S_WE_OUT
+
+    c84 = new C_100n_C0G
+    trait c84 has_designator<designator="C84">
+    c84.p1 ~ H2S_AE_SUM
+    c84.p2 ~ H2S_AE_OUT
+
+    c85 = new C_100n_C0G
+    trait c85 has_designator<designator="C85">
+    c85.p1 ~ H2S_AE_SUM
+    c85.p2 ~ H2S_AE_OUT
+
+    c86 = new C_100n_C0G
+    trait c86 has_designator<designator="C86">
+    c86.p1 ~ H2S_AE_SUM
+    c86.p2 ~ H2S_AE_OUT
+
+    c87 = new C_100n_C0G
+    trait c87 has_designator<designator="C87">
+    c87.p1 ~ H2S_AE_SUM
+    c87.p2 ~ H2S_AE_OUT
+
+    # Isolate guard-pour capacitance from the VZERO buffer output.
+    r75 = new R_100
+    trait r75 has_designator<designator="R75">
+    r75.p1 ~ VZERO
+    r75.p2 ~ GUARD
+    trait GUARD has_net_name_suggestion<name="GUARD", level="EXPECTED">

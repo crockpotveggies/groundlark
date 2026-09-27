@@ -185,3 +185,8 @@ The [portable lab](portable-lab.md) is the separate Docker-based full regression
 environment; it is optional for using this UI.
 Setup uses the official [uv installer options](https://docs.astral.sh/uv/reference/installer/)
 with an unmanaged local install and the checked `sw/ui/uv.lock`.
+
+Skylark display geometry includes the 4.88 mm socket standoff, guarded sensor
+region and 1206 C0G feedback banks. Its asset manifest binds the
+current PCB, package models and selection targets; it does not establish
+physical fit or measured sensor noise.

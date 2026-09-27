@@ -45,9 +45,20 @@ void sk_init(sk_state *s,const char *id,uint64_t boot) {
     memcpy(s->device,id,n);s->boot=boot;sk_power(false);
 }
 void sk_connection(sk_state *s,bool ready,uint64_t ms) {
+    (void)ms;
+    ready=ready && s->powered;
     if(ready==s->connected) return;
-    s->connected=ready;s->initialized=false;s->count=0;s->head=0;s->announce=0;
-    sk_power(ready);s->started=ms;s->ready=ms+150;
+    s->connected=ready;s->count=0;s->head=0;s->announce=0;
+    if(ready && s->initialized) { s->revision++;s->announce=1;s->pending|=0x80; }
+}
+/* USB configuration authorizes power; DTR only controls the data session.
+ * A suspended/reset/unconfigured bus must still remove sensor power. */
+void sk_supply(sk_state *s,bool available,uint64_t ms) {
+    if(available==s->powered)return;
+    s->powered=available;
+    if(!available)sk_connection(s,false,ms);
+    s->initialized=false;s->enabled=0;s->pending=0;
+    sk_power(available);s->started=ms;s->ready=ms+150;
     memset(s->faults,0,sizeof s->faults);
 }
 static bool handshake(sk_state *s) {
@@ -79,17 +90,19 @@ static void sample(sk_state *s,unsigned i,uint64_t ms,uint8_t quality,const sk_r
     if(!enqueue(s,12,&b))s->dropped++;
 }
 void sk_tick(sk_state *s,uint64_t ms) {
-    if(!s->connected || !s->boot || ms<s->ready)return;
+    if(!s->powered || !s->boot || ms<s->ready)return;
     if(!s->initialized) {
         s->enabled=sk_configure();
-        if(!s->connected) { sk_power(false);return; }
-        s->initialized=true;s->revision++;s->announce=1;s->pending=0x80;
+        if(!s->powered) { sk_power(false);return; }
+        s->initialized=true;
+        if(s->connected) { s->revision++;s->announce=1; }
+        s->pending=0x80;
         for(unsigned i=0;i<SK_CHANNELS;i++)s->next[i]=ms+(i<4?60*(i+1):1000);
     }
     while(s->announce)if(!handshake(s))return;
-    if(s->pending && s->count<SK_QUEUE) {
+    if(s->connected && s->pending && s->count<SK_QUEUE) {
         buf b={0};unsigned i=0;while(!(s->pending&(1u<<i)))i++;
-        const char *text=i==7?"Configured; warmup and unavailable conversions are missing":"Sensor I/O failed; three errors latch until USB session restart";
+        const char *text=i==7?"Configured; warmup and unavailable conversions are missing":"Sensor I/O failed; three errors latch until USB power reset";
         num(&b,1,i==7?0:i+10);num(&b,2,i==7?1:3);bytes(&b,4,text,strlen(text));
         if(enqueue(s,13,&b))s->pending&=(uint8_t)~(1u<<i);
     }
@@ -98,7 +111,7 @@ void sk_tick(sk_state *s,uint64_t ms) {
         uint64_t period=i<4?240:1000;
         s->sequence[i]+=(ms-s->next[i])/period;s->next[i]=ms+period;
         sk_raw raw={0};uint8_t q=s->faults[i]>=3?2:sk_read((uint8_t)(i+10),&raw);
-        if(!s->connected)return;
+        if(!s->powered)return;
         if(q==4) {
             if(s->faults[i]<3)s->faults[i]++;
             s->pending|=(uint8_t)(1u<<i);q=2;
@@ -108,7 +121,8 @@ void sk_tick(sk_state *s,uint64_t ms) {
         }
         else if(q!=2)s->faults[i]=0;
         if((i<4 && ms-s->started<60000) || (i==4 && ms-s->started<30000))q=2;
-        sample(s,i,ms,q,&raw);
+        if(s->connected)sample(s,i,ms,q,&raw);
+        else s->sequence[i]++;
     }
 }
 const uint8_t *sk_tx(sk_state *s,uint16_t *length) { if(!s->count)return NULL;*length=s->lengths[s->head];return s->frames[s->head]; }

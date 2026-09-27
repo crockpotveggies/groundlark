@@ -1,44 +1,168 @@
 {
   "schema_version": 1,
-  "scope": "Components selected or reselected during analog hardening; not a full PCBA release registry",
+  "scope": "All PCB assembly components; cells, sockets and external module listed separately",
   "policy": "Exact manufacturer and orderable MPN only. Recheck live stock and allocation when ordering. Offline tests do not establish inventory.",
   "parts": [
     {
-      "manufacturer": "Texas Instruments",
-      "mpn": "OPA387DBVR",
-      "jlcpcb_part": "C4366709",
+      "manufacturer": "YAGEO",
+      "mpn": "RC0603FR-075K1L",
+      "source_mpn": "RC0603FR-075K1L",
+      "jlcpcb_part": "C105580",
+      "references": [
+        "R1",
+        "R2"
+      ],
+      "source_footprints": [
+        "Resistor_SMD__R_0603_1608Metric.kicad_mod"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C105580",
+      "observation_date_utc": "2026-09-27",
+      "stock": 6375126,
+      "available_order_quantity": 6306945,
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "c4dbc29958af92ca5c83ca3ad2dfece7b6919e6abe48f1456961cd580294f42e",
+      "assembly_type": "SMT Assembly",
+      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8755825032419385344-C105580.pdf",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8755825032419385344-C105580.pdf",
+      "part_type": "Extended",
+      "specification": "0603",
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published."
+    },
+    {
+      "manufacturer": "YAGEO",
+      "mpn": "RC0603FR-07100RL",
+      "jlcpcb_part": "C105588",
       "part_type": "Extended",
       "assembly_type": "SMT Assembly",
-      "specification": "SOT-23-5; OPAx387 datasheet pin table",
+      "specification": "0603",
       "references": [
-        "U5",
-        "U8",
-        "U10"
+        "R37",
+        "R57",
+        "R75"
       ],
-      "source_url": "https://jlcpcb.com/partdetail/TexasInstruments-OPA387DBVR/C4366709",
-      "manufacturer_evidence": "https://www.ti.com/lit/ds/symlink/opa2387.pdf",
+      "source_url": "https://jlcpcb.com/partdetail/C105588",
+      "manufacturer_evidence": "https://yageogroup.com/component-documentation/download/specsheet/RC0603FR-07100RL",
       "observation_date_utc": "2026-09-27",
-      "stock": 7203,
-      "available_order_quantity": 7174,
-      "observation": "JLCPCB live rendered catalog page; public stock only, not reserved"
+      "stock": 4202621,
+      "available_order_quantity": 3942078,
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published.",
+      "source_mpn": "RC0603FR-07100RL",
+      "source_footprints": [
+        "Resistor_SMD__R_0603_1608Metric.kicad_mod"
+      ],
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "90058ed4f36c13a6ed4cb154788f8660950d884b26ad0c6cd9c9d2f76e7020bf",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8755823737940271104-C105588.pdf"
+    },
+    {
+      "manufacturer": "YAGEO",
+      "mpn": "RC0603FR-0722RL",
+      "source_mpn": "RC0603FR-0722RL",
+      "jlcpcb_part": "C107701",
+      "references": [
+        "R19"
+      ],
+      "source_footprints": [
+        "Resistor_SMD__R_0603_1608Metric.kicad_mod"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C107701",
+      "observation_date_utc": "2026-09-27",
+      "stock": 307174,
+      "available_order_quantity": 252917,
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "1a12f03e8b83eb24a70e3f5ee3e057c5534ce7e003a6734812334a43d39e6ca9",
+      "assembly_type": "SMT Assembly",
+      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8754826128723337216-C107701.pdf",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8754826128723337216-C107701.pdf",
+      "part_type": "Extended",
+      "specification": "0603",
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published."
     },
     {
       "manufacturer": "Texas Instruments",
-      "mpn": "OPA2387DGKR",
-      "jlcpcb_part": "C2861203",
+      "mpn": "REF3025AIDBZR",
+      "source_mpn": "REF3025AIDBZR",
+      "jlcpcb_part": "C11334",
+      "references": [
+        "U4"
+      ],
+      "source_footprints": [
+        "Package_TO_SOT_SMD__SOT-23.kicad_mod"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C11334",
+      "observation_date_utc": "2026-09-27",
+      "stock": 30807,
+      "available_order_quantity": 29064,
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "2c05ddb1f9ea5591428d9b4629e7d62d0aaa1813157a6363dbc7a61617facfa1",
+      "assembly_type": "SMT Assembly",
+      "manufacturer_evidence": "https://www.ti.com/lit/ds/symlink/ref30.pdf",
+      "manufacturer_datasheet_mirror": "https://www.ti.com/lit/ds/symlink/ref30.pdf",
+      "part_type": "Extended",
+      "specification": "SOT-23",
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published."
+    },
+    {
+      "manufacturer": "YAGEO",
+      "mpn": "RT0603BRD07100KL",
+      "jlcpcb_part": "C122538",
       "part_type": "Extended",
       "assembly_type": "SMT Assembly",
-      "specification": "VSSOP-8 DGK; not SOIC-8",
+      "specification": "0603",
       "references": [
-        "U7",
-        "U9"
+        "R4",
+        "R6",
+        "R7",
+        "R10",
+        "R11",
+        "R31",
+        "R34",
+        "R71",
+        "R72"
       ],
-      "source_url": "https://jlcpcb.com/partdetail/TexasInstruments-OPA2387DGKR/C2861203",
-      "manufacturer_evidence": "https://www.ti.com/lit/ds/symlink/opa2387.pdf",
+      "source_url": "https://jlcpcb.com/partdetail/C122538",
+      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8755830996639981568-C95204.pdf",
       "observation_date_utc": "2026-09-27",
-      "stock": 5912,
-      "available_order_quantity": 5893,
-      "observation": "JLCPCB live rendered catalog page; public stock only, not reserved"
+      "stock": 1239256,
+      "available_order_quantity": 1142578,
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published.",
+      "source_mpn": "RT0603BRD07100KL",
+      "source_footprints": [
+        "Resistor_SMD__R_0603_1608Metric.kicad_mod"
+      ],
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "282bc50241d925b921155c34f775008359342671c58610b6907209983f38e6bd",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8755830374008676352-C122538.pdf"
+    },
+    {
+      "manufacturer": "Lite-On",
+      "mpn": "LTST-C191KGKT",
+      "source_mpn": "LTST-C191KGKT",
+      "jlcpcb_part": "C125098",
+      "references": [
+        "D3"
+      ],
+      "source_footprints": [
+        "LED_SMD__LED_0603_1608Metric.kicad_mod"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C125098",
+      "observation_date_utc": "2026-09-27",
+      "stock": 244255,
+      "available_order_quantity": 241122,
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "f59fd4c285f837449d7a923278cf54ae440e2f1e98eb1a6a209fa62f29a08f96",
+      "assembly_type": "SMT Assembly",
+      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588899225978982400-C125098.pdf",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588899225978982400-C125098.pdf",
+      "part_type": "Extended",
+      "specification": "0603",
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published."
     },
     {
       "manufacturer": "Texas Instruments",
@@ -46,16 +170,449 @@
       "jlcpcb_part": "C131941",
       "part_type": "Extended",
       "assembly_type": "SMT Assembly",
-      "specification": "SOT-23-6; VIN/GND/ON/CT/QOD/VOUT",
+      "specification": "SOT-23-6",
       "references": [
         "U13"
       ],
-      "source_url": "https://jlcpcb.com/partdetail/TexasInstruments-TPS22918DBVR/C131941",
+      "source_url": "https://jlcpcb.com/partdetail/C131941",
       "manufacturer_evidence": "https://www.ti.com/lit/ds/symlink/tps22918.pdf",
       "observation_date_utc": "2026-09-27",
-      "stock": 13565,
-      "available_order_quantity": 13112,
-      "observation": "JLCPCB live rendered catalog page; public stock only, not reserved"
+      "stock": 13585,
+      "available_order_quantity": 13132,
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published.",
+      "source_mpn": "TPS22918DBVR",
+      "source_footprints": [
+        "Package_TO_SOT_SMD__SOT-23-6.kicad_mod"
+      ],
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "48dbd59def99a7e774e63111f84f2c8a9f11b29c7e269d4475d4a7907d8dc172",
+      "manufacturer_datasheet_mirror": "https://www.ti.com/cn/lit/gpn/tps22918"
+    },
+    {
+      "manufacturer": "JST",
+      "mpn": "BM08B-GHS-TBT(LF)(SN)",
+      "source_mpn": "BM08B-GHS-TBT",
+      "jlcpcb_part": "C133062",
+      "references": [
+        "J2"
+      ],
+      "source_footprints": [
+        "Connector_JST__JST_GH_BM08B-GHS-TBT_1x08-1MP_P1.25mm_Vertical.kicad_mod"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C133062",
+      "observation_date_utc": "2026-09-27",
+      "stock": 17966,
+      "available_order_quantity": 16522,
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "2559e9a72d732632414d38f20f533808cc81618d55017b0b22b97808b9a28610",
+      "assembly_type": "SMT Assembly",
+      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8757815793428250624-C133062.pdf",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8757815793428250624-C133062.pdf",
+      "part_type": "Extended",
+      "specification": "SMD,P=1.25mm",
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published.",
+      "resolution": "JST LF/SN lead-free finish suffix; same BM08B-GHS-TBT GH-series housing, pins and lands."
+    },
+    {
+      "manufacturer": "YAGEO",
+      "mpn": "RT0603BRD0720RL",
+      "jlcpcb_part": "C136969",
+      "part_type": "Extended",
+      "assembly_type": "SMT Assembly",
+      "specification": "0603",
+      "references": [
+        "R30",
+        "R33",
+        "R50",
+        "R53"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C136969",
+      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8755830996639981568-C95204.pdf",
+      "observation_date_utc": "2026-09-27",
+      "stock": 29002,
+      "available_order_quantity": 24798,
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published.",
+      "source_mpn": "RT0603BRD0720RL",
+      "source_footprints": [
+        "Resistor_SMD__R_0603_1608Metric.kicad_mod"
+      ],
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "eb600208b2a6ac335de21b1f48993a9117142d15e0cc084358765463d1afcf39",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8755641282062761984-C136969.pdf"
+    },
+    {
+      "manufacturer": "onsemi",
+      "mpn": "MMBFJ270",
+      "jlcpcb_part": "C160435",
+      "part_type": "Extended",
+      "assembly_type": "SMT Assembly",
+      "specification": "SOT-23",
+      "references": [
+        "Q1",
+        "Q2",
+        "Q3",
+        "Q4"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C160435",
+      "manufacturer_evidence": "https://www.onsemi.com/download/data-sheet/pdf/mmbfj270-d.pdf",
+      "observation_date_utc": "2026-09-27",
+      "stock": 2755,
+      "available_order_quantity": 2587,
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published.",
+      "source_mpn": "MMBFJ270",
+      "source_footprints": [
+        "Package_TO_SOT_SMD__SOT-23.kicad_mod"
+      ],
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "a81c32dfab258db118421948f9302cb263f6d57c780e4090d45ab27b720d0159",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588884488218136577-C160435.pdf"
+    },
+    {
+      "manufacturer": "Littelfuse",
+      "mpn": "1206L050YR",
+      "source_mpn": "1206L050YR",
+      "jlcpcb_part": "C163512",
+      "references": [
+        "F1"
+      ],
+      "source_footprints": [
+        "Fuse_1206.kicad_mod"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C163512",
+      "observation_date_utc": "2026-09-27",
+      "stock": 21118,
+      "available_order_quantity": 21071,
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "f455b1d7d57baa04a5a4e8f2f03ab67a4ce03667ee59144d36e8236514263d0e",
+      "assembly_type": "SMT Assembly",
+      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588909033113313280-C163512.pdf",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588909033113313280-C163512.pdf",
+      "part_type": "Extended",
+      "specification": "1206",
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published."
+    },
+    {
+      "manufacturer": "YAGEO",
+      "mpn": "RC0603FR-071KL",
+      "source_mpn": "RC0603FR-071KL",
+      "jlcpcb_part": "C22548",
+      "references": [
+        "R14"
+      ],
+      "source_footprints": [
+        "Resistor_SMD__R_0603_1608Metric.kicad_mod"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C22548",
+      "observation_date_utc": "2026-09-27",
+      "stock": 11228082,
+      "available_order_quantity": 10825547,
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "9bd42b88131d3f0346c53f0b74f13087edb06244a015a025adf2cb4375175828",
+      "assembly_type": "SMT Assembly",
+      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8716419542295400448-C22548.pdf",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8716419542295400448-C22548.pdf",
+      "part_type": "Extended",
+      "specification": "0603",
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published."
+    },
+    {
+      "manufacturer": "Amphenol ICC",
+      "mpn": "20021111-00010T4LF",
+      "source_mpn": "20021111-00010T4LF",
+      "jlcpcb_part": "C239059",
+      "references": [
+        "J3"
+      ],
+      "source_footprints": [
+        "Connector_PinHeader_1.27mm__PinHeader_2x05_P1.27mm_Vertical.kicad_mod"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C239059",
+      "observation_date_utc": "2026-09-27",
+      "stock": 259,
+      "available_order_quantity": 214,
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "bde5ef64c9870f92a982947627119ee60bc9ea18a3b76ed03527f8487b1b03b3",
+      "assembly_type": "Through Hole Assembly",
+      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588890085702455296-C239059.pdf",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588890085702455296-C239059.pdf",
+      "part_type": "Extended",
+      "specification": "Plugin,P=1.27mm",
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published."
+    },
+    {
+      "manufacturer": "Texas Instruments",
+      "mpn": "OPA2387DGKR",
+      "jlcpcb_part": "C2861203",
+      "part_type": "Extended",
+      "assembly_type": "SMT Assembly",
+      "specification": "VSSOP-8",
+      "references": [
+        "U7",
+        "U9"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C2861203",
+      "manufacturer_evidence": "https://www.ti.com/lit/ds/symlink/opa2387.pdf",
+      "observation_date_utc": "2026-09-27",
+      "stock": 5912,
+      "available_order_quantity": 5893,
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published.",
+      "source_mpn": "OPA2387DGKR",
+      "source_footprints": [
+        "Package_SO__VSSOP-8_3x3mm_P0.65mm.kicad_mod"
+      ],
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "239f5f3e20ed2df91ae307a26d9dd693643a8c2c916b6033ac144f7d6b9d1931",
+      "manufacturer_datasheet_mirror": "https://www.ti.com/cn/lit/gpn/opa387"
+    },
+    {
+      "manufacturer": "Texas Instruments",
+      "mpn": "ADS122C04IPWR",
+      "source_mpn": "ADS122C04IPWR",
+      "jlcpcb_part": "C2872338",
+      "references": [
+        "U6"
+      ],
+      "source_footprints": [
+        "Package_SO__TSSOP-16_4.4x5mm_P0.65mm.kicad_mod"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C2872338",
+      "observation_date_utc": "2026-09-27",
+      "stock": 4159,
+      "available_order_quantity": 4039,
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "9c78e29a2f27f4f58c14528ba4a36b37d42f0b0cd193e724d96c4c11eee57c26",
+      "assembly_type": "SMT Assembly",
+      "manufacturer_evidence": "https://www.ti.com/cn/lit/gpn/ads122c04",
+      "manufacturer_datasheet_mirror": "https://www.ti.com/cn/lit/gpn/ads122c04",
+      "part_type": "Extended",
+      "specification": "TSSOP-16",
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published."
+    },
+    {
+      "manufacturer": "E-Switch",
+      "mpn": "TL3342F160QG",
+      "source_mpn": "TL3342F160QG",
+      "jlcpcb_part": "C2886898",
+      "references": [
+        "SW1",
+        "SW2"
+      ],
+      "source_footprints": [
+        "Button_Switch_SMD__SW_SPST_TL3342.kicad_mod"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C2886898",
+      "observation_date_utc": "2026-09-27",
+      "stock": 2154,
+      "available_order_quantity": 2113,
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "7aa3d1a05619dc59112bf48226ce0d073173b3938ee3626d88fb80d7b21bc905",
+      "assembly_type": "SMT Assembly",
+      "manufacturer_evidence": "https://configured-product-images.s3.amazonaws.com/2D/specs/TL3342F160QG.pdf",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588945756027412480-C2886898.pdf",
+      "part_type": "Extended",
+      "specification": "SMD-4P,5.2x5.2mm",
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published."
+    },
+    {
+      "manufacturer": "Global Connector Technology",
+      "mpn": "USB4105-GF-A",
+      "source_mpn": "USB4105-GF-A",
+      "jlcpcb_part": "C3020560",
+      "references": [
+        "J1"
+      ],
+      "source_footprints": [
+        "Connector_USB__USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal.kicad_mod"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C3020560",
+      "observation_date_utc": "2026-09-27",
+      "stock": 1163,
+      "available_order_quantity": null,
+      "minimum_order_quantity": 7,
+      "ordering_status": "pre-order",
+      "catalog_observation_sha256": "6059c8c624c160a37be0cd9a0ea88821180a8a2c269a9fe2a94672aeb8d11466",
+      "assembly_type": "SMT Assembly",
+      "manufacturer_evidence": "https://gct.co/files/drawings/usb4105.pdf",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8589040496488013824-C3020560.pdf",
+      "part_type": "Extended",
+      "specification": "SMD",
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published."
+    },
+    {
+      "manufacturer": "TDK",
+      "mpn": "C3216C0G1H104JT000N",
+      "jlcpcb_part": "C319186",
+      "part_type": "Extended",
+      "assembly_type": "SMT Assembly",
+      "specification": "1206",
+      "references": [
+        "C30",
+        "C33",
+        "C36",
+        "C50",
+        "C53",
+        "C56",
+        "C80",
+        "C81",
+        "C82",
+        "C83",
+        "C84",
+        "C85",
+        "C86",
+        "C87"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C319186",
+      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588918987446472704-C319186.pdf",
+      "observation_date_utc": "2026-09-27",
+      "stock": 6179,
+      "available_order_quantity": 6072,
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published.",
+      "source_mpn": "C3216C0G1H104JT000N",
+      "source_footprints": [
+        "Capacitor_SMD__C_1206_3216Metric.kicad_mod"
+      ],
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "ef5038c55beb1dba80d6f167f695a9628c06c99f4fa61b5b3c8240beacbe0e58",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588918987446472704-C319186.pdf"
+    },
+    {
+      "manufacturer": "Murata Electronics",
+      "mpn": "GRM21BR71C475KE51L",
+      "source_mpn": "GRM21BR71A475KA73L",
+      "jlcpcb_part": "C408144",
+      "references": [
+        "C2"
+      ],
+      "source_footprints": [
+        "Capacitor_SMD__C_0805_2012Metric.kicad_mod"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C408144",
+      "observation_date_utc": "2026-09-27",
+      "stock": 13617,
+      "available_order_quantity": 12948,
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "9621ac559c1e63bf5f3b15c570c97160aefcc48a890a0578f87d391ce9486111",
+      "assembly_type": "SMT Assembly",
+      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588935626560819200-C408144.pdf",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588935626560819200-C408144.pdf",
+      "part_type": "Extended",
+      "specification": "0805",
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published.",
+      "resolution": "Same Murata 0805 4.7 uF +/-10% X7R; 16 V rating replaces 10 V at C2; procurement-only substitution with unchanged lands and netlist."
+    },
+    {
+      "manufacturer": "Texas Instruments",
+      "mpn": "OPA387DBVR",
+      "jlcpcb_part": "C4366709",
+      "part_type": "Extended",
+      "assembly_type": "SMT Assembly",
+      "specification": "SOT-23-5",
+      "references": [
+        "U5",
+        "U8",
+        "U10"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C4366709",
+      "manufacturer_evidence": "https://www.ti.com/lit/ds/symlink/opa2387.pdf",
+      "observation_date_utc": "2026-09-27",
+      "stock": 7201,
+      "available_order_quantity": 7172,
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published.",
+      "source_mpn": "OPA387DBVR",
+      "source_footprints": [
+        "Package_TO_SOT_SMD__SOT-23-5.kicad_mod"
+      ],
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "2584f0c4d73ddbbbae07081170242ef22f5e8e5b572ebf6eb270e53af7c56102",
+      "manufacturer_datasheet_mirror": "https://www.ti.com/cn/lit/gpn/opa387"
+    },
+    {
+      "manufacturer": "YAGEO",
+      "mpn": "RC0603FR-0780K6L",
+      "source_mpn": "RC0603FR-0780K6L",
+      "jlcpcb_part": "C482928",
+      "references": [
+        "R3"
+      ],
+      "source_footprints": [
+        "Resistor_SMD__R_0603_1608Metric.kicad_mod"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C482928",
+      "observation_date_utc": "2026-09-27",
+      "stock": 10,
+      "available_order_quantity": null,
+      "minimum_order_quantity": 3610,
+      "ordering_status": "pre-order",
+      "catalog_observation_sha256": "b4a04f15e13ec9c577f302b5a2c9ef1a592f136a66c3b69861c40c24cb1cb3b4",
+      "assembly_type": "SMT Assembly",
+      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8755825160262041600-C482928.pdf",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8755825160262041600-C482928.pdf",
+      "part_type": "Extended",
+      "specification": "0603",
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published."
+    },
+    {
+      "manufacturer": "Diodes Incorporated",
+      "mpn": "AP2112K-3.3TRG1",
+      "source_mpn": "AP2112K-3.3TRG1",
+      "jlcpcb_part": "C51118",
+      "references": [
+        "U2"
+      ],
+      "source_footprints": [
+        "Package_TO_SOT_SMD__SOT-23-5.kicad_mod"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C51118",
+      "observation_date_utc": "2026-09-27",
+      "stock": 42117,
+      "available_order_quantity": 40231,
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "94b3ef7d574e9a6ae3c4ba0d4ac3eb790b6eb27d03a3a7f14d33bfbab30fc5c4",
+      "assembly_type": "SMT Assembly",
+      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588881290182971392-C51118.pdf",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588881290182971392-C51118.pdf",
+      "part_type": "Extended",
+      "specification": "SOT-25-5",
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published."
+    },
+    {
+      "manufacturer": "Bosch Sensortec",
+      "mpn": "BMP390",
+      "source_mpn": "BMP390",
+      "jlcpcb_part": "C5124834",
+      "references": [
+        "U12"
+      ],
+      "source_footprints": [
+        "BMP390.kicad_mod"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C5124834",
+      "observation_date_utc": "2026-09-27",
+      "stock": 0,
+      "available_order_quantity": null,
+      "minimum_order_quantity": 2,
+      "ordering_status": "consign-or-quote",
+      "catalog_observation_sha256": "2dc1ecdff8fb1da4183f50ed586bb16f0b8f11486d05fef23b432c4a745f4d17",
+      "assembly_type": "SMT Assembly",
+      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8589784997264719872-C5124834.pdf",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8589784997264719872-C5124834.pdf",
+      "part_type": "Extended",
+      "specification": "LGA-10(2x2)",
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published."
     },
     {
       "manufacturer": "Nexperia",
@@ -63,26 +620,337 @@
       "jlcpcb_part": "C551411",
       "part_type": "Extended",
       "assembly_type": "SMT Assembly",
-      "specification": "SOT-23; gate/source/drain pins 1/2/3",
+      "specification": "SOT-23",
       "references": [
         "Q5",
-        "Q6",
-        "Q7"
+        "Q6"
       ],
-      "source_url": "https://jlcpcb.com/partdetail/Nexperia-2N7002HAMR/C551411",
+      "source_url": "https://jlcpcb.com/partdetail/C551411",
       "manufacturer_evidence": "https://assets.nexperia.com/documents/data-sheet/2N7002.pdf",
       "observation_date_utc": "2026-09-27",
       "stock": 4027,
       "available_order_quantity": 4027,
-      "observation": "JLCPCB live rendered catalog page; public stock only, not reserved"
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published.",
+      "source_mpn": "2N7002/HAMR",
+      "source_footprints": [
+        "Package_TO_SOT_SMD__SOT-23.kicad_mod"
+      ],
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "b7dc6240f7b57ad41878d53de6c9b36a8ef568eccf5bdbc64477a9d0a2969e65",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588885400076603392-C551411.pdf"
     },
     {
-      "manufacturer": "Yageo",
+      "manufacturer": "Texas Instruments",
+      "mpn": "TPS2553DBVR",
+      "source_mpn": "TPS2553DBVR",
+      "jlcpcb_part": "C55266",
+      "references": [
+        "U3"
+      ],
+      "source_footprints": [
+        "Package_TO_SOT_SMD__SOT-23-6.kicad_mod"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C55266",
+      "observation_date_utc": "2026-09-27",
+      "stock": 59543,
+      "available_order_quantity": 58979,
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "2c8674028fdd18d9f97d1273c25e0f7446e956ea8da18f459fd460cee465fca6",
+      "assembly_type": "SMT Assembly",
+      "manufacturer_evidence": "https://www.ti.com/cn/lit/gpn/tps2553",
+      "manufacturer_datasheet_mirror": "https://www.ti.com/cn/lit/gpn/tps2553",
+      "part_type": "Extended",
+      "specification": "SOT-23-6",
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published."
+    },
+    {
+      "manufacturer": "YAGEO",
+      "mpn": "RT0603BRD0720KL",
+      "jlcpcb_part": "C723637",
+      "part_type": "Extended",
+      "assembly_type": "SMT Assembly",
+      "specification": "0603",
+      "references": [
+        "R51",
+        "R54"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C723637",
+      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8755830996639981568-C95204.pdf",
+      "observation_date_utc": "2026-09-27",
+      "stock": 486178,
+      "available_order_quantity": 443956,
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published.",
+      "source_mpn": "RT0603BRD0720KL",
+      "source_footprints": [
+        "Resistor_SMD__R_0603_1608Metric.kicad_mod"
+      ],
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "509363dea25ded019279774e91c5223c9bcfbb9f051f68b9f4cfd58ebb8411a0",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8755641519456174080-C723637.pdf"
+    },
+    {
+      "manufacturer": "Sensirion",
+      "mpn": "SHT40-AD1F-R2",
+      "source_mpn": "SHT40-AD1F-R2",
+      "jlcpcb_part": "C7461846",
+      "references": [
+        "U11"
+      ],
+      "source_footprints": [
+        "SHT40.kicad_mod"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C7461846",
+      "observation_date_utc": "2026-09-27",
+      "stock": 3124,
+      "available_order_quantity": 2498,
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "5130df2ff83abb59fa7f3673fe9f8862131b36bce45fa4629fe543828bef3d6e",
+      "assembly_type": "SMT Assembly",
+      "manufacturer_evidence": "https://sensirion.com/resource/datasheet/sht4x",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8590907640262307840-C7461846.pdf",
+      "part_type": "Extended",
+      "specification": "DFN-4(1.5x1.5)",
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published."
+    },
+    {
+      "manufacturer": "STMicroelectronics",
+      "mpn": "USBLC6-2SC6",
+      "source_mpn": "USBLC6-2SC6",
+      "jlcpcb_part": "C7519",
+      "references": [
+        "D1",
+        "D2"
+      ],
+      "source_footprints": [
+        "Package_TO_SOT_SMD__SOT-23-6.kicad_mod"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C7519",
+      "observation_date_utc": "2026-09-27",
+      "stock": 46584,
+      "available_order_quantity": 43384,
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "52d480977356b32e2b17a420b5c8e0ed1d11c50097d10c056edbc77ed6f856ec",
+      "assembly_type": "SMT Assembly",
+      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8579714554408067072-C7519.pdf",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8579714554408067072-C7519.pdf",
+      "part_type": "Extended",
+      "specification": "SOT-23-6L",
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published."
+    },
+    {
+      "manufacturer": "Murata Electronics",
+      "mpn": "GRM188R71H103KA01D",
+      "jlcpcb_part": "C77053",
+      "part_type": "Extended",
+      "assembly_type": "SMT Assembly",
+      "specification": "0603",
+      "references": [
+        "C74"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C77053",
+      "manufacturer_evidence": "https://www.murata.com/products/productdetail?partno=GRM188R71H103KA01%23",
+      "observation_date_utc": "2026-09-27",
+      "stock": 537129,
+      "available_order_quantity": 529962,
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published.",
+      "source_mpn": "GRM188R71H103KA01D",
+      "source_footprints": [
+        "Capacitor_SMD__C_0603_1608Metric.kicad_mod"
+      ],
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "129fdb4f581a9059e948647e15c8d145de77ae12e2f5478c3ba7cafc8beea1f3",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588907549529673728-C77053.pdf"
+    },
+    {
+      "manufacturer": "Murata Electronics",
+      "mpn": "GRM188R71H104KA93D",
+      "jlcpcb_part": "C77055",
+      "part_type": "Extended",
+      "assembly_type": "SMT Assembly",
+      "specification": "0603",
+      "references": [
+        "C3",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C9",
+        "C11",
+        "C14",
+        "C16",
+        "C17",
+        "C18",
+        "C37",
+        "C38",
+        "C57",
+        "C58",
+        "C70",
+        "C71",
+        "C72"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C77055",
+      "manufacturer_evidence": "https://www.murata.com/products/productdetail?partno=GRM188R71H104KA93%23",
+      "observation_date_utc": "2026-09-27",
+      "stock": 1438737,
+      "available_order_quantity": 1306804,
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published.",
+      "source_mpn": "GRM188R71H104KA93D",
+      "source_footprints": [
+        "Capacitor_SMD__C_0603_1608Metric.kicad_mod"
+      ],
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "b6f3c47cb67adb9215fc23c23da98b0b363dc4cf2b80b873e1dd8c8bf364135f",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588893833887563776-C77055.pdf"
+    },
+    {
+      "manufacturer": "Murata Electronics",
+      "mpn": "GRM21BR61A106KE19L",
+      "source_mpn": "GRM21BR61A106KE19L",
+      "jlcpcb_part": "C77073",
+      "references": [
+        "C4",
+        "C12"
+      ],
+      "source_footprints": [
+        "Capacitor_SMD__C_0805_2012Metric.kicad_mod"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C77073",
+      "observation_date_utc": "2026-09-27",
+      "stock": 9496,
+      "available_order_quantity": 9065,
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "c21cf676658c8c2ec9838c078490cba2f6d2c457d747b799052d8a914ecfeb54",
+      "assembly_type": "SMT Assembly",
+      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588918615504523264-C77073.pdf",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588918615504523264-C77073.pdf",
+      "part_type": "Extended",
+      "specification": "0805",
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published."
+    },
+    {
+      "manufacturer": "onsemi",
+      "mpn": "MMBT3904LT1G",
+      "jlcpcb_part": "C81464",
+      "part_type": "Extended",
+      "assembly_type": "SMT Assembly",
+      "specification": "SOT-23",
+      "references": [
+        "Q7"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C81464",
+      "manufacturer_evidence": "https://www.onsemi.com/download/data-sheet/pdf/mmbt3904lt1-d.pdf",
+      "observation_date_utc": "2026-09-27",
+      "stock": 1686948,
+      "available_order_quantity": 1684295,
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published.",
+      "source_mpn": "MMBT3904LT1G",
+      "source_footprints": [
+        "Package_TO_SOT_SMD__SOT-23.kicad_mod"
+      ],
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "1ebb7da893c4397567c4b818c3e2325522f43a7714e09ba1da6446dab3c92dc0",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8586181324634144768-C81464.pdf"
+    },
+    {
+      "manufacturer": "STMicroelectronics",
+      "mpn": "STM32F072CBT6",
+      "source_mpn": "STM32F072CBT6",
+      "jlcpcb_part": "C81720",
+      "references": [
+        "U1"
+      ],
+      "source_footprints": [
+        "Package_QFP__LQFP-48_7x7mm_P0.5mm.kicad_mod"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C81720",
+      "observation_date_utc": "2026-09-27",
+      "stock": 1647,
+      "available_order_quantity": 1453,
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "07525c0d0a40c484051e21d7205fc54de662be34bea5473c7c2c67baf85fd15e",
+      "assembly_type": "SMT Assembly",
+      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8586179493748334592-C81720.pdf",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8586179493748334592-C81720.pdf",
+      "part_type": "Extended",
+      "specification": "LQFP-48(7x7)",
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published."
+    },
+    {
+      "manufacturer": "Murata Electronics",
+      "mpn": "GRM188R71E105KA12D",
+      "jlcpcb_part": "C86020",
+      "part_type": "Extended",
+      "assembly_type": "SMT Assembly",
+      "specification": "0603",
+      "references": [
+        "C1",
+        "C10",
+        "C13",
+        "C15",
+        "C19",
+        "C31",
+        "C34",
+        "C51",
+        "C54",
+        "C73"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C86020",
+      "manufacturer_evidence": "https://www.murata.com/products/productdetail?partno=GRM188R71E105KA12%23",
+      "observation_date_utc": "2026-09-27",
+      "stock": 79828,
+      "available_order_quantity": 77808,
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published.",
+      "source_mpn": "GRM188R71E105KA12D",
+      "source_footprints": [
+        "Capacitor_SMD__C_0603_1608Metric.kicad_mod"
+      ],
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "c2be6911122613a8fc113863a2d6c5b3b708e5f13a2eb6198df933d29edabde1",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588933155718385664-C86020.pdf"
+    },
+    {
+      "manufacturer": "onsemi",
+      "mpn": "BAT54LT1G",
+      "jlcpcb_part": "C94399",
+      "part_type": "Extended",
+      "assembly_type": "SMT Assembly",
+      "specification": "SOT-23",
+      "references": [
+        "D4"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C94399",
+      "manufacturer_evidence": "https://www.onsemi.com/download/data-sheet/pdf/bat54lt1-d.pdf",
+      "observation_date_utc": "2026-09-27",
+      "stock": 69584,
+      "available_order_quantity": 69541,
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published.",
+      "source_mpn": "BAT54LT1G",
+      "source_footprints": [
+        "Package_TO_SOT_SMD__SOT-23.kicad_mod"
+      ],
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "408b9bf9be0870e60b3bf5ca06959de33b00f39bfd120116f65498a196f0ce75",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8586178761000042496-C94399.pdf"
+    },
+    {
+      "manufacturer": "YAGEO",
       "mpn": "RT0603BRD0710KL",
       "jlcpcb_part": "C95204",
       "part_type": "Extended",
       "assembly_type": "SMT Assembly",
-      "specification": "10 kohm, 0603, 0.1%, 25 ppm/K thin film",
+      "specification": "0603",
       "references": [
         "R5",
         "R12",
@@ -98,203 +966,88 @@
         "R55",
         "R56",
         "R70",
-        "R73"
+        "R73",
+        "R74"
       ],
-      "source_url": "https://jlcpcb.com/partdetail/YAGEO-RT0603BRD0710KL/C95204",
+      "source_url": "https://jlcpcb.com/partdetail/C95204",
       "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8755830996639981568-C95204.pdf",
       "observation_date_utc": "2026-09-27",
-      "stock": 1750336,
-      "available_order_quantity": 1036641,
-      "observation": "JLCPCB live rendered catalog page; public stock only, not reserved"
+      "stock": 1738352,
+      "available_order_quantity": 1024657,
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published.",
+      "source_mpn": "RT0603BRD0710KL",
+      "source_footprints": [
+        "Resistor_SMD__R_0603_1608Metric.kicad_mod"
+      ],
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "8439d4eb909d5aadc979f3cc96f4fbb6a19c1a62df2a6dba063c936001873f5e",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8755830996639981568-C95204.pdf"
     },
     {
-      "manufacturer": "Yageo",
-      "mpn": "RT0603BRD07100KL",
-      "jlcpcb_part": "C122538",
-      "part_type": "Extended",
-      "assembly_type": "SMT Assembly",
-      "specification": "100 kohm, 0603, 0.1%, 25 ppm/K thin film",
+      "manufacturer": "YAGEO",
+      "mpn": "RC0603FR-074K7L",
+      "source_mpn": "RC0603FR-074K7L",
+      "jlcpcb_part": "C99782",
       "references": [
-        "R4",
-        "R6",
-        "R7",
-        "R10",
-        "R11",
-        "R31",
-        "R34",
-        "R72"
+        "R8",
+        "R9",
+        "R17",
+        "R18"
       ],
-      "source_url": "https://jlcpcb.com/partdetail/YAGEO-RT0603BRD07100KL/C122538",
-      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8755830996639981568-C95204.pdf",
+      "source_footprints": [
+        "Resistor_SMD__R_0603_1608Metric.kicad_mod"
+      ],
+      "source_url": "https://jlcpcb.com/partdetail/C99782",
       "observation_date_utc": "2026-09-27",
-      "stock": 1240678,
-      "available_order_quantity": 1144000,
-      "observation": "JLCPCB live rendered catalog page; public stock only, not reserved"
-    },
-    {
-      "manufacturer": "Yageo",
-      "mpn": "RT0603BRD0720KL",
-      "jlcpcb_part": "C723637",
-      "part_type": "Extended",
+      "stock": 9407128,
+      "available_order_quantity": 9057449,
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "767ab86f7037d7a995c203b6ca84e46dd1657758d3173a72f9465a24bfba038f",
       "assembly_type": "SMT Assembly",
-      "specification": "20 kohm, 0603, 0.1%, 25 ppm/K thin film",
-      "references": [
-        "R51",
-        "R54"
-      ],
-      "source_url": "https://jlcpcb.com/partdetail/YAGEO-RT0603BRD0720KL/C723637",
-      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8755830996639981568-C95204.pdf",
-      "observation_date_utc": "2026-09-27",
-      "stock": 491000,
-      "available_order_quantity": 448778,
-      "observation": "JLCPCB live rendered catalog page; public stock only, not reserved"
-    },
-    {
-      "manufacturer": "Yageo",
-      "mpn": "RT0603BRD0720RL",
-      "jlcpcb_part": "C136969",
+      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8708761915296821248-C99782.pdf",
+      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8708761915296821248-C99782.pdf",
       "part_type": "Extended",
-      "assembly_type": "SMT Assembly",
-      "specification": "20 ohm, 0603, 0.1%, 25 ppm/K thin film",
-      "references": [
-        "R30",
-        "R33",
-        "R50",
-        "R53"
-      ],
-      "source_url": "https://jlcpcb.com/partdetail/YAGEO-RT0603BRD0720RL/C136969",
-      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8755830996639981568-C95204.pdf",
-      "observation_date_utc": "2026-09-27",
-      "stock": 29002,
-      "available_order_quantity": 24798,
-      "observation": "JLCPCB live rendered catalog page; public stock only, not reserved"
-    },
-    {
-      "manufacturer": "Murata",
-      "mpn": "GRM188R71H104KA93D",
-      "jlcpcb_part": "C77055",
-      "part_type": "Extended",
-      "assembly_type": "SMT Assembly",
-      "specification": "100 nF, 0603, X7R, 50 V, 10%",
-      "references": [
-        "C3",
-        "C5",
-        "C6",
-        "C7",
-        "C8",
-        "C9",
-        "C11",
-        "C14",
-        "C16",
-        "C17",
-        "C18",
-        "C30",
-        "C33",
-        "C36",
-        "C37",
-        "C38",
-        "C56",
-        "C57",
-        "C58",
-        "C70",
-        "C71",
-        "C72"
-      ],
-      "source_url": "https://jlcpcb.com/partdetail/MurataElectronics-GRM188R71H104KA93D/C77055",
-      "manufacturer_evidence": "https://www.murata.com/products/productdetail?partno=GRM188R71H104KA93%23",
-      "observation_date_utc": "2026-09-27",
-      "stock": 1382906,
-      "available_order_quantity": 1250973,
-      "observation": "JLCPCB live rendered catalog page; public stock only, not reserved"
-    },
-    {
-      "manufacturer": "Murata",
-      "mpn": "GRM188R71E474KA12D",
-      "jlcpcb_part": "C77052",
-      "part_type": "Extended",
-      "assembly_type": "SMT Assembly",
-      "specification": "470 nF, 0603, X7R, 25 V, 10%",
-      "references": [
-        "C50",
-        "C53"
-      ],
-      "source_url": "https://jlcpcb.com/partdetail/MurataElectronics-GRM188R71E474KA12D/C77052",
-      "manufacturer_evidence": "https://www.murata.com/products/productdetail?partno=GRM188R71E474KA12%23",
-      "observation_date_utc": "2026-09-27",
-      "stock": 13309,
-      "available_order_quantity": 12801,
-      "observation": "JLCPCB live rendered catalog page; public stock only, not reserved"
-    },
-    {
-      "manufacturer": "Murata",
-      "mpn": "GRM188R71E105KA12D",
-      "jlcpcb_part": "C86020",
-      "part_type": "Extended",
-      "assembly_type": "SMT Assembly",
-      "specification": "1 uF, 0603, X7R, 25 V, 10%",
-      "references": [
-        "C1",
-        "C10",
-        "C13",
-        "C15",
-        "C19",
-        "C31",
-        "C34",
-        "C51",
-        "C54",
-        "C73"
-      ],
-      "source_url": "https://jlcpcb.com/partdetail/MurataElectronics-GRM188R71E105KA12D/C86020",
-      "manufacturer_evidence": "https://www.murata.com/products/productdetail?partno=GRM188R71E105KA12%23",
-      "observation_date_utc": "2026-09-27",
-      "stock": 80088,
-      "available_order_quantity": 78068,
-      "observation": "JLCPCB live rendered catalog page; public stock only, not reserved"
-    },
-    {
-      "manufacturer": "Murata",
-      "mpn": "GRM188R71H103KA01D",
-      "jlcpcb_part": "C77053",
-      "part_type": "Extended",
-      "assembly_type": "SMT Assembly",
-      "specification": "10 nF, 0603, X7R, 50 V, 10%",
-      "references": [
-        "C74"
-      ],
-      "source_url": "https://jlcpcb.com/partdetail/MurataElectronics-GRM188R71H103KA01D/C77053",
-      "manufacturer_evidence": "https://www.murata.com/products/productdetail?partno=GRM188R71H103KA01%23",
-      "observation_date_utc": "2026-09-27",
-      "stock": 537326,
-      "available_order_quantity": 530159,
-      "observation": "JLCPCB live rendered catalog page; public stock only, not reserved"
+      "specification": "0603",
+      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published."
     }
   ],
-  "remaining_original_selections_not_stock_checked": [
-    "1206L050YR",
-    "20021111-00010T4LF",
-    "ADS122C04IPWR",
-    "AP2112K-3.3TRG1",
-    "BM08B-GHS-TBT",
-    "BMP390",
-    "GRM21BR61A106KE19L",
-    "GRM21BR71A475KA73L",
-    "LTST-C191KGKT",
-    "MMBFJ177LT1G",
-    "RC0603FR-07100RL",
-    "RC0603FR-071KL",
-    "RC0603FR-071ML",
-    "RC0603FR-0722RL",
-    "RC0603FR-074K7L",
-    "RC0603FR-075K1L",
-    "RC0603FR-0780K6L",
-    "REF3025AIDBZR",
-    "SGX-7H2S-AQ-25",
-    "SGX-7SO2-AQ-20",
-    "SHT40-AD1F-R2",
-    "STM32F072CBT6",
-    "TL3342F160QG",
-    "TPS2553DBVR",
-    "USB4105-GF-A",
-    "USBLC6-2SC6"
+  "manual_parts": [
+    {
+      "mpn": "SGX-7SO2-AQ-20",
+      "manufacturer": "SGX Sensortech",
+      "quantity": 1,
+      "references": [
+        "GS1"
+      ],
+      "process": "Insert after soldering and cleaning"
+    },
+    {
+      "mpn": "SGX-7H2S-AQ-25",
+      "manufacturer": "SGX Sensortech",
+      "quantity": 1,
+      "references": [
+        "GS2"
+      ],
+      "process": "Insert after soldering and cleaning"
+    },
+    {
+      "mpn": "0322-0-15-15-34-27-10-0",
+      "manufacturer": "Mill-Max",
+      "quantity": 8,
+      "references": [
+        "GS1",
+        "GS2"
+      ],
+      "process": "Hand solder four receptacles per cell footprint; no gas cell reflow"
+    },
+    {
+      "mpn": "PMS5003",
+      "manufacturer": "Plantower",
+      "quantity": 1,
+      "references": [],
+      "process": "External module; keyed eight-wire harness assembled separately"
+    }
   ]
 }

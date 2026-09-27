@@ -56,7 +56,9 @@ Stock KiCad component geometry retains its upstream attribution/license; see
 `skylark.glb` combines the native 90 × 100 mm PCB, holes, silkscreen (including
 the Groundlark favicon), pads and mask with the existing authored package
 models. Both front and rear components are included. The SGX bodies use the
-same 31.5 mm cell diameter and socket standoff as the native CAD render.
+same 31.5 mm cell diameter and 4.88 mm socket standoff as the native CAD render.
+The current asset includes the guarded sensor region, 1206 C0G capacitor banks
+and corrected clamp packages. Cell tops are 20.38 mm above the PCB front.
 `skylark_scene.py` adds selectable sensor targets and an illustrative PMS5003
 beside the board; this is an exploded inspection view, not enclosure placement.
 

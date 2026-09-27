@@ -61,19 +61,19 @@ U7,OPA2387DGKR,OPA2387DGKR,Package_SO__VSSOP-8_3x3mm_P0.65mm.kicad_mod,False,
 U8,OPA387DBVR,OPA387DBVR,Package_TO_SOT_SMD__SOT-23-5.kicad_mod,False,
 R30,20R,RT0603BRD0720RL,Resistor_SMD__R_0603_1608Metric.kicad_mod,False,
 R31,100000R,RT0603BRD07100KL,Resistor_SMD__R_0603_1608Metric.kicad_mod,False,
-C30,100nF,GRM188R71H104KA93D,Capacitor_SMD__C_0603_1608Metric.kicad_mod,False,
+C30,100nF,C3216C0G1H104JT000N,Capacitor_SMD__C_1206_3216Metric.kicad_mod,False,C0G feedback/compensation; H2S feedback totals 500 nF in parallel
 R32,10000R,RT0603BRD0710KL,Resistor_SMD__R_0603_1608Metric.kicad_mod,False,
 C31,1uF,GRM188R71E105KA12D,Capacitor_SMD__C_0603_1608Metric.kicad_mod,False,
-Q1,MMBFJ177LT1G,MMBFJ177LT1G,Package_TO_SOT_SMD__SOT-23.kicad_mod,False,
+Q1,MMBFJ270,MMBFJ270,Package_TO_SOT_SMD__SOT-23.kicad_mod,False,
 R33,20R,RT0603BRD0720RL,Resistor_SMD__R_0603_1608Metric.kicad_mod,False,
 R34,100000R,RT0603BRD07100KL,Resistor_SMD__R_0603_1608Metric.kicad_mod,False,
-C33,100nF,GRM188R71H104KA93D,Capacitor_SMD__C_0603_1608Metric.kicad_mod,False,
+C33,100nF,C3216C0G1H104JT000N,Capacitor_SMD__C_1206_3216Metric.kicad_mod,False,C0G feedback/compensation; H2S feedback totals 500 nF in parallel
 R35,10000R,RT0603BRD0710KL,Resistor_SMD__R_0603_1608Metric.kicad_mod,False,
 C34,1uF,GRM188R71E105KA12D,Capacitor_SMD__C_0603_1608Metric.kicad_mod,False,
-Q2,MMBFJ177LT1G,MMBFJ177LT1G,Package_TO_SOT_SMD__SOT-23.kicad_mod,False,
+Q2,MMBFJ270,MMBFJ270,Package_TO_SOT_SMD__SOT-23.kicad_mod,False,
 R36,10000R,RT0603BRD0710KL,Resistor_SMD__R_0603_1608Metric.kicad_mod,False,
 R37,100R,RC0603FR-07100RL,Resistor_SMD__R_0603_1608Metric.kicad_mod,False,
-C36,100nF,GRM188R71H104KA93D,Capacitor_SMD__C_0603_1608Metric.kicad_mod,False,
+C36,100nF,C3216C0G1H104JT000N,Capacitor_SMD__C_1206_3216Metric.kicad_mod,False,C0G feedback/compensation; H2S feedback totals 500 nF in parallel
 C37,100nF,GRM188R71H104KA93D,Capacitor_SMD__C_0603_1608Metric.kicad_mod,False,
 C38,100nF,GRM188R71H104KA93D,Capacitor_SMD__C_0603_1608Metric.kicad_mod,False,
 GS2,SGX-7H2S-AQ-25,SGX-7H2S-AQ-25,SGX7_AQ_Socket.kicad_mod,False,Four 0322-0-15-15-34-27-10-0 sockets; top footprint mirrors manufacturer bottom view; no direct cell soldering.
@@ -81,23 +81,23 @@ U9,OPA2387DGKR,OPA2387DGKR,Package_SO__VSSOP-8_3x3mm_P0.65mm.kicad_mod,False,
 U10,OPA387DBVR,OPA387DBVR,Package_TO_SOT_SMD__SOT-23-5.kicad_mod,False,
 R50,20R,RT0603BRD0720RL,Resistor_SMD__R_0603_1608Metric.kicad_mod,False,
 R51,20000R,RT0603BRD0720KL,Resistor_SMD__R_0603_1608Metric.kicad_mod,False,
-C50,470nF,GRM188R71E474KA12D,Capacitor_SMD__C_0603_1608Metric.kicad_mod,False,
+C50,100nF,C3216C0G1H104JT000N,Capacitor_SMD__C_1206_3216Metric.kicad_mod,False,C0G feedback/compensation; H2S feedback totals 500 nF in parallel
 R52,10000R,RT0603BRD0710KL,Resistor_SMD__R_0603_1608Metric.kicad_mod,False,
 C51,1uF,GRM188R71E105KA12D,Capacitor_SMD__C_0603_1608Metric.kicad_mod,False,
-Q3,MMBFJ177LT1G,MMBFJ177LT1G,Package_TO_SOT_SMD__SOT-23.kicad_mod,False,
+Q3,MMBFJ270,MMBFJ270,Package_TO_SOT_SMD__SOT-23.kicad_mod,False,
 R53,20R,RT0603BRD0720RL,Resistor_SMD__R_0603_1608Metric.kicad_mod,False,
 R54,20000R,RT0603BRD0720KL,Resistor_SMD__R_0603_1608Metric.kicad_mod,False,
-C53,470nF,GRM188R71E474KA12D,Capacitor_SMD__C_0603_1608Metric.kicad_mod,False,
+C53,100nF,C3216C0G1H104JT000N,Capacitor_SMD__C_1206_3216Metric.kicad_mod,False,C0G feedback/compensation; H2S feedback totals 500 nF in parallel
 R55,10000R,RT0603BRD0710KL,Resistor_SMD__R_0603_1608Metric.kicad_mod,False,
 C54,1uF,GRM188R71E105KA12D,Capacitor_SMD__C_0603_1608Metric.kicad_mod,False,
-Q4,MMBFJ177LT1G,MMBFJ177LT1G,Package_TO_SOT_SMD__SOT-23.kicad_mod,False,
+Q4,MMBFJ270,MMBFJ270,Package_TO_SOT_SMD__SOT-23.kicad_mod,False,
 R56,10000R,RT0603BRD0710KL,Resistor_SMD__R_0603_1608Metric.kicad_mod,False,
 R57,100R,RC0603FR-07100RL,Resistor_SMD__R_0603_1608Metric.kicad_mod,False,
-C56,100nF,GRM188R71H104KA93D,Capacitor_SMD__C_0603_1608Metric.kicad_mod,False,
+C56,100nF,C3216C0G1H104JT000N,Capacitor_SMD__C_1206_3216Metric.kicad_mod,False,C0G feedback/compensation; H2S feedback totals 500 nF in parallel
 C57,100nF,GRM188R71H104KA93D,Capacitor_SMD__C_0603_1608Metric.kicad_mod,False,
 C58,100nF,GRM188R71H104KA93D,Capacitor_SMD__C_0603_1608Metric.kicad_mod,False,
 R70,10000R,RT0603BRD0710KL,Resistor_SMD__R_0603_1608Metric.kicad_mod,False,
-R71,1e+06R,RC0603FR-071ML,Resistor_SMD__R_0603_1608Metric.kicad_mod,False,
+R71,100000R,RT0603BRD07100KL,Resistor_SMD__R_0603_1608Metric.kicad_mod,False,"Gate return to electrode common mode, not ground"
 U11,SHT40-AD1F-R2,SHT40-AD1F-R2,SHT40.kicad_mod,False,
 C70,100nF,GRM188R71H104KA93D,Capacitor_SMD__C_0603_1608Metric.kicad_mod,False,
 U12,BMP390,BMP390,BMP390.kicad_mod,False,
@@ -111,7 +111,7 @@ TP5,Test pad 1mm,Test pad 1mm,TestPoint__TestPoint_Pad_D1.0mm.kicad_mod,False,
 TP6,Test pad 1mm,Test pad 1mm,TestPoint__TestPoint_Pad_D1.0mm.kicad_mod,False,
 TP7,Test pad 1mm,Test pad 1mm,TestPoint__TestPoint_Pad_D1.0mm.kicad_mod,False,
 U13,TPS22918DBVR,TPS22918DBVR,Package_TO_SOT_SMD__SOT-23-6.kicad_mod,False,Analog power sequencing / USB suspend
-Q7,2N7002/HAMR,2N7002/HAMR,Package_TO_SOT_SMD__SOT-23.kicad_mod,False,Analog power sequencing / USB suspend
+Q7,MMBT3904LT1G,MMBT3904LT1G,Package_TO_SOT_SMD__SOT-23.kicad_mod,False,Emitter follows VZERO; base resistor R74 limits MCU current
 R72,100000R,RT0603BRD07100KL,Resistor_SMD__R_0603_1608Metric.kicad_mod,False,Analog power sequencing / USB suspend
 R73,10000R,RT0603BRD0710KL,Resistor_SMD__R_0603_1608Metric.kicad_mod,False,Analog power sequencing / USB suspend
 C73,1uF,GRM188R71E105KA12D,Capacitor_SMD__C_0603_1608Metric.kicad_mod,False,Analog power sequencing / USB suspend
@@ -120,5 +120,16 @@ H1,M3,Mechanical,MountingHole__MountingHole_3.2mm_M3.kicad_mod,False,M3 support
 H2,M3,Mechanical,MountingHole__MountingHole_3.2mm_M3.kicad_mod,False,M3 support
 H3,M3,Mechanical,MountingHole__MountingHole_3.2mm_M3.kicad_mod,False,M3 support
 H4,M3,Mechanical,MountingHole__MountingHole_3.2mm_M3.kicad_mod,False,M3 support
+R74,10000R,RT0603BRD0710KL,Resistor_SMD__R_0603_1608Metric.kicad_mod,False,Q7 base current limit
+D4,BAT54LT1G,BAT54LT1G,Package_TO_SOT_SMD__SOT-23.kicad_mod,False,1 anode USB_5V; 3 cathode GATE_SUPPLY; 2 NC
+C80,100nF,C3216C0G1H104JT000N,Capacitor_SMD__C_1206_3216Metric.kicad_mod,False,H2S C0G parallel feedback bank
+C81,100nF,C3216C0G1H104JT000N,Capacitor_SMD__C_1206_3216Metric.kicad_mod,False,H2S C0G parallel feedback bank
+C82,100nF,C3216C0G1H104JT000N,Capacitor_SMD__C_1206_3216Metric.kicad_mod,False,H2S C0G parallel feedback bank
+C83,100nF,C3216C0G1H104JT000N,Capacitor_SMD__C_1206_3216Metric.kicad_mod,False,H2S C0G parallel feedback bank
+C84,100nF,C3216C0G1H104JT000N,Capacitor_SMD__C_1206_3216Metric.kicad_mod,False,H2S C0G parallel feedback bank
+C85,100nF,C3216C0G1H104JT000N,Capacitor_SMD__C_1206_3216Metric.kicad_mod,False,H2S C0G parallel feedback bank
+C86,100nF,C3216C0G1H104JT000N,Capacitor_SMD__C_1206_3216Metric.kicad_mod,False,H2S C0G parallel feedback bank
+C87,100nF,C3216C0G1H104JT000N,Capacitor_SMD__C_1206_3216Metric.kicad_mod,False,H2S C0G parallel feedback bank
+R75,100R,RC0603FR-07100RL,Resistor_SMD__R_0603_1608Metric.kicad_mod,False,100 ohm isolation for driven electrode guard pours
 GS1/GS2 sockets (8),1 mm cell sockets,0322-0-15-15-34-27-10-0,SGX7_AQ_Socket,False,Install sockets before inserting cells
 External PM module,PMS5003,PMS5003,Enclosure cradle,False,"Separate cable, not soldered on this PCB"

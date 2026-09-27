@@ -18,8 +18,9 @@ class SkylarkSceneTests(unittest.TestCase):
             bounds=data['accessors'][mesh['primitives'][0]['attributes']['POSITION']]
             self.assertAlmostEqual(bounds['min'][0],x-.01575,places=6)
             self.assertAlmostEqual(bounds['max'][0],x+.01575,places=6)
-            self.assertAlmostEqual(bounds['min'][1],.00729,places=6)
-            self.assertAlmostEqual(bounds['max'][1],.02259,places=6)
+            # 1.6 mm PCB plus 4.88 mm socket rim (flange included).
+            self.assertAlmostEqual(bounds['min'][1],.00648,places=6)
+            self.assertAlmostEqual(bounds['max'][1],.02178,places=6)
             self.assertAlmostEqual((bounds['min'][2]+bounds['max'][2])/2,.079,places=6)
 
     def test_working_and_auxiliary_share_cell_highlight(self):

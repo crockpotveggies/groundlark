@@ -4,6 +4,7 @@ import hashlib, sys, unittest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
 import pcbnew as p
 from check_skylark import review
+from skylark_fabrication import review as fabrication_review, stackup
 from project_paths import board_dir
 
 BOARD=board_dir('skylark-usb')/'skylark-usb.kicad_pcb'
@@ -64,8 +65,36 @@ class SkylarkTests(unittest.TestCase):
         with self.assertRaises(AssertionError):review(self.board)
 
     def test_high_bandwidth_feedback_rejected(self):
-        self.fps['C50'].SetValue('10nF')
+        for ref in ('C50','C80','C81','C82','C83'):self.fps[ref].SetValue('10nF')
         with self.assertRaisesRegex(AssertionError,'feedback bandwidth'):review(self.board)
+
+    def test_ground_referenced_powered_clamp_rejected(self):
+        self.pad('Q7',2).SetNet(self.board.FindNet('GND'))
+        with self.assertRaises(AssertionError):review(self.board)
+
+    def test_reversed_gate_supply_diode_rejected(self):
+        self.pad('D4',1).SetNet(self.board.FindNet('GATE_SUPPLY'))
+        with self.assertRaises(AssertionError):review(self.board)
+
+    def test_missing_parallel_feedback_cap_rejected(self):
+        self.pad('C82',1).SetNet(self.board.FindNet('GND'))
+        with self.assertRaises(AssertionError):review(self.board)
+
+    def test_standard_stack_rejects_two_layer_physical_definition(self):
+        text=BOARD.read_text()
+        self.assertEqual(stackup(text)['stock_id'],'JLC04161H-7628')
+        # Remove a physical copper-layer entry while retaining enabled layers.
+        from stackup import block_span
+        start,end=block_span(text,'(stackup')
+        a,z=block_span(text[start:end],'(layer "In1.Cu"')
+        with self.assertRaisesRegex(AssertionError,'physical stackup'):stackup(text[:start+a]+text[start+z:])
+
+    def test_small_drill_and_via_in_pad_rejected(self):
+        via=next(t for t in self.board.GetTracks() if isinstance(t,p.PCB_VIA))
+        via.SetDrill(p.FromMM(.2))
+        with self.assertRaisesRegex(AssertionError,'Standard via'):fabrication_review(self.board)
+        via.SetDrill(p.FromMM(.3));via.SetPosition(self.pad('C6',1).GetPosition())
+        with self.assertRaisesRegex(AssertionError,'via-in-SMT-pad'):fabrication_review(self.board)
 
     def test_excessive_adc_source_impedance_rejected(self):
         self.fps['R32'].SetValue('100000R')
@@ -93,5 +122,10 @@ class SkylarkTests(unittest.TestCase):
             if track.GetNetname()=='GND' and track.GetLayer()==p.B_Cu and (target.HitTest(track.GetStart()) or target.HitTest(track.GetEnd())):
                 self.board.Delete(track)
         with self.assertRaises((AssertionError,ValueError)):review(self.board)
+
+    def test_removed_driven_guard_rejected(self):
+        for zone in list(self.board.Zones()):
+            if zone.GetNetname()=='GUARD':self.board.Delete(zone)
+        with self.assertRaisesRegex(AssertionError,'Driven guard copper'):review(self.board)
 
 if __name__=='__main__':unittest.main()

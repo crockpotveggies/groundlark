@@ -30,9 +30,12 @@ volcanic warning instrument. No camera, Pi HAT or separate sensor daughterboard 
 | Debug/service | 10-pin 1.27 mm SWD, reset/boot buttons, status LED and seven rail test pads |
 
 Gas channels use 20 Ω electrode loads and 0.1%, 25 ppm/K thin-film gain resistors.
-SO₂ feedback is 100 kΩ/100 nF; H₂S feedback is 20 kΩ/470 nF. Each ADC input has a
+SO₂ feedback is 100 kΩ/100 nF; H₂S feedback is 20 kΩ/500 nF (five parallel
+100 nF capacitors). Feedback and potentiostat compensation use C0G dielectric
+to avoid the piezoelectric behavior of high-permittivity ceramic capacitors.
+Each ADC input has a
 10 kΩ/1 µF filter placed beside the ADC. Nominal feedback poles are 15.9 Hz and
-16.9 Hz; the output pole is 15.9 Hz. Together they attenuate a 50 Hz input signal
+15.9 Hz; the output pole is 15.9 Hz. Together they attenuate a 50 Hz input signal
 by about 20 dB before the ADC's digital filtering. These calculations omit cell
 impedance, capacitor bias/temperature effects and amplifier noise gain; they
 do not establish loop stability or a noise floor. Preserve matching WE/AE filters.
@@ -42,6 +45,13 @@ via-free summing traces, local feedback and bypass returns reduce avoidable
 pickup. The ADS122C04's typical ±5 nA bypass-mode input current can produce
 about ±50 µV across 10 kΩ; this is a typical error estimate, not a guaranteed
 bound. Measure channel offset and its drift, and retain calibration metadata.
+
+Both outer faces have guard copper driven from the 1.25 V reference through
+100 Ω R75. Exposed guard arcs surround the working, reference and auxiliary
+socket pads; gaps allow signal traces to exit. Cleanliness remains essential:
+4 nA of parasitic current mimics 10 ppb SO₂ at nominal sensitivity. Qualify
+residual leakage after assembly, cleaning and coating, including humid soak
+and fan-on/fan-off tests. Mask and coating alone do not establish that limit.
 
 Both reference and working electrodes are nominally at 1.25 V;
 this is a **zero-bias assumption**. SGX's public AQ datasheets do not unambiguously
@@ -58,25 +68,35 @@ establish ppb-level system accuracy.
 
 ## Assembly and installation
 
-Exact JLCPCB identities and dated stock observations for the newly selected
-amplifiers, analog switch, MOSFETs, precision resistors and filter capacitors
-are in the [Skylark procurement registry](../assembly/skylark-usb/jlcpcb-parts.json).
-All recorded selections were listed for SMT assembly with available stock on
-2026-09-27 UTC. This is a partial procurement audit; the registry names the
-remaining original selections that still need verification. Recheck stock and
-allocation at order time. Gas cells and their sockets require separate
-procurement and an approved insertion/assembly process.
+The [Skylark procurement registry](../assembly/skylark-usb/jlcpcb-parts.json)
+covers all 119 PCB assembly placements in 37 exact manufacturer/catalog groups,
+with observations dated 2026-09-27 UTC. BMP390 requires consignment or a supplier
+quote; USB4105-GF-A and the 80.6 kΩ resistor require pre-ordering. Public stock
+is not reserved stock. C2 has a documented assembly substitution to Murata
+GRM21BR71C475KE51L: the same 0805, 4.7 µF, ±10%, X7R specification with a 16 V
+rating instead of 10 V. The authored BOM retains its original identity.
 
-- Use 1.6 mm FR-4, four copper layers, with two internal ground planes. Minimum
-  track/clearance is 0.15 mm. Vias are through holes: mostly 0.60/0.30 mm, with
-  0.45/0.20 mm escapes. No blind or buried vias are used. Select and verify the
-  fabricator's actual stack before an impedance-controlled release.
+The [assembly guide](../assembly/skylark-usb/README.md) describes the read-only
+Gerber/BOM/CPL exporter and manual parts. Numbered supplier pads qualify 118
+placements, including explicit bottom-side handling. J1's public supplier
+footprint differs from the GCT drawing; its CPL origin and rotation remain an
+order-engineering hold. Gas cells, eight sockets and the PMS5003 harness are
+assembled separately. Recheck all stock and both sides of the order preview.
+
+- Order JLCPCB's standard **1.6 mm, four-layer FR-4, JLC04161H-7628** stack:
+  1 oz outer copper and 0.5 oz inner copper, with both inner layers assigned to
+  ground. The recorded dielectric thicknesses are 0.2104 / 1.065 / 0.2104 mm.
+  Use ENIG and conventional tented **0.60/0.30 mm through-vias** outside SMT pads.
+  Minimum track/clearance is 0.15 mm. This design does not require HDI, blind or
+  buried vias, filled/capped vias, or custom lamination. The stack comes from
+  [JLCPCB's stock table](https://jlcpcb.com/impedance); USB signal integrity still
+  requires a physical check. The selection does not imply an impedance guarantee.
 - Fit **eight Mill-Max 0322-0-15-15-34-27-10-0 sockets** before inserting the cells.
   Finished socket holes are 2.35 mm nominal. The contact range covers the SGX
   1.00 ± 0.15 mm pins. Do not solder the gas cells directly. Check actual insertion
   and retention using purchased parts; provide a removable enclosure retainer.
-- Gas-cell bodies are Ø31.5 × 15.5 mm. With the socket rim 5.69 mm above the PCB,
-  allow at least 21.2 mm on the cell side, plus assembly tolerance and airflow
+- Gas-cell bodies are Ø31.5 × 15.5 mm. With the socket rim 4.88 mm above the PCB
+  seating surface (including its 0.81 mm flange), allow at least 20.38 mm on the cell side, plus assembly tolerance and airflow
   clearance. The centers are 42 mm apart. Keep sensor faces clear.
 - Four 3.2 mm mounting holes are at (4,4), (86,4), (4,96), (86,55) mm from the
   upper-left outline corner. USB and the temperature-sensor finger face down.
@@ -135,6 +155,21 @@ ANA_EN, stop conversions and drive CLAMP_HOLD high. Do not sample until the cell
 baseline has settled after restarting. Qualify this sequence, reset/brownout
 behavior and the clamp gate voltage on hardware. The 10 nF CT capacitor controls
 switch slew; firmware timing must account for the measured rail/reference rise.
+
+Q7 is an MMBT3904 with its emitter at VZERO, so an engaged clamp follows the
+electrode reference instead of pulling the JFET gates below powered electrodes.
+R74 limits base current. D4 isolates the gate pull-up from a falling USB rail;
+R71 returns the gate toward VZERO when that supply disappears. Q1–Q4 are
+MMBFJ270 devices, specified at 200 pA maximum gate leakage at 25 °C under the
+datasheet test conditions. This is not an outdoor-temperature leakage guarantee.
+Check gate-to-electrode voltage and discharge behavior during slow ramps,
+hard disconnects, MCU reset and brownout with real cells attached.
+
+Sensor power follows USB configuration and suspend state. Closing a CDC data
+session leaves the gas bias active; reopening does not repeat conditioning.
+The firmware's 60-second gas suppression is a minimum prototype policy. It does
+not certify a stable baseline; field software must apply a qualified settling
+and calibration policy before interpreting raw readings as gas concentrations.
 
 Use ADS122C04 address 0x40, gain 1, PGA bypassed and the external 2.5 V reference.
 Multiplex AIN0–3 as single-ended SO₂ WE, SO₂ AE, H₂S WE, H₂S AE. Start with normal
@@ -205,6 +240,8 @@ portable package models and actual KiCad renders.
 - [STM32F072 datasheet](https://www.st.com/resource/en/datasheet/stm32f072cb.pdf),
   [SHT4x datasheet](https://sensirion.com/resource/datasheet/sht4x),
   [BMP390 datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp390-ds002.pdf),
-  [MMBFJ177](https://www.onsemi.com/download/data-sheet/pdf/mmbfj177lt1-d.pdf).
+  [MMBFJ270](https://www.onsemi.com/download/data-sheet/pdf/mmbfj270-d.pdf),
+  [MMBT3904](https://www.onsemi.com/download/data-sheet/pdf/mmbt3904lt1-d.pdf),
+  [BAT54](https://www.onsemi.com/download/data-sheet/pdf/bat54lt1-d.pdf).
 - [Mill-Max receptacle catalogue](https://www.mill-max.com/sites/default/files/external/catalog/2020-03/153-201_0.pdf),
   [Amphenol 20021111 header](https://cdn.amphenol-cs.com/media/wysiwyg/files/drawing/20021111.pdf).

@@ -18,7 +18,7 @@ def main():
     folder = board_dir(NAME)
     folder.mkdir(parents=True, exist_ok=True)
     b = p.LoadBoard(str(compiled_dir('skylark')/'skylark.kicad_pcb'))
-    assert len(b.GetFootprints()) == 117, 'Build the authored circuit first'
+    assert {f.GetReference() for f in b.GetFootprints()} == {x['ref'] for x in spec['parts'] if not x['ref'].startswith('H')}, 'Build the authored circuit first'
     b.SetCopperLayerCount(4)
     for item in [*b.GetTracks(), *b.GetDrawings(), *b.Zones()]:
         b.Delete(item)
@@ -79,14 +79,14 @@ def main():
     ds.m_CopperEdgeClearance=p.FromMM(.3)
     ds.m_MinClearance=p.FromMM(.15)
     ds.m_TrackMinWidth=p.FromMM(.15)
-    ds.m_ViasMinSize=p.FromMM(.45)
-    ds.m_MinThroughDrill=p.FromMM(.2)
+    ds.m_ViasMinSize=p.FromMM(.6)
+    ds.m_MinThroughDrill=p.FromMM(.3)
     title=p.TITLE_BLOCK();title.SetTitle('Skylark USB environmental monitor')
     title.SetRevision('A PROTOTYPE');title.SetDate('2026-09-26');b.SetTitleBlock(title)
     path=folder/(NAME+'.kicad_pcb')
     unique_ids(b);save_board(str(path),b)
     project={'meta':{'filename':NAME+'.kicad_pro','version':1},
-      'board':{'design_settings':{'rules':{'min_clearance':.15,'min_track_width':.15,'min_via_diameter':.45,'min_through_hole_diameter':.2,'min_copper_edge_clearance':.3}}},
+      'board':{'design_settings':{'rules':{'min_clearance':.15,'min_track_width':.15,'min_via_diameter':.6,'min_through_hole_diameter':.3,'min_copper_edge_clearance':.3}}},
       'net_settings':{'classes':[{'name':'Default','clearance':.15,'track_width':.15,'via_diameter':.6,'via_drill':.3,'diff_pair_width':.2,'diff_pair_gap':.2}],'meta':{'version':3}}}
     path.with_suffix('.kicad_pro').write_text(json.dumps(project,indent=2)+'\n')
     (folder/'fp-lib-table').write_text('(fp_lib_table (version 7) (lib (name "Skylark") (type "KiCad") (uri "${KIPRJMOD}/../../../shared/elec/skylark") (options "") (descr "Skylark atomic footprints")))\n')
@@ -96,6 +96,8 @@ def main():
         for x in parts:w.writerow([x[k] for k in ['ref','value','mpn','local_fp','dnp','note']])
         w.writerow(['GS1/GS2 sockets (8)','1 mm cell sockets','0322-0-15-15-34-27-10-0','SGX7_AQ_Socket',False,'Install sockets before inserting cells'])
         w.writerow(['External PM module','PMS5003','PMS5003','Enclosure cradle',False,'Separate cable, not soldered on this PCB'])
+    from stackup import apply_stackup
+    apply_stackup(path,spec)
     export_dsn(b,folder/(NAME+'.dsn'),(.6,.3),spec['ground_layers'])
     print(NAME,len(parts),'placed parts; routing must be rerun explicitly')
 

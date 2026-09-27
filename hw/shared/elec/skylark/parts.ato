@@ -159,7 +159,7 @@ component OPA2:
     signal p8 ~ pin 8
 
 component JFET:
-    trait is_atomic_part<manufacturer="onsemi", partnumber="MMBFJ177LT1G", footprint="Package_TO_SOT_SMD__SOT-23.kicad_mod", symbol="symbols/JFET.kicad_sym">
+    trait is_atomic_part<manufacturer="onsemi", partnumber="MMBFJ270", footprint="Package_TO_SOT_SMD__SOT-23.kicad_mod", symbol="symbols/JFET.kicad_sym">
     trait has_designator_prefix<prefix="U">
     signal p1 ~ pin 1
     signal p2 ~ pin 2
@@ -443,3 +443,25 @@ component AnalogSwitch:
     signal p4 ~ pin 4
     signal p5 ~ pin 5
     signal p6 ~ pin 6
+
+component C_100n_C0G:
+    trait is_atomic_part<manufacturer="TDK", partnumber="C3216C0G1H104JT000N", footprint="Capacitor_SMD__C_1206_3216Metric.kicad_mod", symbol="symbols/C_100n_C0G.kicad_sym">
+    trait has_designator_prefix<prefix="C">
+    capacitance: F
+    capacitance = 100nF +/- 5%
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component ClampNPN:
+    trait is_atomic_part<manufacturer="onsemi", partnumber="MMBT3904LT1G", footprint="Package_TO_SOT_SMD__SOT-23.kicad_mod", symbol="symbols/ClampNPN.kicad_sym">
+    trait has_designator_prefix<prefix="U">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+
+component GateDiode:
+    trait is_atomic_part<manufacturer="onsemi", partnumber="BAT54LT1G", footprint="Package_TO_SOT_SMD__SOT-23.kicad_mod", symbol="symbols/GateDiode.kicad_sym">
+    trait has_designator_prefix<prefix="U">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3

@@ -1,18 +1,18 @@
 {
   "renderer": "9.0.9",
   "source_board": "skylark-usb.kicad_pcb",
-  "source_sha256": "5d457be536c001b11b4704435b016cf1fbc4d862682d2086a4a7f384b1b57ba6",
+  "source_sha256": "179348a3ba446cb2ac438995107810e405bae1b406c9cb8bd36355eab2ff4bcb",
   "model_provenance": "../../models/provenance.json",
   "images": [
     {
       "file": "skylark-front.png",
-      "sha256": "938d14543a60277f5d2fe8cbf574b26a4d03c7b67ca6d80f89d57e88727a9288",
+      "sha256": "7078b1747cbc3e9efede7b9d1fa4696357e276230d5627b4cd1ffcc6490b1064",
       "side": "top",
       "rotation": "325,0,20"
     },
     {
       "file": "skylark-back.png",
-      "sha256": "f1b88bde0133072d65d209a17592f4e891f9588cfd515d1e10803695a4a63b09",
+      "sha256": "3b4fc98af7f549b33733af3f468037aab151e7d63f7a4333a943e53747a7814d",
       "side": "bottom",
       "rotation": "35,0,-20"
     }

@@ -108,14 +108,24 @@ class NativeFirmwareTests(unittest.TestCase):
         gas=[s for sid in range(10,14) for s in self.samples(messages,sid,61000)]
         self.assertTrue(any(s.quality==2 for s in gas));self.assertTrue(any(s.quality==1 for s in gas))
 
-    def test_queue_overflow_unknown_loss_and_suspend_reannounce(self):
+    def test_queue_overflow_unknown_loss_and_dtr_reannounce(self):
         messages,_=self.messages(3)
         samples=self.samples(messages,10)
         self.assertTrue(any(b.sequence>a.sequence+1 for a,b in zip(samples,samples[1:])))
         self.assertTrue(all(not m.batch.HasField('dropped_before') for m in messages if m.WhichOneof('body')=='batch'))
         resumed,_=self.messages(4)
         self.assertEqual([m.configuration.revision for m in resumed if m.WhichOneof('body')=='configuration'],[1,2])
+        self.assertTrue(all(s.quality==1 for s in self.samples(resumed,10,65100)))
+
+    def test_suspend_restarts_conditioning_but_late_dtr_does_not(self):
+        resumed,_=self.messages(7)
+        self.assertEqual([m.configuration.revision for m in resumed if m.WhichOneof('body')=='configuration'],[1,2])
         self.assertTrue(all(s.quality==2 for s in self.samples(resumed,10,65100)))
+        late,_=self.messages(8)
+        samples=self.samples(late,10)
+        self.assertTrue(samples)
+        self.assertGreaterEqual(samples[0].time.acquisition_ns,65_000_000_000)
+        self.assertTrue(all(s.quality==1 for s in samples))
 
     def test_absent_adc_is_explicitly_disabled(self):
         messages,_=self.messages(5)

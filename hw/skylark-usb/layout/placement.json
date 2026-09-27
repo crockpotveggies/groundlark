@@ -192,10 +192,10 @@
           "2": "2"
         },
         "xy": [
-          8,
-          84
+          7.5,
+          81.05
         ],
-        "angle": 90,
+        "angle": 180,
         "side": "front",
         "section": "01_USB_power",
         "dnp": false,
@@ -212,10 +212,10 @@
           "2": "2"
         },
         "xy": [
-          16,
-          83
+          16.5,
+          81.05
         ],
-        "angle": 90,
+        "angle": 0,
         "side": "front",
         "section": "01_USB_power",
         "dnp": false,
@@ -257,7 +257,7 @@
         },
         "xy": [
           70,
-          82
+          86
         ],
         "angle": 90,
         "side": "front",
@@ -276,10 +276,10 @@
           "2": "2"
         },
         "xy": [
-          62,
-          81
+          60,
+          87
         ],
-        "angle": 90,
+        "angle": 270,
         "side": "front",
         "section": "01_USB_power",
         "dnp": false,
@@ -316,10 +316,10 @@
           "2": "2"
         },
         "xy": [
-          65,
-          87
+          61.5,
+          82.05
         ],
-        "angle": 0,
+        "angle": 180,
         "side": "front",
         "section": "01_USB_power",
         "dnp": false,
@@ -336,10 +336,10 @@
           "2": "2"
         },
         "xy": [
-          72,
-          86
+          70.5,
+          82.05
         ],
-        "angle": 90,
+        "angle": 0,
         "side": "front",
         "section": "01_USB_power",
         "dnp": false,
@@ -631,8 +631,8 @@
           "2": "2"
         },
         "xy": [
-          26.5,
-          71
+          32.75,
+          68
         ],
         "angle": 90,
         "side": "front",
@@ -651,10 +651,10 @@
           "2": "2"
         },
         "xy": [
-          41,
-          71
+          27,
+          77.75
         ],
-        "angle": 90,
+        "angle": 180,
         "side": "front",
         "section": "02_Controller",
         "dnp": false,
@@ -672,9 +672,9 @@
         },
         "xy": [
           41,
-          79
+          72.25
         ],
-        "angle": 90,
+        "angle": 0,
         "side": "front",
         "section": "02_Controller",
         "dnp": false,
@@ -691,10 +691,10 @@
           "2": "2"
         },
         "xy": [
-          26.5,
-          79
+          36.75,
+          82
         ],
-        "angle": 90,
+        "angle": 270,
         "side": "front",
         "section": "02_Controller",
         "dnp": false,
@@ -711,10 +711,10 @@
           "2": "2"
         },
         "xy": [
-          33,
-          65
+          29.5,
+          66
         ],
-        "angle": 0,
+        "angle": 90,
         "side": "front",
         "section": "02_Controller",
         "dnp": false,
@@ -1369,7 +1369,7 @@
         },
         "xy": [
           19,
-          30
+          32
         ],
         "angle": 270,
         "side": "back",
@@ -1379,23 +1379,23 @@
       },
       {
         "ref": "C30",
-        "type": "C_100n",
+        "type": "C_100n_C0G",
         "value": "100nF",
-        "mpn": "GRM188R71H104KA93D",
-        "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+        "mpn": "C3216C0G1H104JT000N",
+        "local_fp": "Capacitor_SMD__C_1206_3216Metric.kicad_mod",
         "names": {
           "1": "1",
           "2": "2"
         },
         "xy": [
           17,
-          30
+          32
         ],
         "angle": 270,
         "side": "back",
         "section": "04_SO2",
         "dnp": false,
-        "note": ""
+        "note": "C0G feedback/compensation; H2S feedback totals 500 nF in parallel"
       },
       {
         "ref": "R32",
@@ -1440,8 +1440,8 @@
       {
         "ref": "Q1",
         "type": "JFET",
-        "value": "MMBFJ177LT1G",
-        "mpn": "MMBFJ177LT1G",
+        "value": "MMBFJ270",
+        "mpn": "MMBFJ270",
         "local_fp": "Package_TO_SOT_SMD__SOT-23.kicad_mod",
         "names": {
           "1": "D",
@@ -1449,8 +1449,8 @@
           "3": "G"
         },
         "xy": [
-          34,
-          30
+          28,
+          18
         ],
         "angle": 0,
         "side": "back",
@@ -1490,7 +1490,7 @@
         },
         "xy": [
           29,
-          29
+          30
         ],
         "angle": 270,
         "side": "back",
@@ -1500,23 +1500,23 @@
       },
       {
         "ref": "C33",
-        "type": "C_100n",
+        "type": "C_100n_C0G",
         "value": "100nF",
-        "mpn": "GRM188R71H104KA93D",
-        "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+        "mpn": "C3216C0G1H104JT000N",
+        "local_fp": "Capacitor_SMD__C_1206_3216Metric.kicad_mod",
         "names": {
           "1": "1",
           "2": "2"
         },
         "xy": [
           31,
-          29
+          30
         ],
         "angle": 270,
         "side": "back",
         "section": "04_SO2",
         "dnp": false,
-        "note": ""
+        "note": "C0G feedback/compensation; H2S feedback totals 500 nF in parallel"
       },
       {
         "ref": "R35",
@@ -1561,8 +1561,8 @@
       {
         "ref": "Q2",
         "type": "JFET",
-        "value": "MMBFJ177LT1G",
-        "mpn": "MMBFJ177LT1G",
+        "value": "MMBFJ270",
+        "mpn": "MMBFJ270",
         "local_fp": "Package_TO_SOT_SMD__SOT-23.kicad_mod",
         "names": {
           "1": "D",
@@ -1571,7 +1571,7 @@
         },
         "xy": [
           34,
-          36
+          37
         ],
         "angle": 0,
         "side": "back",
@@ -1621,23 +1621,23 @@
       },
       {
         "ref": "C36",
-        "type": "C_100n",
+        "type": "C_100n_C0G",
         "value": "100nF",
-        "mpn": "GRM188R71H104KA93D",
-        "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+        "mpn": "C3216C0G1H104JT000N",
+        "local_fp": "Capacitor_SMD__C_1206_3216Metric.kicad_mod",
         "names": {
           "1": "1",
           "2": "2"
         },
         "xy": [
-          11,
+          10,
           27
         ],
         "angle": 90,
         "side": "back",
         "section": "04_SO2",
         "dnp": false,
-        "note": ""
+        "note": "C0G feedback/compensation; H2S feedback totals 500 nF in parallel"
       },
       {
         "ref": "C37",
@@ -1650,7 +1650,7 @@
           "2": "2"
         },
         "xy": [
-          27.5,
+          25.5,
           32
         ],
         "angle": 0,
@@ -1792,23 +1792,23 @@
       },
       {
         "ref": "C50",
-        "type": "C_470n",
-        "value": "470nF",
-        "mpn": "GRM188R71E474KA12D",
-        "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+        "type": "C_100n_C0G",
+        "value": "100nF",
+        "mpn": "C3216C0G1H104JT000N",
+        "local_fp": "Capacitor_SMD__C_1206_3216Metric.kicad_mod",
         "names": {
           "1": "1",
           "2": "2"
         },
         "xy": [
-          59,
-          30
+          60,
+          33.0
         ],
-        "angle": 270,
+        "angle": 180,
         "side": "back",
         "section": "05_H2S",
         "dnp": false,
-        "note": ""
+        "note": "C0G feedback/compensation; H2S feedback totals 500 nF in parallel"
       },
       {
         "ref": "R52",
@@ -1853,8 +1853,8 @@
       {
         "ref": "Q3",
         "type": "JFET",
-        "value": "MMBFJ177LT1G",
-        "mpn": "MMBFJ177LT1G",
+        "value": "MMBFJ270",
+        "mpn": "MMBFJ270",
         "local_fp": "Package_TO_SOT_SMD__SOT-23.kicad_mod",
         "names": {
           "1": "D",
@@ -1862,8 +1862,8 @@
           "3": "G"
         },
         "xy": [
-          76,
-          30
+          70,
+          18
         ],
         "angle": 0,
         "side": "back",
@@ -1913,23 +1913,23 @@
       },
       {
         "ref": "C53",
-        "type": "C_470n",
-        "value": "470nF",
-        "mpn": "GRM188R71E474KA12D",
-        "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+        "type": "C_100n_C0G",
+        "value": "100nF",
+        "mpn": "C3216C0G1H104JT000N",
+        "local_fp": "Capacitor_SMD__C_1206_3216Metric.kicad_mod",
         "names": {
           "1": "1",
           "2": "2"
         },
         "xy": [
-          73,
-          29
+          74.5,
+          29.0
         ],
-        "angle": 270,
+        "angle": 0,
         "side": "back",
         "section": "05_H2S",
         "dnp": false,
-        "note": ""
+        "note": "C0G feedback/compensation; H2S feedback totals 500 nF in parallel"
       },
       {
         "ref": "R55",
@@ -1974,8 +1974,8 @@
       {
         "ref": "Q4",
         "type": "JFET",
-        "value": "MMBFJ177LT1G",
-        "mpn": "MMBFJ177LT1G",
+        "value": "MMBFJ270",
+        "mpn": "MMBFJ270",
         "local_fp": "Package_TO_SOT_SMD__SOT-23.kicad_mod",
         "names": {
           "1": "D",
@@ -1983,8 +1983,8 @@
           "3": "G"
         },
         "xy": [
-          76,
-          36
+          80,
+          37
         ],
         "angle": 0,
         "side": "back",
@@ -2034,23 +2034,23 @@
       },
       {
         "ref": "C56",
-        "type": "C_100n",
+        "type": "C_100n_C0G",
         "value": "100nF",
-        "mpn": "GRM188R71H104KA93D",
-        "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+        "mpn": "C3216C0G1H104JT000N",
+        "local_fp": "Capacitor_SMD__C_1206_3216Metric.kicad_mod",
         "names": {
           "1": "1",
           "2": "2"
         },
         "xy": [
-          53,
+          52,
           27
         ],
         "angle": 90,
         "side": "back",
         "section": "05_H2S",
         "dnp": false,
-        "note": ""
+        "note": "C0G feedback/compensation; H2S feedback totals 500 nF in parallel"
       },
       {
         "ref": "C57",
@@ -2114,9 +2114,9 @@
       },
       {
         "ref": "R71",
-        "type": "R_1000000",
-        "value": "1e+06R",
-        "mpn": "RC0603FR-071ML",
+        "type": "R_100000",
+        "value": "100000R",
+        "mpn": "RT0603BRD07100KL",
         "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
         "names": {
           "1": "1",
@@ -2130,7 +2130,7 @@
         "side": "front",
         "section": "03_ADC_reference",
         "dnp": false,
-        "note": ""
+        "note": "Gate return to electrode common mode, not ground"
       },
       {
         "ref": "U11",
@@ -2401,9 +2401,9 @@
       },
       {
         "ref": "Q7",
-        "type": "MOS",
-        "value": "2N7002/HAMR",
-        "mpn": "2N7002/HAMR",
+        "type": "ClampNPN",
+        "value": "MMBT3904LT1G",
+        "mpn": "MMBT3904LT1G",
         "local_fp": "Package_TO_SOT_SMD__SOT-23.kicad_mod",
         "names": {
           "1": "G",
@@ -2418,7 +2418,7 @@
         "side": "front",
         "section": "04_Analog_reference",
         "dnp": false,
-        "note": "Analog power sequencing / USB suspend"
+        "note": "Emitter follows VZERO; base resistor R74 limits MCU current"
       },
       {
         "ref": "R72",
@@ -2567,19 +2567,270 @@
         "section": "Mechanical",
         "dnp": false,
         "note": "M3 support"
+      },
+      {
+        "ref": "R74",
+        "type": "R_10000",
+        "value": "10000R",
+        "mpn": "RT0603BRD0710KL",
+        "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+        "names": {
+          "1": "1",
+          "2": "2"
+        },
+        "xy": [
+          17,
+          46
+        ],
+        "angle": 0,
+        "side": "front",
+        "section": "04_Analog_reference",
+        "dnp": false,
+        "note": "Q7 base current limit"
+      },
+      {
+        "ref": "D4",
+        "type": "GateDiode",
+        "value": "BAT54LT1G",
+        "mpn": "BAT54LT1G",
+        "local_fp": "Package_TO_SOT_SMD__SOT-23.kicad_mod",
+        "names": {
+          "1": "G",
+          "2": "S",
+          "3": "D"
+        },
+        "xy": [
+          6,
+          42
+        ],
+        "angle": 0,
+        "side": "front",
+        "section": "04_Analog_reference",
+        "dnp": false,
+        "note": "1 anode USB_5V; 3 cathode GATE_SUPPLY; 2 NC"
+      },
+      {
+        "ref": "C80",
+        "type": "C_100n_C0G",
+        "value": "100nF",
+        "mpn": "C3216C0G1H104JT000N",
+        "local_fp": "Capacitor_SMD__C_1206_3216Metric.kicad_mod",
+        "names": {
+          "1": "1",
+          "2": "2"
+        },
+        "xy": [
+          60,
+          35.5
+        ],
+        "angle": 180,
+        "side": "back",
+        "section": "05_H2S",
+        "dnp": false,
+        "note": "H2S C0G parallel feedback bank"
+      },
+      {
+        "ref": "C81",
+        "type": "C_100n_C0G",
+        "value": "100nF",
+        "mpn": "C3216C0G1H104JT000N",
+        "local_fp": "Capacitor_SMD__C_1206_3216Metric.kicad_mod",
+        "names": {
+          "1": "1",
+          "2": "2"
+        },
+        "xy": [
+          60,
+          38.0
+        ],
+        "angle": 180,
+        "side": "back",
+        "section": "05_H2S",
+        "dnp": false,
+        "note": "H2S C0G parallel feedback bank"
+      },
+      {
+        "ref": "C82",
+        "type": "C_100n_C0G",
+        "value": "100nF",
+        "mpn": "C3216C0G1H104JT000N",
+        "local_fp": "Capacitor_SMD__C_1206_3216Metric.kicad_mod",
+        "names": {
+          "1": "1",
+          "2": "2"
+        },
+        "xy": [
+          60,
+          40.5
+        ],
+        "angle": 180,
+        "side": "back",
+        "section": "05_H2S",
+        "dnp": false,
+        "note": "H2S C0G parallel feedback bank"
+      },
+      {
+        "ref": "C83",
+        "type": "C_100n_C0G",
+        "value": "100nF",
+        "mpn": "C3216C0G1H104JT000N",
+        "local_fp": "Capacitor_SMD__C_1206_3216Metric.kicad_mod",
+        "names": {
+          "1": "1",
+          "2": "2"
+        },
+        "xy": [
+          60,
+          43.0
+        ],
+        "angle": 180,
+        "side": "back",
+        "section": "05_H2S",
+        "dnp": false,
+        "note": "H2S C0G parallel feedback bank"
+      },
+      {
+        "ref": "C84",
+        "type": "C_100n_C0G",
+        "value": "100nF",
+        "mpn": "C3216C0G1H104JT000N",
+        "local_fp": "Capacitor_SMD__C_1206_3216Metric.kicad_mod",
+        "names": {
+          "1": "1",
+          "2": "2"
+        },
+        "xy": [
+          74.5,
+          31.5
+        ],
+        "angle": 0,
+        "side": "back",
+        "section": "05_H2S",
+        "dnp": false,
+        "note": "H2S C0G parallel feedback bank"
+      },
+      {
+        "ref": "C85",
+        "type": "C_100n_C0G",
+        "value": "100nF",
+        "mpn": "C3216C0G1H104JT000N",
+        "local_fp": "Capacitor_SMD__C_1206_3216Metric.kicad_mod",
+        "names": {
+          "1": "1",
+          "2": "2"
+        },
+        "xy": [
+          74.5,
+          34.0
+        ],
+        "angle": 0,
+        "side": "back",
+        "section": "05_H2S",
+        "dnp": false,
+        "note": "H2S C0G parallel feedback bank"
+      },
+      {
+        "ref": "C86",
+        "type": "C_100n_C0G",
+        "value": "100nF",
+        "mpn": "C3216C0G1H104JT000N",
+        "local_fp": "Capacitor_SMD__C_1206_3216Metric.kicad_mod",
+        "names": {
+          "1": "1",
+          "2": "2"
+        },
+        "xy": [
+          74.5,
+          36.5
+        ],
+        "angle": 0,
+        "side": "back",
+        "section": "05_H2S",
+        "dnp": false,
+        "note": "H2S C0G parallel feedback bank"
+      },
+      {
+        "ref": "C87",
+        "type": "C_100n_C0G",
+        "value": "100nF",
+        "mpn": "C3216C0G1H104JT000N",
+        "local_fp": "Capacitor_SMD__C_1206_3216Metric.kicad_mod",
+        "names": {
+          "1": "1",
+          "2": "2"
+        },
+        "xy": [
+          74.5,
+          39.0
+        ],
+        "angle": 0,
+        "side": "back",
+        "section": "05_H2S",
+        "dnp": false,
+        "note": "H2S C0G parallel feedback bank"
+      },
+      {
+        "ref": "R75",
+        "type": "R_100",
+        "value": "100R",
+        "mpn": "RC0603FR-07100RL",
+        "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
+        "names": {
+          "1": "1",
+          "2": "2"
+        },
+        "xy": [
+          38,
+          46
+        ],
+        "angle": 0,
+        "side": "front",
+        "section": "04_SO2",
+        "dnp": false,
+        "note": "100 ohm isolation for driven electrode guard pours"
       }
     ],
     "fabrication": {
       "min_track_mm": 0.15,
       "min_clearance_mm": 0.15,
-      "min_via_diameter_mm": 0.45,
-      "min_drill_mm": 0.2
+      "min_via_diameter_mm": 0.6,
+      "min_drill_mm": 0.3,
+      "stackup": "JLC04161H-7628",
+      "construction": "Standard 4-layer FR-4, 1.6 mm nominal, 1 oz outer / 0.5 oz inner, plated through-vias only; no filled/capped vias",
+      "finish": "ENIG",
+      "min_via_drill_mm": 0.3
     },
     "assembly": {
       "orientation": "PCB vertical; USB and SHT40 edge down",
       "pms5003": "Separate cradle next to PCB, port face down",
       "cell_socket": "8 x Mill-Max 0322-0-15-15-34-27-10-0",
       "status": "engineering prototype; physical qualification pending"
+    },
+    "stackup": {
+      "stock_id": "JLC04161H-7628",
+      "supplier": "JLCPCB",
+      "source": "https://jlcpcb.com/impedance",
+      "observed_utc": "2026-09-27",
+      "copper_thickness_mm": [
+        0.035,
+        0.0152,
+        0.0152,
+        0.035
+      ],
+      "dielectric_thickness_mm": [
+        0.2104,
+        1.065,
+        0.2104
+      ],
+      "dielectric_types": [
+        "prepreg",
+        "core",
+        "prepreg"
+      ],
+      "mask_thickness_mm": 0.01,
+      "stock_copper_dielectric_total_mm": 1.5862,
+      "nominal_order_thickness_mm": 1.6,
+      "note": "Supplier standard stock construction; no custom lamination or controlled-impedance surcharge specified. Mask is visualization only."
     }
   }
 }

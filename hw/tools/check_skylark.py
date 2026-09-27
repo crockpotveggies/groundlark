@@ -7,6 +7,7 @@ from pathlib import Path
 import collections, json, math, subprocess, xml.etree.ElementTree as ET
 import pcbnew as p
 from skylark_analog import review as analog_review
+from skylark_fabrication import review as fabrication_review, stackup as review_stackup
 from project_paths import ROOT, board_dir, compiled_dir, load_layout
 
 NAME='skylark-usb'
@@ -21,7 +22,15 @@ def review(board):
     require('U2',{1:'USB_5V',2:'GND',3:'USB_5V',5:'V3'})
     require('U3',{1:'USB_5V',2:'GND',3:'PM_EN',4:'PM_ILIM',5:'PM_FAULT_N',6:'PM_5V'})
     require('U13',{1:'V3',2:'GND',3:'ANA_EN',4:'ANA_CT',5:'VA_SW',6:'VA_SW'})
-    require('Q7',{1:'CLAMP_HOLD',2:'GND',3:'CLAMP_GATE'})
+    require('Q7',{1:'CLAMP_BASE',2:'VZERO',3:'CLAMP_GATE'})
+    require('R74',{1:'CLAMP_HOLD',2:'CLAMP_BASE'})
+    require('D4',{1:'USB_5V',3:'GATE_SUPPLY'})
+    require('R75',{1:'VZERO',2:'GUARD'})
+    assert fps['Q7'].GetValue()=='MMBT3904LT1G','Reference-following clamp driver'
+    assert fps['D4'].GetValue()=='BAT54LT1G','Clamp supply isolation'
+    for ref in ('Q1','Q2','Q3','Q4'):assert fps[ref].GetValue()=='MMBFJ270','Low-leakage electrode clamp'
+    for ref,el in [(f'C{i}','WE' if i<84 else 'AE') for i in range(80,88)]:
+        require(ref,{1:'H2S_'+el+'_SUM',2:'H2S_'+el+'_OUT'})
     require('R72',{1:'ANA_EN',2:'GND'});require('R73',{1:'V3',2:'CLAMP_HOLD'})
     require('C73',{1:'V3',2:'GND'});require('C74',{1:'ANA_CT',2:'GND'})
     require('U4',{1:'VA',2:'REF_2V5',3:'GND'})
@@ -35,7 +44,7 @@ def review(board):
     require('J2',{1:'PM_5V',2:'GND',3:'PM_SET_N',4:'PM_RX',5:'PM_TX',6:'PM_RESET_N','MP':'GND'})
     require('J3',{1:'V3',2:'SWDIO',3:'GND',4:'SWCLK',5:'GND',9:'GND',10:'NRST'})
     require('Q5',{1:'PM_SLEEP',2:'GND',3:'PM_SET_N'});require('Q6',{1:'PM_RESET',2:'GND',3:'PM_RESET_N'})
-    for ref,a,z in [('F1','USB_VBUS','USB_5V'),('R1','CC1','GND'),('R2','CC2','GND'),('R3','PM_ILIM','GND'),('R4','PM_EN','GND'),('R8','UART_TX','PM_RX'),('R9','PM_TX','UART_RX'),('R19','VA_SW','VA'),('R20','REF_2V5','VMID'),('R21','VMID','GND'),('R70','USB_5V','CLAMP_GATE'),('R71','CLAMP_GATE','GND')]:require(ref,{1:a,2:z})
+    for ref,a,z in [('F1','USB_VBUS','USB_5V'),('R1','CC1','GND'),('R2','CC2','GND'),('R3','PM_ILIM','GND'),('R4','PM_EN','GND'),('R8','UART_TX','PM_RX'),('R9','PM_TX','UART_RX'),('R19','VA_SW','VA'),('R20','REF_2V5','VMID'),('R21','VMID','GND'),('R70','GATE_SUPPLY','CLAMP_GATE'),('R71','CLAMP_GATE','VZERO')]:require(ref,{1:a,2:z})
     for index,gas,base,gain in [(0,'SO2',30,100000),(1,'H2S',50,20000)]:
         cell=f'GS{index+1}';require(cell,{x:gas+'_'+x for x in ['WE','RE','CE','AE']})
         require(f'U{7+2*index}',{1:gas+'_WE_OUT',2:gas+'_WE_SUM',3:'VZERO',4:'GND',5:'VZERO',6:gas+'_AE_SUM',7:gas+'_AE_OUT',8:'VA'})
@@ -59,11 +68,11 @@ def review(board):
             assert math.dist((p.ToMM(xy.x),p.ToMM(xy.y)),expected)<.001,'Gas socket pin geometry'
             assert abs(p.ToMM(x.GetDrillSize().x)-2.35)<.001,'Socket hole'
     degrees=collections.Counter(actual.values())
-    nc={'J1':['A8','B8'],'J2':['7','8'],'J3':['6','7','8'],'U2':['4'],'U12':['7'],'U1':['2','3','4','5','6','11','20','21','22','27','28','29','30','31','38','40','41','45','46']}
+    nc={'D4':['2'],'J1':['A8','B8'],'J2':['7','8'],'J3':['6','7','8'],'U2':['4'],'U12':['7'],'U1':['2','3','4','5','6','11','20','21','22','27','28','29','30','31','38','40','41','45','46']}
     for ref,nums in nc.items():
         for num in nums:assert degrees[actual[(ref,num)]]==1,('Deliberate NC connected',ref,num)
-    for ref,value in [('R1','5100R'),('R2','5100R'),('R3','80600R'),('R70','10000R'),('R71','1e+06R')]:assert fps[ref].GetValue()==value,(ref,value)
-    assert len(fps)==121 and not any(f.IsDNP() for f in fps.values())
+    for ref,value in [('R1','5100R'),('R2','5100R'),('R3','80600R'),('R70','10000R'),('R71','100000R'),('R74','10000R'),('R75','100R')]:assert fps[ref].GetValue()==value,(ref,value)
+    assert len(fps)==132 and not any(f.IsDNP() for f in fps.values())
     assert board.GetCopperLayerCount()==4
     # USB signal copper must remain on top, with no signal vias or long stub.
     usb={net:[t for t in board.GetTracks() if t.GetNetname()==net] for net in ['USB_DP','USB_DM']}
@@ -80,11 +89,12 @@ def review(board):
     r=80.6
     limits={'min_mA':25230/(r*1.01)**1.016,'nominal_mA':23950/r**.977,'max_mA':22980/(r*.99)**.94}
     assert limits['max_mA']+50<500,'USB configured power budget'
-    return {'independent_pin_invariants':'passed','contacts':len(actual),'usb_total_copper_length_mm':lengths,'pms_current_limit':limits,'mechanical_mm':[90,100,1.6],'analog':analog_review(board)}
+    return {'independent_pin_invariants':'passed','contacts':len(actual),'usb_total_copper_length_mm':lengths,'pms_current_limit':limits,'mechanical_mm':[90,100,1.6],'analog':analog_review(board),'construction':fabrication_review(board)}
 
 def main():
     folder=board_dir(NAME);path=folder/(NAME+'.kicad_pcb');board=p.LoadBoard(str(path))
     result=review(board)
+    result['construction'].update(review_stackup(path.read_text()))
     compiled=p.LoadBoard(str(compiled_dir('skylark')/'skylark.kicad_pcb'))
     assert pins(compiled)==pins(board),'Compiled/native contacts differ'
     spec=load_layout(NAME)[NAME];fps={f.GetReference():f for f in board.GetFootprints()}
@@ -105,7 +115,7 @@ def main():
     actual=pins(board);degrees=collections.Counter(actual.values())
     for key,net in actual.items():
         if degrees[net]>1:assert sch.get(key)==net,('Review schematic',key,net,sch.get(key))
-    result.update(drc_errors=0,unconnected_items=0,erc_findings=0,drc_warnings=[x['type'] for x in drc['violations']],status='ENGINEERING PROTOTYPE; not fabrication released',limits=['Firmware and USB enumeration/suspend/eye testing pending','Gas bias must be confirmed for exact SGX AQ variants; noise, calibration and cross-sensitivity not qualified','Physical socket fit, retention, outdoor exposure and enclosure airflow untested','SGX specified pressure range starts at 800 mbar; high-altitude operation requires qualification'])
+    result.update(drc_errors=0,unconnected_items=0,erc_findings=0,drc_warnings=[x['type'] for x in drc['violations']],status='ENGINEERING PROTOTYPE; not fabrication released',limits=['Physical USB enumeration/suspend/eye testing pending','Gas bias must be confirmed for exact SGX AQ variants; noise, calibration and cross-sensitivity not qualified','Physical socket fit, retention, outdoor exposure and enclosure airflow untested','SGX specified pressure range starts at 800 mbar; high-altitude operation requires qualification'])
     (folder/'validation.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result,indent=2))
 
 if __name__=='__main__':main()

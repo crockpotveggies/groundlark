@@ -40,7 +40,7 @@ static void service(void) {
     for(unsigned n=0;n<64 && rx_tail!=rx_head;n++) { uint8_t b=rx[rx_tail++];sk_uart_input(b); }
 }
 void sk_delay(uint32_t ms) { uint64_t end=sk_clock()+ms;while(sk_clock()<end)service(); }
-void sk_clamp(bool hold) { if(hold || !state.connected)gpio_set(GPIOB,GPIO13);else gpio_clear(GPIOB,GPIO13); }
+void sk_clamp(bool hold) { if(hold || !state.powered)gpio_set(GPIOB,GPIO13);else gpio_clear(GPIOB,GPIO13); }
 static void pm_off(void) {
     gpio_clear(GPIOA,GPIO4);gpio_set(GPIOA,GPIO6|GPIO7);
     gpio_mode_setup(GPIOA,GPIO_MODE_INPUT,GPIO_PUPD_NONE,GPIO2);
@@ -146,8 +146,8 @@ static void set_config(usbd_device *dev,uint16_t value) {
     usbd_ep_setup(dev,0x83,USB_ENDPOINT_ATTR_INTERRUPT,16,NULL);
     usbd_register_control_callback(dev,USB_REQ_TYPE_CLASS|USB_REQ_TYPE_INTERFACE,USB_REQ_TYPE_TYPE|USB_REQ_TYPE_RECIPIENT,control);
 }
-static void reset_usb(void) { configured=false;dtr=false;suspended=false;tx_busy=false;zlp_pending=false;tx_offset=0;sk_connection(&state,false,sk_clock()); }
-static void suspend_usb(void) { suspended=true;tx_offset=0;sk_connection(&state,false,sk_clock()); }
+static void reset_usb(void) { configured=false;dtr=false;suspended=false;tx_busy=false;zlp_pending=false;tx_offset=0;sk_supply(&state,false,sk_clock()); }
+static void suspend_usb(void) { suspended=true;tx_offset=0;sk_supply(&state,false,sk_clock()); }
 static void resume_usb(void) { suspended=false; }
 static void power_clock(void) {
     if(suspended==slow_clock)return;
@@ -204,7 +204,9 @@ int main(void) {
     usbd_register_suspend_callback(usb,suspend_usb);usbd_register_resume_callback(usb,resume_usb);
     iwdg_set_period_ms(2000);iwdg_start();
     for(;;) {
-        service();power_clock();bool connected=configured && dtr && !suspended;
+        service();power_clock();bool available=configured && !suspended;
+        sk_supply(&state,available,sk_clock());
+        bool connected=available && dtr;
         if(connected!=state.connected) { tx_offset=0;sk_connection(&state,connected,sk_clock()); }
         sk_tick(&state,sk_clock());
         uint16_t len;const uint8_t *frame=sk_tx(&state,&len);

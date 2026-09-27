@@ -163,7 +163,7 @@ def build():
     # Side arms are outside the PCB outline and terminate behind the removable retainer.
     carrier=carrier.union(box(-74.5,12,103,34.5,16,109))
     for x in (-70,30):
-        carrier=carrier.union(cy(x,-21.5,106,4.5,37.5)).cut(cy(x,-22,106,1.7,39))
+        carrier=carrier.union(cy(x,-20.69,106,4.5,36.69)).cut(cy(x,-21.19,106,1.7,38.19))
         carrier=carrier.cut(hy(x,13.4,106,5.7,3))
     retainer=None
     for x in (-41,1):
@@ -174,6 +174,8 @@ def build():
     for x in (-70,30):
         retainer=retainer.union(cy(x,-24,106,4.5,2.5)).cut(cy(x,-25,106,1.7,5))
 
+    retainer=retainer.translate((0,.81,0))
+
     # Small insert/hole coupon is printed before the large parts.
     coupon=box(0,0,0,50,20,8)
     for i,d in enumerate((3.9,4.0,4.1,4.2,4.3)):
@@ -183,14 +185,14 @@ def build():
 
     pcb=box(-65,0,35,25,1.6,135).cut(box(15,-1,34,16,3,47))
     for x,z in mounting:pcb=pcb.cut(cy(x,-1,z,1.6,4))
-    refs={'pcb':pcb,'so2':cy(-41,-21.19,106,15.75,15.5),
-          'h2s':cy(1,-21.19,106,15.75,15.5),'pms5003':box(-65,-33,22,-15,-12,60),
+    refs={'pcb':pcb,'so2':cy(-41,-20.38,106,15.75,15.5),
+          'h2s':cy(1,-20.38,106,15.75,15.5),'pms5003':box(-65,-33,22,-15,-12,60),
           'usb-plug-clearance':box(-37,-4,13,-23,5,35)}
     # Conservative component bounds from the authored package envelopes and placement.
     dims={'MCU':(7,7,1.75),'ADC':(4.4,5,1.35),'OPA2':(3,3,1.25),
           'OPA1':(1.6,2.9,1.25),'ESD':(1.6,2.9,1.25),'SWITCH':(1.6,2.9,1.25),'AnalogSwitch':(1.6,2.9,1.25),
           'LDO':(1.6,2.9,1.25),'REF':(1.3,2.9,1.25),'JFET':(1.3,2.9,1.25),
-          'MOS':(1.3,2.9,1.25),'SHT':(1.5,1.5,.67),'BMP':(2,2,.78),
+          'ClampNPN':(1.3,2.9,1.25),'GateDiode':(1.3,2.9,1.25),'MOS':(1.3,2.9,1.25),'SHT':(1.5,1.5,.67),'BMP':(2,2,.78),
           'USB':(8.9,7.2,3.15),'PMS':(13.7,5.2,4.1),'BUTTON':(6,6,2.6),
           'FUSE':(3.2,1.6,1.2),'StatusLED':(1.6,.8,.8),'DebugHeader':(4.7,7.6,5.5)}
     placement=json.loads((PRODUCT/'layout/placement.json').read_text())['skylark-usb']
@@ -198,7 +200,7 @@ def build():
         kind=row['type']
         if kind in (None,'TP','SO2','H2S'):continue
         if kind.startswith('R_'):size=(1.6,.8,.45)
-        elif kind.startswith('C_'):size=(2,1.25,1.25) if '0805' in row['local_fp'] else (1.6,.8,.8)
+        elif kind.startswith('C_'):size=(3.2,1.6,1.3) if '1206' in row['local_fp'] else (2,1.25,1.25) if '0805' in row['local_fp'] else (1.6,.8,.8)
         else:size=dims[kind]
         w,d,h=size;a=math.radians(row['angle'])
         w,d=abs(w*math.cos(a))+abs(d*math.sin(a)),abs(w*math.sin(a))+abs(d*math.cos(a))

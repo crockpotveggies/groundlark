@@ -27,7 +27,8 @@ accuracy or mechanical strength. This ventilated housing has no assigned IP rati
   and 10 mm slide. Closed internal pockets separate them from the sensor chamber.
 - PCB: 90 × 100 × 1.6 mm, USB edge down. Top-left is (−45,0,135); back is Y=1.6.
   All four actual mounting holes are used and the thermal finger is unsupported.
-- Gas cells: Ø31.5 × 15.5 mm with 5.69 mm socket stand-off. Front faces have
+- Gas cells: Ø31.5 × 15.5 mm with 4.88 mm socket stand-off, measured from the PCB
+  seating surface to the upper rim and including the flange. Front faces have
   22.61 mm clearance to the hood. Retainer clearance is 0.31 mm axially, with
   Ø28 mm openings. Confirm the purchased cells' membranes fit these openings.
 - PMS5003: 50 × 38 × 21 mm; broad face parallel to the PCB and 50 × 21 mm port

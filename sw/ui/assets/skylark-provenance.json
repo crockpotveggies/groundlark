@@ -2,20 +2,23 @@
   "kicad": "9.0.9",
   "converter": "trimesh 4.8.3 / numpy 2.4.3",
   "scope": "Native PCB plus authored dimension envelopes. PMS5003 is illustrative; enclosure and mating are not qualified.",
-  "package_meshes": 318,
+  "package_meshes": 349,
   "sha256": {
-    "hw/skylark-usb/boards/skylark-usb/skylark-usb.kicad_pcb": "5d457be536c001b11b4704435b016cf1fbc4d862682d2086a4a7f384b1b57ba6",
-    "hw/skylark-usb/layout/placement.json": "bf6d39b090e95c39e5097ca44be508c617298f25acfe6b04351f2fee6360989b",
+    "hw/skylark-usb/boards/skylark-usb/skylark-usb.kicad_pcb": "179348a3ba446cb2ac438995107810e405bae1b406c9cb8bd36355eab2ff4bcb",
+    "hw/skylark-usb/layout/placement.json": "5f64a60616b812f9e3f7af48047cb953d4599a55bf7bae05073e302bfc1475bb",
     "hw/skylark-usb/models/ADC.wrl": "c75f3a14738ddd0c0c4248042863f36d3678f1291e57060b31479b411f6ffcdc",
     "hw/skylark-usb/models/AnalogSwitch.wrl": "1783b68657c823cfdff98b795e604b522b87c2358de47b32d63e63c77d893da9",
     "hw/skylark-usb/models/BMP.wrl": "4c2530b56fa2d1b8227fb3111b074067c466cd3f796760cd5d76f9cb2744337e",
     "hw/skylark-usb/models/BUTTON.wrl": "4d2f8068ae58241ba8d1f424f8abcc7252ebf1cb3fdd2fa9c0001a855eeaf732",
     "hw/skylark-usb/models/C0603.wrl": "73e419595428f66d5517d1c06cca7a4c5f320f66738ed05cc167af2d2d394d3c",
     "hw/skylark-usb/models/C0805.wrl": "b45d9e4905268bfcafe6a39d5a81295c57344baab7ca2585ca67c31970c0fe90",
+    "hw/skylark-usb/models/C1206.wrl": "d7d2213b0e8c6c3b94c5915037b8383a8a8947ff2bfc4e9c231d32845b451701",
+    "hw/skylark-usb/models/ClampNPN.wrl": "2d5b0d432f128c6dc52960e593227c43e3eee8b3cccf2b992d4c1824704ce8ab",
     "hw/skylark-usb/models/DebugHeader.wrl": "a5a6211e2b345910146943264d19e5a0584fcec11dda509a447b5e01987145f9",
     "hw/skylark-usb/models/ESD.wrl": "1783b68657c823cfdff98b795e604b522b87c2358de47b32d63e63c77d893da9",
     "hw/skylark-usb/models/FUSE.wrl": "0afd9ee45bdaa5966b2666bf2ede7754b20b4218e949546bba3878999a769100",
-    "hw/skylark-usb/models/H2S.wrl": "e6843e2457bd5c7b62a033b372c75ad83884e40c1b199e18ae612cee1c79bb60",
+    "hw/skylark-usb/models/GateDiode.wrl": "2d5b0d432f128c6dc52960e593227c43e3eee8b3cccf2b992d4c1824704ce8ab",
+    "hw/skylark-usb/models/H2S.wrl": "7ddfbfdaafd9365475de0627a2e90543869b92b0e4e26a7ac76bca785ddf9c21",
     "hw/skylark-usb/models/JFET.wrl": "2d5b0d432f128c6dc52960e593227c43e3eee8b3cccf2b992d4c1824704ce8ab",
     "hw/skylark-usb/models/LDO.wrl": "1783b68657c823cfdff98b795e604b522b87c2358de47b32d63e63c77d893da9",
     "hw/skylark-usb/models/MCU.wrl": "7ba530ca1977ab9e6129f61b154bb18554a995c0568f9c816f5aea91d5a0e70f",
@@ -26,25 +29,12 @@
     "hw/skylark-usb/models/R.wrl": "535d8cb7876436b214bb69d460b2ce4b205f078f4115a29d616de227221bb419",
     "hw/skylark-usb/models/REF.wrl": "2d5b0d432f128c6dc52960e593227c43e3eee8b3cccf2b992d4c1824704ce8ab",
     "hw/skylark-usb/models/SHT.wrl": "f24aac10e4c7cb4c50ee76d24deddca38f039d37181dace884e22f6a7a1f821c",
-    "hw/skylark-usb/models/SO2.wrl": "949c974e6ef4a0b577dbc62cd6312298dbf783074e658a1968b7eb06aa2e3754",
-    "hw/skylark-usb/models/StatusLED.wrl": "2101a5b629b59f88698ea2f42f0ef6a352b98d9b37e132f735db0577fa819622",
+    "hw/skylark-usb/models/SO2.wrl": "020cde7d57d031468e0f474208f333eedb9ce76be2c207196fdb00b7a7faf600",
     "hw/skylark-usb/models/SWITCH.wrl": "1783b68657c823cfdff98b795e604b522b87c2358de47b32d63e63c77d893da9",
+    "hw/skylark-usb/models/StatusLED.wrl": "2101a5b629b59f88698ea2f42f0ef6a352b98d9b37e132f735db0577fa819622",
     "hw/skylark-usb/models/USB.wrl": "bf62770cb1f235c9c9b136f4d7c62d9bb52d0611ce5b16e1e2cc5b54fecc8b47",
-    "sw/ui/assets/skylark.glb": "2dafa1055d9534a0dd8cb54f65b080195d2226abfda69ab56302e735a4b87d0a",
-    "sw/ui/build_skylark_model.py": "d4c9a484d9b1d2c1e826dc24cd681604fce127c6fb51b5e99e041f0425c1d841",
-    "sw/ui/skylark_scene.py": "597fe3b97bf5e82f38c0532ddbf247f57cd511b82ce8be042215420774ae53db"
-  },
-  "line_ending_normalization": {
-    "verification": "Only CRLF to LF; decoded lines, geometry and assets unchanged. Matches repository .gitattributes.",
-    "inputs": {
-      "hw/skylark-usb/layout/placement.json": {
-        "before": "ba04d002b5a37d4ecaa72976349ef3715886f2d5ca397b12ec5f0d1376a72acf",
-        "after": "bf6d39b090e95c39e5097ca44be508c617298f25acfe6b04351f2fee6360989b"
-      },
-      "hw/skylark-usb/mechanical/bell/enclosure.py": {
-        "before": "42c74867ed23c20b33b7e00de94476acd7677b557560e886192316a556d313c7",
-        "after": "ff0f7f5b6ac1b8a657d7c66ce1fbb0a804692aa219cfab861e818e2195e90468"
-      }
-    }
+    "sw/ui/assets/skylark.glb": "caaecb1e9916160fc28c21460e4f4c9e250a1adc3f32e188bf92e6ab5d410fe9",
+    "sw/ui/build_skylark_model.py": "5b80703475f9a059e7e81c775a02f441984e1f080d8f2bdbf6eb1d9b195e0586",
+    "sw/ui/skylark_scene.py": "38acfc0a1827ca90b94d36e7d30d7aeeead46882ee3a927f8176525c86558c87"
   }
 }

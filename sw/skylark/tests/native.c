@@ -14,7 +14,7 @@ static sk_state *active;
 static const uint8_t climate[]={0x66,0x66,0x93,0x80,0x00,0xa2};
 void sk_delay(uint32_t ms) {
     now+=ms;
-    if(mode==6 && now>=150 && now<160)sk_connection(active,false,now);
+    if(mode==6 && now>=150 && now<160)sk_supply(active,false,now);
 }
 uint64_t sk_clock(void) { return now; }
 void sk_clamp(bool hold) { assert(hold || rails);clamp=hold; }
@@ -72,15 +72,19 @@ int main(int argc,char **argv) {
     if(argc>1)mode=(unsigned)(argv[1][0]-'0');
     assert(sk_crc8(climate,2)==climate[2]);assert(sk_crc8(climate+3,2)==climate[5]);
     sk_state s;active=&s;sk_init(&s,"native-skylark",1);assert(clamp && !rails);
-    sk_connection(&s,true,now);assert(clamp && rails);
+    sk_supply(&s,true,now);
+    if(mode!=8)sk_connection(&s,true,now);
+    assert(clamp && rails);
     bool resumed=false;
     while(now<72000) {
         if(now%100==0)particulate();
-        if(mode==4 && now>=65000 && !resumed) {
-            sk_connection(&s,false,now);assert(clamp && !rails && !s.count);
-            now+=100;sk_connection(&s,true,now);resumed=true;
+        if((mode==4 || mode==7) && now>=65000 && !resumed) {
+            sk_connection(&s,false,now);assert(!clamp && rails && !s.count);
+            if(mode==7) { sk_supply(&s,false,now);assert(clamp && !rails); }
+            now+=100;sk_supply(&s,true,now);sk_connection(&s,true,now);resumed=true;
         }
-        if(mode==6 && now>=1000 && !resumed) { assert(!rails && clamp);sk_connection(&s,true,now);resumed=true; }
+        if(mode==6 && now>=1000 && !resumed) { assert(!rails && clamp);sk_supply(&s,true,now);sk_connection(&s,true,now);resumed=true; }
+        if(mode==8 && now>=65000 && !resumed) { assert(rails && !clamp && !s.count);sk_connection(&s,true,now);resumed=true; }
         sk_tick(&s,now);assert(s.count<=SK_QUEUE);
         if(!(mode==3 && now>61000 && now<63000)) {
             uint16_t n;const uint8_t *p;
@@ -88,9 +92,9 @@ int main(int argc,char **argv) {
         }
         now++;
     }
-    assert(resets==(mode==5?0:mode==4 || mode==6?2:1));
+    assert(resets==(mode==5?0:mode==7 || mode==6?2:1));
     if(mode!=5)assert(reads>100);
     if(mode==3)assert(s.dropped>0);
-    sk_connection(&s,false,now);assert(clamp && !rails);
+    sk_supply(&s,false,now);assert(clamp && !rails);
     return 0;
 }

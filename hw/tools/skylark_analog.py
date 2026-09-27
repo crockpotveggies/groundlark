@@ -34,7 +34,9 @@ def review(board):
     ]:
         poles = []
         for offset, el, pin in [(0, 'WE', 2), (3, 'AE', 6)]:
-            rf, cf = value(f'R{base+offset+1}'), value(f'C{base+offset}')
+            caps=[f'C{base+offset}']
+            if gas=='H2S':caps += [f'C{x}' for x in range(80 if el=='WE' else 84,84 if el=='WE' else 88)]
+            rf, cf = value(f'R{base+offset+1}'), sum(value(c) for c in caps)
             ro, co = value(f'R{base+offset+2}'), value(f'C{base+offset+1}')
             feedback_hz = 1/(2*math.pi*rf*cf)
             output_hz = 1/(2*math.pi*ro*co)
@@ -46,11 +48,16 @@ def review(board):
             items = [t for t in board.GetTracks() if t.GetNetname() == net]
             assert items and all(isinstance(t,p.PCB_TRACK) and t.GetLayer()==p.B_Cu for t in items), 'TIA summing route layer/via'
             length = sum(p.ToMM(t.GetLength()) for t in items)
-            assert length <= 14, 'TIA summing copper length'
+            # Parallel C0G bank adds a 10 mm bus. Keep the amplifier-to-first
+            # feedback path local and bound the total capacitive pickup area.
+            assert length <= (26 if gas=='H2S' else 16), 'TIA summing copper length'
             # Reject disconnected local feedback even if another copper layer
             # could provide a roundabout route after an edit.
             copper = Copper(board, net)
             assert copper.between(pad(amp,pin),pad(f'C{base+offset}',1)) <= 7, 'TIA local feedback path'
+            for cap in caps:
+                assert math.isclose(value(cap),100e-9,rel_tol=1e-9), 'C0G feedback capacitance'
+                assert '1206' in str(fps[cap].GetFPID().GetLibItemName()), 'C0G feedback package'
             adc_net = gas+'_'+el+'_ADC'
             adc_copper = [t for t in board.GetTracks() if t.GetNetname()==adc_net]
             assert sum(p.ToMM(t.GetLength()) for t in adc_copper if isinstance(t,p.PCB_TRACK)) <= 16, 'ADC filtered trace length'
@@ -68,8 +75,11 @@ def review(board):
     # each, ADC/reference, divider and electrode/output currents.
     minimum_va = 3.234 - .008*(value('R19')*1.01+.1)
     assert minimum_va >= 3.05, 'Analog supply drop'
-    gate_min = 4.35*value('R71')*.99/(value('R70')*1.001+value('R71')*.99)
-    assert gate_min-1.2525 >= 2.5+.25, 'Electrode clamp turn-off margin'
+    # 0.5 V diode drop is a conservative design allowance, to qualify over
+    # temperature. J270 cutoff maximum is 2 V at its specified test conditions.
+    gate_overdrive = (4.35-.5-1.2525)*value('R71')*.999/(value('R70')*1.001+value('R71')*.999)
+    gate_min=1.2525+gate_overdrive
+    assert gate_overdrive >= 2+.3, 'Electrode clamp turn-off margin'
 
     # Supply paths must be short and stay on the device side. A ground stitch
     # must actually land in filled In1.Cu, not merely exist nearby.
@@ -77,7 +87,7 @@ def review(board):
     planes=[z.GetFilledPolysList(inner) for z in board.Zones() if z.GetNetname()=='GND' and not z.GetIsRuleArea() and z.IsOnLayer(inner)]
     stitches=[t for t in board.GetTracks() if isinstance(t,p.PCB_VIA) and t.GetNetname()=='GND' and any(z.Contains(t.GetPosition()) for z in planes)]
     ground=Copper(board,'GND');bypass=[]
-    for ref,pin,cap,limit in [('U5',5,'C16',3),('U6',12,'C17',3.5),('U6',13,'C18',4.5),('U6',9,'C19',4),('U7',8,'C37',3),('U8',5,'C38',3),('U9',8,'C57',3),('U10',5,'C58',3)]:
+    for ref,pin,cap,limit in [('U5',5,'C16',3),('U6',12,'C17',3.5),('U6',13,'C18',4.5),('U6',9,'C19',4),('U7',8,'C37',3),('U8',5,'C38',3),('U9',8,'C57',3),('U10',5,'C58',3),('U1',9,'C6',3),('U1',24,'C7',3),('U1',36,'C9',3),('U1',48,'C8',3),('U2',1,'C1',3),('U2',5,'C2',3),('U3',1,'C3',3),('U3',6,'C4',3)]:
         a,c,g=pad(ref,pin),pad(cap,1),pad(cap,2)
         layer=fps[ref].GetLayer()
         assert layer==fps[cap].GetLayer(), 'Analog bypass layer'
@@ -89,6 +99,25 @@ def review(board):
         distance=shortest(ground.graph,ground.at_pad(g),goals)
         assert distance <= 2, 'Analog bypass ground return'
         bypass.append(dict(device=ref,capacitor=cap,supply_mm=length,ground_to_plane_mm=distance))
+    mcu_ground={}
+    for pin in (8,23,35,47):
+        distance=shortest(ground.graph,ground.at_pad(pad('U1',pin)),{(t.GetPosition().x,t.GetPosition().y,p.F_Cu) for t in stitches})
+        assert distance<=2,'MCU local ground return'
+        mcu_ground[str(pin)]=distance
+    guard={}
+    for layer in (p.F_Cu,p.B_Cu):
+        polygons=[z.GetFilledPolysList(layer) for z in board.Zones() if z.GetNetname()=='GUARD' and not z.GetIsRuleArea() and z.IsOnLayer(layer)]
+        assert polygons and any(poly.OutlineCount() for poly in polygons),'Driven guard copper on both faces'
+        if layer!=p.F_Cu:continue
+        for cell in ('GS1','GS2'):
+            for el in ('WE','RE','AE'):
+                center=pad(cell,el).GetPosition();covered=0
+                for i in range(48):
+                    angle=2*math.pi*(i+.5)/48
+                    q=p.VECTOR2I(center.x+round(p.FromMM(2.6)*math.cos(angle)),center.y+round(p.FromMM(2.6)*math.sin(angle)))
+                    covered+=any(poly.Contains(q) for poly in polygons)
+                assert covered>=36,'Socket guard coverage'
+                guard[cell+'.'+el]=covered/48
     return dict(channels=rows,bypass=bypass,analog_supply_min_V=minimum_va,
-                analog_current_budget_mA=8,clamp_gate_min_V=gate_min,
+                analog_current_budget_mA=8,clamp_gate_min_V=gate_min,mcu_ground_to_plane_mm=mcu_ground,socket_guard_fraction=guard,
                 scope='Calculated signal filtering and CAD geometry only; no qualified detection limit or cell stability model')

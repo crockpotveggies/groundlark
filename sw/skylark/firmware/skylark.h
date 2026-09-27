@@ -17,11 +17,12 @@ typedef struct {
     char device[33]; uint64_t boot, started, ready, next[SK_CHANNELS];
     uint64_t sequence[SK_CHANNELS], dropped;
     uint32_t revision; uint8_t faults[SK_CHANNELS], enabled, announce, pending;
-    bool connected, initialized;
+    bool powered, connected, initialized;
     uint8_t frames[SK_QUEUE][SK_FRAME_MAX]; uint16_t lengths[SK_QUEUE];
     uint8_t head, count;
 } sk_state;
 void sk_init(sk_state *s, const char *device, uint64_t boot);
+void sk_supply(sk_state *s, bool available, uint64_t ms);
 void sk_connection(sk_state *s, bool ready, uint64_t ms);
 void sk_tick(sk_state *s, uint64_t ms);
 const uint8_t *sk_tx(sk_state *s, uint16_t *length);

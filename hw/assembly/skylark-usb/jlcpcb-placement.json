@@ -1,0 +1,1323 @@
+{
+  "schema_version": 1,
+  "require_complete_coverage": true,
+  "footprints": [
+    {
+      "designators": [
+        "R1",
+        "R2"
+      ],
+      "mpn": "RC0603FR-075K1L",
+      "lcsc": "C105580",
+      "source_footprints": [
+        "Resistor_SMD__R_0603_1608Metric.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4002.97~3000~3.1751~3.4016~1~~2~0~~0",
+        "PAD~RECT~3997.03~3000~3.1751~3.4016~1~~1~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:2c19db9001e4b60b9719f9a5ebcb9e3fa6d7aa38c38d5ad3574589a54d0c4743",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C105580&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": true,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "R75"
+      ],
+      "mpn": "RC0603FR-07100RL",
+      "lcsc": "C105588",
+      "source_footprints": [
+        "Resistor_SMD__R_0603_1608Metric.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4002.97~3000~3.1751~3.4016~1~~2~0~~0",
+        "PAD~RECT~3997.03~3000~3.1751~3.4016~1~~1~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:2c19db9001e4b60b9719f9a5ebcb9e3fa6d7aa38c38d5ad3574589a54d0c4743",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C105588&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": true,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "R37",
+        "R57"
+      ],
+      "mpn": "RC0603FR-07100RL",
+      "lcsc": "C105588",
+      "source_footprints": [
+        "Resistor_SMD__R_0603_1608Metric.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4002.97~3000~3.1751~3.4016~1~~2~0~~0",
+        "PAD~RECT~3997.03~3000~3.1751~3.4016~1~~1~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:2c19db9001e4b60b9719f9a5ebcb9e3fa6d7aa38c38d5ad3574589a54d0c4743",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C105588&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": true,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Bottom",
+      "bottom_projection": "mirror_local_x_then_ccw",
+      "bottom_basis": "Public catalog top-view local X reflected before CCW rotation into board top-view coordinates. Exact numbered pad envelopes checked on the native flipped footprint; order preview still required."
+    },
+    {
+      "designators": [
+        "R19"
+      ],
+      "mpn": "RC0603FR-0722RL",
+      "lcsc": "C107701",
+      "source_footprints": [
+        "Resistor_SMD__R_0603_1608Metric.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4002.97~3000~3.1751~3.4016~1~~2~0~~0",
+        "PAD~RECT~3997.03~3000~3.1751~3.4016~1~~1~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:2c19db9001e4b60b9719f9a5ebcb9e3fa6d7aa38c38d5ad3574589a54d0c4743",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C107701&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": true,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "U4"
+      ],
+      "mpn": "REF3025AIDBZR",
+      "lcsc": "C11334",
+      "source_footprints": [
+        "Package_TO_SOT_SMD__SOT-23.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0005,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4004.86~3003.74~4.2126~2.3622~1~~1~0~~0",
+        "PAD~RECT~4004.86~2996.26~4.2126~2.3622~1~~2~0~~0",
+        "PAD~RECT~3995.14~3000~4.2126~2.3622~1~~3~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:68a664423aeffaf88a152c61455afc16a92cb7c695dc5f1b66250ceaac2500ce",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C11334&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": false,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "R4",
+        "R6",
+        "R7",
+        "R10",
+        "R11",
+        "R71",
+        "R72"
+      ],
+      "mpn": "RT0603BRD07100KL",
+      "lcsc": "C122538",
+      "source_footprints": [
+        "Resistor_SMD__R_0603_1608Metric.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4002.97~3000~3.1751~3.4016~1~~2~0~~0",
+        "PAD~RECT~3997.03~3000~3.1751~3.4016~1~~1~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:2c19db9001e4b60b9719f9a5ebcb9e3fa6d7aa38c38d5ad3574589a54d0c4743",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C122538&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": true,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "R31",
+        "R34"
+      ],
+      "mpn": "RT0603BRD07100KL",
+      "lcsc": "C122538",
+      "source_footprints": [
+        "Resistor_SMD__R_0603_1608Metric.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4002.97~3000~3.1751~3.4016~1~~2~0~~0",
+        "PAD~RECT~3997.03~3000~3.1751~3.4016~1~~1~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:2c19db9001e4b60b9719f9a5ebcb9e3fa6d7aa38c38d5ad3574589a54d0c4743",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C122538&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": true,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Bottom",
+      "bottom_projection": "mirror_local_x_then_ccw",
+      "bottom_basis": "Public catalog top-view local X reflected before CCW rotation into board top-view coordinates. Exact numbered pad envelopes checked on the native flipped footprint; order preview still required."
+    },
+    {
+      "designators": [
+        "D3"
+      ],
+      "mpn": "LTST-C191KGKT",
+      "lcsc": "C125098",
+      "source_footprints": [
+        "LED_SMD__LED_0603_1608Metric.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        3995.6125,
+        2985.7225
+      ],
+      "pad_shapes": [
+        "PAD~RECT~3998.56~2985.72~3.1496~3.1496~1~~2~0~~90",
+        "PAD~RECT~3992.66~2985.72~3.1496~3.1496~1~~1~0~~90"
+      ],
+      "footprint_uuid": "public-svg-sha256:2f6a793e9b59f6b5197a3ed0415701fd6a9c9f1494b55e6d62a1d93586b734d7",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C125098&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": false,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "U13"
+      ],
+      "mpn": "TPS22918DBVR",
+      "lcsc": "C131941",
+      "source_footprints": [
+        "Package_TO_SOT_SMD__SOT-23-6.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4002.851,
+        3003.351
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4008.17~2999.61~4.3307~2.3622~1~~3~0~~0",
+        "PAD~RECT~4008.17~3003.35~4.3307~2.3622~1~~2~0~~0",
+        "PAD~RECT~4008.17~3007.09~4.3307~2.3622~1~~1~0~~0",
+        "PAD~RECT~3997.54~3007.09~4.3307~2.3622~1~~6~0~~0",
+        "PAD~RECT~3997.54~3003.35~4.3307~2.3622~1~~5~0~~0",
+        "PAD~RECT~3997.54~2999.61~4.3307~2.3622~1~~4~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:e6667c2deb8c4a7ef669bc20a773c97154e1e253c620f1da01d727d995ee71a2",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C131941&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": false,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "J2"
+      ],
+      "mpn": "BM08B-GHS-TBT(LF)(SN)",
+      "lcsc": "C133062",
+      "source_footprints": [
+        "Connector_JST__JST_GH_BM08B-GHS-TBT_1x08-1MP_P1.25mm_Vertical.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        2993.3073
+      ],
+      "pad_shapes": [
+        "PAD~RECT~3975.49~3000~3.937~10.6299~1~~9~0~~0",
+        "PAD~RECT~4024.51~3000~3.937~10.6299~1~~10~0~~0",
+        "PAD~RECT~4017.22~2986.61~2.3622~6.6929~1~~1~0~~0",
+        "PAD~RECT~4012.3~2986.61~2.3622~6.6929~1~~2~0~~0",
+        "PAD~RECT~4007.38~2986.61~2.3622~6.6929~1~~3~0~~0",
+        "PAD~RECT~4002.46~2986.61~2.3622~6.6929~1~~4~0~~0",
+        "PAD~RECT~3997.54~2986.61~2.3622~6.6929~1~~5~0~~0",
+        "PAD~RECT~3992.62~2986.61~2.3622~6.6929~1~~6~0~~0",
+        "PAD~RECT~3987.7~2986.61~2.3622~6.6929~1~~7~0~~0",
+        "PAD~RECT~3982.78~2986.61~2.3622~6.6929~1~~8~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:1ddc12f513ea0abaa5c99818bb8707de107912a7f5152a295380c8f25c301e2b",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C133062&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": false,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "pad_aliases": {
+        "9": "MP",
+        "10": "MP"
+      },
+      "alias_basis": "JST GH drawing: eight contacts plus two solder tabs; supplier 9/10 are native MP mounting tabs, not signal contacts. https://www.jst-mfg.com/product/pdf/eng/eGH.pdf",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "R30",
+        "R33",
+        "R50",
+        "R53"
+      ],
+      "mpn": "RT0603BRD0720RL",
+      "lcsc": "C136969",
+      "source_footprints": [
+        "Resistor_SMD__R_0603_1608Metric.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4002.97~3000~3.1751~3.4016~1~~2~0~~0",
+        "PAD~RECT~3997.03~3000~3.1751~3.4016~1~~1~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:2c19db9001e4b60b9719f9a5ebcb9e3fa6d7aa38c38d5ad3574589a54d0c4743",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C136969&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": true,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Bottom",
+      "bottom_projection": "mirror_local_x_then_ccw",
+      "bottom_basis": "Public catalog top-view local X reflected before CCW rotation into board top-view coordinates. Exact numbered pad envelopes checked on the native flipped footprint; order preview still required."
+    },
+    {
+      "designators": [
+        "Q1",
+        "Q2",
+        "Q3",
+        "Q4"
+      ],
+      "mpn": "MMBFJ270",
+      "lcsc": "C160435",
+      "source_footprints": [
+        "Package_TO_SOT_SMD__SOT-23.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4004.34~3003.74~4.0846~2.0945~1~~1~0~~0",
+        "PAD~RECT~4004.34~2996.26~4.0846~2.0945~1~~2~0~~0",
+        "PAD~RECT~3995.66~3000~4.0846~2.0945~1~~3~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:3ea8906ac04dbca534e6530bfef2d6876c16e3b240bc496ccc843e2ef31b64d7",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C160435&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": false,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Bottom",
+      "bottom_projection": "mirror_local_x_then_ccw",
+      "bottom_basis": "Public catalog top-view local X reflected before CCW rotation into board top-view coordinates. Exact numbered pad envelopes checked on the native flipped footprint; order preview still required."
+    },
+    {
+      "designators": [
+        "F1"
+      ],
+      "mpn": "1206L050YR",
+      "lcsc": "C163512",
+      "source_footprints": [
+        "Fuse_1206.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        400.0,
+        300.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~394.31~300~4.6854~6.8031~1~~1~0~~0",
+        "PAD~RECT~405.69~300~4.6854~6.8031~1~~2~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:77d5a065e1b4e3b93e06b969b42d37c6dc496856532e95e041346f553dcb2de4",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C163512&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": true,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "R14"
+      ],
+      "mpn": "RC0603FR-071KL",
+      "lcsc": "C22548",
+      "source_footprints": [
+        "Resistor_SMD__R_0603_1608Metric.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4002.97~3000~3.1751~3.4016~1~~2~0~~0",
+        "PAD~RECT~3997.03~3000~3.1751~3.4016~1~~1~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:2c19db9001e4b60b9719f9a5ebcb9e3fa6d7aa38c38d5ad3574589a54d0c4743",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C22548&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": true,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "J3"
+      ],
+      "mpn": "20021111-00010T4LF",
+      "lcsc": "C239059",
+      "source_footprints": [
+        "Connector_PinHeader_1.27mm__PinHeader_2x05_P1.27mm_Vertical.kicad_mod"
+      ],
+      "fit_method": "rigid_centres",
+      "origin_easyeda": [
+        3959.307,
+        2975.906
+      ],
+      "pad_shapes": [
+        "PAD~ELLIPSE~3969.31~2973.41~3.937~3.937~11~~10~0~~0",
+        "PAD~ELLIPSE~3969.31~2978.41~3.937~3.937~11~~9~0~~0",
+        "PAD~ELLIPSE~3964.31~2973.41~3.937~3.937~11~~8~0~~0",
+        "PAD~ELLIPSE~3964.31~2978.41~3.937~3.937~11~~7~0~~0",
+        "PAD~ELLIPSE~3959.31~2973.41~3.937~3.937~11~~6~0~~0",
+        "PAD~ELLIPSE~3959.31~2978.41~3.937~3.937~11~~5~0~~0",
+        "PAD~ELLIPSE~3954.31~2973.41~3.937~3.937~11~~4~0~~0",
+        "PAD~ELLIPSE~3954.31~2978.41~3.937~3.937~11~~3~0~~0",
+        "PAD~ELLIPSE~3949.31~2973.41~3.937~3.937~11~~2~0~~0",
+        "PAD~RECT~3949.31~2978.41~3.937~3.937~11~~1~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:1bb919dc2fa604aaea5a76e6396271024bc71f243a8f360c383110c0829abbc7",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C239059&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": false,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "U7",
+        "U9"
+      ],
+      "mpn": "OPA2387DGKR",
+      "lcsc": "C2861203",
+      "source_footprints": [
+        "Package_SO__VSSOP-8_3x3mm_P0.65mm.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~OVAL~3996.16~3008.66~1.4961~5.7087~1~~1~0~~0",
+        "PAD~OVAL~3998.72~3008.66~1.4961~5.7087~1~~2~0~~0",
+        "PAD~OVAL~4001.28~3008.66~1.4961~5.7087~1~~3~0~~0",
+        "PAD~OVAL~4003.84~3008.66~1.4961~5.7087~1~~4~0~~0",
+        "PAD~OVAL~3996.16~2991.34~1.4961~5.7087~1~~8~0~~0",
+        "PAD~OVAL~3998.72~2991.34~1.4961~5.7087~1~~7~0~~0",
+        "PAD~OVAL~4001.28~2991.34~1.4961~5.7087~1~~6~0~~0",
+        "PAD~OVAL~4003.84~2991.34~1.4961~5.7087~1~~5~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:1a8f34eb70b9cccdd3c88edfaf2345b09c72edec9b12d1bd6708feb62b79fccd",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C2861203&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": false,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Bottom",
+      "bottom_projection": "mirror_local_x_then_ccw",
+      "bottom_basis": "Public catalog top-view local X reflected before CCW rotation into board top-view coordinates. Exact numbered pad envelopes checked on the native flipped footprint; order preview still required."
+    },
+    {
+      "designators": [
+        "U6"
+      ],
+      "mpn": "ADS122C04IPWR",
+      "lcsc": "C2872338",
+      "source_footprints": [
+        "Package_SO__TSSOP-16_4.4x5mm_P0.65mm.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0005
+      ],
+      "pad_shapes": [
+        "PAD~OVAL~3991.04~3011.28~1.3504~6.8169~1~~1~0~~0",
+        "PAD~OVAL~3993.6~3011.28~1.3504~6.8169~1~~2~0~~0",
+        "PAD~OVAL~3996.16~3011.28~1.3504~6.8169~1~~3~0~~0",
+        "PAD~OVAL~3998.72~3011.28~1.3504~6.8169~1~~4~0~~0",
+        "PAD~OVAL~4001.28~3011.28~1.3504~6.8169~1~~5~0~~0",
+        "PAD~OVAL~4003.84~3011.28~1.3504~6.8169~1~~6~0~~0",
+        "PAD~OVAL~4006.4~3011.28~1.3504~6.8169~1~~7~0~~0",
+        "PAD~OVAL~4008.96~3011.28~1.3504~6.8169~1~~8~0~~0",
+        "PAD~OVAL~3991.04~2988.72~1.3504~6.8169~1~~16~0~~0",
+        "PAD~OVAL~3993.6~2988.72~1.3504~6.8169~1~~15~0~~0",
+        "PAD~OVAL~3996.16~2988.72~1.3504~6.8169~1~~14~0~~0",
+        "PAD~OVAL~3998.72~2988.72~1.3504~6.8169~1~~13~0~~0",
+        "PAD~OVAL~4001.28~2988.72~1.3504~6.8169~1~~12~0~~0",
+        "PAD~OVAL~4003.84~2988.72~1.3504~6.8169~1~~11~0~~0",
+        "PAD~OVAL~4006.4~2988.72~1.3504~6.8169~1~~10~0~~0",
+        "PAD~OVAL~4008.96~2988.72~1.3504~6.8169~1~~9~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:a7478e202e1a7d9036dc6fb89138b3445c10e9eb353a633bb36bf2b4013408ee",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C2872338&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": false,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "SW1",
+        "SW2"
+      ],
+      "mpn": "TL3342F160QG",
+      "lcsc": "C2886898",
+      "source_footprints": [
+        "Button_Switch_SMD__SW_SPST_TL3342.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4002.008,
+        2997.874
+      ],
+      "pad_shapes": [
+        "PAD~RECT~3990.2~3005.16~6.2205~3.1496~1~~1~0~~180",
+        "PAD~RECT~4013.82~3005.16~6.2205~3.1496~1~~2~0~~180",
+        "PAD~RECT~3990.2~2990.59~6.2205~3.1496~1~~3~0~~180",
+        "PAD~RECT~4013.82~2990.59~6.2205~3.1496~1~~4~0~~180"
+      ],
+      "footprint_uuid": "public-svg-sha256:9722a9c3631e987223fb98e8949fe3c7f10778cd5fb9514b9d610b844d6ee61f",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C2886898&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": false,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "pad_aliases": {
+        "1": "1",
+        "2": "1",
+        "3": "2",
+        "4": "2"
+      },
+      "alias_basis": "E-Switch TL3342F160QG drawing P010632 rev J circuit: 1/2 common, 3/4 common. Native paired legs numbered 1/1 and 2/2. https://configured-product-images.s3.amazonaws.com/2D/specs/TL3342F160QG.pdf",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "C30",
+        "C33",
+        "C36",
+        "C50",
+        "C53",
+        "C56",
+        "C80",
+        "C81",
+        "C82",
+        "C83",
+        "C84",
+        "C85",
+        "C86",
+        "C87"
+      ],
+      "mpn": "C3216C0G1H104JT000N",
+      "lcsc": "C319186",
+      "source_footprints": [
+        "Capacitor_SMD__C_1206_3216Metric.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4006.27~3000~5.8465~6.8031~1~~2~0~~0",
+        "PAD~RECT~3993.73~3000~5.8465~6.8031~1~~1~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:0ba1d6c6ae1895d66fc3178a7106d4b7c3e09a85abf4596e7a833f925a4b8a4c",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C319186&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": true,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Bottom",
+      "bottom_projection": "mirror_local_x_then_ccw",
+      "bottom_basis": "Public catalog top-view local X reflected before CCW rotation into board top-view coordinates. Exact numbered pad envelopes checked on the native flipped footprint; order preview still required."
+    },
+    {
+      "designators": [
+        "C2"
+      ],
+      "mpn": "GRM21BR71C475KE51L",
+      "lcsc": "C408144",
+      "source_footprints": [
+        "Capacitor_SMD__C_0805_2012Metric.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4003.94~3000~5.5512~5.315~1~~2~0~~0",
+        "PAD~RECT~3996.06~3000~5.5512~5.315~1~~1~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:3a137c3f7c197a82ca7deea265acf847e1912915117f97568276e32673619152",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C408144&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": true,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "U5"
+      ],
+      "mpn": "OPA387DBVR",
+      "lcsc": "C4366709",
+      "source_footprints": [
+        "Package_TO_SOT_SMD__SOT-23-5.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~3996.26~2995.67~2.3622~3.937~1~~5~0~~0",
+        "PAD~RECT~4003.74~2995.67~2.3622~3.937~1~~4~0~~0",
+        "PAD~RECT~3996.26~3004.33~2.3622~3.937~1~~1~0~~0",
+        "PAD~RECT~4003.74~3004.33~2.3622~3.937~1~~3~0~~0",
+        "PAD~RECT~4000~3004.33~2.3622~3.937~1~~2~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:2b41d2469860e07665ded9bf923f6f7762f0827a39c738f3ceb06725ad7f0b43",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C4366709&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": false,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "U8",
+        "U10"
+      ],
+      "mpn": "OPA387DBVR",
+      "lcsc": "C4366709",
+      "source_footprints": [
+        "Package_TO_SOT_SMD__SOT-23-5.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~3996.26~2995.67~2.3622~3.937~1~~5~0~~0",
+        "PAD~RECT~4003.74~2995.67~2.3622~3.937~1~~4~0~~0",
+        "PAD~RECT~3996.26~3004.33~2.3622~3.937~1~~1~0~~0",
+        "PAD~RECT~4003.74~3004.33~2.3622~3.937~1~~3~0~~0",
+        "PAD~RECT~4000~3004.33~2.3622~3.937~1~~2~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:2b41d2469860e07665ded9bf923f6f7762f0827a39c738f3ceb06725ad7f0b43",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C4366709&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": false,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Bottom",
+      "bottom_projection": "mirror_local_x_then_ccw",
+      "bottom_basis": "Public catalog top-view local X reflected before CCW rotation into board top-view coordinates. Exact numbered pad envelopes checked on the native flipped footprint; order preview still required."
+    },
+    {
+      "designators": [
+        "R3"
+      ],
+      "mpn": "RC0603FR-0780K6L",
+      "lcsc": "C482928",
+      "source_footprints": [
+        "Resistor_SMD__R_0603_1608Metric.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4002.97~3000~3.1751~3.4016~1~~2~0~~0",
+        "PAD~RECT~3997.03~3000~3.1751~3.4016~1~~1~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:2c19db9001e4b60b9719f9a5ebcb9e3fa6d7aa38c38d5ad3574589a54d0c4743",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C482928&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": true,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "U2"
+      ],
+      "mpn": "AP2112K-3.3TRG1",
+      "lcsc": "C51118",
+      "source_footprints": [
+        "Package_TO_SOT_SMD__SOT-23-5.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        3999.5011,
+        2998.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4003.24~2992.88~2.45~4.35~1~~4~0~~0",
+        "PAD~RECT~3995.76~2992.88~2.45~4.35~1~~5~0~~0",
+        "PAD~RECT~3995.76~3003.12~2.45~4.35~1~~1~0~~0",
+        "PAD~RECT~3999.5~3003.12~2.45~4.35~1~~2~0~~0",
+        "PAD~RECT~4003.24~3003.12~2.45~4.35~1~~3~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:b9af40b636221ccf775270f5e225079cf10c0609052e12e5e0bda09581e9fb49",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C51118&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": false,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "U12"
+      ],
+      "mpn": "BMP390",
+      "lcsc": "C5124834",
+      "source_footprints": [
+        "BMP390.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4003.07~2998.03~1.1811~1.1811~1~~5~0~~180",
+        "PAD~RECT~4003.07~3000~1.1811~1.1811~1~~4~0~~180",
+        "PAD~RECT~4003.07~3001.97~1.1811~1.1811~1~~3~0~~180",
+        "PAD~RECT~4000.98~3003.07~1.1811~1.1811~1~~2~0~~180",
+        "PAD~RECT~3999.02~3003.07~1.1811~1.1811~1~~1~0~~180",
+        "PAD~RECT~3996.93~3001.97~1.1811~1.1811~1~~10~0~~180",
+        "PAD~RECT~3996.93~3000~1.1811~1.1811~1~~9~0~~180",
+        "PAD~RECT~3996.93~2998.03~1.1811~1.1811~1~~8~0~~180",
+        "PAD~RECT~3999.02~2996.93~1.1811~1.1811~1~~7~0~~180",
+        "PAD~RECT~4000.98~2996.93~1.1811~1.1811~1~~6~0~~180"
+      ],
+      "footprint_uuid": "public-svg-sha256:5770c21c8a8d5f7be6fffaf0bfff2dc3bec092497135944f1b0e54232f86bd2d",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C5124834&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": false,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "Q5",
+        "Q6"
+      ],
+      "mpn": "2N7002/HAMR",
+      "lcsc": "C551411",
+      "source_footprints": [
+        "Package_TO_SOT_SMD__SOT-23.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4003.94~3003.74~3.937~2.5591~1~~1~0~~0",
+        "PAD~RECT~4003.94~2996.26~3.937~2.5591~1~~2~0~~0",
+        "PAD~RECT~3996.06~3000~3.937~2.5591~1~~3~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:d509040118faa4e2024ed62c7d2965b52226cfbcc493bd568d28c85aaf73dd74",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C551411&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": false,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "U3"
+      ],
+      "mpn": "TPS2553DBVR",
+      "lcsc": "C55266",
+      "source_footprints": [
+        "Package_TO_SOT_SMD__SOT-23-6.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4002.851,
+        3003.351
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4008.17~2999.61~4.3307~2.3622~1~~3~0~~0",
+        "PAD~RECT~4008.17~3003.35~4.3307~2.3622~1~~2~0~~0",
+        "PAD~RECT~4008.17~3007.09~4.3307~2.3622~1~~1~0~~0",
+        "PAD~RECT~3997.54~3007.09~4.3307~2.3622~1~~6~0~~0",
+        "PAD~RECT~3997.54~3003.35~4.3307~2.3622~1~~5~0~~0",
+        "PAD~RECT~3997.54~2999.61~4.3307~2.3622~1~~4~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:e6667c2deb8c4a7ef669bc20a773c97154e1e253c620f1da01d727d995ee71a2",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C55266&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": false,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "R51",
+        "R54"
+      ],
+      "mpn": "RT0603BRD0720KL",
+      "lcsc": "C723637",
+      "source_footprints": [
+        "Resistor_SMD__R_0603_1608Metric.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4002.97~3000~3.1751~3.4016~1~~2~0~~0",
+        "PAD~RECT~3997.03~3000~3.1751~3.4016~1~~1~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:2c19db9001e4b60b9719f9a5ebcb9e3fa6d7aa38c38d5ad3574589a54d0c4743",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C723637&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": true,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Bottom",
+      "bottom_projection": "mirror_local_x_then_ccw",
+      "bottom_basis": "Public catalog top-view local X reflected before CCW rotation into board top-view coordinates. Exact numbered pad envelopes checked on the native flipped footprint; order preview still required."
+    },
+    {
+      "designators": [
+        "U11"
+      ],
+      "mpn": "SHT40-AD1F-R2",
+      "lcsc": "C7461846",
+      "source_footprints": [
+        "SHT40.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4041.0,
+        3011.5
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4043.67~3009.93~1.9882~1.6535~1~~4~0~~0",
+        "PAD~RECT~4043.67~3013.08~1.9882~1.6535~1~~3~0~~0",
+        "PAD~RECT~4038.33~3013.08~1.9882~1.6535~1~~2~0~~0",
+        "PAD~RECT~4038.33~3009.93~1.9882~1.6535~1~~1~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:32c7689779175b76472e57acaf65f00365a1744f5b5980381672f7be80165706",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C7461846&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": false,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "excluded_noncontact_pads": [
+        "PAD~RECT~4041~3011.5~1.5748~4.3307~1~~5~0~~0"
+      ],
+      "exclusion_basis": "Sensirion SHT4x datasheet v7.3 June 2026 sections 5.4/5.5, page 17: die pad is not connected to any pin and soldering it is not recommended. Native four-terminal pattern intentionally omits centre copper/paste. https://sensirion.com/resource/datasheet/sht4x",
+      "side": "Top",
+      "independent_implementation": {
+        "url": "https://github.com/adafruit/Adafruit-SHT40-PCB/blob/40fe2b3aca1aaa3b2185d3d138e77d5b043a56e1/Adafruit%20SHT40.brd",
+        "finding": "Eagle SHT4X package contains only pads 1-4 at x +/-0.7 mm, y +/-0.4 mm, matching native Skylark centres after Y-axis conversion. No centre copper/paste pad."
+      }
+    },
+    {
+      "designators": [
+        "D1",
+        "D2"
+      ],
+      "mpn": "USBLC6-2SC6",
+      "lcsc": "C7519",
+      "source_footprints": [
+        "Package_TO_SOT_SMD__SOT-23-6.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~3996.26~3004.52~2.0945~4.2205~1~~1~0~~0",
+        "PAD~RECT~4000~3004.52~2.0945~4.2205~1~~2~0~~0",
+        "PAD~RECT~4003.74~3004.52~2.0945~4.2205~1~~3~0~~0",
+        "PAD~RECT~4003.74~2995.48~2.0945~4.2205~1~~4~0~~0",
+        "PAD~RECT~4000~2995.48~2.0945~4.2205~1~~5~0~~0",
+        "PAD~RECT~3996.26~2995.48~2.0945~4.2205~1~~6~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:d4810c1e4b554fe02ab7dc222c7b6d5b5ae7f4970bd6f7f41855957f0a25eb76",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C7519&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": false,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "C74"
+      ],
+      "mpn": "GRM188R71H103KA01D",
+      "lcsc": "C77053",
+      "source_footprints": [
+        "Capacitor_SMD__C_0603_1608Metric.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4002.76~3000~3.1496~3.5433~1~~2~0~~0",
+        "PAD~RECT~3997.24~3000~3.1496~3.5433~1~~1~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:84dc6fd01d3c50c8baeaddfc3fde94a87883b1f688cbe5b8040f49acafba0bb7",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C77053&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": true,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "C3",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C9",
+        "C11",
+        "C14",
+        "C16",
+        "C17",
+        "C18",
+        "C70",
+        "C71",
+        "C72"
+      ],
+      "mpn": "GRM188R71H104KA93D",
+      "lcsc": "C77055",
+      "source_footprints": [
+        "Capacitor_SMD__C_0603_1608Metric.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4002.76~3000~3.1496~3.5433~1~~2~0~~0",
+        "PAD~RECT~3997.24~3000~3.1496~3.5433~1~~1~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:84dc6fd01d3c50c8baeaddfc3fde94a87883b1f688cbe5b8040f49acafba0bb7",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C77055&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": true,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "C37",
+        "C38",
+        "C57",
+        "C58"
+      ],
+      "mpn": "GRM188R71H104KA93D",
+      "lcsc": "C77055",
+      "source_footprints": [
+        "Capacitor_SMD__C_0603_1608Metric.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4002.76~3000~3.1496~3.5433~1~~2~0~~0",
+        "PAD~RECT~3997.24~3000~3.1496~3.5433~1~~1~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:84dc6fd01d3c50c8baeaddfc3fde94a87883b1f688cbe5b8040f49acafba0bb7",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C77055&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": true,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Bottom",
+      "bottom_projection": "mirror_local_x_then_ccw",
+      "bottom_basis": "Public catalog top-view local X reflected before CCW rotation into board top-view coordinates. Exact numbered pad envelopes checked on the native flipped footprint; order preview still required."
+    },
+    {
+      "designators": [
+        "C4",
+        "C12"
+      ],
+      "mpn": "GRM21BR61A106KE19L",
+      "lcsc": "C77073",
+      "source_footprints": [
+        "Capacitor_SMD__C_0805_2012Metric.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4003.94~3000~5.5512~5.315~1~~2~0~~0",
+        "PAD~RECT~3996.06~3000~5.5512~5.315~1~~1~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:3a137c3f7c197a82ca7deea265acf847e1912915117f97568276e32673619152",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C77073&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": true,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "Q7"
+      ],
+      "mpn": "MMBT3904LT1G",
+      "lcsc": "C81464",
+      "source_footprints": [
+        "Package_TO_SOT_SMD__SOT-23.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0005,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4004.86~3003.74~4.2126~2.3622~1~~1~0~~0",
+        "PAD~RECT~4004.86~2996.26~4.2126~2.3622~1~~2~0~~0",
+        "PAD~RECT~3995.14~3000~4.2126~2.3622~1~~3~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:68a664423aeffaf88a152c61455afc16a92cb7c695dc5f1b66250ceaac2500ce",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C81464&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": false,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "U1"
+      ],
+      "mpn": "STM32F072CBT6",
+      "lcsc": "C81720",
+      "source_footprints": [
+        "Package_QFP__LQFP-48_7x7mm_P0.5mm.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        591.0,
+        -227.05
+      ],
+      "pad_shapes": [
+        "PAD~OVAL~580.17~-210.32~1.063~5.9055~1~~1~0~~0",
+        "PAD~OVAL~582.14~-210.32~1.063~5.9055~1~~2~0~~0",
+        "PAD~OVAL~584.11~-210.32~1.063~5.9055~1~~3~0~~0",
+        "PAD~OVAL~586.08~-210.32~1.063~5.9055~1~~4~0~~0",
+        "PAD~OVAL~588.05~-210.32~1.063~5.9055~1~~5~0~~0",
+        "PAD~OVAL~590.02~-210.32~1.063~5.9055~1~~6~0~~0",
+        "PAD~OVAL~591.98~-210.32~1.063~5.9055~1~~7~0~~0",
+        "PAD~OVAL~593.95~-210.32~1.063~5.9055~1~~8~0~~0",
+        "PAD~OVAL~595.92~-210.32~1.063~5.9055~1~~9~0~~0",
+        "PAD~OVAL~597.89~-210.32~1.063~5.9055~1~~10~0~~0",
+        "PAD~OVAL~599.86~-210.32~1.063~5.9055~1~~11~0~~0",
+        "PAD~OVAL~601.83~-210.32~1.063~5.9055~1~~12~0~~0",
+        "PAD~OVAL~607.73~-216.22~5.9055~1.063~1~~13~0~~0",
+        "PAD~OVAL~607.73~-218.19~5.9055~1.063~1~~14~0~~0",
+        "PAD~OVAL~607.73~-220.16~5.9055~1.063~1~~15~0~~0",
+        "PAD~OVAL~607.73~-222.13~5.9055~1.063~1~~16~0~~0",
+        "PAD~OVAL~607.73~-224.1~5.9055~1.063~1~~17~0~~0",
+        "PAD~OVAL~607.73~-226.07~5.9055~1.063~1~~18~0~~0",
+        "PAD~OVAL~607.73~-228.03~5.9055~1.063~1~~19~0~~0",
+        "PAD~OVAL~607.73~-230~5.9055~1.063~1~~20~0~~0",
+        "PAD~OVAL~607.73~-231.97~5.9055~1.063~1~~21~0~~0",
+        "PAD~OVAL~607.73~-233.94~5.9055~1.063~1~~22~0~~0",
+        "PAD~OVAL~607.73~-235.91~5.9055~1.063~1~~23~0~~0",
+        "PAD~OVAL~607.73~-237.88~5.9055~1.063~1~~24~0~~0",
+        "PAD~OVAL~601.83~-243.78~1.063~5.9055~1~~25~0~~0",
+        "PAD~OVAL~599.86~-243.78~1.063~5.9055~1~~26~0~~0",
+        "PAD~OVAL~597.89~-243.78~1.063~5.9055~1~~27~0~~0",
+        "PAD~OVAL~595.92~-243.78~1.063~5.9055~1~~28~0~~0",
+        "PAD~OVAL~593.95~-243.78~1.063~5.9055~1~~29~0~~0",
+        "PAD~OVAL~591.98~-243.78~1.063~5.9055~1~~30~0~~0",
+        "PAD~OVAL~590.02~-243.78~1.063~5.9055~1~~31~0~~0",
+        "PAD~OVAL~588.05~-243.78~1.063~5.9055~1~~32~0~~0",
+        "PAD~OVAL~586.08~-243.78~1.063~5.9055~1~~33~0~~0",
+        "PAD~OVAL~584.11~-243.78~1.063~5.9055~1~~34~0~~0",
+        "PAD~OVAL~582.14~-243.78~1.063~5.9055~1~~35~0~~0",
+        "PAD~OVAL~580.17~-243.78~1.063~5.9055~1~~36~0~~0",
+        "PAD~OVAL~574.27~-237.88~5.9055~1.063~1~~37~0~~0",
+        "PAD~OVAL~574.27~-235.91~5.9055~1.063~1~~38~0~~0",
+        "PAD~OVAL~574.27~-233.94~5.9055~1.063~1~~39~0~~0",
+        "PAD~OVAL~574.27~-231.97~5.9055~1.063~1~~40~0~~0",
+        "PAD~OVAL~574.27~-230~5.9055~1.063~1~~41~0~~0",
+        "PAD~OVAL~574.27~-228.03~5.9055~1.063~1~~42~0~~0",
+        "PAD~OVAL~574.27~-226.07~5.9055~1.063~1~~43~0~~0",
+        "PAD~OVAL~574.27~-224.1~5.9055~1.063~1~~44~0~~0",
+        "PAD~OVAL~574.27~-222.13~5.9055~1.063~1~~45~0~~0",
+        "PAD~OVAL~574.27~-220.16~5.9055~1.063~1~~46~0~~0",
+        "PAD~OVAL~574.27~-218.19~5.9055~1.063~1~~47~0~~0",
+        "PAD~OVAL~574.27~-216.22~5.9055~1.063~1~~48~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:d3f51e8369daa9979e3669ed9d49456f8976d4b91afa131496a683a839a604ba",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C81720&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": false,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "C1",
+        "C10",
+        "C13",
+        "C15",
+        "C19",
+        "C31",
+        "C34",
+        "C51",
+        "C54",
+        "C73"
+      ],
+      "mpn": "GRM188R71E105KA12D",
+      "lcsc": "C86020",
+      "source_footprints": [
+        "Capacitor_SMD__C_0603_1608Metric.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4002.76~3000~3.1496~3.5433~1~~2~0~~0",
+        "PAD~RECT~3997.24~3000~3.1496~3.5433~1~~1~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:84dc6fd01d3c50c8baeaddfc3fde94a87883b1f688cbe5b8040f49acafba0bb7",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C86020&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": true,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "D4"
+      ],
+      "mpn": "BAT54LT1G",
+      "lcsc": "C94399",
+      "source_footprints": [
+        "Package_TO_SOT_SMD__SOT-23.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        395.2755,
+        303.29
+      ],
+      "pad_shapes": [
+        "PAD~RECT~399.8~299.55~3.937~3.1496~1~~2~0~~180",
+        "PAD~RECT~390.75~303.29~3.937~3.1496~1~~3~0~~180",
+        "PAD~RECT~399.8~307.03~3.937~3.1496~1~~1~0~~180"
+      ],
+      "footprint_uuid": "public-svg-sha256:e5bfda60ad5416801d1f1f03eee49abe93ff3a9971bcf96daf1c0613a73d7eab",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C94399&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": false,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "R5",
+        "R12",
+        "R13",
+        "R15",
+        "R16",
+        "R20",
+        "R21",
+        "R32",
+        "R35",
+        "R52",
+        "R55",
+        "R70",
+        "R73",
+        "R74"
+      ],
+      "mpn": "RT0603BRD0710KL",
+      "lcsc": "C95204",
+      "source_footprints": [
+        "Resistor_SMD__R_0603_1608Metric.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4002.97~3000~3.1751~3.4016~1~~2~0~~0",
+        "PAD~RECT~3997.03~3000~3.1751~3.4016~1~~1~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:2c19db9001e4b60b9719f9a5ebcb9e3fa6d7aa38c38d5ad3574589a54d0c4743",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C95204&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": true,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    },
+    {
+      "designators": [
+        "R36",
+        "R56"
+      ],
+      "mpn": "RT0603BRD0710KL",
+      "lcsc": "C95204",
+      "source_footprints": [
+        "Resistor_SMD__R_0603_1608Metric.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4002.97~3000~3.1751~3.4016~1~~2~0~~0",
+        "PAD~RECT~3997.03~3000~3.1751~3.4016~1~~1~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:2c19db9001e4b60b9719f9a5ebcb9e3fa6d7aa38c38d5ad3574589a54d0c4743",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C95204&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": true,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Bottom",
+      "bottom_projection": "mirror_local_x_then_ccw",
+      "bottom_basis": "Public catalog top-view local X reflected before CCW rotation into board top-view coordinates. Exact numbered pad envelopes checked on the native flipped footprint; order preview still required."
+    },
+    {
+      "designators": [
+        "R8",
+        "R9",
+        "R17",
+        "R18"
+      ],
+      "mpn": "RC0603FR-074K7L",
+      "lcsc": "C99782",
+      "source_footprints": [
+        "Resistor_SMD__R_0603_1608Metric.kicad_mod"
+      ],
+      "fit_method": "smd_pad_overlap",
+      "origin_easyeda": [
+        4000.0,
+        3000.0
+      ],
+      "pad_shapes": [
+        "PAD~RECT~4002.97~3000~3.1751~3.4016~1~~2~0~~0",
+        "PAD~RECT~3997.03~3000~3.1751~3.4016~1~~1~0~~0"
+      ],
+      "footprint_uuid": "public-svg-sha256:2c19db9001e4b60b9719f9a5ebcb9e3fa6d7aa38c38d5ad3574589a54d0c4743",
+      "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C99782&detail=1",
+      "observed_utc": "2026-09-27",
+      "nonpolar_two_terminal": true,
+      "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+      "side": "Top"
+    }
+  ],
+  "unverified": [
+    {
+      "designators": [
+        "J1"
+      ],
+      "mpn": "USB4105-GF-A",
+      "lcsc": "C3020560",
+      "source_footprint": "Connector_USB__USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal.kicad_mod",
+      "reason": "Public catalog C3020560 links an SBC-160S1A land pattern, with separately drawn common contacts and different origin, rather than the GCT USB4105 manufacturer pattern. Native GCT pattern is retained; supplier CPL zero and body centre require order engineering confirmation. No reference-based rotation correction applied.",
+      "rejected_supplier_evidence": {
+        "designators": [
+          "J1"
+        ],
+        "mpn": "USB4105-GF-A",
+        "lcsc": "C3020560",
+        "source_footprints": [
+          "Connector_USB__USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal.kicad_mod"
+        ],
+        "fit_method": "rigid_centres",
+        "origin_easyeda": [
+          3971.122,
+          2957.225
+        ],
+        "pad_shapes": [
+          "PAD~RECT~3984.31~2947.89~1.1811~4.5276~1~~A12~0~~0",
+          "PAD~RECT~3983.13~2947.89~1.1811~4.5276~1~~B1~0~~0",
+          "PAD~RECT~3981.16~2947.89~1.1811~4.5276~1~~A9~0~~0",
+          "PAD~RECT~3979.98~2947.89~1.1811~4.5276~1~~B4~0~~0",
+          "PAD~RECT~3978.01~2947.89~1.1811~4.5276~1~~B5~0~~0",
+          "PAD~RECT~3976.04~2947.88~1.1811~4.5276~1~~A8~0~~0",
+          "PAD~RECT~3974.08~2947.89~1.1811~4.5276~1~~B6~0~~0",
+          "PAD~RECT~3972.11~2947.89~1.1811~4.5276~1~~A7~0~~0",
+          "PAD~RECT~3970.14~2947.89~1.1811~4.5276~1~~A6~0~~0",
+          "PAD~RECT~3968.17~2947.89~1.1811~4.5276~1~~B7~0~~0",
+          "PAD~RECT~3966.2~2947.89~1.1811~4.5276~1~~A5~0~~0",
+          "PAD~RECT~3964.23~2947.88~1.1811~4.5276~1~~B8~0~~0",
+          "PAD~RECT~3962.26~2947.89~1.1811~4.5276~1~~B9~0~~0",
+          "PAD~RECT~3961.08~2947.89~1.1811~4.5276~1~~A4~0~~0",
+          "PAD~RECT~3959.11~2947.89~1.1811~4.5276~1~~B12~0~~0",
+          "PAD~RECT~3957.93~2947.89~1.1811~4.5276~1~~A1~0~~0",
+          "PAD~OVAL~3954.11~2950.11~4.3307~8.2677~11~~1~0~~0",
+          "PAD~OVAL~3988.13~2950.11~4.3307~8.2677~11~~2~0~~0",
+          "PAD~OVAL~3988.13~2966.57~4.3307~7.0866~11~~3~0~~0",
+          "PAD~OVAL~3954.11~2966.57~4.3307~7.0866~11~~4~0~~0"
+        ],
+        "footprint_uuid": "public-svg-sha256:470bf68f12f481d4e9070a73d17af5afed2c1f66321a0918a4bb26085d6f4535",
+        "source_url": "https://jlcpcb.com/user-center/lcsvg/svg.html?code=C3020560&detail=1",
+        "observed_utc": "2026-09-27",
+        "nonpolar_two_terminal": false,
+        "evidence": "Numbered pad attributes and footprint origin extracted from the rendered public JLCPCB/EasyEDA SVG; coordinates are 10 mil units. Not the private assembly library.",
+        "side": "Top"
+      },
+      "manufacturer_drawing": "https://gct.co/files/drawings/usb4105.pdf"
+    }
+  ]
+}

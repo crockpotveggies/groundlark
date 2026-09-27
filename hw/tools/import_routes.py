@@ -31,7 +31,11 @@ def main(name):
             fp=fps[str(pl[1])]; xy=fp.GetPosition()
             assert abs(xy.x-float(pl[2])*factor)<101 and abs(xy.y+float(pl[3])*factor)<101, pl
             assert str(pl[4])==('back' if fp.IsFlipped() else 'front'),pl
-            assert abs((fp.GetOrientationDegrees()-float(pl[5])+180)%360-180)<.001,pl
+            # KiCad's Specctra export represents the rear footprint with the
+            # opposite local mirror axis, hence a 180 degree placement offset.
+            # Our native snapshots already store KiCad's own orientation.
+            angle=float(pl[5])-(180 if fp.IsFlipped() and not native_snapshot else 0)
+            assert abs((fp.GetOrientationDegrees()-angle+180)%360-180)<.001,pl
     meta=json.loads((folder/'electrical.json').read_text())
     grounds=meta.get('ground_layers',['In1.Cu',f'In{b.GetCopperLayerCount()-2}.Cu'])
     layers={'F.Cu':p.F_Cu,'B.Cu':p.B_Cu}
@@ -75,7 +79,14 @@ def main(name):
         z=p.ZONE(b);z.SetLayer(layer);z.SetNet(nets['GND']);z.SetLocalClearance(p.FromMM(.2));z.SetMinThickness(p.FromMM(.2));z.SetThermalReliefGap(p.FromMM(.25));z.SetThermalReliefSpokeWidth(p.FromMM(.3));z.Outline().NewOutline()
         for x,y in [(50.4,50.4),(49.6+size[0],50.4),(49.6+size[0],49.6+size[1]),(50.4,49.6+size[1])]: z.Outline().Append(vec(p.FromMM(x),p.FromMM(y)))
         b.Add(z)
-    b.BuildConnectivity();p.ZONE_FILLER(b).Fill(b.Zones());save_board(str(path),b)
+    if name=='skylark-usb':
+        from skylark_guard import add_zones
+        add_zones(b)
+    b.BuildConnectivity();p.ZONE_FILLER(b).Fill(b.Zones())
+    if name=='skylark-usb':
+        from skylark_guard import expose_socket_guards
+        expose_socket_guards(b)
+    save_board(str(path),b)
     print(name,len(b.GetTracks()),'tracks/vias; inner GND planes filled')
 
 if __name__=='__main__':

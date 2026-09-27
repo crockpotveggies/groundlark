@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "sensors": [
+    {
+      "mpn": "SGX-7SO2-AQ-20",
+      "manufacturer": "SGX Sensortech",
+      "source_url": "https://sgxsensortech.com/uploads/f_note/DS-0685-SGX-7SO2-AQ-20.pdf",
+      "revision": "Issue 1, 8 December 2025",
+      "retrieved_utc": "2026-09-27",
+      "source_sha256": "559aad33031582c52d756f5f3a537ec55cf82381656e7a41ce264dcd55e85509",
+      "pressure_mbar": [
+        800,
+        1200
+      ],
+      "temperature_C": [
+        -30,
+        50
+      ],
+      "relative_humidity_percent": [
+        15,
+        90
+      ],
+      "noncondensing": true,
+      "load_resistance_ohm": 20,
+      "design_bias_WE_minus_RE_V": 0,
+      "exact_model_bias_confirmed": false,
+      "discrepancy": "No bias specification printed",
+      "below_800_mbar_qualified": false
+    },
+    {
+      "mpn": "SGX-7H2S-AQ-25",
+      "manufacturer": "SGX Sensortech",
+      "source_url": "https://sgxsensortech.com/uploads/f_note/DS-0681-SGX-7H2S-AQ-25.pdf",
+      "revision": "Issue 1, 8 December 2025",
+      "retrieved_utc": "2026-09-27",
+      "source_sha256": "a8362a2e67f9a21ac2cc1239817d0840968fe546c37b8ed986f2b67e96b5489a",
+      "pressure_mbar": [
+        800,
+        1200
+      ],
+      "temperature_C": [
+        -30,
+        50
+      ],
+      "relative_humidity_percent": [
+        15,
+        90
+      ],
+      "noncondensing": true,
+      "load_resistance_ohm": 20,
+      "design_bias_WE_minus_RE_V": 0,
+      "exact_model_bias_confirmed": false,
+      "discrepancy": "Bias Voltage row contains <10 ppb typical; concentration units do not specify a voltage",
+      "below_800_mbar_qualified": false
+    }
+  ],
+  "bias_status": "Zero bias retained as supported engineering assumption, not exact-AQ-model confirmation",
+  "manufacturer_contact": "sales.is@sgxsensortech.com",
+  "comparison_sources": [
+    {
+      "url": "https://www.sgxsensortech.com/content/uploads/2014/08/A1A-EC_SENSORS_AN2-Design-of-Electronics-for-EC-Sensors-V4.pdf",
+      "revision": "Issue 4, 28 July 2016",
+      "scope": "SGX-7H2S and EC4-20-SO2 are listed at zero bias; exact AQ models absent. Power-off WE/RE shorting supports Skylark clamp topology."
+    },
+    {
+      "url": "https://github.com/SolderedElectronics/Soldered-Electrochemical-Gas-Sensor-Arduino-Library/blob/c4df54b9dbff26c6e6f8dd814ed0133e900030ba/src/sensorConfigData.h",
+      "scope": "Actual SENSOR_SO2 and SENSOR_H2S configuration sets LMP91000 BIAS_0_PERCENT; cpp configureLMP writes it to REFCN. Applies to SGX-4SO2 and SGX-4H2S-100, three-electrode cells, not the chosen four-electrode AQ models. Their 10-ohm loads/gains are not copied."
+    },
+    {
+      "url": "https://github.com/fablabbcn/smartcitizen-kit-gases-pro-board/tree/ffdb0bc9b76d6bd9d8732966f34968b3d14020a8/hardware/SCK_2.0_GASES_PRO_BOARD_rev3",
+      "scope": "Alphasense B4 four-electrode hardware; native PCB inspection finds common +1V5 noninverting reference for potentiostat and measurement amplifiers. Separate WE/AE acquisition supports architecture, not SGX-specific bias or pressure qualification."
+    }
+  ],
+  "required_confirmation": [
+    "WE-RE and AE-RE bias, polarity and tolerances for both exact AQ MPNs",
+    "Recommended four-electrode potentiostat, load, power-off shorting and stabilization requirements",
+    "Allowed absolute pressure and characterization/compensation below 800 mbar",
+    "Factory calibration, auxiliary-electrode correction and cross-sensitivity coefficients"
+  ],
+  "search_result": "No inspectable open-source implementation of either exact AQ MPN found in the public searches on 2026-09-27. Related designs corroborate zero bias but do not close the exact-model specification gap."
+}

@@ -1,7 +1,7 @@
 """Independent obstruction fault fixtures for the enclosure's air-path checks."""
 import unittest
 from enclosure import build, box, cy
-from check import validate_air_paths, validate_mount_and_service, validate_sensor_packing, validate_bottom_ventilation, validate_modular_assembly
+from check import validate_air_paths, validate_mount_and_service, validate_sensor_packing, validate_bottom_ventilation, validate_modular_assembly, validate_cell_stack
 
 class AirPathTests(unittest.TestCase):
     @classmethod
@@ -10,10 +10,19 @@ class AirPathTests(unittest.TestCase):
         cls.parts={k:v for k,v in parts.items() if k!='fit-coupon'}
 
     def test_as_authored(self):
+        validate_cell_stack(self.parts,self.refs)
         validate_air_paths(self.parts)
         validate_sensor_packing(self.refs)
         validate_bottom_ventilation(self.parts,self.refs)
         validate_modular_assembly(self.parts,self.refs)
+
+    def test_double_counted_socket_flange_is_rejected(self):
+        fault=dict(self.refs);fault['so2']=fault['so2'].translate((0,-.81,0))
+        with self.assertRaisesRegex(AssertionError,'Socket seating datum'):validate_cell_stack(self.parts,fault)
+
+    def test_old_retainer_clearance_is_rejected(self):
+        fault=dict(self.parts);fault['cell-retainer']=fault['cell-retainer'].translate((0,-.81,0))
+        with self.assertRaisesRegex(AssertionError,'withdrawal clearance'):validate_cell_stack(fault,self.refs)
 
     def test_cover_screw_obstruction_is_rejected(self):
         fault=dict(self.parts)

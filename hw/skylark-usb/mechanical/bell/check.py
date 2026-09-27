@@ -81,6 +81,15 @@ def validate_sensor_packing(refs):
         if name!='pms5003':
             assert volume(pms,obj)<1e-4,('PMS collides with electronics',name)
 
+def validate_cell_stack(parts,refs):
+    # Mill-Max 0322 drawing: 0.192 in = 4.8768 mm from seating plane
+    # to upper rim. Its 0.032 in flange is included in that dimension.
+    rear=parts['cell-retainer'].val().BoundingBox().ymax
+    for name in ('so2','h2s'):
+        b=refs[name].val().BoundingBox()
+        assert abs(b.ymax+4.88)<.005 and abs(b.ylen-15.5)<.005,'Socket seating datum'
+        assert abs(b.ymin-rear-.31)<.005,'Cell retainer withdrawal clearance'
+
 def validate_air_paths(installed):
     # Independent occupied-volume probes: membrane opening and downward PM ducts.
     for x in (-21,21):
@@ -116,6 +125,7 @@ def validate_mount_and_service(parts):
 
 def check(out):
     parts,refs=build();findings=[]
+    validate_cell_stack(parts,refs)
     provenance=json.loads((out/'provenance.json').read_text())
     assert provenance['pcb_sha256']==digest(PRODUCT/'boards/skylark-usb/skylark-usb.kicad_pcb')
     assert provenance['placement_sha256']==digest(PRODUCT/'layout/placement.json')

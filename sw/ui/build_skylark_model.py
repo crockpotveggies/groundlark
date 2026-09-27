@@ -49,7 +49,7 @@ def main():
         if part['dnp'] or not part['type'] or part['type']=='TP': continue
         kind=part['type']
         if kind.startswith('R_'): kind='R'
-        if kind.startswith('C_'): kind='C0805' if '0805' in part['local_fp'] else 'C0603'
+        if kind.startswith('C_'): kind='C1206' if '1206' in part['local_fp'] else 'C0805' if '0805' in part['local_fp'] else 'C0603'
         model=ROOT/f'hw/skylark-usb/models/{kind}.wrl';inputs.append(model)
         assert part['side'] in ('front','back')
         angle=math.radians(part['angle']);c,s=math.cos(angle),math.sin(angle)

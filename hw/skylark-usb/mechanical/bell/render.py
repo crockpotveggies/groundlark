@@ -75,7 +75,7 @@ for x,name in [(-21,'SO2'),(21,'H2S')]:
     cylinder(name+' membrane',x,-21.26,106,10.5,.1,'face')
     # Model sockets as conservative cylinders; body-to-PCB gap remains visible.
     for dx,dz in [(0,8.5),(6.0104,6.0104),(-6.0104,6.0104),(0,-8.5)]:
-        cylinder(name+' socket '+str((dx,dz)),x+dx,-2.84,106+dz,1.6,5.68,'metal')
+        cylinder(name+' socket '+str((dx,dz)),x+dx,-2.44,106+dz,1.6,4.88,'metal')
 for x,z in [(-41,131),(41,131),(-41,39),(41,80)]:cylinder('PCB screw '+str((x,z)),x,-1.5,z,2.7,3,'metal')
 for x in (-50,50):cylinder('Retainer screw '+str(x),x,-25.5,106,2.7,3,'metal')
 
