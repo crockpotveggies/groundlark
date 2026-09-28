@@ -1,0 +1,213 @@
+"""Groundlark printable case. Coordinates use HAT XY; all lengths are mm.
+
+CadQuery solids are manufacturing geometry. Electronics are reference envelopes,
+not printable parts. Does not open or modify electrical source/CAD.
+"""
+from pathlib import Path
+import argparse
+import hashlib
+import json
+import math
+import re
+import cadquery as cq
+
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parents[2]
+LOGO = ROOT/'hw/shared/libraries/Groundlark.pretty/Logo_Groundlark_7mm.kicad_mod'
+
+
+def bird_mark(center, height, z, depth):
+    """Extrude the shared favicon artwork, retaining its eye/wing/leg holes."""
+    points=[tuple(map(float,p)) for p in re.findall(r'\(xy ([^ ]+) ([^)]+)\)',LOGO.read_text())]
+    # KiCad encodes holes with doubled bridges in one polygon. Unwind those
+    # bridges into separate closed wires for the CAD face.
+    stack=[];holes=[]
+    for point in points:
+        if point in stack:
+            index=stack.index(point)
+            loop=stack[index:]
+            if len(loop)>2:holes.append(loop)
+            stack=stack[:index+1]
+        else:stack.append(point)
+    xmin=min(p[0] for p in points);xmax=max(p[0] for p in points)
+    ymin=min(p[1] for p in points);ymax=max(p[1] for p in points)
+    scale=height/(ymax-ymin)
+    def wire(loop):
+        # KiCad uses Y-down; the lid's XY plane uses Y-up.
+        return cq.Wire.makePolygon([cq.Vector(center[0]+(x-(xmin+xmax)/2)*scale,
+                                             center[1]-(y-(ymin+ymax)/2)*scale,z)
+                                    for x,y in loop],close=True)
+    return cq.Workplane(obj=cq.Solid.extrudeLinear(wire(stack),[wire(h) for h in holes],cq.Vector(0,0,depth)))
+
+
+def box(x0,y0,z0,x1,y1,z1):
+    return cq.Workplane('XY').box(x1-x0,y1-y0,z1-z0,centered=False).translate((x0,y0,z0))
+
+
+def cylinder(x,y,z,r,h):
+    return cq.Workplane('XY').center(x,y).circle(r).extrude(h).translate((0,0,z))
+
+
+def hex_z(x,y,z,af,h):
+    return cq.Workplane('XY').center(x,y).polygon(6,af/math.cos(math.pi/6)).extrude(h).translate((0,0,z))
+
+
+def hole_x(x0,y,z,r,length):
+    return cq.Workplane('YZ').center(y,z).circle(r).extrude(length).translate((x0,0,0))
+
+
+def hole_y(x,y0,z,r,length):
+    return cq.Workplane('XZ').center(x,z).circle(r).extrude(length).translate((0,y0+length,0))
+
+
+def rounded(bounds,z,h,r):
+    x0,y0,x1,y1=bounds
+    return box(x0,y0,z,x1,y1,z+h).edges('|Z').fillet(r)
+
+
+def build(c):
+    x0,y0,x1,y1=c['outer']; floor=c['floor']; roof=c['roof_z']; w=c['wall']
+    pi_bottom=c['pi_bottom_z']; pi_top=pi_bottom+c['pcb_thickness']
+    hat_bottom=pi_top+c['pi_to_hat_gap']; hat_top=hat_bottom+c['pcb_thickness']
+    fpga_bottom=hat_top+c['hat_to_fpga_gap']; fpga_top=fpga_bottom+c['pcb_thickness']
+    base=rounded(c['outer'],0,floor,c['corner_radius'])
+    for x,y in c['pi_holes']:
+        base=base.union(cylinder(x,y,floor,3,pi_bottom-floor))
+        base=base.cut(cylinder(x,y,-.1,1.4,pi_bottom+.2))
+        base=base.cut(cylinder(x,y,-.1,2.7,3.1))
+    # Cover screws enter from below; nuts are captive in the cover's lower face.
+    for x,y in c['case_screws']:
+        base=base.cut(cylinder(x,y,-.1,1.7,floor+.2))
+        base=base.cut(cylinder(x,y,-.1,3.1,2.6))
+    for x,y in c['leveling_feet']:
+        base=base.cut(cylinder(x,y,-.1,2.2,floor+.2))
+        base=base.cut(hex_z(x,y,1.7,7.3,floor-1.6))
+    gx,gy=c['geophone_center']; seat=c['geophone_seat_z']
+    r=(c['geophone_diameter']+c['geophone_diametral_clearance'])/2
+    outer=r+c['geophone_clamp_wall']; split=c['geophone_split_gap']/2
+    h=c['geophone_clamp_height']
+    pedestal=cylinder(gx,gy,floor,outer,seat-floor)
+    ring=cylinder(gx,gy,seat,outer,h).cut(cylinder(gx,gy,seat-.1,r,h+.2))
+    # Integrated right half plus removable left jaw; through-bolts along X.
+    ears=[]
+    for yy in (gy-18.2,gy+18.2):
+        ear=box(gx-7,yy-4.6,seat,gx+7,yy+4.6,seat+h)
+        ring=ring.union(ear)
+        ears.append(yy)
+    right=ring.intersect(box(gx+split,gy-24,seat-.1,gx+25,gy+24,seat+h+.1))
+    jaw=ring.intersect(box(gx-25,gy-24,seat-.1,gx-split,gy+24,seat+h+.1))
+    for yy in ears:
+        drill=hole_x(gx-9,yy,seat+h/2,1.7,18)
+        right=right.cut(drill);jaw=jaw.cut(drill)
+        # M3 nut trap, accessible from the right with the cover removed.
+        nut=cq.Workplane('YZ').center(yy,seat+h/2).polygon(6,5.8/math.cos(math.pi/6)).extrude(2.7).translate((gx+4.4,0,0))
+        right=right.cut(nut)
+    base=base.union(pedestal).union(right)
+    # Geophone cable clamp: capture M3 nuts from above, before fitting its cap.
+    base=base.union(box(60,-28,5,80,-18,8))
+    cap=box(60,-28,8,80,-18,13)
+    channel=hole_y(70,-29,8,c['cable_diameter']/2,12)
+    base=base.cut(channel);cap=cap.cut(channel)
+    for x in (64.8,75.2):
+        base=base.cut(cylinder(x,-23,2.5,1.7,5.6)).cut(hex_z(x,-23,5.4,5.8,2.7))
+        cap=cap.cut(cylinder(x,-23,7.9,1.7,5.2))
+    cover=rounded(c['outer'],floor,roof+c['roof_thickness']-floor,c['corner_radius'])
+    cover=cover.cut(rounded([x0+w,y0+w,x1-w,y1-w],floor-.1,roof-floor+.1,2))
+    for x,y in c['case_screws']:
+        cover=cover.union(cylinder(x,y,floor,5,roof-floor))
+        cover=cover.cut(hex_z(x,y,floor-.1,5.8,2.7))
+        cover=cover.cut(cylinder(x,y,floor-.1,1.7,10.1))
+    # Enlarged entry bays admit cable overmoulds past the recessed Pi ports.
+    ports={
+      'usb_ethernet':box(84,0,floor-.1,x1+1,57,pi_top+18),
+      'power_hdmi_audio':box(3,50,floor-.1,63,y1+1,pi_top+11),
+      'microsd':box(x0-1,19,floor-.1,9,37,pi_bottom+1.5),
+      'fpga_power':hole_x(x0-1,12,hat_top+5.5,4.5,18).union(box(x0-1,7.5,floor-.1,x0+w+.1,16.5,hat_top+5.5)),
+    }
+    for cut in ports.values():cover=cover.cut(cut)
+    # Power-lead tie slots belong to the base so the cover lifts off freely.
+    for yy in (8,16):base=base.cut(box(-4.5,yy-1,-.1,-1.5,yy+1,floor+.1))
+    # Roof vents: 3 mm bridge spans when printed roof-down.
+    for x in range(6,82,7):
+        cover=cover.cut(box(x,8,roof-.1,x+3,48,roof+3.1))
+    # Separate small vents above geophone terminals, away from its clamp.
+    for x in range(28,57,7):
+        cover=cover.cut(box(x,-33,roof-.1,x+3,-18,roof+3.1))
+    # Low/high side convection openings; roof-down printing bridges 3 mm.
+    for yy in (-38,-30,-22):
+        for z in (18,58):cover=cover.cut(box(x0-1,yy,z,x0+w+.1,yy+3,z+9))
+    for xx in (6,16,26,56,66,76):
+        cover=cover.cut(box(xx,y0-1,18,xx+3,y0+w+.1,32))
+    # Recessed bird centered in the 26 mm strip between the roof vent groups.
+    cover=cover.cut(bird_mark((43,-5),20,roof+c['roof_thickness']-.6,.65))
+    # Small bore coupon uses the same split clamp cross-section; no hardware needed.
+    coupon=cylinder(0,0,0,outer,6).cut(cylinder(0,0,-.1,r,6.2))
+    coupon=coupon.cut(box(-.5,-outer-1,-.1,.5,-r+.5,6.1))
+    # Rigid bodies and conservative service envelopes for collision checks.
+    pi=box(0,0,pi_bottom,85,56,pi_top)
+    hat=box(0,0,hat_bottom,85,56,hat_top)
+    for x,y in c['pi_holes']:
+        pi=pi.cut(cylinder(x,y,pi_bottom-.1,1.35,2))
+        hat=hat.cut(cylinder(x,y,hat_bottom-.1,1.35,2))
+    fpga=box(30,8,fpga_bottom,80,48,fpga_top)
+    for x,y in c['trenz_holes']:fpga=fpga.cut(cylinder(x,y,fpga_bottom-.1,1.6,2))
+    ref={'pi':pi,'hat':hat,'fpga':fpga,
+      'geophone':cylinder(gx,gy,seat,c['geophone_diameter']/2,c['geophone_height']),
+      'geophone_terminals':cylinder(gx,gy,seat+c['geophone_height'],12,c['geophone_terminal_headroom']),
+      'geophone_plug':box(8.08,42.85,hat_top,20.3,58.95,hat_top+20.3),
+      'pi_heatsink':box(22,19,pi_top,40,37,pi_top+13.3),
+      'fpga_heatsink':box(44,18,hat_top+12.16,70,40,hat_top+24.16),
+      'gpio_stack':box(6.8,1.025,pi_top,58.2,5.975,hat_bottom),
+      'j83':box(.5,6.5,hat_top,10,20,hat_top+17),
+      'pi_audio':box(49,47,pi_top,56,58,pi_top+6),
+      'pi_sd':box(-2,20,pi_bottom-2.5,15,36,pi_bottom)}
+    for name,(a,b,cc,d,e,f) in {
+      'ethernet':(65.5,2.5,0,86.5,18.5,16),
+      'usb1':(65.5,21.5,0,86.5,36.5,16),
+      'usb2':(65.5,39.5,0,86.5,54.5,16),
+      'power':(6.5,51,0,15.5,57,3.2),
+      'hdmi1':(22.5,51,0,29.5,57,3),
+      'hdmi2':(35.5,51,0,42.5,57,3)}.items():
+        ref['pi_'+name]=box(a,b,pi_top+cc,d,e,pi_top+f)
+    for i,(x,y) in enumerate(c['pi_holes']):
+        ref['pi_spacer_'+str(i)]=cylinder(x,y,pi_top,2.4,c['pi_to_hat_gap'])
+    for i,(x,y) in enumerate(c['trenz_holes']):
+        ref['fpga_spacer_'+str(i)]=cylinder(x,y,hat_top,2.5,c['hat_to_fpga_gap'])
+    parts={'base':base,'cover':cover,'geophone-jaw':jaw,'cable-clamp':cap,'fit-coupon':coupon}
+    levels=dict(pi_bottom=pi_bottom,pi_top=pi_top,hat_bottom=hat_bottom,hat_top=hat_top,
+                fpga_bottom=fpga_bottom,fpga_top=fpga_top,roof_inside=roof)
+    return parts,ref,levels
+
+
+def print_pose(name,solid,c):
+    # Cover prints upside down with its exterior roof on the bed.
+    if name=='cover':solid=solid.rotate((0,0,0),(1,0,0),180)
+    bb=solid.val().BoundingBox()
+    return solid.translate((-bb.xmin,-bb.ymin,-bb.zmin))
+
+
+def export(c,out):
+    out.mkdir(parents=True,exist_ok=True)
+    reference=ROOT/'.local/case/reference';reference.mkdir(parents=True,exist_ok=True)
+    for name in ('prints','cad','preview','evidence'):(out/name).mkdir(exist_ok=True)
+    parts,ref,levels=build(c)
+    assembly=cq.Assembly(name='Groundlark_case_R1')
+    colors={'base':(.10,.22,.28),'cover':(.14,.27,.32),'geophone-jaw':(.94,.51,.13),'cable-clamp':(.94,.51,.13)}
+    for name,solid in parts.items():
+        assert solid.val().isValid() and len(solid.solids().vals())==1,name
+        pose=print_pose(name,solid,c)
+        cq.exporters.export(pose,str(out/'prints'/(name+'.stl')),tolerance=.025,angularTolerance=.12)
+        cq.exporters.export(pose,str(out/'cad'/(name+'.step')))
+        cq.exporters.export(solid,str(reference/(name+'-assembled.stl')),tolerance=.035,angularTolerance=.15)
+        if name!='fit-coupon':assembly.add(solid,name=name,color=cq.Color(*colors[name]))
+    assembly.save(str(out/'cad/case-assembly.step'))
+    for name,solid in ref.items():cq.exporters.export(solid,str(reference/('reference-'+name+'.stl')),tolerance=.05,angularTolerance=.2)
+    (out/'evidence/levels.json').write_text(json.dumps(levels,indent=2)+'\n')
+    print('Exported five printable parts and assembly STEP:',out)
+    return parts,ref,levels
+
+
+if __name__=='__main__':
+    ap=argparse.ArgumentParser(description=__doc__)
+    ap.add_argument('--output',type=Path,default=ROOT/'hw/releases/groundlark-case-r1')
+    args=ap.parse_args();export(json.loads((HERE/'parameters.json').read_text()),args.output)
