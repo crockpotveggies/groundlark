@@ -1,5 +1,9 @@
 """Groundlark printable case. Board inputs use native HAT XY; lengths are mm.
 
+Authoring coordinates follow KiCad (Y down). build() converts once to physical
+Z-up assembly coordinates (X right, Y opposite CAD). Native 3D component models
+already use a right-handed basis and must NEVER be reflected on import.
+
 CadQuery solids are manufacturing geometry. Electronics are reference envelopes,
 not printable parts. Does not open or modify electrical source/CAD.
 """
@@ -45,9 +49,9 @@ def bird_mark(center, height, z, depth):
     ymin=min(p[1] for p in points);ymax=max(p[1] for p in points)
     scale=height/(ymax-ymin)
     def wire(loop):
-        # KiCad uses Y-down; the lid's XY plane uses Y-up.
+        # Keep native Y-down here; build() converts the finished assembly once.
         return cq.Wire.makePolygon([cq.Vector(center[0]+(x-(xmin+xmax)/2)*scale,
-                                             center[1]-(y-(ymin+ymax)/2)*scale,z)
+                                             center[1]+(y-(ymin+ymax)/2)*scale,z)
                                     for x,y in loop],close=True)
     return cq.Workplane(obj=cq.Solid.extrudeLinear(wire(stack),[wire(h) for h in holes],cq.Vector(0,0,depth)))
 
@@ -199,6 +203,11 @@ def build(c):
     parts={'base':base,'cover':cover,'geophone-jaw':jaw,'cable-clamp':cap,'fit-coupon':coupon}
     levels=dict(pi_bottom=pi_bottom,pi_top=pi_top,hat_bottom=hat_bottom,hat_top=hat_top,
                 fpga_bottom=fpga_bottom,fpga_top=fpga_top,roof_inside=roof,cable_z=cable_z)
+    # The planar authoring coordinates are Y-down; the exported solids are Z-up.
+    # This is a basis conversion for authored 2D geometry, not a reflection of
+    # imported physical component models. Keep the manufacturer's chirality.
+    parts={name:solid.mirror('XZ') for name,solid in parts.items()}
+    ref={name:solid.mirror('XZ') for name,solid in ref.items()}
     return parts,ref,levels
 
 
@@ -214,7 +223,7 @@ def export(c,out):
     reference=ROOT/'.local/case/reference';reference.mkdir(parents=True,exist_ok=True)
     for name in ('prints','cad','preview','evidence'):(out/name).mkdir(exist_ok=True)
     parts,ref,levels=build(c)
-    assembly=cq.Assembly(name='Groundlark_case_R1')
+    assembly=cq.Assembly(name='Groundlark_case_'+c['revision'])
     colors={'base':(.10,.22,.28),'cover':(.14,.27,.32),'geophone-jaw':(.94,.51,.13),'cable-clamp':(.94,.51,.13)}
     for name,solid in parts.items():
         assert solid.val().isValid() and len(solid.solids().vals())==1,name
@@ -232,5 +241,5 @@ def export(c,out):
 
 if __name__=='__main__':
     ap=argparse.ArgumentParser(description=__doc__)
-    ap.add_argument('--output',type=Path,default=ROOT/'hw/releases/groundlark-case-r1')
+    ap.add_argument('--output',type=Path,default=ROOT/'hw/releases/groundlark-case-r2')
     args=ap.parse_args();export(json.loads((HERE/'parameters.json').read_text()),args.output)

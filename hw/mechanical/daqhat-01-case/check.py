@@ -7,7 +7,7 @@ from case import HERE,ROOT,LOGO,build,box,cylinder
 sys.path.insert(0,str(ROOT/'hw/tools'))
 from project_paths import load_layout,placement_path,board_dir
 
-OUT=ROOT/'hw/releases/groundlark-case-r1'
+OUT=ROOT/'hw/releases/groundlark-case-r2'
 
 
 def common(a,b):
@@ -30,7 +30,7 @@ def validate(c,parts,refs,levels):
     assert c['wall']>=2.8 and c['floor']>=5,'Case wall/floor thickness'
     assert c['stack_rotation_deg'] in (0,180),'Stack orientation'
     # Independent enclosure-space fixture: do not reuse the placement transform.
-    mounts=fixture if c['stack_rotation_deg']==0 else {(81.5,52.5),(23.5,52.5),(81.5,3.5),(23.5,3.5)}
+    mounts={(3.5,-3.5),(61.5,-3.5),(3.5,-52.5),(61.5,-52.5)} if c['stack_rotation_deg']==0 else {(81.5,-52.5),(23.5,-52.5),(81.5,-3.5),(23.5,-3.5)}
     for x,y in mounts:
         bore=cylinder(x,y,0,1.1,levels['pi_bottom'])
         assert common(parts['base'],bore)<1e-5,'Stack mounting bore blocked'
@@ -38,12 +38,19 @@ def validate(c,parts,refs,levels):
         assert common(parts['base'],bearing)>bearing.val().Volume()*.999,'Stack mounting support missing'
     if c['stack_rotation_deg']==180:
         connector=refs['geophone_plug'].val().BoundingBox()
-        assert connector.ymax<0 and connector.xmin>64,'Geophone connector must face the geophone bay'
+        assert connector.ymin>0 and connector.xmin>64,'Geophone connector must face the geophone bay'
         # Full conservative plug translated 12 mm out; cap/cable release precedes unplugging.
-        corridor=box(64.7,-31,levels['hat_top'],76.92,-2.9,levels['hat_top']+11.1)
+        corridor=box(64.7,2.9,levels['hat_top'],76.92,31,levels['hat_top']+11.1)
         for name in ('base','cover','geophone-jaw','cable-clamp'):
             assert common(parts[name],corridor)<1e-5,'J90 horizontal withdrawal blocked'
-    gx,gy=c['geophone_center'];seat=c['geophone_seat_z']
+    # Independent physical landmarks from Raspberry Pi's top-view drawing.
+    # With USB on physical -X after rotation, GPIO is on -Y and USB-C on +Y.
+    expected={'pi_power':(74,-2,13.2),'gpio_stack':(52.5,-52.5,(levels['pi_top']+levels['hat_bottom'])/2)} if c['stack_rotation_deg']==180 else {'pi_power':(11,-54,13.2),'gpio_stack':(32.5,-3.5,(levels['pi_top']+levels['hat_bottom'])/2)}
+    for name,xyz in expected.items():
+        bb=refs[name].val().BoundingBox()
+        center=((bb.xmin+bb.xmax)/2,(bb.ymin+bb.ymax)/2,(bb.zmin+bb.zmax)/2)
+        assert max(abs(a-b) for a,b in zip(center,xyz))<.02, f'Pi physical handedness: {name}'
+    gx,gy=c['geophone_center'];gy=-gy;seat=c['geophone_seat_z']
     seat_probe=cylinder(gx,gy,seat-.15,11,.15)
     assert common(parts['base'],seat_probe)>=seat_probe.val().Volume()*.999,'Geophone bearing seat missing'
     assert common(parts['geophone-jaw'].translate((-8,0,0)),parts['base'])<1e-5,'Jaw withdrawal blocked'
@@ -67,18 +74,26 @@ def validate(c,parts,refs,levels):
             overlaps.append(dict(case_part=a,component=b,intersection_mm3=round(v,8)))
     # Port service rays extend beyond the body; blocked windows must fail.
     service={
-       'USB/Ethernet plugs':box(86.5,1,levels['pi_top'],98,56,levels['pi_top']+17),
-       'USB-C/HDMI/audio plugs':box(4,57,levels['pi_top'],62,69,levels['pi_top']+10),
-       'microSD removal':box(-12,20,7.5,0,36,11),
+       'USB/Ethernet plugs':box(86.5,-56,levels['pi_top'],98,-1,levels['pi_top']+17),
+       'USB-C/HDMI/audio plugs':box(4,-69,levels['pi_top'],62,-57,levels['pi_top']+10),
+       'microSD removal':box(-12,-36,7.5,0,-20,11),
     }
     if c['stack_rotation_deg']==180:
         service={
-           'USB/Ethernet plugs':box(-13,0,levels['pi_top'],-1.5,55,levels['pi_top']+17),
-           'USB-C/HDMI/audio cable exit':box(23,-55,levels['pi_top'],81,-1,levels['pi_top']+10),
-           'microSD removal':box(85,20,7.5,98,36,11),
+           'USB/Ethernet plugs':box(-13,-55,levels['pi_top'],-1.5,0,levels['pi_top']+17),
+           'USB-C/HDMI/audio cable exit':box(23,1,levels['pi_top'],81,55,levels['pi_top']+10),
+           'microSD removal':box(85,-36,7.5,98,-20,11),
         }
     for name,shape in service.items():
         assert common(parts['cover'],shape)<1e-5,f'Blocked service access: {name}'
+    if c['stack_rotation_deg']==180:
+        # Explicit USB-C insertion sweep and cable route, including the base,
+        # geophone and clamp. A 14 x 30 x 10 mm overmould leaves 1 mm to the
+        # narrow side of the front exit; this is a limit, not a cable approval.
+        sweep=box(67,1.01,8.2,81,65,18.2)
+        for name,solid in {**{k:v for k,v in parts.items() if k!='fit-coupon'},
+                           **{k:v for k,v in refs.items() if k!='pi_power'}}.items():
+            assert common(solid,sweep)<1e-5,f'USB-C insertion blocked: {name}'
     # Cover removal is straight upward; no electronics need disconnecting first.
     for dz in (1,5,20,50):
         lifted=parts['cover'].translate((0,0,dz))
@@ -90,6 +105,8 @@ def validate(c,parts,refs,levels):
                 geophone_terminal_clearance_to_roof_mm=c['roof_z']-c['geophone_seat_z']-c['geophone_height']-c['geophone_terminal_headroom'],
                 fpga_heatsink_to_roof_mm=c['roof_z']-levels['hat_top']-24.16,
                 stack_rotation_deg=c['stack_rotation_deg'],
+                physical_basis='Right-handed Z-up; native board (x,y) maps to (x,-y) before physical rotation',
+                pi_usb_c_overmould_envelope_mm=[14,30,10],
                 cable_routing=('Pi power/HDMI/audio face the geophone bay; lid-off connection and routed leads required. Cable/plug fit remains unqualified.'
                                if c['stack_rotation_deg']==180 else 'Direct Pi port service windows'),
                 scope='CAD envelopes and mesh validity only; not first-print fit, thermal, stiffness, or noise qualification')

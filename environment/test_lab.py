@@ -14,6 +14,7 @@ class LabSafetyTests(unittest.TestCase):
             'hw/groundlark-coldfoot-hat/elec/hat.ato',
             'hw/burrowlark-usb/elec/field_head.ato',
             'hw/shared/elec/parts.ato',
+            'hw/shared/reference/raspberrypi_hat.kicad_pcb',
         ]
         excluded = [
             'hw/releases/groundlark-fpga-hat/example.ato',

@@ -1,0 +1,49 @@
+{
+  "solids": 89,
+  "triangles": 374168,
+  "colored_faces": 8027,
+  "source_sha256": "82c055acbed781e623d8c32acfdec2254400104f2cfa21ddbc2ba0e8b80797da",
+  "image_model_sha256": "b02e8f8b40303afa7171a14dad3f21f09905d75df9c9bc8a5ca61f5ec656841f",
+  "coordinate_transform": {
+    "source_to_physical": [
+      [
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        -1,
+        -56
+      ],
+      [
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ]
+    ],
+    "determinant": 1
+  },
+  "physical_board_bounds_mm": [
+    [
+      0,
+      -56,
+      -1.7
+    ],
+    [
+      85,
+      0,
+      0.1
+    ]
+  ],
+  "source": "Community reference; independent official drawing checks control orientation and port placement."
+}

@@ -23,7 +23,7 @@ class CaseTests(unittest.TestCase):
             validate(self.c,self.parts,self.refs,levels)
 
     def test_missing_bearing_seat_rejected(self):
-        parts=dict(self.parts);x,y=self.c['geophone_center']
+        parts=dict(self.parts);x,y=self.c['geophone_center'];y=-y
         parts['base']=parts['base'].cut(cylinder(x,y,0,11.5,9))
         with self.assertRaisesRegex(AssertionError,'bearing seat'):
             validate(self.c,parts,self.refs,self.levels)
@@ -31,7 +31,7 @@ class CaseTests(unittest.TestCase):
     def test_obstructed_usb_opening_rejected(self):
         parts=dict(self.parts)
         # A tab hangs into the plug envelope from the wall above the opening.
-        wall=box(-8,22,25,-7,30,31) if self.c['stack_rotation_deg']==180 else box(91,1,17,95,56,31)
+        wall=box(-8,-30,25,-7,-22,31) if self.c['stack_rotation_deg']==180 else box(91,-56,17,95,-1,31)
         parts['cover']=parts['cover'].union(wall)
         with self.assertRaisesRegex(AssertionError,'service access'):
             validate(self.c,parts,self.refs,self.levels)
@@ -53,7 +53,7 @@ class CaseTests(unittest.TestCase):
 
     def test_blocked_rotated_mount_rejected(self):
         parts=dict(self.parts)
-        parts['base']=parts['base'].union(cylinder(81.5,52.5,0,1.4,10))
+        parts['base']=parts['base'].union(cylinder(81.5,-52.5,0,1.4,10))
         with self.assertRaisesRegex(AssertionError,'mounting bore'):
             validate(self.c,parts,self.refs,self.levels)
 
@@ -65,8 +65,23 @@ class CaseTests(unittest.TestCase):
 
     def test_blocked_horizontal_connector_withdrawal_rejected(self):
         parts=dict(self.parts)
-        parts['base']=parts['base'].union(box(70,-30,0,72,-28,49))
+        parts['base']=parts['base'].union(box(70,28,0,72,30,49))
         with self.assertRaisesRegex(AssertionError,'withdrawal blocked'):
+            validate(self.c,parts,self.refs,self.levels)
+
+    def test_mirrored_pi_power_port_rejected(self):
+        refs=dict(self.refs);refs['pi_power']=refs['pi_power'].mirror('XZ')
+        with self.assertRaisesRegex(AssertionError,'physical handedness'):
+            validate(self.c,self.parts,refs,self.levels)
+
+    def test_mirrored_gpio_side_rejected(self):
+        refs=dict(self.refs);refs['gpio_stack']=refs['gpio_stack'].mirror('XZ')
+        with self.assertRaisesRegex(AssertionError,'physical handedness'):
+            validate(self.c,self.parts,refs,self.levels)
+
+    def test_obstructed_power_route_rejected(self):
+        parts=dict(self.parts);parts['base']=parts['base'].union(box(70,20,5,76,23,19))
+        with self.assertRaisesRegex(AssertionError,'USB-C insertion blocked'):
             validate(self.c,parts,self.refs,self.levels)
 
 if __name__=='__main__':unittest.main()

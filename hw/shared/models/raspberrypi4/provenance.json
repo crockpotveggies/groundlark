@@ -1,0 +1,11 @@
+{
+  "repository": "https://github.com/FreeCAD/FreeCAD-library",
+  "revision": "13b72b471f641f4a665644718a4b223ad572edda",
+  "path": "Electronics Parts/Boards/Raspberry/Raspberry Pi 4B/Raspberry Pi 4B.step",
+  "url": "https://raw.githubusercontent.com/FreeCAD/FreeCAD-library/13b72b471f641f4a665644718a4b223ad572edda/Electronics%20Parts/Boards/Raspberry/Raspberry%20Pi%204B/Raspberry%20Pi%204B.step",
+  "author": "integrated-circuit (FreeCAD library contribution ea6158faf2a507d682919e3c9241e9cb1cdb27f5)",
+  "license": "CC-BY-3.0",
+  "sha256": "82c055acbed781e623d8c32acfdec2254400104f2cfa21ddbc2ba0e8b80797da",
+  "changes": "Lossless gzip packaging; derived display meshes are tessellated and rigidly rotated into a Z-up physical coordinate frame. Renderer applies approximate presentation materials, preserving selected source face colors. Not manufacturer-certified mating CAD.",
+  "official_geometry_reference": "https://datasheets.raspberrypi.com/rpi4/raspberry-pi-4-mechanical-drawing.pdf"
+}

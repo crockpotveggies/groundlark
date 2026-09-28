@@ -143,6 +143,7 @@ def source_files(source):
         for pattern in patterns:
             files.extend((source / folder).rglob(pattern))
     files.append(source / "hw/tests/overvoltage.ato")
+    files.append(source / "hw/shared/reference/raspberrypi_hat.kicad_pcb")
     files.append(source / "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.ses")
     files.append(source / "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/verification.json")
     files.append(source / "hw/skylark-usb/boards/skylark-usb/skylark-usb.ses")

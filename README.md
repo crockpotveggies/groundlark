@@ -36,9 +36,10 @@ qualification remain pending. See the [stack assembly guide](docs/stack-assembly
 The JLCPCB package targets one assembled HAT; sourcing, placement and J1 fit
 checks remain open. Fabrication packages stay local in ignored `hw/releases/`.
 
-*4K render: [prototype enclosure](hw/mechanical/daqhat-01-case/README.md), current
-HAT CAD and vendor Trenz model. Clear PETG appearance is approximate; the Pi,
-risers, geophone, plug details and wiring include illustrative geometry.
+*R2 [prototype enclosure](hw/mechanical/daqhat-01-case/README.md), current
+HAT CAD, vendor Trenz components and a detailed
+[Pi 4B model](hw/shared/models/raspberrypi4/README.md) by integrated-circuit / FreeCAD
+community (CC BY 3.0). Clear PETG appearance, risers, geophone and wiring are approximate.
 Physical fit remains unqualified. [Render provenance](docs/images/groundlark-enclosure.json).*
 
 ## Skylark

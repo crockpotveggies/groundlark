@@ -1,5 +1,5 @@
 {
-  "revision": "R1",
+  "revision": "R2",
   "use": "Vented indoor prototype, not weatherproof",
   "outer": [-9, -52, 95, 66],
   "corner_radius": 5,

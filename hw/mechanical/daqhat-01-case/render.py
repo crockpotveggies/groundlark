@@ -3,16 +3,17 @@ import argparse,bpy,math,json,sys,hashlib
 from pathlib import Path
 from mathutils import Matrix,Vector
 ROOT=Path(__file__).resolve().parents[3]
-OUT=ROOT/'hw/releases/groundlark-case-r1'
+OUT=ROOT/'hw/releases/groundlark-case-r2'
 CACHE=ROOT/'.local/case'
 REF=CACHE/'reference'
 config=json.loads(Path(__file__).with_name('parameters.json').read_text())
 levels=json.loads((OUT/'evidence/levels.json').read_text())
 hat_top=levels['hat_top'];cable_z=levels['cable_z']
-stack_rotation=(Matrix.Translation((42.5,28,0))@Matrix.Rotation(math.radians(config['stack_rotation_deg']),4,'Z')
-                @Matrix.Translation((-42.5,-28,0)))
+stack_rotation=(Matrix.Translation((42.5,-28,0))@Matrix.Rotation(math.radians(config['stack_rotation_deg']),4,'Z')
+                @Matrix.Translation((-42.5,28,0)))
+assert stack_rotation.to_3x3().determinant()>0,'Reflected stack transform'
 parser=argparse.ArgumentParser(description=__doc__)
-parser.add_argument('--view',default='all',choices=('all','assembly-open','assembly-closed','assembly-top','cover-top','cover-interior'))
+parser.add_argument('--view',default='all',choices=('all','assembly-open','assembly-closed','assembly-top','assembly-ports','cover-top','cover-interior'))
 parser.add_argument('--material',default='teal',choices=('teal','clear-petg'))
 parser.add_argument('--quality',default='preview',choices=('preview','high'))
 parser.add_argument('--device',default='CPU',choices=('CPU','CUDA','OPTIX'))
@@ -35,6 +36,7 @@ materials={
  'can':mat('Geophone can',(.48,.42,.23),.65,.3),
  'floor':mat('Studio',(.83,.87,.89)),
  'red':mat('Red wire',(.6,.018,.01)),
+ 'gold':mat('Contact gold',(.65,.40,.09),.8,.23),
 }
 if args.material=='clear-petg':
  for name in ('base','cover'):
@@ -56,7 +58,7 @@ if args.material=='clear-petg':
 
 def stl(path,material):
  before=set(bpy.data.objects);bpy.ops.wm.stl_import(filepath=str(path))
- obj=next(o for o in bpy.data.objects if o not in before);obj.data.materials.clear();obj.data.materials.append(materials[material]);return obj
+ obj=next(o for o in bpy.data.objects if o not in before);obj.data.materials.clear();obj.data.materials.append(materials[material]);obj['cad_stl']=True;return obj
 
 def cube(name,lo,hi,material):
  bpy.ops.mesh.primitive_cube_add(size=1,location=tuple((a+b)/2 for a,b in zip(lo,hi)));o=bpy.context.object;o.name=name;o.dimensions=tuple(b-a for a,b in zip(lo,hi));bpy.ops.object.transform_apply(location=False,rotation=False,scale=True);o.data.materials.append(materials[material]);return o
@@ -83,57 +85,100 @@ def wire(name,pts,material,r=.6):
  s=curve.splines.new('BEZIER');s.bezier_points.add(len(pts)-1)
  for p,v in zip(s.bezier_points,pts):p.co=v;p.handle_left_type='AUTO';p.handle_right_type='AUTO'
  o=bpy.data.objects.new(name,curve);bpy.context.collection.objects.link(o);o.data.materials.append(materials[material]);return o
+
+def glb(path,transform):
+ assert transform.to_3x3().determinant()>0,'Physical component import must not mirror'
+ before=set(bpy.data.objects);bpy.ops.import_scene.gltf(filepath=str(path))
+ objects=[o for o in bpy.data.objects if o not in before]
+ world={o:o.matrix_world.copy() for o in objects}
+ for obj in objects:obj.parent=None;obj.matrix_world=transform@world[obj]
+ return objects
+
 base=stl(REF/'base-assembled.stl','base');cover=stl(REF/'cover-assembled.stl','cover')
 stl(REF/'geophone-jaw-assembled.stl','orange');stl(REF/'cable-clamp-assembled.stl','orange')
 for path in REF.glob('reference-*.stl'):
  name=path.stem[10:]
- if name in ('hat','fpga','geophone_terminals','geophone_header','geophone_plug','fpga_heatsink','j83'):continue
+ if name in ('hat','fpga','geophone_terminals','geophone_header','geophone_plug','fpga_heatsink','j83','pi','gpio_stack') or (name.startswith('pi_') and not name.startswith('pi_spacer_')):continue
  material='pcb' if name=='pi' else ('can' if name=='geophone' else 'black' if name=='gpio_stack' else 'metal')
  obj=stl(path,material)
  if name=='geophone':obj['round_sides']=True
-# Missing custom VRML connector bodies are provided as envelope boxes.
+# Physical, right-handed models. Reference STL parts already have the case pose.
 extra_stack_before=set(bpy.data.objects)
-for x,y,w,d in [(55,12,30.2,4.6),(55,44,30.2,4.6),(34,28,4.6,20.2)]:
- cube('Trenz mating connector',(x-w/2,y-d/2,hat_top),(x+w/2,y+d/2,hat_top+4),'black')
+pi_objects=glb(ROOT/'hw/shared/models/raspberrypi4/raspberry-pi-4b.glb',Matrix.Translation((0,0,levels['pi_bottom']+1.7)))
+for obj in pi_objects:
+ if obj.type!='MESH':continue
+ index=int(obj.name.rsplit('-',1)[-1].split('.')[0])
+ # The STEP supplies geometry and a few face colors; neutral faces need
+ # presentation materials. Preserve its PCB mask and connector insulators.
+ kind=('pcb' if index==0 else 'black' if index in (32,39,56,73,74,76,85,87,88)
+       else 'gold' if index in range(40,55) or index in range(57,72) or index in range(77,85) else 'metal')
+ material=materials[kind].copy();material.name=f'Pi4 component {index} {kind}'
+ if index==0 or 9<=index<=29:
+  bs=material.node_tree.nodes.get('Principled BSDF');bs.inputs['Base Color'].default_value=(1,1,1,1)
+  attribute=material.node_tree.nodes.new('ShaderNodeVertexColor');attribute.layer_name=obj.data.color_attributes[0].name
+  material.node_tree.links.new(attribute.outputs['Color'],bs.inputs['Base Color'])
+ obj.data.materials.clear();obj.data.materials.append(material)
+# Two socket risers and the HAT socket: individual contact openings and tails.
+for z,height,label in [(levels['pi_top']+2.54,8.51,'SSQ lower riser'),(levels['pi_top']+11.05,8.51,'SSQ upper riser'),(levels['hat_bottom']-8.5,8.5,'Megastar HAT socket')]:
+ body=cube(label,(6.8,-5.975,z),(58.2,-1.025,z+height),'black')
+ for i in range(20):
+  for y in (-2.23,-4.77):
+   x=8.38+i*2.54
+   cut(body,cube('Contact opening',(x-.65,y-.65,z+height-1.8),(x+.65,y+.65,z+height+.1),'black'))
+   cube('Gold socket contact',(x-.23,y-.23,z+height-1.6),(x+.23,y+.23,z+height-1.2),'gold')
+ edge_highlight(body,.08)
+for x,y,n,vertical in [(55,-12,50,False),(55,-44,50,False),(34,-28,30,True)]:
+ before=set(bpy.data.objects);length=(n-1)*.5+5.7
+ cube('LSHM housing',(x-length/2,y-2.3,hat_top),(x+length/2,y+2.3,hat_top+3.5),'black')
+ cube('LSHM mating channel',(x-length/2+1,y-.65,hat_top+3.5),(x+length/2-1,y+.65,hat_top+4),'black')
+ for i in range(n):
+  xx=x+(i-(n-1)/2)*.5
+  for sign in (-1,1):
+   yy=y+sign*1.95
+   cube('LSHM contact',(xx-.1,yy-.3,hat_top+.1),(xx+.1,yy+.3,hat_top+.45),'gold')
+ if vertical:
+  turn=Matrix.Translation((x,y,0))@Matrix.Rotation(math.pi/2,4,'Z')@Matrix.Translation((-x,-y,0))
+  for obj in set(bpy.data.objects)-before:obj.matrix_world=turn@obj.matrix_world
 # Actual generated HAT model. glTF Y-up becomes Blender Z-up on import.
-before=set(bpy.data.objects);bpy.ops.import_scene.gltf(filepath=str(ROOT/'sw/ui/assets/daqhat-01.glb'))
-new=[o for o in bpy.data.objects if o not in before]
-# Bake original world poses first, then detach hierarchy before global transform.
-world={o:o.matrix_world.copy() for o in new}
-transform=Matrix(((1000,0,0,-50),(0,-1000,0,-50),(0,0,1000,hat_top-1.4684),(0,0,0,1)))
-for o in new:
- o.parent=None;o.matrix_world=transform@world[o]
+transform=Matrix(((1000,0,0,-50),(0,1000,0,50),(0,0,1000,hat_top-1.4684),(0,0,0,1)))
+glb(ROOT/'sw/ui/assets/daqhat-01.glb',transform)
 # Manufacturer TE0712 geometry, individually tessellated and approximately colored.
 for item in json.loads((CACHE/'fpga-bodies.json').read_text()):stl(CACHE/(item['name']+'.stl'),item['color'])
 # Illustrative molded details stay inside the conservative plug fit envelope.
 # They are presentation geometry, not a substitute for manufacturer mating CAD.
-plug=cube('1803581 plug reference',(8.08,58.9,hat_top),(20.3,75,hat_top+11.1),'pcb')
+plug=cube('1803581 plug reference',(8.08,-75,hat_top),(20.3,-58.9,hat_top+11.1),'pcb')
 for x in (10.38,14.19,18):
- cut(plug,cyl('Screw well',(x,69),hat_top+7.9,1.55,3.5,'black'))
- head=cyl('Terminal screw',(x,69),hat_top+7.95,1.3,.75,'metal')
- cut(head,cube('Screw slot',(x-1.4,68.76,hat_top+8.4),(x+1.4,69.24,hat_top+8.9),'black'))
- cut(plug,cube('Wire entry',(x-1.35,71.5,hat_top+1.5),(x+1.35,75.1,hat_top+5.7),'black'))
+ cut(plug,cyl('Screw well',(x,-69),hat_top+7.9,1.55,3.5,'black'))
+ head=cyl('Terminal screw',(x,-69),hat_top+7.95,1.3,.75,'metal')
+ cut(head,cube('Screw slot',(x-1.4,-69.24,hat_top+8.4),(x+1.4,-68.76,hat_top+8.9),'black'))
+ cut(plug,cube('Wire entry',(x-1.35,-75.1,hat_top+1.5),(x+1.35,-71.5,hat_top+5.7),'black'))
 edge_highlight(plug,.12)
 # Reference meshes already have the case pose; place the additional native
 # HAT/vendor meshes and connector bodies using the same physical rotation.
 for obj in set(bpy.data.objects)-extra_stack_before:obj.matrix_world=stack_rotation@obj.matrix_world
 # Bare geophone terminals and wiring are illustrative within the reserved envelope.
-cyl('Geophone top',(42,-25),40.8,12.4,.7,'black')
-for x in (37,47):cyl('Illustrative terminal',(x,-25),41.5,.7,5,'metal')
-wire('Geophone positive',[(37,-25,46),(48,-29,48),(54,-26,cable_z+.5)],'red',.55)
-wire('Geophone negative',[(47,-25,46),(51,-25,47),(54,-26,cable_z-.5)],'black',.55)
-lead=([(54,-26,cable_z),(62,-26,cable_z),(69,-25,cable_z),(70.81,-19,cable_z)] if config['stack_rotation_deg']==180
-      else [(54,-26,cable_z),(70,-35,cable_z),(90,0,cable_z),(90,65,cable_z),(14.19,75,cable_z)])
+cyl('Geophone top',(42,25),40.8,12.4,.7,'black')
+for x in (37,47):
+ cyl('Terminal insulator',(x,25),41.5,1.5,.8,'black')
+ cyl('Geophone terminal',(x,25),41.5,.7,5,'metal')
+wire('Geophone positive',[(37,25,46),(48,29,48),(54,26,cable_z+.5)],'red',.55)
+wire('Geophone negative',[(47,25,46),(51,25,47),(54,26,cable_z-.5)],'black',.55)
+lead=([(54,26,cable_z),(62,26,cable_z),(69,25,cable_z),(70.81,19,cable_z)] if config['stack_rotation_deg']==180
+      else [(54,26,cable_z),(70,35,cable_z),(90,0,cable_z),(90,-65,cable_z),(14.19,-75,cable_z)])
 wire('Shielded lead to J90',lead,'black',1.6)
 # Captive nut/screw representations; not printable components.
-for yy in (-43.2,-6.8):
+for yy in (43.2,6.8):
  o=cyl('M3 geophone screw',(0,0),0,2.75,3,'metal');o.rotation_euler[1]=math.pi/2;o.location=(33.5,yy,19)
-for x,y in [(0,-34),(86,-34),(43,59)]:cyl('Metal leveling contact',(x,y),-5,3.5,5,'metal')
-for y in (-31.2,-20.8):screw('Cable clamp screw',(59,y),cable_z+5)
+for x,y in [(0,34),(86,34),(43,-59)]:cyl('Metal leveling contact',(x,y),-5,3.5,5,'metal')
+for y in (31.2,20.8):screw('Cable clamp screw',(59,y),cable_z+5)
+# Explicitly checked 14 mm power-plug envelope; lead dressing is illustrative.
+if config['stack_rotation_deg']==180:
+ power=cube('USB-C power overmould',(67,2,8.2),(81,31,18.2),'black');edge_highlight(power,.7)
+ wire('USB-C power lead',[(74,31,13.2),(74,47,13.2),(76,63,11),(87,72,8)],'black',2)
 # Render settings.
 # Preserve planar CAD faces; smooth STL normals create swollen edges and waves.
 for obj in bpy.context.scene.objects:
- if obj.type=='MESH':
+ if obj.type=='MESH' and (obj.get('cad_stl') or obj.get('round_sides')):
   for face in obj.data.polygons:face.use_smooth=bool(obj.get('round_sides') and abs(face.normal.z)<.5)
 scene=bpy.context.scene;scene.render.engine='CYCLES';scene.cycles.samples=40;scene.cycles.use_denoising=True
 if args.material=='clear-petg':
@@ -169,6 +214,8 @@ def render(name,pos,target,scale):
  inputs=[Path(__file__),Path(__file__).with_name('parameters.json'),Path(__file__).with_name('case.py'),
          Path(__file__).with_name('prepare_preview.py'),ROOT/'sw/ui/assets/daqhat-01.glb',
          ROOT/'sw/ui/assets/provenance.json',ROOT/'hw/shared/models/trenz/STP-TE0712-03-No Variations.step',
+         ROOT/'hw/shared/models/raspberrypi4/raspberry-pi-4b.glb',ROOT/'hw/shared/models/raspberrypi4/provenance.json',
+         ROOT/'hw/shared/models/raspberrypi4/mesh-provenance.json',Path(__file__).with_name('prepare_components.py'),
          ROOT/'hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb',
          OUT/'evidence/levels.json',CACHE/'fpga-bodies.json',*sorted(REF.glob('*.stl'))]
  inputs += [CACHE/(item['name']+'.stl') for item in json.loads((CACHE/'fpga-bodies.json').read_text())]
@@ -178,14 +225,19 @@ def render(name,pos,target,scale):
      material=args.material,view=Path(name).stem,camera=dict(position=pos,target=target,orthographic_scale=scale),
      image_sha256=digest(Path(scene.render.filepath)),
      source_sha256={p.relative_to(ROOT).as_posix():digest(p) for p in inputs},
-     scope='Authored enclosure CAD, native routed HAT and manufacturer Trenz STEP. Pi, risers, geophone, plug details, fasteners and wires include simplified reference geometry.',
+     scope='R2 physical enclosure CAD, native routed HAT, manufacturer Trenz STEP and detailed attributed Pi 4 component CAD. Risers include individual contact cavities; cable plugs, geophone terminals and fasteners remain authored reference geometry.',
+     handedness=dict(physical_frame='Z up, board Y down converted once to physical -Y',hat_import_determinant=transform.to_3x3().determinant(),stack_rotation_determinant=stack_rotation.to_3x3().determinant()),
+     attribution='Pi 4B model: integrated-circuit / FreeCAD community library, CC-BY-3.0; see hw/shared/models/raspberrypi4/provenance.json. Trenz geometry: Trenz Electronic. KiCad component library attribution retained.',
      limitations='Clear PETG is an approximate unpolished FDM material. Plug details and lead dressing are illustrative. Physical fit and print transparency remain unqualified.')
  Path(scene.render.filepath).with_suffix('.json').write_text(json.dumps(provenance,indent=2)+'\n')
-cover.location.x=125
-render('assembly-open.png',(295,-300,270),(104,4,29),320)
-render('assembly-top.png',(104,7,350),(104,7,0),285)
+cover.location.x=-125
+render('assembly-open.png',(-230,300,250),(-33,-4,29),320)
+render('assembly-top.png',(-20,-7,350),(-20,-7,0),285)
+cover.hide_render=True
+render('assembly-ports.png',(-170,205,150),(42,-8,27),185)
+cover.hide_render=False
 cover.location.x=0
-render('assembly-closed.png',(225,260,205),(42,6,37),235)
+render('assembly-closed.png',(-175,240,205),(42,-6,37),235)
 # Save an interactive assembly model without studio elements/lights/camera.
 for o in bpy.context.selected_objects:o.select_set(False)
 for o in scene.objects:
@@ -196,7 +248,7 @@ if not args.skip_glb:
 # A lid-only top view makes the mark and the space between vents easy to inspect.
 for obj in scene.objects:
  if obj.type in ('MESH','CURVE') and obj!=cover and obj.name!='Studio floor':obj.hide_render=True
-render('cover-top.png',(43,7,300),(43,7,0),180)
-cover.matrix_world=Matrix.Translation((0,14,75))@Matrix.Rotation(math.pi,4,'X')
-render('cover-interior.png',(230,-250,280),(43,7,35),235)
-print('Rendered CAD views and exported interactive assembly')
+render('cover-top.png',(43,-7,300),(43,-7,0),180)
+cover.matrix_world=Matrix.Translation((0,-14,75))@Matrix.Rotation(math.pi,4,'X')
+render('cover-interior.png',(230,250,280),(43,-7,35),235)
+print('Rendered physical CAD views'+('' if args.skip_glb else ' and exported interactive assembly'))

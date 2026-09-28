@@ -22,6 +22,9 @@ The geophone plug has 9.20 mm calculated lateral clearance to the module after
 12 mm withdrawal stroke beyond the plug and clamp its shielded twisted pair
 beside that corridor. The enclosure rotates the stack 180° so entry faces the
 adjacent geophone. Release the cable clamp before unplugging.
+Use the [R2 enclosure](../hw/mechanical/daqhat-01-case/README.md). Its Pi USB-C
+and HDMI side faces the geophone bay, opposite GPIO; the adjacent wall admits
+USB-A plugs. R1 printable geometry is superseded because it was mirrored.
 The geophone remains external, vertical and mechanically coupled to the ground.
 
 J1 uses the JLCPCB-selected 8.5 mm-body socket. Two external SSQ risers restore

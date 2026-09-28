@@ -953,7 +953,10 @@
     "physical_hardware_connected": false
   },
   "enclosure": {
-    "tests": 11,
+    "revision": "R2",
+    "checked_utc": "2026-09-28T16:48:26.959873+00:00",
+    "tests": 14,
+    "supersedes": "R1 fit report: mirrored physical geometry was not detected by its envelope tests. Use R2 printable parts.",
     "fit": {
       "component_intersections_checked": 108,
       "collisions": 0,
@@ -976,6 +979,12 @@
       "geophone_terminal_clearance_to_roof_mm": 21,
       "fpga_heatsink_to_roof_mm": 6.580000000000002,
       "stack_rotation_deg": 180,
+      "physical_basis": "Right-handed Z-up; native board (x,y) maps to (x,-y) before physical rotation",
+      "pi_usb_c_overmould_envelope_mm": [
+        14,
+        30,
+        10
+      ],
       "cable_routing": "Pi power/HDMI/audio face the geophone bay; lid-off connection and routed leads required. Cable/plug fit remains unqualified.",
       "scope": "CAD envelopes and mesh validity only; not first-print fit, thermal, stiffness, or noise qualification",
       "meshes": {
@@ -987,9 +996,9 @@
             118.0,
             44.86000061035156
           ],
-          "volume_cm3": 73.22386776989289,
+          "volume_cm3": 73.22386871598377,
           "triangles": 12854,
-          "sha256": "02da7fe06e93baca3f8c963b1c2413d5a2db0c5632d33465da85c29d6037bba5"
+          "sha256": "152502f9294b39683742dc39ecb8f23a2a49d26c2386216476650d0392216c28"
         },
         "cover": {
           "watertight": true,
@@ -999,9 +1008,9 @@
             118.0,
             70.0
           ],
-          "volume_cm3": 118.20454808834545,
+          "volume_cm3": 118.20454813924287,
           "triangles": 9148,
-          "sha256": "7a013dd1979273a2c24899b08b5feb0145be2fdc38e6d5eeab0903319332fcc4"
+          "sha256": "5e9437d148fdd71f50bd7cd8d14b950182f73029d3372e27f1636e6900d54edc"
         },
         "geophone-jaw": {
           "watertight": true,
@@ -1011,9 +1020,9 @@
             45.599998474121094,
             22.0
           ],
-          "volume_cm3": 5.422974307080683,
+          "volume_cm3": 5.422974308412822,
           "triangles": 1228,
-          "sha256": "f158cccb76928300bc0bb40d0624abdb31aecef4b05e5e42430adf8c554bb2a8"
+          "sha256": "2b23d986cd4a262a02b36f02ad9271a79910a4f37cd02aef8231539f5d1d9192"
         },
         "cable-clamp": {
           "watertight": true,
@@ -1023,33 +1032,113 @@
             20.0,
             5.0
           ],
-          "volume_cm3": 0.6708001680159017,
+          "volume_cm3": 0.6708001680159015,
           "triangles": 1076,
-          "sha256": "9a72f30e44b26fd954d6d93beee762d06a8d0cde5baa18558dff70ca1ffc89c7"
+          "sha256": "dfa3021a84143cb8f7ff7a56466f311b9c4c9eedacfbe3e5f5b15245c12b27ac"
         },
         "fit-coupon": {
           "watertight": true,
           "connected_solids": 1,
           "print_bounds_mm": [
             32.79999653991217,
-            32.785316467285156,
+            32.785316480789334,
             6.0
           ],
-          "volume_cm3": 1.9587326177477782,
+          "volume_cm3": 1.9587326065468136,
           "triangles": 840,
-          "sha256": "272f9f6d9e5f7c977f6fda9545bbe4c7d8637f5acb24d328d8c4ce34ee746363"
+          "sha256": "9ac26ddc23137fff657d936fd33352904de863b567a4ef1b4c97d6570d4ae37a"
         }
       },
       "sources_sha256": {
-        "hw/mechanical/daqhat-01-case/parameters.json": "e57677a5940528b227f92e4b0a42a81766e17ff3e58c14a4317d50ae64a6631f",
-        "hw/mechanical/daqhat-01-case/case.py": "1c01f38070e7dba80fd3697cacabcec9a4cef7013f0203b2ec3f910b247ffddd",
-        "hw/mechanical/daqhat-01-case/check.py": "b5d48b3980600674a54f2ad55eab01a26384a0754861418505f64e65a2f505d8",
+        "hw/mechanical/daqhat-01-case/parameters.json": "9f598b56cb2ca4e1d25a4e62dabdeefe55179d68933f81a7d611337b827c5268",
+        "hw/mechanical/daqhat-01-case/case.py": "631198fdd0dd747bf437aaf3dfbc62c23bff72dd7dd2c9eec5a18d03421aea13",
+        "hw/mechanical/daqhat-01-case/check.py": "420933e921cc806e78ac43b5ea248ebcb7958fe1cdbe140ef50ee1291beb525f",
         "hw/shared/libraries/Groundlark.pretty/Logo_Groundlark_7mm.kicad_mod": "7067044920c0d162302b76827c228ac202a1ab8ca0fda08dcddc9bc97bbd3aba",
         "hw/groundlark-fpga-hat/layout/placement.json": "33b6e5d0af746fc92ae97bf698d8fe139720f408f962b980f59c97b55d45942d",
         "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb": "f38fe5639bf945651ccd15772d256469d09ba54737eb4cf202fd098ca177bffa",
         "hw/tools/assembly_fit.py": "6aba2cb54aad8950078809d14238779e785908ff9a4aa9e3795d92a4a92ef1f4"
       }
-    }
+    },
+    "detailed_pi_fit": {
+      "components": 89,
+      "component_intersections_checked": 356,
+      "collisions": [],
+      "source_sha256": "82c055acbed781e623d8c32acfdec2254400104f2cfa21ddbc2ba0e8b80797da",
+      "model_pcb_thickness_mm": 1.8000000000000058,
+      "placement": "Model underside seated on Pi supports; community CAD retains 1.8 mm PCB thickness versus nominal 1.6 mm.",
+      "check_sha256": "07cb990a8f9bcaa5560e95719b803702229b1890166fc4443d79ca64f8abdf9b",
+      "scope": "Detailed community Pi CAD versus printed parts; independent official outline and USB-C landmark. Physical fit remains pending."
+    },
+    "pcb_handedness": {
+      "physical_qualification": false,
+      "Pi_template_sha256": "7f0c4e3311cdff0695a119a4e4ee7f6884a13374cb51b59d74fefa72cc8326fd",
+      "boards": {
+        "groundlark-daqhat-01": {
+          "source_sha256": "f38fe5639bf945651ccd15772d256469d09ba54737eb4cf202fd098ca177bffa",
+          "pi_numbered_positions": 40,
+          "pi_power_and_ground_contacts": 12,
+          "odd_row": "board interior",
+          "even_row": "board edge",
+          "Trenz": {
+            "module_gpio_checks": 158,
+            "module_contact_checks": 260,
+            "internal_user_gpio": 9,
+            "unused_user_gpio": 149,
+            "exposed_gpio": 0,
+            "host_link_pin_checks": 143,
+            "gpio_voltage_v": 3.3
+          },
+          "geophone_pin_checks": 51,
+          "J90_numbered_geometry": 3,
+          "supplier_numbered_placements": 117,
+          "assembly_sides": {
+            "J1": "Bottom",
+            "J80": "Top",
+            "J81": "Top",
+            "J82": "Top",
+            "J90": "Top"
+          },
+          "J1_convention": "Through-hole footprint drawn on front in native CAD; selected socket body and assembly CPL explicitly below PCB. Board-view hole numbers are retained."
+        },
+        "groundlark-hat": {
+          "source_sha256": "41c3649fcdfc774af25df2f9131777a63cd0af8cb3ec46c5a9e17504b6427629",
+          "pi_numbered_positions": 40,
+          "pi_power_and_ground_contacts": 12,
+          "odd_row": "board interior",
+          "even_row": "board edge"
+        }
+      },
+      "status": "PASS: native header handedness, power/ground, module contacts and supplier-side mappings"
+    },
+    "native_pcb_and_ses_unchanged": {
+      "hw/burrowlark-usb/boards/groundlark-field-head/groundlark-field-head.kicad_pcb": "56483c90fa40cb02472c4972e45f46f1de0739192ae1bb82ac097a14f53de089",
+      "hw/groundlark-coldfoot-hat/boards/groundlark-hat/groundlark-hat.kicad_pcb": "41c3649fcdfc774af25df2f9131777a63cd0af8cb3ec46c5a9e17504b6427629",
+      "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb": "f38fe5639bf945651ccd15772d256469d09ba54737eb4cf202fd098ca177bffa",
+      "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/pi-trenz-stack-concept.kicad_pcb": "bf5317875fe7850c8f7eca21e97d30e3f0333dcdd3edb2c86b5dad50303f66ef",
+      "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/stack-exploded.kicad_pcb": "2f0e2b8b88ea87f28daa2ed07fabcdd44e0d9201520876d157599a17c721b00e",
+      "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/stack-service-envelopes.kicad_pcb": "f447657ee810a64428e29f71562e36f47fa0b41ce3a299a91b4e3407eba401a4",
+      "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/trenz-mounted.kicad_pcb": "f4097008c67eb04461e46ce3ca56107adc35b417a1499773d8a5c164f682b683",
+      "hw/skylark-usb/boards/skylark-usb/skylark-usb.kicad_pcb": "bfa58003a346f6454bdcfdcf4ad01654abfebd976d4ce237782c48fdefd3d896",
+      "hw/burrowlark-usb/boards/groundlark-field-head/groundlark-field-head.ses": "3abccb819f79b741a6d9dfd17cc84e607550282086d8996066428ed645a501d1",
+      "hw/groundlark-coldfoot-hat/boards/groundlark-hat/groundlark-hat.ses": "5a648501921bcd22974a5566492ea95fff03c2a02964316ec7a6ba67f01e9794",
+      "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.ses": "5e448db4213de1cac25b074143be63b64932fb04e0f5b9a924c37050e53b100e",
+      "hw/skylark-usb/boards/skylark-usb/skylark-usb.ses": "c03502d4b5b5521eb392b4b68870f5258edc5db01dbc6666205aea2102d6c1d1",
+      "hw/burrowlark-usb/layout/field_head/field_head.kicad_pcb": "6640dd7a8c38b335f88858b9ea94871de3bdbb33606a16442ad8eea4f366a01e",
+      "hw/groundlark-coldfoot-hat/layout/hat/hat.kicad_pcb": "c4fa0bee36fd79bdf1e721d07aab12467c94ce9d3fa4aaff609698c24315741e",
+      "hw/groundlark-fpga-hat/layout/trenz_hat/trenz_hat.kicad_pcb": "9b2de62f6d6f8db443d1a2024647e32e7dfb39496733b36886d17dae4411c5cc",
+      "hw/skylark-usb/layout/skylark/skylark.kicad_pcb": "3118b421fb1b3624aa2fe7f0ec57b73a0ca05eff53b74beadf5b2c9427afef98"
+    },
+    "scope": "Mechanical correction and read-only PCB audit. Electrical fabrication inputs unchanged. Physical assembly qualification remains pending.",
+    "git_source_sha256": {
+      "hw/mechanical/daqhat-01-case/parameters.json": "f82e5ec6a252a124069145cfa403cd41ec1fcf7502594d8fe517b3fc71cb0ddc",
+      "hw/mechanical/daqhat-01-case/case.py": "631198fdd0dd747bf437aaf3dfbc62c23bff72dd7dd2c9eec5a18d03421aea13",
+      "hw/mechanical/daqhat-01-case/check.py": "420933e921cc806e78ac43b5ea248ebcb7958fe1cdbe140ef50ee1291beb525f",
+      "hw/shared/libraries/Groundlark.pretty/Logo_Groundlark_7mm.kicad_mod": "7067044920c0d162302b76827c228ac202a1ab8ca0fda08dcddc9bc97bbd3aba",
+      "hw/groundlark-fpga-hat/layout/placement.json": "b6966d5422af2c3b401c4a032d48da201632b9e2993f2d1a75cadd52529ed01b",
+      "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb": "48533684ef4aa121f3e770630ce970668981d39c85e20b8e0f8fa8ca311aa00a",
+      "hw/tools/assembly_fit.py": "6aba2cb54aad8950078809d14238779e785908ff9a4aa9e3795d92a4a92ef1f4"
+    },
+    "source_binding_note": "Embedded fit/audit reports retain exact tested working-tree hashes. git_source_sha256 binds the same mechanical inputs after Git CRLF-to-LF normalization. Existing electrical validation and normalization records are preserved."
   },
   "assembly": {
     "mapped_placements": 117,
