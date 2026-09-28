@@ -15,8 +15,12 @@ The bare element is 25.4 mm diameter × 33 mm high. Its ground-coupled external
 mount must hold it vertically; HAT leveling does not establish the leveling of
 a separately mounted geophone.
 
-J90 is Phoenix Contact **1803439**, MCV 1,5/3-G-3,81. Use a matching
-MC 1,5/3-ST-3,81 cable plug. Pin 1 is GEO+, pin 2 GEO−, pin 3 cable shield/GND.
+J90 is horizontal Phoenix Contact **1803280**, MC 1,5/3-G-3,81. Use the matching
+**1803581**, MC 1,5/3-ST-3,81 cable plug. Pin 1 is GEO+, pin 2 GEO−, pin 3 cable shield/GND.
+The mouth faces native board +Y, parallel to the PCB. The original three holes
+are retained; numbered pad polarity is preserved by the revised local routing.
+The 7.25 mm installed header height excludes the mating plug. Reserve a 12 mm
+horizontal withdrawal stroke and release the cable clamp before unplugging.
 The two coil wires float relative to ground and require no external power.
 Use a shielded twisted pair; terminate its shield at J90, not a coil terminal.
 This connector is incompatible in purpose with J83's external FPGA supply.
@@ -108,4 +112,4 @@ sequence and physical cable/stack fit. Blank physical evidence never passes.
 - [Racotech sensor datasheet](https://raspberryshake.org/wp-content/uploads/2020/05/racotech-geophone-datasheet.pdf).
 - [TI ADS122C04 datasheet, SBAS751B](https://www.ti.com/lit/ds/symlink/ads122c04.pdf): PW pin map, PGA common-mode, noise table 1, registers and input filtering.
 - [TI TPD2E2U06 datasheet](https://www.ti.com/lit/ds/symlink/tpd2e2u06.pdf): DCK pin map and ESD characteristics.
-- [Phoenix Contact 1803439](https://www.phoenixcontact.com/en-us/products/pcb-header-mcv-15-3-g-381-1803439).
+- [Phoenix Contact 1803280](https://www.phoenixcontact.com/en-us/products/pcb-header-mc-15-3-g-381-1803280).

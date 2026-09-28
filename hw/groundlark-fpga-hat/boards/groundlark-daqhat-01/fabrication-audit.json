@@ -1,5 +1,5 @@
 {
-  "source_sha256": "eadf8f443cd24c3c2adca5efacf38881b92fc353d0a2a4de8e09233277fd3800",
+  "source_sha256": "f38fe5639bf945651ccd15772d256469d09ba54737eb4cf202fd098ca177bffa",
   "copper_layers": 6,
   "stack_copper_layers": [
     "F.Cu",
@@ -19,10 +19,10 @@
     "In4.Cu"
   ],
   "tracks_by_layer": {
-    "F.Cu": 3257,
+    "F.Cu": 3255,
     "In2.Cu": 2226,
     "In3.Cu": 2276,
-    "B.Cu": 2510
+    "B.Cu": 2512
   },
   "vias": [
     {
@@ -2777,6 +2777,15 @@
         "B.Cu"
       ],
       "drill_mm": 0.3,
+      "pad_mm": 0.6
+    },
+    {
+      "type": "through",
+      "span": [
+        "F.Cu",
+        "B.Cu"
+      ],
+      "drill_mm": 0.3,
       "pad_mm": 0.45
     },
     {
@@ -3246,6 +3255,15 @@
       ],
       "drill_mm": 0.3,
       "pad_mm": 0.45
+    },
+    {
+      "type": "through",
+      "span": [
+        "F.Cu",
+        "B.Cu"
+      ],
+      "drill_mm": 0.3,
+      "pad_mm": 0.6
     },
     {
       "type": "through",

@@ -10,6 +10,8 @@ See the [host-link circuit and bring-up guide](fpga-host-link.md). Pi 4 initiall
 uses SPI6; native quad transfers are not supported by its controller.
 
 An external Racotech vertical geophone uses an ADS122C04 input; GNSS is not fitted.
+Its Phoenix 1803280 J90 header opens parallel to the PCB toward the geophone;
+the 1803581 cable plug retains positive, negative and shield pin order.
 See the [geophone circuit and acquisition](geophone-input.md).
 
 DAQHAT-01 is an **85 × 56 mm, six-layer FR-4** alternative to the A2 Coldfoot ASIC HAT.

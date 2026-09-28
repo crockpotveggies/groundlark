@@ -1,7 +1,7 @@
 {
   "scope": "pre-fab engineering review; no physical qualification",
   "disposition": "analog and internal-link stack reviewed; physical power/noise/fit and link throughput remain unqualified",
-  "board_sha256": "eadf8f443cd24c3c2adca5efacf38881b92fc353d0a2a4de8e09233277fd3800",
+  "board_sha256": "f38fe5639bf945651ccd15772d256469d09ba54737eb4cf202fd098ca177bffa",
   "physical_pin_checks": 51,
   "purchasing_package_checks": 18,
   "analog": {
@@ -166,7 +166,7 @@
           "D90",
           "1"
         ],
-        "xy_copper_length_mm": 1.7677683671799314
+        "xy_copper_length_mm": 3.9568335308269535
       },
       {
         "start": [
@@ -177,16 +177,16 @@
           "D90",
           "2"
         ],
-        "xy_copper_length_mm": 1.7819076743765376
+        "xy_copper_length_mm": 4.30600123270216
       }
     ],
     "findings": [],
     "analog_reference_plane_samples": {
       "GEO_P": {
-        "samples": 104,
+        "samples": 156,
         "over_ground_by_plane": {
-          "In1.Cu": 56,
-          "In4.Cu": 56
+          "In1.Cu": 120,
+          "In4.Cu": 120
         },
         "signal_layers": [
           "B.Cu",
@@ -194,10 +194,10 @@
         ]
       },
       "GEO_N": {
-        "samples": 179,
+        "samples": 236,
         "over_ground_by_plane": {
-          "In1.Cu": 129,
-          "In4.Cu": 129
+          "In1.Cu": 199,
+          "In4.Cu": 199
         },
         "signal_layers": [
           "B.Cu",
@@ -207,8 +207,8 @@
       "GEO_AIN_P": {
         "samples": 285,
         "over_ground_by_plane": {
-          "In1.Cu": 265,
-          "In4.Cu": 265
+          "In1.Cu": 269,
+          "In4.Cu": 269
         },
         "signal_layers": [
           "F.Cu",
@@ -218,8 +218,8 @@
       "GEO_AIN_N": {
         "samples": 219,
         "over_ground_by_plane": {
-          "In1.Cu": 189,
-          "In4.Cu": 189
+          "In1.Cu": 194,
+          "In4.Cu": 194
         },
         "signal_layers": [
           "F.Cu",
@@ -230,19 +230,21 @@
     "connectors": {
       "J90": {
         "courtyard_mm": [
-          7.280000000000001,
-          47.400000000000006,
+          7.170000000000002,
+          48.599999999999994,
           21.099999999999994,
-          55.650000000000006
+          59.400000000000006
         ],
-        "module_xy_separation_mm": 8.900000000000006,
-        "header_installed_height_mm": 9.2,
+        "module_xy_separation_mm": 8.92020179143948,
+        "header_mpn": "1803280",
+        "header_installed_height_mm": 7.25,
         "plug_mpn": "1803581",
         "plug_dimensions_mm": [
           12.22,
           16.1,
           11.1
         ],
+        "mating_axis": "+Y, parallel to PCB",
         "cable_service_envelope_verified": false
       },
       "J83": {
@@ -266,7 +268,7 @@
       },
       {
         "reference": "D90",
-        "nearest_ground_via_mm": 0.910442
+        "nearest_ground_via_mm": 0.802438
       }
     ],
     "selected_assembly": {
@@ -318,9 +320,6 @@
         "J80_tail_101_69.975,45.15": 8.86,
         "JP81_tail_1_75.0,52.0": 8.86,
         "JP81_tail_2_77.54,52.0": 8.86,
-        "J90_tail_1_18.0,50.9": 11.559999999999999,
-        "J90_tail_2_14.19,50.9": 11.559999999999999,
-        "J90_tail_3_10.38,50.9": 11.559999999999999,
         "J82_tail_61_35.15,37.975": 11.559999999999999,
         "J82_tail_61_35.15,18.025": 11.559999999999999,
         "J81_tail_101_40.025,13.15": 11.559999999999999,
@@ -331,6 +330,9 @@
         "J4_tail_2_82.5,39.54": 8.86,
         "J4_tail_3_82.5,42.08": 8.86,
         "J4_tail_4_82.5,44.62": 8.86,
+        "J90_tail_1_10.38,50.9": 11.559999999999999,
+        "J90_tail_2_14.19,50.9": 11.559999999999999,
+        "J90_tail_3_18.0,50.9": 11.559999999999999,
         "J83_tail_1_4.7,12.0": 14.999999999999996,
         "J83_tail_2_4.7,17.08": 14.999999999999996,
         "JP1_tail_1_23.0,53.0": 14.149999999999999,

@@ -302,28 +302,28 @@
       "pad_aliases": {}
     },
     {
-      "lcsc": "C480525",
-      "mpn": "1803439",
+      "lcsc": "C480530",
+      "mpn": "1803280",
       "designators": [
         "J90"
       ],
       "source_footprints": [
-        "Connector_Phoenix_MC__PhoenixContact_MCV_1,5_3-G-3.81_1x03_P3.81mm_Vertical"
+        "Connector_Phoenix_MC__PhoenixContact_MC_1,5_3-G-3.81_1x03_P3.81mm_Horizontal"
       ],
-      "evidence_url": "https://easyeda.com/api/products/C480525/components",
-      "checked_on": "2026-09-26",
-      "response_sha256": "3b4eb341ab2298c16bd7c59643da8e0508da980de39e7e09e4aa90b3106b2d10",
-      "footprint_uuid": "790263b4db5048cc9cdacc3715a7fdf6",
-      "footprint_title": "CONN-TH_1803439",
-      "footprint_updated": 1613813638,
+      "evidence_url": "https://easyeda.com/api/products/C480530/components",
+      "checked_on": "2026-09-28",
+      "response_sha256": "ed58ed889c65ec05249ecbff07164041b5bfc85672394955a5638c98eb9d05a4",
+      "footprint_uuid": "e689c9d798204576a8e07719dc27f5b6",
+      "footprint_title": "CONN-TH_1803280",
+      "footprint_updated": 1613813462,
       "origin_easyeda": [
         4015,
         3000
       ],
       "pad_shapes": [
-        "PAD~RECT~4000~3000~9.8425~9.8425~11~~1~2.9528~3995.0787 2995.0787 4004.9213 2995.0787 4004.9213 3004.9213 3995.0787 3004.9213~0~gge5~0~~Y~0~0~0.2~4000,3000",
-        "PAD~ELLIPSE~4015~3000~9.8425~9.8425~11~~2~2.9528~~0~gge11~0~~Y~0~0~0.2~4015,3000",
-        "PAD~ELLIPSE~4030~3000~9.8425~9.8425~11~~3~2.9528~~0~gge16~0~~Y~0~0~0.2~4030,3000"
+        "PAD~ELLIPSE~4030~3000~9.8425~9.8425~11~~3~2.9528~~0~gge26~0~~Y~0~0~0.2~4030,3000",
+        "PAD~ELLIPSE~4015~3000~9.8425~9.8425~11~~2~2.9528~~0~gge27~0~~Y~0~0~0.2~4015,3000",
+        "PAD~RECT~4000~3000~9.8425~9.8425~11~~1~2.9528~3995.0787 2995.0787 4004.9213 2995.0787 4004.9213 3004.9213 3995.0787 3004.9213~0~gge28~0~~Y~0~0~0.2~4000,3000"
       ],
       "pad_aliases": {}
     },

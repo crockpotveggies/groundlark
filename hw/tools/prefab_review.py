@@ -131,8 +131,13 @@ def geometry_review(board):
         coverage[net]=dict(samples=samples,over_ground_by_plane=hits,signal_layers=sorted(layers))
     module=[30,8,80,48]
     fit={ref:dict(courtyard_mm=courtyard(ref),module_xy_separation_mm=separation(courtyard(ref),module)) for ref in ('J90','J83')}
-    fit['J90'].update(header_installed_height_mm=9.2,plug_mpn='1803581',
+    from geophone_checks import verify_connector
+    connector=fps['J90']
+    verify_connector({q.GetNumber():(*xy(q.GetPosition()),p.ToMM(q.GetDrillSize().x)) for q in connector.Pads()},
+                     (connector.GetOrientationDegrees(),connector.IsFlipped()),str(connector.GetFPID().GetLibItemName()))
+    fit['J90'].update(header_mpn='1803280',header_installed_height_mm=7.25,plug_mpn='1803581',
                       plug_dimensions_mm=[12.22,16.1,11.1],
+                      mating_axis='+Y, parallel to PCB',
                       cable_service_envelope_verified=False)
     drill=[p.ToMM(q.GetDrillSize().x) for q in fps['J90'].Pads()]
     assert drill==[1.2]*3,drill
@@ -189,7 +194,7 @@ def main():
     rows={r['Reference']:r for r in csv.DictReader((BOARD/'bom.csv').open())}
     packages={'U22':('ADS122C04IPWR','Package_SO__TSSOP-16_4.4x5mm_P0.65mm'),
               'D90':('TPD2E2U06DCKR','Package_TO_SOT_SMD__SOT-323_SC-70'),
-              'J90':('1803439','Connector_Phoenix_MC__PhoenixContact_MCV_1,5_3-G-3.81_1x03_P3.81mm_Vertical'),
+              'J90':('1803280','Connector_Phoenix_MC__PhoenixContact_MC_1,5_3-G-3.81_1x03_P3.81mm_Horizontal'),
               'C90':('C3216C0G1H104J160AA','Capacitor_SMD__C_1206_3216Metric'),
               'C91':('C0603C102J5GACTU','Capacitor_SMD__C_0603_1608Metric'),
               'C92':('C0603C102J5GACTU','Capacitor_SMD__C_0603_1608Metric')}

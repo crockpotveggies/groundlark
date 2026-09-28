@@ -46,7 +46,8 @@ board. The placement coordinates themselves are unchanged.
 `provenance.json` pins the PCB, placements and display asset. Update its SHA-256
 values only after re-export and alignment review. For a path-only relocation,
 retain the previous hashes and verify unchanged normalized CAD, placement data,
-model bytes and display assets before refreshing their bindings. The current asset was re-exported for the supply-layout revision. Startup fails on stale inputs.
+model bytes and display assets before refreshing their bindings. The current asset was re-exported for the horizontal J90 connector and relocated
+D90 protection diode. The lead approaches the header parallel to the PCB. Startup fails on stale inputs.
 Stock KiCad component geometry retains its upstream attribution/license; see
 [KiCad's library licensing](https://www.kicad.org/libraries/license/).
 

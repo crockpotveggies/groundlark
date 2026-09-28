@@ -74,7 +74,9 @@ write('Pi4_stack_concept',pi);add(b,'MODEL_PI4','${KIPRJMOD}/../../../shared/mod
 save_board(str(F/'pi-trenz-stack-concept.kicad_pcb'),b)
 # Separate service-envelope view: bounding volumes, not exact mated solids.
 # The ordinary stack remains uncluttered and does not imply flex fit approval.
-service=box(14.19,-50.9,9.2+11.1/2,12.22,16.1,11.1,'0.12 0.5 0.23')
+# Conservative plug envelope starts at the header mouth; no insertion overlap
+# is credited without a supplier mated solid. Cables leave toward board +Y.
+service=box(14.19,-(58.9+16.1/2),11.1/2,12.22,16.1,11.1,'0.12 0.5 0.23')
 write('DAQHAT_01_service_envelopes',service)
 add(b,'MODEL_SERVICE','${KIPRJMOD}/../../../shared/models/DAQHAT_01_service_envelopes.wrl',(50,50))
 save_board(str(F/'stack-service-envelopes.kicad_pcb'),b)

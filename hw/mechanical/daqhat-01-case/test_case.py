@@ -28,8 +28,11 @@ class CaseTests(unittest.TestCase):
         with self.assertRaisesRegex(AssertionError,'bearing seat'):
             validate(self.c,parts,self.refs,self.levels)
 
-    def test_closed_usb_opening_rejected(self):
-        parts=dict(self.parts);parts['cover']=parts['cover'].union(box(91,1,17,95,56,31))
+    def test_obstructed_usb_opening_rejected(self):
+        parts=dict(self.parts)
+        # A tab hangs into the plug envelope from the wall above the opening.
+        wall=box(-8,22,25,-7,30,31) if self.c['stack_rotation_deg']==180 else box(91,1,17,95,56,31)
+        parts['cover']=parts['cover'].union(wall)
         with self.assertRaisesRegex(AssertionError,'service access'):
             validate(self.c,parts,self.refs,self.levels)
 
@@ -47,5 +50,23 @@ class CaseTests(unittest.TestCase):
         c=copy.deepcopy(self.c);c['geophone_diametral_clearance']=0
         with self.assertRaisesRegex(AssertionError,'tolerance'):
             validate(c,self.parts,self.refs,self.levels)
+
+    def test_blocked_rotated_mount_rejected(self):
+        parts=dict(self.parts)
+        parts['base']=parts['base'].union(cylinder(81.5,52.5,0,1.4,10))
+        with self.assertRaisesRegex(AssertionError,'mounting bore'):
+            validate(self.c,parts,self.refs,self.levels)
+
+    def test_connector_on_wrong_side_rejected(self):
+        refs=dict(self.refs)
+        refs['geophone_plug']=box(8,43,41,21,59,61)
+        with self.assertRaisesRegex(AssertionError,'connector must face'):
+            validate(self.c,self.parts,refs,self.levels)
+
+    def test_blocked_horizontal_connector_withdrawal_rejected(self):
+        parts=dict(self.parts)
+        parts['base']=parts['base'].union(box(70,-30,0,72,-28,49))
+        with self.assertRaisesRegex(AssertionError,'withdrawal blocked'):
+            validate(self.c,parts,self.refs,self.levels)
 
 if __name__=='__main__':unittest.main()

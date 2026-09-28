@@ -11,6 +11,7 @@ import math
 from pathlib import Path
 import subprocess
 import pcbnew as p
+from assembly_fit import PI_TOP
 
 ROOT=Path(__file__).resolve().parents[2]
 SOURCE=ROOT/'hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/pi-trenz-stack-concept.kicad_pcb'
@@ -47,7 +48,7 @@ def main():
     model_dir=ROOT/'hw/shared/models'
     inputs=[SOURCE,native,ROOT/'hw/groundlark-fpga-hat/layout/placement.json',Path(__file__),
             model_dir/'trenz/STP-TE0712-03-No Variations.step',
-            model_dir/'Pi4_stack_concept.wrl',model_dir/'Pi_ESQ_120_23.wrl',
+            model_dir/'Pi4_stack_concept.wrl',model_dir/'Pi_Megastar_2x20.wrl',
             model_dir/'Trenz_spacers.wrl',model_dir/'LSHM_50_4mm.wrl',model_dir/'LSHM_30_4mm.wrl']
     digest=lambda path:hashlib.sha256(path.read_bytes()).hexdigest()
     before={f.relative_to(ROOT).as_posix():digest(f) for f in inputs}
@@ -60,7 +61,7 @@ def main():
             model.m_Filename=model.m_Filename.replace('${KIPRJMOD}',str(SOURCE.parent))
             fp.Models().push_back(model)
     # RGI-4.5Hz nominal body: diameter 25.4 mm, height 33 mm; same bottom plane as Pi.
-    x,y,z=22,-83,-30.379
+    x,y,z=22,-83,PI_TOP-1.6
     body=cylinder((x,y,z),(x,y,z+33),12.7,'0.48 0.40 0.23')
     body+=cylinder((x,y,z+32.8),(x,y,z+33.7),12.35,'0.04 0.045 0.05')
     body+=cylinder((x,y,z),(x,y,z+.65),12.9,'0.57 0.52 0.35')
@@ -68,7 +69,7 @@ def main():
         body+=cylinder((x+dx,y,z+33.7),(x+dx,y,z+37.5),.65,'0.7 0.7 0.65')
         # Two separate wire leads into the existing J90 plug envelope.
         points=[(x+dx,y,z+37.5),(x+dx,-90,9),(32+dx,-101,11),
-                (43+dx,-112,10),(54+dx,-112,12),(64+dx/4,-105,14)]
+                (43+dx,-120,7),(64.19+dx*.381,-118,3.6),(64.19+dx*.381,-108.9,3.6)]
         # Catmull-Rom interpolation gives the illustrative flexible lead a smooth path.
         smooth=[];extended=[points[0],*points,points[-1]]
         for index in range(1,len(extended)-2):
@@ -96,7 +97,7 @@ def main():
         renderer=subprocess.check_output(['kicad-cli','version'],text=True).strip(),
         scope='Current routed HAT and vendor Trenz STEP; conceptual Pi, socket, spacers, Racotech can and leads.',
         geophone_nominal_mm=dict(diameter=25.4,height=33),
-        limitations='Baseline Samtec stack shown. Shorter J1 procurement substitute requires riser/height review. Geophone terminal positions, lead dressing and mating plug are illustrative; no physical fit approval.')
+        limitations='Selected 8.5 mm Megastar J1 and two 8.51 mm SSQ risers, 28.06 mm nominal gap. Horizontal 1803280 header. Geophone terminals and lead dressing are illustrative; no physical fit approval.')
     OUTPUT.with_suffix('.json').write_text(json.dumps(provenance,indent=2)+'\n')
     print(OUTPUT)
 

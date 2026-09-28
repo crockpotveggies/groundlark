@@ -1,4 +1,4 @@
-"""Groundlark printable case. Coordinates use HAT XY; all lengths are mm.
+"""Groundlark printable case. Board inputs use native HAT XY; lengths are mm.
 
 CadQuery solids are manufacturing geometry. Electronics are reference envelopes,
 not printable parts. Does not open or modify electrical source/CAD.
@@ -14,6 +14,18 @@ import cadquery as cq
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 LOGO = ROOT/'hw/shared/libraries/Groundlark.pretty/Logo_Groundlark_7mm.kicad_mod'
+
+
+def stack_xy(c,x,y):
+    """Place the 85 x 56 mm board stack in the fixed enclosure coordinates."""
+    angle=c['stack_rotation_deg']
+    if angle not in (0,180):raise ValueError('Stack rotation must be 0 or 180 degrees')
+    return (85-x,56-y) if angle==180 else (x,y)
+
+
+def stack_pose(c,solid):
+    stack_xy(c,0,0)  # Validate the supported orientations.
+    return solid.rotate((42.5,28,0),(42.5,28,1),c['stack_rotation_deg'])
 
 
 def bird_mark(center, height, z, depth):
@@ -72,6 +84,7 @@ def build(c):
     fpga_bottom=hat_top+c['hat_to_fpga_gap']; fpga_top=fpga_bottom+c['pcb_thickness']
     base=rounded(c['outer'],0,floor,c['corner_radius'])
     for x,y in c['pi_holes']:
+        x,y=stack_xy(c,x,y)
         base=base.union(cylinder(x,y,floor,3,pi_bottom-floor))
         base=base.cut(cylinder(x,y,-.1,1.4,pi_bottom+.2))
         base=base.cut(cylinder(x,y,-.1,2.7,3.1))
@@ -104,13 +117,15 @@ def build(c):
         right=right.cut(nut)
     base=base.union(pedestal).union(right)
     # Geophone cable clamp: capture M3 nuts from above, before fitting its cap.
-    base=base.union(box(60,-28,5,80,-18,8))
-    cap=box(60,-28,8,80,-18,13)
-    channel=hole_y(70,-29,8,c['cable_diameter']/2,12)
+    # Raised clamp beside the withdrawal corridor: lead stays at connector level.
+    cable_z=hat_top+3.6
+    base=base.union(box(55,-36,floor,63,-16,cable_z))
+    cap=box(55,-36,cable_z,63,-16,cable_z+5)
+    channel=hole_x(54,-26,cable_z,c['cable_diameter']/2,10)
     base=base.cut(channel);cap=cap.cut(channel)
-    for x in (64.8,75.2):
-        base=base.cut(cylinder(x,-23,2.5,1.7,5.6)).cut(hex_z(x,-23,5.4,5.8,2.7))
-        cap=cap.cut(cylinder(x,-23,7.9,1.7,5.2))
+    for y in (-31.2,-20.8):
+        base=base.cut(cylinder(59,y,cable_z-5.5,1.7,5.6)).cut(hex_z(59,y,cable_z-2.6,5.8,2.7))
+        cap=cap.cut(cylinder(59,y,cable_z-.1,1.7,5.2))
     cover=rounded(c['outer'],floor,roof+c['roof_thickness']-floor,c['corner_radius'])
     cover=cover.cut(rounded([x0+w,y0+w,x1-w,y1-w],floor-.1,roof-floor+.1,2))
     for x,y in c['case_screws']:
@@ -124,9 +139,13 @@ def build(c):
       'microsd':box(x0-1,19,floor-.1,9,37,pi_bottom+1.5),
       'fpga_power':hole_x(x0-1,12,hat_top+5.5,4.5,18).union(box(x0-1,7.5,floor-.1,x0+w+.1,16.5,hat_top+5.5)),
     }
-    for cut in ports.values():cover=cover.cut(cut)
+    for cut in ports.values():cover=cover.cut(stack_pose(c,cut))
+    if c['stack_rotation_deg']==180:
+        # Pi power/HDMI/audio now face the geophone bay. These are cable exits;
+        # plug access requires removing the lid and routing around the sensor.
+        cover=cover.cut(box(22,y0-1,floor-.1,82,0,pi_top+11))
     # Power-lead tie slots belong to the base so the cover lifts off freely.
-    for yy in (8,16):base=base.cut(box(-4.5,yy-1,-.1,-1.5,yy+1,floor+.1))
+    for yy in (8,16):base=base.cut(stack_pose(c,box(-4.5,yy-1,-.1,-1.5,yy+1,floor+.1)))
     # Roof vents: 3 mm bridge spans when printed roof-down.
     for x in range(6,82,7):
         cover=cover.cut(box(x,8,roof-.1,x+3,48,roof+3.1))
@@ -137,7 +156,8 @@ def build(c):
     for yy in (-38,-30,-22):
         for z in (18,58):cover=cover.cut(box(x0-1,yy,z,x0+w+.1,yy+3,z+9))
     for xx in (6,16,26,56,66,76):
-        cover=cover.cut(box(xx,y0-1,18,xx+3,y0+w+.1,32))
+        vent_z=32 if c['stack_rotation_deg']==180 else 18
+        cover=cover.cut(box(xx,y0-1,vent_z,xx+3,y0+w+.1,vent_z+14))
     # Recessed bird centered in the 26 mm strip between the roof vent groups.
     cover=cover.cut(bird_mark((43,-5),20,roof+c['roof_thickness']-.6,.65))
     # Small bore coupon uses the same split clamp cross-section; no hardware needed.
@@ -154,7 +174,8 @@ def build(c):
     ref={'pi':pi,'hat':hat,'fpga':fpga,
       'geophone':cylinder(gx,gy,seat,c['geophone_diameter']/2,c['geophone_height']),
       'geophone_terminals':cylinder(gx,gy,seat+c['geophone_height'],12,c['geophone_terminal_headroom']),
-      'geophone_plug':box(8.08,42.85,hat_top,20.3,58.95,hat_top+20.3),
+      'geophone_header':box(7.78,49.7,hat_top,20.6,58.9,hat_top+7.25),
+      'geophone_plug':box(8.08,58.9,hat_top,20.3,75,hat_top+11.1),
       'pi_heatsink':box(22,19,pi_top,40,37,pi_top+13.3),
       'fpga_heatsink':box(44,18,hat_top+12.16,70,40,hat_top+24.16),
       'gpio_stack':box(6.8,1.025,pi_top,58.2,5.975,hat_bottom),
@@ -173,9 +194,11 @@ def build(c):
         ref['pi_spacer_'+str(i)]=cylinder(x,y,pi_top,2.4,c['pi_to_hat_gap'])
     for i,(x,y) in enumerate(c['trenz_holes']):
         ref['fpga_spacer_'+str(i)]=cylinder(x,y,hat_top,2.5,c['hat_to_fpga_gap'])
+    ref={name:(solid if name in ('geophone','geophone_terminals') else stack_pose(c,solid))
+         for name,solid in ref.items()}
     parts={'base':base,'cover':cover,'geophone-jaw':jaw,'cable-clamp':cap,'fit-coupon':coupon}
     levels=dict(pi_bottom=pi_bottom,pi_top=pi_top,hat_bottom=hat_bottom,hat_top=hat_top,
-                fpga_bottom=fpga_bottom,fpga_top=fpga_top,roof_inside=roof)
+                fpga_bottom=fpga_bottom,fpga_top=fpga_top,roof_inside=roof,cable_z=cable_z)
     return parts,ref,levels
 
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="E">
   <design>
-    <source>/work/hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_sch</source>
-    <date>2026-09-27T19:35:17+0000</date>
-    <tool>Eeschema 9.0.9</tool>
+    <source>/mnt/p/Personal/groundlark/hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_sch</source>
+    <date>2026-09-28T08:05:08-0700</date>
+    <tool>Eeschema 9.0.9-9.0.9~ubuntu24.04.1</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
         <title/>
@@ -714,15 +714,15 @@
     </comp>
     <comp ref="J90">
       <value>GEO + / - / SHIELD</value>
-      <footprint>Groundlark:Connector_Phoenix_MC__PhoenixContact_MCV_1,5_3-G-3.81_1x03_P3.81mm_Vertical</footprint>
+      <footprint>Groundlark:Connector_Phoenix_MC__PhoenixContact_MC_1,5_3-G-3.81_1x03_P3.81mm_Horizontal</footprint>
       <fields>
-        <field name="MPN">1803439</field>
-        <field name="Footprint">Groundlark:Connector_Phoenix_MC__PhoenixContact_MCV_1,5_3-G-3.81_1x03_P3.81mm_Vertical</field>
+        <field name="MPN">1803280</field>
+        <field name="Footprint">Groundlark:Connector_Phoenix_MC__PhoenixContact_MC_1,5_3-G-3.81_1x03_P3.81mm_Horizontal</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="Groundlark" part="Part_J90" description=""/>
-      <property name="MPN" value="1803439"/>
+      <property name="MPN" value="1803280"/>
       <property name="Sheetname" value="03-geophone-page-01"/>
       <property name="Sheetfile" value="03-geophone-page-01.kicad_sch"/>
       <sheetpath names="/03-geophone-page-01/" tstamps="/fc4af920-ec4d-5175-b830-5c947dce5acb/"/>
@@ -4259,7 +4259,7 @@
   </libparts>
   <libraries>
     <library logical="Groundlark">
-      <uri>/work/hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/Groundlark.kicad_sym</uri>
+      <uri>/mnt/p/Personal/groundlark/hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/Groundlark.kicad_sym</uri>
     </library>
   </libraries>
   <nets>

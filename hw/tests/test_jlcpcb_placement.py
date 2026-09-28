@@ -73,7 +73,7 @@ class NativeConnectorTests(unittest.TestCase):
 
     def test_actual_connectors_and_supplier_pin_one(self):
         rows,audit=self.solve(); lookup={r['Designator']:r for r in rows}
-        expected={'J1':0,'J4':270,'JP1':0,'JP80':0,'JP81':0,'J80':180,'J81':180,'J82':270,'J83':270,'J90':180}
+        expected={'J1':0,'J4':270,'JP1':0,'JP80':0,'JP81':0,'J80':180,'J81':180,'J82':270,'J83':270,'J90':0}
         self.assertEqual(sum('pads_checked' in a and a['reference'] in expected for a in audit),10)
         for ref,angle in expected.items():
             self.assertEqual(float(lookup[ref]['Rotation']),angle,ref)
@@ -84,6 +84,20 @@ class NativeConnectorTests(unittest.TestCase):
             self.assertAlmostEqual(float(r['MidX'][:-2])+c*x-s*y,pin['xy_mm'][0],places=3)
             self.assertAlmostEqual(float(r['MidY'][:-2])+s*x+c*y,-pin['xy_mm'][1],places=3)
         self.assertEqual(self.path.read_bytes(),self.board_bytes)
+
+    def test_horizontal_j90_corrects_old_rotation_and_preserves_polarity(self):
+        rows=copy.deepcopy(self.placements)
+        next(r for r in rows if r['Designator']=='J90')['Rotation']='180.000000'
+        corrected,audit=self.solve(placements=rows)
+        row=next(r for r in corrected if r['Designator']=='J90')
+        self.assertEqual(float(row['Rotation']),0)
+        pads=next(g['pads'] for g in self.geometry if g['reference']=='J90')
+        for number,x in [('1',60.38),('2',64.19),('3',68.0)]:
+            xy=next(p['xy_mm'] for p in pads if p['number']==number)
+            self.assertAlmostEqual(xy[0],x);self.assertAlmostEqual(xy[1],100.9)
+        entry=next(a for a in audit if a['reference']=='J90')
+        self.assertEqual((entry['mpn'],entry['lcsc']),('1803280','C480530'))
+        self.assertLess(entry['max_pad_error_mm'],1e-6)
 
     def test_only_mapped_components_change_and_inputs_not_mutated(self):
         original=copy.deepcopy(self.placements)

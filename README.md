@@ -12,7 +12,7 @@ heads. All share the sensor contracts, simulation tools and local workbench.
 
 ## Groundlark
 
-![Groundlark: Raspberry Pi, DAQHAT-01 and Trenz FPGA stack with Racotech geophone](docs/images/groundlark-stack-geophone.png)
+![Groundlark clear-PETG enclosure with its cover removed, rotated Pi/DAQHAT-01/Trenz stack and adjacent geophone](docs/images/groundlark-enclosure.png)
 
 **Seismic monitoring on a Raspberry Pi.** The active
 [Groundlark FPGA HAT](hw/groundlark-fpga-hat/README.md), model **DAQHAT-01**, is an
@@ -36,8 +36,10 @@ qualification remain pending. See the [stack assembly guide](docs/stack-assembly
 The JLCPCB package targets one assembled HAT; sourcing, placement and J1 fit
 checks remain open. Fabrication packages stay local in ignored `hw/releases/`.
 
-*Render: current HAT CAD and vendor Trenz model; the Pi, socket and geophone are
-conceptual geometry. Lead routing is illustrative; J1 stack height needs a physical check.*
+*4K render: [prototype enclosure](hw/mechanical/daqhat-01-case/README.md), current
+HAT CAD and vendor Trenz model. Clear PETG appearance is approximate; the Pi,
+risers, geophone, plug details and wiring include illustrative geometry.
+Physical fit remains unqualified. [Render provenance](docs/images/groundlark-enclosure.json).*
 
 ## Skylark
 

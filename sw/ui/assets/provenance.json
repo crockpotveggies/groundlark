@@ -1,12 +1,12 @@
 {
   "kicad": "9.0.9",
   "sha256": {
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb": "eadf8f443cd24c3c2adca5efacf38881b92fc353d0a2a4de8e09233277fd3800",
-    "hw/groundlark-fpga-hat/layout/placement.json": "56abebe916e8c2508e9e075e768dc3f29f3c30dae8c32019cba918962a0b10df",
-    "sw/ui/assets/daqhat-01.glb": "8e944fc858fed91354daec3725b2686184e0fad428f334caebff188e231ec17c",
-    "sw/ui/geophone_scene.py": "3b331a1ea15c55bf2ed3064ece509e086553d5b39c827f26ff19ce35613b45fd",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb": "48533684ef4aa121f3e770630ce970668981d39c85e20b8e0f8fa8ca311aa00a",
+    "hw/groundlark-fpga-hat/layout/placement.json": "b6966d5422af2c3b401c4a032d48da201632b9e2993f2d1a75cadd52529ed01b",
+    "sw/ui/assets/daqhat-01.glb": "e37f472b49a8b1a0eb0acf7fc19df7d4178618df43bd0bb0861f0b5810704d53",
+    "sw/ui/geophone_scene.py": "65ef0de9df78e2b7c1c4697367f5a5b81486dd95f2fe4f01d9fa6f35b8dd461a",
     "hw/burrowlark-usb/layout/placement.json": "61502651d94f65edad7e1ab3fbc6a6be59421ab04044f33a9736ce3321b6fdee",
     "sw/ui/main.py": "8134b0581ffcac4b51cf0c9277bcb8492e495f0c56fce959f699a33e5db332fc"
   },
-  "metadata_review": "DAQHAT-01 supply/bias ground stitches; C43 relocated by the LDO output tab. Three IMU positions/axes preserved. Re-exported KiCad GLB; available stock models plus UI envelopes for Megastar 8.5 mm J1 and Trenz connectors. Native renders reviewed. External geophone geometry and sensor 9 semantics unchanged. Physical fit/noise qualification pending."
+  "metadata_review": "Horizontal Phoenix 1803280 J90 faces native +Y, original hole row; D90 moved to (11.8,46.8) with local protection and ground stitch. Native KiCad GLB and assembly renders inspected; connector model present. Three IMUs and ADC positions/axes preserved. Pi gap 28.06 mm; physical mating, cable fit and noise remain unqualified."
 }

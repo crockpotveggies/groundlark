@@ -20,7 +20,9 @@ class GeophoneSceneTests(unittest.TestCase):
         self.assertEqual(targets[rings[9][1].id],9)
         leads=[obj for obj in scene.objects.values() if obj.name=='geophone-lead']
         self.assertEqual(len(leads),2)
-        self.assertTrue(all(obj.args[2][1]==-2.3 for obj in leads))
+        self.assertTrue(all(abs(obj.args[2][1]+3.1)<1e-9 for obj in leads))
+        self.assertTrue(all(obj.args[1][2]==obj.args[2][2]==.52 for obj in leads))
+        self.assertAlmostEqual(leads[1].args[2][0]-leads[0].args[2][0],.381)
         scene.delete()
 
 

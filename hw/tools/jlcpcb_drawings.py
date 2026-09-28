@@ -1,6 +1,8 @@
 """Create one four-page review PDF from exported, independently parsed plots."""
 import argparse
+import csv
 import json
+from html import escape
 from pathlib import Path
 from reportlab.pdfgen.canvas import Canvas
 from reportlab.lib.colors import HexColor
@@ -14,12 +16,25 @@ ACCENT = HexColor('#087e8b')
 WARN = HexColor('#a33c21')
 
 
+def selected_part(out, reference):
+    """Use the package's exact procurement identity in assembly instructions."""
+    with (out / 'procurement.csv').open(newline='', encoding='utf-8') as stream:
+        matches = [row for row in csv.DictReader(stream)
+                   if reference in row['Designator'].split(',')]
+    if len(matches) != 1:
+        raise ValueError(f'Expected one procurement entry for {reference}')
+    row = matches[0]
+    return escape(f"{row['Manufacturer']} {row['MPN']} / {row['JLCPCB Part #']}")
+
+
 def make(out):
     manifest = json.loads((out / 'manifest.json').read_text())
     geometry = json.loads((out / 'review/placement-geometry.json').read_text())
     check = json.loads((out / 'review/independent-check.json').read_text())
     layer_count=len(check['layers']); drill_count=sum(check['drills'].values())
     via_count=manifest['counts']['vias']['through']
+    j1 = selected_part(out, 'J1')
+    j90 = selected_part(out, 'J90')
     c = Canvas(str(out / 'DAQHAT-01-assembly-review.pdf'), pagesize=(W, H), invariant=1)
     c.setTitle('Groundlark DAQHAT-01 | JLCPCB engineering review | one assembled HAT')
     style = ParagraphStyle('body', fontName='Helvetica', fontSize=10, leading=15, textColor=INK)
@@ -46,7 +61,7 @@ def make(out):
         '<b>Requested deliverable:</b> one populated 85 x 56 mm DAQHAT-01 carrier. Standard PCBA, double-sided SMT plus through-hole assembly. Pi, Trenz module, geophone, riser, power supply and mounting hardware are separate purchases.',
         '<b>Quantity: ONE SINGLE HAT.</b> Fabricate one PCB and assemble that one PCB. No increase to two or five boards is authorized. Set both website quantities to 1; supplier must confirm acceptance. Gerbers contain one board, without panel repeats. Component purchase minima and attrition are separate quote items.',
         '<b>Handling hold:</b> the 56 mm board dimension is below the 70 mm Standard minimum. Manufacturer to propose an assembly frame, edge rails and fiducials; return panel data for review without altering the HAT outline or hole positions.',
-        f"<b>Sourcing hold:</b> {manifest['counts']['physical_placements']} placements, {manifest['counts']['BOM_lines']} grouped BOM lines. {manifest['counts'].get('catalog_mapped_BOM_lines', 0)} lines have exact catalog identities. J1 is LCSC C21390538; JLC matching remains unconfirmed. Source the exact MPN if unavailable. Confirm all allocations, especially C90 and F80. No substitutions are approved.",
+        f"<b>Sourcing hold:</b> {manifest['counts']['physical_placements']} placements, {manifest['counts']['BOM_lines']} grouped BOM lines. {manifest['counts'].get('catalog_mapped_BOM_lines', 0)} lines have exact catalog identities. J1 is {j1}. Confirm current allocation of every selected part. No substitutions are approved.",
         '<b>Placement hold:</b> CPL is a review candidate, not feeder-approved data. Validate every centroid, rotation and pin 1 against the selected JLC component. J1 is explicitly bottom-mounted despite the front-side CAD land pattern.',
         '<b>Assembly instructions:</b> populate required SMT and THT parts. Keep JP1, JP80 and JP81 shunts OPEN. Do not fit a Trenz module or Raspberry Pi during PCB assembly. Confirm sensor reflow limits, cleaning and handling with current manufacturer instructions.',
         f'<b>Validation:</b> fresh native DRC has zero findings and zero unconnected items. Independent Gerbonara parsing reads all {layer_count} plot layers and matches all {drill_count} drill hits to CAD within 1 micrometre. This does not replace manufacturer DFM or first-article power, fit, timing and noise measurements.',
@@ -88,10 +103,10 @@ def make(out):
         rows = ([
             '<b>J80 / J81 / J82:</b> three Samtec fine-pitch Trenz connectors on TOP, with SMT signal contacts and plated mounting features. Match exact height, locating posts and pin 1. Confirm stock or consigned parts before accepting the assembly quote.',
             '<b>U11-U13 / U22:</b> three IMUs and geophone ADC. Preserve existing sensor orientations; do not rotate an accelerometer to create another axis. The IMUs already measure all three axes.',
-            '<b>J83 / J90:</b> module power terminal and geophone receptacle, respectively. Populate both through-hole connectors. JP1/JP80/JP81 headers have no installed shorting shunts.',
+            f'<b>J83 / J90:</b> module power terminal and horizontal geophone header. J90 is {j90}, opening outward over the board edge. Its 1803581 cable plug is a separate purchase. JP1/JP80/JP81 remain open.',
             '<b>J1 exception:</b> the long Pi connector land pattern appears on this side in CAD Fab output, but its socket body is installed BELOW the board. Follow the bottom assembly instruction, not the library layer.',
         ] if side == 'top' else [
-            '<b>J1:</b> Samtec ESQ-120-23-G-D socket body underneath the HAT; mating face toward the Pi riser. Verify pin 1, tail length and seating against the stack drawing before soldering.',
+            f'<b>J1:</b> {j1} socket body underneath the HAT; mating face toward two external SSQ-120-02-G-D risers. Nominal Pi-top to HAT-underside clearance is 28.06 mm. Verify pin 1, contact engagement and measured support height before soldering.',
             f"<b>U100-U106 and associated passives:</b> underside link-switch, expander, logic and supervisor circuitry. {manifest['counts']['assembly'].get('Bottom SMT',0)} SMT components occupy this side. Confirm their rotations in the JLC assembly preview.",
             '<b>Mechanical fit:</b> maintain Pi/riser and fastener clearance. No cable guide or external FPGA ribbon connectors are part of this revision. Actual connector mating and stack clearances need first-article verification.',
         ])

@@ -9,6 +9,6 @@ Pi fasteners,4,M2.5 screws,Select length for actual spacers
 Host,1,Raspberry Pi 4 Model B,Selected bench host; Pi 5 not covered by this fit review
 Module power,1,Adjustable regulated current-limited supply,3.35 V +/-0.5% at J83; maintain 3.201-3.399 V at module; total hot supply-and-ground path <=30 milliohms for 3 A operating budget
 Cooling,1,Workload-dependent FPGA heatsink,Select after power/thermal testing; not included in nominal height model
-Geophone cable plug,1,Phoenix Contact 1803581,MC 1.5/3-ST-3.81; mates J90; route cable south and keep service column clear; see docs/stack-assembly.md
+Geophone cable plug,1,Phoenix Contact 1803581,MC 1.5/3-ST-3.81; mates horizontal 1803280 J90; reserve 12 mm outward withdrawal; release cable clamp before unplugging; see docs/stack-assembly.md
 External geophone,1,Racotech RGI-4.5Hz vertical,395 ohm; 23.4 V/(m/s); separate vertical ground-coupled mount
 Pi heatsink,1,18 x 18 x 10 mm heatsink from Raspberry Pi 4 Case Fan kit,Heatsink only; 0.5 mm adhesive envelope; fan absent; thermal performance pending

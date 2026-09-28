@@ -16,8 +16,8 @@ Generate a complete package with the commands below before ordering. The older
 2026-09-26 local packages predate the current copper and part selections; do not
 combine their Gerbers with the revised BOM.
 
-Use the BOM and CPL from the same overlay. Do not reuse the base package's BOM/CPL
-or previous manual rotation overrides. Gerbers contain one closed outline;
+Use the BOM and CPL from the same fresh full export, or the same corrected
+overlay. Do not mix versions or reuse previous manual rotation overrides. Gerbers contain one closed outline;
 BOM quantities are per HAT. Set the supplier's PCB and assembly quantities
 separately: the CSV cannot control the website's quantity selector.
 
@@ -111,6 +111,11 @@ GPIO signal integrity still require first-article checks; see [stack assembly](s
 
 ## Placement conventions
 
+J90 uses Phoenix Contact **1803280 / C480530**, the horizontal 3.81 mm header.
+Its exact numbered supplier pads are frozen in the placement registry. The
+2026-09-28 live catalog showed 2,209 available to order, MOQ 1; stock is not reserved.
+The matching 1803581 cable plug is separately sourced.
+
 The exporter fits supplier numbered pads to native footprints using the frozen
 [catalog geometry](../hw/assembly/groundlark-fpga-hat/daqhat-01-jlcpcb-placement.json). It accounts
 for bottom-side projection and preserves absolute component positions.
@@ -123,7 +128,7 @@ Use its CPL rather than raw KiCad angles or manual per-reference offsets.
 | JP1, JP80, JP81 | 0° |
 | J80, J81 | 180° |
 | J82, J83 | 270° |
-| J90 | 180° |
+| J90 | 0° |
 | U1, U22, U41, U42 | 270° |
 | U100–U103 (Bottom) | 270° |
 | Q1, U40, U51, U52 | 180° |
@@ -176,6 +181,8 @@ After adding the package README and reviewing the PDF, run
 `python3 hw/tools/jlcpcb_seal.py .local/jlcpcb/new-review` to write checksums
 and the complete review ZIP. This retains all manufacturing holds; it does not
 promote the package to an approved release.
+The assembly PDF reads J1 and J90 manufacturer, MPN and catalog identity from
+that package's procurement CSV, keeping its instructions aligned with the BOM.
 
 ## Sources reviewed 2026-09-25
 

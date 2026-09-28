@@ -68,32 +68,33 @@
       "jlc_match_status": "catalog_listed"
     },
     {
-      "source_mpn": "1803439",
+      "source_mpn": "1803280",
       "source_value": "GEO + / - / SHIELD",
-      "source_footprint": "Connector_Phoenix_MC__PhoenixContact_MCV_1,5_3-G-3.81_1x03_P3.81mm_Vertical",
+      "source_footprint": "Connector_Phoenix_MC__PhoenixContact_MC_1,5_3-G-3.81_1x03_P3.81mm_Horizontal",
       "designators": [
         "J90"
       ],
-      "mpn": "1803439",
+      "mpn": "1803280",
       "manufacturer": "Phoenix Contact",
-      "package": "THT 1x3 P3.81mm",
-      "lcsc": "C480525",
-      "evidence_url": "https://jlcpcb.com/partdetail/1803439/C480525",
-      "evidence_basis": "JLCPCB catalog",
-      "checked_on": "2026-09-27",
-      "resolution": "",
-      "sourcing_note": "",
+      "package": "THT 1x3 P3.81mm horizontal",
+      "lcsc": "C480530",
+      "evidence_url": "https://jlcpcb.com/partdetail/PhoenixContact-1803280/C480530",
+      "evidence_basis": "JLCPCB live catalog and Phoenix Contact manufacturer dimensions/mating list",
+      "checked_on": "2026-09-28",
+      "resolution": "Horizontal MC 1,5/3-G-3,81; unchanged 1803581 cable plug. Native +Y mating axis; numbered pin nets preserved by local routing.",
+      "sourcing_note": "Live catalog observation only; no stock reservation. Existing cable plug 1803581 remains separately sourced.",
       "stock_observation": {
-        "checked_at": "2026-09-27T18:38:04.613Z",
-        "source_url": "https://jlcpcb.com/partdetail/1803439/C480525",
+        "checked_at": "2026-09-28T14:35:50.464266+00:00",
+        "source_url": "https://jlcpcb.com/partdetail/PhoenixContact-1803280/C480530",
         "status": "available_to_order",
-        "displayed_stock": 1374,
-        "available_order_quantity": 1343,
+        "displayed_stock": 2362,
+        "available_order_quantity": 2209,
         "minimum_quantity": 1,
-        "snapshot_sha256": "a10b6849b8573aa7c39d67ff7edcb57b28430cecb2e50f5960ce0da120fda43c",
+        "snapshot_sha256": "fc139edeb4407bde38396a142fcce7c89e7303851c414f018145b56a7e801cd8",
         "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
       },
-      "jlc_match_status": "catalog_listed"
+      "jlc_match_status": "catalog_listed",
+      "manufacturer_evidence": "https://www.phoenixcontact.com/en-us/products/pcb-header-mc-15-3-g-381-1803280"
     },
     {
       "source_mpn": "24LC32A-I/SN",

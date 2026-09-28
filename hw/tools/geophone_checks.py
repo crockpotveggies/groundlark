@@ -29,6 +29,20 @@ PINS = {
 }
 
 
+def verify_connector(pads, orientation, footprint):
+    """Independent outward-facing fixture; positions use board-outline origin.
+
+    Phoenix 1803280 drawing: 3.81 mm pitch, 1.2 mm PCB holes, local +Y entry.
+    Numbered pads must retain polarity when replacing the former vertical part.
+    """
+    if orientation != (0, False) or not footprint.endswith('MC_1,5_3-G-3.81_1x03_P3.81mm_Horizontal'):
+        raise ValueError('J90 must be the outward-facing horizontal 1803280')
+    expected={'1':(10.38,50.9,1.2),'2':(14.19,50.9,1.2),'3':(18,50.9,1.2)}
+    if set(pads)!=set(expected) or any(any(abs(a-b)>1e-5 for a,b in zip(pads[n],xyz)) or len(pads[n])!=3 for n,xyz in expected.items()):
+        raise ValueError('J90 numbered pad / hole geometry mismatch')
+    return 3
+
+
 def verify(pins, orientations):
     for key, net in PINS.items():
         if pins.get(key) != net: raise ValueError(f'geophone physical pin mismatch: {key}')

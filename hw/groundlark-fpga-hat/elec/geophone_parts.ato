@@ -33,7 +33,7 @@ component GEO_ADC:
     signal p16 ~ pin 16
 
 component GEO_CONN:
-    trait is_atomic_part<manufacturer="See BOM", partnumber="1803439", footprint="../../shared/elec/Connector_Phoenix_MC__PhoenixContact_MCV_1,5_3-G-3.81_1x03_P3.81mm_Vertical.kicad_mod", symbol="../../shared/elec/symbols/GEO_CONN.kicad_sym">
+    trait is_atomic_part<manufacturer="See BOM", partnumber="1803280", footprint="../../shared/elec/Connector_Phoenix_MC__PhoenixContact_MC_1,5_3-G-3.81_1x03_P3.81mm_Horizontal.kicad_mod", symbol="../../shared/elec/symbols/GEO_CONN.kicad_sym">
     trait has_designator_prefix<prefix="J">
     signal p1 ~ pin 1
     signal p2 ~ pin 2

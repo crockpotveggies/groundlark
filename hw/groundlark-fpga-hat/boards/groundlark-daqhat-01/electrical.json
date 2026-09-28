@@ -2178,22 +2178,22 @@
     {
       "ref": "J90",
       "value": "GEO + / - / SHIELD",
-      "footprint": "Connector_Phoenix_MC:PhoenixContact_MCV_1,5_3-G-3.81_1x03_P3.81mm_Vertical",
+      "footprint": "Connector_Phoenix_MC:PhoenixContact_MC_1,5_3-G-3.81_1x03_P3.81mm_Horizontal",
       "names": {
         "1": "GEO_PLUS",
         "2": "GEO_MINUS",
         "3": "SHIELD_GND"
       },
       "xy": [
-        18,
+        10.38,
         50.9
       ],
-      "angle": 180,
+      "angle": 0,
       "section": "03-geophone-page-01",
-      "mpn": "1803439",
-      "note": "External passive sensor: 1 positive, 2 negative, 3 cable shield. Mate MC 1,5/3-ST-3,81. Never connect power.",
+      "mpn": "1803280",
+      "note": "Horizontal outward entry (+Y). 1 positive, 2 negative, 3 cable shield. Mate Phoenix 1803581. Never connect power.",
       "dnp": false,
-      "local_fp": "Connector_Phoenix_MC__PhoenixContact_MCV_1,5_3-G-3.81_1x03_P3.81mm_Vertical",
+      "local_fp": "Connector_Phoenix_MC__PhoenixContact_MC_1,5_3-G-3.81_1x03_P3.81mm_Horizontal",
       "pins": {
         "1": "GEO_P",
         "2": "GEO_N",
@@ -2206,8 +2206,8 @@
       "footprint": "Package_TO_SOT_SMD:SOT-323_SC-70",
       "names": {},
       "xy": [
-        16.1,
-        47.6
+        11.8,
+        46.8
       ],
       "angle": 90,
       "section": "03-geophone-page-01",

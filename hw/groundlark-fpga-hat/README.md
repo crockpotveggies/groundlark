@@ -3,6 +3,8 @@
 The active 85 × 56 mm, six-layer Trenz carrier combines three XYZ IMUs and
 an ADS122C04 input for an external Racotech geophone. The stack is Raspberry Pi,
 DAQHAT-01, then Trenz TE0712-03-81I36-A. Physical qualification remains pending.
+J90 uses a horizontal Phoenix 1803280 header with the existing 1803581 cable
+plug. Pin order remains positive, negative, shield.
 
 - [Electrical source](elec/hat_trenz.ato)
 - [Placement inputs](layout/placement.json)

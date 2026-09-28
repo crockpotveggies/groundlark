@@ -15,11 +15,13 @@ travel through J1 and the Trenz mezzanine connectors; see the
 | Pi riser | Two SSQ-120-02-G-D risers plus Megastar ZX-PM2.54-2-20PY J1 | 28.06 mm nominal Pi top to HAT underside. |
 | Pi supports | Four straight M2.5 supports, <=4.8 mm outside diameter | Match seated riser/socket height with measured spacers/shims. |
 | FPGA | TE0712-03-81I36-A with standard connectors | Four M3 spacers; 8 mm HAT-to-module surface gap. |
-| Geophone plug | Phoenix Contact 1803581 | J90: GEO+, GEO-, shield/GND. |
+| Geophone header / plug | Phoenix Contact 1803280 / 1803581 | Horizontal J90: 1 GEO+, 2 GEO-, 3 shield/GND. |
 
 The geophone plug has 9.20 mm calculated lateral clearance to the module after
-0.5 mm allowance. Keep a vertical withdrawal column above J90, route its shielded
-twisted pair toward the lower-left edge, and clamp the cable outside the PCB.
+0.5 mm allowance. J90 opens parallel to the PCB toward native +Y. Reserve a
+12 mm withdrawal stroke beyond the plug and clamp its shielded twisted pair
+beside that corridor. The enclosure rotates the stack 180° so entry faces the
+adjacent geophone. Release the cable clamp before unplugging.
 The geophone remains external, vertical and mechanically coupled to the ground.
 
 J1 uses the JLCPCB-selected 8.5 mm-body socket. Two external SSQ risers restore
