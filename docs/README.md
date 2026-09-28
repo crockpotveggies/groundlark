@@ -12,6 +12,8 @@
 - [DAQHAT-01 hardware](trenz-hat.md): sensors, Trenz module, power, connectors and fabrication stack.
 - [Pi/FPGA host link](fpga-host-link.md): SPI/QSPI pins, UART, JTAG and bring-up.
 - [Geophone input](geophone-input.md): Racotech connection, analog circuit and accelerometer axes.
+- [Sensor bandwidth and timing](sensor-response.md): Groundlark and Skylark attenuation, sampling and qualification limits.
+- [Power supplies](power-supplies.md): Pi-header and USB allocations, source-voltage restrictions and startup/suspend requirements.
 - [Stack assembly](stack-assembly.md): Pi, HAT, FPGA, cooling, supports and geophone lead.
 - [JLCPCB assembly](jlcpcb-assembly.md): upload files, selected parts, placement and manufacturing requirements.
 - [Physical bench procedure](bench-procedure.md): power, fit, timing and noise measurements.

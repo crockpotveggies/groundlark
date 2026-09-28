@@ -1,6 +1,9 @@
 __pycache__/
 .lab/
 .local/
+/hw/shared/simulation/signal-response/
+/hw/shared/simulation/power-review/
+/hw/shared/simulation/ic-review/
 /hw/releases/
 groundlark-lab-image.tar
 *.pyc

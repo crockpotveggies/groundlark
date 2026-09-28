@@ -30,7 +30,11 @@ class EngineeringTests(unittest.TestCase):
 
     def test_old_stack_fails_component_tolerance_margin(self):
         self.assertLess(clearance(18.669), 0)
-        self.assertGreater(clearance(27.179), 3)
+        self.assertLess(clearance(19.55), 3)  # Short J1 plus only one riser.
+        from assembly_fit import PI_GAP, RISER_COUNT
+        self.assertEqual(RISER_COUNT, 2)
+        self.assertAlmostEqual(PI_GAP, 28.06)
+        self.assertGreater(clearance(PI_GAP), 3)
 
     def test_power_domain_and_default_enable_faults_rejected(self):
         self.assertEqual(power_interfaces(POWER_PINS),31)

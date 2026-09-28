@@ -170,7 +170,7 @@ def geometry_review(board):
         local_ground_stitches=ground_returns,
         selected_assembly=assembly,
         module_xy_envelope_mm=module,module_surface_gap_mm=8,
-        pi_to_hat_underside_mm=27.179,pi_assumed_obstruction_mm=16,
+        pi_to_hat_underside_mm=assembly['pi_to_hat_underside_mm'],pi_assumed_obstruction_mm=16,
         limits=['Copper path lengths omit pad interiors and via barrel length',
                 'Ground centerline samples are a screen for voids, not field-solver signoff',
                 'Plug dimensions are manufacturer data; connectors are bounded envelopes, not supplier mated solids',
@@ -207,7 +207,8 @@ def main():
         disposition='analog and internal-link stack reviewed; physical power/noise/fit and link throughput remain unqualified',
         board_sha256=before,physical_pin_checks=pin_checks,purchasing_package_checks=len(packages),
         analog=analog_review(),layout_and_fit=geometry_review(board),
-        imu_bypass=__import__('imu_layout').review(board))
+        imu_bypass=__import__('imu_layout').review(board),
+        sensor_supply_layout=__import__('sensor_supply_layout').review(board))
     assert hashlib.sha256(path.read_bytes()).hexdigest()==before
     (BOARD/'prefab-review.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report,indent=2))

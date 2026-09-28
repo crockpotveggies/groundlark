@@ -215,7 +215,7 @@ def commands(profile):
         steps += [(name, ["python3", f"hw/tools/{name}.py"]) for name in ("check_circuit", "check_design", "check_trenz", "daqhat_01_engineering", "prefab_review", "check_skylark")]
         steps.append(("routing-replay", ["python3", "hw/tools/replay_trenz.py"]))
     if profile != "software":
-        steps += [(name, ["python3", f"hw/tools/{name}.py"]) for name in ("simulate", "simulate_trenz", "simulate_geophone", "simulate_geophone_review", "simulate_host_link")]
+        steps += [(name, ["python3", f"hw/tools/{name}.py"]) for name in ("simulate", "simulate_trenz", "simulate_geophone", "simulate_geophone_review", "simulate_host_link", "signal_response", "power_review")]
     if profile in ("full", "quick", "software"):
         steps.append(("fpga-loopback-rtl", ["python3", "sw/fpga/test.py"]))
         steps.append(("fpga-implementation-evidence", ["python3", "sw/fpga/verify_reports.py"]))

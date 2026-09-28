@@ -3,7 +3,8 @@
 The active 85 × 56 mm DAQHAT-01 carrier replaces MAX-M10S U21, U.FL J2 and the
 GNSS support capacitors with one external passive vertical geophone input.
 Historical A2 and the remote USB magnetometer/infrasound board are unchanged.
-All 155 Trenz GPIO assignments remain required and independently checked.
+The current internal host link uses nine ordinary Trenz I/Os; all 260 module
+contacts, including deliberate no-connects, are independently checked.
 
 ## Sensor and connector
 
@@ -26,7 +27,7 @@ The render shows the PCB header, not the cable plug or external geophone.
 - U22: ADS122C04IPWR, 24-bit delta-sigma ADC with internal PGA and 2.048 V
   reference, AIN0−AIN1, I²C address 0x40. Initial software: gain 64, normal
   330 SPS. The 24-bit word is not a claim of 24 noise-free bits.
-- D90: TPD2E2U06DCKR at the connector; R90/R91 are 1 kΩ series input resistors.
+- D90: assembly part TPD2E2U06QDCKRQ1 / C915089 (source TPD2E2U06DCKR) at the connector; R90/R91 are 1 kΩ series input resistors.
   Protection is intended for handling ESD, not outdoor lightning or arbitrary
   sustained applied voltage. Qualification of the protection remains physical.
 - C90: 100 nF C0G across the differential input. Baseline CAD names TDK
@@ -46,6 +47,8 @@ Nominal input full scale is ±32 mV. Well above the mechanical corner this is
 approximately ±1.37 mm/s before loading and filtering; it is not a flat
 velocity range below 4.5 Hz. The nominal electrical pole including the coil
 is approximately 662 Hz. The ADC's own digital filter also shapes the response.
+See [sensor bandwidth and timing](sensor-response.md) for the combined response,
+IMU bandwidths and sampling limits.
 TI specifies typical 0.50 µV RMS ADC input noise at gain 64 / 330 SPS / 3.3 V;
 this excludes the sensor, resistors, cable and board interference.
 

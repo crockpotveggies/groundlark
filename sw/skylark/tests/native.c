@@ -5,11 +5,14 @@
 #include "platform.h"
 #include <assert.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 static uint64_t now;
 static bool clamp=true,rails;
 static uint8_t regs[4],counter,bmp[256];
 static unsigned resets,reads,mode;
+static uint64_t adc_due,climate_due;
+static bool measuring;
 static sk_state *active;
 static const uint8_t climate[]={0x66,0x66,0x93,0x80,0x00,0xa2};
 void sk_delay(uint32_t ms) {
@@ -18,8 +21,8 @@ void sk_delay(uint32_t ms) {
 }
 uint64_t sk_clock(void) { return now; }
 void sk_clamp(bool hold) { assert(hold || rails);clamp=hold; }
-void sk_rails(bool on) { assert(clamp);rails=on; }
-bool sk_pm_supply_ok(void) { return rails; }
+void sk_rails(bool on) { assert(clamp);rails=on;if(!on)measuring=false; }
+bool sk_pm_supply_ok(void) { return rails && !(mode==11 && now>=61000); }
 bool sk_i2c(uint8_t addr,const uint8_t *w,size_t wn,uint8_t *r,size_t rn) {
     assert(rails);assert(wn<=32 && rn<=32);
     uint8_t cmd=wn?w[0]:0;
@@ -28,12 +31,13 @@ bool sk_i2c(uint8_t addr,const uint8_t *w,size_t wn,uint8_t *r,size_t rn) {
         if(cmd==6) { memset(regs,0,4);counter=0;resets++;return true; }
         if(cmd>=0x40 && cmd<=0x4c) { assert(wn==2);regs[(cmd>>2)&3]=w[1];return true; }
         if(cmd>=0x20 && cmd<=0x2c) {
-            unsigned i=(cmd>>2)&3;r[0]=regs[i]|(i==2?128:0);
+            unsigned i=(cmd>>2)&3;r[0]=regs[i]|(i==2 && now>=adc_due?128:0);
             if(!regs[2])r[0]=regs[i];
             if(rn==2)r[1]=(uint8_t)~r[0];return true;
         }
-        if(cmd==8) { assert(regs[0]>=0x81 && regs[0]<=0xb1);assert(regs[1]==2 && regs[2]==0x50 && regs[3]==0);counter++;return true; }
+        if(cmd==8) { assert(regs[0]>=0x81 && regs[0]<=0xb1);assert(regs[1]==2 && regs[2]==0x50 && regs[3]==0);counter++;adc_due=now+52;return true; }
         if(cmd==0x10) {
+            assert(now>=adc_due); /* 50.01 ms / 0.98, rounded up to a ms. */
             assert(rn==8);reads++;r[0]=counter;r[1]=0x40;r[2]=0x12;r[3]=(regs[0]>>4)-8;
             for(unsigned i=0;i<4;i++)r[i+4]=(uint8_t)~r[i];
             if(mode==1 && now>61000)r[7]^=1;
@@ -43,7 +47,11 @@ bool sk_i2c(uint8_t addr,const uint8_t *w,size_t wn,uint8_t *r,size_t rn) {
         assert(0);
     }
     if(addr==0x44) {
-        if(wn) { assert(cmd==0xfd || cmd==0x89);return true; }
+        if(wn) {
+            assert(cmd==0xfd || cmd==0x89);
+            measuring=cmd==0xfd;climate_due=now+(measuring?9:2);return true;
+        }
+        assert(now>=climate_due);measuring=false;
         assert(rn==6);memcpy(r,climate,6);
         if(mode==1 && now>61000)r[2]^=1;
         return true;
@@ -69,7 +77,7 @@ static void particulate(void) {
     sk_uart_input(0xff);for(unsigned i=0;i<32;i++)sk_uart_input(d[i]);
 }
 int main(int argc,char **argv) {
-    if(argc>1)mode=(unsigned)(argv[1][0]-'0');
+    if(argc>1)mode=(unsigned)strtoul(argv[1],NULL,10);
     assert(sk_crc8(climate,2)==climate[2]);assert(sk_crc8(climate+3,2)==climate[5]);
     sk_state s;active=&s;sk_init(&s,"native-skylark",1);assert(clamp && !rails);
     sk_supply(&s,true,now);
@@ -77,6 +85,11 @@ int main(int argc,char **argv) {
     assert(clamp && rails);
     bool resumed=false;
     while(now<72000) {
+        if(mode==10 && measuring && now>=61000 && !resumed) {
+            sk_supply(&s,false,now);assert(clamp && !rails);
+            now+=100;sk_supply(&s,true,now);sk_connection(&s,true,now);resumed=true;
+        }
+        if(mode==9 && now>=61000 && !resumed) { now+=350;resumed=true; }
         if(now%100==0)particulate();
         if((mode==4 || mode==7) && now>=65000 && !resumed) {
             sk_connection(&s,false,now);assert(!clamp && rails && !s.count);
@@ -85,14 +98,16 @@ int main(int argc,char **argv) {
         }
         if(mode==6 && now>=1000 && !resumed) { assert(!rails && clamp);sk_supply(&s,true,now);sk_connection(&s,true,now);resumed=true; }
         if(mode==8 && now>=65000 && !resumed) { assert(rails && !clamp && !s.count);sk_connection(&s,true,now);resumed=true; }
+        uint64_t before=now;bool was_initialized=s.initialized;
         sk_tick(&s,now);assert(s.count<=SK_QUEUE);
+        if(was_initialized)assert(now==before); /* No sensor sleeps. */
         if(!(mode==3 && now>61000 && now<63000)) {
             uint16_t n;const uint8_t *p;
             while((p=sk_tx(&s,&n))) { assert(n<=SK_FRAME_MAX);assert(fwrite(p,1,n,stdout)==n);sk_tx_done(&s); }
         }
         now++;
     }
-    assert(resets==(mode==5?0:mode==7 || mode==6?2:1));
+    assert(resets==(mode==5?0:mode==7 || mode==6 || mode==10?2:1));
     if(mode!=5)assert(reads>100);
     if(mode==3)assert(s.dropped>0);
     sk_supply(&s,false,now);assert(clamp && !rails);

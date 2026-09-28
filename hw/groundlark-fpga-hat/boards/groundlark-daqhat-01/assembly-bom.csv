@@ -3,8 +3,8 @@ Carrier assembly,1,Groundlark DAQHAT-01,Use generated bom.csv for carrier electr
 FPGA module,1,TE0712-03-81I36-A,XC7A200T-1FBG484I; standard 4 mm connectors
 Trenz spacers,4,M3 8 mm surface-gap spacers,Match actual mating stack; insulated hardware preferred near copper
 Trenz fasteners,4,M3 screws,Select length for actual spacers; avoid bottoming
-Pi GPIO riser,1,Samtec SSQ-120-02-G-D,Unmounted 2x20 socket; 8.51 mm body; 4.93 mm square gold-flash tails into J1; female face toward Pi; verify full insertion and 1:1 pin numbering
-Pi spacers,4,Approximately 27.18 mm effective clearance,Select measured spacers/shims for ESQ-120-23-G-D plus SSQ riser and Pi header mating
+Pi GPIO riser,2,Samtec SSQ-120-02-G-D,Unmounted 2x20 socket; 8.51 mm body; 4.93 mm square gold-flash tails into J1; female face toward Pi; verify full insertion and 1:1 pin numbering
+Pi spacers,4,Approximately 28.06 mm effective clearance,Select measured spacers/shims for Megastar ZX-PM2.54-2-20PY plus two SSQ risers and Pi header mating
 Pi fasteners,4,M2.5 screws,Select length for actual spacers
 Host,1,Raspberry Pi 4 Model B,Selected bench host; Pi 5 not covered by this fit review
 Module power,1,Adjustable regulated current-limited supply,3.35 V +/-0.5% at J83; maintain 3.201-3.399 V at module; total hot supply-and-ground path <=30 milliohms for 3 A operating budget

@@ -105,7 +105,7 @@ report['limits'] = [
  'Fabrication process approval is owned by the project owner; stock JLC06161H-3313 is recorded; no controlled impedance is claimed',
  'Single Racotech geophone input; analog noise, cable coupling and ADC timing require physical qualification',
  'J83 source: 3.35 V +/-0.5%, total hot loop resistance <=30 milliohms, <=3 A; verify startup and load waveform at module',
- 'Pi4 conceptual stack uses SSQ-120-02-G-D riser; selected cooler, cables and mating need physical fit verification',
+ 'Pi4 conceptual stack uses Megastar J1 and two SSQ-120-02-G-D risers; selected cooler, cables and mating need physical fit verification',
  'Loopback bitstream built separately; no physical sensor/rail/thermal/EMI/high-speed GPIO tests performed',
  'Pi FIFO/IRQ and geophone polling are tested on modeled buses; no GNSS or absolute UTC source on DAQHAT-01',
  'Trenz rendering uses vendor generic revision-03 STEP']

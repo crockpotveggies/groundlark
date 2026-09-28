@@ -7,10 +7,14 @@ purchases. The remote sensor head and A2 ASIC HAT are not included.
 
 ## Files to upload
 
-| File | Local package |
+| File | Purpose |
 | --- | --- |
-| `DAQHAT-01-Gerbers-REVIEW.zip` | `hw/releases/groundlark-daqhat-01-jlcpcb-review-20260926-one-hat/` |
-| `BOM-review.csv` and `CPL-review.csv` together | `hw/releases/groundlark-daqhat-01-jlcpcb-placement-20260926-c91-c92/` |
+| `DAQHAT-01-Gerbers-REVIEW.zip` | Current full-export fabrication data. |
+| `BOM-review.csv` and `CPL-review.csv` together | Matching current full-export part selections and placements. |
+
+Generate a complete package with the commands below before ordering. The older
+2026-09-26 local packages predate the current copper and part selections; do not
+combine their Gerbers with the revised BOM.
 
 Use the BOM and CPL from the same overlay. Do not reuse the base package's BOM/CPL
 or previous manual rotation overrides. Gerbers contain one closed outline;
@@ -47,6 +51,33 @@ reference to its source value/footprint and approved manufacturer, MPN and C-cod
 Catalog listing does not reserve stock or guarantee assembly eligibility.
 Recheck allocation at ordering; do not accept automatic substitutes.
 
+All 38 unique PCB selections (117 placements) have a dated **2026-09-27**
+JLCPCB available-order observation and **minimum quantity 1**. Pre-order-only
+parts and component minimums above one are prohibited. The exporter rejects
+missing, insufficient or nonconforming recorded stock observations; offline
+checks do not establish current stock. Recheck allocation before ordering.
+
+| Reference | Selected replacement | Available order quantity / minimum |
+| --- | --- | --- |
+| U40 | ST LDL1117S33R / C435835 | 23,204 / 1 |
+| D90 | TI TPD2E2U06QDCKRQ1 / C915089 | 6,229 / 1 |
+
+The source circuit identifiers remain bound to explicit assembly overrides.
+U40 retains GND/OUT/IN pins 1/2/3 and output tab. Its ceramic output capacitor
+must retain at least 4.7 µF effective capacitance; C42 is 22 µF X5R, 25 V.
+Allow ±3% regulator accuracy plus load/line regulation within the existing
+3.18–3.42 V sensor-rail envelope. ST specifies typical 60 µVrms **per volt of
+output** (198 µVrms at 3.3 V), 10 Hz–100 kHz; this is not an input-referred
+geophone noise prediction. Retain the ADC analog RC filter.
+D90's automotive variant preserves the SC-70 pinout, 5.5 V standoff, 10 nA
+maximum leakage at 2.5 V and 1.5 pF typical capacitance.
+See [ST LDL1117](https://www.st.com/resource/en/datasheet/ldl1117.pdf) and
+[TI TPD2E2U06-Q1](https://www.ti.com/lit/ds/symlink/tpd2e2u06-q1.pdf).
+
+Stock is not reserved. Component MOQ 1 does not remove assembly attrition,
+process charges or the separate PCB/assembly service minimum described above.
+The Pi, Trenz module, external geophone and risers remain outside this PCB BOM.
+
 | Upload field | CSV column |
 | --- | --- |
 | Comment / manufacturer part number | `Comment` (full orderable MPN) |
@@ -59,7 +90,7 @@ identities and all 117 placements survive import.
 
 | References | Assembly selection | Required specification |
 | --- | --- | --- |
-| J1 | Megastar ZX-PM2.54-2-20PY / C7499354 | Bottom-mounted 2×20 female socket, 8.5 mm body; stack fit remains open. |
+| J1 | Megastar ZX-PM2.54-2-20PY / C7499354 | Bottom-mounted 2×20 female socket, 8.5 mm body; use two external SSQ risers and measured supports. |
 | C42, C80–C82 | Samsung CL31A226KAHNNNE / C12891 | 22 µF, ±10%, X5R, 25 V, 1206. |
 | C84, C85 | Murata GRM21BR71C475KE51L / C408144 | 4.7 µF, ±10%, X7R, 16 V, 0805. |
 | C90 | Murata GRM31C5C1H104JA01L / C97946 | 100 nF, ±5%, C0G, 50 V, 1206. |
@@ -72,10 +103,11 @@ included in the **30 mΩ total hot power-loop budget**, not an allowance in
 addition to it. Check hot voltage drop, startup and fuse behavior on hardware.
 Signal capacitors C90–C92 must retain C0G dielectric, tolerance and voltage rating.
 
-**J1 fit remains unresolved:** its 8.5 mm body is shorter than the Samtec socket
-in the baseline CAD and stack render. Riser/spacer height, pin engagement and
-bottom-side orientation need confirmation. The previous tall-socket geometry
-does not qualify this part. See [stack assembly](stack-assembly.md).
+**J1 stack:** the model uses the selected 8.5 mm socket plus two external
+SSQ-120-02-G-D risers, giving 28.06 mm nominal Pi-top to HAT-underside clearance.
+Four supports must match the measured seated height. The old tall Samtec socket
+model and one-riser assembly are superseded. Contact engagement, retention and
+GPIO signal integrity still require first-article checks; see [stack assembly](stack-assembly.md).
 
 ## Placement conventions
 
@@ -95,7 +127,8 @@ Use its CPL rather than raw KiCad angles or manual per-reference offsets.
 | U1, U22, U41, U42 | 270° |
 | U100–U103 (Bottom) | 270° |
 | Q1, U40, U51, U52 | 180° |
-| D90 (Bottom), C91, C92 (Top) | 0° |
+| D90 (Bottom, C915089) | 90° |
+| C91, C92 (Top) | 0° |
 
 Check J1's underside model and pin-1 direction in the supplier preview. Its
 front-layer land pattern requires a bottom-mounted socket. Confirm mixed

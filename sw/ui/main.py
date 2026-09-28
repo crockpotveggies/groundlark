@@ -73,8 +73,8 @@ def board_scene(scene, select):
     with scene:
         with scene.group() as hat:
             scene.gltf("/board-assets/daqhat-01.glb").scale(100).rotate(math.pi / 2, 0, 0).move(-9.25, 7.8, 0)
-            # Tall Pi socket envelope; the internal-link HAT has no FFC sockets.
-            scene.box(5.08, .51, 1.61).move(-.999, 2.45, -.967).material("#252b34")
+            # Selected Megastar J1: 8.5 mm body below the PCB (scene units cm).
+            scene.box(5.08, .51, .85).move(-.999, 2.45, -.425).material("#252b34")
             # KiCad's GLB exporter omits these local VRML bodies. These are
             # intentionally simple visualization envelopes, not STEP substitutes.
             custom = {"J80": (3.9, .65, .4), "J81": (3.9, .65, .4), "J82": (.65, 2.6, .4)}

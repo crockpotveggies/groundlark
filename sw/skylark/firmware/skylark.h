@@ -7,15 +7,18 @@
 #define SK_CHANNELS 7
 #define SK_FRAME_MAX 272
 #define SK_QUEUE 8
+#define SK_GAS_SLOT_MS 60
+#define SK_ADC_CONFIG1 0x02
 typedef struct { int32_t counts; uint8_t counter, data[32], trim[21]; } sk_raw;
-/* Board hooks: bounded operations; read returns valid=1, missing=2,
+/* Board hooks: bounded operations; read returns pending=0, valid=1, missing=2,
  * saturated=3, fault=4. Invalid frames must never be returned as valid. */
 void sk_power(bool enabled); /* Must clamp before cutting analog power. */
 uint8_t sk_configure(void); /* Successfully configured channel bitmask. */
 uint8_t sk_read(uint8_t sensor, sk_raw *raw);
 typedef struct {
     char device[33]; uint64_t boot, started, ready, next[SK_CHANNELS];
-    uint64_t sequence[SK_CHANNELS], dropped;
+    uint64_t sequence[SK_CHANNELS], dropped, gas_due;
+    uint8_t gas_slot;
     uint32_t revision; uint8_t faults[SK_CHANNELS], enabled, announce, pending;
     bool powered, connected, initialized;
     uint8_t frames[SK_QUEUE][SK_FRAME_MAX]; uint16_t lengths[SK_QUEUE];

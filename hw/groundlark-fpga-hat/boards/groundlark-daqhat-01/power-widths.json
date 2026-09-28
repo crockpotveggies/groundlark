@@ -163,7 +163,7 @@
     {
       "net": "SENS_3V3",
       "width_mm": 0.2,
-      "length_mm": 25.796
+      "length_mm": 29.327
     },
     {
       "net": "SENS_3V3",
@@ -193,8 +193,8 @@
     {
       "net": "SENS_3V3",
       "width_mm": 1.2,
-      "length_mm": 24.159
+      "length_mm": 22.824
     }
   ],
-  "scope": "Read-only copper inventory after IMU bypass corrections; not current/thermal signoff"
+  "scope": "Read-only copper inventory after sensor supply/bias grounding corrections; not current/thermal signoff"
 }

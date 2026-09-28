@@ -96,7 +96,19 @@ def sourcing_status(part):
 
 def build_bom(source, quantity, registry=None):
     require_single_hat(quantity)
+    registry = load_registry() if registry is None else registry
     selections = resolve(source, registry)
+    if registry.get('procurement_policy', {}).get('require_available_stock'):
+        for part in registry['parts']:
+            stock = part.get('stock_observation', {})
+            available = stock.get('available_order_quantity')
+            if (stock.get('status') != 'available_to_order'
+                    or type(stock.get('minimum_quantity')) is not int
+                    or stock['minimum_quantity'] != 1
+                    or type(available) is not int or available < len(part['designators'])
+                    or stock.get('source_url') != part['evidence_url']
+                    or not stock.get('checked_at')):
+                raise ValueError(f'In-stock / MOQ 1 procurement policy failed: {part["mpn"]}')
     grouped = defaultdict(list)
     for ref, part in selections.items():
         # Same physical component across different schematic functions is one
@@ -116,7 +128,7 @@ def build_bom(source, quantity, registry=None):
         procurement.append(dict(Designator=','.join(refs), Manufacturer=mfr,
             MPN=mpn, Package=package, Per_HAT=len(refs), Requested_HATs=quantity,
             Installed_total=len(refs)*quantity,
-            Purchase_quantity='TBD: MOQ / attrition / stock allocation',
+            Purchase_quantity='TBD: MOQ 1 required; confirm assembly attrition / stock allocation',
             **{'JLCPCB Part #': code},
             Catalog_URL=parts[0]['evidence_url'],
             Sourcing_status='; '.join(sorted({sourcing_status(p) for p in parts})),

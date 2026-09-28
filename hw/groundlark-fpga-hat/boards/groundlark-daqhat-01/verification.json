@@ -1,127 +1,8 @@
 {
-  "date_utc": "2026-09-27T00:33:43.728222+00:00",
-  "revision": "DAQHAT-01 three XYZ IMUs and geophone; shortened IMU bypass loops; standard six-layer FR-4",
-  "portable_lab": {
-    "owner": "groundlark-lab-v1",
-    "id": "20260927T003005Z-201f9aae",
-    "profile": "full",
-    "status": "passed",
-    "steps": [
-      {
-        "name": "build-hat",
-        "exit_code": 0,
-        "seconds": 12.09
-      },
-      {
-        "name": "constraints-hat",
-        "exit_code": 0,
-        "seconds": 13.3
-      },
-      {
-        "name": "build-field_head",
-        "exit_code": 0,
-        "seconds": 6.98
-      },
-      {
-        "name": "constraints-field_head",
-        "exit_code": 0,
-        "seconds": 5.08
-      },
-      {
-        "name": "build-trenz_hat",
-        "exit_code": 0,
-        "seconds": 13.5
-      },
-      {
-        "name": "constraints-trenz_hat",
-        "exit_code": 0,
-        "seconds": 15.25
-      },
-      {
-        "name": "reject-overvoltage",
-        "exit_code": 0,
-        "seconds": 3.82
-      },
-      {
-        "name": "hardware-regressions",
-        "exit_code": 0,
-        "seconds": 7.97
-      },
-      {
-        "name": "check_circuit",
-        "exit_code": 0,
-        "seconds": 0.21
-      },
-      {
-        "name": "check_design",
-        "exit_code": 0,
-        "seconds": 2.27
-      },
-      {
-        "name": "check_trenz",
-        "exit_code": 0,
-        "seconds": 2.51
-      },
-      {
-        "name": "daqhat_01_engineering",
-        "exit_code": 0,
-        "seconds": 0.41
-      },
-      {
-        "name": "prefab_review",
-        "exit_code": 0,
-        "seconds": 0.72
-      },
-      {
-        "name": "routing-replay",
-        "exit_code": 0,
-        "seconds": 16.03
-      },
-      {
-        "name": "simulate",
-        "exit_code": 0,
-        "seconds": 4.47
-      },
-      {
-        "name": "simulate_trenz",
-        "exit_code": 0,
-        "seconds": 0.42
-      },
-      {
-        "name": "simulate_geophone",
-        "exit_code": 0,
-        "seconds": 0.11
-      },
-      {
-        "name": "simulate_geophone_review",
-        "exit_code": 0,
-        "seconds": 0.46
-      },
-      {
-        "name": "simulate_host_link",
-        "exit_code": 0,
-        "seconds": 0.16
-      },
-      {
-        "name": "fpga-loopback-rtl",
-        "exit_code": 0,
-        "seconds": 43.86
-      },
-      {
-        "name": "fpga-implementation-evidence",
-        "exit_code": 0,
-        "seconds": 0.03
-      },
-      {
-        "name": "sensor-contracts",
-        "exit_code": 0,
-        "seconds": 7.68
-      }
-    ],
-    "seconds": 157.7
-  },
+  "date_utc": "2026-09-27T19:38:17.277086+00:00",
+  "revision": "DAQHAT-01 local sensor supply/bias returns, stock-only MOQ-1 assembly selections and selected-socket stack",
   "toolchain": {
-    "image_id": "sha256:52a4ea4b8508fb6d8543869cb97384e50ffc50ac1e3685fbb148e928ae7b907f",
+    "image_id": "sha256:95a9fedc1631191cb7b43ac5a8729a0e74e3ece471ddd7d90510723a8d20a512",
     "kicad": "9.0.9",
     "ngspice": "******\n** ngspice-39 : Circuit level simulation program\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2022, The ngspice team.\n** Please get your ngspice manual from http://ngspice.sourceforge.net/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Sun Feb  5 13:44:35 UTC 2023\n******",
     "system_python": "3.11.2 (main, Apr 28 2025, 14:11:48) [GCC 12.2.0]",
@@ -131,14 +12,17 @@
     "atopile_python": "Python 3.14.7",
     "atopile": "0.15.9",
     "buf": "1.73.0",
+    "gcc": "12.2.0",
+    "arm_gcc": "12.2.1",
+    "libopencm3": "2da12dc96e0b9e42a3332348dd9b02a0a17981f8\nb1003f8b08bc722855e756141b02c7648178142928ace844e72911596770a21d",
     "protobuf": "5.29.6"
   },
-  "hardware_regressions": 124,
-  "software_regressions": 187,
+  "hardware_regressions": 164,
+  "software_regressions": 198,
   "host_link_spice_cases": 38,
   "fpga_rtl_checked_transactions": 23,
   "route_replay": {
-    "tracks_and_vias": 10797,
+    "tracks_and_vias": 10811,
     "copper_identical": true,
     "drc_violations": 0,
     "unconnected_items": 0
@@ -175,10 +59,10 @@
     "modeled_signal_checks": 9,
     "samples": 3264,
     "missing": 0,
-    "browser_rerun": false,
+    "browser_rerun": true,
     "physical_hardware_connected": false,
     "ui_screenshot": "docs/images/hat-signal-test.png",
-    "note": "HTTP/GLB check and native 3D render reviewed for this layout revision; browser signal screenshot is retained from preceding circuit revision. Full lab reran the 9 modeled signal checks."
+    "note": "Re-exported native GLB and reviewed selected socket envelope; browser selected IMU 3 and ran Groundlark test: 9/9 checks, 3264 samples, zero missing. No physical sensors connected."
   },
   "physical_qualification": false,
   "input_sha256": {
@@ -188,33 +72,12 @@
     "docs/trenz-gpio-breakout.csv": "b72e76564aba58665938896676d2452200e7d91f565b7a9b59223b1f5e1d7e3b",
     "docs/trenz-gpio-module.csv": "06edf865a7137677dd498760151a15707787668860f3985e5eed24d8143f60f9",
     "docs/trenz-ground-module.csv": "3e32572a202d810b8146a7e07001d414fbe79fa5f6172654a67dd88d29b8443d",
-    "hw/ato.yaml": "4e79abb2cc7bf42cdd5489972e1f82277ddc00ea5ea1627e68333dc6f9ae5a54",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/01-host-power-page-01.kicad_sch": "caada62c440dbcc4d4e0381785846d8fd42f6cefc7bcc3382bcff52847ecb5b5",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/02-motion-array-page-01.kicad_sch": "bd53cd05c858e4a24e2cc208953b8c911cf64594df08b27f82a5ce0ec18009e1",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/03-geophone-page-01.kicad_sch": "d30af929a5c8d7b849f06324d0a262a9e2c292a3646fb827cb8afda447e6d399",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/03-geophone-page-02.kicad_sch": "0151990ca870e719b089ebaac46ae1422d476de3bd78d1e25a9089fca2e3f133",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/05-coldfoot-interface-page-01.kicad_sch": "0c03bf814b40a729a60003d6f7194d31c5432b19333b554a22bb137bfb0fd453",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/06-supply-isolation-page-01.kicad_sch": "cc3b65b269652b39f5346a2f3e1569fac427cc52db70c3722a3af9bb7f308953",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/06-supply-isolation-page-02.kicad_sch": "c710ab760c0f5e606e866dc28fdb12624c7bc0414eebe049732d8e2a2854feee",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/07-fpga-host-isolation-page-01.kicad_sch": "c2d9577fe9b27075121199d22c7bdb35042edfd3a628ba879831cf07860a8266",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/07-internal-link-page-01.kicad_sch": "56d78626bcf5688ee3d2aa4e847c579e6a8bdebbf869f9c1ee113e6a65ea25aa",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/07-internal-link-page-02.kicad_sch": "d2df62aeb67575de3838f7620ff9d63bfad2138dd642951b83192c5fed0d8a1a",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/07-internal-link-page-03.kicad_sch": "1d65aa816ef1e1f9ee5bb1270050d72be877ea4e61b1ea15f8c5b5a596035f5e",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/08-trenz-JM1-page-01.kicad_sch": "7a57d52166147c4451cb0a7d1bf92ecc43e11731df39a1ec972ff572be86de78",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/08-trenz-JM2-page-01.kicad_sch": "3f9be85e7908dd3180e76ee14abb6f27858e8ef53108bbeea34854fd281b7091",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/08-trenz-JM3-page-01.kicad_sch": "0bc5ee453fa8652d632a4f7bd4ad521e4e13bba181ef45f2b92be247272efff3",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/08-trenz-carrier-page-01.kicad_sch": "210ec0d3d568d8585e1ff275d51219a5535224ca40d1562df483e5703aefb088",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/09-fpga-power-page-01.kicad_sch": "d42287eebc2b86100b5742e1fa14f1780dc3dbcfc472de77be5ae8e283d6b1de",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/Groundlark.kicad_sym": "18d4b6479acd6f38f0df226edfae80285d688c7aad8b1e831972f1d632ec355c",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/bom.csv": "91c8bc65f6a7b03f9b32e57b24bdeae48f07b194028f611986a957b04918450c",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/electrical.json": "12c84526f3fb74677ef415176d7d21fc603e4294dcfdd73c8fc8bb1613889625",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/fp-lib-table": "50f91d72d9d62d482184241cbcb99e7d982cde83df9207d402cfdc3b59484670",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_dru": "7cd2b66915e69a37e4c34037fad1e952abdc40881ece2ad03b26efee4ba442a1",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb": "25cd1426319831eb6a0fb8683af4dbdf135f72b1e4e53d37e63fe377e1a75510",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pro": "b64aba7eceafdb11721eac7efdeb6d011fefd60a1b7ae9c1e3dfb1823ec83b52",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_sch": "78d757877d1a20626884bdf2b9cf87148252f87b0aebc2ae4bb7e2129fceb842",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.ses": "0e52db42a81979dfb868c0e1b6c9d10c9b84dcc541d3e83c9bb5b8a48ef57815",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/sym-lib-table": "605a79cb011ce146b9364ebc3bf6c6c5703812cb37244e3e5b06158f59ac5014",
+    "hw/assembly/groundlark-fpga-hat/daqhat-01-jlcpcb-parts.json": "e8b56c4b70c5c3bb564810a325fab22cae7dc42287302011d924bee4e682edb1",
+    "hw/assembly/groundlark-fpga-hat/daqhat-01-jlcpcb-placement.json": "bea1a4495619000f2bbec3469d21ea7861d88e3497d2827cac97e2213b82a1c5",
+    "hw/assembly/skylark-usb/jlcpcb-parts.json": "8e5827a55deb791565bafa56e72d205416f9b45b1698632a861a3df312a8cbe4",
+    "hw/assembly/skylark-usb/jlcpcb-placement.json": "bfe6071ea7c50eed7a4d87a9e4a524afe561ccccaf0ac52327f6612eb4af444e",
+    "hw/assembly/skylark-usb/sensor-requirements.json": "a5ecd3eecd3cb9b4854af82c4b25e4391b77acb0019872f41e2cbb504f30e991",
+    "hw/ato.yaml": "9dbffb9689aaba549e8663dc71f775cb4ca329b7746385a76c6dcffa15dd8605",
     "hw/burrowlark-usb/boards/groundlark-field-head/01-usb-power-page-01.kicad_sch": "5227853194c19d3d0ed351795560ee38b7b9aa9f2a99b5daff927d031d21e97a",
     "hw/burrowlark-usb/boards/groundlark-field-head/02-controller-page-01.kicad_sch": "b570e9cac69ed18d355dffd679ef36637f7acee6577bfc63ef0d656956a2bd36",
     "hw/burrowlark-usb/boards/groundlark-field-head/03-sensors-page-01.kicad_sch": "37ec74e51d15eddcb08565649946fa7811e895117f75e4fb8db0c3cfe2dd1b41",
@@ -226,6 +89,10 @@
     "hw/burrowlark-usb/boards/groundlark-field-head/groundlark-field-head.kicad_pro": "a663856b82ea1698cc049c4e3f6bef4a07fd66cc209efd7fb411c047b9c2d5f9",
     "hw/burrowlark-usb/boards/groundlark-field-head/groundlark-field-head.kicad_sch": "bb5546566bbe56fe5cf08a72a79ccf24cd9ece86e7714fda2d7afdface90c578",
     "hw/burrowlark-usb/boards/groundlark-field-head/sym-lib-table": "605a79cb011ce146b9364ebc3bf6c6c5703812cb37244e3e5b06158f59ac5014",
+    "hw/burrowlark-usb/elec/field_head.ato": "735204803ccf1c2c03f8089784b9ef29bf19e2164ccfaeb758b9e7e326c1e6bf",
+    "hw/burrowlark-usb/layout/field_head/field_head.kicad_pcb": "6640dd7a8c38b335f88858b9ea94871de3bdbb33606a16442ad8eea4f366a01e",
+    "hw/burrowlark-usb/layout/field_head/fp-lib-table": "0f55a1fcb36b94914fdcbb6bc7fb0882e4dae592da1564f0781a304140ef5bac",
+    "hw/burrowlark-usb/layout/placement.json": "61502651d94f65edad7e1ab3fbc6a6be59421ab04044f33a9736ce3321b6fdee",
     "hw/groundlark-coldfoot-hat/boards/groundlark-hat/01-host-power-page-01.kicad_sch": "0197a2ddb09ef986eb0b2d5120b9ed67257138f1ba0e926f00ff5c6ba6e1ea9c",
     "hw/groundlark-coldfoot-hat/boards/groundlark-hat/02-motion-array-page-01.kicad_sch": "17e08940497fd5407debbcba1705e3f1326ffe9bdeacdd8ec2e9c3007cc8bff2",
     "hw/groundlark-coldfoot-hat/boards/groundlark-hat/02-motion-array-page-02.kicad_sch": "4f65322b80e43eaf30e0f3f7877be539a40de08f0d10b8e92f805450ee22e083",
@@ -249,6 +116,45 @@
     "hw/groundlark-coldfoot-hat/boards/groundlark-hat/groundlark-hat.kicad_pro": "1ba8e2f884747ad5ad621a73db84cc42668e71503dc669513cf60a727db4a80a",
     "hw/groundlark-coldfoot-hat/boards/groundlark-hat/groundlark-hat.kicad_sch": "e1d183a14fdb3cfded30ba0b2a0596235f7dde2d91cc65e3ceab0b328ea74ec1",
     "hw/groundlark-coldfoot-hat/boards/groundlark-hat/sym-lib-table": "605a79cb011ce146b9364ebc3bf6c6c5703812cb37244e3e5b06158f59ac5014",
+    "hw/groundlark-coldfoot-hat/elec/hat.ato": "0553afb9797cfa3f47cf74f056a4a1b828267cd7073f96787ce846aeadbec3b6",
+    "hw/groundlark-coldfoot-hat/layout/fixed-routes.json": "7ac4c6cb1c49d53e5649ef7e991e713e8224dcf826f5d295e728e565e7cbb15c",
+    "hw/groundlark-coldfoot-hat/layout/hat/fp-lib-table": "0f55a1fcb36b94914fdcbb6bc7fb0882e4dae592da1564f0781a304140ef5bac",
+    "hw/groundlark-coldfoot-hat/layout/hat/hat.kicad_pcb": "c4fa0bee36fd79bdf1e721d07aab12467c94ce9d3fa4aaff609698c24315741e",
+    "hw/groundlark-coldfoot-hat/layout/placement.json": "6324bed29945f83eb11f342fdb5e76a09f02201c7d7ec5ff60d989a296189485",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/01-host-power-page-01.kicad_sch": "caada62c440dbcc4d4e0381785846d8fd42f6cefc7bcc3382bcff52847ecb5b5",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/02-motion-array-page-01.kicad_sch": "bd53cd05c858e4a24e2cc208953b8c911cf64594df08b27f82a5ce0ec18009e1",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/03-geophone-page-01.kicad_sch": "d30af929a5c8d7b849f06324d0a262a9e2c292a3646fb827cb8afda447e6d399",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/03-geophone-page-02.kicad_sch": "0151990ca870e719b089ebaac46ae1422d476de3bd78d1e25a9089fca2e3f133",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/05-coldfoot-interface-page-01.kicad_sch": "0c03bf814b40a729a60003d6f7194d31c5432b19333b554a22bb137bfb0fd453",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/06-supply-isolation-page-01.kicad_sch": "cc3b65b269652b39f5346a2f3e1569fac427cc52db70c3722a3af9bb7f308953",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/06-supply-isolation-page-02.kicad_sch": "c710ab760c0f5e606e866dc28fdb12624c7bc0414eebe049732d8e2a2854feee",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/07-fpga-host-isolation-page-01.kicad_sch": "c2d9577fe9b27075121199d22c7bdb35042edfd3a628ba879831cf07860a8266",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/07-internal-link-page-01.kicad_sch": "56d78626bcf5688ee3d2aa4e847c579e6a8bdebbf869f9c1ee113e6a65ea25aa",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/07-internal-link-page-02.kicad_sch": "d2df62aeb67575de3838f7620ff9d63bfad2138dd642951b83192c5fed0d8a1a",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/07-internal-link-page-03.kicad_sch": "1d65aa816ef1e1f9ee5bb1270050d72be877ea4e61b1ea15f8c5b5a596035f5e",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/08-trenz-JM1-page-01.kicad_sch": "7a57d52166147c4451cb0a7d1bf92ecc43e11731df39a1ec972ff572be86de78",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/08-trenz-JM2-page-01.kicad_sch": "3f9be85e7908dd3180e76ee14abb6f27858e8ef53108bbeea34854fd281b7091",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/08-trenz-JM3-page-01.kicad_sch": "0bc5ee453fa8652d632a4f7bd4ad521e4e13bba181ef45f2b92be247272efff3",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/08-trenz-carrier-page-01.kicad_sch": "210ec0d3d568d8585e1ff275d51219a5535224ca40d1562df483e5703aefb088",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/09-fpga-power-page-01.kicad_sch": "d42287eebc2b86100b5742e1fa14f1780dc3dbcfc472de77be5ae8e283d6b1de",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/Groundlark.kicad_sym": "18d4b6479acd6f38f0df226edfae80285d688c7aad8b1e831972f1d632ec355c",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/bom.csv": "91c8bc65f6a7b03f9b32e57b24bdeae48f07b194028f611986a957b04918450c",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/electrical.json": "83c34c2d199fb3ae3ca310be40f4260ce055f4421a6273d04428a2b45159a261",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/fp-lib-table": "50f91d72d9d62d482184241cbcb99e7d982cde83df9207d402cfdc3b59484670",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_dru": "7cd2b66915e69a37e4c34037fad1e952abdc40881ece2ad03b26efee4ba442a1",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb": "eadf8f443cd24c3c2adca5efacf38881b92fc353d0a2a4de8e09233277fd3800",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pro": "b64aba7eceafdb11721eac7efdeb6d011fefd60a1b7ae9c1e3dfb1823ec83b52",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_sch": "78d757877d1a20626884bdf2b9cf87148252f87b0aebc2ae4bb7e2129fceb842",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.ses": "ff8ec7df1d76407ee5ac46e3ad567ca63fec19bb0585e8e7a3cf1b5a29b81b5f",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/sym-lib-table": "605a79cb011ce146b9364ebc3bf6c6c5703812cb37244e3e5b06158f59ac5014",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/verification.json": "22a96bbb33d95280d862be7a0df85f20ae37ac046a1dba86e7154759566e70fd",
+    "hw/groundlark-fpga-hat/elec/geophone_parts.ato": "3e4b138e6692c40e4d053895c3c2caf2c36fd114632d67ebdb607e95d4ff65ea",
+    "hw/groundlark-fpga-hat/elec/hat_trenz.ato": "4d3c39c5426d4ecca5af3dfff22b5a6f23b6c228940968e3d6e405acb742787f",
+    "hw/groundlark-fpga-hat/elec/host_link_parts.ato": "8e1ffe749524c6e756c68a8658a4d7873fecb3ae4756f8c5be7e2095a7864a53",
+    "hw/groundlark-fpga-hat/elec/trenz_parts.ato": "69d05c82acdd1d296271c1c8eaa9e959d5e5d491d6821a4ee192320773fb0389",
+    "hw/groundlark-fpga-hat/layout/placement.json": "56abebe916e8c2508e9e075e768dc3f29f3c30dae8c32019cba918962a0b10df",
+    "hw/groundlark-fpga-hat/layout/trenz_hat/fp-lib-table": "6d306e29ac32c994d93ca7241641f5ce4507b7c4cf1d1157c5adaf7a1fd45b2a",
+    "hw/groundlark-fpga-hat/layout/trenz_hat/trenz_hat.kicad_pcb": "a11e2a33e0cd7def655182a88d1dc94418a4a7c28d97e15aac5fc28a190bb349",
     "hw/shared/elec/Capacitor_SMD__C_0402_1005Metric.kicad_mod": "175ecc7fd401554c6f5d160e85603e58544be5b93f7de8c18d63e09b73ff4c45",
     "hw/shared/elec/Capacitor_SMD__C_0603_1608Metric.kicad_mod": "fdb53e4ae0a5030d2863a19d27fe145470374583a6b28bd9d4f3e08bd6776054",
     "hw/shared/elec/Capacitor_SMD__C_0805_2012Metric.kicad_mod": "f3a3bbfef206323c2b62f565487cf9e862e5a051ac49bd20fe2917821a69c0ac",
@@ -298,12 +204,72 @@
     "hw/shared/elec/TZ_TZ_JTAG.kicad_mod": "e03529db14034138b1f814289596d7e31c74e6668a6fdd0adb32dd67270f80da",
     "hw/shared/elec/TZ_TZ_POWER.kicad_mod": "72eb4d3461b3c05dfbaabdf3c6dea45646555214629748b9860591d27e49a953",
     "hw/shared/elec/TestPoint__TestPoint_Pad_D1.5mm.kicad_mod": "74f3339500982f1f7ee40b97b8edebeda683a5eaa830e80802a0dd83f16ae256",
-    "hw/burrowlark-usb/elec/field_head.ato": "735204803ccf1c2c03f8089784b9ef29bf19e2164ccfaeb758b9e7e326c1e6bf",
-    "hw/groundlark-fpga-hat/elec/geophone_parts.ato": "3e4b138e6692c40e4d053895c3c2caf2c36fd114632d67ebdb607e95d4ff65ea",
-    "hw/groundlark-coldfoot-hat/elec/hat.ato": "0553afb9797cfa3f47cf74f056a4a1b828267cd7073f96787ce846aeadbec3b6",
-    "hw/groundlark-fpga-hat/elec/hat_trenz.ato": "4d3c39c5426d4ecca5af3dfff22b5a6f23b6c228940968e3d6e405acb742787f",
-    "hw/groundlark-fpga-hat/elec/host_link_parts.ato": "8e1ffe749524c6e756c68a8658a4d7873fecb3ae4756f8c5be7e2095a7864a53",
     "hw/shared/elec/parts.ato": "d79711e30caeaff068d9d6980d2993063f6cc5f5909cc73d25e29fb34c16617b",
+    "hw/shared/elec/skylark/BMP390.kicad_mod": "8fab8c3c4c3a9338db42bdc12cecc895913a56da04e43a456b4dd539df8bb34a",
+    "hw/shared/elec/skylark/Button_Switch_SMD__SW_SPST_TL3342.kicad_mod": "d65b2e3d7b581a54ae192b3097f03f00315ad23a1ead2a144d58b965ecc8a51f",
+    "hw/shared/elec/skylark/Capacitor_SMD__C_0603_1608Metric.kicad_mod": "0efbe77f20b5448dd63551dcdefa1789edcca9ac1e0fb44575f60a180cee84b5",
+    "hw/shared/elec/skylark/Capacitor_SMD__C_0805_2012Metric.kicad_mod": "b86a304fe98bb49258cec292143750a44660b34cf535f5a9b67f41326e5fabfd",
+    "hw/shared/elec/skylark/Capacitor_SMD__C_1206_3216Metric.kicad_mod": "d92c61992f99ef85fb73f3cdcaeb152b9d325a75e94baf04b6930f3038513d7c",
+    "hw/shared/elec/skylark/Connector_JST__JST_GH_BM08B-GHS-TBT_1x08-1MP_P1.25mm_Vertical.kicad_mod": "d1537ac48975b675f319851306026a0980296677a441976b95c2a4560e3350f0",
+    "hw/shared/elec/skylark/Connector_PinHeader_1.27mm__PinHeader_2x05_P1.27mm_Vertical.kicad_mod": "11c8a85e688cd56d3fb0cd7de1352178e81b9773cf7162b063b5ba6e7c8a2167",
+    "hw/shared/elec/skylark/Connector_USB__USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal.kicad_mod": "ca42cd63530a53c4a997957ab9eff565d473fc94a297a589580969ae32d4975e",
+    "hw/shared/elec/skylark/Fuse_1206.kicad_mod": "7561b168cfecd2672746541cad00de397cae37509390c263488857656d95054b",
+    "hw/shared/elec/skylark/LED_SMD__LED_0603_1608Metric.kicad_mod": "685fa9fd4ee868a8ced8d2b29662ed11174e29166d81a61c160ebaee1a250291",
+    "hw/shared/elec/skylark/MountingHole__MountingHole_3.2mm_M3.kicad_mod": "d4a01a93a9cdf80657b575c82b648263e5627166784b72d63f30d04ab92d5ced",
+    "hw/shared/elec/skylark/Package_QFP__LQFP-48_7x7mm_P0.5mm.kicad_mod": "73f91c2caa0ba8acc3935cf3de8b36d503c9a0d94dee764b834049eebbff23c4",
+    "hw/shared/elec/skylark/Package_SO__SOIC-8_3.9x4.9mm_P1.27mm.kicad_mod": "6d79e289908deafd508bf2dbaff99d740a2c6b338707350f0bb4720c1c71fcd1",
+    "hw/shared/elec/skylark/Package_SO__TSSOP-16_4.4x5mm_P0.65mm.kicad_mod": "58d7712b3eea1a812a32e0e4768d117e749c0f83e5c3d0ac40a65c4e1839736c",
+    "hw/shared/elec/skylark/Package_SO__VSSOP-8_3x3mm_P0.65mm.kicad_mod": "a5f48b90fed648efc0c8805a55d7946f5c7e4999b63440a2bf7326b23d5c65dc",
+    "hw/shared/elec/skylark/Package_TO_SOT_SMD__SOT-23-5.kicad_mod": "a160e61f7e0d024fd6a169473f992c39e0a25ea3862c635bba4c570fe1eb0d92",
+    "hw/shared/elec/skylark/Package_TO_SOT_SMD__SOT-23-6.kicad_mod": "ce9fd21cfda75b8a356ce5ecf2c3925e25fad5ad64e425839c565b242c9df84f",
+    "hw/shared/elec/skylark/Package_TO_SOT_SMD__SOT-23.kicad_mod": "8dd5a5a29f7eca7b8288e3f6de72793ac04d9d45861045e9066a4d6d378afc1c",
+    "hw/shared/elec/skylark/Resistor_SMD__R_0603_1608Metric.kicad_mod": "0530e08e2b22ddb194aeabaf5d429dac2094a784f86db04557ab77803c0c0de2",
+    "hw/shared/elec/skylark/SGX7_AQ_Socket.kicad_mod": "8e24c958fb453cca31cdbd60f97250adbf58f4a0d42d3154143c5c957fe78519",
+    "hw/shared/elec/skylark/SHT40.kicad_mod": "c964fcf6639e2709e5a03f0c759883d285472a5d6ec4a9057898c9c9497f9d52",
+    "hw/shared/elec/skylark/TestPoint__TestPoint_Pad_D1.0mm.kicad_mod": "02490a1156384b3d5f59d5289dd36ee06a87f438ee9899821dc3160c2a76114b",
+    "hw/shared/elec/skylark/parts.ato": "a828ae38afdc03d867404fdbe63084a331c8abb26ad932e0b3c686cb3a930afa",
+    "hw/shared/elec/skylark/symbols/ADC.kicad_sym": "42297dce6487b715a5212a4984974877b6fdb3bc8c7a4fff1ce88896ed5c7bf3",
+    "hw/shared/elec/skylark/symbols/AnalogSwitch.kicad_sym": "387be63d9d3851e2abe95c1522ef3e88a63b78069f0fe3aa47bd5f5716b7a64e",
+    "hw/shared/elec/skylark/symbols/BMP.kicad_sym": "1f571ccb4bcbe6f0915547a1f5bbcad12aff47fe25b5e4d66ad092fc46fca8f5",
+    "hw/shared/elec/skylark/symbols/BUTTON.kicad_sym": "450c8922373ee1bd41e6ba4f3d9dfd93731d6bfe2f1784cc3288e202916efb68",
+    "hw/shared/elec/skylark/symbols/C_100n.kicad_sym": "3b6a9a516fd65b3a37b5356b219ae683826e2255de00a5103cd984d2a6be5b35",
+    "hw/shared/elec/skylark/symbols/C_100n_C0G.kicad_sym": "4fe0492cf428015fd18aa5975b7363c62a7f7b8094c8fbcf68109ddaff77798e",
+    "hw/shared/elec/skylark/symbols/C_10n.kicad_sym": "0823a8be5c9e199101be162e1c7519ddec27f2b3ffce972d63cc1cb26ace678b",
+    "hw/shared/elec/skylark/symbols/C_10u.kicad_sym": "639dff48314688ad0358caeec8483ed466c10ac3e0122061bfe126605a36b65e",
+    "hw/shared/elec/skylark/symbols/C_1u.kicad_sym": "393a7b4da733be30a3e30c88191af15d99ccd6fd1a2a635090ada4d2ddaf5174",
+    "hw/shared/elec/skylark/symbols/C_470n.kicad_sym": "166029bbcfa1f787a69a49bcaa5d1bd3c8a5c95974d564aae15ea507d323a160",
+    "hw/shared/elec/skylark/symbols/C_4p7u.kicad_sym": "3d218f3dea6cceb45d1112367106e6193204b709411fdb769fc9687ac8e2913f",
+    "hw/shared/elec/skylark/symbols/ClampNPN.kicad_sym": "18ef31c3bc381463be439d2a4dcc26e1a511bb83de710c2772fe3024d111c4cc",
+    "hw/shared/elec/skylark/symbols/DebugHeader.kicad_sym": "b011ae18811a458d16fddbb143abf64fc90ccc2d97faa8a2917ae361bb28823d",
+    "hw/shared/elec/skylark/symbols/ESD.kicad_sym": "b22a88a09dab5c62026202f75d29da52b86ce010160674399b9a57c7ddba3109",
+    "hw/shared/elec/skylark/symbols/FUSE.kicad_sym": "6cb154df0a40f5c741d5d6bb3db28da4f6b47fb5d7c50cc267f8633d9fc28c90",
+    "hw/shared/elec/skylark/symbols/GateDiode.kicad_sym": "ef2e4b2f5bf6603d3b826db30c101679c36577b0e7c11c46510ca0282d6c460f",
+    "hw/shared/elec/skylark/symbols/H2S.kicad_sym": "20b1615b28a6fc27f3b65766794f0dfa29d43125101530896327add361bc0d02",
+    "hw/shared/elec/skylark/symbols/JFET.kicad_sym": "c96515ad935e33cd0d68ae636b256a3aa19c571d4550b336909cbf112ccc32cf",
+    "hw/shared/elec/skylark/symbols/LDO.kicad_sym": "f6c704a8d30f8da4af5bafccad7b64546cbc063354bb2dad937bd11bb5a674ae",
+    "hw/shared/elec/skylark/symbols/MCU.kicad_sym": "64ea96491e7eaa08160cb70e171daecef545d09ef3db29ec7de271e3f13b2dd6",
+    "hw/shared/elec/skylark/symbols/MOS.kicad_sym": "9b5639a060ce8fa49ea1fd0e9503fa12f2a843db9bd4bca0d8c394f05f5f7691",
+    "hw/shared/elec/skylark/symbols/OPA1.kicad_sym": "c11ed8c9435c924263b86467e44dd097a400b9b161987f597b112b3607fbbfc0",
+    "hw/shared/elec/skylark/symbols/OPA2.kicad_sym": "70a0e772b7a8242350e2fcd6793bd08893c412719b7b325e208640954e4169f6",
+    "hw/shared/elec/skylark/symbols/PMS.kicad_sym": "f4cad946ac22d3113c740859fe27d8445e88072449cf9fcc5ea1ca7c9ba48b52",
+    "hw/shared/elec/skylark/symbols/REF.kicad_sym": "17a3714491c8139cb8ab5dd405498922884d6bd191c51cf5e1fb71d87d58e0e5",
+    "hw/shared/elec/skylark/symbols/R_100.kicad_sym": "144e7011188a3d699653e7c3b415e51ee9f2a13645dafa1ece711576bc00d692",
+    "hw/shared/elec/skylark/symbols/R_1000.kicad_sym": "5f1503bf197c06b74d2b0c92dda9f5167f025bc4a515352fd9e33ba1b8bf54fe",
+    "hw/shared/elec/skylark/symbols/R_10000.kicad_sym": "3093fbf91b0d2e7981c6a27f55ec3348457a5c9922a6462c217f788340c73253",
+    "hw/shared/elec/skylark/symbols/R_100000.kicad_sym": "ff27fd3456b87e38bc9cb9693c51a41eb8a80394f3cdea960045c2dd8fc0f094",
+    "hw/shared/elec/skylark/symbols/R_1000000.kicad_sym": "93953e375f02a478e3c5cb0fcdb5252ba9e593224a10e1f74a43239a56fad6cf",
+    "hw/shared/elec/skylark/symbols/R_20.kicad_sym": "4867554a35a2323543f646f03f3da803b820d3ea72563bd2ced298c558924a63",
+    "hw/shared/elec/skylark/symbols/R_20000.kicad_sym": "e1b3b4a68fdecbaa6dccf80f02c0005ce7d58f0f8ebfb2e2e7d66424965e80ab",
+    "hw/shared/elec/skylark/symbols/R_22.kicad_sym": "56ca2ccf1e9135c7523fde2bc1f7f4b12549b307c385f872c04a5da1f26a44d8",
+    "hw/shared/elec/skylark/symbols/R_4700.kicad_sym": "a708e79d4c6dc2caa6213a167d8264e7c29a8266eb74eb630932d715ba76ec6f",
+    "hw/shared/elec/skylark/symbols/R_5100.kicad_sym": "fe7142238f5718278b8ab1f1e66492b7b3af2b7b4d13008219a5b4cbc07387ea",
+    "hw/shared/elec/skylark/symbols/R_80600.kicad_sym": "5366e35ab2dc8a75822cbb1cc49f0daa57442ba8549d2324fd14173b138dee05",
+    "hw/shared/elec/skylark/symbols/SHT.kicad_sym": "6a6bede880dcdc999fdd113cec92d7c48cba9d5a7ec591c8ca27ac994fbcbad5",
+    "hw/shared/elec/skylark/symbols/SO2.kicad_sym": "872c4b20914f5a605614b74f38ec8e11b78d9d82a4cc8acfcc947b2d199eaeba",
+    "hw/shared/elec/skylark/symbols/SWITCH.kicad_sym": "1b5b7abddd4457633b9277fdac2d390b5e5e306226e61fa73ba49b98c30426cf",
+    "hw/shared/elec/skylark/symbols/StatusLED.kicad_sym": "7ab68f92f5aedfb3e76bf96524fdb4bcd4f4709b303f0a5ece2926f379b283ab",
+    "hw/shared/elec/skylark/symbols/TP.kicad_sym": "40753d4389ed96a40636256d2b7b6a7e0f688c22ca819b648a3942c412bb415e",
+    "hw/shared/elec/skylark/symbols/USB.kicad_sym": "92fdef095b807d46f983e188233bbb60529c7b1c77c1e6326cc9eeb916679d6d",
     "hw/shared/elec/symbols/CF_C60.kicad_sym": "e5dcfc9ce6c7447f23ecd20eb879e1dd21a1feb80f94abe4bcbc6f4f52486c83",
     "hw/shared/elec/symbols/CF_C61.kicad_sym": "59768ca1ae34ab073cc2457d5d23a15523a8c93ec79fbf1dc30f2b2b12f4f078",
     "hw/shared/elec/symbols/CF_C62.kicad_sym": "47f0227fa438b92943bb2be80b1e0d78a50fb36c553ba1ed5122d80e3df2f186",
@@ -454,14 +420,6 @@
     "hw/shared/elec/symbols/USB_R51.kicad_sym": "16497878f6d569edc8be4308a0a399dc98a73207006509fb14379fb1efd749f2",
     "hw/shared/elec/symbols/USB_SWD.kicad_sym": "b0fca38cb60f23e8322bff470e788fc63796d0e0df9266154f7ae0e05391ea8c",
     "hw/shared/elec/symbols/USB_SWITCH.kicad_sym": "1d6706e6864aaf0630be2cac63aa74691a319069245f702ddb78e1b678a4f6fd",
-    "hw/groundlark-fpga-hat/elec/trenz_parts.ato": "69d05c82acdd1d296271c1c8eaa9e959d5e5d491d6821a4ee192320773fb0389",
-    "hw/burrowlark-usb/layout/field_head/field_head.kicad_pcb": "6640dd7a8c38b335f88858b9ea94871de3bdbb33606a16442ad8eea4f366a01e",
-    "hw/burrowlark-usb/layout/field_head/fp-lib-table": "0f55a1fcb36b94914fdcbb6bc7fb0882e4dae592da1564f0781a304140ef5bac",
-    "hw/groundlark-coldfoot-hat/layout/hat/fp-lib-table": "0f55a1fcb36b94914fdcbb6bc7fb0882e4dae592da1564f0781a304140ef5bac",
-    "hw/groundlark-coldfoot-hat/layout/hat/hat.kicad_pcb": "c4fa0bee36fd79bdf1e721d07aab12467c94ce9d3fa4aaff609698c24315741e",
-    "hw/groundlark-fpga-hat/layout/trenz_hat/fp-lib-table": "6d306e29ac32c994d93ca7241641f5ce4507b7c4cf1d1157c5adaf7a1fd45b2a",
-    "hw/groundlark-fpga-hat/layout/trenz_hat/trenz_hat.kicad_pcb": "a11e2a33e0cd7def655182a88d1dc94418a4a7c28d97e15aac5fc28a190bb349",
-    "hw/groundlark-fpga-hat/layout/placement.json": "7be790e7ca0322325bc99663af03292d861b324382fa00be39e86332fbb9aa57",
     "hw/shared/libraries/Groundlark.pretty/Capacitor_SMD__C_0402_1005Metric.kicad_mod": "175ecc7fd401554c6f5d160e85603e58544be5b93f7de8c18d63e09b73ff4c45",
     "hw/shared/libraries/Groundlark.pretty/Capacitor_SMD__C_0603_1608Metric.kicad_mod": "fdb53e4ae0a5030d2863a19d27fe145470374583a6b28bd9d4f3e08bd6776054",
     "hw/shared/libraries/Groundlark.pretty/Capacitor_SMD__C_0805_2012Metric.kicad_mod": "f3a3bbfef206323c2b62f565487cf9e862e5a051ac49bd20fe2917821a69c0ac",
@@ -516,25 +474,91 @@
     "hw/shared/libraries/Groundlark.pretty/TZ_TZ_JTAG.kicad_mod": "e03529db14034138b1f814289596d7e31c74e6668a6fdd0adb32dd67270f80da",
     "hw/shared/libraries/Groundlark.pretty/TZ_TZ_POWER.kicad_mod": "72eb4d3461b3c05dfbaabdf3c6dea45646555214629748b9860591d27e49a953",
     "hw/shared/libraries/Groundlark.pretty/TestPoint__TestPoint_Pad_D1.5mm.kicad_mod": "74f3339500982f1f7ee40b97b8edebeda683a5eaa830e80802a0dd83f16ae256",
+    "hw/skylark-usb/boards/skylark-usb/01_USB_power-page-01.kicad_sch": "31727cafa6bfab992649aed6f3a8ef8d0dea5a9fe63e9fdec10f25747893b91d",
+    "hw/skylark-usb/boards/skylark-usb/01_USB_power-page-02.kicad_sch": "799d75e2caa9fb26f4150cef07fc9b013c2b506f98b285ff6b717375d84b4acf",
+    "hw/skylark-usb/boards/skylark-usb/01_USB_power-page-03.kicad_sch": "b4800f59118c4859e11b59ca8ffb911c9190614db445a60216800245cf50f9f2",
+    "hw/skylark-usb/boards/skylark-usb/02_Controller-page-01.kicad_sch": "272f935a18859e7af956795dd85757b2f3e1c0ba146898842dbda14c75837985",
+    "hw/skylark-usb/boards/skylark-usb/02_Controller-page-02.kicad_sch": "120c9834b07cf1986fac3ecc2b9597d647007a751376bd118f97a2441e59a586",
+    "hw/skylark-usb/boards/skylark-usb/03_ADC_reference-page-01.kicad_sch": "b53771c3867320b7010fabc819bee21d7bcee9bb84f6c099af23f3326c973b98",
+    "hw/skylark-usb/boards/skylark-usb/03_ADC_reference-page-02.kicad_sch": "1799cc88eae5ad6da2a21a64daa7c3ef98e4f84757a16fbc8a9c43f02f2b95c3",
+    "hw/skylark-usb/boards/skylark-usb/04_Analog_reference-page-01.kicad_sch": "9bd03309f3da1d449189f70c12a3116d6bd67aee152e84e28f5966d43854be00",
+    "hw/skylark-usb/boards/skylark-usb/04_SO2-page-01.kicad_sch": "084c9d1bf208cf5932166fbdee02337cf4688affa3f2b358a394d2afc7faf82e",
+    "hw/skylark-usb/boards/skylark-usb/04_SO2-page-02.kicad_sch": "d64b13ba62ab04868f4082a6b5c8f4c812fa96a8e194588c48db33bdc65ecde3",
+    "hw/skylark-usb/boards/skylark-usb/05_H2S-page-01.kicad_sch": "5f2d30c6c246f09fa281d146ace15eeee23360f11a949df78043fd464933afdd",
+    "hw/skylark-usb/boards/skylark-usb/05_H2S-page-02.kicad_sch": "8e0074c4fea4be016fd95a97830e355fc1dd52b5dfacb0b1e71da9e81794e08a",
+    "hw/skylark-usb/boards/skylark-usb/05_H2S-page-03.kicad_sch": "6320fe15dbc49ca73d99695124160e5c085141cb84ea5cad7e627bd792b8d03b",
+    "hw/skylark-usb/boards/skylark-usb/06_Environment-page-01.kicad_sch": "5b2ae827138df04c17ba61f102f5875ac1b07bd556f577f18f24035011e427bc",
+    "hw/skylark-usb/boards/skylark-usb/07_Testpoints-page-01.kicad_sch": "ee8b7ca918cf855b6cac8639c506df0915c0676b358fb2342c40d8daf95641f5",
+    "hw/skylark-usb/boards/skylark-usb/Groundlark.kicad_sym": "a574464835eaf56ee2ba73ec183568e87796f0fcb43c806aad086188bdcdcd48",
+    "hw/skylark-usb/boards/skylark-usb/bom.csv": "3fc202f446bbc1a13acf954fe4ce23da9bf43dd42c4c1fda870d57f7bb62729d",
+    "hw/skylark-usb/boards/skylark-usb/electrical.json": "f314571aae4b4b6cac20dbbad000aa5adac3eccb3a7875a132e0b80da8b38e30",
+    "hw/skylark-usb/boards/skylark-usb/fp-lib-table": "dd9a7f04926d7ce9947795bf9a72c6cf49e1496e490caae25663053ea15b9ee2",
+    "hw/skylark-usb/boards/skylark-usb/skylark-usb.kicad_pcb": "179348a3ba446cb2ac438995107810e405bae1b406c9cb8bd36355eab2ff4bcb",
+    "hw/skylark-usb/boards/skylark-usb/skylark-usb.kicad_pro": "d6ea6bb8ac5b635301992b19888ea89427bd73d458c409feac52c8a405bfb7cb",
+    "hw/skylark-usb/boards/skylark-usb/skylark-usb.kicad_sch": "d02bb1689191267fb42a30550a3c1278b68348377db1f7dcb83ce4aacfdfff7f",
+    "hw/skylark-usb/boards/skylark-usb/skylark-usb.ses": "b5e2b99a284f3a7f113eac864f3d15026ad667f839c0f39e73cb48639e3dd494",
+    "hw/skylark-usb/boards/skylark-usb/sym-lib-table": "605a79cb011ce146b9364ebc3bf6c6c5703812cb37244e3e5b06158f59ac5014",
+    "hw/skylark-usb/elec/skylark.ato": "3c7a465cf9d6b1583fdddbf371928d6e2b6ad21e3c2d47db3aaaa1e6899ebec3",
+    "hw/skylark-usb/layout/placement.json": "5f64a60616b812f9e3f7af48047cb953d4599a55bf7bae05073e302bfc1475bb",
+    "hw/skylark-usb/layout/skylark/fp-lib-table": "e66e44aecfffa45bfd79f766ca7b990a059023807701d4c02a0b996d2c22f6eb",
+    "hw/skylark-usb/layout/skylark/skylark.kicad_pcb": "86113eb906e44f2b228883e30fc2a2f548d31cea913437f7430d39d5298c6c90",
+    "hw/skylark-usb/models/ADC.wrl": "c75f3a14738ddd0c0c4248042863f36d3678f1291e57060b31479b411f6ffcdc",
+    "hw/skylark-usb/models/AnalogSwitch.wrl": "1783b68657c823cfdff98b795e604b522b87c2358de47b32d63e63c77d893da9",
+    "hw/skylark-usb/models/BMP.wrl": "4c2530b56fa2d1b8227fb3111b074067c466cd3f796760cd5d76f9cb2744337e",
+    "hw/skylark-usb/models/BUTTON.wrl": "4d2f8068ae58241ba8d1f424f8abcc7252ebf1cb3fdd2fa9c0001a855eeaf732",
+    "hw/skylark-usb/models/C0603.wrl": "73e419595428f66d5517d1c06cca7a4c5f320f66738ed05cc167af2d2d394d3c",
+    "hw/skylark-usb/models/C0805.wrl": "b45d9e4905268bfcafe6a39d5a81295c57344baab7ca2585ca67c31970c0fe90",
+    "hw/skylark-usb/models/C1206.wrl": "d7d2213b0e8c6c3b94c5915037b8383a8a8947ff2bfc4e9c231d32845b451701",
+    "hw/skylark-usb/models/ClampNPN.wrl": "2d5b0d432f128c6dc52960e593227c43e3eee8b3cccf2b992d4c1824704ce8ab",
+    "hw/skylark-usb/models/DebugHeader.wrl": "a5a6211e2b345910146943264d19e5a0584fcec11dda509a447b5e01987145f9",
+    "hw/skylark-usb/models/ESD.wrl": "1783b68657c823cfdff98b795e604b522b87c2358de47b32d63e63c77d893da9",
+    "hw/skylark-usb/models/FUSE.wrl": "0afd9ee45bdaa5966b2666bf2ede7754b20b4218e949546bba3878999a769100",
+    "hw/skylark-usb/models/GateDiode.wrl": "2d5b0d432f128c6dc52960e593227c43e3eee8b3cccf2b992d4c1824704ce8ab",
+    "hw/skylark-usb/models/H2S.wrl": "7ddfbfdaafd9365475de0627a2e90543869b92b0e4e26a7ac76bca785ddf9c21",
+    "hw/skylark-usb/models/JFET.wrl": "2d5b0d432f128c6dc52960e593227c43e3eee8b3cccf2b992d4c1824704ce8ab",
+    "hw/skylark-usb/models/LDO.wrl": "1783b68657c823cfdff98b795e604b522b87c2358de47b32d63e63c77d893da9",
+    "hw/skylark-usb/models/MCU.wrl": "7ba530ca1977ab9e6129f61b154bb18554a995c0568f9c816f5aea91d5a0e70f",
+    "hw/skylark-usb/models/MOS.wrl": "2d5b0d432f128c6dc52960e593227c43e3eee8b3cccf2b992d4c1824704ce8ab",
+    "hw/skylark-usb/models/OPA1.wrl": "1783b68657c823cfdff98b795e604b522b87c2358de47b32d63e63c77d893da9",
+    "hw/skylark-usb/models/OPA2.wrl": "6a1aaf555e1716b4b43b4c5f8d2aab364e276f4a0c1c373677ec36b2088d01ee",
+    "hw/skylark-usb/models/PMS.wrl": "b967af3217f45ee532827fa11e0839c835aeccc74b6bb1125464a4c86c690b9c",
+    "hw/skylark-usb/models/R.wrl": "535d8cb7876436b214bb69d460b2ce4b205f078f4115a29d616de227221bb419",
+    "hw/skylark-usb/models/REF.wrl": "2d5b0d432f128c6dc52960e593227c43e3eee8b3cccf2b992d4c1824704ce8ab",
+    "hw/skylark-usb/models/SHT.wrl": "f24aac10e4c7cb4c50ee76d24deddca38f039d37181dace884e22f6a7a1f821c",
+    "hw/skylark-usb/models/SO2.wrl": "020cde7d57d031468e0f474208f333eedb9ce76be2c207196fdb00b7a7faf600",
+    "hw/skylark-usb/models/SWITCH.wrl": "1783b68657c823cfdff98b795e604b522b87c2358de47b32d63e63c77d893da9",
+    "hw/skylark-usb/models/StatusLED.wrl": "2101a5b629b59f88698ea2f42f0ef6a352b98d9b37e132f735db0577fa819622",
+    "hw/skylark-usb/models/USB.wrl": "bf62770cb1f235c9c9b136f4d7c62d9bb52d0611ce5b16e1e2cc5b54fecc8b47",
+    "hw/skylark-usb/models/provenance.json": "ee19421b37f273c2826dcb4ffc22ec83e6034bf296ca1d8267c316af2f0b3913",
     "hw/tests/overvoltage.ato": "d27fdacc309922af22a9fdc99fa1e91582ee878caff5c5e4c5ae2a0d1de4697e",
-    "hw/tests/test_engineering.py": "2509dd22ad2202970faaf5e6664af3fdfc3cebea2566494f55435f798914313c",
+    "hw/tests/test_engineering.py": "c8c1be482052e85c500957a45f00b2998432c86597f706ac17072df0936d0396",
     "hw/tests/test_fabrication_audit.py": "7dc2b0dc78950cb4c2b733f9b3f5e2b6fbe1cca1a0fed3f4375ac54f4ec95c94",
     "hw/tests/test_geophone.py": "4aec6aaf362eb7ca6e095dddabe2ec334417082723601938e53c31b8abd281bb",
     "hw/tests/test_gpio_audit.py": "2bb2aa4b74cd744e235c6e0e0cd929adbc6894a47080ac987dcdc5168d12b3a0",
     "hw/tests/test_host_link_parts.py": "5e0f9bd2f929e3e8759a68eeb1f767feaf9b4fc9512bd4a40439610e5ccfa941",
     "hw/tests/test_imu_layout.py": "967df79f1523c923f2adb69af128bf4bfe964010b9aef9009c9e13acfc1ad962",
+    "hw/tests/test_jlcpcb_bom.py": "fd74886eef3a1f1acb10105699a24869e47a4a646b3f0a3e8c92e6dcadd78d4d",
+    "hw/tests/test_jlcpcb_bom_overlay.py": "5e25692f961d8698af6637c1c92295f38cb22759e5f8540524c1ce7f9b8a2efc",
+    "hw/tests/test_jlcpcb_export_integration.py": "b383292fd2c6e7eb0b3e36d69807d9146fd1bc1b00ada48afea82d8d39e2db18",
     "hw/tests/test_jlcpcb_package.py": "6e5cc902eee1650e924b0464c33814c99427859dc7e03724cc6ac0eb1caaad1c",
+    "hw/tests/test_jlcpcb_placement.py": "e9ed2abb9daa6b247d7feadd214ae9cc3fbd5f6b11c49ee8abb1ee8f91edf07c",
+    "hw/tests/test_jlcpcb_quantity.py": "3056af2ebe321161533382a2d6cabd461f28d948a6cffc4cded9b00a1ff16ffc",
     "hw/tests/test_prefab_review.py": "8e0c6b382db68b934c36d34b7caa52c19717dd42518435da5c6db6fc00912649",
+    "hw/tests/test_sensor_supply_layout.py": "9d1bb84a76ac610f29d0aba9462efef67e368d47b3910f9ea24fc468ad5dbe1f",
+    "hw/tests/test_skylark.py": "3c5347cab2a60002cd96e348bf46fbbbb77129207897b5c5abe93d6dd7730328",
+    "hw/tests/test_skylark_package.py": "df8d20c3bf21ec8bf0f1ac1fc6757d2ac233bb151558203193471a5831714d6f",
+    "hw/tests/test_skylark_replay.py": "442833b12f52808466173ce2422dfd39c07591dae75d17999aa6ed59c8eb414a",
     "hw/tools/assemble_pcb.py": "d7e1fe232b2f342c3287ad711a8492870283da8a8c66930cb6b1437ed4c68378",
-    "hw/tools/assembly_fit.py": "c3aa4eb93bc493c426359ac3da559f2f309e41aebbaa939c4337e29160f016a4",
+    "hw/tools/assembly_fit.py": "ba2226ce61c877bccfbf57b9173020c49e79deb7d5d7d0457fe37bfa26a2ac82",
     "hw/tools/audit_module.py": "8f6a84221ae859435156a21a4db9b4f7032a7ace610d95f16a7bad38312a9020",
     "hw/tools/audit_run1.py": "9c9472b670f3fe36ff1a87a35f9e1c6dae8aa39b2e358290f4076260a7a89f8f",
     "hw/tools/bootstrap_trenz.py": "2c8e1d89dc25f0a49e676e58bf77fd24b74943b98da5e2bb4da077ccbdf31e89",
     "hw/tools/check_circuit.py": "7f81da2651dbd5269e43bbad894805c1f3bc4dd1f5baf4233041667908a3f186",
     "hw/tools/check_design.py": "a46f42463fe30e627b6d7de849bd4f62a6864f0d38479c9c29039c7da9701715",
-    "hw/tools/check_trenz.py": "3d2f77ffa74a9bd62fb17573d3e6cc6bba5dc8ac454ae6303e1c4d000b50a2df",
+    "hw/tools/check_skylark.py": "44399bec5b5957024481d355acb9b861c2a04c65e38a1929299cc19de3d322bd",
+    "hw/tools/check_trenz.py": "5fac685121bdaad0c895d551528c41f8ad7dd6027cf5f88fe6684c4091b3d09a",
     "hw/tools/clean_route_objects.py": "f1878d6c01867ec338fabc47565e5052c01569b0fc8a6b800a8c1da853b84a35",
-    "hw/tools/daqhat_01_engineering.py": "3f25031555cc830f750cc530af7717d8b0b1f95b8752855ece9b31592f70c2e2",
+    "hw/tools/daqhat_01_engineering.py": "8a65521118d809aafa9dc6656f5a19209dee9b174c68a55fb884cb924631428a",
     "hw/tools/export_previews.py": "09dc0051af5e70f570d5971dbad62cf19ab88b8343198b9e6b738645354e6d47",
     "hw/tools/export_routes.py": "f9f07c6f7e396c154d7a4dc34bc5140feb2ffaedc3f26d589c70018a7cd6ec1d",
     "hw/tools/export_session.py": "7f70e686f1913a8c4503630a6239600230effb96c30d9e88b9f29cff091862dd",
@@ -543,20 +567,29 @@
     "hw/tools/geophone_checks.py": "2409bac35d03aecb099fb80d1dfeaa8d2291a4665e33b9410af8cd9b7a364fa2",
     "hw/tools/gpio_audit.py": "026c8a1c0cd2c0a3f0f8f0f09b3db17f815bcfef4dfbfd191f8b4d5136c5bf9d",
     "hw/tools/host_link_checks.py": "3bb3ba9edb68231b41a3dc163920b5206a6376ff83eb704c2f39694601cfdd4d",
-    "hw/tools/import_routes.py": "12682d3d5c6e2abfc76ce401217236618fc5160b173c6b97762f891621f8ac89",
+    "hw/tools/import_routes.py": "6f0c40f4673675821fe16749dc17bc45060b663f7efecd015124d3b109d2208e",
     "hw/tools/imu_layout.py": "3b2a009c397c1030852f01b140c4e281e0cb3ec95f65caafd144e9490d1a9a27",
     "hw/tools/inspect_references.py": "8bf842e4fc6f8a8fc1ee0b13f15454dfd7b90c7ba22198d2fef84383d1e25a9b",
     "hw/tools/inspect_trenz_step.py": "689345f4274de88bb892ac78e4830b4f1f398e2e24112da12c6bfd0b8ad076a4",
+    "hw/tools/jlcpcb_bom.py": "a02bd8a23bfa51464a3f70c4e0e53e7be8b1c5720f8b89072c5b1580c8daa2a1",
+    "hw/tools/jlcpcb_bom_overlay.py": "f1676b4ed644cfb1a93ce9dd206a537cac557356edccb28911ceaca4c59ccfd4",
     "hw/tools/jlcpcb_drawings.py": "ad399637f357cd05263dc3cefd6798e5f47d25fec8d498b506041966a1cc2798",
     "hw/tools/jlcpcb_inspect.py": "62e7a79b5fb9a8b00817e4417278699c0a0fcdabf569fddc350844b6484546f1",
     "hw/tools/jlcpcb_package.py": "c91c91d53de01340e8c09f43d774b666c61333c456c9bfdec05a722feed62a8e",
+    "hw/tools/jlcpcb_placement.py": "e55baff6d2e3a3cecee328ed7f59e6017ade278c869e0778788df449095f18d4",
+    "hw/tools/jlcpcb_placement_overlay.py": "f09d52e83fa0132ba0ab6db2e91b9fabd05ab67500741e93820fc52ea4a6c328",
+    "hw/tools/jlcpcb_quantity.py": "f95e8fd2d3bd70619e541bc3c428d9399251dcfcb52bde279e14efc472b3a907",
     "hw/tools/jlcpcb_seal.py": "537c50478c898d81d091998db629f55885a6e630062fd80b0867be5f44b5d857",
-    "hw/tools/kicad_support.py": "7998f994ff5732afa1605416ad3b998dd9b6a6bd4e44a71d7e5885901c8aeaa3",
+    "hw/tools/jlcpcb_smd_placement.py": "d8a9cf2a1f5b60519908a7a823ae1fe785c73773d06d1d7920c42a7adef15013",
+    "hw/tools/kicad_support.py": "27fb5aa290776decb045bbc1c5515c8279a7630f56e9b8b525627ed7004bf505",
     "hw/tools/models.py": "b4d7b96a34f42067e0231b3f8e3b0e817469de3531241bddf9966a7027034310",
     "hw/tools/pack_trenz.py": "d8b29139462590f43b5abca5d724593ef7a4a2abce494fe960dce36d11961b13",
-    "hw/tools/prefab_review.py": "5b79ac81b30c539e1a2f585c82f5cc6f059c229903c52ea640590bd459fdc4b9",
+    "hw/tools/prefab_review.py": "93387306869cd604ced2c6a0caf123bc2b28b1f4bd816715ed870c52dad08e52",
+    "hw/tools/project_paths.py": "d6f7bd01805d0885c5fdff72117f3c3157669071e41ef0f3cc385e2e4b0f5278",
     "hw/tools/record_trenz.py": "a043f0f7d810b72e3bd7274414833b805ef37b0ef019f3965a6d961472428655",
     "hw/tools/render_option.py": "f0816b2b0e3da888f494aaf4b712d301d3c10b6a9af1ff63f83ccd11725ebaa9",
+    "hw/tools/render_readme_stack.py": "f8b8fb1cdfb7ed3b08cf3cbbc2873022f4ead1c4bfc93238449f4828edfed4ce",
+    "hw/tools/render_skylark.py": "4b8c2b7500f07556127ddd513ae81234ecd8cf24b2dfbde9926960c720ce8d97",
     "hw/tools/render_trenz.py": "78c43235a7f0a7d825df8a1ac32d513656bbdce71290efdc4a46550e6f880cbd",
     "hw/tools/replay_trenz.py": "8a34a650d4aa33083a49ac04b638a75d5a12504c69a260e1ed7f257129c50a6a",
     "hw/tools/report_validation.py": "6873fc5e657de561aec3d24c6cabe7de2c388999e4c2541b49b17159a9bed4d0",
@@ -564,18 +597,29 @@
     "hw/tools/review_schematic.py": "8d990f237fed0f91a2127f2ee2e32b9d744f15e0c17eb282a6258d9bb21ae1c3",
     "hw/tools/ribbon_drawing.py": "65869ec20d317456e8fae8c2ab353702781a357f7aae9bb69e685537ef14374a",
     "hw/tools/ribbon_mechanics.py": "65869ec20d317456e8fae8c2ab353702781a357f7aae9bb69e685537ef14374a",
-    "hw/tools/silkscreen.py": "2621ae53bc57bc3f81d74048d4f8e615273f48b0f9ba622f42f84490b75b5e6b",
+    "hw/tools/sensor_supply_layout.py": "d26eaf158ea9c9817f5e0b8568db66dfd86c7904d56865671e694bfc9510c50a",
+    "hw/tools/silkscreen.py": "1aac164519d6d40ed8cd0f3a94293d6141c8263cadcf30d3ebc0e9046cc25481",
     "hw/tools/simulate.py": "37c81532d232f22c09fced50edbe0c8f906de3b9fb7c8d84a8c09fa700869cab",
     "hw/tools/simulate_geophone.py": "1a5df9fa60c76445f4297d9a751018978892da0260faf2875268ca5d6df057e8",
     "hw/tools/simulate_geophone_review.py": "b8d67f37b88336c3f226f3113fe2ea6f0a95038b5e6843939ecf7d8ab1d904c8",
     "hw/tools/simulate_host_link.py": "fa44967aa95a6c36ee5e298872ccfed596462cc3d967165de77425d33fd13c36",
     "hw/tools/simulate_trenz.py": "ac4a193adc32c4f3603f2550532fec94168cefd44277d0555074ee0f8071bd5d",
+    "hw/tools/skylark_analog.py": "934cbed494ff147744e29533b00d1de1146b4651d5c2938e884fdc928ec75e73",
+    "hw/tools/skylark_fabrication.py": "878ba2595f6d00c4bcc0063a56477778ac98fcb1ede9951789db52df4ca13969",
+    "hw/tools/skylark_fixed.py": "83248a1189e217f6c412d20f430b663f1af27159162823276484f6e3821d87a4",
+    "hw/tools/skylark_guard.py": "542210dc2616062a77623bd2eaf257575406cb168b596b8693378f0f1148f961",
+    "hw/tools/skylark_import.py": "bdf3be93d798c3fdd373073cce1637749e68461c10ef9c76ff003586216802f5",
+    "hw/tools/skylark_inspect.py": "5d6104a07ecf31f2721f1dd90dd43c27e44c7543c8660f44848d23f9cf083d32",
+    "hw/tools/skylark_layout.py": "e984086e23d088dc2d96d59278e63bdd4c23df484e6bbec2f77dfc298bed12bd",
+    "hw/tools/skylark_local.py": "7804c354217500db101758c3f8021c03843bb70f82c2839be959b01bb1135a93",
+    "hw/tools/skylark_models.py": "cceb9487ebbe435ae156e70d7cbd8b70c62652278fcaa82706e0bbf6dd4544e8",
+    "hw/tools/skylark_package.py": "d65e0542ae4f5d42957c10f8e7dd0231e45a5c4df2cb176dcfd9f29ba5610356",
     "hw/tools/solve_constraints.py": "34c94c2944b3c438c9846810210f09686a7ddf4598522f54f3f6b246e67bc624",
     "hw/tools/stackup.py": "94a1b4db273244cd48c47257f49b2100d6543030891e6c200d550607e2edfd57",
-    "hw/tools/trenz_models.py": "6d8b3e73119d7cad9a025a64a8d1f0ebe79e81ffa0ae9998932b2ce9aeac26e9",
+    "hw/tools/trenz_models.py": "8c671c91f417d1866a038652ad833ae9c0d2e20448c16fd9c3e139892d9b3f94",
     "hw/tools/trenz_power.py": "868c8a6ce3af9df39e7b0c2d3fa2d52cb792be91fc504869941bcf0a174e9b6b",
     "hw/tools/trim_dangling.py": "ce7d807b208bac3fa533612324a6f81a410a4910c469538dfad3a376a397f64f",
-    "hw/tools/widen_power.py": "0aa3c900de3d0d31cb10919683de231a306302d081e69468702dbee066ce30a7",
+    "hw/tools/widen_power.py": "ba3a045f6dba84616e7018db55e017d75f23c7bd5a1ed06c22f934d7a08b0000",
     "sw/fpga/build.tcl": "f903484544046ad27da4d6e07f5f431828c07c196389d5263f5bd1b85b271376",
     "sw/fpga/cosim.py": "bf9c809f65c12befb6fbbd7af9e41a212a6cd7aa535df280e5f4cc768481095d",
     "sw/fpga/daqhat-01.xdc": "0c94f70c0455228b94400c13edca6500d695ba4a7f8a7c79b468310fe09dcd85",
@@ -591,12 +635,12 @@
     "sw/fpga/verify_reports.py": "08381de674b949349ccade63869ea3571783336f3e431ebe774e174717843040",
     "sw/interfaces/baseline.binpb": "baea8814b3b28a3e990e3b9ece794895d30718dcf3f5fc86a3fde9a1bd90440f",
     "sw/interfaces/buf.yaml": "bda68586bbdf808b33c348d4c11029efaedf23a94b5e078208337606e24cd1ce",
-    "sw/interfaces/proto/groundlark/sensor/v1/sensor.options": "90a86be18564803de197be4bc03670a278a9d6378c76b521c24d3c071c4cf60c",
-    "sw/interfaces/proto/groundlark/sensor/v1/sensor.proto": "7c0369e0a4f64926c34dab5d3f6f3f7902f5e10e1da0511f83e23fc2bb2349ea",
+    "sw/interfaces/proto/groundlark/sensor/v1/sensor.options": "15825a6886095d41572335d4f2a05498d9b7385a131d141e6b631becfc0ab767",
+    "sw/interfaces/proto/groundlark/sensor/v1/sensor.proto": "63bdc42351a6e8bfea5e701f69927e9afe060db8806d8d068876c35e17a5baa4",
     "sw/interfaces/python/groundlark_contract/__init__.py": "044fe0e8698a9834e8e30fc68916de9905cb91fefd6f8ffdff3ee289cadd532f",
     "sw/interfaces/python/groundlark_contract/framing.py": "7cb41e2a1a936e52e05d007970804902a215dca30c939ec9dd7a94136be00516",
     "sw/interfaces/python/groundlark_contract/schema.py": "43100a0641fc31e8c67e18eb921c68d1561abe7fffaf80e9f7de0369e1294841",
-    "sw/interfaces/python/groundlark_contract/validation.py": "0f6c89fd91d47ef50b23d95087d85dfb7c019dcebfdba45f0ff7d2ec925154ef",
+    "sw/interfaces/python/groundlark_contract/validation.py": "3a239531f8c7f1c40ef7ef738ba1512f5630461a1e94fd749b5c025e6effa753",
     "sw/pi/deploy/bind_spi.py": "4c56f5f314aa44f79e6ae00b357ab44cc06098d3a750735db3643eaf8e90f439",
     "sw/pi/deploy/daqhat-01-jtag.cfg": "f6ae9ac0400d55f6c4dd0c6b4a743e0bdbcf899e011c49408c3a5377cddba1cb",
     "sw/pi/deploy/groundlark-daqhat-01-overlay.dts": "76a877f84dab1157f3c5f603ecb95fe61f5570ddfbfa076e3b1dafe1960e478e",
@@ -604,8 +648,9 @@
     "sw/pi/groundlark/__init__.py": "5143667144a1727c3832f744c0b2c0ae70aa6561e7ff395c30dfd9580afa6d31",
     "sw/pi/groundlark/__main__.py": "4dc4f1ff4ff0887cf7e5da0da1432bfcb7aa534f30bcb72cd2ed0a2ac23f87a2",
     "sw/pi/groundlark/bench.py": "862a7ae36f54121774d85cc8e4b4a3e6c3ea8be867d5dd0180ea8015d6f19057",
+    "sw/pi/groundlark/board_bench.py": "d824b7bf6c3c5dede1142c4f525cd084fe1fa8b5b8ffebd3275b3d75885584ce",
     "sw/pi/groundlark/calibration.py": "25f5efb123ceaf97e2faa9689e4b59e9b649d56ff5d6ceba04e6ea735953cd10",
-    "sw/pi/groundlark/cli.py": "4440ecee3bcf13d0f958949fd294215d05e0a7b52f05b5ec6fdf4b1882bfdafe",
+    "sw/pi/groundlark/cli.py": "c359daccddf9ab65cfa784607e86a2a7ddfdd36ad65e21bd4415a9ca3ab1ed02",
     "sw/pi/groundlark/fifo.py": "92d5f244e0e9782e5eb621b897ee961ab2fc770834026b17b23579b0114dd589",
     "sw/pi/groundlark/fpga_link.py": "97bc106ee011a8293c63adeed804a38f2a25bc6e74164d201db6e1696a25269e",
     "sw/pi/groundlark/fpga_linux.py": "e232c1b052446aabbd7f26def6f487b01d5e1a0031d65439676bbb4ce00f536a",
@@ -615,26 +660,41 @@
     "sw/pi/groundlark/linux_io.py": "c0cee1a3c0f86b16ab3d0cc3909a407c651813ef43cf49d5d197ae946e7d51e2",
     "sw/pi/groundlark/live.py": "65d58d26116c27a392c6812ad503686c814b79e878d35ec4dbc5d1c363cc181c",
     "sw/pi/groundlark/measurements.py": "e4b60c466a63ed34788b127a6f6b8f4d0d946c89317754902164db6233852376",
-    "sw/pi/groundlark/messages.py": "66754a9973945caa21221b68c9533fb759b033c2ab8ed73fcdf05fade69229d9",
+    "sw/pi/groundlark/messages.py": "360ba62fda5ae74f8a2f400d297f7af86e0f86fa960394f73802241a79da189f",
     "sw/pi/groundlark/recording.py": "0978b67f5f060837c9200e9da32629ed904805378b37370a02cf063df3c328f9",
-    "sw/pi/groundlark/runtime.py": "6abb1f572e6582ee39124ab7d7ef8ac8fc85a9dca3748f83dbff18ac07489dff",
+    "sw/pi/groundlark/runtime.py": "ea4f2fb44265dd142e32fe3f1e0d3e4a66b5872dd9e337c7cfa3fcb6b6308583",
     "sw/pi/groundlark/sensors.py": "b72c02b36d6fc9931e59c6d00dca9513037242944a319607d0a25838bda470aa",
     "sw/pi/groundlark/session.py": "58b007e87c57dcda07ee32f0c0eb94b18c19bb4769e2b91210ca2f3383d995ad",
-    "sw/pi/groundlark/simulation.py": "10a6ec22a32bece87e2d7d134af7d70abaad62b35729333fd08ff765b3955b32",
-    "sw/pi/groundlark/stimulus.py": "b930b301f2ed5d265585f1e687949be3f651ae474225cc37a7fa7c8eb75c7a85",
+    "sw/pi/groundlark/simulation.py": "1eedbc9349e819b62363d9d227a816c4952f205b23a24fa9aea8c230b5613b74",
+    "sw/pi/groundlark/skylark.py": "a2c54631dd477628d103f86c6a80e8983c1fba1f0cdc45454ea07395e493dee5",
+    "sw/pi/groundlark/stimulus.py": "79939e7448a6258ce396b41e6b2c9af51bb3b2ea42474ed56698041590fb2a4e",
     "sw/pi/groundlark/transport.py": "13eabe9728f6543d9ffafc5a62d21dac52bad8b5df6231942628e72e902695ae",
+    "sw/pi/groundlark/usb_capture.py": "839c868ae2a70f1ce66cfd6242b6e4d58a64da3103b9416c37d84131dd8b9336",
     "sw/pi/groundlark/utc.py": "b594a87b014ef989a49640a858e3119acc545c103b13bb2b625d258cb7ac019f",
     "sw/pi/groundlark/virtual_hat.py": "4d87a909a09d15806e8ac9d9937ac190416de02132a9fc3abdc39ff69fd6394e",
-    "sw/pi/groundlark/workbench.py": "476ac7f57d06aa5ac0d58a66c5d88266fb0668dbce220c2f8f7f9c921bdaa382",
+    "sw/pi/groundlark/workbench.py": "3ea494c10f8431353e1978199bcbd68a7a08340169474e977e478f9dd0955859",
     "sw/pi/groundlark/worker.py": "e0f728272f04b443e75d697e12d59487da6450048b039fbf09943226a2835cc7",
     "sw/pi/profiles/daqhat-01.example.json": "156ef26f5bc15660dc46eba7d4ed05480bc3cbd596dd0085b5c6b669209d74ae",
     "sw/pi/profiles/stimulus-demo.json": "1a179d6086f3d7dab2f267eb54760ec00ee8c0d14c7fc6d3ae1758ef4748883c",
     "sw/pi/profiles/utc-policy.template.json": "1f95ea883e56f316cb85fe388ee16d1a07f3ea7e5ccc6df1af084a440cb9d5f4",
+    "sw/skylark/firmware/Makefile": "9adc42f467f2d8829549a934ab0fd0aeca0dc4426c8dfc064a5d0a728a05e4d8",
+    "sw/skylark/firmware/boot.c": "6346dc312c5fb7b66330c67010780f33663fdf9e6797324d25abfce03ace8170",
+    "sw/skylark/firmware/boot.h": "3c0a236ac99395dc6c886c567448eb9a78827035153054d6ecbffb7ef4d7a02c",
+    "sw/skylark/firmware/core.c": "0d68e0924ea4b3a6cbcfabbd2fad9d935530d97aefa14da3d391da4d5a2b71c4",
+    "sw/skylark/firmware/memory.c": "b48d9e0b0c8953d3dca6c6a1ec9d4910dce3aef78abefeb2490b4f2be295a53e",
+    "sw/skylark/firmware/platform.h": "cec75c5071a4c238b98d3005f8f480216917f7a295513398b96160d10960ba37",
+    "sw/skylark/firmware/sensors.c": "f7c491b1311bfe6b43079104bab18cd9fe00d3791bfdbeaf345b9f59b8351eb5",
+    "sw/skylark/firmware/skylark.h": "2ba23ba87da9cd0c6557bfc41d353d4fb53e176d4c990215aeb68e14b134e8e7",
+    "sw/skylark/firmware/stm32.c": "52dda843d7a833cbfa3d0f628de9f191f96ba94c6e6d2d2d05314151b50013cb",
+    "sw/skylark/firmware/stm32f072cb.ld": "780db8b48a0e2aa30f529492905e725f461733e72b2a817e2c994731b15b4393",
+    "sw/skylark/tests/boot.c": "833dbe683bdb62d7c64c07bcea982a941881afcd2afab022acd335b72e6da607",
+    "sw/skylark/tests/native.c": "4f63bf5e4b44ef0414a8e972330aa2ef37f82d7c0ea8a8011a0288cafb44e20a",
     "sw/tests/fixtures/acquisition_faults.json": "dc4b24e70ee67394af2d5b56a4f635b15abe733c7b7e78c181172571a612a751",
     "sw/tests/fixtures/magnetic_boundary.json": "ccb3d9fd7dd47dd9f14d61fec27da48657afd3196c04d832105fc51fb7428167",
     "sw/tests/test_acquisition.py": "de34bc3b4fc3053b7bc46f601c9e63155524b8c48ae189ba9e6bb8afba786fed",
     "sw/tests/test_bench.py": "476a483d8c68adef174f884407e783260d9012935aaf36d48ee85bdad1279633",
     "sw/tests/test_contract.py": "e3b32a294b04d6490924405771747647b4a0602a6e9ce489c1347ff386c86a57",
+    "sw/tests/test_contract_baseline.py": "2acb9fc55f70ae64069e21343c76837a8d5b3825c40723a1fc90f296cb69477c",
     "sw/tests/test_deployment.py": "615b7ec65ed85aaeb352401fc0e221e740afccb665496e2e3d92bfe10fe15fb0",
     "sw/tests/test_fifo.py": "b4e0714d87dfde28aeb3155cda2f179d7cfdbc9a61dbf84ad66f4a9863f9126f",
     "sw/tests/test_fpga_evidence.py": "0c33eabaf09dcd23fc3bc27344a6ea0db1ef89bee95509987211ae5b47184d30",
@@ -645,32 +705,32 @@
     "sw/tests/test_linux_io.py": "50a10f9444a090341d8944540f6a6fd1d3d55755c90bbca7af9435ea1b03668a",
     "sw/tests/test_measurements.py": "39c6d4e0ae00c0afda9a5b608060fae5566915b8900e05269816def651194f9c",
     "sw/tests/test_sensor_drivers.py": "38d1306cfff3d771c9fe1d0e9f09389f46bc733afbdbf576c8c1aeb476bfff4c",
-    "sw/tests/test_stimulus.py": "905d8ece325319c13bbec224ebf41a7e6ba870f0600b99a3f48c9361d0fe8f1a",
+    "sw/tests/test_skylark.py": "19654c2ab58fa6e3332b8a4fb86d277033a4246472f78af3a16fa0b765f1c558",
+    "sw/tests/test_stimulus.py": "1d17135c370a093c38fc1d6d8d8baac6bb8e960911ff6d025c046becce862747",
     "sw/tests/test_three_imu.py": "8edc8f4b04aad2fa0e28694b4310404ac97eca71341b34022342f2bbe3c8af88",
     "sw/tests/test_utc.py": "40d826a74f2756c526093d84f623b3f472770a1d5c950a34e3d13bbbc76d1e48",
     "sw/tests/test_workbench.py": "3855bc273cb77c7957c75bc5a063ed861986239f6c1e384c0878143f0020b616",
     "sw/tools/bench.py": "8f0aa993818f85f6fb48b0bcf87e0beae134991df55215cd75727f0182b300b6",
     "sw/tools/check_hat_signals.py": "6616ab1d91c738c30d5c82894de52267c4e35c1cfc8fd6dd6c23b07c2b398cbc",
-    "sw/tools/check_interfaces.py": "52f8dcc2dce6a3f5845b6f23617d9d1870efee34f26bfc69404a837e1f181396",
+    "sw/tools/check_interfaces.py": "1a9d51b300fa1eb856c12482adc52eba73148e0875088e360a6de62ecee14fd4",
     "sw/tools/correlate_utc.py": "d2a2753b0f36c50a290f455fe5e3cd7c85fbdf65c6e0a9b508bc27eeb14ee883",
     "sw/tools/fpga.py": "98874b9eaaa063225187c1c84318b8e959585bb4a5cf680b6690fb7b8efd5a4e",
     "sw/tools/measure_hat.py": "39ea7d929ad35acb1a62a1c892290f4508897ad83d9e066bec7359a6475a5cf3",
     "sw/tools/sensor.py": "c7ca326f9193f116d9a997234c93c9404941f2bfbe78c01680384da5d7c33470",
-    "environment/.dockerignore": "4a3a2ab275786aca06f21fd0feeb0bdc399b4c3987ca6c568f804b164f6d2d3d",
-    "environment/Dockerfile": "91e4bcc16a02a91fefcb4c3eb0e703781f04cb4f31951eb8afb6465ee3ddd469",
+    "environment/.dockerignore": "7f69a59afe9bb6b467e2a09739c60bb83d54e61630293225c5f043dfe73502b0",
+    "environment/Dockerfile": "80c4da33058098d041951dfd2f61dc2fad36d4c1c2626fcebcaf070c1b2dbafc",
     "environment/check_project.py": "30a5f5103268836f71c24582ad1809c8d63bec1580e80e96c9880557aa89fddb",
     "environment/host.py": "db75a354cefe55db39801e11a65cc090639c67e8141b27c9a490ef86802255c3",
     "environment/install_buf.py": "841e38a11af99ab4ee2aee42cf0f305489e2ffa72fad260fe4816d69035adba1",
+    "environment/install_skylark.py": "f31d9916f1dacce8fcb98e79e788da6c7ad3d931f8755785a00ba6bdde9ba717",
     "environment/installed-constraints.txt": "1d605c32ea4f7f5c560586b5f54590bf821cf35a8782e66e5addd1bcd512919f",
-    "environment/lab.py": "2ad7a0daa58a1f581c989beef18686bfd5be4aaada48b054d372365e279d3f26",
+    "environment/lab.py": "d06a44facb4be63e16bac9ad11ec2b923a698092ce8f2f6d429c4c4c1f7245d2",
     "environment/requirements.in": "de39e673de9fce6df52ff37bfaeee133f8302fe175acb5f428f728ab1eff502f",
     "environment/requirements.lock": "d7b47cd3000c67fc356d59b84ce104a3be244f565eb60c593a7ae002ec06933d",
     "environment/system-requirements.txt": "33abbeaf3102c7b10720163556b8582e124fe286ca75c9e6538184d3c10d8805",
-    "environment/test_lab.py": "1bb614b60e88b72207eeff7f34bbd550da4f13130dce989fc8c34ce77a445bf3",
-    "hw/groundlark-coldfoot-hat/layout/placement.json": "6324bed29945f83eb11f342fdb5e76a09f02201c7d7ec5ff60d989a296189485",
-    "hw/burrowlark-usb/layout/placement.json": "61502651d94f65edad7e1ab3fbc6a6be59421ab04044f33a9736ce3321b6fdee",
-    "hw/tools/project_paths.py": "13c175ac48b906068a274c55f8b05062c774154c3ea24c5223cc13c2cd663c1c",
-    "environment/test_project.py": "4b47d47d82d2b69b1a5ea6114ccba35195b6a0f3839c9a5605bdd1532c197ed5"
+    "environment/test_lab.py": "b2fc64988a0fcd142faef32473ba6583efb22c4ce090904816d361bc21e61d04",
+    "environment/test_project.py": "4b47d47d82d2b69b1a5ea6114ccba35195b6a0f3839c9a5605bdd1532c197ed5",
+    "environment/test_ui_launchers.py": "d33c204b5b4e1e7aff5ad5fd3e54b16903cb7eb43af9304fc3a66ad24b687ccb"
   },
   "fpga_cosimulation": {
     "payload_sizes": 193,
@@ -1152,5 +1212,299 @@
       "rendered_assets_changed": false
     },
     "lab_inputs_sha256": "d82f85f581bb7425928def8da482959146bdac13e275e6e07f821cf76a01da4f"
+  },
+  "prior_portable_lab": {
+    "owner": "groundlark-lab-v1",
+    "id": "20260927T003005Z-201f9aae",
+    "profile": "full",
+    "status": "passed",
+    "steps": [
+      {
+        "name": "build-hat",
+        "exit_code": 0,
+        "seconds": 12.09
+      },
+      {
+        "name": "constraints-hat",
+        "exit_code": 0,
+        "seconds": 13.3
+      },
+      {
+        "name": "build-field_head",
+        "exit_code": 0,
+        "seconds": 6.98
+      },
+      {
+        "name": "constraints-field_head",
+        "exit_code": 0,
+        "seconds": 5.08
+      },
+      {
+        "name": "build-trenz_hat",
+        "exit_code": 0,
+        "seconds": 13.5
+      },
+      {
+        "name": "constraints-trenz_hat",
+        "exit_code": 0,
+        "seconds": 15.25
+      },
+      {
+        "name": "reject-overvoltage",
+        "exit_code": 0,
+        "seconds": 3.82
+      },
+      {
+        "name": "hardware-regressions",
+        "exit_code": 0,
+        "seconds": 7.97
+      },
+      {
+        "name": "check_circuit",
+        "exit_code": 0,
+        "seconds": 0.21
+      },
+      {
+        "name": "check_design",
+        "exit_code": 0,
+        "seconds": 2.27
+      },
+      {
+        "name": "check_trenz",
+        "exit_code": 0,
+        "seconds": 2.51
+      },
+      {
+        "name": "daqhat_01_engineering",
+        "exit_code": 0,
+        "seconds": 0.41
+      },
+      {
+        "name": "prefab_review",
+        "exit_code": 0,
+        "seconds": 0.72
+      },
+      {
+        "name": "routing-replay",
+        "exit_code": 0,
+        "seconds": 16.03
+      },
+      {
+        "name": "simulate",
+        "exit_code": 0,
+        "seconds": 4.47
+      },
+      {
+        "name": "simulate_trenz",
+        "exit_code": 0,
+        "seconds": 0.42
+      },
+      {
+        "name": "simulate_geophone",
+        "exit_code": 0,
+        "seconds": 0.11
+      },
+      {
+        "name": "simulate_geophone_review",
+        "exit_code": 0,
+        "seconds": 0.46
+      },
+      {
+        "name": "simulate_host_link",
+        "exit_code": 0,
+        "seconds": 0.16
+      },
+      {
+        "name": "fpga-loopback-rtl",
+        "exit_code": 0,
+        "seconds": 43.86
+      },
+      {
+        "name": "fpga-implementation-evidence",
+        "exit_code": 0,
+        "seconds": 0.03
+      },
+      {
+        "name": "sensor-contracts",
+        "exit_code": 0,
+        "seconds": 7.68
+      }
+    ],
+    "seconds": 157.7
+  },
+  "portable_lab": {
+    "owner": "groundlark-lab-v1",
+    "id": "20260927T193321Z-c5a1fbfd",
+    "profile": "full",
+    "status": "passed",
+    "steps": [
+      {
+        "name": "build-hat",
+        "exit_code": 0,
+        "seconds": 12.18
+      },
+      {
+        "name": "constraints-hat",
+        "exit_code": 0,
+        "seconds": 14.37
+      },
+      {
+        "name": "build-field_head",
+        "exit_code": 0,
+        "seconds": 6.57
+      },
+      {
+        "name": "constraints-field_head",
+        "exit_code": 0,
+        "seconds": 5.02
+      },
+      {
+        "name": "build-trenz_hat",
+        "exit_code": 0,
+        "seconds": 14.39
+      },
+      {
+        "name": "constraints-trenz_hat",
+        "exit_code": 0,
+        "seconds": 16.68
+      },
+      {
+        "name": "build-skylark",
+        "exit_code": 0,
+        "seconds": 8.93
+      },
+      {
+        "name": "constraints-skylark",
+        "exit_code": 0,
+        "seconds": 9.94
+      },
+      {
+        "name": "reject-overvoltage",
+        "exit_code": 0,
+        "seconds": 4.02
+      },
+      {
+        "name": "hardware-regressions",
+        "exit_code": 0,
+        "seconds": 16.85
+      },
+      {
+        "name": "check_circuit",
+        "exit_code": 0,
+        "seconds": 0.21
+      },
+      {
+        "name": "check_design",
+        "exit_code": 0,
+        "seconds": 2.22
+      },
+      {
+        "name": "check_trenz",
+        "exit_code": 0,
+        "seconds": 2.64
+      },
+      {
+        "name": "daqhat_01_engineering",
+        "exit_code": 0,
+        "seconds": 0.47
+      },
+      {
+        "name": "prefab_review",
+        "exit_code": 0,
+        "seconds": 0.87
+      },
+      {
+        "name": "check_skylark",
+        "exit_code": 0,
+        "seconds": 1.57
+      },
+      {
+        "name": "routing-replay",
+        "exit_code": 0,
+        "seconds": 17.2
+      },
+      {
+        "name": "simulate",
+        "exit_code": 0,
+        "seconds": 4.87
+      },
+      {
+        "name": "simulate_trenz",
+        "exit_code": 0,
+        "seconds": 0.41
+      },
+      {
+        "name": "simulate_geophone",
+        "exit_code": 0,
+        "seconds": 0.11
+      },
+      {
+        "name": "simulate_geophone_review",
+        "exit_code": 0,
+        "seconds": 0.47
+      },
+      {
+        "name": "simulate_host_link",
+        "exit_code": 0,
+        "seconds": 0.21
+      },
+      {
+        "name": "fpga-loopback-rtl",
+        "exit_code": 0,
+        "seconds": 47.28
+      },
+      {
+        "name": "fpga-implementation-evidence",
+        "exit_code": 0,
+        "seconds": 0.03
+      },
+      {
+        "name": "sensor-contracts",
+        "exit_code": 0,
+        "seconds": 8.44
+      }
+    ],
+    "seconds": 196.46
+  },
+  "sensor_supply_layout": {
+    "ground_track_to_plane_via_mm": {
+      "C40.2": 0,
+      "C41.2": 0,
+      "C42.2": 0,
+      "C43.2": 0,
+      "C93.2": 0.65,
+      "C94.2": 0.65,
+      "U41.12": 1.2404,
+      "U41.13": 0.5427,
+      "U42.12": 0.8379,
+      "U42.13": 0.8519
+    },
+    "c43_supply_xy_mm": 3.5307,
+    "ground_limit_mm": 2,
+    "c43_supply_limit_mm": 4,
+    "scope": "Connected copper graph and filled In1.Cu; excludes via barrel, plane impedance and measured noise"
+  },
+  "routing_preservation": {
+    "changed_copper_nets": [
+      "GND",
+      "SENS_3V3"
+    ],
+    "removed_copper_items": 2,
+    "added_copper_items": 16,
+    "new_ground_through_vias": 9,
+    "all_signal_routes_preserved": true,
+    "all_pad_nets_preserved": true,
+    "only_moved_component": "C43",
+    "outline_layers_and_drill_process_preserved": true,
+    "scope": "Native CAD comparison; no physical measurements"
+  },
+  "assembly_procurement": {
+    "registry": "hw/assembly/groundlark-fpga-hat/daqhat-01-jlcpcb-parts.json",
+    "catalog_identities": 38,
+    "physical_placements": 117,
+    "stock_checked_on": "2026-09-27",
+    "component_moq": 1,
+    "preorder_permitted": false,
+    "stock_reserved": false
   }
 }

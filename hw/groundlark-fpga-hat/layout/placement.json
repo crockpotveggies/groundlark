@@ -580,8 +580,8 @@
         "footprint": "Capacitor_SMD:C_0603_1608Metric",
         "names": {},
         "xy": [
-          74.0,
-          40.5
+          79.2,
+          38.7
         ],
         "section": "06-supply-isolation",
         "angle": 0,

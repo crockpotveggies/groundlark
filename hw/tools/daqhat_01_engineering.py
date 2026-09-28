@@ -85,14 +85,15 @@ def main():
     from geophone_checks import verify
     geo_checks = verify(pins, {f.GetReference():(f.GetOrientationDegrees(), f.IsFlipped()) for f in board.GetFootprints()})
     low, high = supply_range(3.35, .005, .030, 3)
-    gap = 16.129 + 2.54 + 8.51
+    from assembly_fit import PI_GAP, RISER_COUNT
+    gap = PI_GAP
     report = dict(
         geophone=dict(physical_pin_checks=geo_checks, sensor="Racotech RGI-4.5Hz vertical", adc="ADS122C04", axes="three aligned three-axis IMUs"),
         power=dict(interface_pin_checks=power_checks, input_setpoint_v=3.35, input_tolerance=.005,
                    total_hot_loop_resistance_limit_ohm=.030, current_limit_a=3,
                    dc_module_min_v=low, dc_module_max_v=high,
                    limitations="30 milliohms includes positive AND ground paths, fuse and contacts; must be measured"),
-        mechanical=dict(pi_to_hat_underside_mm=gap, riser="Samtec SSQ-120-02-G-D",
+        mechanical=dict(pi_to_hat_underside_mm=gap, riser="Samtec SSQ-120-02-G-D", riser_count=RISER_COUNT,
                         conservative_clearance_mm=clearance(gap),
                         limitations="1 mm seating tolerance plus 2.2 mm trimmed tail envelope; detailed selected cooler/support checks are in prefab-review.json"))
     assert 3.201 < low < high < 3.399

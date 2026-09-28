@@ -3,6 +3,7 @@
  */
 #include "platform.h"
 #include "boot.h"
+#include "peripherals.h"
 #include <libopencm3/cm3/cortex.h>
 #include <libopencm3/cm3/nvic.h>
 #include <libopencm3/cm3/systick.h>
@@ -32,6 +33,32 @@ static uint16_t tx_offset;
 static bool tx_busy,zlp_pending,slow_clock;
 static volatile uint8_t rx[256],rx_head,rx_tail;
 static volatile bool rx_error;
+/* Keep the polled USB peripheral above ES0223's 10 MHz APB minimum, even
+ * while servicing resume/reset. APB is undivided relative to AHB here. */
+#define SK_SUSPEND_HZ 12000000u
+_Static_assert(SK_SUSPEND_HZ>=10000000u,"USB APB minimum");
+_Static_assert(ADC_CR_ADEN==1 && ADC_CR_ADCAL==(1u<<31) && ADC_CR_ADSTP==16 &&
+               ADC_ISR_EOC==4 && ADC_ISR_OVR==16 && I2C_ISR_BERR==256 &&
+               I2C_ISR_NACKF==16 && I2C_ISR_ARLO==512,"MMIO fixture bit definitions");
+uint32_t sk_register_read(sk_register reg) {
+    switch(reg) {
+    case SK_ADC_CR:return ADC_CR(ADC1);
+    case SK_ADC_ISR:return ADC_ISR(ADC1);
+    case SK_ADC_CHSELR:return ADC_CHSELR(ADC1);
+    case SK_ADC_DR:return ADC_DR(ADC1);
+    case SK_I2C_ISR:return I2C_ISR(I2C1);
+    case SK_I2C_ICR:return 0;
+    }return 0;
+}
+void sk_register_write(sk_register reg,uint32_t value) {
+    switch(reg) {
+    case SK_ADC_CR:ADC_CR(ADC1)=value;break;
+    case SK_ADC_ISR:ADC_ISR(ADC1)=value;break;
+    case SK_ADC_CHSELR:ADC_CHSELR(ADC1)=value;break;
+    case SK_I2C_ICR:I2C_ICR(I2C1)=value;break;
+    default:break;
+    }
+}
 void sys_tick_handler(void) { milliseconds++; }
 uint64_t sk_clock(void) { uint32_t mask=cm_mask_interrupts(1);uint64_t t=milliseconds;cm_mask_interrupts(mask);return t; }
 static void service(void) {
@@ -54,13 +81,12 @@ void sk_rails(bool enabled) {
         }
     } else {
         /* Caller has already engaged WE/AE-to-RE clamps. */
+        gpio_clear(GPIOB,GPIO1); /* Hold ADS122C04 reset before removing AVDD. */
         gpio_clear(GPIOB,GPIO12|GPIO3);pm_off();
     }
 }
 static bool i2c_wait(uint32_t flag,uint64_t end) {
-    while(!(I2C_ISR(I2C1)&flag)) {
-        if(sk_clock()>=end || (I2C_ISR(I2C1)&(I2C_ISR_NACKF|I2C_ISR_BERR|I2C_ISR_ARLO)))return false;
-    }return true;
+    return sk_i2c_wait_flag(flag,end);
 }
 bool sk_i2c(uint8_t addr,const uint8_t *w,size_t wn,uint8_t *r,size_t rn) {
     if(wn>32 || rn>32 || (!wn && !rn))return false;
@@ -80,14 +106,8 @@ bool sk_i2c(uint8_t addr,const uint8_t *w,size_t wn,uint8_t *r,size_t rn) {
     if(!ok) { I2C_CR2(I2C1)|=I2C_CR2_STOP;i2c_peripheral_disable(I2C1);i2c_peripheral_enable(I2C1); }
     I2C_ICR(I2C1)=0x3f38;return ok;
 }
-static unsigned analog(unsigned channel) {
-    ADC_CHSELR(ADC1)=1u<<channel;ADC_CR(ADC1)|=ADC_CR_ADSTART;
-    uint64_t end=sk_clock()+2;
-    while(!(ADC_ISR(ADC1)&ADC_ISR_EOC))if(sk_clock()>=end)return 0;
-    return ADC_DR(ADC1);
-}
 bool sk_pm_supply_ok(void) {
-    unsigned raw=analog(0),ref=analog(17),cal=*(const uint16_t *)0x1ffff7ba;
+    unsigned raw=sk_adc_sample(0),ref=sk_adc_sample(17),cal=*(const uint16_t *)0x1ffff7ba;
     bool ok=ref && cal && gpio_get(GPIOA,GPIO5) && ((uint64_t)raw*6600*cal >= (uint64_t)4650*4095*ref);
     if(!ok)pm_off();
     return ok;
@@ -152,12 +172,12 @@ static void resume_usb(void) { suspended=false; }
 static void power_clock(void) {
     if(suspended==slow_clock)return;
     if(suspended) {
-        ADC_CR(ADC1)|=ADC_CR_ADDIS;
+        (void)sk_adc_disable();
         usart_disable(USART2);i2c_peripheral_disable(I2C1);
-        rcc_set_hpre(RCC_CFGR_HPRE_DIV64);systick_set_reload(749);
+        rcc_set_hpre(RCC_CFGR_HPRE_DIV4);systick_set_reload(SK_SUSPEND_HZ/1000-1);
     } else {
         rcc_set_hpre(RCC_CFGR_HPRE_NODIV);systick_set_reload(47999);
-        ADC_CR(ADC1)|=ADC_CR_ADEN;
+        (void)sk_adc_enable();
         i2c_peripheral_enable(I2C1);usart_enable(USART2);
     }
     slow_clock=suspended;
@@ -172,7 +192,14 @@ static uint64_t boot_identity(void) {
 int main(void) {
     rcc_clock_setup_in_hsi48_out_48mhz();rcc_set_usbclk_source(RCC_HSI48);
     rcc_periph_clock_enable(RCC_GPIOA);rcc_periph_clock_enable(RCC_GPIOB);
-    gpio_set(GPIOB,GPIO13|GPIO1);gpio_clear(GPIOB,GPIO12|GPIO3);
+    /* Deliberate NCs from the 48-pin board pin audit: disable floating input
+     * buffers. Keep SWD, USB, boot, reset and connected sensor pins intact. */
+    rcc_periph_clock_enable(RCC_GPIOC);rcc_periph_clock_enable(RCC_GPIOF);
+    gpio_mode_setup(GPIOA,GPIO_MODE_ANALOG,GPIO_PUPD_NONE,GPIO1|GPIO8|GPIO9|GPIO10|GPIO15);
+    gpio_mode_setup(GPIOB,GPIO_MODE_ANALOG,GPIO_PUPD_NONE,GPIO2|GPIO4|GPIO5|GPIO8|GPIO9|GPIO10|GPIO11|GPIO14|GPIO15);
+    gpio_mode_setup(GPIOC,GPIO_MODE_ANALOG,GPIO_PUPD_NONE,GPIO13|GPIO14|GPIO15);
+    gpio_mode_setup(GPIOF,GPIO_MODE_ANALOG,GPIO_PUPD_NONE,GPIO0|GPIO1);
+    gpio_set(GPIOB,GPIO13);gpio_clear(GPIOB,GPIO12|GPIO3|GPIO1);
     gpio_mode_setup(GPIOB,GPIO_MODE_OUTPUT,GPIO_PUPD_NONE,GPIO13|GPIO12|GPIO1|GPIO3);
     gpio_clear(GPIOA,GPIO4);gpio_set(GPIOA,GPIO6|GPIO7);
     gpio_mode_setup(GPIOA,GPIO_MODE_OUTPUT,GPIO_PUPD_NONE,GPIO4|GPIO6|GPIO7);
@@ -189,9 +216,8 @@ int main(void) {
     usart_set_parity(USART2,USART_PARITY_NONE);usart_set_mode(USART2,USART_MODE_TX_RX);usart_set_flow_control(USART2,USART_FLOWCONTROL_NONE);
     usart_enable_rx_interrupt(USART2);nvic_enable_irq(NVIC_USART2_IRQ);usart_enable(USART2);
     rcc_periph_clock_enable(RCC_ADC);gpio_mode_setup(GPIOA,GPIO_MODE_ANALOG,GPIO_PUPD_NONE,GPIO0);
-    ADC_CR(ADC1)|=ADC_CR_ADCAL;while(ADC_CR(ADC1)&ADC_CR_ADCAL) { }
-    ADC_CCR(ADC1)|=ADC_CCR_VREFEN;ADC_SMPR(ADC1)=7;ADC_CR(ADC1)|=ADC_CR_ADEN;
-    while(!(ADC_ISR(ADC1)&ADC_ISR_ADRDY)) { }
+    ADC_CCR(ADC1)|=ADC_CCR_VREFEN;ADC_SMPR(ADC1)=7;
+    (void)sk_adc_initialize(); /* Failure disables PMS power, not the USB host. */
     char serial[25];static const char hex[]="0123456789abcdef";
     const uint8_t *uid=(const uint8_t *)0x1ffff7ac;
     for(unsigned i=0;i<12;i++) { serial[2*i]=hex[uid[i]>>4];serial[2*i+1]=hex[uid[i]&15]; }serial[24]=0;

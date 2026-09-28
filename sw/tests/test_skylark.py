@@ -66,6 +66,11 @@ class NativeFirmwareTests(unittest.TestCase):
         subprocess.run(flags+[str(tests/'native.c'),str(fw/'core.c'),str(fw/'sensors.c'),'-o',str(cls.native)],check=True)
         subprocess.run(flags+[str(tests/'boot.c'),str(fw/'boot.c'),'-o',str(build/'boot')],check=True)
         subprocess.run([str(build/'boot')],check=True,timeout=10)
+        cls.peripherals=build/'peripherals'
+        subprocess.run(flags+[str(tests/'peripherals.c'),str(fw/'peripherals.c'),'-o',str(cls.peripherals)],check=True)
+
+    def test_mcu_timeouts_errata_and_late_adc_results(self):
+        subprocess.run([str(self.peripherals)],check=True,timeout=10)
 
     def messages(self,mode):
         raw=subprocess.run([str(self.native),str(mode)],capture_output=True,check=True,timeout=10).stdout
@@ -108,6 +113,19 @@ class NativeFirmwareTests(unittest.TestCase):
         gas=[s for sid in range(10,14) for s in self.samples(messages,sid,61000)]
         self.assertTrue(any(s.quality==2 for s in gas));self.assertTrue(any(s.quality==1 for s in gas))
 
+    def test_delayed_loop_preserves_conversion_time_and_mux_order(self):
+        messages,_=self.messages(9)
+        gas=[(m.batch.sensor_id,s) for m in messages if m.WhichOneof('body')=='batch'
+             and m.batch.sensor_id<14 for s in m.batch.samples
+             if s.time.acquisition_ns>=60_000_000_000]
+        self.assertTrue(any(b.sequence>a.sequence+1 for sid in range(10,14)
+                            for a,b in zip(self.samples(messages,sid),self.samples(messages,sid)[1:])))
+        for (sid,a),(next_sid,b) in zip(gas,gas[1:]):
+            self.assertEqual(next_sid,10+(sid-9)%4)
+            self.assertGreaterEqual(b.time.acquisition_ns-a.time.acquisition_ns,60_000_000)
+            self.assertEqual(b.quality,1)
+            self.assertEqual(b.gas.counts,0x401200+next_sid-10)
+
     def test_queue_overflow_unknown_loss_and_dtr_reannounce(self):
         messages,_=self.messages(3)
         samples=self.samples(messages,10)
@@ -137,6 +155,18 @@ class NativeFirmwareTests(unittest.TestCase):
         messages,_=self.messages(6)
         self.assertEqual([m.configuration.revision for m in messages if m.WhichOneof('body')=='configuration'],[1])
         self.assertGreaterEqual(self.samples(messages,10)[0].time.acquisition_ns,1_000_000_000)
+
+    def test_suspend_discards_pending_temperature_conversion(self):
+        messages,_=self.messages(10)
+        self.assertEqual([m.configuration.revision for m in messages if m.WhichOneof('body')=='configuration'],[1,2])
+        self.assertTrue(all(s.quality==2 for s in self.samples(messages,10,62000)))
+        self.assertTrue(any(s.quality==1 for s in self.samples(messages,15,62000)))
+
+    def test_pms_supply_fault_does_not_stop_gas_acquisition(self):
+        messages,_=self.messages(11)
+        self.assertTrue(all(s.quality==2 for s in self.samples(messages,14,62000)))
+        for sid in (10,11,12,13,15,16):
+            self.assertTrue(any(s.quality==1 for s in self.samples(messages,sid,65000)),sid)
 
     def test_firmware_stream_to_standalone_capture_and_ui_replay(self):
         from groundlark.usb_capture import capture

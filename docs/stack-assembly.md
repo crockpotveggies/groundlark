@@ -12,7 +12,7 @@ travel through J1 and the Trenz mezzanine connectors; see the
 | --- | --- | --- |
 | Host | Raspberry Pi 4 Model B | Pi 5/cooler not covered. |
 | Pi cooling | Official Pi 4 Case Fan kit 18 x 18 x 10 mm heatsink | Allow 0.5 mm adhesive; fan omitted. |
-| Pi riser | SSQ-120-02-G-D plus existing ESQ-120-23-G-D | 27.179 mm nominal Pi top to HAT underside. |
+| Pi riser | Two SSQ-120-02-G-D risers plus Megastar ZX-PM2.54-2-20PY J1 | 28.06 mm nominal Pi top to HAT underside. |
 | Pi supports | Four straight M2.5 supports, <=4.8 mm outside diameter | Match seated riser/socket height with measured spacers/shims. |
 | FPGA | TE0712-03-81I36-A with standard connectors | Four M3 spacers; 8 mm HAT-to-module surface gap. |
 | Geophone plug | Phoenix Contact 1803581 | J90: GEO+, GEO-, shield/GND. |
@@ -22,10 +22,18 @@ The geophone plug has 9.20 mm calculated lateral clearance to the module after
 twisted pair toward the lower-left edge, and clamp the cable outside the PCB.
 The geophone remains external, vertical and mechanically coupled to the ground.
 
-**J1 procurement caveat:** the JLCPCB BOM selects the shorter 8.5 mm-body
-Megastar ZX-PM2.54-2-20PY / C7499354. The 27.179 mm gap in the baseline table
-does not apply automatically. Confirm mating depth, riser/spacer height and
-cooler clearance for the ordered socket before assembly.
+J1 uses the JLCPCB-selected 8.5 mm-body socket. Two external SSQ risers restore
+clearance: 8.5 + 2 × 8.51 + 2.54 = **28.06 mm**. The risers are self-nesting;
+4.93 mm tails satisfy the intermediate SSQ's 3.68–6.35 mm insertion range.
+Check the upper riser's engagement in Megastar J1 and the lower riser's engagement
+on the actual Pi, continuity of all 40 pins, retention and seated height before
+fitting supports. These checks cannot be established from the enclosure render.
+[Samtec dimensions](https://suddendocs.samtec.com/catalog_english/ssw_th.pdf).
+
+The external riser was listed with quantity-one pricing and 591 units in stock
+at [DigiKey](https://www.digikey.com/en/products/detail/samtec-inc/SSQ-120-02-G-D/1110847)
+on 2026-09-27. It is separately purchased assembly hardware, not part of JLCPCB's
+117-placement PCB BOM. Recheck stock before purchase.
 
 ## Checks and limits
 
@@ -36,7 +44,7 @@ The [generated report](../hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/pre
 records margins. Use supports at (3.5,3.5), (61.5,3.5), (3.5,52.5), (61.5,52.5)
 mm. Trim through-hole tails to <=2 mm below the HAT; the model allows 0.2 mm extra.
 
-Keep the existing riser height. Removing cables does not qualify a shorter stack.
+Keep both risers and match the measured seated height. Removing cables does not qualify a shorter stack.
 Actual mating, screws, cooler capacity, strain relief and sensor noise still need
 a first-article check. The Pi and service envelopes are conceptual; the Trenz
 model is the vendor's generic revision-03 STEP.

@@ -16,9 +16,10 @@
     "limitations": "30 milliohms includes positive AND ground paths, fuse and contacts; must be measured"
   },
   "mechanical": {
-    "pi_to_hat_underside_mm": 27.179000000000002,
+    "pi_to_hat_underside_mm": 28.06,
     "riser": "Samtec SSQ-120-02-G-D",
-    "conservative_clearance_mm": 7.979000000000003,
+    "riser_count": 2,
+    "conservative_clearance_mm": 8.86,
     "limitations": "1 mm seating tolerance plus 2.2 mm trimmed tail envelope; detailed selected cooler/support checks are in prefab-review.json"
   }
 }

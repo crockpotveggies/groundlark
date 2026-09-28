@@ -62,6 +62,12 @@ and a nonblocking USB CDC TTY. The initial profile is:
 | ADS122C04 geophone input | I²C 0x40; 330 SPS, PGA64, internal 2.048 V reference; signed 24-bit counts, conversion counter and inverted-data integrity checks. |
 | Burrowlark DAQUSB-01 USB head | Receive v1 identity/configuration/batches/status over framed CDC; real firmware is still required. |
 
+IMU filter registers are explicitly written, checked and included in effective
+`register_config`. The default 26 Hz profile has 13 Hz accelerometer and 8.3 Hz
+gyro bandwidth; sample rate is not flat signal bandwidth. See
+[sensor bandwidth and timing](sensor-response.md) for both boards' response and
+aliasing limits. Raw samples and existing timestamp uncertainty remain intact.
+
 SCL3300 and MAX-M10S code is retained for legacy use and is not part of the
 current HAT profile. GNSS/PPS references later in this guide concern that legacy path.
 

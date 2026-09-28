@@ -2,7 +2,10 @@
 
 Conservative support/port/cooler checks; no ribbons or custom guide remain.
 """
-PI_GAP = 27.179
+J1_BODY = 8.5  # Megastar ZX-PM2.54-2-20PY, selected JLC assembly socket.
+RISER_BODY = 8.51  # Samtec SSQ-120-02-G-D, external self-nesting riser.
+RISER_COUNT = 2
+PI_GAP = J1_BODY + 2.54 + RISER_COUNT * RISER_BODY
 PI_TOP = -1.6 - PI_GAP
 MODULE = (30,8,80,48)
 PI_SUPPORTS = ((3.5,3.5),(61.5,3.5),(3.5,52.5),(61.5,52.5))
@@ -50,12 +53,14 @@ def review(placements,obstacles=None,supports=PI_SUPPORTS):
     return dict(status='Four straight-support CAD envelopes pass; first-article fit remains unmeasured',
         pi='Raspberry Pi 4 Model B',pi_supports_xy_mm=supports,omitted_support_xy_mm=None,
         pi_to_hat_underside_mm=PI_GAP,module_surface_gap_mm=8,
+        j1='ZX-PM2.54-2-20PY',riser='SSQ-120-02-G-D',riser_count=RISER_COUNT,
         external_ribbon_count=0,custom_guide_required=False,
         support_to_board_margin_mm=board_margin,support_to_pi_margin_mm=pi_margin,
         hat_to_pi_margin_mm=component_margins,
         minimum_hat_to_pi_margin_mm=min(component_margins.values()),
         geophone_plug_module_margin_mm=plug_margin,findings=[],
         limits=['Pi geometry and cooler are conservative envelopes, not certified mating solids',
-                'Keep connector riser height; removal of cables does not qualify a shorter stack',
+                'Two 8.51 mm risers required with 8.5 mm J1; one riser is not the reviewed stack',
+                '4.93 mm tails meet SSQ 3.68-6.35 mm insertion range; Megastar contact engagement requires first-article verification',
                 'Trim PTH tails to <=2 mm below HAT; 0.2 mm extra tail allowance is modeled',
                 'First-article seating, thermal capacity and sensor noise remain unmeasured'])

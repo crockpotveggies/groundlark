@@ -65,13 +65,13 @@ without buffering disconnected samples. Reopening announces a new configuration
 revision with sequence continuity and does not restart conditioning.
 USB reset, unconfiguration or suspend clamps the electrodes and removes
 analog/PMS power. Restoring USB power authorization repeats sensor setup and warmup.
-The MCU reduces its clock in suspend and disables the ADC/UART/I²C peripherals;
+The MCU reduces its clock to 12 MHz in suspend and disables the ADC/UART/I²C peripherals;
 the actual total suspend current and USB compliance are **not measured**.
 
 | Sensor | Firmware behavior |
 | --- | --- |
 | ADS122C04, I²C 0x40 | AIN0/1 = SO₂ working/auxiliary; AIN2/3 = H₂S working/auxiliary. Gain 1, PGA bypass, external 2.5 V reference, normal 20 SPS single-shot conversions. Four slots, 60 ms apart; 240 ms per channel. Readback, inverted-data integrity and conversion counter checked. |
-| SHT40, I²C 0x44 | Serial probe, high-precision measurement every second, CRC on both raw words; heater off. |
+| SHT40, I²C 0x44 | Serial probe, high-precision measurement approximately every second, CRC on both raw words; heater off. Conversion waits are nonblocking. |
 | BMP390, I²C 0x76 | Chip ID/readback, pressure ×8 and temperature ×2 oversampling, 3.125 Hz normal mode; latest ready sample every second. Six raw bytes plus 21 factory trim bytes retained. |
 | PMS5003, USART2 | 9600 8N1; complete 32-byte active-mode frames with checksum/error-byte checking. Latest fresh frame published every second. Rail-fault/low-VBUS detection disables power. |
 
@@ -82,6 +82,13 @@ Keep raw working and auxiliary values separate. ADC volts = counts × 2.5 / 2²�
 ppm conversion, zero/temperature compensation and detection thresholds require
 cell-specific calibration, polarity checks and environmental qualification.
 
+The gas ADC scheduler advances one channel per completed service slot. A delayed
+loop extends the schedule and exposes sequence gaps; it cannot start a burst of
+conversions without waiting for them. Each new conversion receives at least
+60 ms before the next slot. This does not make WE/AE simultaneous. See
+[sensor bandwidth and timing](../../docs/sensor-response.md) for attenuation,
+aliasing and the remaining physical response limits.
+
 Three I/O failures latch the affected sensor until USB power is reset. Closing
 and reopening the serial port does not clear the latch or disturb electrode bias.
 All four gas streams share the ADC's fault state; other sensors continue.
@@ -89,6 +96,17 @@ Not-ready, invalid checksum, stale PMS data, warmup and unknown conversion loss
 never become zero measurements. The eight-frame transmit queue drops newest
 data under backpressure. Sequence gaps remain visible; loss counts are unknown.
 The firmware never resets the ADC solely because its counter skipped.
+
+The MCU supply-monitor ADC has bounded calibration, enable, conversion and
+disable waits. Calibration includes the ES0223 settling workaround. Timeout or
+overrun disables the monitor until re-enabled; an unavailable monitor prevents
+PMS power authorization. A late result cannot be reused as a different channel.
+The I²C master clears spurious BERR as specified by ES0223, while NACK and
+arbitration loss remain failures even when a completion flag is also set.
+The bus remains at 100 kHz with an 8 MHz kernel clock. USB/APB remains at
+least 12 MHz during suspend polling and resume. Unconnected MCU pins have
+their digital input buffers disabled. See [source budgets](../../docs/power-supplies.md)
+for supply-voltage restrictions and the unmeasured suspend-current requirement.
 
 ## Capture and replay
 
@@ -119,4 +137,5 @@ are in the portable software profile. Burrowlark firmware remains separate.
 - [Sensirion SHT4x datasheet](https://sensirion.com/resource/datasheet/sht4x), commands and CRC.
 - [Bosch BMP390 datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp390-ds002.pdf), register profile and compensation.
 - [libopencm3](https://github.com/libopencm3/libopencm3), STM32 peripherals and USB CDC support.
+- [STM32F072 ES0223](https://www.st.com/resource/en/errata_sheet/es0223-stm32f072x8xb-device-errata-stmicroelectronics.pdf), ADC calibration, I²C master BERR and USB/APB limits.
 - [Hardware pin/power requirements](../../hw/skylark-usb/README.md), including the SGX bias assumption and outstanding physical checks.

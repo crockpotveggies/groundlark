@@ -31,8 +31,8 @@ class ExactAssemblyBOMTests(unittest.TestCase):
             'C12': ('GRM155R71C104KA88D', 'C71629', '0402', 'Murata Electronics'),
             'C90': ('GRM31C5C1H104JA01L', 'C97946', '1206', 'Murata Electronics'),
             'C91': ('C0603C102J5GAC7867', 'C140950', '0603', 'KEMET'),
-            'U40': ('TLV1117LV33DCYR', 'C15578', 'SOT-223', 'Texas Instruments'),
-            'D90': ('TPD2E2U06DCKR', 'C1855726', 'SC-70-3', 'Texas Instruments'),
+            'U40': ('LDL1117S33R', 'C435835', 'SOT-223-4', 'STMicroelectronics'),
+            'D90': ('TPD2E2U06QDCKRQ1', 'C915089', 'SC-70-3', 'Texas Instruments'),
         }
         for ref, expected in fixture.items():
             with self.subTest(ref=ref):
@@ -52,6 +52,15 @@ class ExactAssemblyBOMTests(unittest.TestCase):
         self.assertFalse(set(refs) & {'U14','U20','C18','C19','C20','C21','C22','C23','R14','R20'})
         self.assertEqual(sum(r['Installed_total'] for r in procurement),117)
         check_reference_sets(bom,[{'Designator':ref} for ref in refs])
+
+    def test_preorder_bulk_minimum_unknown_or_insufficient_stock_rejected(self):
+        for fault in [dict(status='preorder_required'), dict(minimum_quantity=35),
+                      dict(minimum_quantity=None), dict(available_order_quantity=0),
+                      dict(available_order_quantity=None), dict(source_url='https://jlcpcb.com/other')]:
+            registry = copy.deepcopy(self.registry)
+            registry['parts'][0]['stock_observation'].update(fault)
+            with self.subTest(fault=fault), self.assertRaisesRegex(ValueError, 'procurement policy'):
+                build_bom(self.source, 1, registry)
 
     def test_reviewed_shortage_replacements_and_unchanged_counts(self):
         bom, procurement, selections = self.rows()
@@ -172,7 +181,7 @@ class ExactAssemblyBOMTests(unittest.TestCase):
         self.assertEqual(part['jlc_match_status'], 'catalog_listed')
         self.assertEqual(part['source_mpn'], 'ESQ-120-23-G-D')
         self.assertTrue(part['resolution'])
-        self.assertEqual(part['mechanical_review'], 'required')
+        self.assertEqual(part['mechanical_review'], 'CAD envelope updated; physical mating pending')
         self.assertIn('stack-height and placement review required', row['Description'])
         purchase = next(r for r in procurement if r['Designator'] == 'J1')
         self.assertEqual(purchase['Installed_total'], 1)

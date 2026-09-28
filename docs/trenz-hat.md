@@ -32,17 +32,30 @@ The selected 4 mm carrier and module connectors give an **8 mm surface gap**.
 Use four matching M3 spacers. Components under the module are low-profile;
 the tall service connectors are outside its outline.
 
-The baseline CAD shows the Samtec ESQ-120-23-G-D bottom socket. Its body height is
-16.129 mm. A **Samtec SSQ-120-02-G-D** 1:1 GPIO riser now adds 8.51 mm between
-the Pi and J1, giving **27.18 mm nominal Pi-top to HAT-underside clearance** with
-a 2.54 mm Pi header base. Its 4.93 mm square tails point into J1; the socket face
-mates to the Pi. Use measured spacers/shims for actual seating, without forcing
-the connector stack. The conceptual model and assembly BOM include this riser.
+The selected bottom socket is **Megastar ZX-PM2.54-2-20PY / C7499354**, with
+an 8.5 mm body. Use **two Samtec SSQ-120-02-G-D** self-nesting 1:1 GPIO risers,
+each with an 8.51 mm body and 4.93 mm square tails. With the Pi header's 2.54 mm
+base, this gives **28.06 mm nominal Pi-top to HAT-underside clearance**.
+The model, support envelopes and assembly BOM use this stack. One riser with
+this shorter J1 gives only 19.55 mm and is not the reviewed assembly.
 
-**The JLCPCB assembly selection for J1 is Megastar ZX-PM2.54-2-20PY / C7499354,
-with an 8.5 mm body.** The baseline clearance above does not qualify that shorter
-part. Confirm riser, pin engagement and spacer heights before assembly; see
-[JLCPCB assembly](jlcpcb-assembly.md).
+The risers' female faces point toward the Pi. Their 4.93 mm tails fall inside
+Samtec's 3.68–6.35 mm insertion range for the intermediate SSQ connection.
+Megastar contact engagement, actual seating and retention must be measured on
+the first assembly. Match four supports with measured spacers/shims; never force
+the connectors to a nominal spacer height. The additional mating interface
+requires the existing GPIO signal-integrity bench check. See [stack assembly](stack-assembly.md).
+
+The sensor regulator assembly selection is **LDL1117S33R / C435835**;
+D90 is **TPD2E2U06QDCKRQ1 / C915089**. The procurement registry binds these
+compatible replacements to the source circuit and frozen supplier footprints.
+All selected PCB parts require available JLCPCB stock and component MOQ 1.
+
+C43 is beside the regulator output tab. `sensor_supply_layout.py` enforces a
+4 mm maximum connected output-bypass path and 2 mm maximum local plane-return
+paths for C40–C43, C93/C94 and translator ground pins 12/13. Retain the local
+through-vias and filled/capped process. These limits supplement the IMU checks
+below; they do not establish measured noise or regulator loop stability.
 
 The three IMUs have matching XYZ axes and lie outside the FPGA outline:
 U11 at (13,24), U12 at (24,24), and U13 at (13,36) mm. Their distance from the
@@ -59,6 +72,11 @@ measured with the FPGA idle and active, and cooling must avoid exciting the
 motion sensors. Pi cooler compatibility needs a physical check.
 
 ## Power and interfaces
+
+Reserve 50 mA from each of the Pi header's 5 V and 3.3 V rails for this HAT's
+sensor/interface circuit. These are steady-state allocations; startup charging
+and the Pi's other loads must also fit the source. See the [power supply guide](power-supplies.md)
+for calculated charge, regulator dissipation and measurement requirements.
 
 **J83 requires an external regulated 3.3 V-class supply, not 5 V.** Pin 1 is positive;
 pin 2 is ground. It powers Trenz VIN and 3.3VIN through F80, a 5 A fast fuse.

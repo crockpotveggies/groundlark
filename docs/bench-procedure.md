@@ -80,7 +80,7 @@ they are evaluated against the actual component ratings, not invented thresholds
 
 ## 2. Mechanical fit
 
-Assemble the intended Pi, SSQ riser, DAQHAT-01, Trenz, cooler and four straight supports.
+Assemble the intended Pi, two SSQ risers, DAQHAT-01, Trenz, cooler and four straight supports.
 Check full socket engagement and pin orientation, spacer seating without board
 bow, fastener clearance, geophone/power-plug withdrawal and cooling access. The
 internal FPGA link needs no ribbon cables or external JTAG connector. Measure
@@ -143,6 +143,52 @@ through thermal settling and the intended operating envelope. No absolute UTC
 qualification is implied by this board or a passing relative timing test.
 
 ## 4. Noise, thermal drift and FPGA coupling
+
+For the current assembly, measure SENS_3V3 at the LDL1117 output and GEO_AVDD
+at the ADC with short probe returns, including startup and sensor/FPGA load
+changes. Confirm the 3.18–3.42 V sensor rail envelope and absence of sustained
+oscillation at the intended temperature/load corners. Record effective C42
+capacitance or manufacturer bias/temperature evidence; require at least 4.7 µF.
+Do not treat the regulator's broadband output noise as geophone input noise.
+
+Measure geophone alias rejection by injecting a calibrated differential sweep
+above Nyquist as well as in band, with the recorded ADC rate/filter settings.
+Keep input common mode and amplitude within the ADS122C04 limits. Retain input
+frequency/amplitude and output spectral levels so aliases can be distinguished
+from harmonics and interference. Acceptance limits must be set before testing.
+
+Use the [response budget](sensor-response.md) to choose injection points. For
+Groundlark include 0.5/1/4.5/10/27/100 Hz, frequencies around the actual ADC
+Nyquist limit, and above it (including 400 Hz, which aliases near 71.37 Hz at
+the nominal internal clock). Measure IMU acceleration and gyro separately on
+a reference shaker at every rate being used, including phase and stopband
+response. Record the source/ADC clock estimates; do not assume exactly 330 Hz.
+
+For Skylark, use a calibrated cell-current simulator to measure WE and AE gain,
+phase and settling separately, then jointly. Include 0.01/0.1/1 Hz, frequencies
+around 2.083 Hz and 4.167 Hz, 50/60 Hz and switching interference. Observe
+individual raw channels before compensation. Repeat with USB and the PMS fan
+active, including power disturbances. The nominal 60 ms WE/AE offset must not
+be hidden by pairing rows by position. Define the allowed alias error in
+input-referred current or calibrated gas units before accepting a filter.
+If rejection is insufficient, revise bandwidth or acquire faster and filter
+before reducing the rate; a smoother applied after aliasing is not a remedy.
+
+With actual gas cells, use a controlled concentration step and an independent
+reference monitor to measure the complete cell/hood delay and recovery at
+representative airflow. Repeat with the hood removed to distinguish cell
+response from enclosure exchange. A T90 limit does not qualify power-up
+settling or potentiostat stability. Pressure, humidity, temperature and PM
+require their own reference/step checks; their 1 Hz publication rate does not
+prove 0.5 Hz physical bandwidth. Preserve raw data and predeclared limits;
+missing phase, noise, alias or enclosure measurements cannot pass qualification.
+
+Qualify connector handling transients separately with the selected D90, both
+powered and unpowered. Use a defined ESD fixture and severity, retain pin/rail
+waveforms, and compare leakage, offset, gain and recovery before/after stress.
+The suppressor's clamp is not the ADC's rail limit; the series resistors and
+filter must be included. Missing severity, limits or measurements cannot pass.
+This does not qualify lightning exposure or sustained external overvoltage.
 
 Record identical sensor settings and rigid mounting with FPGA off, idle and active;
 repeat with cooling off/on where thermally permissible. Keep external vibrations

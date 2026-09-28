@@ -5,8 +5,8 @@
 #include "platform.h"
 #include <string.h>
 static uint8_t mux, adc_counter, trim[21], pm_work[32], pm_frame[32], pm_n;
-static bool adc_seen, pm_new, powered;
-static uint64_t pm_time, adc_time;
+static bool adc_seen, pm_new, powered, climate_pending;
+static uint64_t pm_time, adc_time, climate_due;
 static bool command(uint8_t addr,uint8_t cmd,uint8_t *r,size_t n) { return sk_i2c(addr,&cmd,1,r,n); }
 static bool write_reg(uint8_t addr,uint8_t reg,uint8_t value) { uint8_t w[]={reg,value};return sk_i2c(addr,w,2,NULL,0); }
 static bool adc_reg(uint8_t reg,uint8_t expected) {
@@ -18,14 +18,15 @@ static bool start_adc(uint8_t channel) {
 }
 void sk_power(bool enabled) {
     powered=enabled;sk_clamp(true);sk_rails(enabled);pm_n=0;pm_new=false;adc_seen=false;
+    climate_pending=false;
 }
 uint8_t sk_configure(void) {
     uint8_t enabled=0,r[21];mux=0;adc_seen=false;
     bool adc=command(0x40,6,NULL,0);sk_delay(2);
     if(!powered)return 0;
     for(unsigned i=0;i<4 && adc;i++) adc=command(0x40,(uint8_t)(0x20|(i<<2)),r,1) && r[0]==0;
-    adc=adc && write_reg(0x40,0x40,0x81) && write_reg(0x40,0x44,2) && write_reg(0x40,0x4c,0) && write_reg(0x40,0x48,0x50);
-    adc=adc && adc_reg(0,0x81) && adc_reg(1,2) && adc_reg(2,0x50) && adc_reg(3,0);
+    adc=adc && write_reg(0x40,0x40,0x81) && write_reg(0x40,0x44,SK_ADC_CONFIG1) && write_reg(0x40,0x4c,0) && write_reg(0x40,0x48,0x50);
+    adc=adc && adc_reg(0,0x81) && adc_reg(1,SK_ADC_CONFIG1) && adc_reg(2,0x50) && adc_reg(3,0);
     if(adc && start_adc(0))enabled|=15;
     /* Rails/reference have already had 150 ms to rise. Cell settling continues
      * for 60 s as MISSING; this duration is a prototype policy to qualify. */
@@ -84,9 +85,14 @@ uint8_t sk_read(uint8_t sid,sk_raw *raw) {
         pm_new=false;memcpy(raw->data,pm_frame,32);return pm_frame[29]?4:1;
     }
     if(sid==15) {
-        if(!command(0x44,0xfd,NULL,0))return 4;
-        sk_delay(10);
         if(!powered)return 2;
+        if(!climate_pending) {
+            if(!command(0x44,0xfd,NULL,0))return 4;
+            climate_due=sk_clock()+10;climate_pending=true;return 0;
+        }
+        if(sk_clock()<climate_due)return 0;
+        climate_pending=false;
+        if(sk_clock()-climate_due>=1000)return 2;
         if(!sk_i2c(0x44,NULL,0,raw->data,6) || sk_crc8(raw->data,2)!=raw->data[2] || sk_crc8(raw->data+3,2)!=raw->data[5])return 4;
         return 1;
     }

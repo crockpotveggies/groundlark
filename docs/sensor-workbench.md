@@ -4,6 +4,9 @@ The sensor workbench is a local browser app for trying virtual sensors and
 replaying recordings. Choose a board, click a sensor in its 3D view, change an input, and watch
 its signal. **No Raspberry Pi or sensor hardware is required.**
 The header uses the same lark-and-waveform wordmark as the project README.
+The Groundlark view includes the revised C43 placement and selected 8.5 mm Pi
+socket envelope. The display shows the HAT; the two external GPIO risers are
+covered by the [stack assembly instructions](stack-assembly.md).
 
 You need internet access for setup, a modern browser with WebGL, and Windows
 PowerShell or a Linux/macOS terminal. The scripts install the needed Python

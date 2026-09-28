@@ -48,8 +48,12 @@ class LSM6DSO:
         odr = self.PERIODS[cfg["period_ns"]] << 4
         accel = {2: 0, 4: 8, 8: 12, 16: 4}[cfg["acceleration_range_g"]]
         gyro = {125: 2, 250: 0, 500: 4, 1000: 8, 2000: 12}[cfg["angular_rate_range_dps"]]
-        settings = {0x10: odr | accel, 0x11: odr | gyro, 0x12: 0x44}
-        for address in (0x12, 0x10, 0x11): self.write(address, settings[address])
+        # AN5192 UI path: high performance, accelerometer LPF1 only; gyro
+        # LPF2, LPF1 bypassed, high-pass disabled. Record filter state as well
+        # as ODR so a recording describes its actual bandwidth.
+        settings = {0x10: odr | accel, 0x11: odr | gyro, 0x12: 0x44,
+                    0x13: 0, 0x15: 0, 0x16: 0, 0x17: 0}
+        for address in (0x12, 0x13, 0x15, 0x16, 0x17, 0x10, 0x11): self.write(address, settings[address])
         for address, value in settings.items():
             if self.reg(address)[0] != value: raise OSError("IMU configuration readback mismatch")
         self.sleep(.1)

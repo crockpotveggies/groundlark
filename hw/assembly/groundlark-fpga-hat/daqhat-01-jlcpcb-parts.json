@@ -22,10 +22,21 @@
       "lcsc": "C57525",
       "evidence_url": "https://jlcpcb.com/partdetail/Littelfuse-0466005NRHF/C57525",
       "evidence_basis": "JLCPCB live catalog; reviewed alternate",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "Corrected source-MPN/package mismatch: old 0467005.NR is 0603 but routed TZ_TZ_FUSE uses 1206 pads. Select 0466005.NRHF: 1206, 5A fast-acting, 32V, 50A interrupt, nominal 11mOhm cold resistance and 1.6 A2s melting I2t per manufacturer June 2023 datasheet. Preserve current-limited external supply and 3A initial budget. No footprint or routing change.",
       "sourcing_note": "Live JLCPCB available order quantity 37992 on 2026-09-26; not reserved. Datasheet overrides catalog I2t value. Nominal 11mOhm is not a worst-case hot resistance; total measured hot supply/return loop must remain <=30mOhm. Confirm inrush/fault behavior on first article; never bridge fuse.",
-      "manufacturer_evidence": "https://www.littelfuse.com/assetdocs/fuse-466-datasheet?assetguid=dbe9bcd7-6072-4adf-bf5b-d33e52a6b90f"
+      "manufacturer_evidence": "https://www.littelfuse.com/assetdocs/fuse-466-datasheet?assetguid=dbe9bcd7-6072-4adf-bf5b-d33e52a6b90f",
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:02.514Z",
+        "source_url": "https://jlcpcb.com/partdetail/Littelfuse-0466005NRHF/C57525",
+        "status": "available_to_order",
+        "displayed_stock": 37988,
+        "available_order_quantity": 37435,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "81a98213542bebbedd2a39065d49db9ac7c242bbaa7fc486970dad6f026afaef",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "1715721",
@@ -40,10 +51,21 @@
       "lcsc": "C480516",
       "evidence_url": "https://jlcpcb.com/partdetail/PhoenixContact-1715721/C480516",
       "evidence_basis": "supplier-workbook",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
       "sourcing_note": "row J83",
-      "evidence_row": 16
+      "evidence_row": 16,
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:03.571Z",
+        "source_url": "https://jlcpcb.com/partdetail/PhoenixContact-1715721/C480516",
+        "status": "available_to_order",
+        "displayed_stock": 5451,
+        "available_order_quantity": 5338,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "56a0b6fc634e8c367537fe9340004c3443ebed991eb0b19f871dd41f81cba0dc",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "1803439",
@@ -58,9 +80,20 @@
       "lcsc": "C480525",
       "evidence_url": "https://jlcpcb.com/partdetail/1803439/C480525",
       "evidence_basis": "JLCPCB catalog",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
-      "sourcing_note": ""
+      "sourcing_note": "",
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:04.613Z",
+        "source_url": "https://jlcpcb.com/partdetail/1803439/C480525",
+        "status": "available_to_order",
+        "displayed_stock": 1374,
+        "available_order_quantity": 1343,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "a10b6849b8573aa7c39d67ff7edcb57b28430cecb2e50f5960ce0da120fda43c",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "24LC32A-I/SN",
@@ -75,9 +108,20 @@
       "lcsc": "C511262",
       "evidence_url": "https://jlcpcb.com/partdetail/24LC32A-I/SN/C511262",
       "evidence_basis": "JLCPCB catalog",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
-      "sourcing_note": ""
+      "sourcing_note": "",
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:05.643Z",
+        "source_url": "https://jlcpcb.com/partdetail/24LC32A-I/SN/C511262",
+        "status": "available_to_order",
+        "displayed_stock": 831,
+        "available_order_quantity": 799,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "f76f6ebec6bb4537cfa595619dc927ea6f1e036dca4d8c326182d36d3bde1de7",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "2N7002",
@@ -92,10 +136,21 @@
       "lcsc": "C65189",
       "evidence_url": "https://jlcpcb.com/partdetail/2N7002%2C215/C65189",
       "evidence_basis": "JLCPCB catalog",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "Q1: specify Nexperia SOT-23 2N7002; pin 1 gate, 2 source, 3 drain. FPGA_RESET_N open-drain pull-down, 10k pull-up to 3.3V.",
       "sourcing_note": "",
-      "manufacturer_evidence": "https://assets.nexperia.com/documents/data-sheet/2N7002.pdf"
+      "manufacturer_evidence": "https://assets.nexperia.com/documents/data-sheet/2N7002.pdf",
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:06.658Z",
+        "source_url": "https://jlcpcb.com/partdetail/2N7002%2C215/C65189",
+        "status": "available_to_order",
+        "displayed_stock": 393199,
+        "available_order_quantity": 391917,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "58a4589ecaebebd47c87a9da094798636141f54facbe05cd5d49585bb34b4719",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "ADS122C04IPWR",
@@ -110,10 +165,21 @@
       "lcsc": "C2872338",
       "evidence_url": "https://jlcpcb.com/partdetail/TexasInstruments-ADS122C04IPWR/C2872338",
       "evidence_basis": "supplier-workbook",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
       "sourcing_note": "row U22",
-      "evidence_row": 28
+      "evidence_row": 28,
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:07.716Z",
+        "source_url": "https://jlcpcb.com/partdetail/TexasInstruments-ADS122C04IPWR/C2872338",
+        "status": "available_to_order",
+        "displayed_stock": 4169,
+        "available_order_quantity": 4049,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "ae9b76965ba421b096cb51882f6e49afa5036ce98a1c6da381bfc55d657120d3",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "C0603C102J5GACTU",
@@ -132,9 +198,19 @@
       "manufacturer_evidence": "https://search.kemet.com/component-documentation/download/specsheet/C0603C102J5GACTU",
       "jlc_match_status": "catalog_listed",
       "assembly_description": "1nF 50V C0G +/-5% 0603 nonpolar MLCC",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "Use C140950 / C0603C102J5GAC7867 instead of C2181873 / C0603C102J5GACTU so the exact assembly selection has a usable supplier footprint. KEMET's C0603C102J5GACTU specsheet explicitly lists C0603C102J5GAC7867 as an alias: same 1000pF, +/-5%, 50V, C0G, 0603/1608, 1.6 x 0.8mm body. Preserve geophone filter capacitance, dielectric and tolerance. No electrical, land-pattern or routing change.",
-      "sourcing_note": "JLCPCB live listing checked 2026-09-26: In Stock 999, Available Order Qty 616, minimum 1, USD 0.0212 each at quantity 1+, Extended SMT part. Two fitted per HAT; supplier attrition/fees are separate. Stock is a snapshot, not reserved. Exact public footprint is C0603, two pads; programmatic registration required."
+      "sourcing_note": "JLCPCB live listing checked 2026-09-26: In Stock 999, Available Order Qty 616, minimum 1, USD 0.0212 each at quantity 1+, Extended SMT part. Two fitted per HAT; supplier attrition/fees are separate. Stock is a snapshot, not reserved. Exact public footprint is C0603, two pads; programmatic registration required.",
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:08.758Z",
+        "source_url": "https://jlcpcb.com/partdetail/KEMET-C0603C102J5GAC7867/C140950",
+        "status": "available_to_order",
+        "displayed_stock": 999,
+        "available_order_quantity": 586,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "1d8b2249597eb2bf50d5174020b43afd75632abafff49b3f1203bba3794cfe18",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      }
     },
     {
       "source_mpn": "C3216C0G1H104J160AA",
@@ -149,10 +225,21 @@
       "lcsc": "C97946",
       "evidence_url": "https://jlcpcb.com/partdetail/MurataElectronics-GRM31C5C1H104JA01L/C97946",
       "evidence_basis": "JLCPCB live catalog; reviewed alternate",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "Reviewed shortage substitution: 100nF +/-5%, C0G, 50V and 1206 retained. Differential geophone filter value and dielectric unchanged; do not use X7R/X5R.",
       "sourcing_note": "Live JLCPCB available order quantity 88382 on 2026-09-26; not reserved. Maintains non-ferroelectric C0G signal capacitor.",
-      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588884831371059200-C97946.pdf"
+      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588884831371059200-C97946.pdf",
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:09.754Z",
+        "source_url": "https://jlcpcb.com/partdetail/MurataElectronics-GRM31C5C1H104JA01L/C97946",
+        "status": "available_to_order",
+        "displayed_stock": 94694,
+        "available_order_quantity": 85309,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "b632b0c76ad3e0fae4c320145839903835653edf3b5c80df497d7853ed1c2067",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "Coldfoot UART service ONLY",
@@ -167,10 +254,21 @@
       "lcsc": "C3335156",
       "evidence_url": "https://jlcpcb.com/partdetail/TSW-104-07-G-S/C3335156",
       "evidence_basis": "JLCPCB catalog",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "J4: 1x4 2.54mm straight THT header. Samtec -07 post 5.84mm, tail 2.54mm; trim below board per stack assembly.",
       "sourcing_note": "",
-      "manufacturer_evidence": "https://www.samtec.com/products/tsw-104-07-g-s"
+      "manufacturer_evidence": "https://www.samtec.com/products/tsw-104-07-g-s",
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:20.292Z",
+        "source_url": "https://jlcpcb.com/partdetail/TSW-104-07-G-S/C3335156",
+        "status": "available_to_order",
+        "displayed_stock": 169,
+        "available_order_quantity": 160,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "44827b8f179cf949f72b3a5f2166ee085d7d8e7470d3d4afa647a20b07ca740b",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "EEPROM write enable",
@@ -185,11 +283,22 @@
       "lcsc": "C7402729",
       "evidence_url": "https://jlcpcb.com/partdetail/Samtec-TSW_102_07_GS/C7402729",
       "evidence_basis": "supplier-workbook",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "JP1: 1x2 2.54mm straight THT header, same ordering code as JP80/JP81; no shunt fitted.",
       "sourcing_note": "row JP80,JP81",
       "evidence_row": 17,
-      "manufacturer_evidence": "https://www.samtec.com/products/tsw-102-07-g-s"
+      "manufacturer_evidence": "https://www.samtec.com/products/tsw-102-07-g-s",
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:21.256Z",
+        "source_url": "https://jlcpcb.com/partdetail/Samtec-TSW_102_07_GS/C7402729",
+        "status": "available_to_order",
+        "displayed_stock": 4149,
+        "available_order_quantity": 4108,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "b7a5a48c6392480c7085e7cff8299ced0dc2479ffacf8317a15865ac32cd38f6",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "ESQ-120-23-G-D",
@@ -207,10 +316,20 @@
       "manufacturer_evidence": "https://datasheet.lcsc.com/lcsc/2410121623_Megastar-ZX-PM2-54-2-20PY_C7499354.pdf",
       "jlc_match_status": "catalog_listed",
       "assembly_description": "40-pin female Pi socket, 2x20 P2.54mm, bottom mounted; 8.5mm body; stack-height and placement review required",
-      "mechanical_review": "required",
-      "checked_on": "2026-09-26",
-      "resolution": "User requested the previously identified selectable JLCPCB replacement be carried into the BOM. Replace the unmatchable Samtec ESQ-120-23-G-D / C21390538 selection with Megastar ZX-PM2.54-2-20PY / C7499354. Both are 40-position 2x20 sockets on a 2.54mm grid. This is an explicit assembly procurement override, not a mechanically qualified drop-in: Megastar has an 8.5mm body and 3.2mm tails. Original CAD and tall-stack model remain the baseline; revised riser/spacers and bottom-side pin-1 orientation need verification before assembly release.",
-      "sourcing_note": "JLCPCB assembly catalog lists C7499354 as Megastar ZX-PM2.54-2-20PY, wave soldering, Economic/Standard PCBA. Select that exact code; stock and order allocation are not reserved. Bottom-mounted 8.5mm female socket is shorter than the original Samtec; stack/riser height and bottom-side placement remain open. Do not treat old Samtec 3D/fit evidence as qualification of this replacement."
+      "mechanical_review": "CAD envelope updated; physical mating pending",
+      "checked_on": "2026-09-27",
+      "resolution": "Explicit procurement override: 8.5 mm Megastar socket on existing 2.54 mm lands. Model and support checks use two external SSQ-120-02-G-D risers (28.06 mm nominal Pi gap). Native electrical source remains the original connector identity. Physical contact engagement, seating and GPIO integrity require first-article qualification.",
+      "sourcing_note": "C7499354 is the selected JLCPCB wave-soldered bottom socket, MOQ 1. Use two external SSQ risers and measured supports. Supplier preview and physical engagement remain unqualified.",
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:22.238Z",
+        "source_url": "https://jlcpcb.com/partdetail/ZX-PM2.54-2-20PY/C7499354",
+        "status": "available_to_order",
+        "displayed_stock": 10500,
+        "available_order_quantity": 10156,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "68c8674fd0a3c6fbdb557ee7500498b0166973caa996cbc4ef80c5c884cd62e6",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      }
     },
     {
       "source_mpn": "GRM155R71C104KA88D",
@@ -230,9 +349,20 @@
       "lcsc": "C71629",
       "evidence_url": "https://jlcpcb.com/partdetail/GRM155R71C104KA88D/C71629",
       "evidence_basis": "JLCPCB catalog",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
-      "sourcing_note": ""
+      "sourcing_note": "",
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:23.422Z",
+        "source_url": "https://jlcpcb.com/partdetail/GRM155R71C104KA88D/C71629",
+        "status": "available_to_order",
+        "displayed_stock": 1092692,
+        "available_order_quantity": 1029257,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "3c9fddffb3353e74cc2e33fa23e9a42637fecbfb8142445dd03b7ac46933ef6d",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "GRM188R71H104KA93D",
@@ -268,9 +398,20 @@
       "lcsc": "C77055",
       "evidence_url": "https://jlcpcb.com/partdetail/GRM188R71H104KA93D/C77055",
       "evidence_basis": "JLCPCB catalog",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
-      "sourcing_note": ""
+      "sourcing_note": "",
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:24.535Z",
+        "source_url": "https://jlcpcb.com/partdetail/GRM188R71H104KA93D/C77055",
+        "status": "available_to_order",
+        "displayed_stock": 1438737,
+        "available_order_quantity": 1306804,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "cbb7ec1a7d5b751a70cd5a0a862b979bd482ef87d052450c8c8fbaeeadf6e721",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "GRM21BR61A106KE19L",
@@ -287,11 +428,22 @@
       "manufacturer": "Murata Electronics",
       "package": "0805",
       "lcsc": "C77073",
-      "evidence_url": "https://www.lcsc.com/product-detail/C77073.html",
+      "evidence_url": "https://jlcpcb.com/partdetail/GRM21BR61A106KE19L/C77073",
       "evidence_basis": "LCSC catalog",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
-      "sourcing_note": ""
+      "sourcing_note": "",
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:39:39.282Z",
+        "source_url": "https://jlcpcb.com/partdetail/GRM21BR61A106KE19L/C77073",
+        "status": "available_to_order",
+        "displayed_stock": 9496,
+        "available_order_quantity": 9065,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "2287540878eac8882f78f13b40fe3d2381977bed9935162bbb8689403b926b3e",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "GRM21BR71A475KA73L",
@@ -307,10 +459,21 @@
       "lcsc": "C408144",
       "evidence_url": "https://jlcpcb.com/partdetail/GRM21BR71C475KE51L/C408144",
       "evidence_basis": "JLCPCB live catalog; reviewed alternate",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "Reviewed shortage substitution: 4.7uF +/-10% X7R, 0805 retained; voltage increased from 10V to 16V. FPGA 3.3V decoupling; no routing or connectivity change.",
       "sourcing_note": "Live JLCPCB available order quantity 13051 on 2026-09-26; not reserved. No X5R or reduced-capacitance substitution approved.",
-      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588935626560819200-C408144.pdf"
+      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8588935626560819200-C408144.pdf",
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:26.829Z",
+        "source_url": "https://jlcpcb.com/partdetail/GRM21BR71C475KE51L/C408144",
+        "status": "available_to_order",
+        "displayed_stock": 13617,
+        "available_order_quantity": 12948,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "9d46d52b549b59f175872d0c2e76a1d9a174cbe52de7f6ef6d2449486e2010c6",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "GRM31CR61A226KE19L",
@@ -328,10 +491,21 @@
       "lcsc": "C12891",
       "evidence_url": "https://jlcpcb.com/partdetail/CL31A226KAHNNNE/C12891",
       "evidence_basis": "JLCPCB live catalog; reviewed alternate",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "Reviewed shortage substitution: 22uF +/-10% X5R, 1206 retained; voltage increased from 10V to 25V. 3.2x1.6mm body, 1.8mm maximum height. Bulk/decoupling on 3.3V rails; no routing or connectivity change.",
       "sourcing_note": "JLCPCB Basic part; live available order quantity 560114 on 2026-09-26. Stock is not reserved. DC-bias capacitance and regulator transient response remain first-article measurements.",
-      "manufacturer_evidence": "https://www.farnell.com/datasheets/3630670.pdf"
+      "manufacturer_evidence": "https://www.farnell.com/datasheets/3630670.pdf",
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:27.900Z",
+        "source_url": "https://jlcpcb.com/partdetail/CL31A226KAHNNNE/C12891",
+        "status": "available_to_order",
+        "displayed_stock": 779026,
+        "available_order_quantity": 546153,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "0f8a9afea31d62b8db99675105b5cba34cebcf5d95778fb38bb3029093d96a0d",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "ISO1640BDR",
@@ -346,10 +520,21 @@
       "lcsc": "C5122339",
       "evidence_url": "https://jlcpcb.com/partdetail/TexasInstruments-ISO1640BDR/C5122339",
       "evidence_basis": "supplier-workbook",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
       "sourcing_note": "row U43",
-      "evidence_row": 31
+      "evidence_row": 31,
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:28.917Z",
+        "source_url": "https://jlcpcb.com/partdetail/TexasInstruments-ISO1640BDR/C5122339",
+        "status": "available_to_order",
+        "displayed_stock": 4199,
+        "available_order_quantity": 4100,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "078d87bfbf1be9f95c106c3e37c4b2ef9fbd47d0d5a7daf28caf2645f8dd6d24",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "LSHM-130-04.0-L-DV-A-S-K-TR",
@@ -364,10 +549,21 @@
       "lcsc": "C3645597",
       "evidence_url": "https://jlcpcb.com/partdetail/Samtec-LSHM_130_04_0_L_DV_A_S_KTR/C3645597",
       "evidence_basis": "supplier-workbook",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
       "sourcing_note": "row J82",
-      "evidence_row": 15
+      "evidence_row": 15,
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:29.970Z",
+        "source_url": "https://jlcpcb.com/partdetail/Samtec-LSHM_130_04_0_L_DV_A_S_KTR/C3645597",
+        "status": "available_to_order",
+        "displayed_stock": 38,
+        "available_order_quantity": 37,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "826d50bc9582faa11c6d382860f80eaa6d866306ee41ce4daea05cc59e1617e5",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "LSHM-150-04.0-L-DV-A-S-K-TR",
@@ -383,10 +579,21 @@
       "lcsc": "C5367357",
       "evidence_url": "https://jlcpcb.com/partdetail/Samtec-LSHM_150_04_0_L_DV_A_S_KTR/C5367357",
       "evidence_basis": "supplier-workbook",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
       "sourcing_note": "row J80,J81",
-      "evidence_row": 14
+      "evidence_row": 14,
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:37.644Z",
+        "source_url": "https://jlcpcb.com/partdetail/Samtec-LSHM_150_04_0_L_DV_A_S_KTR/C5367357",
+        "status": "available_to_order",
+        "displayed_stock": 143,
+        "available_order_quantity": 140,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "1b26a1a3cc20ff0b156224a463ab81b022a4b31cade92e0168664ba88bdbccf6",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "LSM6DSOTR",
@@ -403,10 +610,21 @@
       "lcsc": "C2655100",
       "evidence_url": "https://jlcpcb.com/partdetail/STMicroelectronics-LSM6DSOTR/C2655100",
       "evidence_basis": "supplier-workbook",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
       "sourcing_note": "row U11,U12,U13",
-      "evidence_row": 27
+      "evidence_row": 27,
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:38.631Z",
+        "source_url": "https://jlcpcb.com/partdetail/STMicroelectronics-LSM6DSOTR/C2655100",
+        "status": "available_to_order",
+        "displayed_stock": 5511,
+        "available_order_quantity": 5177,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "279f58bc7eb6a6115c548d76cac0b4bc5001da747ec842637d4480c3992c1f21",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "RC0603FR-07100KL",
@@ -427,9 +645,20 @@
       "lcsc": "C14675",
       "evidence_url": "https://jlcpcb.com/partdetail/RC0603FR-07100KL/C14675",
       "evidence_basis": "JLCPCB catalog",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
-      "sourcing_note": ""
+      "sourcing_note": "",
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:39.695Z",
+        "source_url": "https://jlcpcb.com/partdetail/RC0603FR-07100KL/C14675",
+        "status": "available_to_order",
+        "displayed_stock": 8555693,
+        "available_order_quantity": 8248127,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "b5e84042ae934215697fff54673c68decf8b660951f967fdc301d3206f27c2fa",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "RC0603FR-0710KL",
@@ -462,9 +691,20 @@
       "lcsc": "C98220",
       "evidence_url": "https://jlcpcb.com/partdetail/RC0603FR-0710KL/C98220",
       "evidence_basis": "JLCPCB catalog",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
-      "sourcing_note": ""
+      "sourcing_note": "",
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:40.840Z",
+        "source_url": "https://jlcpcb.com/partdetail/RC0603FR-0710KL/C98220",
+        "status": "available_to_order",
+        "displayed_stock": 12985530,
+        "available_order_quantity": 11183364,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "01d17aef7ac0736a91bfbbf783b64e3b8b900ec8f8ec5b1dddeaa0d7f2c1b56e",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "RC0603FR-071KL",
@@ -482,9 +722,20 @@
       "lcsc": "C22548",
       "evidence_url": "https://jlcpcb.com/partdetail/RC0603FR-071KL/C22548",
       "evidence_basis": "JLCPCB catalog",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
-      "sourcing_note": ""
+      "sourcing_note": "",
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:41.869Z",
+        "source_url": "https://jlcpcb.com/partdetail/RC0603FR-071KL/C22548",
+        "status": "available_to_order",
+        "displayed_stock": 11228082,
+        "available_order_quantity": 10825547,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "c260ed0772702b67898ae41b23e7b3510adea9e035ce44db95881c41572e81e7",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "RC0603FR-071ML",
@@ -500,9 +751,20 @@
       "lcsc": "C105578",
       "evidence_url": "https://jlcpcb.com/partdetail/RC0603FR-071ML/C105578",
       "evidence_basis": "JLCPCB catalog",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
-      "sourcing_note": ""
+      "sourcing_note": "",
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:43.011Z",
+        "source_url": "https://jlcpcb.com/partdetail/RC0603FR-071ML/C105578",
+        "status": "available_to_order",
+        "displayed_stock": 584079,
+        "available_order_quantity": 491254,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "9c004b89da16ca2ccc8e68466bf1629e458cb1c1298bad981d67499a8b9802fd",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "RC0603FR-0722RL",
@@ -521,11 +783,22 @@
       "manufacturer": "YAGEO",
       "package": "0603",
       "lcsc": "C107701",
-      "evidence_url": "https://www.lcsc.com/product-detail/C107701.html",
+      "evidence_url": "https://jlcpcb.com/partdetail/RC0603FR-0722RL/C107701",
       "evidence_basis": "LCSC catalog",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
-      "sourcing_note": ""
+      "sourcing_note": "",
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:39:40.292Z",
+        "source_url": "https://jlcpcb.com/partdetail/RC0603FR-0722RL/C107701",
+        "status": "available_to_order",
+        "displayed_stock": 296303,
+        "available_order_quantity": 242046,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "e4181d78093f1a8101f6a7fd8b61a906ae35f93e432e5764baa7aa7dfa759338",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "RC0603FR-073K9L",
@@ -541,9 +814,20 @@
       "lcsc": "C114616",
       "evidence_url": "https://jlcpcb.com/partdetail/RC0603FR-073K9L/C114616",
       "evidence_basis": "JLCPCB catalog",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
-      "sourcing_note": ""
+      "sourcing_note": "",
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:45.134Z",
+        "source_url": "https://jlcpcb.com/partdetail/RC0603FR-073K9L/C114616",
+        "status": "available_to_order",
+        "displayed_stock": 749220,
+        "available_order_quantity": 740376,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "d1f04e97c2058305708da34aa3bf022aead4275f3777aff1e18f5ab878faac3e",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "RC0603FR-0747RL",
@@ -556,11 +840,22 @@
       "manufacturer": "YAGEO",
       "package": "0603",
       "lcsc": "C114623",
-      "evidence_url": "https://www.lcsc.com/product-detail/C114623.html",
+      "evidence_url": "https://jlcpcb.com/partdetail/RC0603FR-0747RL/C114623",
       "evidence_basis": "LCSC catalog",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
-      "sourcing_note": ""
+      "sourcing_note": "",
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:39:41.495Z",
+        "source_url": "https://jlcpcb.com/partdetail/RC0603FR-0747RL/C114623",
+        "status": "available_to_order",
+        "displayed_stock": 1087891,
+        "available_order_quantity": 1068453,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "f626fea290c9046ed852685753e6be2213950e8b472ef2c1fa6f57a8df333eb2",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "RC0603FR-074K7L",
@@ -576,9 +871,20 @@
       "lcsc": "C99782",
       "evidence_url": "https://jlcpcb.com/partdetail/RC0603FR-074K7L/C99782",
       "evidence_basis": "JLCPCB catalog",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
-      "sourcing_note": ""
+      "sourcing_note": "",
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:47.138Z",
+        "source_url": "https://jlcpcb.com/partdetail/RC0603FR-074K7L/C99782",
+        "status": "available_to_order",
+        "displayed_stock": 9407128,
+        "available_order_quantity": 9057449,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "efb9b3d76f895a6eb3ab897e04e0829508ecaced9edaf8cd91d589546fc9ddbb",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "SN74LVC1G08DCKR",
@@ -593,10 +899,21 @@
       "lcsc": "C7832",
       "evidence_url": "https://jlcpcb.com/partdetail/TexasInstruments-SN74LVC1G08DCKR/C7832",
       "evidence_basis": "supplier-workbook",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
       "sourcing_note": "row U106",
-      "evidence_row": 38
+      "evidence_row": 38,
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:39:13.624Z",
+        "source_url": "https://jlcpcb.com/partdetail/TexasInstruments-SN74LVC1G08DCKR/C7832",
+        "status": "available_to_order",
+        "displayed_stock": 347044,
+        "available_order_quantity": 346785,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "372f55dad245796920c18ba7b36914bc39aa33302dcf24599577d5a3d7df2525",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "SN74LVC1G10DCKR",
@@ -611,10 +928,21 @@
       "lcsc": "C485078",
       "evidence_url": "https://jlcpcb.com/partdetail/TexasInstruments-SN74LVC1G10DCKR/C485078",
       "evidence_basis": "supplier-workbook",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
       "sourcing_note": "row U103",
-      "evidence_row": 36
+      "evidence_row": 36,
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:39:14.762Z",
+        "source_url": "https://jlcpcb.com/partdetail/TexasInstruments-SN74LVC1G10DCKR/C485078",
+        "status": "available_to_order",
+        "displayed_stock": 12470,
+        "available_order_quantity": 12455,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "2c1b160d10a0b4820941ddebc8564465cce6420d237dec20fc4db90fdc92913a",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "SN74LVC8T245PWR",
@@ -630,10 +958,21 @@
       "lcsc": "C27643",
       "evidence_url": "https://jlcpcb.com/partdetail/TexasInstruments-SN74LVC8T245PWR/C27643",
       "evidence_basis": "supplier-workbook",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
       "sourcing_note": "row U41,U42",
-      "evidence_row": 30
+      "evidence_row": 30,
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:39:15.785Z",
+        "source_url": "https://jlcpcb.com/partdetail/TexasInstruments-SN74LVC8T245PWR/C27643",
+        "status": "available_to_order",
+        "displayed_stock": 64554,
+        "available_order_quantity": 63876,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "4739e7f67acb32fb7b4292917d5a4aa7cc39f0b28f9f6ea8212a4e0b439580ac",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "TCA9534PWR",
@@ -648,10 +987,21 @@
       "lcsc": "C783615",
       "evidence_url": "https://jlcpcb.com/partdetail/TexasInstruments-TCA9534PWR/C783615",
       "evidence_basis": "supplier-workbook",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
       "sourcing_note": "row U102",
-      "evidence_row": 35
+      "evidence_row": 35,
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:39:16.763Z",
+        "source_url": "https://jlcpcb.com/partdetail/TexasInstruments-TCA9534PWR/C783615",
+        "status": "available_to_order",
+        "displayed_stock": 15561,
+        "available_order_quantity": 15447,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "50b4416b14e43994b85e205b9df8bb95a89b7de3b1026175fde140230e37ef5b",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "TLV1117LV33DCYR",
@@ -660,15 +1010,28 @@
       "designators": [
         "U40"
       ],
-      "mpn": "TLV1117LV33DCYR",
-      "manufacturer": "Texas Instruments",
-      "package": "SOT-223",
-      "lcsc": "C15578",
-      "evidence_url": "https://jlcpcb.com/partdetail/TLV1117LV33DCYR/C15578",
+      "mpn": "LDL1117S33R",
+      "manufacturer": "STMicroelectronics",
+      "package": "SOT-223-4",
+      "lcsc": "C435835",
+      "evidence_url": "https://jlcpcb.com/partdetail/STMicroelectronics-LDL1117S33R/C435835",
       "evidence_basis": "JLCPCB catalog",
-      "checked_on": "2026-09-26",
-      "resolution": "",
-      "sourcing_note": ""
+      "checked_on": "2026-09-27",
+      "resolution": "ST DS12022 Rev 7: pin 1 GND, pin 2/tab OUT, pin 3 IN; same native SOT-223 lands. 4.75-5.25 V input exceeds 3.3 V plus 0.6 V maximum dropout. Retain C40 10 uF input and C42 22 uF X5R 25 V output; verify effective output capacitance >=4.7 uF at voltage/temperature. Full-temperature +/-3% accuracy plus 15 mV load and line regulation fits the modeled 3.18-3.42 V rail. Noise is 60 uVrms/Vout (198 uVrms at 3.3 V), typical 10 Hz-100 kHz; not 60 uVrms total. ADC analog RC filtering and physical noise qualification remain required.",
+      "sourcing_note": "Use exact in-stock JLCPCB selection with minimum quantity 1; pre-order or larger component MOQ is not permitted. Recheck available order quantity before ordering.",
+      "stock_observation": {
+        "checked_at": "2026-09-27T19:15:36.961Z",
+        "source_url": "https://jlcpcb.com/partdetail/STMicroelectronics-LDL1117S33R/C435835",
+        "status": "available_to_order",
+        "displayed_stock": 23855,
+        "available_order_quantity": 23204,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "309d671b407d1807a986fefa0c122a26efafab7d2c3f13ebd0f6f57011b02ab0",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed",
+      "manufacturer_evidence": "https://www.st.com/resource/en/datasheet/ldl1117.pdf",
+      "assembly_description": "Fixed 3.3 V ceramic-stable LDO, 1.2 A, SOT-223, tab connected to output"
     },
     {
       "source_mpn": "TLV803EA30DBZR",
@@ -683,10 +1046,21 @@
       "lcsc": "C5218924",
       "evidence_url": "https://jlcpcb.com/partdetail/TexasInstruments-TLV803EA30DBZR/C5218924",
       "evidence_basis": "supplier-workbook",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
       "sourcing_note": "row U52",
-      "evidence_row": 33
+      "evidence_row": 33,
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:39:18.714Z",
+        "source_url": "https://jlcpcb.com/partdetail/TexasInstruments-TLV803EA30DBZR/C5218924",
+        "status": "available_to_order",
+        "displayed_stock": 3249,
+        "available_order_quantity": 3242,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "a1dfcdfb3a812dadf5c21fbc57c1dc96f87e0cfff1f9c6015f00864453a239e5",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "TLV809EA30DBZR",
@@ -702,10 +1076,21 @@
       "lcsc": "C2860914",
       "evidence_url": "https://jlcpcb.com/partdetail/TexasInstruments-TLV809EA30DBZR/C2860914",
       "evidence_basis": "supplier-workbook",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
       "sourcing_note": "row U104,U105",
-      "evidence_row": 37
+      "evidence_row": 37,
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:39:19.867Z",
+        "source_url": "https://jlcpcb.com/partdetail/TexasInstruments-TLV809EA30DBZR/C2860914",
+        "status": "available_to_order",
+        "displayed_stock": 851,
+        "available_order_quantity": 849,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "6e72ecd81b6ce1d9b38326c93f636e166d9d314084c42406f9481033b45adb47",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "TMUX1574PWR",
@@ -721,10 +1106,21 @@
       "lcsc": "C2673443",
       "evidence_url": "https://jlcpcb.com/partdetail/TexasInstruments-TMUX1574PWR/C2673443",
       "evidence_basis": "supplier-workbook",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
       "sourcing_note": "row U100,U101",
-      "evidence_row": 34
+      "evidence_row": 34,
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:39:20.819Z",
+        "source_url": "https://jlcpcb.com/partdetail/TexasInstruments-TMUX1574PWR/C2673443",
+        "status": "available_to_order",
+        "displayed_stock": 2067,
+        "available_order_quantity": 1954,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "5745115072695cd078e50afb03406d6a9f451f10f968bdda92a3bc51a27a5119",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "TPD2E2U06DCKR",
@@ -733,15 +1129,28 @@
       "designators": [
         "D90"
       ],
-      "mpn": "TPD2E2U06DCKR",
+      "mpn": "TPD2E2U06QDCKRQ1",
       "manufacturer": "Texas Instruments",
       "package": "SC-70-3",
-      "lcsc": "C1855726",
-      "evidence_url": "https://jlcpcb.com/partdetail/TPD2E2U06DCKR/C1855726",
+      "lcsc": "C915089",
+      "evidence_url": "https://jlcpcb.com/partdetail/TexasInstruments-TPD2E2U06QDCKRQ1/C915089",
       "evidence_basis": "JLCPCB catalog",
-      "checked_on": "2026-09-26",
-      "resolution": "",
-      "sourcing_note": ""
+      "checked_on": "2026-09-27",
+      "resolution": "TI SLLSEJ9E: automotive DCK version, pin 1 IO1, pin 2 IO2, pin 3 GND. Same native SC-70 three-pin lands, 5.5 V standoff, 10 nA maximum leakage at 2.5 V, 1.5 pF typical. Preserves geophone loading. ESD device is not a precise ADC supply-rail clamp; powered/unpowered transient qualification remains required.",
+      "sourcing_note": "Use exact in-stock JLCPCB selection with minimum quantity 1; pre-order or larger component MOQ is not permitted. Recheck available order quantity before ordering.",
+      "stock_observation": {
+        "checked_at": "2026-09-27T19:18:22.901Z",
+        "source_url": "https://jlcpcb.com/partdetail/TexasInstruments-TPD2E2U06QDCKRQ1/C915089",
+        "status": "available_to_order",
+        "displayed_stock": 6288,
+        "available_order_quantity": 6229,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "af80bcae29969cfec39a03608c24c3b96955fec6d20f33d548a86970fdf30d1d",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed",
+      "manufacturer_evidence": "https://www.ti.com/lit/ds/symlink/tpd2e2u06-q1.pdf",
+      "assembly_description": "Dual low-leakage ESD protector, 5.5 V standoff, SC-70-3"
     },
     {
       "source_mpn": "TSW-102-07-G-S",
@@ -757,10 +1166,21 @@
       "lcsc": "C7402729",
       "evidence_url": "https://jlcpcb.com/partdetail/Samtec-TSW_102_07_GS/C7402729",
       "evidence_basis": "supplier-workbook",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
       "sourcing_note": "row JP80,JP81",
-      "evidence_row": 17
+      "evidence_row": 17,
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:38:21.256Z",
+        "source_url": "https://jlcpcb.com/partdetail/Samtec-TSW_102_07_GS/C7402729",
+        "status": "available_to_order",
+        "displayed_stock": 4149,
+        "available_order_quantity": 4108,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "b7a5a48c6392480c7085e7cff8299ced0dc2479ffacf8317a15865ac32cd38f6",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     },
     {
       "source_mpn": "TXU0202DCUR",
@@ -775,10 +1195,27 @@
       "lcsc": "C5186957",
       "evidence_url": "https://jlcpcb.com/partdetail/TexasInstruments-TXU0202DCUR/C5186957",
       "evidence_basis": "supplier-workbook",
-      "checked_on": "2026-09-26",
+      "checked_on": "2026-09-27",
       "resolution": "",
       "sourcing_note": "row U51",
-      "evidence_row": 32
+      "evidence_row": 32,
+      "stock_observation": {
+        "checked_at": "2026-09-27T18:39:22.812Z",
+        "source_url": "https://jlcpcb.com/partdetail/TexasInstruments-TXU0202DCUR/C5186957",
+        "status": "available_to_order",
+        "displayed_stock": 16731,
+        "available_order_quantity": 15049,
+        "minimum_quantity": 1,
+        "snapshot_sha256": "10cd549f6c3ba4c171807c9dbffe75c4941674faf7340e0b89c5afc194023ce3",
+        "scope": "Public JLCPCB page observation; no stock reservation or assembly allocation."
+      },
+      "jlc_match_status": "catalog_listed"
     }
-  ]
+  ],
+  "procurement_policy": {
+    "require_available_stock": true,
+    "maximum_component_moq": 1,
+    "allow_preorder": false,
+    "scope": "Selected PCB components. Dated observations are not live inventory or a stock reservation; recheck at order time."
+  }
 }

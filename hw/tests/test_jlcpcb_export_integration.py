@@ -42,7 +42,7 @@ class AssemblyExportIntegrationTests(unittest.TestCase):
             rows=read_csv(base/'CPL-review.csv')
             old_angles={'J1':90,'J4':0,'JP1':90,'JP80':90,'JP81':90,'J80':0,'J81':0,'J82':90,
                         'U1':0,'U22':0,'U41':0,'U42':0,'U100':0,'U101':0,'U102':0,'U103':0,
-                        'Q1':0,'U40':0,'U51':0,'U52':0,'D90':90}
+                        'Q1':0,'U40':0,'U51':0,'U52':0,'D90':0}
             for row in rows:
                 if row['Designator'] in old_angles:
                     row['Rotation']=f'{old_angles[row["Designator"]]:.6f}'

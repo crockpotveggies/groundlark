@@ -1,7 +1,7 @@
 {
   "scope": "pre-fab engineering review; no physical qualification",
   "disposition": "analog and internal-link stack reviewed; physical power/noise/fit and link throughput remain unqualified",
-  "board_sha256": "3952c7d0cf4d95ebcdd851cdab9f00aabde3fcb983c0ea10d56c12514a60ed54",
+  "board_sha256": "eadf8f443cd24c3c2adca5efacf38881b92fc353d0a2a4de8e09233277fd3800",
   "physical_pin_checks": 51,
   "purchasing_package_checks": 18,
   "analog": {
@@ -185,8 +185,8 @@
       "GEO_P": {
         "samples": 104,
         "over_ground_by_plane": {
-          "In1.Cu": 57,
-          "In4.Cu": 57
+          "In1.Cu": 56,
+          "In4.Cu": 56
         },
         "signal_layers": [
           "B.Cu",
@@ -196,8 +196,8 @@
       "GEO_N": {
         "samples": 179,
         "over_ground_by_plane": {
-          "In1.Cu": 131,
-          "In4.Cu": 131
+          "In1.Cu": 129,
+          "In4.Cu": 129
         },
         "signal_layers": [
           "B.Cu",
@@ -207,8 +207,8 @@
       "GEO_AIN_P": {
         "samples": 285,
         "over_ground_by_plane": {
-          "In1.Cu": 269,
-          "In4.Cu": 269
+          "In1.Cu": 265,
+          "In4.Cu": 265
         },
         "signal_layers": [
           "F.Cu",
@@ -218,8 +218,8 @@
       "GEO_AIN_N": {
         "samples": 219,
         "over_ground_by_plane": {
-          "In1.Cu": 194,
-          "In4.Cu": 194
+          "In1.Cu": 189,
+          "In4.Cu": 189
         },
         "signal_layers": [
           "F.Cu",
@@ -291,8 +291,11 @@
         ]
       ],
       "omitted_support_xy_mm": null,
-      "pi_to_hat_underside_mm": 27.179,
+      "pi_to_hat_underside_mm": 28.06,
       "module_surface_gap_mm": 8,
+      "j1": "ZX-PM2.54-2-20PY",
+      "riser": "SSQ-120-02-G-D",
+      "riser_count": 2,
       "external_ribbon_count": 0,
       "custom_guide_required": false,
       "support_to_board_margin_mm": {
@@ -308,73 +311,74 @@
         "4": 1.1000000000000014
       },
       "hat_to_pi_margin_mm": {
-        "C95": 11.979,
-        "C96": 11.979,
-        "D90": 11.779,
-        "J80_tail_101_40.025,45.15": 10.678999999999998,
-        "J80_tail_101_69.975,45.15": 7.978999999999999,
-        "JP81_tail_1_75.0,52.0": 7.978999999999999,
-        "JP81_tail_2_77.54,52.0": 7.978999999999999,
-        "J90_tail_1_18.0,50.9": 11.100000000000009,
-        "J90_tail_2_14.19,50.9": 11.100000000000009,
-        "J90_tail_3_10.38,50.9": 11.100000000000009,
-        "J82_tail_61_35.15,37.975": 10.678999999999998,
-        "J82_tail_61_35.15,18.025": 10.678999999999998,
-        "J81_tail_101_40.025,13.15": 10.678999999999998,
-        "J81_tail_101_69.975,13.15": 7.978999999999999,
-        "JP80_tail_1_68.0,52.0": 7.978999999999999,
-        "JP80_tail_2_70.54,52.0": 7.978999999999999,
-        "J4_tail_1_82.5,37.0": 7.978999999999999,
-        "J4_tail_2_82.5,39.54": 7.978999999999999,
-        "J4_tail_3_82.5,42.08": 7.978999999999999,
-        "J4_tail_4_82.5,44.62": 7.978999999999999,
+        "C95": 12.86,
+        "C96": 12.86,
+        "D90": 12.66,
+        "J80_tail_101_40.025,45.15": 11.559999999999999,
+        "J80_tail_101_69.975,45.15": 8.86,
+        "JP81_tail_1_75.0,52.0": 8.86,
+        "JP81_tail_2_77.54,52.0": 8.86,
+        "J90_tail_1_18.0,50.9": 11.559999999999999,
+        "J90_tail_2_14.19,50.9": 11.559999999999999,
+        "J90_tail_3_10.38,50.9": 11.559999999999999,
+        "J82_tail_61_35.15,37.975": 11.559999999999999,
+        "J82_tail_61_35.15,18.025": 11.559999999999999,
+        "J81_tail_101_40.025,13.15": 11.559999999999999,
+        "J81_tail_101_69.975,13.15": 8.86,
+        "JP80_tail_1_68.0,52.0": 8.86,
+        "JP80_tail_2_70.54,52.0": 8.86,
+        "J4_tail_1_82.5,37.0": 8.86,
+        "J4_tail_2_82.5,39.54": 8.86,
+        "J4_tail_3_82.5,42.08": 8.86,
+        "J4_tail_4_82.5,44.62": 8.86,
         "J83_tail_1_4.7,12.0": 14.999999999999996,
         "J83_tail_2_4.7,17.08": 14.999999999999996,
         "JP1_tail_1_23.0,53.0": 14.149999999999999,
         "JP1_tail_2_25.54,53.0": 14.149999999999999,
-        "R113": 11.979,
-        "U106": 11.678999999999998,
-        "C101": 9.279,
-        "U105": 11.678999999999998,
-        "R111": 11.979,
-        "R101": 11.979,
-        "R103": 11.979,
-        "R109": 11.979,
-        "R106": 11.979,
-        "R117": 11.979,
-        "C104": 11.979,
-        "U104": 11.678999999999998,
-        "U103": 11.678999999999998,
-        "C105": 11.979,
-        "R107": 11.979,
-        "R102": 11.979,
-        "R116": 9.279,
-        "C102": 11.979,
+        "R113": 12.86,
+        "U106": 12.559999999999999,
+        "C101": 10.16,
+        "U105": 12.559999999999999,
+        "R111": 12.86,
+        "R101": 12.86,
+        "R103": 12.86,
+        "R109": 12.86,
+        "R106": 12.86,
+        "R117": 12.86,
+        "C104": 12.86,
+        "U104": 12.559999999999999,
+        "U103": 12.559999999999999,
+        "C105": 12.86,
+        "R107": 12.86,
+        "R102": 12.86,
+        "R116": 10.16,
+        "C102": 12.86,
         "U101": 10.650000000000006,
-        "R112": 11.979,
-        "R104": 11.979,
-        "R114": 11.979,
+        "R112": 12.86,
+        "R104": 12.86,
+        "R114": 12.86,
         "U100": 10.650000000000006,
-        "U102": 11.678999999999998,
-        "C103": 11.979,
-        "R105": 11.979,
-        "C106": 11.979,
-        "R100": 11.979,
-        "C100": 9.279,
-        "R108": 11.979,
-        "R115": 11.979,
-        "R110": 11.979,
-        "H80_screw_head": 10.879,
-        "H81_screw_head": 8.179,
-        "H82_screw_head": 10.879,
-        "H83_screw_head": 8.179
+        "U102": 12.559999999999999,
+        "C103": 12.86,
+        "R105": 12.86,
+        "C106": 12.86,
+        "R100": 12.86,
+        "C100": 10.16,
+        "R108": 12.86,
+        "R115": 12.86,
+        "R110": 12.86,
+        "H80_screw_head": 11.76,
+        "H81_screw_head": 9.06,
+        "H82_screw_head": 11.76,
+        "H83_screw_head": 9.06
       },
-      "minimum_hat_to_pi_margin_mm": 7.978999999999999,
+      "minimum_hat_to_pi_margin_mm": 8.86,
       "geophone_plug_module_margin_mm": 9.2,
       "findings": [],
       "limits": [
         "Pi geometry and cooler are conservative envelopes, not certified mating solids",
-        "Keep connector riser height; removal of cables does not qualify a shorter stack",
+        "Two 8.51 mm risers required with 8.5 mm J1; one riser is not the reviewed stack",
+        "4.93 mm tails meet SSQ 3.68-6.35 mm insertion range; Megastar contact engagement requires first-article verification",
         "Trim PTH tails to <=2 mm below HAT; 0.2 mm extra tail allowance is modeled",
         "First-article seating, thermal capacity and sensor noise remain unmeasured"
       ]
@@ -386,7 +390,7 @@
       48
     ],
     "module_surface_gap_mm": 8,
-    "pi_to_hat_underside_mm": 27.179,
+    "pi_to_hat_underside_mm": 28.06,
     "pi_assumed_obstruction_mm": 16,
     "limits": [
       "Copper path lengths omit pad interiors and via barrel length",
@@ -459,5 +463,23 @@
       "XY centerline lengths exclude via barrels, pad spreading and plane impedance",
       "No field solver, thermal/stress model, or measured noise qualification"
     ]
+  },
+  "sensor_supply_layout": {
+    "ground_track_to_plane_via_mm": {
+      "C40.2": 0,
+      "C41.2": 0,
+      "C42.2": 0,
+      "C43.2": 0,
+      "C93.2": 0.65,
+      "C94.2": 0.65,
+      "U41.12": 1.2404,
+      "U41.13": 0.5427,
+      "U42.12": 0.8379,
+      "U42.13": 0.8519
+    },
+    "c43_supply_xy_mm": 3.5307,
+    "ground_limit_mm": 2,
+    "c43_supply_limit_mm": 4,
+    "scope": "Connected copper graph and filled In1.Cu; excludes via barrel, plane impedance and measured noise"
   }
 }

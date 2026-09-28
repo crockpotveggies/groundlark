@@ -168,7 +168,7 @@ class NativeConnectorTests(unittest.TestCase):
 
     def test_known_ic_rotation_regressions_and_unchanged_devices(self):
         result,audit=self.solve();rows={r['Designator']:r for r in result}
-        expected={'D90':0,'Q1':180,'U1':270,'U22':270,'U40':180,'U41':270,'U42':270,
+        expected={'D90':90,'Q1':180,'U1':270,'U22':270,'U40':180,'U41':270,'U42':270,
                   'U51':180,'U52':180,'U100':270,'U101':270,'U102':270,'U103':270,
                   'U11':0,'U12':0,'U13':0,'U43':0,'U104':0,'U105':0,'U106':0}
         for ref,angle in expected.items():

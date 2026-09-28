@@ -134,7 +134,9 @@ power allocation before enabling it. The 80.6 kΩ TPS2553 setting gives approxim
 289–375 mA current-limit bounds including resistor tolerance, with 329 mA nominal.
 Budget another 50 mA for the controller and supporting circuits; the configured
 envelope stays below 500 mA. Measure fan startup, fuse drop and actual consumption;
-these are design bounds, not bench results. The analog rail has an 8 mA design
+these are design bounds, not bench results. See the [power supply guide](../../docs/power-supplies.md)
+for allocations, cable-voltage cases, attach charge, regulator dissipation and
+suspend limits. The analog rail has an 8 mA design
 budget. The 22 Ω supply filter leaves at least 3.05 V using the stated regulator
 and resistor limits; measure this rail over supply and temperature.
 
@@ -178,6 +180,13 @@ rate is shared across all four channels. Validate settling and noise before
 choosing reporting rates. Maintain cell bias continuously during normal operation
 and treat power-up settling as invalid data.
 
+The current firmware uses sequential 60 ms slots (240 ms nominal per electrode).
+The 15.9 Hz analog poles do not provide adequate broadband alias rejection for
+that per-channel cadence by themselves. Read the
+[sensor bandwidth and timing](../../docs/sensor-response.md) limits before
+interpreting gas trends or designing compensation. Electrical injection and
+enclosure/cell response measurements remain required.
+
 MCU bindings are PA2/PA3 UART, PB6/PB7 I²C, PA4 PMS enable, PA5 fault, PA6 sleep,
 PA7 reset, PB0 ADC DRDY, PB1 ADC reset, PB12 analog enable, PB13 clamp hold,
 PA0 supply monitor and PB3 status LED.
@@ -191,6 +200,19 @@ independent pin and gain fixtures, bandwidth/headroom and local copper checks,
 deliberate fault tests, native DRC/ERC and
 compiled/PCB/review-schematic connectivity comparison. Reports are retained in
 bounded `.lab/` runs. These tests do not exercise an assembled board.
+
+An optional vendor-model check runs with
+`python hw/tools/skylark_spice.py --model /absolute/path/to/OPAx387.LIB`.
+Obtain the unmodified model from [TI SBOMBI9](https://www.ti.com/lit/zip/SBOMBI9).
+It tests the reference buffer and gas TIAs with native resistor/capacitor values
+and a range of assumed capacitive loads. Some exploratory loads produce about
+29° phase margin, below the 45° investigation threshold. Actual cell impedance
+and guard loading must be established before selecting a compensation change.
+These sweeps do not qualify CE/RE loop stability, saturation recovery, startup
+or power-off backfeed. The default lab separately checks the 2 µF reference
+output capacitance and approximately 42 ms divider settling to 0.1% at the
+stated tolerance corner, within the 150 ms rail-wait policy. IC and cell settling
+remain additional effects.
 
 Before field deployment, qualify gas bias/stability, baseline/noise, calibration,
 cross-sensitivity, airflow and response time; USB enumeration, suspend and signal

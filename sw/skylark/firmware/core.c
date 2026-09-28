@@ -3,7 +3,7 @@
  * A bounded, write-only v1 protobuf encoder; wire compatibility is verified by
  * decoding actual C output with the repository's independent Protobuf runtime.
  */
-#include "skylark.h"
+#include "platform.h"
 #include <string.h>
 typedef struct { uint8_t data[256]; size_t n; bool failed; } buf;
 static void byte(buf *b, uint8_t v) { if(b->n < sizeof b->data) b->data[b->n++]=v; else b->failed=true; }
@@ -64,7 +64,7 @@ void sk_supply(sk_state *s,bool available,uint64_t ms) {
 static bool handshake(sk_state *s) {
     buf b={0};
     if(s->announce==1) {
-        num(&b,1,3);bytes(&b,2,"skylark-0.1.0",13);
+        num(&b,1,3);bytes(&b,2,"skylark-0.1.1",13);
         uint8_t ids[]={10,11,12,13,14,15,16};bytes(&b,3,ids,sizeof ids);
         if(!enqueue(s,10,&b))return false;
         s->announce=2;
@@ -72,7 +72,7 @@ static bool handshake(sk_state *s) {
         num(&b,1,s->revision);
         for(unsigned i=0;i<SK_CHANNELS;i++) {
             buf c={0};num(&c,1,i+10);num(&c,2,(s->enabled>>i)&1);
-            num(&c,3,(s->enabled&(1u<<i))?(i<4?240000000:1000000000):0);sub(&b,2,&c);
+            num(&c,3,(s->enabled&(1u<<i))?(i<4?4*SK_GAS_SLOT_MS*1000000:1000000000):0);sub(&b,2,&c);
         }
         if(!enqueue(s,11,&b))return false;
         s->announce=0;
@@ -97,7 +97,8 @@ void sk_tick(sk_state *s,uint64_t ms) {
         s->initialized=true;
         if(s->connected) { s->revision++;s->announce=1; }
         s->pending=0x80;
-        for(unsigned i=0;i<SK_CHANNELS;i++)s->next[i]=ms+(i<4?60*(i+1):1000);
+        ms=sk_clock();s->gas_slot=0;s->gas_due=ms+SK_GAS_SLOT_MS;
+        for(unsigned i=0;i<SK_CHANNELS;i++)s->next[i]=ms+(i<4?SK_GAS_SLOT_MS*(i+1):1000);
     }
     while(s->announce)if(!handshake(s))return;
     if(s->connected && s->pending && s->count<SK_QUEUE) {
@@ -107,10 +108,17 @@ void sk_tick(sk_state *s,uint64_t ms) {
         if(enqueue(s,13,&b))s->pending&=(uint8_t)~(1u<<i);
     }
     for(unsigned i=0;i<SK_CHANNELS;i++) {
+        ms=sk_clock();
         if(!(s->enabled&(1u<<i)) || ms<s->next[i])continue;
-        uint64_t period=i<4?240:1000;
-        s->sequence[i]+=(ms-s->next[i])/period;s->next[i]=ms+period;
+        /* One shared converter: a late loop must never catch up by restarting
+         * several single shots back-to-back. Preserve channel order and allow
+         * a complete conversion after each mux change. */
+        if(i<4 && (i!=s->gas_slot || ms<s->gas_due))continue;
+        uint64_t period=i<4?4*SK_GAS_SLOT_MS:1000;
         sk_raw raw={0};uint8_t q=s->faults[i]>=3?2:sk_read((uint8_t)(i+10),&raw);
+        if(q==0)continue; /* Nonblocking conversion; keep original deadline. */
+        s->sequence[i]+=(ms-s->next[i])/period;s->next[i]=ms+period;
+        if(i<4) { s->gas_slot=(i+1)%4;s->gas_due=sk_clock()+SK_GAS_SLOT_MS; }
         if(!s->powered)return;
         if(q==4) {
             if(s->faults[i]<3)s->faults[i]++;
