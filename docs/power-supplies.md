@@ -129,10 +129,10 @@ and gas analog rail remain off until configuration. A power-only charger does
 not start acquisition. USB-C pull-down resistors alone do not authorize a
 1.5 A or 3 A load; there is no USB-PD negotiation.
 
-The TPS2553's 80.6 kΩ setting gives approximately 289–375 mA current-limit
+The TPS2553's 82 kΩ setting gives approximately 284–369 mA current-limit
 bounds. A further 50 mA allocation covers the MCU/USB, gas analog rail,
 temperature/pressure sensors, digital ADC supply, pull-ups and reserve.
-The resulting configured envelope is **425 mA**, leaving about 75 mA below
+The resulting configured envelope is **419 mA**, leaving about 81 mA below
 the descriptor allocation. The SHT40 heater stays off. Current-limit response
 and fan startup overshoot still require measurements.
 

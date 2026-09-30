@@ -77,5 +77,7 @@
     "Allowed absolute pressure and characterization/compensation below 800 mbar",
     "Factory calibration, auxiliary-electrode correction and cross-sensitivity coefficients"
   ],
-  "search_result": "No inspectable open-source implementation of either exact AQ MPN found in the public searches on 2026-09-27. Related designs corroborate zero bias but do not close the exact-model specification gap."
+  "search_result": "No inspectable open-source implementation of either exact AQ MPN found in the public searches on 2026-09-27. Related designs corroborate zero bias but do not close the exact-model specification gap.",
+  "last_public_specification_check_utc": "2026-09-28",
+  "public_specification_check": "The exact model pages still link Issue 1 dated 08-Dec-2025. No AQ application notes or corrected bias values are published there. Keep the specified 20-ohm load; do not infer a bias voltage from ppb units."
 }

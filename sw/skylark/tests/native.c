@@ -11,6 +11,7 @@ static uint64_t now;
 static bool clamp=true,rails;
 static uint8_t regs[4],counter,bmp[256];
 static unsigned resets,reads,mode;
+static unsigned bus_fraction_us;
 static uint64_t adc_due,climate_due;
 static bool measuring;
 static sk_state *active;
@@ -25,6 +26,12 @@ void sk_rails(bool on) { assert(clamp);rails=on;if(!on)measuring=false; }
 bool sk_pm_supply_ok(void) { return rails && !(mode==11 && now>=61000); }
 bool sk_i2c(uint8_t addr,const uint8_t *w,size_t wn,uint8_t *r,size_t rn) {
     assert(rails);assert(wn<=32 && rn<=32);
+    if(mode==13) {
+        /* Independent 100-kHz bus budget: nine clocks per address/data byte,
+         * including the repeated-start read address; retain fractional ms. */
+        bus_fraction_us+=(unsigned)(wn+rn+(wn?1:0)+(rn?1:0))*90+20;
+        now+=bus_fraction_us/1000;bus_fraction_us%=1000;
+    }
     uint8_t cmd=wn?w[0]:0;
     if(addr==0x40) {
         if(mode==5)return false;
@@ -35,9 +42,9 @@ bool sk_i2c(uint8_t addr,const uint8_t *w,size_t wn,uint8_t *r,size_t rn) {
             if(!regs[2])r[0]=regs[i];
             if(rn==2)r[1]=(uint8_t)~r[0];return true;
         }
-        if(cmd==8) { assert(regs[0]>=0x81 && regs[0]<=0xb1);assert(regs[1]==2 && regs[2]==0x50 && regs[3]==0);counter++;adc_due=now+52;return true; }
+        if(cmd==8) { assert(regs[0]>=0x81 && regs[0]<=0xb1);assert(regs[1]==0x82 && regs[2]==0x50 && regs[3]==0);counter++;adc_due=now+4;return true; }
         if(cmd==0x10) {
-            assert(now>=adc_due); /* 50.01 ms / 0.98, rounded up to a ms. */
+            assert(now>=adc_due); /* 3.067 ms / 0.98, rounded up to a ms. */
             assert(rn==8);reads++;r[0]=counter;r[1]=0x40;r[2]=0x12;r[3]=(regs[0]>>4)-8;
             for(unsigned i=0;i<4;i++)r[i+4]=(uint8_t)~r[i];
             if(mode==1 && now>61000)r[7]^=1;
@@ -59,7 +66,7 @@ bool sk_i2c(uint8_t addr,const uint8_t *w,size_t wn,uint8_t *r,size_t rn) {
     if(addr==0x76) {
         if(wn==2) { bmp[cmd]=w[1];return true; }
         assert(wn==1);
-        if(cmd==0) { r[0]=0x60;return true; }
+        if(cmd==0) { r[0]=mode==12?0x60:0x50;return true; }
         if(cmd==3) { r[0]=0x60;return true; }
         if(cmd==4) { const uint8_t d[]={0x80,0xe6,0xc5,0,0x80,0x70};memcpy(r,d,6);return true; }
         if(cmd==0x31) {
@@ -100,7 +107,7 @@ int main(int argc,char **argv) {
         if(mode==8 && now>=65000 && !resumed) { assert(rails && !clamp && !s.count);sk_connection(&s,true,now);resumed=true; }
         uint64_t before=now;bool was_initialized=s.initialized;
         sk_tick(&s,now);assert(s.count<=SK_QUEUE);
-        if(was_initialized)assert(now==before); /* No sensor sleeps. */
+        if(was_initialized && mode!=13)assert(now==before); /* No sensor sleeps. */
         if(!(mode==3 && now>61000 && now<63000)) {
             uint16_t n;const uint8_t *p;
             while((p=sk_tx(&s,&n))) { assert(n<=SK_FRAME_MAX);assert(fwrite(p,1,n,stdout)==n);sk_tx_done(&s); }

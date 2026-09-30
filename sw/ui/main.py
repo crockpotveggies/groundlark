@@ -55,7 +55,7 @@ LABELS.update({**{i: ("Gas ADC · raw counts", "Uncalibrated") for i in range(10
                14: ("Atmospheric particulate · µg/m³", ""), 15: ("Temperature · °C", "Humidity · %RH"),
                16: ("Pressure · Pa", "Temperature · °C")})
 MODELS.update({10:"SGX-7SO2-AQ-20",11:"SO₂ auxiliary",12:"SGX-7H2S-AQ-25",13:"H₂S auxiliary",
-               14:"PMS5003",15:"SHT40",16:"BMP390"})
+               14:"PMS5003",15:"SHT40",16:"BMP388"})
 LABELS[17] = ("Enclosure temperature · °C", "Enclosure humidity · %RH")
 MODELS[17] = "SHT45"
 

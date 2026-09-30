@@ -53,22 +53,28 @@ physical signal quality or supplier acceptance.
   gas cells or coat their gas openings, the SHT40 membrane or the pressure port.
   Preserve cleaning, guard and coating requirements in the product README.
 
-## Ordering holds
+## Sourcing and remaining qualification
 
-As observed on 2026-09-27:
+The registry enforces positive available stock, no preorder and minimum order
+quantity one for every assembled part. The 2026-09-28 replacements are:
 
-| Item | Requirement |
-| --- | --- |
-| U12 BMP390, C5124834 | No catalog stock; consignment or quote needed |
-| J1 USB4105-GF-A, C3020560 | Pre-order; public catalog uses a different connector land pattern. Confirm exact GCT part, body centre, rotation and pin-1 mapping with order engineering |
-| R3 RC0603FR-0780K6L, C482928 | Pre-order; displayed minimum 3,610 pieces. Resolve purchasing or qualify another exact 80.6 kΩ part before ordering |
-| C2 | Approved procurement substitution: GRM21BR71C475KE51L / C408144, 0805 4.7 µF ±10% X7R, rated 16 V instead of 10 V |
-| Both SGX AQ cells | Zero bias remains an engineering assumption pending exact-model confirmation; operation below 800 mbar is unqualified |
+| Reference | Manufacturer / MPN | JLCPCB | Available order quantity |
+| --- | --- | --- | ---: |
+| J1 | HRO TYPE-C-31-M-12 | C165948 | 438,598 |
+| R3 | Yageo RC0603FR-0782KL, 82 kΩ | C137678 | 147,794 |
+| U12 | Bosch BMP388 | C779278 | 5,868 |
 
-118 of 119 placements pass the frozen supplier-pad fit. The J1 exception retains
-native coordinates and is explicitly marked unverified. Review every component
-on both sides in JLCPCB's order preview, whose private assembly library can differ
-from the public catalog. A successful export does not remove these holds.
+These are dated observations, not reservations. The exporter rejects a registry
+entry with an unavailable quantity, preorder status or a larger minimum.
+All 119 placements pass the frozen supplier-pad fit. The HRO drawing dated
+2020-12-08 defines 8.65 mm shell spacing, 4.18 mm row spacing and shared power
+lands. Supplier shell pads 1–4 map explicitly to grounded S1; data/CC pin names
+remain unchanged. The fit checks every physical pad.
+
+Review every component on both sides in JLCPCB's actual order preview. Its
+private assembly library can differ from the public catalog. Exact AQ-cell bias,
+electrochemical loop stability, physical socket/enclosure fit and operation below
+800 mbar remain unqualified. The user owns fabrication approval.
 
 ## Gas-cell requirements
 

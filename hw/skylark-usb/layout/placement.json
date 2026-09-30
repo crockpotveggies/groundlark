@@ -18,27 +18,23 @@
       {
         "ref": "J1",
         "type": "USB",
-        "value": "USB4105-GF-A",
-        "mpn": "USB4105-GF-A",
-        "local_fp": "Connector_USB__USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal.kicad_mod",
+        "value": "TYPE-C-31-M-12",
+        "mpn": "TYPE-C-31-M-12",
+        "local_fp": "USB_C_HRO_TYPE-C-31-M-12.kicad_mod",
         "names": {
-          "A1": "A1",
-          "A4": "A4",
           "A5": "A5",
           "A6": "A6",
           "A7": "A7",
           "A8": "A8",
-          "A9": "A9",
-          "A12": "A12",
-          "B1": "B1",
-          "B4": "B4",
           "B5": "B5",
           "B6": "B6",
           "B7": "B7",
           "B8": "B8",
-          "B9": "B9",
-          "B12": "B12",
-          "S1": "S1"
+          "S1": "S1",
+          "A1B12": "A1B12",
+          "A4B9": "A4B9",
+          "B4A9": "B4A9",
+          "B1A12": "B1A12"
         },
         "xy": [
           35,
@@ -247,9 +243,9 @@
       },
       {
         "ref": "R3",
-        "type": "R_80600",
-        "value": "80600R",
-        "mpn": "RC0603FR-0780K6L",
+        "type": "R_82000",
+        "value": "82000R",
+        "mpn": "RC0603FR-0782KL",
         "local_fp": "Resistor_SMD__R_0603_1608Metric.kicad_mod",
         "names": {
           "1": "1",
@@ -1419,17 +1415,17 @@
       },
       {
         "ref": "C31",
-        "type": "C_1u",
-        "value": "1uF",
-        "mpn": "GRM188R71E105KA12D",
-        "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+        "type": "C_10u",
+        "value": "10uF",
+        "mpn": "GRM21BR61A106KE19L",
+        "local_fp": "Capacitor_SMD__C_0805_2012Metric.kicad_mod",
         "names": {
           "1": "1",
           "2": "2"
         },
         "xy": [
           59,
-          60
+          60.0
         ],
         "angle": 90,
         "side": "front",
@@ -1540,17 +1536,17 @@
       },
       {
         "ref": "C34",
-        "type": "C_1u",
-        "value": "1uF",
-        "mpn": "GRM188R71E105KA12D",
-        "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+        "type": "C_10u",
+        "value": "10uF",
+        "mpn": "GRM21BR61A106KE19L",
+        "local_fp": "Capacitor_SMD__C_0805_2012Metric.kicad_mod",
         "names": {
           "1": "1",
           "2": "2"
         },
         "xy": [
           59,
-          63
+          63.599999999999994
         ],
         "angle": 90,
         "side": "front",
@@ -1832,17 +1828,17 @@
       },
       {
         "ref": "C51",
-        "type": "C_1u",
-        "value": "1uF",
-        "mpn": "GRM188R71E105KA12D",
-        "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+        "type": "C_10u",
+        "value": "10uF",
+        "mpn": "GRM21BR61A106KE19L",
+        "local_fp": "Capacitor_SMD__C_0805_2012Metric.kicad_mod",
         "names": {
           "1": "1",
           "2": "2"
         },
         "xy": [
           46,
-          60
+          59.7
         ],
         "angle": 90,
         "side": "front",
@@ -1953,17 +1949,17 @@
       },
       {
         "ref": "C54",
-        "type": "C_1u",
-        "value": "1uF",
-        "mpn": "GRM188R71E105KA12D",
-        "local_fp": "Capacitor_SMD__C_0603_1608Metric.kicad_mod",
+        "type": "C_10u",
+        "value": "10uF",
+        "mpn": "GRM21BR61A106KE19L",
+        "local_fp": "Capacitor_SMD__C_0805_2012Metric.kicad_mod",
         "names": {
           "1": "1",
           "2": "2"
         },
         "xy": [
           46,
-          63
+          63.3
         ],
         "angle": 90,
         "side": "front",
@@ -2177,9 +2173,9 @@
       {
         "ref": "U12",
         "type": "BMP",
-        "value": "BMP390",
-        "mpn": "BMP390",
-        "local_fp": "BMP390.kicad_mod",
+        "value": "BMP388",
+        "mpn": "BMP388",
+        "local_fp": "BMP388.kicad_mod",
         "names": {
           "1": "VDDIO",
           "2": "SCL",

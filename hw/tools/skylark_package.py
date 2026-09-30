@@ -35,6 +35,12 @@ def select(source, registry):
         for key in ('manufacturer', 'mpn', 'source_mpn', 'jlcpcb_part', 'manufacturer_evidence', 'source_url', 'observation_date_utc'):
             if not part.get(key):
                 raise ValueError(f'Missing procurement identity/evidence: {key}')
+        if (part.get('ordering_status') != 'available'
+                or part.get('minimum_order_quantity') != 1
+                or not isinstance(part.get('available_order_quantity'), int)
+                or part['available_order_quantity'] < len(part['references'])
+                or not isinstance(part.get('stock'), int) or part['stock'] <= 0):
+            raise ValueError(f'Procurement policy: stocked, no preorder, minimum one required: {part["mpn"]}')
     rows = {r['Reference']: r for r in source if assembled(r['Reference'])}
     if len(rows) != sum(assembled(r['Reference']) for r in source) or set(rows) != set(lookup):
         raise ValueError('Incomplete or duplicate assembly BOM coverage')

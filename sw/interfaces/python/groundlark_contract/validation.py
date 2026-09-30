@@ -69,7 +69,9 @@ def validate(message):
                 elif sensor.sensor_id == 17:
                     require(sensor.period_ns == 1_000_000_000, "unsupported SHT45 profile")
                 elif sensor.sensor_id >= 10:
-                    require(sensor.period_ns == (240_000_000 if sensor.sensor_id < 14 else 1_000_000_000), "unsupported Skylark profile")
+                    # Retain recorded v0.1.1 sessions (240 ms) as well as the
+                    # faster v0.1.2 raw profile. Never relabel legacy cadence.
+                    require(sensor.period_ns in ((32_000_000, 240_000_000) if sensor.sensor_id < 14 else (1_000_000_000,)), "unsupported Skylark profile")
                 elif sensor.sensor_id == 8:
                     identifier(sensor.pressure_part_number)
                     require(math.isfinite(sensor.pressure_min_pa) and math.isfinite(sensor.pressure_max_pa)

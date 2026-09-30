@@ -49,31 +49,44 @@ point come from [ST AN5192, accelerometer and gyroscope bandwidth sections](http
 
 ## Skylark
 
-Both working and auxiliary electrode paths have nominal 15.9 Hz feedback and
-output poles. Their cascaded electronics settle to within 1% of an ideal current
-step in approximately **66 ms**. This excludes cell chemistry, potentiostat
-loop dynamics, enclosure exchange and the ADC. Nominal conversion factors are
-40 mV/ppm for SO₂ and 34 mV/ppm for H₂S; actual cells require calibration.
+The working and auxiliary electrode paths have nominal **15.9 Hz feedback**
+and **1.59 Hz output** poles. Their cascaded electronics settle to within 1% of
+an ideal current step in approximately **471 ms**. This excludes cell chemistry,
+potentiostat dynamics, enclosure exchange and the ADC. Attenuation at 0.1 Hz is
+about 0.017 dB. Nominal conversion factors remain 40 mV/ppm for SO₂ and 34 mV/ppm
+for H₂S; actual cells require calibration.
 
-The 20 SPS single-shot ADC takes about 50.01 ms per conversion. At a 2% slow
-oscillator it takes about 51.03 ms. Firmware permits at least **60 ms between
-channel reads/starts**, with one sequential conversion at a time. Each gas
-channel therefore has a nominal **240 ms period**, with longer intervals after
-service delays. Sequence gaps expose missed nominal opportunities. Timestamps
-refer to firmware service time, not the center of the ADC integration window.
+The normal 330 SPS single-shot ADC takes 3,141 clock periods: about 3.067 ms,
+or 3.130 ms at a 2% slow oscillator. Firmware schedules reads eight milliseconds
+apart, with a separate five-tick guard after each START command. The 100 kHz
+I²C status/data/mux/readback/start transactions consume approximately 2.44 ms
+including small bus-transition allowances. The native fixture advances the
+clock during these transactions and checks conversion readiness independently.
+Each electrode has a nominal **32 ms period (31.25 Hz)**. Longer delays are
+visible in timestamps and sequence gaps; no catch-up conversion burst is used.
+Timestamps mark service time, not the center of the integration window.
 
-**The present gas filters do not establish adequate broadband alias rejection.**
-The per-channel Nyquist frequency is only 2.083 Hz, while the ADC bandwidth is
-13.1 Hz. The analog electronics attenuate 4.167 Hz by only about 0.58 dB; noise
-near that frequency can appear as slow baseline drift after channel sampling.
-The converter's 50/60 Hz rejection does not cover every interference frequency.
-Filtering already recorded samples cannot remove interference already aliased.
+The analog circuit attenuates the first nominal alias at 31.25 Hz by **32.7 dB**.
+A deliberately conservative scenario with half the nominal output capacitance
+and low resistor/feedback-capacitance tolerances gives about **26.4 dB**. That
+scenario is not a guaranteed MLCC limit: qualify effective capacitance under
+bias, temperature and aging. Neither figure establishes a system noise floor.
+Electrical injection is still needed at mains frequencies and around multiples
+of the actual sample rate. Digital filtering cannot remove prior aliasing.
 
-WE and AE are observed at least 60 ms apart. For identical sinusoidal pickup,
-unadjusted subtraction leaves a fraction `2 × |sin(π × f × 0.060)|`: about
-3.8% at 0.1 Hz and 37.5% at 1 Hz, before allowing for filter mismatch. Preserve
-the raw streams; compensation must account for actual timestamps and qualified
-cell behavior. Interpolation cannot repair prior aliasing.
+Faster conversion increases individual ADC noise. TI table 3 gives typical
+18.58 µV RMS at 330 SPS, gain one, PGA bypassed, 3.3 V supply and internal
+2.048 V reference. That is roughly 465 ppb SO₂-equivalent per raw conversion at
+nominal gain; it is not a measured Skylark detection limit. Averaging can reduce
+uncorrelated noise, but reference noise, drift and electrode correlation need
+measurement. Preserve raw readings and apply a qualified averaging/calibration
+policy when reporting trends. No firmware decimation or averaging changes the
+recorded counts. The old 240 ms profile remains accepted for recorded sessions.
+
+WE and AE remain sequential, about 8 ms apart. Identical sinusoidal pickup leaves
+`2 × |sin(π × f × 0.008)|` after unadjusted subtraction: approximately 0.5% at
+0.1 Hz and 5.0% at 1 Hz, before filter mismatch. Compensation must account for
+actual timestamps and measured cell behavior.
 
 Both selected SGX cells specify T90 below 60 seconds. That upper limit neither
 defines their full transfer functions nor guarantees rejection of rapid inputs.
@@ -82,11 +95,11 @@ It also cannot suppress electrical noise introduced after the cell. References:
 [H₂S DS-0681](https://sgxsensortech.com/uploads/f_note/DS-0681-SGX-7H2S-AQ-25.pdf).
 
 SHT40 measurements and PMS5003 frames are published at 1 Hz; conversion time or
-frame cadence does not establish their environmental response. BMP390 uses
+frame cadence does not establish their environmental response. BMP388 uses
 pressure ×8 / temperature ×2 oversampling at 3.125 Hz, with IIR off, and publishes
 the latest reading at 1 Hz. This pressure stream is intended for weather trends;
 it is not a qualified infrasound channel. Its rate reduction has no added
-anti-alias filter. See the [BMP390 datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp390-ds002.pdf).
+anti-alias filter. See the [BMP388 datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp388-ds001.pdf).
 
 ## Reproduction and qualification
 

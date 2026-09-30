@@ -168,7 +168,7 @@ message ClimateRaw {
 }
 
 message BarometerRaw {
-  // BMP390 pressure then temperature registers, little-endian uint24.
+  // Bosch BMP3 (BMP388/BMP390) pressure then temperature registers, little-endian uint24.
   bytes response = 1;
   // Unmodified factory trim registers 0x31..0x45.
   bytes calibration = 2;

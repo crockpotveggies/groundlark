@@ -64,7 +64,7 @@ void sk_supply(sk_state *s,bool available,uint64_t ms) {
 static bool handshake(sk_state *s) {
     buf b={0};
     if(s->announce==1) {
-        num(&b,1,3);bytes(&b,2,"skylark-0.1.1",13);
+        num(&b,1,3);bytes(&b,2,"skylark-0.1.2",13);
         uint8_t ids[]={10,11,12,13,14,15,16};bytes(&b,3,ids,sizeof ids);
         if(!enqueue(s,10,&b))return false;
         s->announce=2;
@@ -118,7 +118,13 @@ void sk_tick(sk_state *s,uint64_t ms) {
         sk_raw raw={0};uint8_t q=s->faults[i]>=3?2:sk_read((uint8_t)(i+10),&raw);
         if(q==0)continue; /* Nonblocking conversion; keep original deadline. */
         s->sequence[i]+=(ms-s->next[i])/period;s->next[i]=ms+period;
-        if(i<4) { s->gas_slot=(i+1)%4;s->gas_due=sk_clock()+SK_GAS_SLOT_MS; }
+        if(i<4) { s->gas_slot=(i+1)%4;/* Keep the nominal schedule independent of I2C transaction time.
+             * Five integer-ms ticks after START exceed the 3.2 ms worst-case
+             * 330-SPS conversion, even at a tick boundary. A slow/error bus
+             * may delay the schedule; never restart early to catch up. */
+            uint64_t earliest=sk_clock()+5;
+            s->gas_due=ms+SK_GAS_SLOT_MS;
+            if(s->gas_due<earliest)s->gas_due=earliest; }
         if(!s->powered)return;
         if(q==4) {
             if(s->faults[i]<3)s->faults[i]++;

@@ -193,7 +193,7 @@ def build():
           'OPA1':(1.6,2.9,1.25),'ESD':(1.6,2.9,1.25),'SWITCH':(1.6,2.9,1.25),'AnalogSwitch':(1.6,2.9,1.25),
           'LDO':(1.6,2.9,1.25),'REF':(1.3,2.9,1.25),'JFET':(1.3,2.9,1.25),
           'ClampNPN':(1.3,2.9,1.25),'GateDiode':(1.3,2.9,1.25),'MOS':(1.3,2.9,1.25),'SHT':(1.5,1.5,.67),'BMP':(2,2,.78),
-          'USB':(8.9,7.2,3.15),'PMS':(13.7,5.2,4.1),'BUTTON':(6,6,2.6),
+          'USB':(8.94,7.35,3.26),'PMS':(13.7,5.2,4.1),'BUTTON':(6,6,2.6),
           'FUSE':(3.2,1.6,1.2),'StatusLED':(1.6,.8,.8),'DebugHeader':(4.7,7.6,5.5)}
     placement=json.loads((PRODUCT/'layout/placement.json').read_text())['skylark-usb']
     for row in placement['parts']:

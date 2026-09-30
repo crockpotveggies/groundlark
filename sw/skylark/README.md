@@ -70,9 +70,9 @@ the actual total suspend current and USB compliance are **not measured**.
 
 | Sensor | Firmware behavior |
 | --- | --- |
-| ADS122C04, I²C 0x40 | AIN0/1 = SO₂ working/auxiliary; AIN2/3 = H₂S working/auxiliary. Gain 1, PGA bypass, external 2.5 V reference, normal 20 SPS single-shot conversions. Four slots, 60 ms apart; 240 ms per channel. Readback, inverted-data integrity and conversion counter checked. |
+| ADS122C04, I²C 0x40 | AIN0/1 = SO₂ working/auxiliary; AIN2/3 = H₂S working/auxiliary. Gain 1, PGA bypass, external 2.5 V reference, normal 330 SPS single-shot conversions. Four slots, 8 ms apart; 32 ms per channel. Readback, inverted-data integrity and conversion counter checked. |
 | SHT40, I²C 0x44 | Serial probe, high-precision measurement approximately every second, CRC on both raw words; heater off. Conversion waits are nonblocking. |
-| BMP390, I²C 0x76 | Chip ID/readback, pressure ×8 and temperature ×2 oversampling, 3.125 Hz normal mode; latest ready sample every second. Six raw bytes plus 21 factory trim bytes retained. |
+| BMP388, I²C 0x76 | Chip ID 0x50/readback, pressure ×8 and temperature ×2 oversampling, 3.125 Hz normal mode; latest ready sample every second. Six raw bytes plus 21 factory trim bytes retained. |
 | PMS5003, USART2 | 9600 8N1; complete 32-byte active-mode frames with checksum/error-byte checking. Latest fresh frame published every second. Rail-fault/low-VBUS detection disables power. |
 
 On startup, analog rails settle for 150 ms while electrodes remain clamped.
@@ -85,7 +85,7 @@ cell-specific calibration, polarity checks and environmental qualification.
 The gas ADC scheduler advances one channel per completed service slot. A delayed
 loop extends the schedule and exposes sequence gaps; it cannot start a burst of
 conversions without waiting for them. Each new conversion receives at least
-60 ms before the next slot. This does not make WE/AE simultaneous. See
+five integer-millisecond ticks after START, exceeding the 3.13 ms slow-clock conversion time. The 8 ms schedule includes I²C transfer time. This does not make WE/AE simultaneous. See
 [sensor bandwidth and timing](../../docs/sensor-response.md) for attenuation,
 aliasing and the remaining physical response limits.
 
@@ -135,7 +135,7 @@ are in the portable software profile. Burrowlark firmware remains separate.
 
 - [TI ADS122C04 datasheet](https://www.ti.com/lit/ds/symlink/ads122c04.pdf), register map and data integrity.
 - [Sensirion SHT4x datasheet](https://sensirion.com/resource/datasheet/sht4x), commands and CRC.
-- [Bosch BMP390 datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp390-ds002.pdf), register profile and compensation.
+- [Bosch BMP388 datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp388-ds001.pdf), register profile and compensation.
 - [libopencm3](https://github.com/libopencm3/libopencm3), STM32 peripherals and USB CDC support.
 - [STM32F072 ES0223](https://www.st.com/resource/en/errata_sheet/es0223-stm32f072x8xb-device-errata-stmicroelectronics.pdf), ADC calibration, I²C master BERR and USB/APB limits.
 - [Hardware pin/power requirements](../../hw/skylark-usb/README.md), including the SGX bias assumption and outstanding physical checks.

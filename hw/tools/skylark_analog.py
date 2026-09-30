@@ -41,8 +41,8 @@ def review(board):
             feedback_hz = 1/(2*math.pi*rf*cf)
             output_hz = 1/(2*math.pi*ro*co)
             assert 12 <= feedback_hz <= 20, 'Gas feedback bandwidth'
-            assert 12 <= output_hz <= 20, 'Gas ADC filter bandwidth'
             assert ro <= 10000, 'ADC source resistance / bias-current error'
+            assert 1.2 <= output_hz <= 2, 'Gas ADC filter bandwidth'
             poles.append((feedback_hz, output_hz))
             net = gas+'_'+el+'_SUM'
             items = [t for t in board.GetTracks() if t.GetNetname() == net]

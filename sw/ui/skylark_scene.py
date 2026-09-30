@@ -11,7 +11,7 @@ def add_skylark(scene, targets, rings, color):
     with scene.group() as board:
         scene.gltf('/board-assets/skylark.glb').scale(100).rotate(math.pi/2,0,0).move(-9.5,10,0)
         for ref, sid, label, radius, z in [('GS1',10,'SO₂',1.58,2.26),('GS2',12,'H₂S',1.58,2.26),
-                                           ('U11',15,'SHT40',.3,.32),('U12',16,'BMP390',.3,.34)]:
+                                           ('U11',15,'SHT40',.3,.32),('U12',16,'BMP388',.3,.34)]:
             x,y=positions[ref];x,y=(x-45)/10,(50-y)/10
             ring=scene.ring(radius,radius+.06,64).move(x,y,z).material(color)
             targets[ring.id]=sid;rings[sid]=[ring]

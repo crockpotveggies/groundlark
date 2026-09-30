@@ -26,9 +26,19 @@ class ProcurementTests(unittest.TestCase):
         self.assertEqual(len(selected),119)
         self.assertEqual((selected['C2']['mpn'],selected['C2']['jlcpcb_part']),('GRM21BR71C475KE51L','C408144'))
         self.assertEqual(selected['U11']['manufacturer'],'Sensirion')
-        self.assertEqual(selected['U12']['ordering_status'],'consign-or-quote')
+        self.assertEqual(selected['U12']['mpn'],'BMP388')
+        self.assertTrue(all(p['minimum_order_quantity']==1 and p['ordering_status']=='available' for p in self.registry['parts']))
         self.assertNotIn('GS1',selected)
         self.assertEqual(sum(p['quantity'] for p in self.registry['manual_parts'] if p['manufacturer']=='Mill-Max'),8)
+
+    def test_stock_policy_rejects_preorders_moq_and_unallocated_stock(self):
+        for key,bad in [('ordering_status','pre-order'),('minimum_order_quantity',2),
+                        ('available_order_quantity',0),('stock',None)]:
+            with self.subTest(key=key):
+                registry=copy.deepcopy(self.registry)
+                registry['parts'][0][key]=bad
+                with self.assertRaisesRegex(ValueError,'Procurement policy'):
+                    select(self.source,registry)
 
     def test_missing_reference_rejected(self):
         self.registry['parts'][0]['references'].pop()
@@ -63,10 +73,10 @@ class PlacementTests(unittest.TestCase):
         self.rows,self.geo,self.selected=placement_inputs(p.LoadBoard(str(BOARD)),selections)
         self.maps=json.loads(MAPPINGS.read_text())
 
-    def test_numbered_supplier_fit_and_explicit_usb_hold(self):
+    def test_all_numbered_supplier_pads_fit(self):
         rows,audit=correct_placements(self.rows,self.geo,self.selected,self.maps)
-        self.assertEqual([a['reference'] for a in audit if 'pads_checked' not in a],['J1'])
-        self.assertEqual(sum('pads_checked' in a for a in audit),118)
+        self.assertEqual([a['reference'] for a in audit if 'pads_checked' not in a],[])
+        self.assertEqual(sum('pads_checked' in a for a in audit),119)
         byref={r['Designator']:r for r in rows}
         self.assertEqual(byref['J1']['Layer'],'Top') # HAT J1 is bottom; Skylark J1 is top.
         self.assertEqual(float(byref['U1']['Rotation']),180)
@@ -95,10 +105,10 @@ class PlacementTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             out=Path(tmp)/'package';manifest=export(out)
             self.assertEqual(manifest['physical_placements'],119)
-            self.assertEqual(manifest['supplier_fitted_placements'],118)
+            self.assertEqual(manifest['supplier_fitted_placements'],119)
             self.assertEqual(manifest['construction']['via_in_smt_pad'],0)
             self.assertFalse(manifest['construction']['filled_capped_vias_required'])
-            self.assertTrue(any('J1: UNVERIFIED' in h for h in manifest['holds']))
+            self.assertFalse(any('UNVERIFIED' in h for h in manifest['holds']))
             self.assertEqual(len(list((out/'gerbers').glob('*.drl'))),2)
             for path,digest in manifest['files_sha256'].items():self.assertEqual(sha(out/path),digest)
             with (out/'BOM-review.csv').open() as f:bom=list(csv.DictReader(f))

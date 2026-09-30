@@ -424,29 +424,30 @@
       "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published."
     },
     {
-      "manufacturer": "Global Connector Technology",
-      "mpn": "USB4105-GF-A",
-      "source_mpn": "USB4105-GF-A",
-      "jlcpcb_part": "C3020560",
+      "manufacturer": "Korean Hroparts Elec",
+      "mpn": "TYPE-C-31-M-12",
+      "source_mpn": "TYPE-C-31-M-12",
+      "jlcpcb_part": "C165948",
       "references": [
         "J1"
       ],
       "source_footprints": [
-        "Connector_USB__USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal.kicad_mod"
+        "USB_C_HRO_TYPE-C-31-M-12.kicad_mod"
       ],
-      "source_url": "https://jlcpcb.com/partdetail/C3020560",
-      "observation_date_utc": "2026-09-27",
-      "stock": 1163,
-      "available_order_quantity": null,
-      "minimum_order_quantity": 7,
-      "ordering_status": "pre-order",
-      "catalog_observation_sha256": "6059c8c624c160a37be0cd9a0ea88821180a8a2c269a9fe2a94672aeb8d11466",
+      "source_url": "https://jlcpcb.com/partdetail/TYPE_C_31_M12/C165948",
+      "observation_date_utc": "2026-09-28",
+      "stock": 448723,
+      "available_order_quantity": 438598,
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "9746c75d2cf51fa2dc095e192a78f20b3aca6f34e29d72535110a6c317cb7388",
       "assembly_type": "SMT Assembly",
-      "manufacturer_evidence": "https://gct.co/files/drawings/usb4105.pdf",
-      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8589040496488013824-C3020560.pdf",
+      "manufacturer_evidence": "https://www.lcsc.com/datasheet/lcsc_datasheet_2205251630_Korean-Hroparts-Elec-TYPE-C-31-M-12_C165948.pdf",
+      "manufacturer_datasheet_mirror": "https://www.lcsc.com/datasheet/lcsc_datasheet_2205251630_Korean-Hroparts-Elec-TYPE-C-31-M-12_C165948.pdf",
       "part_type": "Extended",
       "specification": "SMD",
-      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published."
+      "observation": "JLCPCB catalog and rendered ordering panel observed 2026-09-28 UTC: in stock, Minimum 1, positive Available Order Qty. Pre-order minimum is not the in-stock order minimum. Public stock is not reserved.",
+      "manufacturer_drawing_sha256": "6ae33d50ac47820114661138dc4e4659f40fdc5d4f485b46685dfec338da1a9e"
     },
     {
       "manufacturer": "TDK",
@@ -541,28 +542,28 @@
     },
     {
       "manufacturer": "YAGEO",
-      "mpn": "RC0603FR-0780K6L",
-      "source_mpn": "RC0603FR-0780K6L",
-      "jlcpcb_part": "C482928",
+      "mpn": "RC0603FR-0782KL",
+      "source_mpn": "RC0603FR-0782KL",
+      "jlcpcb_part": "C137678",
       "references": [
         "R3"
       ],
       "source_footprints": [
         "Resistor_SMD__R_0603_1608Metric.kicad_mod"
       ],
-      "source_url": "https://jlcpcb.com/partdetail/C482928",
-      "observation_date_utc": "2026-09-27",
-      "stock": 10,
-      "available_order_quantity": null,
-      "minimum_order_quantity": 3610,
-      "ordering_status": "pre-order",
-      "catalog_observation_sha256": "b4a04f15e13ec9c577f302b5a2c9ef1a592f136a66c3b69861c40c24cb1cb3b4",
+      "source_url": "https://jlcpcb.com/partdetail/RC0603FR-0782KL/C137678",
+      "observation_date_utc": "2026-09-28",
+      "stock": 149340,
+      "available_order_quantity": 147794,
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "bcc4e3da1148055c29a50b2a80d40f6986b2f25546bd2099d4991e3269d6d282",
       "assembly_type": "SMT Assembly",
-      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8755825160262041600-C482928.pdf",
-      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8755825160262041600-C482928.pdf",
+      "manufacturer_evidence": "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_YAGEO-RC0603FR-0782KL_C137678.pdf",
+      "manufacturer_datasheet_mirror": "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_YAGEO-RC0603FR-0782KL_C137678.pdf",
       "part_type": "Extended",
       "specification": "0603",
-      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published."
+      "observation": "JLCPCB catalog and rendered ordering panel observed 2026-09-28 UTC: in stock, Minimum 1, positive Available Order Qty. Pre-order minimum is not the in-stock order minimum. Public stock is not reserved."
     },
     {
       "manufacturer": "Diodes Incorporated",
@@ -591,28 +592,28 @@
     },
     {
       "manufacturer": "Bosch Sensortec",
-      "mpn": "BMP390",
-      "source_mpn": "BMP390",
-      "jlcpcb_part": "C5124834",
+      "mpn": "BMP388",
+      "source_mpn": "BMP388",
+      "jlcpcb_part": "C779278",
       "references": [
         "U12"
       ],
       "source_footprints": [
-        "BMP390.kicad_mod"
+        "BMP388.kicad_mod"
       ],
-      "source_url": "https://jlcpcb.com/partdetail/C5124834",
-      "observation_date_utc": "2026-09-27",
-      "stock": 0,
-      "available_order_quantity": null,
-      "minimum_order_quantity": 2,
-      "ordering_status": "consign-or-quote",
-      "catalog_observation_sha256": "2dc1ecdff8fb1da4183f50ed586bb16f0b8f11486d05fef23b432c4a745f4d17",
+      "source_url": "https://jlcpcb.com/partdetail/BMP388/C779278",
+      "observation_date_utc": "2026-09-28",
+      "stock": 6050,
+      "available_order_quantity": 5868,
+      "minimum_order_quantity": 1,
+      "ordering_status": "available",
+      "catalog_observation_sha256": "751e4ef608a7b8a78ba4464454ffeafbceaa55592f7556e43594106a039d09df",
       "assembly_type": "SMT Assembly",
-      "manufacturer_evidence": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8589784997264719872-C5124834.pdf",
-      "manufacturer_datasheet_mirror": "https://jlc-prod-smt.oss-eu-central-1.aliyuncs.com/smtDataManualFile/8589784997264719872-C5124834.pdf",
+      "manufacturer_evidence": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp388-ds001.pdf",
+      "manufacturer_datasheet_mirror": "https://www.lcsc.com/datasheet/lcsc_datasheet_2110191430_Bosch-Sensortec-BMP388_C779278.pdf",
       "part_type": "Extended",
       "specification": "LGA-10(2x2)",
-      "observation": "JLCPCB rendered catalog; public stock is not reserved. Available order quantity is null when not published."
+      "observation": "JLCPCB catalog and rendered ordering panel observed 2026-09-28 UTC: in stock, Minimum 1, positive Available Order Qty. Pre-order minimum is not the in-stock order minimum. Public stock is not reserved."
     },
     {
       "manufacturer": "Nexperia",
@@ -816,7 +817,11 @@
       "jlcpcb_part": "C77073",
       "references": [
         "C4",
-        "C12"
+        "C12",
+        "C31",
+        "C34",
+        "C51",
+        "C54"
       ],
       "source_footprints": [
         "Capacitor_SMD__C_0805_2012Metric.kicad_mod"
@@ -898,10 +903,6 @@
         "C13",
         "C15",
         "C19",
-        "C31",
-        "C34",
-        "C51",
-        "C54",
         "C73"
       ],
       "source_url": "https://jlcpcb.com/partdetail/C86020",

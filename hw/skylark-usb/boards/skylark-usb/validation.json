@@ -1,14 +1,14 @@
 {
   "independent_pin_invariants": "passed",
-  "contacts": 402,
+  "contacts": 398,
   "usb_total_copper_length_mm": {
     "USB_DP": 18.304505768508882,
     "USB_DM": 17.06450576850888
   },
   "pms_current_limit": {
-    "min_mA": 288.86194574165444,
-    "nominal_mA": 328.712471638903,
-    "max_mA": 374.53982405270324
+    "min_mA": 283.8519360484082,
+    "nominal_mA": 323.22830438526273,
+    "max_mA": 368.5258191373845
   },
   "mechanical_mm": [
     90,
@@ -20,33 +20,33 @@
       {
         "channel": "SO2 WE",
         "feedback_pole_hz": 15.915494309189533,
-        "adc_pole_hz": 15.915494309189533,
-        "nominal_50Hz_signal_attenuation_dB": -20.724274764797933,
-        "summing_copper_mm": 13.3375,
+        "adc_pole_hz": 1.5915494309189535,
+        "nominal_50Hz_signal_attenuation_dB": -40.30953293165214,
+        "summing_copper_mm": 13.337499999999999,
         "sensitivity_V_per_ppm": 0.04
       },
       {
         "channel": "SO2 AE",
         "feedback_pole_hz": 15.915494309189533,
-        "adc_pole_hz": 15.915494309189533,
-        "nominal_50Hz_signal_attenuation_dB": -20.724274764797933,
-        "summing_copper_mm": 10.799632034355964,
+        "adc_pole_hz": 1.5915494309189535,
+        "nominal_50Hz_signal_attenuation_dB": -40.30953293165214,
+        "summing_copper_mm": 10.799632034355962,
         "sensitivity_V_per_ppm": 0.04
       },
       {
         "channel": "H2S WE",
         "feedback_pole_hz": 15.915494309189533,
-        "adc_pole_hz": 15.915494309189533,
-        "nominal_50Hz_signal_attenuation_dB": -20.724274764797933,
-        "summing_copper_mm": 23.595000349161968,
+        "adc_pole_hz": 1.5915494309189535,
+        "nominal_50Hz_signal_attenuation_dB": -40.30953293165214,
+        "summing_copper_mm": 23.59500034916197,
         "sensitivity_V_per_ppm": 0.034
       },
       {
         "channel": "H2S AE",
         "feedback_pole_hz": 15.915494309189533,
-        "adc_pole_hz": 15.915494309189533,
-        "nominal_50Hz_signal_attenuation_dB": -20.724274764797933,
-        "summing_copper_mm": 19.610554086502717,
+        "adc_pole_hz": 1.5915494309189535,
+        "nominal_50Hz_signal_attenuation_dB": -40.30953293165214,
+        "summing_copper_mm": 19.610554086502724,
         "sensitivity_V_per_ppm": 0.034
       }
     ],
@@ -175,7 +175,7 @@
     "filled_capped_vias_required": false,
     "stock_id": "JLC04161H-7628",
     "nominal_order_thickness_mm": 1.6,
-    "copper_dielectric_total_mm": 1.5862,
+    "copper_dielectric_total_mm": 1.5861999999999998,
     "copper_mm": [
       0.035,
       0.0152,

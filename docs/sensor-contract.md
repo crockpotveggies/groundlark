@@ -42,7 +42,7 @@ Skylark uses board ID 3 and MCU clock domain 2:
 | 12 / 13 | SGX-7H2S-AQ-25 working / auxiliary | Independent signed 24-bit ADC count and required uint8 conversion counter |
 | 14 | PMS5003 | Complete 32-byte frame, including header, length and checksum |
 | 15 | SHT40 | Six original temperature/humidity bytes, including both CRC bytes |
-| 16 | BMP390 | Six pressure/temperature bytes, plus all 21 factory trim bytes |
+| 16 | Bosch BMP3 (current BMP388; legacy BMP390) | Six pressure/temperature bytes, plus all 21 factory trim bytes |
 
 Skylark's fixed profile uses external 2.5 V reference, gain 1, PGA bypass and
 normal 20 SPS single-shot ADC conversions: AIN0/1/2/3 map to IDs 10/11/12/13.

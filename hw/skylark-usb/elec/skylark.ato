@@ -27,7 +27,7 @@ from "../../shared/elec/skylark/parts.ato" import H2S
 from "../../shared/elec/skylark/parts.ato" import R_5100
 from "../../shared/elec/skylark/parts.ato" import C_1u
 from "../../shared/elec/skylark/parts.ato" import C_4p7u
-from "../../shared/elec/skylark/parts.ato" import R_80600
+from "../../shared/elec/skylark/parts.ato" import R_82000
 from "../../shared/elec/skylark/parts.ato" import R_100000
 from "../../shared/elec/skylark/parts.ato" import R_10000
 from "../../shared/elec/skylark/parts.ato" import C_100n
@@ -134,20 +134,16 @@ module Skylark:
 
     j1 = new USB
     trait j1 has_designator<designator="J1">
-    j1.pA1 ~ GND
-    j1.pA4 ~ USB_VBUS
+    j1.pA1B12 ~ GND
+    j1.pA4B9 ~ USB_VBUS
     j1.pA5 ~ CC1
     j1.pA6 ~ USB_DP
     j1.pA7 ~ USB_DM
-    j1.pA9 ~ USB_VBUS
-    j1.pA12 ~ GND
-    j1.pB1 ~ GND
-    j1.pB4 ~ USB_VBUS
+    j1.pB4A9 ~ USB_VBUS
+    j1.pB1A12 ~ GND
     j1.pB5 ~ CC2
     j1.pB6 ~ USB_DP
     j1.pB7 ~ USB_DM
-    j1.pB9 ~ USB_VBUS
-    j1.pB12 ~ GND
     j1.pS1 ~ GND
 
     r1 = new R_5100
@@ -211,7 +207,7 @@ module Skylark:
     u3.p6 ~ PM_5V
     u3.power ~ usb_supply
 
-    r3 = new R_80600
+    r3 = new R_82000
     trait r3 has_designator<designator="R3">
     r3.p1 ~ PM_ILIM
     r3.p2 ~ GND
@@ -553,7 +549,7 @@ module Skylark:
     r32.p1 ~ SO2_WE_OUT
     r32.p2 ~ SO2_WE_ADC
 
-    c31 = new C_1u
+    c31 = new C_10u
     trait c31 has_designator<designator="C31">
     c31.p1 ~ SO2_WE_ADC
     c31.p2 ~ GND
@@ -584,7 +580,7 @@ module Skylark:
     r35.p1 ~ SO2_AE_OUT
     r35.p2 ~ SO2_AE_ADC
 
-    c34 = new C_1u
+    c34 = new C_10u
     trait c34 has_designator<designator="C34">
     c34.p1 ~ SO2_AE_ADC
     c34.p2 ~ GND
@@ -668,7 +664,7 @@ module Skylark:
     r52.p1 ~ H2S_WE_OUT
     r52.p2 ~ H2S_WE_ADC
 
-    c51 = new C_1u
+    c51 = new C_10u
     trait c51 has_designator<designator="C51">
     c51.p1 ~ H2S_WE_ADC
     c51.p2 ~ GND
@@ -699,7 +695,7 @@ module Skylark:
     r55.p1 ~ H2S_AE_OUT
     r55.p2 ~ H2S_AE_ADC
 
-    c54 = new C_1u
+    c54 = new C_10u
     trait c54 has_designator<designator="C54">
     c54.p1 ~ H2S_AE_ADC
     c54.p2 ~ GND

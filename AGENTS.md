@@ -40,7 +40,7 @@ See `docs/jlcpcb-assembly.md`. Offline tests never establish current inventory.
 Hardware products live in `hw/groundlark-fpga-hat/`, `hw/groundlark-coldfoot-hat/`,
 `hw/burrowlark-usb/` and `hw/skylark-usb/`. Coldfoot remains deferred. Skylark Rev A
 uses the `skylark` target: a vertical USB PCB with socketed SGX SO2/H2S cells,
-an external PMS5003, SHT40 and BMP390. Preserve its direct USB route, sensor-finger
+an external PMS5003, SHT40 and BMP388. Preserve its direct USB route, sensor-finger
 keepouts, socket pin-view checks and native SES snapshot. Prototype firmware and
 the Rev G bell enclosure are implemented; physical qualification remains pending. Preserve the existing model identifiers.
 Electrical connectivity is authored in each product's `elec/*.ato`; shared atomic

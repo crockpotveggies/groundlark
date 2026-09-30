@@ -38,7 +38,7 @@ def review(board):
     require('U6',{1:'GND',2:'GND',3:'ADC_RESET_N',4:'GND',5:'GND',6:'H2S_AE_ADC',7:'H2S_WE_ADC',8:'GND',9:'REF_2V5',10:'SO2_AE_ADC',11:'SO2_WE_ADC',12:'VA',13:'V3',14:'ADC_DRDY_N',15:'SDA',16:'SCL'})
     require('U11',{1:'SDA',2:'SCL',3:'V3',4:'GND'})
     require('U12',{1:'V3',2:'SCL',3:'GND',4:'SDA',5:'GND',6:'V3',8:'GND',9:'GND',10:'V3'})
-    require('J1',{'A1':'GND','A12':'GND','B1':'GND','B12':'GND','S1':'GND','A4':'USB_VBUS','A9':'USB_VBUS','B4':'USB_VBUS','B9':'USB_VBUS','A5':'CC1','B5':'CC2','A6':'USB_DP','B6':'USB_DP','A7':'USB_DM','B7':'USB_DM'})
+    require('J1',{'A1B12':'GND','B1A12':'GND','S1':'GND','A4B9':'USB_VBUS','B4A9':'USB_VBUS','A5':'CC1','B5':'CC2','A6':'USB_DP','B6':'USB_DP','A7':'USB_DM','B7':'USB_DM'})
     require('D1',{1:'USB_DP',2:'GND',3:'USB_DM',4:'USB_DM',5:'USB_VBUS',6:'USB_DP'})
     require('D2',{1:'CC1',2:'GND',3:'CC2',4:'CC2',5:'USB_VBUS',6:'CC1'})
     require('J2',{1:'PM_5V',2:'GND',3:'PM_SET_N',4:'PM_RX',5:'PM_TX',6:'PM_RESET_N','MP':'GND'})
@@ -71,7 +71,7 @@ def review(board):
     nc={'D4':['2'],'J1':['A8','B8'],'J2':['7','8'],'J3':['6','7','8'],'U2':['4'],'U12':['7'],'U1':['2','3','4','5','6','11','20','21','22','27','28','29','30','31','38','40','41','45','46']}
     for ref,nums in nc.items():
         for num in nums:assert degrees[actual[(ref,num)]]==1,('Deliberate NC connected',ref,num)
-    for ref,value in [('R1','5100R'),('R2','5100R'),('R3','80600R'),('R70','10000R'),('R71','100000R'),('R74','10000R'),('R75','100R')]:assert fps[ref].GetValue()==value,(ref,value)
+    for ref,value in [('R1','5100R'),('R2','5100R'),('R3','82000R'),('R70','10000R'),('R71','100000R'),('R74','10000R'),('R75','100R')]:assert fps[ref].GetValue()==value,(ref,value)
     assert len(fps)==132 and not any(f.IsDNP() for f in fps.values())
     assert board.GetCopperLayerCount()==4
     # USB signal copper must remain on top, with no signal vias or long stub.
@@ -86,7 +86,7 @@ def review(board):
     for t in board.GetTracks():
         if any(p.ToMM(q.x)>131 and p.ToMM(q.y)>139 for q in (t.GetStart(),t.GetEnd())):
             assert t.GetClass()=='PCB_TRACK' and t.GetLayer()==p.F_Cu,'Thermal finger copper'
-    r=80.6
+    r=82.0
     limits={'min_mA':25230/(r*1.01)**1.016,'nominal_mA':23950/r**.977,'max_mA':22980/(r*.99)**.94}
     assert limits['max_mA']+50<500,'USB configured power budget'
     return {'independent_pin_invariants':'passed','contacts':len(actual),'usb_total_copper_length_mm':lengths,'pms_current_limit':limits,'mechanical_mm':[90,100,1.6],'analog':analog_review(board),'construction':fabrication_review(board)}

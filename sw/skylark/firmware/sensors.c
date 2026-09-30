@@ -1,5 +1,5 @@
 /* SPDX-License-Identifier: GPL-3.0-only
- * TI ADS122C04 SBAS751B, Sensirion SHT4x, Bosch BMP390 and PMS5003 v2.3.
+ * TI ADS122C04 SBAS751B, Sensirion SHT4x, Bosch BMP388 and PMS5003 v2.3.
  * Raw transport bytes and factory trim are preserved; no gas calibration here.
  */
 #include "platform.h"
@@ -39,7 +39,7 @@ uint8_t sk_configure(void) {
     if(write_reg(0x76,0x7e,0xb6)) {
         sk_delay(3);
         if(!powered)return 0;
-        bool ok=command(0x76,0,r,1) && r[0]==0x60 && command(0x76,0x31,trim,21);
+        bool ok=command(0x76,0,r,1) && r[0]==0x50 && command(0x76,0x31,trim,21);
         ok=ok && write_reg(0x76,0x1c,0x0b) && write_reg(0x76,0x1d,0x06) && write_reg(0x76,0x1b,0x33);
         ok=ok && command(0x76,0x1b,r,3) && r[0]==0x33 && r[1]==0x0b && r[2]==0x06;
         if(ok && command(0x76,2,r,1) && !(r[0]&7)) enabled|=64;

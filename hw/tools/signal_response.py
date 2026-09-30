@@ -93,7 +93,7 @@ def pcb_values(path):
 def build_report():
     from project_paths import board_dir
     header=(ROOT/'sw/skylark/firmware/skylark.h').read_text(encoding='utf-8')
-    for key,expected in [('SK_GAS_SLOT_MS',60),('SK_ADC_CONFIG1',2)]:
+    for key,expected in [('SK_GAS_SLOT_MS',8),('SK_ADC_CONFIG1',0x82)]:
         match=re.search(r'^#define '+key+r' (\w+)$',header,re.M)
         if not match or int(match[1],0)!=expected:
             raise ValueError(f'review response model for changed {key}')
@@ -131,11 +131,13 @@ def build_report():
             rf, ro, co = kv(f'R{base+off+1}'), kv(f'R{base+off+2}'), kv(f'C{base+off+1}')
             poles.append((rf*cf,ro*co))
             rows = []
-            for f, adc in ADC_PLOTS[20].items():
+            for f in (.01,.1,1,15.625,31.25,50,60,100,150.1,200,300):
+                adc=ADC_PLOTS[330].get(f)
                 h = gas(f,rf,cf,ro,co)
                 rows.append(dict(hz=f, circuit_db=db(h), circuit_phase_deg=phase(h),
-                                 adc_plot_db=adc, combined_electronics_estimate_db=db(h)+adc,
-                                 recorded_alias_hz=folded(f,1000/240)))
+                                 adc_plot_db=adc, combined_electronics_estimate_db=db(h)+adc if adc is not None else None,
+                                 half_output_capacitance_scenario_db=db(gas(f,rf*.999,cf*.95,ro*.99,co*.5)),
+                                 recorded_alias_hz=folded(f,1000/32)))
             gas_rows.append(dict(channel=f'{label}_{el}', poles_hz=[1/(2*math.pi*t) for t in poles[-1]],
                                  nominal_V_per_ppm=sens*rf, nominal_counts_per_ppb=sens*rf*2**23/2.5/1000,
                                  electronic_step_1percent_s=settling(*poles[-1]),
@@ -157,12 +159,12 @@ def build_report():
                                       for odr,bw in ((26,8.3),(52,16.6),(104,33),(208,66.8))],
                         gyro_26hz_manufacturer_phase_point=dict(hz=2.5,phase_deg=-36,phase_delay_s=.04),
                         imu_phase_and_alias_rejection_qualified=False),
-        skylark=dict(gas=gas_rows, per_channel_nominal_rate_hz=1000/240,
-                     minimum_slot_s=.060, adc_single_shot_s=51213/1_024_000,
-                     worst_slow_clock_single_shot_s=51213/(1_024_000*.98),
-                     adc_bandwidth_hz=13.1, adc_phase_deg=None,
-                     we_ae_equal_interference_residual=[dict(hz=f, fraction=2*abs(math.sin(math.pi*f*.06)))
-                                                       for f in (.01,.1,1,4.1666667)],
+        skylark=dict(gas=gas_rows, per_channel_nominal_rate_hz=1000/32,
+                     minimum_slot_s=.008, adc_single_shot_s=3141/1_024_000,
+                     worst_slow_clock_single_shot_s=3141/(1_024_000*.98),
+                     adc_bandwidth_hz=150.1, adc_phase_deg=None,
+                     we_ae_equal_interference_residual=[dict(hz=f, fraction=2*abs(math.sin(math.pi*f*.008)))
+                                                       for f in (.01,.1,1,31.25)],
                      gas_cell_t90_spec_s=60, gas_cell_transfer=None, enclosure_transfer=None,
                      illustrative_first_order_cells=[dict(assumed_t90_s=t90, hz=f,
                                                            db=db(lowpass(f,t90/math.log(10))),
@@ -175,9 +177,9 @@ def build_report():
         findings=[
             'Groundlark mechanical rolloff removes most sub-hertz velocity sensitivity; no inverse response is applied.',
             'Neither chain has demonstrated broadband alias rejection. ADC bandwidth alone is not a stopband specification.',
-            'Skylark electronics pass near 4.17 Hz, which can alias into a slowly varying gas baseline. Cell response cannot suppress interference injected after the cell.',
-            'Adjacent WE/AE observations are separated by at least 60 ms; direct subtraction is not simultaneous common-mode cancellation.',
-            'BMP390 latest-sample publication at 1 Hz is unfiltered rate reduction; use as weather pressure, not an infrasound waveform.',
+            'Skylark retains all 31.25 Hz/channel raw samples. The 1.59 Hz output RC and 15.9 Hz feedback RC give about 33 dB nominal rejection at the first alias; capacitor derating and real interference still require measurement.',
+            'Adjacent WE/AE observations are separated by at least 8 ms; direct subtraction is not simultaneous common-mode cancellation.',
+            'BMP388 latest-sample publication at 1 Hz is unfiltered rate reduction; use as weather pressure, not an infrasound waveform.',
             'Published gas-cell T90 is an upper limit, not a guaranteed low-pass transfer function or power-up settling time.',
             'First-order gas examples are sensitivity scenarios only, not measured cells or bounds; hood transport adds an unknown delay.',
             'ADC FIR coefficients/group delay, IMU phase, op-amp/cell loop response and enclosure response need manufacturer data or physical measurements.',

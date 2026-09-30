@@ -26,17 +26,16 @@ volcanic warning instrument. No camera, Pi HAT or separate sensor daughterboard 
 | Analog circuits | OPA387/OPA2387, switched analog supply, buffered 1.25 V electrode reference, compensated potentiostats, power-off electrode clamps |
 | Particles | External PMS5003; protected switched 5 V supply, UART, sleep/reset control |
 | Temperature/humidity | Filtered SHT40-AD1F-R2, I²C 0x44, on a slotted PCB finger near the lower ventilation |
-| Pressure | BMP390, I²C 0x76 |
+| Pressure | BMP388, I²C 0x76 |
 | Debug/service | 10-pin 1.27 mm SWD, reset/boot buttons, status LED and seven rail test pads |
 
 Gas channels use 20 Ω electrode loads and 0.1%, 25 ppm/K thin-film gain resistors.
 SO₂ feedback is 100 kΩ/100 nF; H₂S feedback is 20 kΩ/500 nF (five parallel
 100 nF capacitors). Feedback and potentiostat compensation use C0G dielectric
 to avoid the piezoelectric behavior of high-permittivity ceramic capacitors.
-Each ADC input has a
-10 kΩ/1 µF filter placed beside the ADC. Nominal feedback poles are 15.9 Hz and
-15.9 Hz; the output pole is 15.9 Hz. Together they attenuate a 50 Hz input signal
-by about 20 dB before the ADC's digital filtering. These calculations omit cell
+Each ADC input has a 10 kΩ/10 µF filter placed beside the ADC. Both gases have
+a nominal 15.9 Hz feedback pole and a 1.59 Hz output pole. Together they attenuate a 50 Hz input signal
+by about 40.3 dB before the ADC's digital filtering. These calculations omit cell
 impedance, capacitor bias/temperature effects and amplifier noise gain; they
 do not establish loop stability or a noise floor. Preserve matching WE/AE filters.
 
@@ -70,18 +69,18 @@ establish ppb-level system accuracy.
 
 The [Skylark procurement registry](../assembly/skylark-usb/jlcpcb-parts.json)
 covers all 119 PCB assembly placements in 37 exact manufacturer/catalog groups,
-with observations dated 2026-09-27 UTC. BMP390 requires consignment or a supplier
-quote; USB4105-GF-A and the 80.6 kΩ resistor require pre-ordering. Public stock
-is not reserved stock. C2 has a documented assembly substitution to Murata
-GRM21BR71C475KE51L: the same 0805, 4.7 µF, ±10%, X7R specification with a 16 V
-rating instead of 10 V. The authored BOM retains its original identity.
+with dated stock observations in the registry. The current assembly uses
+HRO TYPE-C-31-M-12 / C165948, Yageo RC0603FR-0782KL / C137678 and Bosch
+BMP388 / C779278. These replacements were available without preorder, with a
+minimum quantity of one, on 2026-09-28 UTC. Public stock is not reserved stock.
+C2 retains its documented 16 V Murata 4.7 µF procurement substitution.
 
 The [assembly guide](../assembly/skylark-usb/README.md) describes the read-only
-Gerber/BOM/CPL exporter and manual parts. Numbered supplier pads qualify 118
-placements, including explicit bottom-side handling. J1's public supplier
-footprint differs from the GCT drawing; its CPL origin and rotation remain an
-order-engineering hold. Gas cells, eight sockets and the PMS5003 harness are
-assembled separately. Recheck all stock and both sides of the order preview.
+Gerber/BOM/CPL exporter and manual parts. All 119 placements pass the numbered
+supplier-pad fit, including explicit bottom-side handling. The HRO footprint
+uses the manufacturer's 2020-12-08 drawing, shared power lands and plated shell
+slots. Gas cells, eight sockets and the PMS5003 harness are assembled separately.
+Recheck stock and both sides of the actual order preview before purchasing.
 
 - Order JLCPCB's standard **1.6 mm, four-layer FR-4, JLC04161H-7628** stack:
   1 oz outer copper and 0.5 oz inner copper, with both inner layers assigned to
@@ -105,7 +104,7 @@ assembled separately. Recheck all stock and both sides of the order preview.
   to the PMS5003; do not assume an arbitrary supplied PMS cable mates with this
   header or preserves wire order.
 - Clean and dry the PCB before installing cells. Conformal coating must exclude
-  gas-cell faces and socket contacts, the SHT40 filter, BMP390 pressure port,
+  gas-cell faces and socket contacts, the SHT40 filter, BMP388 pressure port,
   connectors, buttons and service pads. Follow manufacturer assembly instructions;
   do not wash the installed humidity sensor or seal its filter.
 - The hood provides rain shielding while admitting ambient air. Coating is an
@@ -130,8 +129,8 @@ readout, USB streaming and power sequencing. Its image builds and native fault
 tests pass; the following physical power/timing checks remain required.
 
 The PMS rail defaults off. Firmware must enumerate and obtain its configured USB
-power allocation before enabling it. The 80.6 kΩ TPS2553 setting gives approximately
-289–375 mA current-limit bounds including resistor tolerance, with 329 mA nominal.
+power allocation before enabling it. The 82 kΩ TPS2553 setting gives approximately
+284–369 mA current-limit bounds including resistor tolerance, with 323 mA nominal.
 Budget another 50 mA for the controller and supporting circuits; the configured
 envelope stays below 500 mA. Measure fan startup, fuse drop and actual consumption;
 these are design bounds, not bench results. See the [power supply guide](../../docs/power-supplies.md)
@@ -175,17 +174,18 @@ and calibration policy before interpreting raw readings as gas concentrations.
 
 Use ADS122C04 address 0x40, gain 1, PGA bypassed and the external 2.5 V reference.
 Multiplex AIN0–3 as single-ended SO₂ WE, SO₂ AE, H₂S WE, H₂S AE. Start with normal
-20 SPS conversion mode, allowing completion after each channel switch; the total
-rate is shared across all four channels. Validate settling and noise before
-choosing reporting rates. Maintain cell bias continuously during normal operation
-and treat power-up settling as invalid data.
+330 SPS single-shot conversion mode. Eight-millisecond service slots give a
+nominal 32 ms period per electrode (31.25 samples/s). The scheduler budgets
+100 kHz I²C transactions and enforces a separate five-tick minimum after a new
+conversion starts. Service delays extend the schedule rather than restarting
+unfinished conversions. Maintain cell bias during normal operation and treat
+power-up settling as missing data.
 
-The current firmware uses sequential 60 ms slots (240 ms nominal per electrode).
-The 15.9 Hz analog poles do not provide adequate broadband alias rejection for
-that per-channel cadence by themselves. Read the
-[sensor bandwidth and timing](../../docs/sensor-response.md) limits before
-interpreting gas trends or designing compensation. Electrical injection and
-enclosure/cell response measurements remain required.
+The 15.9 Hz feedback pole and 1.59 Hz output pole provide approximately 33 dB
+nominal attenuation at 31.25 Hz. The output filters use 10 kΩ / 10 µF; effective
+capacitance under voltage, temperature and aging must be measured. All original
+ADC readings are retained. See [sensor bandwidth and timing](../../docs/sensor-response.md)
+for the response, ADC-noise tradeoff and remaining qualification requirements.
 
 MCU bindings are PA2/PA3 UART, PB6/PB7 I²C, PA4 PMS enable, PA5 fault, PA6 sleep,
 PA7 reset, PB0 ADC DRDY, PB1 ADC reset, PB12 analog enable, PB13 clamp hold,
@@ -261,7 +261,7 @@ portable package models and actual KiCad renders.
   low-frequency amplifier noise and analog filtering guidance.
 - [STM32F072 datasheet](https://www.st.com/resource/en/datasheet/stm32f072cb.pdf),
   [SHT4x datasheet](https://sensirion.com/resource/datasheet/sht4x),
-  [BMP390 datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp390-ds002.pdf),
+  [BMP388 datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp388-ds001.pdf),
   [MMBFJ270](https://www.onsemi.com/download/data-sheet/pdf/mmbfj270-d.pdf),
   [MMBT3904](https://www.onsemi.com/download/data-sheet/pdf/mmbt3904lt1-d.pdf),
   [BAT54](https://www.onsemi.com/download/data-sheet/pdf/bat54lt1-d.pdf).

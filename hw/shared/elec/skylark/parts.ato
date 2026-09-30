@@ -61,24 +61,20 @@ component MCU:
     signal p38 ~ pin 38
 
 component USB:
-    trait is_atomic_part<manufacturer="GCT", partnumber="USB4105-GF-A", footprint="Connector_USB__USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal.kicad_mod", symbol="symbols/USB.kicad_sym">
+    trait is_atomic_part<manufacturer="Korean Hroparts Elec", partnumber="TYPE-C-31-M-12", footprint="USB_C_HRO_TYPE-C-31-M-12.kicad_mod", symbol="symbols/USB.kicad_sym">
     trait has_designator_prefix<prefix="U">
-    signal pA1 ~ pin A1
-    signal pA4 ~ pin A4
+    signal pA1B12 ~ pin A1B12
+    signal pA4B9 ~ pin A4B9
     signal pA5 ~ pin A5
     signal pA6 ~ pin A6
     signal pA7 ~ pin A7
     signal pA8 ~ pin A8
-    signal pA9 ~ pin A9
-    signal pA12 ~ pin A12
-    signal pB1 ~ pin B1
-    signal pB4 ~ pin B4
+    signal pB4A9 ~ pin B4A9
+    signal pB1A12 ~ pin B1A12
     signal pB5 ~ pin B5
     signal pB6 ~ pin B6
     signal pB7 ~ pin B7
     signal pB8 ~ pin B8
-    signal pB9 ~ pin B9
-    signal pB12 ~ pin B12
     signal pS1 ~ pin S1
 
 component ESD:
@@ -209,7 +205,7 @@ component SHT:
     signal p4 ~ pin 4
 
 component BMP:
-    trait is_atomic_part<manufacturer="Bosch Sensortec", partnumber="BMP390", footprint="BMP390.kicad_mod", symbol="symbols/BMP.kicad_sym">
+    trait is_atomic_part<manufacturer="Bosch Sensortec", partnumber="BMP388", footprint="BMP388.kicad_mod", symbol="symbols/BMP.kicad_sym">
     trait has_designator_prefix<prefix="U">
     power = new ElectricPower
     power.hv ~ p10
@@ -316,11 +312,11 @@ component C_4p7u:
     signal p1 ~ pin 1
     signal p2 ~ pin 2
 
-component R_80600:
-    trait is_atomic_part<manufacturer="Yageo", partnumber="RC0603FR-0780K6L", footprint="Resistor_SMD__R_0603_1608Metric.kicad_mod", symbol="symbols/R_80600.kicad_sym">
+component R_82000:
+    trait is_atomic_part<manufacturer="Yageo", partnumber="RC0603FR-0782KL", footprint="Resistor_SMD__R_0603_1608Metric.kicad_mod", symbol="symbols/R_82000.kicad_sym">
     trait has_designator_prefix<prefix="R">
     resistance: ohm
-    resistance = 80600ohm +/- 1%
+    resistance = 82000ohm +/- 1%
     signal p1 ~ pin 1
     signal p2 ~ pin 2
 

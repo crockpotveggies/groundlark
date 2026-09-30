@@ -105,29 +105,33 @@ To reproduce it:
 
 ```sh
 blender --background --python hw/mechanical/daqhat-01-case/render.py -- \
-  --view assembly-open --material clear-petg --quality high --device CUDA --skip-glb
+  --view assembly-gnss-open --material clear-petg --quality high --device CUDA --skip-glb
 ```
 
 Use `--device CPU` when CUDA is unavailable. The high-quality output is
-`preview/assembly-open-clear-petg-4k.png`, with a JSON sidecar recording input
+`preview/assembly-gnss-open-clear-petg-4k.png`, with a JSON sidecar recording input
 hashes, camera, material and render settings. Copy both files to
-`docs/images/groundlark-enclosure.png` and `.json` when updating the README.
+`docs/images/groundlark-gnss.png` and `.json` when updating the README.
 Plug screw wells, wire entries and fastener recesses are illustrative render
 details inside the reference envelopes; the fit checks use the conservative
 solid envelopes. Planar enclosure faces retain flat normals.
 
 Use `--view assembly-power` for the rear DC input and switch access.
-Use `--view assembly-ports` for the component detail below. The Pi community CAD
+Use `--view assembly-ports` for a Pi-port detail view. The Pi community CAD
 retains its modeled 1.8 mm board thickness, seated on the supports; native fit
 envelopes use the nominal 1.6 mm board. It is not certified mating CAD.
 
-![Detailed Pi ports and populated HAT/Trenz stack](../../../docs/images/groundlark-enclosure-ports.png)
+![Current GNSS/SMA HAT, Pi and Trenz stack](../../../docs/images/groundlark-gnss.png)
 
 The renderer preserves planar faces to avoid wavy shading. Checks establish CAD
 clearances and mesh validity; first-print fit, thermal behavior and noise remain
 unqualified.
 
-![R3 rear FPGA power opening and roof switch access](../../../docs/images/groundlark-enclosure-power.png)
+Use `--view assembly-gnss --material clear-petg --quality high` for the closed
+enclosure view. Its PNG and JSON sidecar are published as
+`docs/images/groundlark-gnss-closed.png` and `.json`.
+
+![Current enclosure with side SMA access](../../../docs/images/groundlark-gnss-closed.png)
 
 ## Pi battery input
 

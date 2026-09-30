@@ -65,7 +65,7 @@ def build_report():
     limits=pm_limit(value(s['R3']))
     # Explicit allocations. Excess becomes a qualification failure, not an
     # excuse to increase a source's rating. STM32 at 48 MHz; SHT heater off.
-    skylark_mA={'MCU_and_USB':32,'analog_rail':8,'SHT40':1,'BMP390':1,
+    skylark_mA={'MCU_and_USB':32,'analog_rail':8,'SHT40':1,'BMP388':1,
                 'ADC_digital':.5,'I2C_pullups':1.5,'clamp_LED_monitor':2,
                 'regulator_and_switch_quiescent':.2,'reserve':3.8}
     overhead=sum(skylark_mA.values())/1000

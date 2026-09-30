@@ -5,7 +5,7 @@ remain stable so board identity does not depend on its directory name.
 
 | Product | Model / outline | Build target | Status |
 | --- | --- | --- | --- |
-| [Groundlark FPGA HAT](groundlark-fpga-hat/README.md) | DAQHAT-01, 85 × 56 mm | `trenz_hat` | Active prototype; physical qualification pending. |
+| [Groundlark FPGA HAT](groundlark-fpga-hat/README.md) | DAQHAT-01, 140 × 56 mm | `trenz_hat` | Active prototype; physical qualification pending. |
 | [Groundlark Coldfoot HAT](groundlark-coldfoot-hat/README.md) | A2 ASIC HAT, 120 × 56 mm | `hat` | Retained; integration deferred. |
 | [Burrowlark USB](burrowlark-usb/README.md) | DAQUSB-01, 70 × 45 mm | `field_head` | Hardware design present; firmware pending. |
 | [Skylark USB](skylark-usb/README.md) | Rev A, 90 × 100 mm | `skylark` | Routed air-quality prototype, STM32 firmware and Rev G bell enclosure; physical qualification pending. |

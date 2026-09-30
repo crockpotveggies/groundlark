@@ -7,8 +7,8 @@
 #define SK_CHANNELS 7
 #define SK_FRAME_MAX 272
 #define SK_QUEUE 8
-#define SK_GAS_SLOT_MS 60
-#define SK_ADC_CONFIG1 0x02
+#define SK_GAS_SLOT_MS 8
+#define SK_ADC_CONFIG1 0x82
 typedef struct { int32_t counts; uint8_t counter, data[32], trim[21]; } sk_raw;
 /* Board hooks: bounded operations; read returns pending=0, valid=1, missing=2,
  * saturated=3, fault=4. Invalid frames must never be returned as valid. */

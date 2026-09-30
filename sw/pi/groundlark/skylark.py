@@ -14,7 +14,7 @@ NAMES = {10: 'SO₂ working', 11: 'SO₂ auxiliary', 12: 'H₂S working',
 
 
 def defaults():
-    return [dict(sensor_id=i, enabled=True, period_ns=240_000_000 if i < 14 else 1_000_000_000)
+    return [dict(sensor_id=i, enabled=True, period_ns=32_000_000 if i < 14 else 1_000_000_000)
             for i in SENSORS]
 
 
@@ -44,7 +44,7 @@ def modeled_reading(sensor, scenario, now, seed):
         if sensor in (10, 12): volts += value('so2_ppm' if sensor == 10 else 'h2s_ppm') * (.04 if sensor == 10 else .034)
         count = round(volts / 2.5 * 8388608)
         return Reading(dict(counts=max(-8388608, min(8388607, count)),
-                            conversion_counter=((now // 240_000_000) * 4 + sensor - 10) % 256),
+                            conversion_counter=((now // 32_000_000) * 4 + sensor - 10) % 256),
                        3 if not -8388608 < count < 8388607 else 1)
     if sensor == 14: return Reading(dict(response=pms_frame(value('pm25_ug_m3'))))
     if sensor == 15: return Reading(dict(response=climate_frame(value('temperature_c'), value('humidity_percent'))))

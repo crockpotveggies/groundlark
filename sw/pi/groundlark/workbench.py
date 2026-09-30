@@ -72,7 +72,7 @@ def project_sample(sensor, sample):
         result.update(primary=[temperature, None, None], secondary=[humidity, None, None], detail=f"{'SHT45' if sensor == 17 else 'SHT40'} °C / %RH • CRC-checked raw frame retained")
     elif sensor == 16:
         pressure, temperature = skylark.barometer_units(raw.response, raw.calibration)
-        result.update(primary=[pressure, None, None], secondary=[temperature, None, None], detail="BMP390 Pa / °C • factory compensation; raw frame and trim retained")
+        result.update(primary=[pressure, None, None], secondary=[temperature, None, None], detail="Bosch BMP3 Pa / °C • factory compensation; raw frame and trim retained")
     else:
         payload = raw.nav_pvt
         fixed = bool(payload[21] & 1) and payload[20] >= 2

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="E">
   <design>
-    <source>/mnt/p/Personal/groundlark/hw/skylark-usb/boards/skylark-usb/skylark-usb.kicad_sch</source>
-    <date>2026-09-27T09:58:50-0700</date>
-    <tool>Eeschema 9.0.9-9.0.9~ubuntu24.04.1</tool>
+    <source>/work/hw/skylark-usb/boards/skylark-usb/skylark-usb.kicad_sch</source>
+    <date>2026-09-28T02:40:30+0000</date>
+    <tool>Eeschema 9.0.9</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
         <title/>
@@ -375,16 +375,16 @@
       <tstamps>8ed55f50-0e3d-50f8-8c7f-9592c582d3db</tstamps>
     </comp>
     <comp ref="J1">
-      <value>USB4105-GF-A</value>
-      <footprint>Skylark:Connector_USB__USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal</footprint>
+      <value>TYPE-C-31-M-12</value>
+      <footprint>Skylark:USB_C_HRO_TYPE-C-31-M-12</footprint>
       <fields>
-        <field name="MPN">USB4105-GF-A</field>
-        <field name="Footprint">Skylark:Connector_USB__USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal</field>
+        <field name="MPN">TYPE-C-31-M-12</field>
+        <field name="Footprint">Skylark:USB_C_HRO_TYPE-C-31-M-12</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="Groundlark" part="Part_J1" description=""/>
-      <property name="MPN" value="USB4105-GF-A"/>
+      <property name="MPN" value="TYPE-C-31-M-12"/>
       <property name="Sheetname" value="01_USB_power-page-01"/>
       <property name="Sheetfile" value="01_USB_power-page-01.kicad_sch"/>
       <sheetpath names="/01_USB_power-page-01/" tstamps="/4e92bf3b-cc9f-5617-babe-7f6ea9e3b463/"/>
@@ -423,16 +423,16 @@
       <tstamps>a6b47de1-92f8-5192-bc68-f4435ee88c99</tstamps>
     </comp>
     <comp ref="R3">
-      <value>80600R</value>
+      <value>82000R</value>
       <footprint>Skylark:Resistor_SMD__R_0603_1608Metric</footprint>
       <fields>
-        <field name="MPN">RC0603FR-0780K6L</field>
+        <field name="MPN">RC0603FR-0782KL</field>
         <field name="Footprint">Skylark:Resistor_SMD__R_0603_1608Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="Groundlark" part="Part_R3" description=""/>
-      <property name="MPN" value="RC0603FR-0780K6L"/>
+      <property name="MPN" value="RC0603FR-0782KL"/>
       <property name="Sheetname" value="01_USB_power-page-01"/>
       <property name="Sheetfile" value="01_USB_power-page-01.kicad_sch"/>
       <sheetpath names="/01_USB_power-page-01/" tstamps="/4e92bf3b-cc9f-5617-babe-7f6ea9e3b463/"/>
@@ -1383,16 +1383,16 @@
       <tstamps>4928be0a-a241-52a1-a730-02dd3cf97ac5</tstamps>
     </comp>
     <comp ref="C31">
-      <value>1uF</value>
-      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <value>10uF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0805_2012Metric</footprint>
       <fields>
-        <field name="MPN">GRM188R71E105KA12D</field>
-        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="MPN">GRM21BR61A106KE19L</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0805_2012Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="Groundlark" part="Part_C31" description=""/>
-      <property name="MPN" value="GRM188R71E105KA12D"/>
+      <property name="MPN" value="GRM21BR61A106KE19L"/>
       <property name="Sheetname" value="04_SO2-page-01"/>
       <property name="Sheetfile" value="04_SO2-page-01.kicad_sch"/>
       <sheetpath names="/04_SO2-page-01/" tstamps="/ba9fa2df-14f1-5d01-b250-a34345951bde/"/>
@@ -1559,16 +1559,16 @@
       <tstamps>731b9292-25d7-5346-9024-b75d2e079f82</tstamps>
     </comp>
     <comp ref="C34">
-      <value>1uF</value>
-      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <value>10uF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0805_2012Metric</footprint>
       <fields>
-        <field name="MPN">GRM188R71E105KA12D</field>
-        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="MPN">GRM21BR61A106KE19L</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0805_2012Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="Groundlark" part="Part_C34" description=""/>
-      <property name="MPN" value="GRM188R71E105KA12D"/>
+      <property name="MPN" value="GRM21BR61A106KE19L"/>
       <property name="Sheetname" value="04_SO2-page-02"/>
       <property name="Sheetfile" value="04_SO2-page-02.kicad_sch"/>
       <sheetpath names="/04_SO2-page-02/" tstamps="/fba23098-6c42-5f5d-abd6-c7297354137a/"/>
@@ -1719,16 +1719,16 @@
       <tstamps>439b5c5e-62aa-50a3-9dcd-c2d2fec5daf5</tstamps>
     </comp>
     <comp ref="C51">
-      <value>1uF</value>
-      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <value>10uF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0805_2012Metric</footprint>
       <fields>
-        <field name="MPN">GRM188R71E105KA12D</field>
-        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="MPN">GRM21BR61A106KE19L</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0805_2012Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="Groundlark" part="Part_C51" description=""/>
-      <property name="MPN" value="GRM188R71E105KA12D"/>
+      <property name="MPN" value="GRM21BR61A106KE19L"/>
       <property name="Sheetname" value="05_H2S-page-01"/>
       <property name="Sheetfile" value="05_H2S-page-01.kicad_sch"/>
       <sheetpath names="/05_H2S-page-01/" tstamps="/ff6b77c3-95f8-5afc-8a6a-99a7ff58b4d5/"/>
@@ -1895,16 +1895,16 @@
       <tstamps>d1fafe4d-1783-5fbc-a826-766a325bc440</tstamps>
     </comp>
     <comp ref="C54">
-      <value>1uF</value>
-      <footprint>Skylark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <value>10uF</value>
+      <footprint>Skylark:Capacitor_SMD__C_0805_2012Metric</footprint>
       <fields>
-        <field name="MPN">GRM188R71E105KA12D</field>
-        <field name="Footprint">Skylark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="MPN">GRM21BR61A106KE19L</field>
+        <field name="Footprint">Skylark:Capacitor_SMD__C_0805_2012Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="Groundlark" part="Part_C54" description=""/>
-      <property name="MPN" value="GRM188R71E105KA12D"/>
+      <property name="MPN" value="GRM21BR61A106KE19L"/>
       <property name="Sheetname" value="05_H2S-page-02"/>
       <property name="Sheetfile" value="05_H2S-page-02.kicad_sch"/>
       <sheetpath names="/05_H2S-page-02/" tstamps="/c60510a4-912f-56f4-a510-e17dcca6cdbf/"/>
@@ -2215,16 +2215,16 @@
       <tstamps>3035667a-2d28-5030-bec0-99c6b6b2cac1</tstamps>
     </comp>
     <comp ref="U12">
-      <value>BMP390</value>
-      <footprint>Skylark:BMP390</footprint>
+      <value>BMP388</value>
+      <footprint>Skylark:BMP388</footprint>
       <fields>
-        <field name="MPN">BMP390</field>
-        <field name="Footprint">Skylark:BMP390</field>
+        <field name="MPN">BMP388</field>
+        <field name="Footprint">Skylark:BMP388</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="Groundlark" part="Part_U12" description=""/>
-      <property name="MPN" value="BMP390"/>
+      <property name="MPN" value="BMP388"/>
       <property name="Sheetname" value="06_Environment-page-01"/>
       <property name="Sheetfile" value="06_Environment-page-01.kicad_sch"/>
       <sheetpath names="/06_Environment-page-01/" tstamps="/40888c6d-2ce3-5d77-bcb4-504f672fefd3/"/>
@@ -2529,7 +2529,7 @@
     <libpart lib="Groundlark" part="Part_C31">
       <fields>
         <field name="Reference">C</field>
-        <field name="Value">1uF</field>
+        <field name="Value">10uF</field>
         <field name="Footprint"/>
         <field name="Datasheet"/>
         <field name="Description"/>
@@ -2555,7 +2555,7 @@
     <libpart lib="Groundlark" part="Part_C34">
       <fields>
         <field name="Reference">C</field>
-        <field name="Value">1uF</field>
+        <field name="Value">10uF</field>
         <field name="Footprint"/>
         <field name="Datasheet"/>
         <field name="Description"/>
@@ -2646,7 +2646,7 @@
     <libpart lib="Groundlark" part="Part_C51">
       <fields>
         <field name="Reference">C</field>
-        <field name="Value">1uF</field>
+        <field name="Value">10uF</field>
         <field name="Footprint"/>
         <field name="Datasheet"/>
         <field name="Description"/>
@@ -2672,7 +2672,7 @@
     <libpart lib="Groundlark" part="Part_C54">
       <fields>
         <field name="Reference">C</field>
-        <field name="Value">1uF</field>
+        <field name="Value">10uF</field>
         <field name="Footprint"/>
         <field name="Datasheet"/>
         <field name="Description"/>
@@ -3049,28 +3049,24 @@
     <libpart lib="Groundlark" part="Part_J1">
       <fields>
         <field name="Reference">J</field>
-        <field name="Value">USB4105-GF-A</field>
+        <field name="Value">TYPE-C-31-M-12</field>
         <field name="Footprint"/>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <pins>
-        <pin num="A1" name="A1" type="passive"/>
-        <pin num="A4" name="A4" type="passive"/>
+        <pin num="A1B12" name="A1B12" type="passive"/>
+        <pin num="A4B9" name="A4B9" type="passive"/>
         <pin num="A5" name="A5" type="passive"/>
         <pin num="A6" name="A6" type="passive"/>
         <pin num="A7" name="A7" type="passive"/>
         <pin num="A8" name="A8" type="passive"/>
-        <pin num="A9" name="A9" type="passive"/>
-        <pin num="A12" name="A12" type="passive"/>
-        <pin num="B1" name="B1" type="passive"/>
-        <pin num="B4" name="B4" type="passive"/>
+        <pin num="B1A12" name="B1A12" type="passive"/>
+        <pin num="B4A9" name="B4A9" type="passive"/>
         <pin num="B5" name="B5" type="passive"/>
         <pin num="B6" name="B6" type="passive"/>
         <pin num="B7" name="B7" type="passive"/>
         <pin num="B8" name="B8" type="passive"/>
-        <pin num="B9" name="B9" type="passive"/>
-        <pin num="B12" name="B12" type="passive"/>
         <pin num="S1" name="S1" type="passive"/>
       </pins>
     </libpart>
@@ -3398,7 +3394,7 @@
     <libpart lib="Groundlark" part="Part_R3">
       <fields>
         <field name="Reference">R</field>
-        <field name="Value">80600R</field>
+        <field name="Value">82000R</field>
         <field name="Footprint"/>
         <field name="Datasheet"/>
         <field name="Description"/>
@@ -3975,7 +3971,7 @@
     <libpart lib="Groundlark" part="Part_U12">
       <fields>
         <field name="Reference">U</field>
-        <field name="Value">BMP390</field>
+        <field name="Value">BMP388</field>
         <field name="Footprint"/>
         <field name="Datasheet"/>
         <field name="Description"/>
@@ -4157,7 +4153,7 @@
   </libparts>
   <libraries>
     <library logical="Groundlark">
-      <uri>/mnt/p/Personal/groundlark/hw/skylark-usb/boards/skylark-usb/Groundlark.kicad_sym</uri>
+      <uri>/work/hw/skylark-usb/boards/skylark-usb/Groundlark.kicad_sym</uri>
     </library>
   </libraries>
   <nets>
@@ -4255,10 +4251,8 @@
       <node ref="D1" pin="2" pinfunction="GND" pintype="power_in"/>
       <node ref="D2" pin="2" pinfunction="GND" pintype="power_in"/>
       <node ref="D3" pin="1" pinfunction="K" pintype="passive"/>
-      <node ref="J1" pin="A1" pinfunction="A1" pintype="passive"/>
-      <node ref="J1" pin="A12" pinfunction="A12" pintype="passive"/>
-      <node ref="J1" pin="B1" pinfunction="B1" pintype="passive"/>
-      <node ref="J1" pin="B12" pinfunction="B12" pintype="passive"/>
+      <node ref="J1" pin="A1B12" pinfunction="A1B12" pintype="passive"/>
+      <node ref="J1" pin="B1A12" pinfunction="B1A12" pintype="passive"/>
       <node ref="J1" pin="S1" pinfunction="S1" pintype="passive"/>
       <node ref="J2" pin="2" pinfunction="GND" pintype="power_in"/>
       <node ref="J2" pin="MP" pinfunction="MOUNT" pintype="passive"/>
@@ -4575,10 +4569,8 @@
       <node ref="D1" pin="5" pinfunction="VBUS" pintype="passive"/>
       <node ref="D2" pin="5" pinfunction="VBUS" pintype="passive"/>
       <node ref="F1" pin="1" pinfunction="IN" pintype="passive"/>
-      <node ref="J1" pin="A4" pinfunction="A4" pintype="passive"/>
-      <node ref="J1" pin="A9" pinfunction="A9" pintype="passive"/>
-      <node ref="J1" pin="B4" pinfunction="B4" pintype="passive"/>
-      <node ref="J1" pin="B9" pinfunction="B9" pintype="passive"/>
+      <node ref="J1" pin="A4B9" pinfunction="A4B9" pintype="passive"/>
+      <node ref="J1" pin="B4A9" pinfunction="B4A9" pintype="passive"/>
     </net>
     <net code="61" name="V3" class="Default">
       <node ref="C10" pin="1" pinfunction="1" pintype="passive"/>

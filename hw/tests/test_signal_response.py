@@ -37,8 +37,10 @@ class ResponseTests(unittest.TestCase):
         self.assertLess(s['worst_slow_clock_single_shot_s'],s['minimum_slot_s'])
         self.assertGreater(s['adc_bandwidth_hz'],s['per_channel_nominal_rate_hz']/2)
         for channel in s['gas']:
-            alias=next(r for r in channel['rows'] if abs(r['hz']-1/.24)<1e-6)
-            self.assertGreater(alias['combined_electronics_estimate_db'],-1)
+            alias=next(r for r in channel['rows'] if abs(r['hz']-31.25)<1e-6)
+            self.assertLess(alias['circuit_db'],-32)
+            self.assertLess(alias['half_output_capacitance_scenario_db'],-26)
+            self.assertIsNone(alias['adc_plot_db'])
         self.assertEqual(len(g['imu_profiles']),4)
 
 

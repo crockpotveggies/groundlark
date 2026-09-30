@@ -20,7 +20,7 @@ to KiCad's all-copper notation without changing their dimensions.
 
 ## Custom footprints and models
 
-- `BMP390.kicad_mod` follows the Bosch BMP390 land pattern.
+- `BMP388.kicad_mod` follows the Bosch BMP388 land pattern.
 - `SGX7_AQ_Socket.kicad_mod` mirrors SGX's bottom-view contact drawing for PCB
   top-view placement and uses the selected Mill-Max receptacle dimensions.
 - `Fuse_1206.kicad_mod` is the project-authored resettable-fuse footprint.
@@ -30,3 +30,7 @@ to KiCad's all-copper notation without changing their dimensions.
 
 Manufacturer references and assembly limitations are in the
 [Skylark guide](../../../skylark-usb/README.md).
+
+The HRO USB-C footprint follows the TYPE-C-31-M-12 drawing dated 2020-12-08.
+Shared A1/B12, A4/B9, B4/A9 and B1/A12 contacts use one physical land each.
+The original GCT library asset remains separately attributed; it is not fitted.

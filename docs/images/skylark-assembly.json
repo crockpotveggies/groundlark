@@ -10,9 +10,9 @@
   "pcb_pose": "PCB top-left (-45,0,135) mm; front normal -Y; rear surface Y=1.6 mm.",
   "sha256": {
     "hw/skylark-usb/mechanical/bell/render_readme.py": "c54be3c8eac6cd3188cd6bd350d5709486e0b68df8f420b16107e5d029480746",
-    "sw/ui/assets/skylark-provenance.json": "5243d495956c96e18848388a221538d8a076ba6fe8ebbd803cacd63cecd484ee",
-    "hw/releases/skylark-bell-r7/provenance.json": "f60103625ec3338360b2b5cd47f330d44b9979fc0afde6e457d3064dfd7f9de9",
-    "hw/skylark-usb/mechanical/bell/enclosure.py": "373321c3be9d3d668de693e0dd8f40e3abaf5d5afb2ef6969abafe72453fb6ab",
+    "sw/ui/assets/skylark-provenance.json": "7ab78f1d29f394975ceae94e6e7d22251788bce49f3c534ec6c9fc2dd5c834f2",
+    "hw/releases/skylark-bell-r7/provenance.json": "7e011799ca088bd24327167512bd081bd68427f950de36fefde25599bd9fd20b",
+    "hw/skylark-usb/mechanical/bell/enclosure.py": "ea295e0b41a46b92fef15de195161eba0f4f14292ea943c92ef18a019b09af96",
     "hw/releases/skylark-bell-r7/assembly-parts/bottom.stl": "75ddb4b241fdbc4b4ab3d42ca6a3e000224ced8951060ce5605eaee98c08c0ce",
     "hw/releases/skylark-bell-r7/assembly-parts/cable-left.stl": "75cdfa9e88c65633afc6c1fb4d6431556b61ecd898fc8609ae5e424c26e6cbec",
     "hw/releases/skylark-bell-r7/assembly-parts/cable-right.stl": "dca5b57f1cbad6e81879954cb40b923ebf72098525b3d860d0985195be397c3d",
@@ -23,7 +23,7 @@
     "hw/releases/skylark-bell-r7/assembly-parts/pms-cradle.stl": "5fe720d7f8661288cffd0c4439f3a63dfc3504bf68e9598d05cc7749ad5924b2",
     "hw/releases/skylark-bell-r7/assembly-parts/pms-exhaust-extension.stl": "b298ea9c7bb25450e217fee49402b53afce59be30d819fe4e4b1b3672b1ab1b9",
     "hw/releases/skylark-bell-r7/assembly-parts/ref-pms5003.stl": "674c80857fd967150fcc0f6864e099b75b87174f524ae364c76e1be1b0926faa",
-    "sw/ui/assets/skylark.glb": "caaecb1e9916160fc28c21460e4f4c9e250a1adc3f32e188bf92e6ab5d410fe9"
+    "sw/ui/assets/skylark.glb": "562c292f80eb484d10b40c235fc315a36e1fa3b18118fbf8e94fe73221240bd8"
   },
-  "output_sha256": "d2a588ed51817b31c8c6c8d33d858ec25a3ca99ca567055584225a78b648e69c"
+  "output_sha256": "a5063857493f69389e16013a25bb979fa589aedd95d79a101fca583018899875"
 }
