@@ -1,4 +1,4 @@
-"""Render the native magnetometer-only PCB without modifying its CAD."""
+"""Render the native magnetometer and climate PCB without modifying its CAD."""
 import hashlib
 import json
 import os
@@ -6,9 +6,10 @@ from pathlib import Path
 import re
 import shutil
 import subprocess
+import struct
 
 import pcbnew
-from burrowlark_checks import magnetometer_only
+from burrowlark_checks import population
 from project_paths import ROOT, board_dir
 
 
@@ -20,7 +21,7 @@ def main():
     folder = board_dir('groundlark-field-head')
     source = folder / 'groundlark-field-head.kicad_pcb'
     board = pcbnew.LoadBoard(str(source))
-    magnetometer_only(fp.GetReference() for fp in board.GetFootprints())
+    population(fp.GetReference() for fp in board.GetFootprints())
     before = digest(source)
     models = {}
     for fp in board.GetFootprints():
@@ -35,7 +36,7 @@ def main():
             path = Path(resolved).resolve(strict=True)
             models[model.m_Filename] = digest(path)
     output = folder / '3d.png'
-    command = ['kicad-cli', 'pcb', 'render', '--width', '1800', '--height', '1100',
+    command = ['kicad-cli', 'pcb', 'render', '--width', '2600', '--height', '1600',
                '--quality', 'high', '--background', 'opaque', '--side', 'top',
                '--rotate', '325,0,25', '--zoom', '0.9', '-o', str(output), str(source)]
     if os.name != 'nt' and not os.environ.get('DISPLAY'):
@@ -52,9 +53,9 @@ def main():
         'generator_sha256': digest(Path(__file__)),
         'models_sha256': models,
         'images': [{'file': output.name, 'sha256': digest(output), 'side': 'top',
-                    'rotation': '325,0,25', 'zoom': 0.9, 'size_px': [1800, 1100]}],
-        'scope': 'Native 70 x 45 mm routed DAQUSB-01 PCB with RM3100; U3/C5 absent. '
-                 'PNI14190 and PTC bodies are simplified dimensional envelopes. '
+                    'rotation': '325,0,25', 'zoom': 0.9, 'size_px': list(struct.unpack('>II', output.read_bytes()[16:24]))}],
+        'scope': 'Native 70 x 45 mm routed DAQUSB-01 PCB with RM3100 and SHT45 U6/C10; U3/C5 absent. '
+                 'PNI14190, PTC and SHT45 bodies are simplified dimensional envelopes. '
                  'No enclosure or cable shown; physical qualification remains pending.',
     }
     (folder / 'render-provenance.json').write_text(json.dumps(provenance, indent=2) + '\n')

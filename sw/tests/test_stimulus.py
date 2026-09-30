@@ -165,7 +165,7 @@ class ScenarioTests(unittest.TestCase):
         self.assertEqual(adapter.read().quality, 3)
         now = 100
         self.assertEqual(adapter.read().quality, 1)
-        for controls in ({"17": "disconnect"}, {"1": "unknown"}, {"1": []}):
+        for controls in ({"18": "disconnect"}, {"1": "unknown"}, {"1": []}):
             with self.assertRaises(ValueError): Scenario({"version": 1, "initial": {"sensor_faults": controls}})
 
     def test_actual_application_records_events_and_reproduces_from_metadata(self):
@@ -185,7 +185,7 @@ class ScenarioTests(unittest.TestCase):
             self.assertEqual(json.loads(exported.stdout)["seed"], 7)
             run(scenario_file, second)
             self.assertEqual(first.read_bytes(), second.read_bytes())
-            self.assertEqual(replay(first)["samples"], 1036)  # Three IMUs, geophone and two remote sensors.
+            self.assertEqual(replay(first)["samples"], 1038)  # Three IMUs, geophone, magnetic/legacy pressure and two 1 Hz SHT45 frames.
             self.assertEqual(replay(first)["saturated"], 50)
 
     def test_export_includes_interactive_events_absent_from_initial_metadata(self):

@@ -20,6 +20,8 @@ from "../../shared/elec/parts.ato" import USB_R51
 from "../../shared/elec/parts.ato" import USB_SWD
 from "../../shared/elec/parts.ato" import USB_SWITCH
 
+from "../../shared/elec/burrowlark.ato" import SHT45
+
 module FieldHead:
     signal BOOT0
     signal GND
@@ -228,6 +230,20 @@ module FieldHead:
     trait c4 has_designator<designator="C4">
     c4.p1 ~ V3_SENSOR
     c4.p2 ~ GND
+
+    # Enclosure climate, address 0x44; heater disabled in the acquisition profile.
+    u6 = new SHT45
+    trait u6 has_designator<designator="U6">
+    u6.p1 ~ SDA
+    u6.p2 ~ SCL
+    u6.p3 ~ V3_SENSOR
+    u6.p4 ~ GND
+    u6.power ~ sensor_supply
+
+    c10 = new P_6
+    trait c10 has_designator<designator="C10">
+    c10.p1 ~ V3_SENSOR
+    c10.p2 ~ GND
 
     u1.power ~ supply
     u4.input_power ~ usb_supply

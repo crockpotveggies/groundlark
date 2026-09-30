@@ -30,6 +30,7 @@ Breaking meaning/units requires a new package and envelope version.
 | 7 | USB head RM3100 | Signed 24-bit XYZ counts, sign-extended into sint32 |
 | 8 | DAQHAT-01 DLVR U23; legacy USB head supported | Four original response bytes, preserving pressure, temperature and status bits |
 | 9 | DAQHAT-01 ADS122C04 / Racotech vertical | Signed 24-bit ADC count in sint32; required uint8 conversion counter |
+| 17 | Burrowlark SHT45 U6 | Six original temperature/humidity bytes, including both CRC bytes |
 
 Skylark uses board ID 3 and MCU clock domain 2:
 
@@ -219,3 +220,14 @@ References: [Protobuf presence](https://protobuf.dev/programming-guides/field_pr
 [STM32F042 datasheet](https://www.st.com/resource/en/datasheet/stm32f042t6.pdf),
 [LSM6DSO](https://www.st.com/en/mems-and-sensors/lsm6dso.html),
 [SCL3300](https://www.murata.com/-/media/webrenewal/products/sensor/pdf/datasheet/datasheet_scl3300-d01.ashx).
+
+## Burrowlark enclosure climate
+
+Sensor ID **17**, SHT45 U6, belongs only to the USB head (board kind 2), alongside
+RM3100 ID 7. It uses the existing `ClimateRaw` message with six original response
+bytes and both valid Sensirion CRCs. Acquisition timestamps use the MCU monotonic
+domain. Its only supported enabled profile is high precision, heater off,
+1,000,000,000 ns publication period with no additional configuration fields.
+Temperature/humidity display conversion is the same as SHT40 ID 15. Keep raw
+precision and explicit missing/unknown values. Existing magnetometer-only
+recordings remain valid; absence of sensor 17 is not a zero climate reading.

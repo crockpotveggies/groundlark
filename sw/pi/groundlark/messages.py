@@ -50,7 +50,7 @@ def batch(device, boot, sensor, sequence, acquired, raw=None, quality=1, revisio
     if clock_domain is not None: s.time.domain = clock_domain
     s.time.acquisition_ns = acquired
     if raw is not None:
-        name = "imu" if sensor <= 4 else {5: "tilt", 6: "gnss", 7: "magnetic", 8: "pressure", 9: "geophone", **{i: "gas" for i in range(10, 14)}, 14: "particulate", 15: "climate", 16: "barometer"}[sensor]
+        name = "imu" if sensor <= 4 else {5: "tilt", 6: "gnss", 7: "magnetic", 8: "pressure", 9: "geophone", **{i: "gas" for i in range(10, 14)}, 14: "particulate", 15: "climate", 16: "barometer", 17: "climate"}[sensor]
         payload = getattr(s, name)
         for field, value in raw.items():
             if isinstance(value, (tuple, list)):

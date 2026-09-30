@@ -107,7 +107,7 @@ Do not use the empty BOM emitted by atopile's automatic picker: this design uses
 manual manufacturer parts. The explicit per-board `bom.csv` files are the review
 BOMs. No purchase, assembly order or board fabrication was submitted.
 
-Render the current magnetometer-only Burrowlark PCB with
+Render the current RM3100/SHT45 Burrowlark PCB with
 `python3 hw/tools/render_burrowlark.py`. It verifies that U3/C5 are absent and
 records PCB, model and image hashes in `render-provenance.json`. Refresh its
 schematic, assembly and layout previews with

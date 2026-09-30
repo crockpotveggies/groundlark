@@ -1,0 +1,9 @@
+#VRML V2.0 utf8
+# SHT45 1.5 x 1.5 x 0.5 mm nominal envelope; top opening and contacts illustrative.
+Transform { translation 0.0 0.0 0.08858267716535433 children [ Shape { appearance Appearance { material Material { diffuseColor 0.32 0.34 0.35 } } geometry Box { size 0.5905511811023622 0.5905511811023622 0.17716535433070865 } } ] }
+Transform { translation 0.0 0.0 0.17795275590551182 children [ Shape { appearance Appearance { material Material { diffuseColor 0.045 0.045 0.05 } } geometry Box { size 0.4173228346456693 0.4173228346456693 0.003937007874015748 } } ] }
+Transform { translation 0.047244094488188976 0.047244094488188976 0.18110236220472442 children [ Shape { appearance Appearance { material Material { diffuseColor 0.2 0.19 0.14 } } geometry Box { size 0.17716535433070865 0.19685039370078738 0.005905511811023622 } } ] }
+Transform { translation -0.20669291338582677 -0.15748031496062992 0.00984251968503937 children [ Shape { appearance Appearance { material Material { diffuseColor 0.75 0.64 0.32 } } geometry Box { size 0.17716535433070865 0.11811023622047244 0.01968503937007874 } } ] }
+Transform { translation -0.20669291338582677 0.15748031496062992 0.00984251968503937 children [ Shape { appearance Appearance { material Material { diffuseColor 0.75 0.64 0.32 } } geometry Box { size 0.17716535433070865 0.11811023622047244 0.01968503937007874 } } ] }
+Transform { translation 0.20669291338582677 -0.15748031496062992 0.00984251968503937 children [ Shape { appearance Appearance { material Material { diffuseColor 0.75 0.64 0.32 } } geometry Box { size 0.17716535433070865 0.11811023622047244 0.01968503937007874 } } ] }
+Transform { translation 0.20669291338582677 0.15748031496062992 0.00984251968503937 children [ Shape { appearance Appearance { material Material { diffuseColor 0.75 0.64 0.32 } } geometry Box { size 0.17716535433070865 0.11811023622047244 0.01968503937007874 } } ] }

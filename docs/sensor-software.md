@@ -263,3 +263,12 @@ board simulations/tests. Sensor IDs 10–16 retain separate gas working/auxiliar
 complete PMS/SHT responses and BMP raw/trim bytes. Gas concentration calibration
 is not supplied. Native firmware's 60-second gas/30-second PM warmup is explicit
 missing data; the ideal UI model intentionally has no physical warmup delay.
+
+### Burrowlark SHT45
+
+`groundlark.burrowlark.SHT45` provides the injected-bus, heater-off 1 Hz reference
+acquisition profile. A separate write/STOP, conversion wait and six-byte read
+preserve both original CRC-protected words. The Burrowlark simulation publishes
+sensor 17 with RM3100 sensor 7 under one USB-head identity. Runtime validation,
+bounded recording and replay preserve raw values, MCU clock identity and missing
+readings. Real Burrowlark firmware and physical qualification remain pending.

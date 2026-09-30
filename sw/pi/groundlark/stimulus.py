@@ -58,8 +58,8 @@ def validate_changes(changes):
             if type(value) is not bool: raise ValueError("gnss_fix must be boolean")
         elif name == "sensor_faults":
             actions = {"none", "timeout", "nack", "disconnect", "not_ready", "saturation", "short_read"}
-            if not isinstance(value, dict) or not set(value) <= {str(i) for i in range(1, 17)}:
-                raise ValueError("fault controls require sensor IDs 1..16")
+            if not isinstance(value, dict) or not set(value) <= {str(i) for i in range(1, 18)}:
+                raise ValueError("fault controls require sensor IDs 1..17")
             if any(type(action) is not str or action not in actions for action in value.values()):
                 raise ValueError("unknown timed fault action")
         elif name == "pressure_temperature_count":
@@ -185,6 +185,9 @@ def nav_pvt(now, state, displacement):
 
 
 def reading(sensor, cfg, scenario, now, seed):
+    if sensor == 17:
+        from .burrowlark import modeled_reading
+        return modeled_reading(scenario, now, seed)
     if sensor >= 10:
         from .skylark import modeled_reading
         return modeled_reading(sensor, scenario, now, seed)

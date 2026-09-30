@@ -40,6 +40,7 @@ enum SensorId {
   SENSOR_ID_PARTICULATE = 14;
   SENSOR_ID_AMBIENT_CLIMATE = 15;
   SENSOR_ID_BAROMETER = 16;
+  SENSOR_ID_ENCLOSURE_CLIMATE = 17;
 }
 
 enum ClockDomain {
@@ -162,7 +163,7 @@ message ParticulateRaw {
 }
 
 message ClimateRaw {
-  // SHT40 temperature and humidity words with their CRC bytes.
+  // SHT40 (sensor 15) or SHT45 (sensor 17): temperature/humidity words and CRCs.
   bytes response = 1;
 }
 

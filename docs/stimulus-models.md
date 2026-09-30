@@ -191,3 +191,14 @@ cross-sensitivity, environmental drift and warmup. PM frames use PM1=0.6×PM2.5
 and PM10=1.3×PM2.5; they do not model aerosol composition. SHT transfer equations
 and deliberately synthetic BMP trim provide deterministic raw-byte fixtures.
 The physical firmware handles warmup separately as missing measurements.
+
+## Burrowlark SHT45 enclosure climate
+
+The temperature and humidity stimuli produce the two SHT4x raw words and CRCs.
+The command-aware modeled bus enforces address 0x44, high-precision 0xFD, a
+conversion delay and six-byte response. The reference driver checks both CRCs;
+no heater operation is exposed. Sensor 17 publishes at 1 Hz using MCU timing.
+Timeout faults generate explicit missing records and recover independently of
+RM3100. Virtual conversion waiting does not advance the workbench's shared clock.
+This ideal transfer function omits enclosure diffusion, board self-heating,
+condensation, hysteresis and physical sensor noise. It is not soil moisture.

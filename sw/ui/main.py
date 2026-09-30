@@ -35,11 +35,12 @@ from skylark_scene import add_skylark
 from geophone_scene import add_geophone  # noqa: E402
 
 ASSETS = Path(__file__).parent / "assets"
-for relative, expected in {**json.loads((ASSETS / "provenance.json").read_text())["sha256"], **json.loads((ASSETS / "skylark-provenance.json").read_text())["sha256"]}.items():
+for relative, expected in {**json.loads((ASSETS / "provenance.json").read_text())["sha256"], **json.loads((ASSETS / "skylark-provenance.json").read_text())["sha256"], **json.loads((ASSETS / "burrowlark-provenance.json").read_text())["sha256"]}.items():
     if hashlib.sha256((ROOT / relative).read_bytes()).hexdigest() != expected:
         raise RuntimeError(f"Board visualization is stale: {relative}. See sw/ui/assets/README.md.")
 app.add_static_files("/board-assets", ASSETS)
 HAT_ASSET_VERSION = hashlib.sha256((ASSETS / "daqhat-01.glb").read_bytes()).hexdigest()[:16]
+HEAD_ASSET_VERSION = hashlib.sha256((ASSETS / "burrowlark.glb").read_bytes()).hexdigest()[:16]
 TEAL, MUTED = "#44d9c2", "#98aabd"
 COLORS = [TEAL, "#a7a3ff", "#f3bd64"]
 LABELS = {**{i: ("Acceleration · raw counts", "Angular rate · raw counts") for i in range(1, 5)},
@@ -54,6 +55,8 @@ LABELS.update({**{i: ("Gas ADC · raw counts", "Uncalibrated") for i in range(10
                16: ("Pressure · Pa", "Temperature · °C")})
 MODELS.update({10:"SGX-7SO2-AQ-20",11:"SO₂ auxiliary",12:"SGX-7H2S-AQ-25",13:"H₂S auxiliary",
                14:"PMS5003",15:"SHT40",16:"BMP390"})
+LABELS[17] = ("Enclosure temperature · °C", "Enclosure humidity · %RH")
+MODELS[17] = "SHT45"
 
 def chart_options(title):
     return dict(backgroundColor="transparent", animation=False, color=COLORS,
@@ -107,20 +110,21 @@ def board_scene(scene, select):
             connector = next(part for part in layout['parts'] if part['ref'] == 'J90')['xy']
             add_geophone(scene, ((connector[0]-center_x)/10, (28-connector[1])/10), targets, rings, TEAL)
         with scene.group() as head:
-            scene.box(7, 4.5, .16).material("#165b51")
+            scene.gltf(f"/board-assets/burrowlark.glb?v={HEAD_ASSET_VERSION}").scale(100).rotate(math.pi / 2, 0, 0).move(-8.5, 7.25, 0)
             for part in remote["parts"]:
                 ref = part["ref"]
-                if ref not in ("U1", "U2", "U3", "J1"):
+                if ref not in ("U2", "U6"):
                     continue
                 x, y = (part["xy"][0] - 35) / 10, (22.5 - part["xy"][1]) / 10
-                sid = {"U2": 7, "U3": 8}.get(ref)
-                box = scene.box(1.6 if sid else .6, 1.5 if sid else .6, .5 if sid else .3).move(x, y, .35).material("#293544")
+                sid = {"U2": 7, "U6": 17}[ref]
+                radius = 1.4 if sid == 7 else .3
+                box = scene.cylinder(radius, radius, .05).rotate(math.pi/2, 0, 0).move(x, y, .25).material(TEAL, .15)
                 if sid:
                     targets[box.id] = sid
-                    ring = scene.ring(1, 1.08, 48).move(x, y, .64).material(TEAL)
+                    ring = scene.ring(radius, radius+.06, 48).move(x, y, .28).material(TEAL)
                     rings.setdefault(sid, []).append(ring)
                     targets[ring.id] = sid
-                    scene.text(NAMES[sid] + (" · optional" if sid == 8 else ""), "color:white;font-size:12px;pointer-events:none").move(x, y, 1)
+                    scene.text(NAMES[sid], "color:white;font-size:12px;pointer-events:none").move(x, y, 1)
             scene.text("REMOTE USB HEAD  /  70 × 45 mm", "color:#a6bfcc;font-size:11px;pointer-events:none").move(0, -2.8, .1)
         head.visible(False)
         skylark = add_skylark(scene, targets, rings, TEAL)
@@ -156,10 +160,10 @@ def page():
         nonlocal selected
         selected = sid
         heading.set_text(f"{NAMES[sid]}  /  {MODELS[sid]}")
-        board_label.set_text("Skylark USB" if sid >= 10 else "Remote USB sensor head" if sid == 7 else "DAQHAT-01 sensor HAT")
+        board_label.set_text("Burrowlark USB sensor head" if sid in (7,17) else "Skylark USB" if 10 <= sid <= 16 else "DAQHAT-01 sensor HAT")
         hat.visible(sid < 10 and sid != 7)
-        skylark.visible(sid >= 10)
-        head.visible(sid == 7)
+        skylark.visible(10 <= sid <= 16)
+        head.visible(sid in (7,17))
         for sensor, highlights in rings.items():
             for ring in highlights:
                 ring.material(TEAL if sensor == sid or (sensor in (10,12) and sensor+1 == sid) or (sensor in (11,13) and sensor-1 == sid) else "#60788a", 1 if sensor == sid or (sensor in (10,12) and sensor+1 == sid) or (sensor in (11,13) and sensor-1 == sid) else .25)
@@ -170,8 +174,11 @@ def page():
         update_charts()
 
     def camera(top=False):
-        sky = selected >= 10
-        scene.move_camera(x=1.5 if sky else 0 if top else 4, y=-.01 if top else -8 if sky else -13, z=(23 if top else 21) if sky else 23 if top else 16,
+        sky = 10 <= selected <= 16
+        remote = selected in (7, 17)
+        scene.move_camera(x=1.5 if sky else 0 if top else 2 if remote else 4,
+                          y=-.01 if top else -8 if sky else -6 if remote else -13,
+                          z=(23 if top else 21) if sky else (11 if top else 8) if remote else 23 if top else 16,
                           look_at_x=1.5 if sky else 0, look_at_y=0, look_at_z=.2, up_x=0, up_y=0, up_z=1)
 
     def sync_board():
@@ -188,6 +195,7 @@ def page():
         pressure_controls.set_visibility(8 in engine.sensor_ids)
         geophone_controls.set_visibility(engine.board in ("all","hat"))
         air_controls.set_visibility(engine.board == "skylark")
+        climate_controls.set_visibility(17 in engine.sensor_ids)
         demo_button.set_visibility(engine.board in ('hat','all','burrowlark'))
         choose(visible_ids[0] if visible_ids else 1)
         camera()
@@ -262,7 +270,7 @@ def page():
         try:
             data, report = await run.io_bound(run_bench, engine.board)
             await run.io_bound(engine.load_recording, data)
-            await run.io_bound(engine.seek, 8)
+            await run.io_bound(engine.seek, engine.duration / 1e9)
             verified_capture, signal_report = data, report
             sync_board()
             verification_title.set_text(f'{"PASS" if report["passed"] else "FAIL"} · {sum(c["passed"] for c in report["checks"])}/{len(report["checks"])} board checks')
@@ -295,7 +303,7 @@ def page():
         mode = ui.badge("SIMULATION", color="primary").props("outline")
         state_label = ui.label("Ready").classes("muted")
         board_select = ui.select(BOARDS, value="hat", label="Board", on_change=lambda: attempt(switch_board)).props("dense outlined").classes("w-56").tooltip('Switching boards starts a new run; save the current recording first')
-        test_button = ui.button("Test selected board", icon="fact_check", on_click=run_signal_test).props("outline no-caps").tooltip("Replaces this session with a board-specific 8-second test; download any current run first")
+        test_button = ui.button("Test selected board", icon="fact_check", on_click=run_signal_test).props("outline no-caps").tooltip("Replaces this session with a short board-specific test; download any current run first")
         play = ui.button("Start", icon="play_arrow", on_click=lambda: attempt(engine.toggle)).props("unelevated no-caps")
         save = ui.button("Finish & save", icon="download", on_click=lambda: attempt(save_recording)).props("outline no-caps")
 
@@ -317,7 +325,7 @@ def page():
             ui.label("DEVICES").classes("eyebrow")
             ui.label("Select a sensor").classes("section-title")
             sensor_buttons, statuses = {}, {}
-            for sid in (1, 2, 3, 9, 7, 8, 10, 11, 12, 13, 14, 15, 16):
+            for sid in (1, 2, 3, 9, 7, 17, 8, 10, 11, 12, 13, 14, 15, 16):
                 name = NAMES[sid]
                 with ui.button(on_click=lambda sid=sid: choose(sid)).props("flat no-caps align=left").classes("sensor-button") as b:
                     with ui.column().classes("gap-0 items-start"):
@@ -349,7 +357,7 @@ def page():
                 hat, head, skylark, rings = board_scene(scene, choose)
                 camera()
                 ui.label("Click a sensor to inspect · drag to orbit · scroll to zoom").classes("small muted")
-                ui.label("HAT: KiCad geometry. Geophone: nominal 25.4 × 33 mm body; illustrative terminals/leads. Remote head: simplified geometry. Skylark: native PCB plus package envelopes; PMS5003 shown beside it for inspection. Camera motion does not stimulate sensors.").classes("fine-print")
+                ui.label("HAT: KiCad geometry. Geophone: nominal 25.4 × 33 mm body; illustrative terminals/leads. Burrowlark: native PCB with simplified PNI and SHT45 envelopes. Skylark: native PCB plus package envelopes; PMS5003 shown beside it for inspection. Camera motion does not stimulate sensors.").classes("fine-print")
             with ui.column().classes("panel chart-panel"):
                 heading = ui.label("IMU 1 / LSM6DSO").classes("section-title")
                 detail = ui.label("Waiting for samples").classes("small muted")
@@ -391,6 +399,11 @@ def page():
                     geo_freq = ui.number("Frequency (Hz)", value=10, min=.1, max=100)
                     ui.button("Apply geophone tone", on_click=lambda: attempt(lambda: engine.controls({"geophone_velocity_m_s": {"amplitude": geo_amp.value/1e6, "frequency_hz": geo_freq.value}}))).props("flat no-caps")
                     ui.label("Steady-state response model; changes do not simulate settling.").classes("muted")
+                with ui.expansion("Enclosure climate", icon="thermostat", value=True).classes("w-full") as climate_controls:
+                    enclosure_temp = ui.number("Enclosure temperature (°C)", value=25, min=-40, max=125, step=1).props("dense outlined").classes("w-full")
+                    enclosure_rh = ui.number("Enclosure humidity (%RH)", value=50, min=0, max=100, step=1).props("dense outlined").classes("w-full")
+                    ui.button("Apply enclosure climate", on_click=lambda: attempt(lambda: engine.controls({"temperature_c": enclosure_temp.value, "humidity_percent": enclosure_rh.value}))).props("flat no-caps")
+                    ui.label("SHT45 at 1 sample/s, heater off. Measures enclosure air; soil moisture requires a separate probe.").classes("fine-print")
                 with ui.expansion("Air quality stimulus", icon="air", value=True).classes("w-full") as air_controls:
                     air_fields = {}
                     for key, label, value, low, high in [("so2_ppm","SO₂ stimulus (ppm)",0,0,20),
@@ -436,7 +449,7 @@ def page():
         snap = engine.snapshot(selected)
         for chart, field, label in ((primary, "primary", LABELS[selected][0]), (secondary, "secondary", LABELS[selected][1])):
             chart.options["title"]["text"] = label
-            names = ["PM1", "PM2.5", "PM10"] if selected == 14 else ["Value", "", ""] if selected in (8,9,10,11,12,13,15,16) else list("XYZ")
+            names = ["PM1", "PM2.5", "PM10"] if selected == 14 else ["Value", "", ""] if selected in (8,9,10,11,12,13,15,16,17) else list("XYZ")
             chart.options["legend"]["show"] = selected in (1,2,3,7,14)
             for axis, series in enumerate(chart.options["series"]):
                 series["name"] = names[axis]

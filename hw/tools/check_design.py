@@ -4,7 +4,7 @@ This does not perform analog simulation, SI/PI signoff or bench validation.
 """
 from pathlib import Path
 from project_paths import board_dir, compiled_dir
-from burrowlark_checks import magnetometer_only
+from burrowlark_checks import population
 from collections import Counter
 import argparse,json,subprocess,xml.etree.ElementTree as ET
 import pcbnew as pcb
@@ -32,7 +32,7 @@ def main(boards=('groundlark-hat','groundlark-field-head')):
                 (part['ref'] for part in expected['parts']),
                 (node.get('ref') for node in tree.findall('.//components/comp')),
             ):
-                magnetometer_only(refs)
+                population(refs)
         compiler_pins={(fp.GetReference(),pad.GetNumber()):pad.GetNetname() for fp in compiled.GetFootprints() for pad in fp.Pads() if pad.GetNumber()}
         failures=[];checks=0
         for key,net in compiler_pins.items():

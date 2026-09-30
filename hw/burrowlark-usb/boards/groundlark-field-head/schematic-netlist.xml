@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/mnt/p/Personal/groundlark/hw/burrowlark-usb/boards/groundlark-field-head/groundlark-field-head.kicad_sch</source>
-    <date>2026-09-29T23:28:21-0700</date>
+    <date>2026-09-30T10:17:20-0700</date>
     <tool>Eeschema 9.0.9-9.0.9~ubuntu24.04.1</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -398,6 +398,22 @@
       <sheetpath names="/03-sensors-page-01/" tstamps="/ab979e54-c171-5922-9bbc-4aaabc504545/"/>
       <tstamps>d9ed3b6c-c51f-56cb-99ca-fd731912de41</tstamps>
     </comp>
+    <comp ref="C10">
+      <value>100n</value>
+      <footprint>Groundlark:Capacitor_SMD__C_0603_1608Metric</footprint>
+      <fields>
+        <field name="MPN">GRM188R71H104KA93D</field>
+        <field name="Footprint">Groundlark:Capacitor_SMD__C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_C10" description=""/>
+      <property name="MPN" value="GRM188R71H104KA93D"/>
+      <property name="Sheetname" value="03-sensors-page-01"/>
+      <property name="Sheetfile" value="03-sensors-page-01.kicad_sch"/>
+      <sheetpath names="/03-sensors-page-01/" tstamps="/ab979e54-c171-5922-9bbc-4aaabc504545/"/>
+      <tstamps>eb4266c1-c8dc-54af-95c5-0102de4599bf</tstamps>
+    </comp>
     <comp ref="R5">
       <value>100k</value>
       <footprint>Groundlark:Resistor_SMD__R_0603_1608Metric</footprint>
@@ -478,12 +494,41 @@
       <sheetpath names="/03-sensors-page-01/" tstamps="/ab979e54-c171-5922-9bbc-4aaabc504545/"/>
       <tstamps>aaf6b54e-d79e-520f-bf47-622b3680b98c</tstamps>
     </comp>
+    <comp ref="U6">
+      <value>SHT45</value>
+      <footprint>Groundlark:SHT45</footprint>
+      <fields>
+        <field name="MPN">SHT45-AD1B-R2</field>
+        <field name="Footprint">Groundlark:SHT45</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Groundlark" part="Part_U6" description=""/>
+      <property name="MPN" value="SHT45-AD1B-R2"/>
+      <property name="Sheetname" value="03-sensors-page-01"/>
+      <property name="Sheetfile" value="03-sensors-page-01.kicad_sch"/>
+      <sheetpath names="/03-sensors-page-01/" tstamps="/ab979e54-c171-5922-9bbc-4aaabc504545/"/>
+      <tstamps>af17959a-e7ab-5c69-9055-f3f7cf778108</tstamps>
+    </comp>
   </components>
   <libparts>
     <libpart lib="Groundlark" part="Part_C1">
       <fields>
         <field name="Reference">C</field>
         <field name="Value">2.2u</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Groundlark" part="Part_C10">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">100n</field>
         <field name="Footprint"/>
         <field name="Datasheet"/>
         <field name="Description"/>
@@ -880,6 +925,21 @@
         <pin num="6" name="OUT" type="passive"/>
       </pins>
     </libpart>
+    <libpart lib="Groundlark" part="Part_U6">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">SHT45</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="SDA" type="passive"/>
+        <pin num="2" name="SCL" type="passive"/>
+        <pin num="3" name="VDD" type="power_in"/>
+        <pin num="4" name="VSS" type="power_in"/>
+      </pins>
+    </libpart>
   </libparts>
   <libraries>
     <library logical="Groundlark">
@@ -894,6 +954,7 @@
     </net>
     <net code="2" name="GND" class="Default">
       <node ref="C1" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="C10" pin="2" pinfunction="2" pintype="passive"/>
       <node ref="C2" pin="2" pinfunction="2" pintype="passive"/>
       <node ref="C3" pin="2" pinfunction="2" pintype="passive"/>
       <node ref="C4" pin="2" pinfunction="2" pintype="passive"/>
@@ -921,6 +982,7 @@
       <node ref="U2" pin="7" pinfunction="AVSS" pintype="power_in"/>
       <node ref="U4" pin="2" pinfunction="GND" pintype="power_in"/>
       <node ref="U5" pin="2" pinfunction="GND" pintype="power_in"/>
+      <node ref="U6" pin="4" pinfunction="VSS" pintype="power_in"/>
     </net>
     <net code="3" name="MAG_DRDY" class="Default">
       <node ref="U1" pin="14" pinfunction="PB0" pintype="passive"/>
@@ -936,11 +998,13 @@
       <node ref="R8" pin="1" pinfunction="1" pintype="passive"/>
       <node ref="U1" pin="29" pinfunction="I2C_SCL" pintype="passive"/>
       <node ref="U2" pin="1" pinfunction="SCL" pintype="passive"/>
+      <node ref="U6" pin="2" pinfunction="SCL" pintype="passive"/>
     </net>
     <net code="6" name="SDA" class="Default">
       <node ref="R7" pin="1" pinfunction="1" pintype="passive"/>
       <node ref="U1" pin="30" pinfunction="I2C_SDA" pintype="passive"/>
       <node ref="U2" pin="3" pinfunction="SDA" pintype="passive"/>
+      <node ref="U6" pin="1" pinfunction="SDA" pintype="passive"/>
     </net>
     <net code="7" name="SENSOR_EN" class="Default">
       <node ref="R5" pin="1" pinfunction="1" pintype="passive"/>
@@ -1012,6 +1076,7 @@
       <node ref="U5" pin="1" pinfunction="IN" pintype="passive"/>
     </net>
     <net code="17" name="V3_SENSOR" class="Default">
+      <node ref="C10" pin="1" pinfunction="1" pintype="passive"/>
       <node ref="C4" pin="1" pinfunction="1" pintype="passive"/>
       <node ref="R7" pin="2" pinfunction="2" pintype="passive"/>
       <node ref="R8" pin="2" pinfunction="2" pintype="passive"/>
@@ -1020,6 +1085,7 @@
       <node ref="U2" pin="13" pinfunction="AVDD" pintype="power_in"/>
       <node ref="U5" pin="5" pinfunction="QOD" pintype="passive"/>
       <node ref="U5" pin="6" pinfunction="OUT" pintype="passive"/>
+      <node ref="U6" pin="3" pinfunction="VDD" pintype="power_in"/>
     </net>
     <net code="18" name="unconnected-(J1-PadA8)" class="Default">
       <node ref="J1" pin="A8" pinfunction="A8" pintype="passive+no_connect"/>

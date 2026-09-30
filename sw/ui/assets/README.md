@@ -22,7 +22,7 @@ KiCad's exporter cannot convert the local VRML bodies. The Python scene adds
 simplified envelopes for the selected 8.5 mm Megastar Pi socket and Trenz connectors. Selection rings use `hw/groundlark-fpga-hat/layout/placement.json` XY values.
 The fitted DLVR U23 is represented by a conservative upright E1BS envelope on
 the HAT; its custom VRML cannot be converted by KiCad. The remote head is a
-separate placement-based schematic 3D view containing the RM3100 magnetometer.
+native PCB GLB containing RM3100 and SHT45, with placement-based selection rings.
 
 The external geophone is authored in Python in `../geophone_scene.py`, with a
 25.4 mm diameter / 33 mm high Racotech body. Terminals and leads to J90 are
@@ -86,3 +86,23 @@ The 12 V revision re-exports the enlarged PCB and adds explicit PJ-102AH and
 TPSM53603 display envelopes because those native VRML models are omitted from
 GLB. Their dimensions come from manufacturer drawings; they are not certified
 mating solids. The jack faces away from the geophone exit.
+
+## Burrowlark
+
+`burrowlark.glb` contains the native 70 x 45 mm routed PCB and stock models plus
+simplified PNI14190, PTC1812 and SHT45 envelopes. The SHT45 body is an authored
+nominal 1.5 x 1.5 x 0.5 mm model based on the Sensirion SHT4x package drawing,
+not a supplier-certified solid. It is included in both the native README render
+and browser GLB. Export with KiCad 9.0.9:
+
+```sh
+kicad-cli pcb export glb --force --no-dnp --include-pads --include-silkscreen \
+  --include-soldermask --subst-models --output .local/burrowlark-native.glb \
+  hw/burrowlark-usb/boards/groundlark-field-head/groundlark-field-head.kicad_pcb
+python sw/ui/build_burrowlark_model.py .local/burrowlark-native.glb
+```
+
+Use a separate build environment with `trimesh==4.8.3` and `numpy==2.5.3`.
+The three local VRML parts are the expected missing native GLB models and are
+added by the converter. Inspect alignment before accepting the hashes in
+`burrowlark-provenance.json`. Runtime/UI dependencies remain unchanged.

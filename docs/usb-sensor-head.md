@@ -1,7 +1,7 @@
 # Burrowlark DAQUSB-01 — USB sensor head
 
 **Burrowlark** (model **DAQUSB-01**) is Groundlark's 70 × 45 mm remote USB-C
-sensor board, carrying an RM3100 magnetometer. The DLVR infrasound sensor and
+sensor board, carrying an RM3100 magnetometer and SHT45 temperature/humidity sensor. The DLVR infrasound sensor and
 its bypass capacitor have moved to Groundlark DAQHAT-01 as U23/C24. Its circuit source is [`hw/burrowlark-usb/elec/field_head.ato`](../hw/burrowlark-usb/elec/field_head.ato),
 its native CAD is in [`hw/burrowlark-usb/boards/groundlark-field-head/`](../hw/burrowlark-usb/boards/groundlark-field-head),
 and its firmware belongs in [`sw/field-head/`](../sw/field-head/README.md).
@@ -24,9 +24,13 @@ power output or PCA9615 transceiver on the HAT.
   10 kohm pull-down and a boot jumper. SWD provides debug/programming access.
 - U5: TPS22919DCKR switches the sensor rail; PA0 enables it, a 100 kohm pull-down
   defaults it off. QOD joins output for discharge through the internal resistor.
-- PB6/PB7 read RM3100 (0x20) over local I2C. Pull-ups connect to the switched
+- PB6/PB7 read RM3100 (0x20) and SHT45 (0x44) over local I2C. Pull-ups connect to the switched
   rail. PB0 reads RM3100 data-ready. U3/C5 and their pressure-sensor branches
   are removed; the USB board remains 70 × 45 mm.
+
+- U6: Sensirion SHT45-AD1B-R2, DFN-4 1.5 x 1.5 mm. Pins 1/2 are SDA/SCL,
+  pin 3 is switched V3_SENSOR, pin 4 is GND. C10 provides local 100 nF bypass.
+  This shares the existing switched-rail pull-ups; its heater remains off.
 
 J2 SWD pins: 1 = 3.3 V reference, 2 = SWDIO, 3 = GND, 4 = SWCLK, 5 = NRST.
 Use its 3.3 V pin as a probe reference; do not power it externally while USB is
@@ -64,7 +68,7 @@ Capacitor tolerance, inrush and USB suspend behavior require measurement.
 ## CAD and previews
 
 The routed PCB, compiled layout, review schematic and BOM contain the RM3100
-and its C4 bypass capacitor, with no U3/C5 pressure-sensor population. The
+and its C4 bypass capacitor, plus SHT45 U6/C10, with no U3/C5 pressure-sensor population. The
 70 × 45 mm outline, USB interface and native SES routing snapshot are retained.
 [PCB render](../hw/burrowlark-usb/boards/groundlark-field-head/3d.png) and
 [schematic/assembly previews](../hw/burrowlark-usb/boards/groundlark-field-head/preview/)
@@ -90,3 +94,27 @@ manufacturing. Native KiCad checks establish geometry and connectivity only.
 - [TPS22919 datasheet](https://www.ti.com/lit/ds/symlink/tps22919.pdf)
 - [AP2112 datasheet](https://www.diodes.com/datasheet/download/AP2112.pdf)
 - [USB4105 drawing](https://gct.co/files/drawings/usb4105.pdf)
+
+## SHT45 acquisition and installation
+
+Use high-precision command `0xFD` at address `0x44`, with a STOP followed by
+at least 8.3 ms before reading six bytes (the reference driver waits 9 ms).
+Check the CRC of each two-byte word: polynomial 0x31, initial value 0xFF.
+Publish both original words and CRCs as sensor 17 `ClimateRaw`, once per second,
+with MCU acquisition timing. A failed read produces missing data and bounded
+recovery; it never becomes a zero-temperature or zero-humidity reading.
+The fixed profile exposes no heater command. See the
+[Sensirion SHT4x datasheet](https://sensirion.com/resource/datasheet/sht4x).
+
+Temperature is `-45 + 175 * raw / 65535` degrees Celsius. Relative humidity is
+`-6 + 125 * raw / 65535` percent; clip the display to 0-100% while retaining
+unchanged raw bytes. Keep the sensing opening free of solder flux, coating and
+potting. Inside a sealed buried enclosure, this measures enclosure air and
+helps detect condensation/leaks; it does not measure soil water content.
+Board heat and the enclosure's equilibration delay require characterization.
+
+The browser workbench runs the command-aware reference driver against a modeled
+bus, including both CRCs, independent magnetic/climate faults, recovery and raw
+record/replay. It is not USB enumeration or STM32 firmware qualification.
+The selected assembly identity is recorded under
+[`hw/assembly/burrowlark-usb/`](../hw/assembly/burrowlark-usb/).

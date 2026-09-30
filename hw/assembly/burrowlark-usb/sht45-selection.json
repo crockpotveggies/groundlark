@@ -1,0 +1,26 @@
+{
+  "manufacturer": "Sensirion",
+  "mpn": "SHT45-AD1B-R2",
+  "jlcpcb_part": "C5221601",
+  "reference": "U6",
+  "catalog_url": "https://jlcpcb.com/partdetail/Sensirion-SHT45_AD1BR2/C5221601",
+  "manufacturer_url": "https://sensirion.com/products/catalog/SHT45",
+  "observed_at": "2026-09-30",
+  "stock_observation": {
+    "in_stock": 6188,
+    "available_order_quantity": 4328,
+    "currency": "USD",
+    "unit_price_at_quantity_1": 6.1306,
+    "method": "Live JLCPCB product page viewed in browser"
+  },
+  "package": "DFN-4 1.5 x 1.5 mm",
+  "pinout": {
+    "1": "SDA",
+    "2": "SCL",
+    "3": "VDD",
+    "4": "VSS"
+  },
+  "note": "Stock is a dated observation, not a reservation. Supplier placement/pad overlay remains subject to assembly review.",
+  "datasheet_url": "https://sensirion.com/resource/datasheet/sht4x",
+  "datasheet_revision": "7.3, June 2026"
+}

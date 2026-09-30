@@ -22,6 +22,7 @@ POINTS = 400
 NAMES = {1: "IMU 1", 2: "IMU 2", 3: "IMU 3", 4: "IMU 4", 5: "Inclinometer",
          7: "Magnetometer", 8: "Infrasound", 9: "Geophone"}
 NAMES.update(skylark.NAMES)
+NAMES[17] = "Enclosure climate"
 BOARDS = {"all": "HAT + Burrowlark", "hat": "Groundlark FPGA HAT",
           "burrowlark": "Burrowlark USB", "skylark": "Skylark USB"}
 
@@ -29,7 +30,7 @@ def board_configs(board):
     if board not in BOARDS: raise ValueError("Unknown or deferred board")
     if board == 'skylark': return skylark.defaults()
     hat = defaults() + [cfg for cfg in defaults(True) if cfg['sensor_id'] == 8]
-    head = [cfg for cfg in defaults(True) if cfg['sensor_id'] == 7]
+    head = [cfg for cfg in defaults(True) if cfg['sensor_id'] in (7, 17)]
     return (hat if board in ('all','hat') else []) + (head if board in ('all','burrowlark') else [])
 
 QUALITY = {1: "Valid", 2: "Missing", 3: "Saturated", 4: "Fault"}
@@ -64,10 +65,10 @@ def project_sample(sensor, sample):
         result.update(primary=[raw.counts, None, None], detail=f"ADS122C04 counts • conversion {raw.conversion_counter} • gas concentration uncalibrated")
     elif sensor == 14:
         result.update(primary=list(struct.unpack_from(">HHH", raw.response, 10)), detail="PMS5003 atmospheric PM1 / PM2.5 / PM10 (µg/m³) • original 32-byte frame retained")
-    elif sensor == 15:
+    elif sensor in (15, 17):
         temperature = -45 + 175 * int.from_bytes(raw.response[:2], "big") / 65535
         humidity = max(0, min(100, -6 + 125 * int.from_bytes(raw.response[3:5], "big") / 65535))
-        result.update(primary=[temperature, None, None], secondary=[humidity, None, None], detail="SHT40 °C / %RH • CRC-checked raw frame retained")
+        result.update(primary=[temperature, None, None], secondary=[humidity, None, None], detail=f"{'SHT45' if sensor == 17 else 'SHT40'} °C / %RH • CRC-checked raw frame retained")
     elif sensor == 16:
         pressure, temperature = skylark.barometer_units(raw.response, raw.calibration)
         result.update(primary=[pressure, None, None], secondary=[temperature, None, None], detail="BMP390 Pa / °C • factory compensation; raw frame and trim retained")
@@ -128,8 +129,8 @@ class Workbench:
             self.writer = Writer(self.stream, dict(format="groundlark-acquisition-v1", source="simulation",
                 calibrations=[], timing="poll completion; uncertainty unknown", seed=seed, faults=[],
                 remote=board in ("all", "burrowlark"), board=board, stimulus_model="ideal-v1", scenario=scenario.export()), max_bytes=MAX_BYTES)
-            channels = [Channel("sim-skylark" if cfg["sensor_id"] >= 10 else "sim-head" if cfg["sensor_id"] == 7 else "sim-pi",
-                2 if cfg["sensor_id"] == 7 else 1, cfg,
+            channels = [Channel("sim-head" if cfg["sensor_id"] in (7, 17) else "sim-skylark" if cfg["sensor_id"] in skylark.SENSORS else "sim-pi",
+                2 if cfg["sensor_id"] in (7, 17) else 1, cfg,
                 Simulated(cfg["sensor_id"], seed, scenario=scenario, clock=lambda: self.now))
                 for cfg in configs]
             self.acquisition = Acquisition(TraceSink(self, self.writer), Sessions(), channels)
@@ -230,7 +231,7 @@ class Workbench:
         with self.lock:
             self.acquisition.close()
             self.sensor_ids = tuple(sorted(inventory))
-            self.board = "skylark" if inventory and inventory <= set(skylark.SENSORS) else "burrowlark" if inventory <= {7} else "hat" if not inventory & {7, *skylark.SENSORS} else "all"
+            self.board = "skylark" if inventory and inventory <= set(skylark.SENSORS) else "burrowlark" if inventory <= {7, 17} else "hat" if not inventory & {7, 17, *skylark.SENSORS} else "all"
             self.recorded = data
             self.origin, self.duration = first, last - first
             self.mode, self.running, self.error = "Replay", False, "" if completed else "Recording has no completion summary"

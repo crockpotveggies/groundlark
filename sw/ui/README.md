@@ -33,3 +33,9 @@ Burrowlark and Skylark. Coldfoot remains deferred. `skylark_scene.py` adds
 selectable gas/climate/PM targets to the native PCB/package GLB.
 `build_skylark_model.py` is build-only tooling; its dependencies are separate
 from the locked UI environment. See [asset provenance](assets/README.md).
+
+Burrowlark includes RM3100 and SHT45 sensor 17. Select its enclosure-climate
+channel to adjust temperature and humidity, inject faults and inspect both plots.
+**Test selected board** verifies independent faults, recovery and recording/replay.
+`build_burrowlark_model.py` merges the native KiCad export with the authored
+PNI/PTC/SHT45 envelopes; see `assets/README.md` for regeneration.

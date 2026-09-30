@@ -28,3 +28,5 @@ H1,M2.5 NPTH,M2.5 NPTH,MountingHole__MountingHole_2.7mm_M2.5,False,
 H2,M2.5 NPTH,M2.5 NPTH,MountingHole__MountingHole_2.7mm_M2.5,False,
 H3,M2.5 NPTH,M2.5 NPTH,MountingHole__MountingHole_2.7mm_M2.5,False,
 H4,M2.5 NPTH,M2.5 NPTH,MountingHole__MountingHole_2.7mm_M2.5,False,
+U6,SHT45,SHT45-AD1B-R2,SHT45,False,Enclosure temperature/humidity; 0x44; heater disabled; keep sensing opening exposed
+C10,100n,GRM188R71H104KA93D,Capacitor_SMD__C_0603_1608Metric,False,SHT45 local bypass

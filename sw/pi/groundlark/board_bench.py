@@ -14,7 +14,8 @@ def run_bench(board="hat"):
     e = Workbench(board=board)
     initial = ({"so2_ppm": 1, "h2s_ppm": 2, "pm25_ug_m3": 37,
                 "temperature_c": 25, "humidity_percent": 50, "ambient_pressure_pa": 101325}
-               if board == "skylark" else {"magnetic_ut": [-10, 0, 20]})
+               if board == "skylark" else {"magnetic_ut": [-10, 0, 20],
+                                          "temperature_c": -10, "humidity_percent": 0})
     e.controls(initial)
     def advance(ms):
         e.running = True
@@ -38,16 +39,36 @@ def run_bench(board="hat"):
               "Factory compensation of synthetic trim: 101325 Pa, 25 C")
     else:
         check("Magnetometer", snap["latest"][7]["primary"] == [-750, 0, 1500], "Nominal 75 counts/uT, signed axes")
+        climate = snap["latest"][17]
+        check("SHT45 cold/dry", abs(climate["primary"][0]+10)<.003 and
+              abs(climate["secondary"][0])<.003, "Negative temperature and zero RH remain valid; both CRC words retained")
+        e.controls({"temperature_c": 35, "humidity_percent": 85})
+        advance(1000)
+        climate = e.snapshot(17)["latest"][17]
+        check("SHT45 stimulus", abs(climate["primary"][0]-35)<.003 and
+              abs(climate["secondary"][0]-85)<.003, "Independent warm/humid transfer expectation")
     e.controls({"sensor_faults": {str(sid): "timeout"}})
     advance(1000)
     snap = e.snapshot(sid)
     check("Fault isolation", snap["latest"][sid]["quality"] == "Missing" and
-          (board != "skylark" or snap["latest"][14]["quality"] == "Valid"), "Missing stays distinct from zero; independent Skylark streams continue")
+          snap["latest"][14 if board == "skylark" else 17]["quality"] == "Valid",
+          "Missing stays distinct from zero; independent environmental stream continues")
     e.controls({"sensor_faults": {str(sid): "none"}})
-    advance(5000)
+    advance(5000 if board == "skylark" else 1000)
+    if board == "burrowlark":
+        e.controls({"sensor_faults": {"17": "timeout"}})
+        advance(1000)
+        values = e.snapshot(17)["latest"]
+        check("SHT45 fault isolation", values[17]["quality"] == "Missing" and
+              values[7]["quality"] == "Valid", "Climate failure leaves magnetic acquisition running")
+        e.controls({"sensor_faults": {"17": "none"}})
+        advance(3000)
+        check("SHT45 recovery", e.snapshot(17)["latest"][17]["quality"] == "Valid",
+              "Bounded retry restores heater-off climate acquisition")
     data = e.finish()
     before = e.snapshot(sid)["latest"]
-    e.load_recording(data);e.seek(8)
+    end = e.now / 1e9
+    e.load_recording(data);e.seek(end)
     check("Replay", e.snapshot(sid)["latest"] == before, "Checked recording reproduces final raw values, gaps and timestamps")
     return data, dict(passed=all(c["passed"] for c in checks), checks=checks,
                      samples=e.samples, recording_sha256=sha256(data).hexdigest(),

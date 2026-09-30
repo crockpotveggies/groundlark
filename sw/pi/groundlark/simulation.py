@@ -2,11 +2,12 @@
 from .sensors import NotReady
 from .stimulus import Scenario, reading
 from .skylark import defaults as skylark_defaults
+from .burrowlark import SETTINGS as CLIMATE_SETTINGS
 
 
 class Simulated:
     def __init__(self, sensor, seed=1, faults=(), scenario=None, clock=None):
-        if type(sensor) is not int or not 1 <= sensor <= 16: raise ValueError("simulated sensor ID")
+        if type(sensor) is not int or not 1 <= sensor <= 17: raise ValueError("simulated sensor ID")
         if type(seed) is not int or not 0 <= seed < 1 << 64: raise ValueError("seed must be uint64")
         self.sensor, self.seed, self.index = sensor, seed, 0
         self.scenario, self.clock = scenario or Scenario(), clock
@@ -14,7 +15,7 @@ class Simulated:
         if len(faults) > 256: raise ValueError("fault fixture bound")
         self.faults = {}
         for f in faults:
-            if set(f) != {"sensor", "sample", "action"} or f["sensor"] not in range(1, 17) or type(f["sample"]) is not int or not 0 <= f["sample"] <= 1_000_000:
+            if set(f) != {"sensor", "sample", "action"} or f["sensor"] not in range(1, 18) or type(f["sample"]) is not int or not 0 <= f["sample"] <= 1_000_000:
                 raise ValueError("fault fixture fields")
             if f["action"] not in ("timeout", "nack", "disconnect", "not_ready", "saturation", "short_read"):
                 raise ValueError("unknown fault action")
@@ -57,7 +58,7 @@ def defaults(remote=False, legacy_gnss=False):
         return [dict(sensor_id=7, enabled=True, period_ns=100_000_000, cycle_count_x=200,
                      cycle_count_y=200, cycle_count_z=200),
                 dict(sensor_id=8, enabled=True, period_ns=10_000_000, pressure_min_pa=-250,
-                     pressure_max_pa=250, pressure_part_number="SIMULATED-DLVR")]
+                     pressure_max_pa=250, pressure_part_number="SIMULATED-DLVR"), dict(CLIMATE_SETTINGS)]
     if not legacy_gnss:
         from .geophone import SETTINGS
         entries = entries[:3] + [dict(SETTINGS)]

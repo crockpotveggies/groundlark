@@ -207,3 +207,17 @@ The DAQHAT-01 scene includes the 140 × 56 mm carrier, separate FPGA power
 section, barrel-jack and converter envelopes. Scene labels and sensor targets
 use the current placement coordinates. The rendered power switch is a physical
 board feature; simulation controls do not operate it.
+
+## Burrowlark temperature and humidity
+
+Select **Burrowlark USB**, then **Enclosure climate** (SHT45, sensor 17), or click
+its selection ring beside U6 on the native PCB model. Expand **Enclosure climate**
+in the stimulus panel, set temperature and relative humidity, and apply. Run the
+simulation to see both signals update at 1 Hz. These controls model enclosure air.
+
+**Test selected board** runs magnetic and climate steps, independently injects
+timeout faults, checks missing readings and recovery, then opens the bounded
+recording for replay. The report checks that the unaffected sensor stays valid.
+The replay slider preserves both raw CRC-protected climate words. Camera movement
+only changes the view. The displayed PNI and SHT45 bodies are dimensional envelopes;
+this test does not qualify physical USB, sensor accuracy or enclosure response.

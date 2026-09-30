@@ -1,0 +1,13 @@
+{
+  "kicad": "9.0.9",
+  "scope": "Native routed board/stock models with existing simplified PNI/PTC/SHT45 envelopes; no physical qualification.",
+  "sha256": {
+    "hw/burrowlark-usb/layout/placement.json": "6e88fc022addad31e79a434291da282b21d4b5bb6e4221e8b20037bf78f2ea6b",
+    "hw/burrowlark-usb/boards/groundlark-field-head/groundlark-field-head.kicad_pcb": "3f87b0c77dd37aa5064a337700af8d580ab10c5ef5261bb36b902149b1e64af6",
+    "sw/ui/build_burrowlark_model.py": "1f2a8db1227b69fb27a6ed80692a0511aa5380af30f46c2cbee74e311f8f47cd",
+    "hw/shared/models/PTC1812.wrl": "08432feb6826846a43080c5604656fbcbd35b567e1c4411ab52e65de5d733e6e",
+    "hw/shared/models/PNI14190.wrl": "71b906e9b88bf53675e91c76582e58dff1ca1249736d70346dbee2ac9dc33815",
+    "hw/shared/models/SHT45.wrl": "a9285f921528b102576e3109c79b1a0d298df52588b6b63715305b73dd4ba36c",
+    "sw/ui/assets/burrowlark.glb": "405a3e1f43f8ef2db77f8bada4f821adae71aa8559d803a290a000ebbe6afe4a"
+  }
+}

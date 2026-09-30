@@ -114,3 +114,14 @@ Aurora-related magnetic measurements are not optical aurora detection.
 Acquisition/replay and fault tests are implemented in the portable software
 profile; see [software evidence and limits](sensor-software.md). These tests
 do not qualify USB-head firmware or physical sensor performance.
+
+## Burrowlark climate checks
+
+The RM3100/SHT45 revision retains the 70 x 45 mm outline and removes no existing
+magnetic connections. Circuit and native CAD checks require U6/C10, verify the
+independent four-pin SHT45 mapping and bypass nets, and reject former U3/C5.
+Native DRC/airwire and schematic ERC reports, SES snapshot, README render and
+browser model accompany the revision. CRC corruption, conversion timing, board
+ownership, MCU clock domain, independent fault/recovery and recording/replay
+fixtures cover sensor 17. These modeled checks do not establish physical USB,
+magnetic noise, thermal performance or fabrication readiness.
