@@ -120,3 +120,10 @@ For a Burrowlark-only CAD check, run
 `python3 hw/tools/check_design.py --board groundlark-field-head`. The latter
 refreshes its ERC, DRC, netlist and validation reports without changing the PCB.
 The full portable lab remains the required cross-product regression check.
+
+Burrowlark identity artwork is authored in the `silkscreen` section of
+`hw/burrowlark-usb/layout/placement.json` and applied during board assembly.
+To refresh only these board graphics on existing routed CAD, run
+`python hw/tools/burrowlark_silkscreen.py` in the KiCad Python environment, then
+run the native design check and regenerate the render/previews. The command
+verifies that copper is unchanged; it uses the shared 7 mm favicon artwork.

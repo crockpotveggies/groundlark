@@ -598,6 +598,23 @@
         "local_fp": "Capacitor_SMD__C_0603_1608Metric",
         "names": {}
       }
-    ]
+    ],
+    "silkscreen": {
+      "name": "Burrowlark",
+      "model_revision": "DAQUSB-01 / REV A2",
+      "revision": "A2",
+      "logo_xy": [
+        48,
+        33
+      ],
+      "name_xy": [
+        48,
+        39
+      ],
+      "details_xy": [
+        48,
+        42
+      ]
+    }
   }
 }

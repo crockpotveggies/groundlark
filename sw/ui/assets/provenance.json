@@ -5,7 +5,7 @@
     "hw/groundlark-fpga-hat/layout/placement.json": "be501cb273bf5803fb9da5a098d1ea0dcc5e5a8ce35cb3abfdded6188cf611ca",
     "sw/ui/assets/daqhat-01.glb": "eecc5f97100dbdcba2ddbc70b4de825a4ea3bdf7d2afb7745bc91c8a6c334118",
     "sw/ui/geophone_scene.py": "65ef0de9df78e2b7c1c4697367f5a5b81486dd95f2fe4f01d9fa6f35b8dd461a",
-    "hw/burrowlark-usb/layout/placement.json": "6e88fc022addad31e79a434291da282b21d4b5bb6e4221e8b20037bf78f2ea6b",
+    "hw/burrowlark-usb/layout/placement.json": "049a0cdae7eab105f36448b234f84afc9cfedbed4c04333aad7730a901e1cc7a",
     "sw/ui/main.py": "ed322713c9e36d5fc659382cd91812c20b844f2b9101f0bc765f64496e8ab0a6",
     "hw/shared/models/DLVR_E1BS.wrl": "cef03553881ccfc39cc5810789a92d578c0f9d8a636b5de29cd719bada7c4dad",
     "hw/shared/models/PJ_102AH_envelope.wrl": "4ee72a8ea9a1d0d7c4afc079819353c87c9e6111557c5727d821b4f53b711c94",

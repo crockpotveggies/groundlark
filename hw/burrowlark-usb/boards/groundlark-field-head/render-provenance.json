@@ -1,7 +1,7 @@
 {
   "renderer": "9.0.9",
   "source_board": "groundlark-field-head.kicad_pcb",
-  "source_sha256": "08e6af213a37125a19f824ad61eade292b19b396dbd91dbf39df765c559a6919",
+  "source_sha256": "407d031b6b2a42187b1871b7d026fe11e131fc9a9cfc89dbb83f3b51821948ba",
   "generator": "hw/tools/render_burrowlark.py",
   "generator_sha256": "ee6ba3808d4bcd9760b9d68256a2973f2f91647a0b9d3550331db927802d7804",
   "models_sha256": {
@@ -22,7 +22,7 @@
   "images": [
     {
       "file": "3d.png",
-      "sha256": "5c9d0892df1a655594df07412b9ab08dc5f1aa82481cfc5eb8b36fbd925f4260",
+      "sha256": "e6c68993cfaa9129a742efb0e08e9e287cf7170810ec039c4f462017fdf0d51a",
       "side": "top",
       "rotation": "325,0,25",
       "zoom": 0.9,

@@ -155,8 +155,11 @@ def main():
                 add_text(b,'PI BAT 8-18V',183,54,.8)
                 add_text(b,'+    GND',167.9,64,.8)
         else:
-            add_text(b,'Groundlark FIELD A2',97,91,.8);add_text(b,'RM3100 / XYZ',68,54,.8)
+            add_text(b,'RM3100 / XYZ',68,54,.8)
         title=p.TITLE_BLOCK();title.SetTitle(name+' / atopile prototype');title.SetRevision('DAQHAT-01 6L' if target=='trenz_hat' else 'A2');title.SetDate('2026-09-25' if target=='trenz_hat' else '2026-09-23');b.SetTitleBlock(title)
+        if target == 'field_head':
+            from burrowlark_silkscreen import apply
+            apply(b, spec)
         restore(b)
         if target=='trenz_hat':
             for fp in b.GetFootprints():

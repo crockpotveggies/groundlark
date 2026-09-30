@@ -5,9 +5,11 @@ sensor head. It uses the PNI 14190 RM3100 XYZ module; U3/C5 and their pressure-s
 branches are removed. The DLVR pressure sensor is on DAQHAT-01. USB-head firmware
 and physical qualification remain pending.
 
-![Burrowlark RM3100 and SHT45 PCB](boards/groundlark-field-head/3d.png)
+![Burrowlark DAQUSB-01 Rev A2 with favicon, RM3100 and SHT45](boards/groundlark-field-head/3d.png)
 
-Native PCB render with simplified module/fuse envelopes; see
+Native PCB render with the Groundlark favicon, Burrowlark name and
+`DAQUSB-01 / REV A2` front silkscreen. The existing A2 board revision is retained.
+Module, fuse and SHT45 bodies are simplified envelopes; see
 [render provenance](boards/groundlark-field-head/render-provenance.json).
 
 - [Electrical source](elec/field_head.ato)
