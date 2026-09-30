@@ -1,4 +1,4 @@
-(kicad_sch (version 20230121) (generator eeschema) (uuid 31ae8745-2f8b-5d29-88c4-172e01f09b8d) (paper "A3") (title_block (title "Groundlark DAQHAT-01 / 06-supply-isolation-page-01") (date "2026-09-24") (rev "DAQHAT-01"))
+(kicad_sch (version 20230121) (generator eeschema) (uuid 31ae8745-2f8b-5d29-88c4-172e01f09b8d) (paper "A3") (title_block (title "Groundlark DAQHAT-01 / 06-supply-isolation-page-01") (date "2026-09-30") (rev "DAQHAT-01"))
 (lib_symbols
 (symbol "Groundlark:Part_U40" (pin_names (offset 0.6)) (in_bom yes) (on_board yes)
       (property "Reference" "U" (id 0) (at 0 6.35 0) (effects (font (size 1.27 1.27))))

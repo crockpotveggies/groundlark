@@ -10,8 +10,8 @@ from jlcpcb_bom import ROOT, build_bom
 from jlcpcb_package import write_csv, write_json
 from jlcpcb_quantity import audit_quantity, check_single_outline
 
-RECT = [((50,-50),(135,-50)), ((135,-50),(135,-106)),
-        ((135,-106),(50,-106)), ((50,-106),(50,-50))]
+RECT = [((50,-50),(190,-50)), ((190,-50),(190,-106)),
+        ((190,-106),(50,-106)), ((50,-106),(50,-50))]
 
 
 class SingleHATTests(unittest.TestCase):

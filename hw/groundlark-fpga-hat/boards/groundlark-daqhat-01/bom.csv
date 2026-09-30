@@ -61,8 +61,6 @@ R66,100k,RC0603FR-07100KL,Resistor_SMD__R_0603_1608Metric,False,
 J80,LSHM-150-04.0-L-DV-A-S-K-TR,LSHM-150-04.0-L-DV-A-S-K-TR,TZ_TZ100,False,Mates JM1; opposite parity; 8 mm board surface gap
 J81,LSHM-150-04.0-L-DV-A-S-K-TR,LSHM-150-04.0-L-DV-A-S-K-TR,TZ_TZ100,False,Mates JM2; opposite parity; 8 mm board surface gap
 J82,LSHM-130-04.0-L-DV-A-S-K-TR,LSHM-130-04.0-L-DV-A-S-K-TR,TZ_TZ60,False,Mates JM3; opposite parity; 8 mm board surface gap
-J83,1715721,1715721,TZ_TZ_POWER,False,REGULATED 3.3 V ONLY; external current-limited supply; 3 A initial operating budget Shifted left to keep power-terminal tails out of the J86 ribbon corridor.
-F80,0467005.NR,0467005.NR,TZ_TZ_FUSE,False,5 A fast fuse; not reverse-polarity or overvoltage protection
 JP80,TSW-102-07-G-S,TSW-102-07-G-S,TZ_TZ_JP,False,Fit shunt to DISABLE module; open enables on-board sequence
 JP81,TSW-102-07-G-S,TSW-102-07-G-S,TZ_TZ_JP,False,Fit shunt to request module configuration reset
 R80,10k,RC0603FR-0710KL,Resistor_SMD__R_0603_1608Metric,False,FPGA JTAG selection / spare CPLD control idle pull-down
@@ -127,3 +125,63 @@ R116,100k,RC0603FR-07100KL,Resistor_SMD__R_0603_1608Metric,False,
 R117,100k,RC0603FR-07100KL,Resistor_SMD__R_0603_1608Metric,False,
 U106,SN74LVC1G08DCKR,SN74LVC1G08DCKR,Package_TO_SOT_SMD__SOT-353_SC-70-5,False,Existing BCM25 FPGA_IO_ENABLE is also a hardware disarm independent of I2C. Default-low R62 retained.
 C106,100n,GRM188R71H104KA93D,Capacitor_SMD__C_0603_1608Metric,False,
+U23,DLVR-F50D,DLVR-F50D-E1BS-I-NI3F,Groundlark__DLVR_E1BS,False,Fitted 3.3 V I2C 0x28; pneumatic response and thermal/vibration isolation require qualification.
+C24,100n,GRM188R71H104KA93D,Capacitor_SMD__C_0603_1608Metric,False,Local DLVR supply bypass
+J83,12V DC / CENTER +,PJ-102AH,PWR_BarrelJack_CUI_PJ-102AH_Horizontal,False,"5.5/2.1 mm mating plug; mouth faces -Y, opposite J90 +Y; sleeve switch pin 3 NC"
+F80,2A fast,0467002.NR,PWR_Fuse_1206_3216Metric,False,Input fuse; output current controlled by buck converter
+D80,B340A,B340A-13-F,PWR_D_SMA,False,3 A / 40 V Schottky; reverse-polarity series protection
+D81,SMAJ15A,SMAJ15A-13-F,PWR_D_SMA,False,"15 V standoff TVS; transient suppression, not sustained overvoltage cutoff"
+U80,TPSM53603,TPSM53603RDAR,PWR_Texas_B3QFN-14-1EP_5x5.5mm_P0.65mm,False,"Pins 4/5 DNC isolated; pin13 V5V NC; 3 A envelope, thermal qualification pending"
+R120,10k,RT0603BRD0710KL,PWR_R_0603_1608Metric,False,0.1% feedback upper
+R121,4.30k,RT0603BRD074K3L,PWR_R_0603_1608Metric,False,0.1% feedback lower; nominal 3.32558 V
+R122,100k,RC0603FR-07100KL,PWR_R_0603_1608Metric,False,UVLO upper
+R123,15k,RC0603FR-0715KL,PWR_R_0603_1608Metric,False,UVLO lower
+R124,10k,RT0603BRD0710KL,PWR_R_0603_1608Metric,False,Power-good pullup; module sequencing inhibited until converter PGOOD
+SW80,FPGA OFF / ON,PCM12SMTR,PWR_SW_SPDT_PCM12,False,OFF grounds converter EN; ON leaves divider active; no Pi required
+C86,10u,CGA5L1X7R1H106K160AC,PWR_C_1206_3216Metric,False,50 V X7R 1206; TI recommended input capacitor
+C87,10u,CGA5L1X7R1H106K160AC,PWR_C_1206_3216Metric,False,50 V X7R 1206; TI recommended input capacitor
+C88,100n,GRM188R71H104KA93D,PWR_C_0603_1608Metric,False,50 V ceramic input bypass
+C89,47u,EEE-FK1V470P,PWR_CP_Elec_6.3x7.7,False,35 V aluminum input bulk; observe polarity
+C110,22u,GRM32ER71E226KE15L,PWR_C_1210_3225Metric,False,25 V X7R 1210; three local caps must provide >=43 uF effective combined
+C111,22u,GRM32ER71E226KE15L,PWR_C_1210_3225Metric,False,25 V X7R 1210; three local caps must provide >=43 uF effective combined
+C112,22u,GRM32ER71E226KE15L,PWR_C_1210_3225Metric,False,25 V X7R 1210; three local caps must provide >=43 uF effective combined
+J130,PI BATTERY 8-18V,1803277,"SUP_PhoenixContact_MC_1,5_2-G-3.81_1x02_P3.81mm_Horizontal",False,External protected battery/controller DC output; no solar panel or charging input
+F130,4A fast,0467004.NR,SUP_Fuse_1206_3216Metric,False,
+D130,B340A,B340A-13-F,PWR_D_SMA,False,
+D131,SMAJ18A,SMAJ18A-13-F,SUP_D_SMA,False,
+U131,TPS70933,TPS70933DBVR,SUP_SOT-23-5,False,"Always on; EN internally biased, never connect EN to raw battery"
+C130,4.7u,GRM21BR71A475KA73L,SUP_C_0805_2012Metric,False,At least 2.2uF effective at 3.3V
+C131,10u,CGA5L1X7R1H106K160AC,PWR_C_1206_3216Metric,False,
+U132,TPSM53603,TPSM53603RDAR,PWR_Texas_B3QFN-14-1EP_5x5.5mm_P0.65mm,False,5.149V / 3A total Pi+HAT allocation; EN pulldown gives default OFF
+C132,10u,CGA5L1X7R1H106K160AC,PWR_C_1206_3216Metric,False,
+C133,10u,CGA5L1X7R1H106K160AC,PWR_C_1206_3216Metric,False,
+C134,100n,GRM188R71H104KA93D,PWR_C_0603_1608Metric,False,
+C135,47u,EEE-FK1V470P,PWR_CP_Elec_6.3x7.7,False,
+C136,22u,GRM32ER71E226KE15L,PWR_C_1210_3225Metric,False,Combined effective capacitance must be at least 44uF at 5.15V
+C137,22u,GRM32ER71E226KE15L,PWR_C_1210_3225Metric,False,Combined effective capacitance must be at least 44uF at 5.15V
+C138,22u,GRM32ER71E226KE15L,PWR_C_1210_3225Metric,False,Combined effective capacitance must be at least 44uF at 5.15V
+R130,10k,RT0603BRD0710KL,PWR_R_0603_1608Metric,False,
+R131,2.41k,RT0603BRD072K41L,SUP_R_0603_1608Metric,False,
+R132,100k,RC0603FR-07100KL,PWR_R_0603_1608Metric,False,
+U133,TPS22953,TPS22953DQCR,SUP_Texas_WSON10_DQC0010A,False,Reverse blocking while disabled; no simultaneous Pi USB-C supply
+C139,10n,GRM188R71H103KA01D,SUP_C_0603_1608Metric,False,50V slew capacitor; approximately 18ms output rise
+C140,10u,GRM21BR61C106KE15L,SUP_C_0805_2012Metric,False,
+R133,2k,RC0603FR-072KL,SUP_R_0603_1608Metric,False,Output bleed; minimum OFF time must be qualified with actual Pi capacitance
+U130,MSPM0L1105,MSPM0L1105TRHBR,SUP_QFN-32-1EP_5x5mm_P0.5mm_EP3.45x3.45mm,False,32k flash / 4k RAM. Internal clock; unused GPIO disabled in firmware. No external VCORE load.
+C141,100n,GRM188R71H104KA93D,PWR_C_0603_1608Metric,False,
+C142,10u,GRM21BR61C106KE15L,SUP_C_0805_2012Metric,False,
+C143,470n,GRM188R71C474KA88D,SUP_C_0603_1608Metric,False,
+R134,47k,RC0603FR-0747KL,SUP_R_0603_1608Metric,False,
+C144,10n,GRM188R71H103KA01D,SUP_C_0603_1608Metric,False,
+R135,1M,RT0603BRD071ML,SUP_R_0603_1608Metric,False,
+R136,150k,RT0603BRD07150KL,SUP_R_0603_1608Metric,False,
+C145,10n,GRM188R71H103KA01D,SUP_C_0603_1608Metric,False,
+Q130,2N7002,"2N7002,215",SUP_SOT-23,False,
+R137,100k,RC0603FR-07100KL,PWR_R_0603_1608Metric,False,
+R138,10k,RT0603BRD0710KL,PWR_R_0603_1608Metric,False,
+Q131,2N7002,"2N7002,215",SUP_SOT-23,False,
+R139,100k,RC0603FR-07100KL,PWR_R_0603_1608Metric,False,
+R140,100k,RC0603FR-07100KL,PWR_R_0603_1608Metric,False,
+J131,SWD / 3V3 REF,FTS-105-01-L-S,SUP_PinHeader_1x05_P1.27mm_Vertical,False,Probe voltage reference only; do not power target through header
+JP130,BENCH RUN,TSW-102-07-G-S,SUP_PinHeader_1x02_P2.54mm_Vertical,False,Open for supervised operation. Shunt is a manual run override with unprogrammed MCU; remove before firmware controls RUN.
+R141,10k,RT0603BRD0710KL,PWR_R_0603_1608Metric,False,Limits MCU pin current if bench shunt is left fitted; remove shunt for automatic power control

@@ -36,7 +36,7 @@ def validate(message):
     if kind == "identity":
         require(body.board in (1, 2, 3), "unknown board")
         identifier(body.firmware_version)
-        allowed = (set(range(1, 7)) | {9}) if body.board == 1 else {7, 8} if body.board == 2 else set(range(10, 17))
+        allowed = (set(range(1, 7)) | {8, 9}) if body.board == 1 else {7, 8} if body.board == 2 else set(range(10, 17))
         require(1 <= len(body.sensors) <= 8 and len(set(body.sensors)) == len(body.sensors), "sensor list size/duplicates")
         require(set(body.sensors) <= allowed, "sensor does not belong on board")
     elif kind == "configuration":
@@ -92,7 +92,7 @@ def validate_batch(batch):
     for sample in batch.samples:
         require(sample.HasField("sequence") and sample.HasField("time"), "sequence/time required")
         time = sample.time
-        require(time.domain == domain and time.HasField("acquisition_ns"), "wrong or absent acquisition clock")
+        require((time.domain in (1, 2) if sensor == 8 else time.domain == domain) and time.HasField("acquisition_ns"), "wrong or absent acquisition clock")
         require(time.HasField("utc_unix_ns") == time.HasField("utc_uncertainty_ns"), "UTC requires explicit uncertainty")
         if previous is not None:
             require(sample.sequence == previous.sequence + 1, "nonconsecutive sequence inside batch")

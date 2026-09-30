@@ -1,25 +1,8 @@
 {
-  "additional_parallel_vias_mm": [
-    [
-      20.6,
-      7.5
-    ],
-    [
-      21.6,
-      7.5
-    ],
-    [
-      43,
-      48
-    ],
-    [
-      44,
-      48
-    ],
-    [
-      45,
-      48
-    ]
-  ],
-  "note": "Parallel copper improves supply routing; thermal and extracted resistance signoff pending"
+  "source": "J83 12 V center-positive through F80/D80 to U80",
+  "output": "U80 regulated FPGA_VIN; J80/J81 module VIN/3.3VIN contacts",
+  "output_allocation_A": 3,
+  "output_hot_loop_limit_ohm": 0.015,
+  "copper": "Front local output pour, broad back distribution, two inner ground planes; all through-vias in SES",
+  "note": "Resistance budget is a qualification target, not extracted or measured; no fabrication approval"
 }

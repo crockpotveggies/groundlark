@@ -38,12 +38,11 @@ def run_bench(board="hat"):
               "Factory compensation of synthetic trim: 101325 Pa, 25 C")
     else:
         check("Magnetometer", snap["latest"][7]["primary"] == [-750, 0, 1500], "Nominal 75 counts/uT, signed axes")
-        check("Infrasound", snap["latest"][8]["primary"][0] == 8192, "Zero differential pressure midpoint")
     e.controls({"sensor_faults": {str(sid): "timeout"}})
     advance(1000)
     snap = e.snapshot(sid)
     check("Fault isolation", snap["latest"][sid]["quality"] == "Missing" and
-          snap["latest"][14 if board == "skylark" else 8]["quality"] == "Valid", "Missing stays distinct from zero; other streams continue")
+          (board != "skylark" or snap["latest"][14]["quality"] == "Valid"), "Missing stays distinct from zero; independent Skylark streams continue")
     e.controls({"sensor_faults": {str(sid): "none"}})
     advance(5000)
     data = e.finish()

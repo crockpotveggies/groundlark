@@ -1,0 +1,10 @@
+{
+  "enabled": false,
+  "battery_description": null,
+  "shutdown_v": null,
+  "restart_v": null,
+  "shutdown_confirm_s": null,
+  "restart_confirm_s": null,
+  "shutdown_timeout_s": null,
+  "minimum_off_s": null
+}

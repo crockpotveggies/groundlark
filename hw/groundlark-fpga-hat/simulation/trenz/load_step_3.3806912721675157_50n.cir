@@ -1,0 +1,11 @@
+Groundlark Trenz support check: load_step_3.3806912721675157_50n
+Vsource src 0 3.3806912721675157
+Rpath src wire .015
+Lpath wire module 50n
+Resr module cap .020
+Cbulk cap 0 26.4u
+Iload module 0 PULSE(.1 3 1m 100u 100u 1m 3m)
+.tran .1u 4m
+.measure tran vmin MIN v(module) FROM=.5m TO=4m
+.measure tran vmax MAX v(module) FROM=.5m TO=4m
+.end

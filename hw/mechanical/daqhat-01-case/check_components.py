@@ -43,7 +43,7 @@ def main():
                 placement='Model underside seated on Pi supports; community CAD retains 1.8 mm PCB thickness versus nominal 1.6 mm.',
                 check_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                 scope='Detailed community Pi CAD versus printed parts; independent official outline and USB-C landmark. Physical fit remains pending.')
-    out=ROOT/'hw/releases/groundlark-case-r2/evidence/detailed-pi-fit.json';out.write_text(json.dumps(report,indent=2)+'\n')
+    out=ROOT/'hw/releases/groundlark-case-r3/evidence/detailed-pi-fit.json';out.write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report,indent=2))
     assert not collisions,'Detailed Pi CAD collides with printed enclosure'
 

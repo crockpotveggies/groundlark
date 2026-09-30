@@ -19,6 +19,7 @@ class Channel:
     retries: int = 0
     offline: bool = False
     restart_at: int = 0
+    clock_domain: int | None = None
 
 
 class Acquisition:
@@ -59,6 +60,8 @@ class Acquisition:
         for (device, boot), channels in groups.items():
             sensors = [c.settings["sensor_id"] for c in channels]
             board = 3 if set(sensors) <= set(range(10, 17)) else 2 if set(sensors) <= {7, 8} else 1
+            for c in channels:
+                if c.settings['sensor_id'] == 8: c.clock_domain = 1 if board == 1 else 2
             self.emit(messages.identity(device, boot, board, sensors), now)
             self.emit(messages.configuration(device, boot, [c.settings for c in channels]), now)
 
@@ -109,7 +112,8 @@ class Acquisition:
             if acquired <= c.last_time: raise ValueError("acquisition clock did not advance")
             c.last_time = acquired
             message = messages.batch(c.device, c.boot, c.settings["sensor_id"], c.sequence, acquired,
-                                     raw, quality, dropped=None if getattr(c.adapter, "loss_unknown", False) else skipped)
+                                     raw, quality, dropped=None if getattr(c.adapter, "loss_unknown", False) else skipped,
+                                     clock_domain=c.clock_domain)
             ident = self.calibration_ids.get(c.settings["sensor_id"])
             if ident:
                 cfg = self.sessions.devices[c.device].settings[c.settings["sensor_id"]]

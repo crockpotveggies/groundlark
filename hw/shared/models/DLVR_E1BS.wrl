@@ -1,0 +1,9 @@
+#VRML V2.0 utf8
+# Conceptual geometry, millimetres converted to KiCad VRML units.
+Transform { translation 1.425196850393701 1.1023622047244093 3.690944881889764 children [ Shape { appearance Appearance { material Material { diffuseColor 0.15 0.15 0.17 } } geometry Box { size 5.0 1.921259842519685 6.200787401574803 } } ] }
+Transform { translation 4.340551181102362 0.8346456692913387 3.12992125984252 children [ Shape { appearance Appearance { material Material { diffuseColor 0.15 0.15 0.17 } } geometry Box { size 0.8307086614173228 0.8818897637795277 0.8818897637795277 } } ] }
+Transform { translation 4.340551181102362 2.767716535433071 4.448818897637795 children [ Shape { appearance Appearance { material Material { diffuseColor 0.15 0.15 0.17 } } geometry Box { size 0.8307086614173228 0.8818897637795277 0.8818897637795277 } } ] }
+Transform { translation 0.0 0.0 0.0 children [ Shape { appearance Appearance { material Material { diffuseColor 0.72 0.72 0.72 } } geometry Box { size 0.20078740157480315 0.09842519685039369 1.1811023622047243 } } ] }
+Transform { translation 1.0 0.0 0.0 children [ Shape { appearance Appearance { material Material { diffuseColor 0.72 0.72 0.72 } } geometry Box { size 0.20078740157480315 0.09842519685039369 1.1811023622047243 } } ] }
+Transform { translation 2.0 0.0 0.0 children [ Shape { appearance Appearance { material Material { diffuseColor 0.72 0.72 0.72 } } geometry Box { size 0.20078740157480315 0.09842519685039369 1.1811023622047243 } } ] }
+Transform { translation 3.0 0.0 0.0 children [ Shape { appearance Appearance { material Material { diffuseColor 0.72 0.72 0.72 } } geometry Box { size 0.20078740157480315 0.09842519685039369 1.1811023622047243 } } ] }

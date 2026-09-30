@@ -65,7 +65,7 @@ def inspect(out):
         # Plain SVG avoids filter effects unsupported by CairoSVG. Include
         # copper, legend and outline, but not opaque mask/paste overlays.
         svg = str(stack.to_svg(side_re=f'{side}|mechanical', margin=1,
-                               force_bounds=((50, -106), (135, -50)),
+                               force_bounds=((50, -106), (190, -50)),
                                colors={f'{side} copper': '#417e87', f'{side} silk': '#111111',
                                        'mechanical outline': '#222222', 'drill pth': '#ffffff',
                                        'drill npth': '#ffffff', 'drill unknown': '#ffffff'}))
@@ -79,7 +79,7 @@ def inspect(out):
         # Represent the layer as a luminance mask rather than white overpaint.
         ns = '{http://www.w3.org/2000/svg}'
         mask = ET.Element(ns + 'mask', {'id': f'{side}-ink', 'maskUnits': 'userSpaceOnUse',
-                                        'x': '49', 'y': '-107', 'width': '87', 'height': '58'})
+                                        'x': '49', 'y': '-107', 'width': '142', 'height': '58'})
         for node in silk.iter():
             for attr in ('fill', 'stroke'):
                 value = node.get(attr)
@@ -88,11 +88,11 @@ def inspect(out):
         mask.append(silk)
         definitions = ET.Element(ns + 'defs'); definitions.append(mask)
         root.insert(0, definitions)
-        ink = ET.Element(ns + 'rect', {'x': '49', 'y': '-107', 'width': '87', 'height': '58',
+        ink = ET.Element(ns + 'rect', {'x': '49', 'y': '-107', 'width': '142', 'height': '58',
                                        'fill': '#111111', 'mask': f'url(#{side}-ink)'})
         root.insert(list(root).index(copper) + 1, ink)
         if side == 'bottom':
-            group = ET.Element('{http://www.w3.org/2000/svg}g', {'transform': 'translate(185 0) scale(-1 1)'})
+            group = ET.Element('{http://www.w3.org/2000/svg}g', {'transform': 'translate(240 0) scale(-1 1)'})
             for child in list(root): root.remove(child); group.append(child)
             root.append(group)
         svg = ET.tostring(root, encoding='unicode')

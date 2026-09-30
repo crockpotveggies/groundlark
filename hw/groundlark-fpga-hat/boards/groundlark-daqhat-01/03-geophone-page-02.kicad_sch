@@ -1,4 +1,4 @@
-(kicad_sch (version 20230121) (generator eeschema) (uuid f0acbc83-58d7-5697-b933-1154f21f83d0) (paper "A3") (title_block (title "Groundlark DAQHAT-01 / 03-geophone-page-02") (date "2026-09-24") (rev "DAQHAT-01"))
+(kicad_sch (version 20230121) (generator eeschema) (uuid f0acbc83-58d7-5697-b933-1154f21f83d0) (paper "A3") (title_block (title "Groundlark DAQHAT-01 / 03-geophone-page-02") (date "2026-09-30") (rev "DAQHAT-01"))
 (lib_symbols
 (symbol "Groundlark:Part_C93" (pin_names (offset 0.6)) (in_bom yes) (on_board yes)
       (property "Reference" "C" (id 0) (at 0 5.08 0) (effects (font (size 1.27 1.27))))

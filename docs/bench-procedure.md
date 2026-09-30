@@ -55,7 +55,9 @@ or infer physical truth from a filename.
 
 1. Inspect assembly/polarity/shorts unpowered. Begin with Trenz unconfigured and
    external power current limited. J83 pin 1 is positive, pin 2 ground. Use the
-   documented 3.35 V ±0.5% source; the Pi sensor supply remains separate.
+   documented 12 V ±5% source. The onboard converter supplies the Trenz input;
+   verify its 3.201–3.399 V operating limits at the module. The Pi sensor supply
+   remains separate.
 2. Capture cold startup at J83, the module management rail and the sequenced I/O
    rail, plus input current and reset/enable/PGOOD where accessible. Evaluate
    ramp/sequence/reset behavior against the installed Trenz revision and regulator
@@ -237,3 +239,41 @@ stationary sensor. Convert counts to input volts using the recorded gain and
 reference. Measure the defined bandwidth with FPGA off/idle/active and record
 `max_geophone_input_noise_rms` against the application target. Separate ambient
 ground motion from electronic noise; do not use the synthetic stimulus as evidence.
+
+## HAT-mounted infrasound qualification
+
+For U23, record pressure calibration and status bits, I2C rise times with the
+ADC active, thermal drift with FPGA off/idle/active, and vibration/fan coupling.
+Measure the inlet/reference-volume and tubing transfer function with a traceable
+pressure stimulus; record tubing geometry and mounting strain. Missing response
+or noise measurements do not establish an infrasound operating band.
+
+### DAQHAT-01 12 V FPGA input
+
+Record the adapter model, 12 V output tolerance, plug polarity and cable. Verify
+J83 is isolated from both Pi positive rails. Measure Pi-off/FPGA-on and
+Pi-on/FPGA-off leakage, SW80 operation, converter EN and module EN1 timing,
+startup/inrush, output ripple and FPGA load steps. Measure both module supply
+connector groups differentially: the operating limit is 3.201–3.399 V and the
+hot output-loop resistance target is 15 mΩ at a 3 A allocation. Record input
+diode, converter and module temperatures in the intended enclosure. Repeat
+geophone/infrasound noise measurements with FPGA power off, idle and active.
+PGOOD and offline calculations alone cannot pass these checks.
+
+## TI Pi power supervisor
+
+Keep the FPGA adapter disconnected for solar-field power measurements. Use a
+current-limited 8–18 V bench source at J130 and an open JP130 shunt for supervised
+operation. Target MCU firmware, Pi shutdown integration and a qualified battery
+profile are required before running automatic shutdown/recovery tests. JP130 is
+only a manual bench override while those remain pending.
+
+Measure both Pi 5 V contacts under workload, including GPIO riser/contact loss,
+at minimum/nominal/maximum input. Record startup and 3 A combined-load ripple,
+current limiting and enclosure temperatures. Confirm Pi-off leakage with the
+FPGA on/off and no USB-C source. Record idle battery current across temperature.
+Inject a falling supply, ADC/configuration fault, absent halt acknowledgement,
+reset during shutdown and repeated failed boots. Verify bounded shutdown, full
+rail discharge, restart hysteresis and minimum off time. Test geophone noise
+with the Pi converter running. Missing limits or measurements remain failures;
+CAD, arithmetic and configuration validation are not hardware qualification.

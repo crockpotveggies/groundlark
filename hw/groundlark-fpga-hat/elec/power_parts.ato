@@ -1,0 +1,104 @@
+# Dedicated Nexys-compatible 12 V FPGA power input.
+# Manufacturer pin assignments are checked independently by fpga_power_checks.py.
+#pragma experiment("TRAITS")
+import is_atomic_part
+import has_designator_prefix
+
+component PWR_JACK:
+    trait is_atomic_part<manufacturer="Same Sky", partnumber="PJ-102AH", footprint="../../shared/elec/PWR_BarrelJack_CUI_PJ-102AH_Horizontal.kicad_mod", symbol="../../shared/elec/symbols/PWR_JACK.kicad_sym">
+    trait has_designator_prefix<prefix="J">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+
+component PWR_BUCK:
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="TPSM53603RDAR", footprint="../../shared/elec/PWR_Texas_B3QFN-14-1EP_5x5.5mm_P0.65mm.kicad_mod", symbol="../../shared/elec/symbols/PWR_BUCK.kicad_sym">
+    trait has_designator_prefix<prefix="U">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+    signal p4 ~ pin 4
+    signal p5 ~ pin 5
+    signal p6 ~ pin 6
+    signal p7 ~ pin 7
+    signal p8 ~ pin 8
+    signal p9 ~ pin 9
+    signal p10 ~ pin 10
+    signal p11 ~ pin 11
+    signal p12 ~ pin 12
+    signal p13 ~ pin 13
+    signal p14 ~ pin 14
+    signal p15 ~ pin 15
+
+component PWR_DIODE:
+    trait is_atomic_part<manufacturer="Diodes Incorporated", partnumber="B340A-13-F", footprint="../../shared/elec/PWR_D_SMA.kicad_mod", symbol="../../shared/elec/symbols/PWR_DIODE.kicad_sym">
+    trait has_designator_prefix<prefix="D">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component PWR_TVS:
+    trait is_atomic_part<manufacturer="Diodes Incorporated", partnumber="SMAJ15A-13-F", footprint="../../shared/elec/PWR_D_SMA.kicad_mod", symbol="../../shared/elec/symbols/PWR_TVS.kicad_sym">
+    trait has_designator_prefix<prefix="D">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component PWR_FUSE:
+    trait is_atomic_part<manufacturer="Littelfuse", partnumber="0467002.NR", footprint="../../shared/elec/PWR_Fuse_1206_3216Metric.kicad_mod", symbol="../../shared/elec/symbols/PWR_FUSE.kicad_sym">
+    trait has_designator_prefix<prefix="F">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component PWR_SW:
+    trait is_atomic_part<manufacturer="C&K", partnumber="PCM12SMTR", footprint="../../shared/elec/PWR_SW_SPDT_PCM12.kicad_mod", symbol="../../shared/elec/symbols/PWR_SW.kicad_sym">
+    trait has_designator_prefix<prefix="SW">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+
+component PWR_10K:
+    trait is_atomic_part<manufacturer="Yageo", partnumber="RT0603BRD0710KL", footprint="../../shared/elec/PWR_R_0603_1608Metric.kicad_mod", symbol="../../shared/elec/symbols/PWR_10K.kicad_sym">
+    trait has_designator_prefix<prefix="R">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component PWR_4K3:
+    trait is_atomic_part<manufacturer="Yageo", partnumber="RT0603BRD074K3L", footprint="../../shared/elec/PWR_R_0603_1608Metric.kicad_mod", symbol="../../shared/elec/symbols/PWR_4K3.kicad_sym">
+    trait has_designator_prefix<prefix="R">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component PWR_100K:
+    trait is_atomic_part<manufacturer="Yageo", partnumber="RC0603FR-07100KL", footprint="../../shared/elec/PWR_R_0603_1608Metric.kicad_mod", symbol="../../shared/elec/symbols/PWR_100K.kicad_sym">
+    trait has_designator_prefix<prefix="R">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component PWR_15K:
+    trait is_atomic_part<manufacturer="Yageo", partnumber="RC0603FR-0715KL", footprint="../../shared/elec/PWR_R_0603_1608Metric.kicad_mod", symbol="../../shared/elec/symbols/PWR_15K.kicad_sym">
+    trait has_designator_prefix<prefix="R">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component PWR_CIN:
+    trait is_atomic_part<manufacturer="TDK", partnumber="CGA5L1X7R1H106K160AC", footprint="../../shared/elec/PWR_C_1206_3216Metric.kicad_mod", symbol="../../shared/elec/symbols/PWR_CIN.kicad_sym">
+    trait has_designator_prefix<prefix="C">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component PWR_COUT:
+    trait is_atomic_part<manufacturer="Murata", partnumber="GRM32ER71E226KE15L", footprint="../../shared/elec/PWR_C_1210_3225Metric.kicad_mod", symbol="../../shared/elec/symbols/PWR_COUT.kicad_sym">
+    trait has_designator_prefix<prefix="C">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component PWR_BULK:
+    trait is_atomic_part<manufacturer="Panasonic", partnumber="EEE-FK1V470P", footprint="../../shared/elec/PWR_CP_Elec_6.3x7.7.kicad_mod", symbol="../../shared/elec/symbols/PWR_BULK.kicad_sym">
+    trait has_designator_prefix<prefix="C">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component PWR_100N:
+    trait is_atomic_part<manufacturer="Murata", partnumber="GRM188R71H104KA93D", footprint="../../shared/elec/PWR_C_0603_1608Metric.kicad_mod", symbol="../../shared/elec/symbols/PWR_100N.kicad_sym">
+    trait has_designator_prefix<prefix="C">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2

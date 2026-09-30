@@ -21,7 +21,7 @@ LOGO = ROOT/'hw/shared/libraries/Groundlark.pretty/Logo_Groundlark_7mm.kicad_mod
 
 
 def stack_xy(c,x,y):
-    """Place the 85 x 56 mm board stack in the fixed enclosure coordinates."""
+    """Rotate about the fixed 85 x 56 mm Pi footprint, including the wider HAT in the fixed enclosure coordinates."""
     angle=c['stack_rotation_deg']
     if angle not in (0,180):raise ValueError('Stack rotation must be 0 or 180 degrees')
     return (85-x,56-y) if angle==180 else (x,y)
@@ -130,6 +130,21 @@ def build(c):
     for y in (-31.2,-20.8):
         base=base.cut(cylinder(59,y,cable_z-5.5,1.7,5.6)).cut(hex_z(59,y,cable_z-2.6,5.8,2.7))
         cap=cap.cut(cylinder(59,y,cable_z-.1,1.7,5.2))
+    # Columns stand beyond the Pi plug corridors. Thick cantilever ledges
+    # reach under the power wing above the port/cable height.
+    for ya,yb,la,lb in ((-6,-.3,-1,4),(56.3,62,52,57)):
+        column=box(101,ya,floor,107,yb,hat_bottom-2)
+        ledge=box(104,la,pi_top+20,110,lb,hat_bottom)
+        base=base.union(stack_pose(c,column)).union(stack_pose(c,ledge))
+    for ya,yb in ((-3.3,-.3),(56.3,59.3)):
+        stop=box(104,ya,hat_bottom-2,107,yb,hat_top+.5)
+        base=base.union(stack_pose(c,stop))
+    # Additional bearing saddles and edge stops for the Pi supervisor wing.
+    for ya,yb,la,lb in ((-6,-.3,-1,4),(56.3,62,52,57)):
+        base=base.union(stack_pose(c,box(131,ya,floor,137,yb,hat_bottom-2)))
+        base=base.union(stack_pose(c,box(134,la,pi_top+20,140,lb,hat_bottom)))
+    for ya,yb in ((-3.3,-.3),(56.3,59.3)):
+        base=base.union(stack_pose(c,box(134,ya,hat_bottom-2,137,yb,hat_top+.5)))
     cover=rounded(c['outer'],floor,roof+c['roof_thickness']-floor,c['corner_radius'])
     cover=cover.cut(rounded([x0+w,y0+w,x1-w,y1-w],floor-.1,roof-floor+.1,2))
     for x,y in c['case_screws']:
@@ -138,21 +153,30 @@ def build(c):
         cover=cover.cut(cylinder(x,y,floor-.1,1.7,10.1))
     # Enlarged entry bays admit cable overmoulds past the recessed Pi ports.
     ports={
-      'usb_ethernet':box(84,0,floor-.1,x1+1,57,pi_top+18),
+      'usb_ethernet':box(84,0,floor-.1,85-x0+1,57,pi_top+18),
       'power_hdmi_audio':box(3,50,floor-.1,63,y1+1,pi_top+11),
       'microsd':box(x0-1,19,floor-.1,9,37,pi_bottom+1.5),
-      'fpga_power':hole_x(x0-1,12,hat_top+5.5,4.5,18).union(box(x0-1,7.5,floor-.1,x0+w+.1,16.5,hat_top+5.5)),
     }
     for cut in ports.values():cover=cover.cut(stack_pose(c,cut))
     if c['stack_rotation_deg']==180:
         # Pi power/HDMI/audio now face the geophone bay. These are cable exits;
         # plug access requires removing the lid and routing around the sensor.
         cover=cover.cut(box(22,y0-1,floor-.1,82,0,pi_top+11))
+    # Rear, bottom-open slot admits a <=14 mm DC overmould and allows cover
+    # removal while connected. Jack is recessed 7.2 mm from the inner wall.
+    cover=cover.cut(box(-18,54,floor-.1,-2,y1+1,hat_top+14.5))
+    # Separate, keyed two-pole battery plug; bottom-open for cover removal.
+    cover=cover.cut(box(-40,52,floor-.1,-24,y1+1,hat_top+13))
+    for xx in (-40,-24):base=base.cut(box(xx-1,57,-.1,xx+1,61,floor+.1))
+    # Lid-off switch operation or insulated probe through the roof service slot.
+    cover=cover.cut(box(-25,41,roof-.1,-15,51,roof+c['roof_thickness']+.1))
     # Power-lead tie slots belong to the base so the cover lifts off freely.
-    for yy in (8,16):base=base.cut(stack_pose(c,box(-4.5,yy-1,-.1,-1.5,yy+1,floor+.1)))
+    for xx in (-17,-3):base=base.cut(box(xx-1,57,-.1,xx+1,61,floor+.1))
     # Roof vents: 3 mm bridge spans when printed roof-down.
     for x in range(6,82,7):
         cover=cover.cut(box(x,8,roof-.1,x+3,48,roof+3.1))
+    for x in (-54,-47,-40,-33,-24,-17,-10):
+        cover=cover.cut(box(x,9,roof-.1,x+3,35,roof+c['roof_thickness']+.1))
     # Separate small vents above geophone terminals, away from its clamp.
     for x in range(28,57,7):
         cover=cover.cut(box(x,-33,roof-.1,x+3,-18,roof+3.1))
@@ -169,7 +193,7 @@ def build(c):
     coupon=coupon.cut(box(-.5,-outer-1,-.1,.5,-r+.5,6.1))
     # Rigid bodies and conservative service envelopes for collision checks.
     pi=box(0,0,pi_bottom,85,56,pi_top)
-    hat=box(0,0,hat_bottom,85,56,hat_top)
+    hat=box(0,0,hat_bottom,*c['hat_size'],hat_top)
     for x,y in c['pi_holes']:
         pi=pi.cut(cylinder(x,y,pi_bottom-.1,1.35,2))
         hat=hat.cut(cylinder(x,y,hat_bottom-.1,1.35,2))
@@ -183,7 +207,14 @@ def build(c):
       'pi_heatsink':box(22,19,pi_top,40,37,pi_top+13.3),
       'fpga_heatsink':box(44,18,hat_top+12.16,70,40,hat_top+24.16),
       'gpio_stack':box(6.8,1.025,pi_top,58.2,5.975,hat_bottom),
-      'j83':box(.5,6.5,hat_top,10,20,hat_top+17),
+      'j83':box(90.5,.2,hat_top,99.5,14.6,hat_top+11),
+      'j130':box(113.39,3.5,hat_top,122.8,12.7,hat_top+7.25),
+      'u132':box(121.5,25.25,hat_top,126.5,30.75,hat_top+4),
+      'c135':cylinder(135,27,hat_top,3.3,7.7),
+      'u80':box(92.5,29.25,hat_top,97.5,34.75,hat_top+4),
+      'c89':cylinder(105,45,hat_top,3.3,7.7),
+      'sw80':box(102,7,hat_top,108,13,hat_top+3.5),
+      'infrasound':box(1.5,22.215,hat_top,10.65,37.025,hat_top+17.25),
       'pi_audio':box(49,47,pi_top,56,58,pi_top+6),
       'pi_sd':box(-2,20,pi_bottom-2.5,15,36,pi_bottom)}
     for name,(a,b,cc,d,e,f) in {
@@ -241,5 +272,5 @@ def export(c,out):
 
 if __name__=='__main__':
     ap=argparse.ArgumentParser(description=__doc__)
-    ap.add_argument('--output',type=Path,default=ROOT/'hw/releases/groundlark-case-r2')
+    ap.add_argument('--output',type=Path,default=ROOT/'hw/releases/groundlark-case-r3')
     args=ap.parse_args();export(json.loads((HERE/'parameters.json').read_text()),args.output)

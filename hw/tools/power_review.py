@@ -58,8 +58,10 @@ def build_report():
         assert sp[key]==net,('Skylark supply topology',key)
     for key,net in {('J1','2'):'PI_5V',('J1','4'):'PI_5V',('J1','1'):'PI_3V3',
                     ('U40','3'):'PI_5V',('U40','2'):'SENS_3V3',
-                    ('J83','1'):'EXT_3V3',('F80','2'):'FPGA_VIN'}.items():
+                    ('J83','1'):'EXT_12V',('F80','2'):'FUSED_12V',('U80','7'):'FPGA_VIN'}.items():
         assert gp[key]==net,('Groundlark supply topology',key)
+    from fpga_power_checks import verify, budget
+    verify(gp)
     limits=pm_limit(value(s['R3']))
     # Explicit allocations. Excess becomes a qualification failure, not an
     # excuse to increase a source's rating. STM32 at 48 MHz; SHT heater off.
@@ -75,7 +77,7 @@ def build_report():
     attach_charge=1.2*(sc('USB_5V')*5.25+sc('V3')*3.366+sc('NRST')*3.366+sc('VBUS_SENSE')*2.625)
     assert attach_charge<50e-6,'USB attach charge needs inrush limiting review'
     ground_5v_mA={'three_IMUs':3,'ADS122C04':2,'ISO1640_side2':10,
-                  'translators_switching':10,'bias_and_pullups':5,'LDO_Iq':.5,'reserve':19.5}
+                  'translators_switching':10,'bias_and_pullups':5,'LDO_Iq':.5,'DLVR_fast_max':4.3,'reserve':15.2}
     ground_3v3_mA={'ISO1640_side1':10,'translators_and_muxes':10,'EEPROM_expander_logic':5,
                    'bias_and_pullups':10,'reserve':15}
     # Capacitive current scenarios are C*dV/dt, NOT simulated regulator startup.
@@ -106,8 +108,8 @@ def build_report():
         groundlark=dict(pi_5V_allocations_mA=ground_5v_mA,pi_3V3_allocations_mA=ground_3v3_mA,
             pi_5V_allocated_A=.05,pi_3V3_allocated_A=.05,
             ldo=ldo_heat(5.25,3.234,.05,.0005,150,85),startup_scenarios=ramps,
-            fpga_separate_source=dict(setpoint_V=3.35,tolerance=.005,allocated_A=3,loop_ohm=.03,
-                minimum_V=load_voltage(3.35*.995,.03,3),maximum_V=3.35*1.005),
+            fpga_separate_source=budget(),
+            pi_supervisor_source=__import__("pi_power_checks").budget(),
             powered_from_pi_header_only=False),
         analog=dict(reference_capacitance_F=refcap,divider_load_A=2.5/(rtop+rbot),
             divider_tau_s=tau,divider_0p1pct_settle_corner_s=tau*1.21*math.log(1000),

@@ -16,6 +16,7 @@ class State:
     identity_seen: bool = True
     config_seen: bool = False
     dropped_totals: dict = field(default_factory=dict)
+    board: int = 0
 
 
 class Sessions:
@@ -45,7 +46,7 @@ class Sessions:
             require(boot not in retired, "retired boot replay")
             require(len(retired) <= self.max_resets, "reset history exhausted; open a new recording")
             require(state is not None or len(self.devices) < self.max_devices, "device capacity exhausted")
-            self.devices[device] = State(boot, wire, frozenset(message.identity.sensors), retired)
+            self.devices[device] = State(boot, wire, frozenset(message.identity.sensors), retired, board=message.identity.board)
             return kind
         require(state is not None and state.boot == boot and state.identity_seen, "identity handshake required")
         if kind == "configuration":
@@ -69,6 +70,9 @@ class Sessions:
             require(state.config_seen and b.configuration_revision == state.revision, "effective configuration required")
             cfg = state.settings.get(b.sensor_id)
             require(cfg is not None and cfg.enabled, "sensor not enabled")
+            if b.sensor_id == 8:
+                require(all(s.time.domain == (1 if state.board == 1 else 2) for s in b.samples),
+                        'pressure clock does not match board identity')
             previous = state.last.get(b.sensor_id)
             first, last = b.samples[0], b.samples[-1]
             next_sequence = 0 if previous is None else previous[0] + 1

@@ -65,7 +65,7 @@ def main(name):
                 order=[p.F_Cu,*[b.GetLayerID(f'In{i}.Cu') for i in range(1,b.GetCopperLayerCount()-1)],p.B_Cu]
                 if micro:
                     assert native_snapshot and meta.get('hdi') and (a,z) in [(0,1),(len(order)-2,len(order)-1)] and (diameter,drill)==(300,100),obj
-                else:assert (a,z)==(0,len(order)-1) and (diameter,drill) in [(600,300),(450,200),(450,300)],obj
+                else:assert (a,z)==(0,len(order)-1) and (diameter,drill) in [(600,300),(450,200),(450,300),(700,300),(800,400)],obj
                 if meta.get('fabrication',{}).get('process')=='standard-six-layer-through-via':
                     assert not micro and drill>=300 and diameter-drill>=150,obj
                 v=p.PCB_VIA(b);v.SetPosition(vec(float(obj[2])*factor,-float(obj[3])*factor));v.SetWidth(diameter*1000);v.SetDrill(drill*1000);v.SetViaType(p.VIATYPE_MICROVIA if micro else p.VIATYPE_THROUGH);v.SetLayerPair(order[a],order[z]);v.SetNet(ni)

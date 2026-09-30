@@ -7,13 +7,39 @@
   },
   "power": {
     "interface_pin_checks": 31,
-    "input_setpoint_v": 3.35,
-    "input_tolerance": 0.005,
-    "total_hot_loop_resistance_limit_ohm": 0.03,
-    "current_limit_a": 3,
-    "dc_module_min_v": 3.24325,
-    "dc_module_max_v": 3.3667499999999997,
-    "limitations": "30 milliohms includes positive AND ground paths, fuse and contacts; must be measured"
+    "converter": {
+      "pin_checks": 55,
+      "thermal_vias": 9,
+      "output_vias": 8,
+      "jack_mating_direction": "-Y; opposite geophone +Y",
+      "power_budget": {
+        "setpoint_V": 3.3255813953488373,
+        "reference_and_divider_min_V": 3.2706203558882985,
+        "reference_and_divider_max_V": 3.3806912721675157,
+        "allocated_A": 3,
+        "loop_ohm": 0.015,
+        "minimum_V": 3.2256203558882985,
+        "maximum_V": 3.3806912721675157,
+        "adapter_V": 12,
+        "adapter_tolerance": 0.05,
+        "adapter_rating_A": 3,
+        "adapter_scenario_A": 1.029591763265894,
+        "limitations": "Reference/divider/DC-drop scenario only; line/load regulation, ripple, startup and transient margins require measurement. 85% efficiency is an input-sizing assumption."
+      },
+      "physical_qualification": false
+    },
+    "setpoint_V": 3.3255813953488373,
+    "reference_and_divider_min_V": 3.2706203558882985,
+    "reference_and_divider_max_V": 3.3806912721675157,
+    "allocated_A": 3,
+    "loop_ohm": 0.015,
+    "minimum_V": 3.2256203558882985,
+    "maximum_V": 3.3806912721675157,
+    "adapter_V": 12,
+    "adapter_tolerance": 0.05,
+    "adapter_rating_A": 3,
+    "adapter_scenario_A": 1.029591763265894,
+    "limitations": "Reference/divider/DC-drop scenario only; line/load regulation, ripple, startup and transient margins require measurement. 85% efficiency is an input-sizing assumption."
   },
   "mechanical": {
     "pi_to_hat_underside_mm": 28.06,

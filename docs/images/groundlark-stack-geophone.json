@@ -1,8 +1,8 @@
 {
   "source_sha256": {
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/pi-trenz-stack-concept.kicad_pcb": "a824520ac3bcec82ae8749faf3201bfb55dfd8a18a742c93253670515a188a21",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb": "48533684ef4aa121f3e770630ce970668981d39c85e20b8e0f8fa8ca311aa00a",
-    "hw/groundlark-fpga-hat/layout/placement.json": "b6966d5422af2c3b401c4a032d48da201632b9e2993f2d1a75cadd52529ed01b",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/pi-trenz-stack-concept.kicad_pcb": "1e1bbc9570dd6090c8c2a95f8da58a837cb78c68a42ce393384dc0e502f42cf2",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb": "0434eee91432fc5e35a01c40805387454fcfa30154485d54b435439d120c07d9",
+    "hw/groundlark-fpga-hat/layout/placement.json": "be501cb273bf5803fb9da5a098d1ea0dcc5e5a8ce35cb3abfdded6188cf611ca",
     "hw/tools/render_readme_stack.py": "3d20f83ff14f887faca7706aeb7b3849f20062a6fe4f37154789b5d5c162ee77",
     "hw/shared/models/trenz/STP-TE0712-03-No Variations.step": "23b1905a356912d70b7223cae260809c84728a5ad717ad9dc25c828ff8283697",
     "hw/shared/models/Pi4_stack_concept.wrl": "7baf147d9d29c571f5d48e24da6099d62b9d3c58b9aab14bf8468dca96427155",
@@ -11,25 +11,12 @@
     "hw/shared/models/LSHM_50_4mm.wrl": "b3965dc267e26e2324ca0716a948c96b2b3e7a6a9096bc173d20a395e6b57af5",
     "hw/shared/models/LSHM_30_4mm.wrl": "c51a5090c70f57cdfe016c581587e02d72a97b2286efacf4a1c836d6339e887e"
   },
-  "image_sha256": "04e479f7e6735cbae164d3d17292710928c548fe86c1fd6e36babaf7db38d8d3",
+  "image_sha256": "445ed29bcf5166d38cab30f2435949c2d51bd984601d0b6b657440a467534d39",
   "renderer": "9.0.9",
   "scope": "Current routed HAT and vendor Trenz STEP; conceptual Pi, socket, spacers, Racotech can and leads.",
   "geophone_nominal_mm": {
     "diameter": 25.4,
     "height": 33
   },
-  "limitations": "Selected 8.5 mm Megastar J1 and two 8.51 mm SSQ risers, 28.06 mm nominal gap. Horizontal 1803280 header. Geophone terminals and lead dressing are illustrative; no physical fit approval.",
-  "render_input_sha256": {
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/pi-trenz-stack-concept.kicad_pcb": "bf5317875fe7850c8f7eca21e97d30e3f0333dcdd3edb2c86b5dad50303f66ef",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb": "f38fe5639bf945651ccd15772d256469d09ba54737eb4cf202fd098ca177bffa",
-    "hw/groundlark-fpga-hat/layout/placement.json": "33b6e5d0af746fc92ae97bf698d8fe139720f408f962b980f59c97b55d45942d",
-    "hw/tools/render_readme_stack.py": "3d20f83ff14f887faca7706aeb7b3849f20062a6fe4f37154789b5d5c162ee77",
-    "hw/shared/models/trenz/STP-TE0712-03-No Variations.step": "23b1905a356912d70b7223cae260809c84728a5ad717ad9dc25c828ff8283697",
-    "hw/shared/models/Pi4_stack_concept.wrl": "7baf147d9d29c571f5d48e24da6099d62b9d3c58b9aab14bf8468dca96427155",
-    "hw/shared/models/Pi_Megastar_2x20.wrl": "f4cf3b167c62b7fb12d617e60289e702da85943b049866c0addd377ab6e34c9a",
-    "hw/shared/models/Trenz_spacers.wrl": "f3d018dbd6c12495cba0ea888e942f50e4b9d52059f307a76d75b3d3db089134",
-    "hw/shared/models/LSHM_50_4mm.wrl": "b3965dc267e26e2324ca0716a948c96b2b3e7a6a9096bc173d20a395e6b57af5",
-    "hw/shared/models/LSHM_30_4mm.wrl": "c51a5090c70f57cdfe016c581587e02d72a97b2286efacf4a1c836d6339e887e"
-  },
-  "source_binding_note": "source_sha256 binds the committed sources; render_input_sha256 preserves the exact working-tree inputs used for the image. Changes are Git text normalization and scoped UI provenance; rendered CAD geometry is unchanged."
+  "limitations": "Selected 8.5 mm Megastar J1 and two 8.51 mm SSQ risers, 28.06 mm nominal gap. Horizontal 1803280 header. Geophone terminals and lead dressing are illustrative; no physical fit approval."
 }

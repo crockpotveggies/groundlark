@@ -1,6 +1,6 @@
 # DAQHAT-01: one Racotech geophone
 
-The active 85 × 56 mm DAQHAT-01 carrier replaces MAX-M10S U21, U.FL J2 and the
+The active 140 × 56 mm DAQHAT-01 carrier replaces MAX-M10S U21, U.FL J2 and the
 GNSS support capacitors with one external passive vertical geophone input.
 Historical A2 and the remote USB magnetometer/infrasound board are unchanged.
 The current internal host link uses nine ordinary Trenz I/Os; all 260 module

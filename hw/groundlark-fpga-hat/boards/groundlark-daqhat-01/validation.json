@@ -1,7 +1,7 @@
 {
   "status": "DAQHAT-01 engineering prototype; not fabrication released",
   "outline_mm": [
-    85,
+    140,
     56
   ],
   "module_gpio_checks": 158,
@@ -12,19 +12,86 @@
   "host_link_pin_checks": 143,
   "gpio_voltage_v": 3.3,
   "host_link_component_checks": 32,
-  "compiled_pin_checks": 702,
+  "fpga_power": {
+    "pin_checks": 55,
+    "thermal_vias": 9,
+    "output_vias": 8,
+    "jack_mating_direction": "-Y; opposite geophone +Y",
+    "power_budget": {
+      "setpoint_V": 3.3255813953488373,
+      "reference_and_divider_min_V": 3.2706203558882985,
+      "reference_and_divider_max_V": 3.3806912721675157,
+      "allocated_A": 3,
+      "loop_ohm": 0.015,
+      "minimum_V": 3.2256203558882985,
+      "maximum_V": 3.3806912721675157,
+      "adapter_V": 12,
+      "adapter_tolerance": 0.05,
+      "adapter_rating_A": 3,
+      "adapter_scenario_A": 1.029591763265894,
+      "limitations": "Reference/divider/DC-drop scenario only; line/load regulation, ripple, startup and transient margins require measurement. 85% efficiency is an input-sizing assumption."
+    },
+    "physical_qualification": false
+  },
+  "pi_power": {
+    "pin_checks": 76,
+    "deliberate_no_connects": 30,
+    "spare_bcm": [
+      24
+    ],
+    "budget": {
+      "nominal_V": 5.149377593360996,
+      "minimum_V": 4.838470321709411,
+      "maximum_V": 5.235550425444115,
+      "total_A": 3,
+      "input_range_V": [
+        8,
+        18
+      ],
+      "input_scenario_A": 2.423236514522822,
+      "adc_at_18V": 2.3519122829917762,
+      "copper_budget_ohm": 0.05,
+      "switch_budget_ohm": 0.025,
+      "measured": false
+    },
+    "firmware": "configuration placeholder; MCU implementation pending",
+    "physical_qualification": false
+  },
+  "infrasound": {
+    "physical_pin_checks": 6,
+    "i2c_address": "0x28",
+    "existing_bus_addresses": [
+      "0x20",
+      "0x40"
+    ],
+    "additional_pi_pins": 0,
+    "reserved_bcm": [
+      24
+    ],
+    "maximum_fast_current_mA": 4.3,
+    "body_and_barbs_xy_mm": [
+      1.5,
+      23.27,
+      10.65,
+      38.08
+    ],
+    "minimum_module_xy_clearance_mm": 19.35,
+    "physical_qualification": false
+  },
+  "compiled_pin_checks": 896,
   "critical_module_pin_checks": 29,
   "drc_violations": 0,
   "unconnected_items": 0,
   "erc_violations": 0,
-  "tracks_and_vias": 10813,
+  "tracks_and_vias": 11921,
   "copper_layers": 6,
   "microvias": 0,
   "fabrication_process": "standard-six-layer-through-via",
   "limits": [
     "Fabrication process approval is owned by the project owner; stock JLC06161H-3313 is recorded; no controlled impedance is claimed",
     "Single Racotech geophone input; analog noise, cable coupling and ADC timing require physical qualification",
-    "J83 source: 3.35 V +/-0.5%, total hot loop resistance <=30 milliohms, <=3 A; verify startup and load waveform at module",
+    "J83: 12 V +/-5% center-positive, 3 A adapter; U80 output allocation 3 A, output hot loop <=15 milliohms; measure startup/load/thermal behavior",
+    "J130: 8-18 V protected battery/controller DC input; U130 TI supervisor and 3 A combined Pi/HAT supply; MCU firmware and battery policy qualification pending",
     "Pi4 conceptual stack uses Megastar J1 and two SSQ-120-02-G-D risers; selected cooler, cables and mating need physical fit verification",
     "Loopback bitstream built separately; no physical sensor/rail/thermal/EMI/high-speed GPIO tests performed",
     "Pi FIFO/IRQ and geophone polling are tested on modeled buses; no GNSS or absolute UTC source on DAQHAT-01",

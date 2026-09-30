@@ -7,7 +7,7 @@ from case import HERE,ROOT,LOGO,build,box,cylinder
 sys.path.insert(0,str(ROOT/'hw/tools'))
 from project_paths import load_layout,placement_path,board_dir
 
-OUT=ROOT/'hw/releases/groundlark-case-r2'
+OUT=ROOT/'hw/releases/groundlark-case-r3'
 
 
 def common(a,b):
@@ -28,7 +28,35 @@ def validate(c,parts,refs,levels):
     assert c['geophone_diametral_clearance']>=.15,'Geophone tolerance allowance'
     assert c['geophone_terminal_headroom']>=10,'Terminal headroom'
     assert c['wall']>=2.8 and c['floor']>=5,'Case wall/floor thickness'
-    assert c['stack_rotation_deg'] in (0,180),'Stack orientation'
+    assert c['stack_rotation_deg']==180,'Stack orientation'
+    assert c['hat_size']==layout['size']==[140,56],'Current HAT outline'
+    power={p['ref']:p for p in layout['parts']}
+    assert power['J83']['xy']==[95,14.1] and power['J83']['angle']==180,'Power jack native pose'
+    assert power['SW80']['xy']==[105,10],'Switch native pose'
+    bb=refs['hat'].val().BoundingBox()
+    assert abs(bb.xmin+55)<1e-5 and abs(bb.xmax-85)<1e-5,'HAT extension missing'
+    jack=refs['j83'].val().BoundingBox()
+    assert abs(jack.xmin+14.5)<.001 and abs(jack.ymin+55.8)<.001,'FPGA jack handedness'
+    assert refs['geophone_plug'].val().BoundingBox().ymin>0 and jack.ymax<0,'Opposite power/geophone exits'
+    # Independent power-wing underside bearing probes, in physical assembly XY.
+    for yy in (-53.5,-2.5):
+        bearing=box(-24.8,yy-1.3,levels['hat_bottom']-.2,-22.2,yy+1.3,levels['hat_bottom'])
+        assert common(parts['base'],bearing)>bearing.val().Volume()*.999,'Power wing support missing'
+    for ya,yb in ((-59.1,-56.5),(.5,3.1)):
+        stop=box(-21.8,ya,levels['hat_bottom'],-19.2,yb,levels['hat_top']+.3)
+        assert common(parts['base'],stop)>stop.val().Volume()*.999,'Power wing end stop missing'
+    plug=box(-17,-90,levels['hat_top']-.5,-3,-55.8,levels['hat_top']+13.5)
+    for name in ('base','cover','geophone-jaw','cable-clamp'):
+        assert common(parts[name],plug)<1e-5,'FPGA plug access blocked'
+    assert power['J130']['xy']==[120,10] and power['J130']['angle']==180,'Battery connector pose'
+    battery_plug=box(-38.5,-90,levels['hat_top']-.5,-25.5,-52.5,levels['hat_top']+12)
+    for name in ('base','cover','geophone-jaw','cable-clamp'):
+        assert common(parts[name],battery_plug)<1e-5,'Battery plug access blocked'
+    for yy in (-53.5,-2.5):
+        bearing=box(-54.8,yy-1.3,levels['hat_bottom']-.2,-52.2,yy+1.3,levels['hat_bottom'])
+        assert common(parts['base'],bearing)>bearing.val().Volume()*.999,'Supervisor wing support missing'
+    switch=box(-24,-50,levels['hat_top']+3.6,-16,-42,80)
+    assert common(parts['cover'],switch)<1e-5,'FPGA switch access blocked'
     # Independent enclosure-space fixture: do not reuse the placement transform.
     mounts={(3.5,-3.5),(61.5,-3.5),(3.5,-52.5),(61.5,-52.5)} if c['stack_rotation_deg']==0 else {(81.5,-52.5),(23.5,-52.5),(81.5,-3.5),(23.5,-3.5)}
     for x,y in mounts:
@@ -80,12 +108,13 @@ def validate(c,parts,refs,levels):
     }
     if c['stack_rotation_deg']==180:
         service={
-           'USB/Ethernet plugs':box(-13,-55,levels['pi_top'],-1.5,0,levels['pi_top']+17),
+           'USB/Ethernet plugs':box(-70,-55,levels['pi_top'],-1.5,0,levels['pi_top']+17),
            'USB-C/HDMI/audio cable exit':box(23,1,levels['pi_top'],81,55,levels['pi_top']+10),
            'microSD removal':box(85,-36,7.5,98,-20,11),
         }
     for name,shape in service.items():
-        assert common(parts['cover'],shape)<1e-5,f'Blocked service access: {name}'
+        for part in (('base','cover','geophone-jaw','cable-clamp') if name=='USB/Ethernet plugs' else ('cover',)):
+            assert common(parts[part],shape)<1e-5,f'Blocked service access: {name}/{part}'
     if c['stack_rotation_deg']==180:
         # Explicit USB-C insertion sweep and cable route, including the base,
         # geophone and clamp. A 14 x 30 x 10 mm overmould leaves 1 mm to the
@@ -97,10 +126,12 @@ def validate(c,parts,refs,levels):
     # Cover removal is straight upward; no electronics need disconnecting first.
     for dz in (1,5,20,50):
         lifted=parts['cover'].translate((0,0,dz))
+        assert common(lifted,plug)<1e-5,'Cover extraction blocked by DC plug'
+        assert common(lifted,battery_plug)<1e-5,'Cover extraction blocked by battery plug'
         for name,shape in refs.items():
             assert common(lifted,shape)<1e-5,f'Cover extraction collision: {name}'
     return dict(component_intersections_checked=len(overlaps),
-                collisions=0,service_windows=list(service),
+                collisions=0,service_windows=list(service)+['FPGA DC plug opposite geophone','FPGA switch roof access','Pi battery plug'],fpga_plug_max_diameter_mm=14,power_wing_supports=4,board_mm=[140,56],case_outer_mm=[159,118,75],
                 levels_mm=levels,geophone_body_clearance_diameter_mm=c['geophone_diametral_clearance'],
                 geophone_terminal_clearance_to_roof_mm=c['roof_z']-c['geophone_seat_z']-c['geophone_height']-c['geophone_terminal_headroom'],
                 fpga_heatsink_to_roof_mm=c['roof_z']-levels['hat_top']-24.16,

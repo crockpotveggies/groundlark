@@ -81,7 +81,7 @@ signals. This replaces the current run, so save first if needed.
 | Control | What to look for |
 | --- | --- |
 | **Pose & vibration** | Select an IMU; tilt moves gravity between XYZ axes, and vibration adds an oscillation. A stationary IMU still measures gravity. |
-| **Magnetic field & infrasound** | Select Magnetometer or Infrasound to view the separate Burrowlark (DAQUSB-01) USB head and its modeled signals. |
+| **Magnetic field / Infrasound stimulus** | Select Magnetometer for Burrowlark (DAQUSB-01), or Infrasound for the fitted pressure sensor on the HAT. |
 | **Fault injection** | Apply a sensor fault and inspect status, events and missing-data gaps. Start a new run to return to a clean baseline. |
 | **Top / Orbit**, drag, scroll | Change the camera only. These gestures do not stimulate sensors or change recorded samples. |
 
@@ -193,3 +193,17 @@ Skylark display geometry includes the 4.88 mm socket standoff, guarded sensor
 region and 1206 C0G feedback banks. Its asset manifest binds the
 current PCB, package models and selection targets; it does not establish
 physical fit or measured sensor noise.
+
+The current Skylark profile retains gas raw samples at a nominal 31.25 Hz per
+electrode and labels the fitted barometer BMP388. Legacy 240 ms gas recordings
+remain readable with their original cadence. See [response limits](sensor-response.md)
+for filtering, noise and timing interpretation.
+
+The current HAT view includes the fitted DLVR infrasound sensor (sensor ID 8).
+Burrowlark contains only the magnetometer. Workbench pressure remains simulated;
+adding the sensor to the PCB does not implement Pi live pressure acquisition.
+
+The DAQHAT-01 scene includes the 140 × 56 mm carrier, separate FPGA power
+section, barrel-jack and converter envelopes. Scene labels and sensor targets
+use the current placement coordinates. The rendered power switch is a physical
+board feature; simulation controls do not operate it.

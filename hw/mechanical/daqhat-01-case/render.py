@@ -3,7 +3,7 @@ import argparse,bpy,math,json,sys,hashlib
 from pathlib import Path
 from mathutils import Matrix,Vector
 ROOT=Path(__file__).resolve().parents[3]
-OUT=ROOT/'hw/releases/groundlark-case-r2'
+OUT=ROOT/'hw/releases/groundlark-case-r3'
 CACHE=ROOT/'.local/case'
 REF=CACHE/'reference'
 config=json.loads(Path(__file__).with_name('parameters.json').read_text())
@@ -13,7 +13,7 @@ stack_rotation=(Matrix.Translation((42.5,-28,0))@Matrix.Rotation(math.radians(co
                 @Matrix.Translation((-42.5,28,0)))
 assert stack_rotation.to_3x3().determinant()>0,'Reflected stack transform'
 parser=argparse.ArgumentParser(description=__doc__)
-parser.add_argument('--view',default='all',choices=('all','assembly-open','assembly-closed','assembly-top','assembly-ports','cover-top','cover-interior'))
+parser.add_argument('--view',default='all',choices=('all','assembly-open','assembly-closed','assembly-top','assembly-ports','assembly-power','cover-top','cover-interior'))
 parser.add_argument('--material',default='teal',choices=('teal','clear-petg'))
 parser.add_argument('--quality',default='preview',choices=('preview','high'))
 parser.add_argument('--device',default='CPU',choices=('CPU','CUDA','OPTIX'))
@@ -98,7 +98,7 @@ base=stl(REF/'base-assembled.stl','base');cover=stl(REF/'cover-assembled.stl','c
 stl(REF/'geophone-jaw-assembled.stl','orange');stl(REF/'cable-clamp-assembled.stl','orange')
 for path in REF.glob('reference-*.stl'):
  name=path.stem[10:]
- if name in ('hat','fpga','geophone_terminals','geophone_header','geophone_plug','fpga_heatsink','j83','pi','gpio_stack') or (name.startswith('pi_') and not name.startswith('pi_spacer_')):continue
+ if name in ('hat','fpga','geophone_terminals','geophone_header','geophone_plug','fpga_heatsink','j83','u80','c89','sw80','j130','u132','c135','infrasound','pi','gpio_stack') or (name.startswith('pi_') and not name.startswith('pi_spacer_')):continue
  material='pcb' if name=='pi' else ('can' if name=='geophone' else 'black' if name=='gpio_stack' else 'metal')
  obj=stl(path,material)
  if name=='geophone':obj['round_sides']=True
@@ -142,6 +142,17 @@ for x,y,n,vertical in [(55,-12,50,False),(55,-44,50,False),(34,-28,30,True)]:
 # Actual generated HAT model. glTF Y-up becomes Blender Z-up on import.
 transform=Matrix(((1000,0,0,-50),(0,1000,0,50),(0,0,1000,hat_top-1.4684),(0,0,0,1)))
 glb(ROOT/'sw/ui/assets/daqhat-01.glb',transform)
+# KiCad GLB omits local VRML: explicit conservative custom body envelopes.
+jack=cube('PJ-102AH body',(90.5,-14.6,hat_top),(99.5,-.2,hat_top+11),'black')
+bore=cyl('Barrel opening',(95,-.2),hat_top+6.5,2.8,3,'black')
+bore.rotation_euler.x=math.pi/2
+bore.location=(95,-1.5,hat_top+6.5)
+cut(jack,bore)
+pin=cyl('Center positive pin',(95,-.2),hat_top+6.5,1,2,'metal')
+pin.rotation_euler.x=math.pi/2;pin.location=(95,-1.4,hat_top+6.5)
+cube('TPSM53603 FPGA envelope',(92.5,-34.75,hat_top),(97.5,-29.25,hat_top+4),'black')
+cube('TPSM53603 Pi envelope',(121.5,-30.75,hat_top),(126.5,-25.25,hat_top+4),'black')
+cube('DLVR E1BS envelope',(1.5,-37.025,hat_top),(10.65,-22.215,hat_top+17.25),'black')
 # Manufacturer TE0712 geometry, individually tessellated and approximately colored.
 for item in json.loads((CACHE/'fpga-bodies.json').read_text()):stl(CACHE/(item['name']+'.stl'),item['color'])
 # Illustrative molded details stay inside the conservative plug fit envelope.
@@ -169,12 +180,8 @@ wire('Shielded lead to J90',lead,'black',1.6)
 # Captive nut/screw representations; not printable components.
 for yy in (43.2,6.8):
  o=cyl('M3 geophone screw',(0,0),0,2.75,3,'metal');o.rotation_euler[1]=math.pi/2;o.location=(33.5,yy,19)
-for x,y in [(0,34),(86,34),(43,-59)]:cyl('Metal leveling contact',(x,y),-5,3.5,5,'metal')
+for x,y in [(x,-y) for x,y in config['leveling_feet']]:cyl('Metal leveling contact',(x,y),-5,3.5,5,'metal')
 for y in (31.2,20.8):screw('Cable clamp screw',(59,y),cable_z+5)
-# Explicitly checked 14 mm power-plug envelope; lead dressing is illustrative.
-if config['stack_rotation_deg']==180:
- power=cube('USB-C power overmould',(67,2,8.2),(81,31,18.2),'black');edge_highlight(power,.7)
- wire('USB-C power lead',[(74,31,13.2),(74,47,13.2),(76,63,11),(87,72,8)],'black',2)
 # Render settings.
 # Preserve planar CAD faces; smooth STL normals create swollen edges and waves.
 for obj in bpy.context.scene.objects:
@@ -225,18 +232,19 @@ def render(name,pos,target,scale):
      material=args.material,view=Path(name).stem,camera=dict(position=pos,target=target,orthographic_scale=scale),
      image_sha256=digest(Path(scene.render.filepath)),
      source_sha256={p.relative_to(ROOT).as_posix():digest(p) for p in inputs},
-     scope='R2 physical enclosure CAD, native routed HAT, manufacturer Trenz STEP and detailed attributed Pi 4 component CAD. Risers include individual contact cavities; cable plugs, geophone terminals and fasteners remain authored reference geometry.',
+     scope='R3 physical enclosure CAD, native routed HAT, manufacturer Trenz STEP and detailed attributed Pi 4 component CAD. Risers include individual contact cavities; cable plugs, geophone terminals and fasteners remain authored reference geometry.',
      handedness=dict(physical_frame='Z up, board Y down converted once to physical -Y',hat_import_determinant=transform.to_3x3().determinant(),stack_rotation_determinant=stack_rotation.to_3x3().determinant()),
      attribution='Pi 4B model: integrated-circuit / FreeCAD community library, CC-BY-3.0; see hw/shared/models/raspberrypi4/provenance.json. Trenz geometry: Trenz Electronic. KiCad component library attribution retained.',
      limitations='Clear PETG is an approximate unpolished FDM material. Plug details and lead dressing are illustrative. Physical fit and print transparency remain unqualified.')
  Path(scene.render.filepath).with_suffix('.json').write_text(json.dumps(provenance,indent=2)+'\n')
-cover.location.x=-125
-render('assembly-open.png',(-230,300,250),(-33,-4,29),320)
-render('assembly-top.png',(-20,-7,350),(-20,-7,0),285)
+cover.location.x=-190
+render('assembly-open.png',(-230,300,250),(-65,-4,29),410)
+render('assembly-top.png',(-65,-7,350),(-65,-7,0),380)
 cover.hide_render=True
-render('assembly-ports.png',(-170,205,150),(42,-8,27),185)
+render('assembly-ports.png',(-170,205,150),(30,-8,27),210)
 cover.hide_render=False
 cover.location.x=0
+render('assembly-power.png',(-175,-240,180),(25,-10,37),235)
 render('assembly-closed.png',(-175,240,205),(42,-6,37),235)
 # Save an interactive assembly model without studio elements/lights/camera.
 for o in bpy.context.selected_objects:o.select_set(False)

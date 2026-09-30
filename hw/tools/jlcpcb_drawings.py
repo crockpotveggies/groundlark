@@ -58,7 +58,7 @@ def make(out):
     page('Assembly request', 1)
     y = H-139
     for text in [
-        '<b>Requested deliverable:</b> one populated 85 x 56 mm DAQHAT-01 carrier. Standard PCBA, double-sided SMT plus through-hole assembly. Pi, Trenz module, geophone, riser, power supply and mounting hardware are separate purchases.',
+        '<b>Requested deliverable:</b> one populated 140 x 56 mm DAQHAT-01 carrier. Standard PCBA, double-sided SMT plus through-hole assembly. Pi, Trenz module, geophone, riser, power supply and mounting hardware are separate purchases.',
         '<b>Quantity: ONE SINGLE HAT.</b> Fabricate one PCB and assemble that one PCB. No increase to two or five boards is authorized. Set both website quantities to 1; supplier must confirm acceptance. Gerbers contain one board, without panel repeats. Component purchase minima and attrition are separate quote items.',
         '<b>Handling hold:</b> the 56 mm board dimension is below the 70 mm Standard minimum. Manufacturer to propose an assembly frame, edge rails and fiducials; return panel data for review without altering the HAT outline or hole positions.',
         f"<b>Sourcing hold:</b> {manifest['counts']['physical_placements']} placements, {manifest['counts']['BOM_lines']} grouped BOM lines. {manifest['counts'].get('catalog_mapped_BOM_lines', 0)} lines have exact catalog identities. J1 is {j1}. Confirm current allocation of every selected part. No substitutions are approved.",
@@ -84,9 +84,9 @@ def make(out):
         y -= rowh
     y -= 15
     for text in [
-        '<b>Drill/clearance profile:</b> 0.30 mm through-via drills; pads at least 0.45 mm (0.075 mm ring). No laser, blind or buried vias. Dense signal escapes use 0.125 mm tracks and 0.10 mm clearance; additional hole/pad rules are checked by native DRC.',
+        '<b>Drill/clearance profile:</b> 0.30/0.40 mm through-via drills; pads at least 0.45 mm (0.075 mm ring). No laser, blind or buried vias. Dense signal escapes use 0.125 mm tracks and 0.10 mm clearance; additional hole/pad rules are checked by native DRC.',
         f'<b>Via processing:</b> epoxy-fill and copper-cap all {via_count} through-vias listed in via-processing.csv, including ADC and IMU bypass via-in-pad sites. JLCPCB lists POFV for six-layer boards. Do not fill component PTH holes or NPTH holes.',
-        '<b>Coordinates:</b> absolute KiCad origin; X right, Y up. Board bounds X=50..135, Y=-106..-50 mm. Gerber, drill and CPL share this origin. Bottom CPL coordinates are NOT mirrored. Bottom illustration is mirrored for viewing only.',
+        '<b>Coordinates:</b> absolute KiCad origin; X right, Y up. Board bounds X=50..190, Y=-106..-50 mm. Gerber, drill and CPL share this origin. Bottom CPL coordinates are NOT mirrored. Bottom illustration is mirrored for viewing only.',
         '<b>Drills:</b> two Excellon files keep PTH and NPTH separate. Preserve Edge.Cuts, mounting holes and connector locating holes. Use the drill report for tool counts; no blind-drill files are expected.',
     ]: y = paragraph(text, y)
     c.showPage()

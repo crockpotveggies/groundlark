@@ -1,44 +1,44 @@
 {
   "cases": [
     {
-      "case": "dc_3.33325_0.1",
+      "case": "dc_3.2706203558882985_0.1",
       "measured": {
-        "vmodule": 3.33025
+        "vmodule": 3.26912
       },
       "pass_check": true
     },
     {
-      "case": "dc_3.33325_1.5",
+      "case": "dc_3.2706203558882985_1.5",
       "measured": {
-        "vmodule": 3.28825
+        "vmodule": 3.24812
       },
       "pass_check": true
     },
     {
-      "case": "dc_3.33325_3.0",
+      "case": "dc_3.2706203558882985_3.0",
       "measured": {
-        "vmodule": 3.24325
+        "vmodule": 3.22562
       },
       "pass_check": true
     },
     {
-      "case": "dc_3.36675_0.1",
+      "case": "dc_3.3806912721675157_0.1",
       "measured": {
-        "vmodule": 3.36375
+        "vmodule": 3.379191
       },
       "pass_check": true
     },
     {
-      "case": "dc_3.36675_1.5",
+      "case": "dc_3.3806912721675157_1.5",
       "measured": {
-        "vmodule": 3.32175
+        "vmodule": 3.358191
       },
       "pass_check": true
     },
     {
-      "case": "dc_3.36675_3.0",
+      "case": "dc_3.3806912721675157_3.0",
       "measured": {
-        "vmodule": 3.27675
+        "vmodule": 3.335691
       },
       "pass_check": true
     },
@@ -74,37 +74,37 @@
       "pass_check": true
     },
     {
-      "case": "load_step_3.33325_50n",
+      "case": "load_step_3.2706203558882985_50n",
       "measured": {
-        "vmin": 3.242436,
-        "vmax": 3.331064
+        "vmin": 3.224343,
+        "vmax": 3.270398
       },
       "pass_check": true
     },
     {
-      "case": "load_step_3.33325_200n",
+      "case": "load_step_3.2706203558882985_200n",
       "measured": {
-        "vmin": 3.238098,
-        "vmax": 3.335402
+        "vmin": 3.219993,
+        "vmax": 3.274748
       },
       "pass_check": true
     },
     {
-      "case": "load_step_3.36675_50n",
+      "case": "load_step_3.3806912721675157_50n",
       "measured": {
-        "vmin": 3.275936,
-        "vmax": 3.364564
+        "vmin": 3.334414,
+        "vmax": 3.380469
       },
       "pass_check": true
     },
     {
-      "case": "load_step_3.36675_200n",
+      "case": "load_step_3.3806912721675157_200n",
       "measured": {
-        "vmin": 3.271598,
-        "vmax": 3.368902
+        "vmin": 3.330064,
+        "vmax": 3.384819
       },
       "pass_check": true
     }
   ],
-  "scope": "6 DC budgets, expected undervoltage rejection, 3 UART RC checks, 4 bounded 0.1-to-3 A / 100 us load steps with 50/200 nH loop inductance and 26.4 uF effective capacitance. No regulator control loop, fast FPGA load edge, startup inrush or thermal qualification."
+  "scope": "6 DC budgets, expected undervoltage rejection, 3 UART RC checks, 4 bounded 0.1-to-3 A / 100 us load steps with 50/200 nH loop inductance and 26.4 uF effective capacitance. Ideal converter-output source only. No regulator control loop, fast FPGA load edge, startup inrush or thermal qualification."
 }

@@ -1,7 +1,40 @@
+from "supervisor_parts.ato" import SUP_FUSE
+from "supervisor_parts.ato" import SUP_SWITCH
+from "supervisor_parts.ato" import SUP_INPUT
+from "supervisor_parts.ato" import SUP_DEBUG
+from "supervisor_parts.ato" import SUP_JUMPER
+from "supervisor_parts.ato" import SUP_2K41
+from "supervisor_parts.ato" import SUP_1M
+from "supervisor_parts.ato" import SUP_150K
+from "supervisor_parts.ato" import SUP_2K
+from "supervisor_parts.ato" import SUP_TVS
+from "supervisor_parts.ato" import SUP_10U
+from "supervisor_parts.ato" import SUP_MCU
+from "supervisor_parts.ato" import SUP_LDO
+from "supervisor_parts.ato" import SUP_NMOS
+from "supervisor_parts.ato" import SUP_47K
+from "supervisor_parts.ato" import SUP_470N
+from "supervisor_parts.ato" import SUP_10N
+from "supervisor_parts.ato" import SUP_4U7
+from "power_parts.ato" import PWR_JACK
+from "power_parts.ato" import PWR_BUCK
+from "power_parts.ato" import PWR_DIODE
+from "power_parts.ato" import PWR_TVS
+from "power_parts.ato" import PWR_FUSE
+from "power_parts.ato" import PWR_SW
+from "power_parts.ato" import PWR_10K
+from "power_parts.ato" import PWR_4K3
+from "power_parts.ato" import PWR_100K
+from "power_parts.ato" import PWR_15K
+from "power_parts.ato" import PWR_CIN
+from "power_parts.ato" import PWR_COUT
+from "power_parts.ato" import PWR_BULK
+from "power_parts.ato" import PWR_100N
 # Trenz TE0712-03-81I36-A variant. Electrical source of truth.
 #pragma experiment("TRAITS")
 import has_designator
 import ElectricPower
+from "../../shared/elec/parts.ato" import P_35
 from "host_link_parts.ato" import LINK_SUP
 from "host_link_parts.ato" import LINK_NAND
 from "host_link_parts.ato" import LINK_AND
@@ -59,6 +92,42 @@ from "trenz_parts.ato" import TZ_JP
 from "trenz_parts.ato" import TZ_POWER
 
 module TrenzHat:
+    signal BAT_INPUT
+    trait BAT_INPUT has_net_name_suggestion<name="BAT_INPUT", level="EXPECTED">
+    signal BAT_FUSED
+    trait BAT_FUSED has_net_name_suggestion<name="BAT_FUSED", level="EXPECTED">
+    signal BAT_PROTECTED
+    trait BAT_PROTECTED has_net_name_suggestion<name="BAT_PROTECTED", level="EXPECTED">
+    signal SUP_3V3
+    trait SUP_3V3 has_net_name_suggestion<name="SUP_3V3", level="EXPECTED">
+    signal SUP_NRST
+    trait SUP_NRST has_net_name_suggestion<name="SUP_NRST", level="EXPECTED">
+    signal SUP_CORE
+    trait SUP_CORE has_net_name_suggestion<name="SUP_CORE", level="EXPECTED">
+    signal SUP_SWDIO
+    trait SUP_SWDIO has_net_name_suggestion<name="SUP_SWDIO", level="EXPECTED">
+    signal SUP_SWCLK
+    trait SUP_SWCLK has_net_name_suggestion<name="SUP_SWCLK", level="EXPECTED">
+    signal SUP_BAT_ADC
+    trait SUP_BAT_ADC has_net_name_suggestion<name="SUP_BAT_ADC", level="EXPECTED">
+    signal SUP_RUN_DRIVE
+    trait SUP_RUN_DRIVE has_net_name_suggestion<name="SUP_RUN_DRIVE", level="EXPECTED">
+    signal SUP_RUN
+    trait SUP_RUN has_net_name_suggestion<name="SUP_RUN", level="EXPECTED">
+    signal SUP_REQUEST
+    trait SUP_REQUEST has_net_name_suggestion<name="SUP_REQUEST", level="EXPECTED">
+    signal SUP_ACK_N
+    trait SUP_ACK_N has_net_name_suggestion<name="SUP_ACK_N", level="EXPECTED">
+    signal PI_SHUTDOWN_N
+    trait PI_SHUTDOWN_N has_net_name_suggestion<name="PI_SHUTDOWN_N", level="EXPECTED">
+    signal PI_HALTED
+    trait PI_HALTED has_net_name_suggestion<name="PI_HALTED", level="EXPECTED">
+    signal PI_BUCK_FB
+    trait PI_BUCK_FB has_net_name_suggestion<name="PI_BUCK_FB", level="EXPECTED">
+    signal PI_RAW_5V
+    trait PI_RAW_5V has_net_name_suggestion<name="PI_RAW_5V", level="EXPECTED">
+    signal PI_SWITCH_CT
+    trait PI_SWITCH_CT has_net_name_suggestion<name="PI_SWITCH_CT", level="EXPECTED">
     signal LINK_ARMED_REQUEST
     signal FPGA_LINK_CS_N
     signal FPGA_LINK_DQ0
@@ -84,7 +153,11 @@ module TrenzHat:
     signal PI_LINK_DQ3
     signal PI_LINK_SCLK
     signal EEP_WP
-    signal EXT_3V3
+    signal EXT_12V
+    signal FUSED_12V
+    signal PROTECTED_12V
+    signal BUCK_EN
+    signal BUCK_FB
     signal FPGA_3V3
     signal FPGA_CONFIG_RESET_N
     signal FPGA_EN1
@@ -193,9 +266,9 @@ module TrenzHat:
     j1.p28 ~ ID_SCL
     j1.p29 ~ PI_IMU3_CS
     j1.p30 ~ GND
-    # J1.31: spare BCM6, intentionally unconnected
+    j1.p31 ~ PI_SHUTDOWN_N
     j1.p32 ~ PI_LINK_DQ3
-    # J1.33: spare BCM13, intentionally unconnected
+    j1.p33 ~ PI_HALTED
     j1.p34 ~ GND
     j1.p35 ~ PI_LINK_DQ1
     j1.p36 ~ PI_LINK_DQ2
@@ -745,18 +818,6 @@ module TrenzHat:
     j82 = new TZ60
     trait j82 has_designator<designator="J82">
 
-    # J83: 1715721; REGULATED 3.3 V ONLY; current-limited external supply, 3 A initial operating budget
-    j83 = new TZ_POWER
-    trait j83 has_designator<designator="J83">
-    j83.p1 ~ EXT_3V3
-    j83.p2 ~ GND
-
-    # F80: 0467005.NR; 5 A fast fuse; not reverse-polarity or overvoltage protection
-    f80 = new TZ_FUSE
-    trait f80 has_designator<designator="F80">
-    f80.p1 ~ EXT_3V3
-    f80.p2 ~ FPGA_VIN
-
     # JP80: TSW-102-07-G-S; Fit shunt to DISABLE module; open enables on-board sequence
     jp80 = new TZ_JP
     trait jp80 has_designator<designator="JP80">
@@ -820,7 +881,11 @@ module TrenzHat:
     external_supply.voltage = 3.201V to 3.399V
     assert external_supply.voltage within 3.201V to 3.399V
     trait EEP_WP has_net_name_suggestion<name="EEP_WP", level="EXPECTED">
-    trait EXT_3V3 has_net_name_suggestion<name="EXT_3V3", level="EXPECTED">
+    trait EXT_12V has_net_name_suggestion<name="EXT_12V", level="EXPECTED">
+    trait FUSED_12V has_net_name_suggestion<name="FUSED_12V", level="EXPECTED">
+    trait PROTECTED_12V has_net_name_suggestion<name="PROTECTED_12V", level="EXPECTED">
+    trait BUCK_EN has_net_name_suggestion<name="BUCK_EN", level="EXPECTED">
+    trait BUCK_FB has_net_name_suggestion<name="BUCK_FB", level="EXPECTED">
     trait FPGA_3V3 has_net_name_suggestion<name="FPGA_3V3", level="EXPECTED">
     trait FPGA_CONFIG_RESET_N has_net_name_suggestion<name="FPGA_CONFIG_RESET_N", level="EXPECTED">
     trait FPGA_EN1 has_net_name_suggestion<name="FPGA_EN1", level="EXPECTED">
@@ -1164,3 +1229,349 @@ module TrenzHat:
     c106.p1 ~ FPGA_3V3
     c106.p2 ~ GND
     trait LINK_ARMED_REQUEST has_net_name_suggestion<name="LINK_ARMED_REQUEST", level="EXPECTED">
+
+    # 10-infrasound: DLVR-F50D-E1BS-I-NI3F, I2C 0x28, fitted.
+    # All Sensors DS-0300 Rev J SIP pin view: GND, VS, SDA, SCL.
+    u23 = new P_35
+    trait u23 has_designator<designator="U23">
+    u23.p1 ~ GND
+    u23.p2 ~ SENS_3V3
+    u23.p3 ~ I2C_SDA
+    u23.p4 ~ I2C_SCL
+    u23.power ~ sensor_supply
+    c24 = new P_6
+    trait c24 has_designator<designator="C24">
+    c24.p1 ~ SENS_3V3
+    c24.p2 ~ GND
+
+    j83 = new PWR_JACK
+    trait j83 has_designator<designator="J83">
+    j83.p1 ~ EXT_12V
+    j83.p2 ~ GND
+
+    f80 = new PWR_FUSE
+    trait f80 has_designator<designator="F80">
+    f80.p1 ~ EXT_12V
+    f80.p2 ~ FUSED_12V
+
+    d80 = new PWR_DIODE
+    trait d80 has_designator<designator="D80">
+    d80.p1 ~ PROTECTED_12V
+    d80.p2 ~ FUSED_12V
+
+    d81 = new PWR_TVS
+    trait d81 has_designator<designator="D81">
+    d81.p1 ~ PROTECTED_12V
+    d81.p2 ~ GND
+
+    u80 = new PWR_BUCK
+    trait u80 has_designator<designator="U80">
+    u80.p1 ~ PROTECTED_12V
+    u80.p14 ~ PROTECTED_12V
+    u80.p2 ~ BUCK_EN
+    u80.p3 ~ GND
+    u80.p6 ~ FPGA_EN1
+    u80.p7 ~ FPGA_VIN
+    u80.p8 ~ FPGA_VIN
+    u80.p9 ~ BUCK_FB
+    u80.p10 ~ GND
+    u80.p11 ~ GND
+    u80.p12 ~ GND
+    u80.p15 ~ GND
+
+    r120 = new PWR_10K
+    trait r120 has_designator<designator="R120">
+    r120.p1 ~ FPGA_VIN
+    r120.p2 ~ BUCK_FB
+
+    r121 = new PWR_4K3
+    trait r121 has_designator<designator="R121">
+    r121.p1 ~ BUCK_FB
+    r121.p2 ~ GND
+
+    r122 = new PWR_100K
+    trait r122 has_designator<designator="R122">
+    r122.p1 ~ PROTECTED_12V
+    r122.p2 ~ BUCK_EN
+
+    r123 = new PWR_15K
+    trait r123 has_designator<designator="R123">
+    r123.p1 ~ BUCK_EN
+    r123.p2 ~ GND
+
+    r124 = new PWR_10K
+    trait r124 has_designator<designator="R124">
+    r124.p1 ~ FPGA_VIN
+    r124.p2 ~ FPGA_EN1
+
+    sw80 = new PWR_SW
+    trait sw80 has_designator<designator="SW80">
+    sw80.p1 ~ GND
+    sw80.p2 ~ BUCK_EN
+
+    c86 = new PWR_CIN
+    trait c86 has_designator<designator="C86">
+    c86.p1 ~ PROTECTED_12V
+    c86.p2 ~ GND
+
+    c87 = new PWR_CIN
+    trait c87 has_designator<designator="C87">
+    c87.p1 ~ PROTECTED_12V
+    c87.p2 ~ GND
+
+    c88 = new PWR_100N
+    trait c88 has_designator<designator="C88">
+    c88.p1 ~ PROTECTED_12V
+    c88.p2 ~ GND
+
+    c89 = new PWR_BULK
+    trait c89 has_designator<designator="C89">
+    c89.p1 ~ PROTECTED_12V
+    c89.p2 ~ GND
+
+    c110 = new PWR_COUT
+    trait c110 has_designator<designator="C110">
+    c110.p1 ~ FPGA_VIN
+    c110.p2 ~ GND
+
+    c111 = new PWR_COUT
+    trait c111 has_designator<designator="C111">
+    c111.p1 ~ FPGA_VIN
+    c111.p2 ~ GND
+
+    c112 = new PWR_COUT
+    trait c112 has_designator<designator="C112">
+    c112.p1 ~ FPGA_VIN
+    c112.p2 ~ GND
+
+    j130 = new SUP_INPUT
+    trait j130 has_designator<designator="J130">
+    j130.p1 ~ BAT_INPUT
+    j130.p2 ~ GND
+
+    f130 = new SUP_FUSE
+    trait f130 has_designator<designator="F130">
+    f130.p1 ~ BAT_INPUT
+    f130.p2 ~ BAT_FUSED
+
+    d130 = new PWR_DIODE
+    trait d130 has_designator<designator="D130">
+    d130.p1 ~ BAT_PROTECTED
+    d130.p2 ~ BAT_FUSED
+
+    d131 = new SUP_TVS
+    trait d131 has_designator<designator="D131">
+    d131.p1 ~ BAT_PROTECTED
+    d131.p2 ~ GND
+
+    u131 = new SUP_LDO
+    trait u131 has_designator<designator="U131">
+    u131.p1 ~ BAT_PROTECTED
+    u131.p2 ~ GND
+    u131.p5 ~ SUP_3V3
+
+    c130 = new SUP_4U7
+    trait c130 has_designator<designator="C130">
+    c130.p1 ~ SUP_3V3
+    c130.p2 ~ GND
+
+    c131 = new PWR_CIN
+    trait c131 has_designator<designator="C131">
+    c131.p1 ~ BAT_PROTECTED
+    c131.p2 ~ GND
+
+    u132 = new PWR_BUCK
+    trait u132 has_designator<designator="U132">
+    u132.p1 ~ BAT_PROTECTED
+    u132.p14 ~ BAT_PROTECTED
+    u132.p2 ~ SUP_RUN
+    u132.p3 ~ GND
+    u132.p7 ~ PI_RAW_5V
+    u132.p8 ~ PI_RAW_5V
+    u132.p9 ~ PI_BUCK_FB
+    u132.p10 ~ GND
+    u132.p11 ~ GND
+    u132.p12 ~ GND
+    u132.p15 ~ GND
+
+    c132 = new PWR_CIN
+    trait c132 has_designator<designator="C132">
+    c132.p1 ~ BAT_PROTECTED
+    c132.p2 ~ GND
+
+    c133 = new PWR_CIN
+    trait c133 has_designator<designator="C133">
+    c133.p1 ~ BAT_PROTECTED
+    c133.p2 ~ GND
+
+    c134 = new PWR_100N
+    trait c134 has_designator<designator="C134">
+    c134.p1 ~ BAT_PROTECTED
+    c134.p2 ~ GND
+
+    c135 = new PWR_BULK
+    trait c135 has_designator<designator="C135">
+    c135.p1 ~ BAT_PROTECTED
+    c135.p2 ~ GND
+
+    c136 = new PWR_COUT
+    trait c136 has_designator<designator="C136">
+    c136.p1 ~ PI_RAW_5V
+    c136.p2 ~ GND
+
+    c137 = new PWR_COUT
+    trait c137 has_designator<designator="C137">
+    c137.p1 ~ PI_RAW_5V
+    c137.p2 ~ GND
+
+    c138 = new PWR_COUT
+    trait c138 has_designator<designator="C138">
+    c138.p1 ~ PI_RAW_5V
+    c138.p2 ~ GND
+
+    r130 = new PWR_10K
+    trait r130 has_designator<designator="R130">
+    r130.p1 ~ PI_RAW_5V
+    r130.p2 ~ PI_BUCK_FB
+
+    r131 = new SUP_2K41
+    trait r131 has_designator<designator="R131">
+    r131.p1 ~ PI_BUCK_FB
+    r131.p2 ~ GND
+
+    r132 = new PWR_100K
+    trait r132 has_designator<designator="R132">
+    r132.p1 ~ SUP_RUN
+    r132.p2 ~ GND
+
+    u133 = new SUP_SWITCH
+    trait u133 has_designator<designator="U133">
+    u133.p1 ~ PI_RAW_5V
+    u133.p2 ~ PI_RAW_5V
+    u133.p3 ~ PI_RAW_5V
+    u133.p4 ~ SUP_RUN
+    u133.p5 ~ GND
+    u133.p6 ~ PI_SWITCH_CT
+    u133.p8 ~ PI_RAW_5V
+    u133.p9 ~ PI_5V
+    u133.p10 ~ PI_5V
+    u133.p11 ~ GND
+
+    c139 = new SUP_10N
+    trait c139 has_designator<designator="C139">
+    c139.p1 ~ PI_SWITCH_CT
+    c139.p2 ~ GND
+
+    c140 = new SUP_10U
+    trait c140 has_designator<designator="C140">
+    c140.p1 ~ PI_5V
+    c140.p2 ~ GND
+
+    r133 = new SUP_2K
+    trait r133 has_designator<designator="R133">
+    r133.p1 ~ PI_5V
+    r133.p2 ~ GND
+
+    u130 = new SUP_MCU
+    trait u130 has_designator<designator="U130">
+    u130.p3 ~ SUP_NRST
+    u130.p4 ~ SUP_3V3
+    u130.p5 ~ GND
+    u130.p7 ~ SUP_RUN_DRIVE
+    u130.p8 ~ SUP_REQUEST
+    u130.p9 ~ SUP_ACK_N
+    u130.p23 ~ SUP_SWDIO
+    u130.p24 ~ SUP_SWCLK
+    u130.p31 ~ SUP_BAT_ADC
+    u130.p32 ~ SUP_CORE
+    u130.p33 ~ GND
+
+    c141 = new PWR_100N
+    trait c141 has_designator<designator="C141">
+    c141.p1 ~ SUP_3V3
+    c141.p2 ~ GND
+
+    c142 = new SUP_10U
+    trait c142 has_designator<designator="C142">
+    c142.p1 ~ SUP_3V3
+    c142.p2 ~ GND
+
+    c143 = new SUP_470N
+    trait c143 has_designator<designator="C143">
+    c143.p1 ~ SUP_CORE
+    c143.p2 ~ GND
+
+    r134 = new SUP_47K
+    trait r134 has_designator<designator="R134">
+    r134.p1 ~ SUP_NRST
+    r134.p2 ~ SUP_3V3
+
+    c144 = new SUP_10N
+    trait c144 has_designator<designator="C144">
+    c144.p1 ~ SUP_NRST
+    c144.p2 ~ GND
+
+    r135 = new SUP_1M
+    trait r135 has_designator<designator="R135">
+    r135.p1 ~ BAT_FUSED
+    r135.p2 ~ SUP_BAT_ADC
+
+    r136 = new SUP_150K
+    trait r136 has_designator<designator="R136">
+    r136.p1 ~ SUP_BAT_ADC
+    r136.p2 ~ GND
+
+    c145 = new SUP_10N
+    trait c145 has_designator<designator="C145">
+    c145.p1 ~ SUP_BAT_ADC
+    c145.p2 ~ GND
+
+    q130 = new SUP_NMOS
+    trait q130 has_designator<designator="Q130">
+    q130.p1 ~ SUP_REQUEST
+    q130.p2 ~ GND
+    q130.p3 ~ PI_SHUTDOWN_N
+
+    r137 = new PWR_100K
+    trait r137 has_designator<designator="R137">
+    r137.p1 ~ SUP_REQUEST
+    r137.p2 ~ GND
+
+    r138 = new PWR_10K
+    trait r138 has_designator<designator="R138">
+    r138.p1 ~ PI_3V3
+    r138.p2 ~ PI_SHUTDOWN_N
+
+    q131 = new SUP_NMOS
+    trait q131 has_designator<designator="Q131">
+    q131.p1 ~ PI_HALTED
+    q131.p2 ~ GND
+    q131.p3 ~ SUP_ACK_N
+
+    r139 = new PWR_100K
+    trait r139 has_designator<designator="R139">
+    r139.p1 ~ PI_HALTED
+    r139.p2 ~ GND
+
+    r140 = new PWR_100K
+    trait r140 has_designator<designator="R140">
+    r140.p1 ~ SUP_3V3
+    r140.p2 ~ SUP_ACK_N
+
+    j131 = new SUP_DEBUG
+    trait j131 has_designator<designator="J131">
+    j131.p1 ~ SUP_3V3
+    j131.p2 ~ GND
+    j131.p3 ~ SUP_SWCLK
+    j131.p4 ~ SUP_SWDIO
+    j131.p5 ~ SUP_NRST
+
+    jp130 = new SUP_JUMPER
+    trait jp130 has_designator<designator="JP130">
+    jp130.p1 ~ SUP_3V3
+    jp130.p2 ~ SUP_RUN
+
+    r141 = new PWR_10K
+    trait r141 has_designator<designator="R141">
+    r141.p1 ~ SUP_RUN_DRIVE
+    r141.p2 ~ SUP_RUN

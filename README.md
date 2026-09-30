@@ -16,8 +16,8 @@ heads. All share the sensor contracts, simulation tools and local workbench.
 
 **Seismic monitoring on a Raspberry Pi.** The active
 [Groundlark FPGA HAT](hw/groundlark-fpga-hat/README.md), model **DAQHAT-01**, is an
-85 × 56 mm, six-layer FR-4 board with three XYZ LSM6DSO IMUs and an ADS122C04
-input for an external Racotech geophone. The stack is **Pi → HAT → Trenz
+140 × 56 mm, six-layer FR-4 board with three XYZ LSM6DSO IMUs and an ADS122C04
+input for an external Racotech geophone, plus a fitted DLVR infrasound sensor. The stack is **Pi → HAT → Trenz
 Artix-7 200T FPGA**. Pi acquisition works independently of a configured FPGA.
 
 The [internal FPGA link](docs/fpga-host-link.md) provides six QSPI wires, UART,
@@ -36,8 +36,8 @@ qualification remain pending. See the [stack assembly guide](docs/stack-assembly
 The JLCPCB package targets one assembled HAT; sourcing, placement and J1 fit
 checks remain open. Fabrication packages stay local in ignored `hw/releases/`.
 
-*R2 [prototype enclosure](hw/mechanical/daqhat-01-case/README.md), current
-HAT CAD, vendor Trenz components and a detailed
+*R3 [prototype enclosure](hw/mechanical/daqhat-01-case/README.md), current
+140 mm HAT CAD with infrasound, TI Pi supervision and independent FPGA power, vendor Trenz components and a detailed
 [Pi 4B model](hw/shared/models/raspberrypi4/README.md) by integrated-circuit / FreeCAD
 community (CC BY 3.0). Clear PETG appearance, risers, geophone and wiring are approximate.
 Physical fit remains unqualified. [Render provenance](docs/images/groundlark-enclosure.json).*

@@ -1,0 +1,12 @@
+{
+  "generator": "KiCad 9.0.9 native PCB render",
+  "board_sha256": "0434eee91432fc5e35a01c40805387454fcfa30154485d54b435439d120c07d9",
+  "models": "Vendor Trenz STEP; authored Pi, DLVR, PJ-102AH and TPSM53603 envelopes",
+  "physical_fit_qualified": false,
+  "sha256": {
+    "3d.png": "5605d646d460a5e72345eb651e3fa390a59825cdcac6f681192eb68028ad803c",
+    "3d-bottom.png": "4d67b341f20b357e8e2b37c6e114f9c419b552815e0c564a733e28a546277e8d",
+    "trenz-mounted.png": "457ba9692cbd2524c36cf38d9dfe39a0e56a91b7a6034a180dc130f18bbea053",
+    "pi-trenz-stack-concept.png": "6b8518f63ed9ed18c3e23a38f437c9f39300ce02409db6a6eaa783cbf8afdbbf"
+  }
+}

@@ -1,4 +1,4 @@
-(kicad_sch (version 20230121) (generator eeschema) (uuid e698ceff-fa25-5efc-82bf-1acfc4d4bd14) (paper "A3") (title_block (title "Groundlark DAQHAT-01 / 05-coldfoot-interface-page-01") (date "2026-09-24") (rev "DAQHAT-01"))
+(kicad_sch (version 20230121) (generator eeschema) (uuid e698ceff-fa25-5efc-82bf-1acfc4d4bd14) (paper "A3") (title_block (title "Groundlark DAQHAT-01 / 05-coldfoot-interface-page-01") (date "2026-09-30") (rev "DAQHAT-01"))
 (lib_symbols
 (symbol "Groundlark:Part_J4" (pin_names (offset 0.6)) (in_bom yes) (on_board yes)
       (property "Reference" "J" (id 0) (at 0 6.35 0) (effects (font (size 1.27 1.27))))

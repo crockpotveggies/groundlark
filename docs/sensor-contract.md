@@ -28,7 +28,7 @@ Breaking meaning/units requires a new package and envelope version.
 | 5 | Legacy SCL3300 U20 (removed from current DAQHAT-01) | Signed 16-bit XYZ acceleration and/or angle counts, optional temperature, required 16-bit device status |
 | 6 | Legacy DAQHAT-01 MAX-M10S U21 (absent on DAQHAT-01) | Complete 92-byte UBX NAV-PVT payload, excluding UBX header/checksum |
 | 7 | USB head RM3100 | Signed 24-bit XYZ counts, sign-extended into sint32 |
-| 8 | Optional USB head DLVR | Four original response bytes, preserving pressure, temperature and status bits |
+| 8 | DAQHAT-01 DLVR U23; legacy USB head supported | Four original response bytes, preserving pressure, temperature and status bits |
 | 9 | DAQHAT-01 ADS122C04 / Racotech vertical | Signed 24-bit ADC count in sint32; required uint8 conversion counter |
 
 Skylark uses board ID 3 and MCU clock domain 2:
@@ -68,7 +68,7 @@ uncertainty; no host/MCU/UTC correlation is claimed.
 ID 9 uses the Pi MONOTONIC_RAW clock, gain 64, reference 2.048 V and nominal
 period 3,030,303 ns (330 SPS). ADC input volts = count × reference / (gain × 2²³).
 Velocity requires frequency-response correction and calibration; none is implicit.
-The current DAQHAT-01 inventory is 1–3 and 9. IDs 4, 5 and 6 retain their
+The current DAQHAT-01 inventory is 1–3, 8 and 9. IDs 4, 5 and 6 retain their
 legacy IMU, inclinometer and GNSS semantics. None is advertised by current acquisition.
 
 The model is fixed by v1 sensor ID. Another model requires explicit schema
@@ -106,7 +106,10 @@ adapter configuration/recording metadata before hardware acquisition is qualifie
 
 ## Time, ordering and loss
 
-Timestamp.domain is PI_MONOTONIC_RAW for IDs 1–6 and MCU_MONOTONIC for IDs 7–8.
+Timestamp.domain is PI_MONOTONIC_RAW for IDs 1–6 and 9, and MCU_MONOTONIC for
+ID 7. Pressure ID 8 uses PI_MONOTONIC_RAW on DAQHAT-01 and retains MCU_MONOTONIC
+for legacy USB-head recordings. Session validation binds the pressure clock to
+the advertised board identity. Field layouts and the Buf baseline are unchanged.
 acquisition_ns is required with explicit presence: zero is a valid timestamp.
 MCU ticks are extended through timer wraps before conversion to nanoseconds;
 a reset begins a new boot/session. No timestamp wraps or decreases within a

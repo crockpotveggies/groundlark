@@ -31,8 +31,13 @@ class CaseTests(unittest.TestCase):
     def test_obstructed_usb_opening_rejected(self):
         parts=dict(self.parts)
         # A tab hangs into the plug envelope from the wall above the opening.
-        wall=box(-8,-30,25,-7,-22,31) if self.c['stack_rotation_deg']==180 else box(91,-56,17,95,-1,31)
+        wall=box(-63,-30,25,-62,-22,31) if self.c['stack_rotation_deg']==180 else box(91,-56,17,95,-1,31)
         parts['cover']=parts['cover'].union(wall)
+        with self.assertRaisesRegex(AssertionError,'service access'):
+            validate(self.c,parts,self.refs,self.levels)
+
+    def test_support_blocking_usb_plug_rejected(self):
+        parts=dict(self.parts);parts['base']=parts['base'].union(box(-25,-4,5,-22,-1,39))
         with self.assertRaisesRegex(AssertionError,'service access'):
             validate(self.c,parts,self.refs,self.levels)
 
@@ -82,6 +87,46 @@ class CaseTests(unittest.TestCase):
     def test_obstructed_power_route_rejected(self):
         parts=dict(self.parts);parts['base']=parts['base'].union(box(70,20,5,76,23,19))
         with self.assertRaisesRegex(AssertionError,'USB-C insertion blocked'):
+            validate(self.c,parts,self.refs,self.levels)
+
+    def test_old_hat_outline_rejected(self):
+        refs=dict(self.refs);refs['hat']=box(0,-56,self.levels['hat_bottom'],85,0,self.levels['hat_top'])
+        with self.assertRaisesRegex(AssertionError,'extension missing'):
+            validate(self.c,self.parts,refs,self.levels)
+
+    def test_wrong_fpga_jack_side_rejected(self):
+        refs=dict(self.refs);refs['j83']=refs['j83'].mirror('XZ')
+        with self.assertRaisesRegex(AssertionError,'jack handedness'):
+            validate(self.c,self.parts,refs,self.levels)
+
+    def test_missing_power_wing_support_rejected(self):
+        parts=dict(self.parts);parts['base']=parts['base'].cut(box(-25,-55,6,-22,-52,41))
+        with self.assertRaisesRegex(AssertionError,'wing support missing'):
+            validate(self.c,parts,self.refs,self.levels)
+
+    def test_missing_power_wing_end_stop_rejected(self):
+        parts=dict(self.parts);parts['base']=parts['base'].cut(box(-22,.3,6,-19,3.3,42))
+        with self.assertRaisesRegex(AssertionError,'end stop missing'):
+            validate(self.c,parts,self.refs,self.levels)
+
+    def test_blocked_barrel_plug_rejected(self):
+        parts=dict(self.parts);parts['cover']=parts['cover'].union(box(-18,-65,45,-16,-63,50))
+        with self.assertRaisesRegex(AssertionError,'plug access blocked'):
+            validate(self.c,parts,self.refs,self.levels)
+
+    def test_blocked_switch_access_rejected(self):
+        parts=dict(self.parts);parts['cover']=parts['cover'].union(box(-25,-51,72,-15,-41,75))
+        with self.assertRaisesRegex(AssertionError,'switch access blocked'):
+            validate(self.c,parts,self.refs,self.levels)
+
+    def test_blocked_battery_plug_rejected(self):
+        parts=dict(self.parts);parts['cover']=parts['cover'].union(box(-40,-65,45,-38,-63,50))
+        with self.assertRaisesRegex(AssertionError,'Battery plug access blocked'):
+            validate(self.c,parts,self.refs,self.levels)
+
+    def test_missing_supervisor_support_rejected(self):
+        parts=dict(self.parts);parts['base']=parts['base'].cut(box(-55,-55,6,-52,-52,41))
+        with self.assertRaisesRegex(AssertionError,'Supervisor wing support missing'):
             validate(self.c,parts,self.refs,self.levels)
 
 if __name__=='__main__':unittest.main()

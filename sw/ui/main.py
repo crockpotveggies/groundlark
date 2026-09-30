@@ -39,6 +39,7 @@ for relative, expected in {**json.loads((ASSETS / "provenance.json").read_text()
     if hashlib.sha256((ROOT / relative).read_bytes()).hexdigest() != expected:
         raise RuntimeError(f"Board visualization is stale: {relative}. See sw/ui/assets/README.md.")
 app.add_static_files("/board-assets", ASSETS)
+HAT_ASSET_VERSION = hashlib.sha256((ASSETS / "daqhat-01.glb").read_bytes()).hexdigest()[:16]
 TEAL, MUTED = "#44d9c2", "#98aabd"
 COLORS = [TEAL, "#a7a3ff", "#f3bd64"]
 LABELS = {**{i: ("Acceleration · raw counts", "Angular rate · raw counts") for i in range(1, 5)},
@@ -46,7 +47,7 @@ LABELS = {**{i: ("Acceleration · raw counts", "Angular rate · raw counts") for
           9: ("Geophone ADC · raw counts", "Single vertical velocity-sensitive channel"),
           7: ("Magnetic field · raw counts", "XYZ samples • no calibration applied"),
           8: ("Differential pressure · raw counts", "Temperature · raw counts")}
-MODELS = {**{i: "LSM6DSO" for i in range(1, 5)}, 5: "SCL3300", 9: "Racotech / ADS122C04", 7: "RM3100", 8: "DLVR · optional"}
+MODELS = {**{i: "LSM6DSO" for i in range(1, 5)}, 5: "SCL3300", 9: "Racotech / ADS122C04", 7: "RM3100", 8: "DLVR · HAT"}
 
 LABELS.update({**{i: ("Gas ADC · raw counts", "Uncalibrated") for i in range(10,14)},
                14: ("Atmospheric particulate · µg/m³", ""), 15: ("Temperature · °C", "Humidity · %RH"),
@@ -70,21 +71,30 @@ def board_scene(scene, select):
     layout = json.loads((ROOT / "hw/groundlark-fpga-hat/layout/placement.json").read_text())["groundlark-daqhat-01"]
     remote = json.loads((ROOT / "hw/burrowlark-usb/layout/placement.json").read_text())["groundlark-field-head"]
     targets, rings = {}, {}
+    center_x = layout['size'][0] / 2
     with scene:
         with scene.group() as hat:
-            scene.gltf("/board-assets/daqhat-01.glb").scale(100).rotate(math.pi / 2, 0, 0).move(-9.25, 7.8, 0)
+            scene.gltf(f"/board-assets/daqhat-01.glb?v={HAT_ASSET_VERSION}").scale(100).rotate(math.pi / 2, 0, 0).move(-(50 + center_x) / 10, 7.8, 0)
             # Selected Megastar J1: 8.5 mm body below the PCB (scene units cm).
-            scene.box(5.08, .51, .85).move(-.999, 2.45, -.425).material("#252b34")
+            scene.box(5.08, .51, .85).move((32.51 - center_x) / 10, 2.45, -.425).material("#252b34")
             # KiCad's GLB exporter omits these local VRML bodies. These are
             # intentionally simple visualization envelopes, not STEP substitutes.
             custom = {"J80": (3.9, .65, .4), "J81": (3.9, .65, .4), "J82": (.65, 2.6, .4)}
             for part in layout["parts"]:
                 ref, (x, y) = part["ref"], part["xy"]
-                x, y = (x - 42.5) / 10, (28 - y) / 10
+                x, y = (x - center_x) / 10, (28 - y) / 10
                 if ref in custom:
                     w, h, z = custom[ref]
                     scene.box(w, h, z).move(x, y, .16 + z / 2).material("#252b34")
-                sid = {"U11": 1, "U12": 2, "U13": 3, "U22": 9}.get(ref)
+                if ref == 'U23':
+                    # Upright E1BS conservative envelope; GLB omits its VRML.
+                    scene.box(.915, 1.481, 1.725).move(x+.4575, y-.362, 1.0225).material('#29292c')
+                if ref == 'J83':
+                    scene.box(.9, 1.44, 1.1).move(x, y+.65, .71).material('#25252b')
+                    scene.cylinder(.28, .28, .015).move(x, y+1.38, .81).material('#08090b')
+                if ref in ('U80', 'U132'):
+                    scene.box(.5, .55, .4).move(x, y, .36).material('#28282c')
+                sid = {"U11": 1, "U12": 2, "U13": 3, "U22": 9, "U23": 8}.get(ref)
                 if sid:
                     radius = .29 if sid <= 4 else .72
                     target = scene.cylinder(radius, radius, .07).rotate(math.pi / 2, 0, 0).move(x, y, .63).material(TEAL, .28).with_name(f"sensor-{sid}")
@@ -93,9 +103,9 @@ def board_scene(scene, select):
                     rings.setdefault(sid, []).append(ring)
                     targets[ring.id] = sid
                     scene.text(NAMES[sid], "color:#e8f5ff;font-size:11px;background:#172534dc;padding:2px 5px;border-radius:4px;pointer-events:none").move(x, y, 1.12)
-            scene.text("DAQHAT-01 SENSOR HAT  /  85 × 56 mm", "color:#a6bfcc;font-size:11px;pointer-events:none").move(0, -3.2, .1)
+            scene.text(f"DAQHAT-01 SENSOR HAT  /  {layout['size'][0]} × {layout['size'][1]} mm", "color:#a6bfcc;font-size:11px;pointer-events:none").move(0, -3.2, .1)
             connector = next(part for part in layout['parts'] if part['ref'] == 'J90')['xy']
-            add_geophone(scene, ((connector[0]-42.5)/10, (28-connector[1])/10), targets, rings, TEAL)
+            add_geophone(scene, ((connector[0]-center_x)/10, (28-connector[1])/10), targets, rings, TEAL)
         with scene.group() as head:
             scene.box(7, 4.5, .16).material("#165b51")
             for part in remote["parts"]:
@@ -146,10 +156,10 @@ def page():
         nonlocal selected
         selected = sid
         heading.set_text(f"{NAMES[sid]}  /  {MODELS[sid]}")
-        board_label.set_text("Skylark USB" if sid >= 10 else "Remote USB sensor head" if sid in (7,8) else "DAQHAT-01 sensor HAT")
-        hat.visible(sid < 10 and sid not in (7, 8))
+        board_label.set_text("Skylark USB" if sid >= 10 else "Remote USB sensor head" if sid == 7 else "DAQHAT-01 sensor HAT")
+        hat.visible(sid < 10 and sid != 7)
         skylark.visible(sid >= 10)
-        head.visible(sid in (7, 8))
+        head.visible(sid == 7)
         for sensor, highlights in rings.items():
             for ring in highlights:
                 ring.material(TEAL if sensor == sid or (sensor in (10,12) and sensor+1 == sid) or (sensor in (11,13) and sensor-1 == sid) else "#60788a", 1 if sensor == sid or (sensor in (10,12) and sensor+1 == sid) or (sensor in (11,13) and sensor-1 == sid) else .25)
@@ -161,8 +171,8 @@ def page():
 
     def camera(top=False):
         sky = selected >= 10
-        scene.move_camera(x=1.5 if sky else -1.4 if top else 4, y=-.01 if top else -8, z=(23 if top else 21) if sky else 14 if top else 10,
-                          look_at_x=1.5 if sky else -1.4, look_at_y=0, look_at_z=.2, up_x=0, up_y=0, up_z=1)
+        scene.move_camera(x=1.5 if sky else 0 if top else 4, y=-.01 if top else -8 if sky else -13, z=(23 if top else 21) if sky else 23 if top else 16,
+                          look_at_x=1.5 if sky else 0, look_at_y=0, look_at_z=.2, up_x=0, up_y=0, up_z=1)
 
     def sync_board():
         board_select.set_value(engine.board)
@@ -175,6 +185,7 @@ def page():
                         else {"orientation_deg": "HAT pose"})
         pose_target.set_options(pose_options, value=next(iter(pose_options)))
         field_controls.set_visibility(engine.board in ("all","burrowlark"))
+        pressure_controls.set_visibility(8 in engine.sensor_ids)
         geophone_controls.set_visibility(engine.board in ("all","hat"))
         air_controls.set_visibility(engine.board == "skylark")
         demo_button.set_visibility(engine.board in ('hat','all','burrowlark'))
@@ -368,9 +379,10 @@ def page():
                     amp = ui.number("Vertical amplitude (m/s²)", value=.3, min=0, max=20, step=.1).props("dense outlined").classes("w-full")
                     frequency = ui.number("Frequency (Hz)", value=2, min=0, max=12, step=.1).props("dense outlined").classes("w-full")
                     ui.button("Apply vibration", on_click=lambda: attempt(lambda: engine.controls({"acceleration_m_s2": [0, 0, {"amplitude": amp.value, "frequency_hz": frequency.value}]}))).props("flat no-caps")
-                with ui.expansion("Magnetic field & infrasound", icon="sensors").classes("w-full") as field_controls:
+                with ui.expansion("Magnetic field", icon="sensors").classes("w-full") as field_controls:
                     fields = [ui.number(f"Field {axis} (µT)", value=value, step=1).props("dense outlined").classes("w-full") for axis, value in zip("XYZ", (0, 20, -45))]
                     ui.button("Apply field", on_click=lambda: attempt(lambda: engine.controls({"magnetic_ut": [f.value for f in fields]}))).props("flat no-caps")
+                with ui.expansion("Infrasound stimulus", icon="waves").classes("w-full") as pressure_controls:
                     pressure = ui.number("Pressure amplitude (Pa)", value=20, min=0, max=500).props("dense outlined").classes("w-full")
                     pressure_hz = ui.number("Pressure frequency (Hz)", value=1, min=0, max=20, step=.1).props("dense outlined").classes("w-full")
                     ui.button("Apply pressure", on_click=lambda: attempt(lambda: engine.controls({"pressure_pa": {"amplitude": pressure.value, "frequency_hz": pressure_hz.value}}))).props("flat no-caps")

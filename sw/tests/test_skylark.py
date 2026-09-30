@@ -21,7 +21,7 @@ ROOT=Path(__file__).resolve().parents[2]
 
 class SkylarkTests(unittest.TestCase):
     def test_board_benches_and_recording_inventory(self):
-        for board, sensors in [('skylark',set(range(10,17))),('burrowlark',{7,8})]:
+        for board, sensors in [('skylark',set(range(10,17))),('burrowlark',{7})]:
             data, report=run_bench(board)
             self.assertTrue(report['passed'],report)
             e=Workbench();e.load_recording(data);e.seek(8)
@@ -37,8 +37,8 @@ class SkylarkTests(unittest.TestCase):
         self.assertEqual(a.snapshot(14)['latest'][14]['primary'][1],80)
         with self.assertRaises(ValueError):a.reset(board='coldfoot')
         self.assertEqual(a.board,'skylark');self.assertEqual(b.now,0)
-        a.reset(board='burrowlark');self.assertEqual(set(a.sensor_ids),{7,8})
-        self.assertEqual(set(b.sensor_ids),{1,2,3,9})
+        a.reset(board='burrowlark');self.assertEqual(set(a.sensor_ids),{7})
+        self.assertEqual(set(b.sensor_ids),{1,2,3,8,9})
 
     def test_reject_corrupt_raw_frames_and_gas_overflow(self):
         e=Workbench(board='skylark');e.running=True;e.advance(100)

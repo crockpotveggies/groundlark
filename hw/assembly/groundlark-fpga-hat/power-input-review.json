@@ -1,0 +1,163 @@
+{
+  "status": "Pending procurement and numbered supplier-pad review; no fabrication release",
+  "adapter": {
+    "voltage_V": 12,
+    "tolerance": 0.05,
+    "current_A": 3,
+    "plug": "5.5/2.1 mm center positive",
+    "evidence": "https://digilent.com/reference/_media/reference/programmable-logic/nexys-video/nexys-video_rm.pdf"
+  },
+  "manufacturer_evidence": [
+    "https://www.ti.com/lit/ds/symlink/tpsm53603.pdf",
+    "https://www.sameskydevices.com/product/resource/pj-102ah.pdf",
+    "https://www.diodes.com/part/view/B340A",
+    "https://www.diodes.com/part/view/SMAJ15A",
+    "https://www.ckswitches.com/media/1424/pcm.pdf"
+  ],
+  "parts": [
+    {
+      "reference": "J83",
+      "mpn": "PJ-102AH",
+      "footprint": "Connector_BarrelJack:BarrelJack_CUI_PJ-102AH_Horizontal",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "F80",
+      "mpn": "0467002.NR",
+      "footprint": "Fuse:Fuse_1206_3216Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "D80",
+      "mpn": "B340A-13-F",
+      "footprint": "Diode_SMD:D_SMA",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "D81",
+      "mpn": "SMAJ15A-13-F",
+      "footprint": "Diode_SMD:D_SMA",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "U80",
+      "mpn": "TPSM53603RDAR",
+      "footprint": "Package_DFN_QFN:Texas_B3QFN-14-1EP_5x5.5mm_P0.65mm",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "R120",
+      "mpn": "RT0603BRD0710KL",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "R121",
+      "mpn": "RT0603BRD074K3L",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "R122",
+      "mpn": "RC0603FR-07100KL",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "R123",
+      "mpn": "RC0603FR-0715KL",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "R124",
+      "mpn": "RT0603BRD0710KL",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "SW80",
+      "mpn": "PCM12SMTR",
+      "footprint": "Button_Switch_SMD:SW_SPDT_PCM12",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "C86",
+      "mpn": "CGA5L1X7R1H106K160AC",
+      "footprint": "Capacitor_SMD:C_1206_3216Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "C87",
+      "mpn": "CGA5L1X7R1H106K160AC",
+      "footprint": "Capacitor_SMD:C_1206_3216Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "C88",
+      "mpn": "GRM188R71H104KA93D",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "C89",
+      "mpn": "EEE-FK1V470P",
+      "footprint": "Capacitor_SMD:CP_Elec_6.3x7.7",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "C110",
+      "mpn": "GRM32ER71E226KE15L",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "C111",
+      "mpn": "GRM32ER71E226KE15L",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "C112",
+      "mpn": "GRM32ER71E226KE15L",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    }
+  ]
+}

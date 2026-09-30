@@ -1,6 +1,6 @@
 """KiCad drawing and review-schematic helpers. No electrical circuit definition."""
 from pathlib import Path
-import json,math,uuid
+import json,math,uuid,tempfile
 import pcbnew as pcb
 NS=uuid.UUID('7418c0d1-4a75-4f9d-8db1-7c1f7c75a001')
 def uid(s): return str(uuid.uuid5(NS,s))
@@ -17,14 +17,19 @@ def unique_ids(board):
         seen.add(item.m_Uuid.AsString())
 
 def save_board(path, board):
-    """Save copper without allowing pcbnew's standalone context to reset rules."""
-    project = Path(path).with_suffix('.kicad_pro')
-    existing = project.read_bytes() if project.exists() else None
-    try:
-        return pcb.SaveBoard(str(path), board)
-    finally:
-        if existing is not None:
-            project.write_bytes(existing)
+    """Atomically replace CAD and leave the checked project rules untouched.
+
+    Saving directly can fail on a Windows-mounted workspace. KiCad also writes
+    a standalone .kicad_pro, so isolate that side effect in the temporary tree.
+    Never report success or replace existing CAD after a failed serialization.
+    """
+    target = Path(path).resolve()
+    with tempfile.TemporaryDirectory(prefix='.kicad-save-', dir=target.parent) as tmp:
+        pending = Path(tmp) / target.name
+        if not pcb.SaveBoard(str(pending), board):
+            raise OSError(f'KiCad could not serialize {target.name}')
+        pending.replace(target)
+    return True
 
 
 def q(s): return json.dumps(str(s),ensure_ascii=False)
@@ -102,7 +107,7 @@ def schematic(name,spec,folder):
             libs.append(lib)
             rails=['GND','PI_3V3','PI_5V','SENS_3V3','FPGA_3V3' if name=='groundlark-daqhat-01' else 'CF_3V3'] if name.endswith('-hat') or name=='groundlark-daqhat-01' else ['GND','USB_VBUS','USB_5V','V3','V3_SENSOR']
             # GEO_AVDD is powered through R96; ERC cannot propagate power through a resistor.
-            if name=="groundlark-daqhat-01": rails.append("GEO_AVDD")
+            if name=="groundlark-daqhat-01": rails.extend(["GEO_AVDD", "SUP_3V3"])
             if name=='skylark-usb': rails=['GND','USB_VBUS','USB_5V','V3','VA','PM_5V']
             for k,net in enumerate(rails):
                 xx=35.56+50.8*k; yy=274.32; reference=f'#FLG{k+1:02d}'
@@ -110,11 +115,13 @@ def schematic(name,spec,folder):
                 body.append(f'(global_label {q(net)} (shape input) (at {xx} {yy} 0) {effects(1.0,"left")} (uuid {uid(name+reference+"label")}))')
         all_libs.extend(libs)
         revision='DAQHAT-01' if name=='groundlark-daqhat-01' else 'A2 PROTOTYPE'
-        date='2026-09-24' if name=='groundlark-daqhat-01' else '2026-09-23'
+        date='2026-09-30' if name=='groundlark-daqhat-01' else '2026-09-23'
         if name=='skylark-usb': revision,date='A PROTOTYPE','2026-09-26'
         header=f'(kicad_sch (version 20230121) (generator eeschema) (uuid {sid}) (paper "A3") (title_block (title {q(("Groundlark DAQHAT-01" if name=="groundlark-daqhat-01" else name)+" / "+section)}) (date {q(date)}) (rev {q(revision)}))'
         (folder/file).write_text(header+'\n(lib_symbols\n'+'\n'.join(libs)+')\n'+'\n'.join(body)+'\n)',encoding='utf-8')
     note='Atopile-derived review schematic - prototype, not released.\nThe Pi hosts acquisition and Coldfoot processing; the USB head has a local MCU.\nGlobal net labels connect functional sheets.'
+    if name=='groundlark-daqhat-01':
+        note='Atopile-derived review schematic - prototype, not released.\nPi sensor acquisition; independent FPGA adapter and configurable TI Pi supervisor.\nMCU firmware and physical power qualification pending. Global labels connect sheets.'
     if name=='skylark-usb':
         note='Atopile-derived review schematic - Skylark USB Rev A prototype, not released.\nPMS5003 / SGX SO2 and H2S / SHT40 / BMP390. Firmware and physical qualification pending.\nGlobal net labels connect functional sheets; raw working and auxiliary electrodes are acquired separately.'
     if name=='groundlark-daqhat-01':

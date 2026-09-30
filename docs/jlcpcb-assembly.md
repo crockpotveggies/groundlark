@@ -1,7 +1,17 @@
 # JLCPCB assembled DAQHAT-01 HAT
 
 The package targets **one fabricated PCB and one assembled HAT**, the same
-physical board. The HAT is 85 × 56 mm with 117 placements and 38 BOM lines.
+physical board. The current HAT is 140 × 56 mm. The frozen procurement/placement
+registry still describes the earlier 117-placement, 38-line assembly.
+
+**Export hold:** U23/C24, the 12 V FPGA input and the TI Pi supervisor require procurement
+and numbered supplier-pad review. J83/F80 changed part identity; U80, SW80,
+D80/D81, R120–R124, C86–C89 and C110–C112 are new. No current stock or supplier
+rotation is claimed for these selections. Full assembly regression remains
+blocked by this mismatch; native circuit, DRC/ERC and routing replay are checked
+separately. The 40 Pi supply/supervisor additions are listed in
+`hw/assembly/groundlark-fpga-hat/pi-supervisor-review.json` with catalog and
+supplier-pad evidence pending. Earlier packages do not describe the enlarged board.
 The Pi, Trenz module, geophone, riser, supply and mounting hardware are separate
 purchases. The remote sensor head and A2 ASIC HAT are not included.
 
@@ -30,15 +40,16 @@ The package retains manufacturing holds and is not a fabrication approval.
 - Six-layer FR-4, nominal 1.6 mm, TG135, ENIG, 1 oz outer / 0.5 oz inner copper.
   Use the stock JLC06161H-3313 stack, with no HDI or custom lamination.
   Its 1.5384 mm copper/dielectric sum is ordered as nominal 1.6 mm, ±10%.
-- Through-vias only, 0.30 mm drill, epoxy-filled and copper-capped (POFV),
+- Through-vias only, 0.30/0.40 mm drills, epoxy-filled and copper-capped (POFV),
   including vias in solder pads. Tenting alone is insufficient.
   Do not fill component plated holes or non-plated mounting holes.
-- Double-sided assembly: 107 SMT-only placements, seven THT-only placements and
-  three mixed SMT/THT connectors. J80/J81/J82 have SMT contacts and plated mounts.
+- Double-sided assembly. The earlier frozen registry has 107 SMT-only placements,
+  seven THT-only placements and three mixed SMT/THT connectors; these counts must
+  be regenerated after the export hold is resolved. J80/J81/J82 have SMT contacts and plated mounts.
   J1 is the bottom Pi socket.
 - Confirm the supplier's one-piece assembly acceptance, handling frame,
   fiducials, part allocation and process requirements. Recorded Standard PCBA
-  rules require a two-piece minimum and a 70 mm minimum dimension; the 85 × 56 mm
+  rules require a two-piece minimum and a 70 mm minimum dimension; the 140 × 56 mm
   HAT therefore needs a supplier-agreed quantity exception and handling frame.
   Do not change the requested quantity without the owner's agreement.
 - Verify the supplier placement preview and final proposed production data.
@@ -51,7 +62,7 @@ reference to its source value/footprint and approved manufacturer, MPN and C-cod
 Catalog listing does not reserve stock or guarantee assembly eligibility.
 Recheck allocation at ordering; do not accept automatic substitutes.
 
-All 38 unique PCB selections (117 placements) have a dated **2026-09-27**
+The earlier registry's 38 unique PCB selections (117 placements) have a dated **2026-09-27**
 JLCPCB available-order observation and **minimum quantity 1**. Pre-order-only
 parts and component minimums above one are prohibited. The exporter rejects
 missing, insufficient or nonconforming recorded stock observations; offline

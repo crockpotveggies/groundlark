@@ -22,9 +22,9 @@ def standard_process_issues(features):
         issues.append('Copper exists on a disabled layer')
     if abs(features['thickness_mm'] - 1.6) > .001:
         issues.append('Expected 1.6 mm board thickness')
-    if any(abs(a-b) > .1 for a, b in zip(features['size_mm'], [85, 56])):
-        issues.append('Expected 85 x 56 mm outline')
-    if set(features['ground_planes']) != {'In1.Cu', 'In4.Cu'}:
+    if any(abs(a-b) > .1 for a, b in zip(features['size_mm'], [140, 56])):
+        issues.append('Expected 140 x 56 mm outline with dedicated power section')
+    if {name for name in features['ground_planes'] if name.startswith('In')} != {'In1.Cu', 'In4.Cu'}:
         issues.append('Expected two ground reference planes on L2 and L5')
     for via in features['vias']:
         if via['type'] != 'through' or via['span'] != ['F.Cu', 'B.Cu']:

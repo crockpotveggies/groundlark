@@ -43,7 +43,7 @@ def export_dsn(b,path,signal_via_mm=(.6,.3),ground_layers=None,track_mm=.15,clea
     tree=sx.loads(data.replace('(string_quote ")','(string_quote quote)').replace('[','__LB__').replace(']','__RB__'))
     network=next(x for x in tree if isinstance(x,list) and str(x[0])=='network')
     default=next(x for x in network if isinstance(x,list) and str(x[0])=='class')
-    power=[x for x in default[2:] if not isinstance(x,list) and str(x) in {'PI_5V','PI_3V3','SENS_3V3','EXT_3V3','FPGA_VIN','FPGA_3V3','USB_VBUS','USB_5V','V3_SENSOR','V3','CF_REG_3V3','CF_3V3','CF_SW'}]
+    power=[x for x in default[2:] if not isinstance(x,list) and str(x) in {'PI_5V','PI_3V3','SENS_3V3','EXT_3V3','EXT_12V','FUSED_12V','PROTECTED_12V','FPGA_VIN','FPGA_3V3','USB_VBUS','USB_5V','V3_SENSOR','V3','CF_REG_3V3','CF_3V3','CF_SW'}]
     default[:]=[x for x in default if isinstance(x,list) or x not in power]
     # Fine escapes route first; widen_power.py subsequently retains wider
     # power copper wherever actual KiCad DRC allows it.
@@ -94,7 +94,7 @@ def main():
                 assert not typ,('Missing compiled component',ref)
                 fp=p.FootprintLoad(str(ROOT/'hw/shared/elec'),meta['local_fp']);fp.SetReference(ref);b.Add(fp)
             else:fp=fps[ref]
-            if target=='field_head' and ref=='J1':
+            if (target=='field_head' and ref=='J1') or meta['local_fp'].startswith(('PWR_', 'SUP_')):
                 # Restore the complete manufacturer footprint geometry after
                 # compiler conversion, retaining each compiled physical pin net.
                 old=fp;pin_nets={pad.GetNumber():pad.GetNet() for pad in old.Pads() if pad.GetNumber()}
@@ -149,7 +149,11 @@ def main():
             if target=='trenz_hat':
                 add_text(b,'Groundlark DAQHAT-01 / 200T',*MODEL_CENTER,.8)
                 add_logo(b)
-                add_text(b,'3V3 ONLY',57,57,.8)
+                add_text(b,'12V DC / CENTER +',145,102,.8)
+                add_text(b,'FPGA ON/OFF',155,65,.8)
+                add_text(b,'FPGA POWER',146,93,.9)
+                add_text(b,'PI BAT 8-18V',183,54,.8)
+                add_text(b,'+    GND',167.9,64,.8)
         else:
             add_text(b,'Groundlark FIELD A2',97,91,.8);add_text(b,'RM3100 / XYZ',68,54,.8)
         title=p.TITLE_BLOCK();title.SetTitle(name+' / atopile prototype');title.SetRevision('DAQHAT-01 6L' if target=='trenz_hat' else 'A2');title.SetDate('2026-09-25' if target=='trenz_hat' else '2026-09-23');b.SetTitleBlock(title)

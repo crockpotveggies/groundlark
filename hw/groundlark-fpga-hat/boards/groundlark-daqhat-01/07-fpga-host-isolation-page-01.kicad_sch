@@ -1,4 +1,4 @@
-(kicad_sch (version 20230121) (generator eeschema) (uuid 3c7206d5-3074-57a7-8bed-d08b36d50c9a) (paper "A3") (title_block (title "Groundlark DAQHAT-01 / 07-fpga-host-isolation-page-01") (date "2026-09-24") (rev "DAQHAT-01"))
+(kicad_sch (version 20230121) (generator eeschema) (uuid 3c7206d5-3074-57a7-8bed-d08b36d50c9a) (paper "A3") (title_block (title "Groundlark DAQHAT-01 / 07-fpga-host-isolation-page-01") (date "2026-09-30") (rev "DAQHAT-01"))
 (lib_symbols
 (symbol "Groundlark:Part_U51" (pin_names (offset 0.6)) (in_bom yes) (on_board yes)
       (property "Reference" "U" (id 0) (at 0 8.89 0) (effects (font (size 1.27 1.27))))

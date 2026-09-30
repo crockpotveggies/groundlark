@@ -64,7 +64,7 @@ POWER_PINS = {
     ('R66','1'):'FPGA_RESET_GATE', ('R66','2'):'GND',
     ('U52','1'):'GND', ('U52','2'):'FPGA_RESET_N', ('U52','3'):'FPGA_3V3',
     ('R64','1'):'FPGA_RESET_N', ('R64','2'):'FPGA_3V3',
-    ('J83','1'):'EXT_3V3', ('J83','2'):'GND', ('F80','1'):'EXT_3V3', ('F80','2'):'FPGA_VIN',
+    ('J83','1'):'EXT_12V', ('J83','2'):'GND', ('F80','1'):'EXT_12V', ('F80','2'):'FUSED_12V',
 }
 
 
@@ -84,15 +84,14 @@ def main():
         assert pins[('J1',str(pin))] == net, ('Pi acquisition IRQ mapping', pin)
     from geophone_checks import verify
     geo_checks = verify(pins, {f.GetReference():(f.GetOrientationDegrees(), f.IsFlipped()) for f in board.GetFootprints()})
-    low, high = supply_range(3.35, .005, .030, 3)
+    from fpga_power_checks import budget, verify_board
+    converter=verify_board(board,spec)
+    bounds=budget();low,high=bounds["minimum_V"],bounds["maximum_V"]
     from assembly_fit import PI_GAP, RISER_COUNT
     gap = PI_GAP
     report = dict(
         geophone=dict(physical_pin_checks=geo_checks, sensor="Racotech RGI-4.5Hz vertical", adc="ADS122C04", axes="three aligned three-axis IMUs"),
-        power=dict(interface_pin_checks=power_checks, input_setpoint_v=3.35, input_tolerance=.005,
-                   total_hot_loop_resistance_limit_ohm=.030, current_limit_a=3,
-                   dc_module_min_v=low, dc_module_max_v=high,
-                   limitations="30 milliohms includes positive AND ground paths, fuse and contacts; must be measured"),
+        power=dict(interface_pin_checks=power_checks,converter=converter,**bounds),
         mechanical=dict(pi_to_hat_underside_mm=gap, riser="Samtec SSQ-120-02-G-D", riser_count=RISER_COUNT,
                         conservative_clearance_mm=clearance(gap),
                         limitations="1 mm seating tolerance plus 2.2 mm trimmed tail envelope; detailed selected cooler/support checks are in prefab-review.json"))

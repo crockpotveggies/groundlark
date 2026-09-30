@@ -8,8 +8,8 @@ QSPI signals, retained UART and four shared pins for isolated Pi-driven JTAG.
 External J84-J89 and their ribbons/guide are removed. This supersedes the
 155-breakout requirement. Keep the circuit, routed CAD, model and validation evidence synchronized. Preserve vendor GPIO/ground
 fixtures and audit all module contacts, including deliberate no-connects, when
-implementing the revision. Keep three XYZ IMUs U11-U13, geophone input and 85 x 56 mm outline.
-U14/C18/C19/R14 are removed; sensor IDs 4/5 are legacy-only. U20/C20-C23/R20 are removed. Pi BCM6/13/24 are spare.
+implementing the revision. Keep three XYZ IMUs U11-U13, geophone input and the 140 x 56 mm outline with its dedicated FPGA power extension.
+U14/C18/C19/R14 are removed; sensor IDs 4/5 are legacy-only. U20/C20-C23/R20 are removed. Pi BCM6/13 serve power management; BCM24 is spare.
 Unused U41.8/U41.9 and U42.17 inputs must be grounded; U41.15/U41.16/U42.7 outputs are NC.
 DAQHAT-01 uses a conventional six-layer stock FR-4 stack with through-vias only and a complete native SES
 routing snapshot. Fabrication approval is owned by the user. DAQHAT-01 removes GNSS and adds one Racotech/ADS122C04 input. Preserve its
@@ -55,8 +55,10 @@ Keep custom model/library paths relative and preserve the existing 3D artifacts.
 Do not invoke `bootstrap_trenz.py` or `pack_trenz.py` as validation: they overwrite
 authoring inputs. Do not silently reroute or rewrite checked CAD during tests.
 
-The accelerometer HAT uses Pi drivers/runtime software; it has no separate
-microcontroller firmware. The remote USB magnetometer/infrasound sensor board is
+Sensor acquisition uses Pi drivers/runtime software. The separate TI MSPM0L1105
+power supervisor has configuration placeholders; its target firmware remains pending. The DLVR-F50D infrasound sensor U23/C24 is on DAQHAT-01 I2C1 at 0x28;
+BCM6 requests Pi shutdown and BCM13 acknowledges halt; BCM24 remains spare. Burrowlark U3/C5 are removed.
+The remote USB magnetometer sensor board is
 named Burrowlark, model DAQUSB-01. Firmware belongs to that USB sensor head.
 The Trenz variant needs an FPGA bitstream. Pi acquisition/simulation and bounded
 recovery are implemented; Burrowlark firmware and physical qualification remain pending. Skylark STM32 firmware is implemented in `sw/skylark/`, with native C driver/journal tests and an ARM build in the shared software profile. A DAQHAT-01
@@ -116,3 +118,32 @@ In1.Cu ground stitches, and the documented supply/return path limits. Update
 placement metadata, electrical review metadata, the native SES snapshot and
 UI/render provenance together after moving parts. Geometry checks are not
 physical noise qualification; see `docs/trenz-hat.md`.
+
+DAQHAT-01 J83 is a 12 V +/-5% center-positive barrel input compatible with the
+Nexys Video adapter (5.5/2.1 mm, >=3 A). Preserve its -Y exit opposite J90 +Y.
+F80/D80/D81 protect the input; U80 is TPSM53603 with a 3.326 V / 3 A output
+allocation, independent of the Pi rails. SW80 controls converter EN; U80 PGOOD
+gates module EN1. Keep the independent power pin/geometry and fault checks,
+local switching loops, output/thermal via arrays and native SES synchronized.
+The 15 milliohm output-loop target and thermal/startup behavior remain unmeasured.
+Assembly registry/supplier-pad review is pending for U23/C24 and power additions.
+
+The DAQHAT-01 R3 enclosure in `hw/mechanical/daqhat-01-case/` fits the 140 x 56 mm
+HAT in a 159 x 118 x 75 mm body. Preserve its Pi-centered rotation, rear DC exit
+opposite the geophone, switch access, power-wing saddles and board-edge stops.
+After enclosure changes regenerate the local R3 STEP/STL package and run its
+`check.py`, `check_components.py`, native `check_pcb.py` and independent
+`test_case.py` fault fixtures.
+Refresh render provenance; CAD checks do not establish first-print or thermal fit.
+
+DAQHAT-01 U130 (MSPM0L1105TRHBR) supervises the Pi, independently of FPGA power.
+J130 accepts protected battery/controller DC output from 8 to 18 V; it is not a
+charger or direct solar-panel input. U131 is the always-on TPS70933; U132 makes
+5.149 V / 3 A total Pi+HAT power; U133 disconnects it with off-state reverse
+blocking. BCM6 is active-low shutdown, BCM13 active-high halt acknowledgement
+through Q130/Q131. Preserve default-OFF RUN, VCORE's sole 470 nF load, SWD and
+all unused-pin checks. JP130 is a bench override; remove its shunt for automatic
+operation. Battery policy fields remain null and disabled until selected and
+qualified; no MCU firmware or automatic battery operation is claimed. Keep
+`pi_power_checks.py`, software configuration tests, 140 x 56 mm CAD, native SES
+and the 159 x 118 x 75 mm R3 enclosure synchronized.

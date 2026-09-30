@@ -24,20 +24,36 @@ socket=box(1.27,-24.13,-1.6-J1_BODY/2,5.1,50.8,J1_BODY,'0.04 0.045 0.055')
 for i in range(20):
     for x in [0,2.54]:socket+=box(x,-i*2.54,1.15,.64,.64,2.3,'0.73 0.57 0.22')
 write('Pi_Megastar_2x20',socket)
+# DS-0300 Rev J E1BS: upright SIP, four 2.54 mm leads; two side barbs.
+# Conservative display envelope, not a certified manufacturer solid.
+dlvr=box(3.62,2.8,9.375,12.7,4.88,15.75,'0.15 0.15 0.17')
+for y,z in [(2.12,7.95),(7.03,11.3)]:
+    dlvr+=box(11.025,y,z,2.11,2.24,2.24,'0.15 0.15 0.17')
+for i in range(4):dlvr+=box(i*2.54,0,0,.51,.25,3,'0.72 0.72 0.72')
+write('DLVR_E1BS',dlvr)
+# Datasheet-derived display envelopes for parts absent from the stock 3D set.
+# PJ-102AH body 9 x 14.4 x 11 mm; mouth at local PCB +Y (VRML -Y).
+jack=box(0,-6.5,5.5,9,14.4,11,'0.055 0.055 0.065')
+for r,y,h,color in [(3.25,-13.76,.16,'0.5 0.52 0.54'),(2.8,-13.86,.12,'0.018 0.018 0.021'),(1,-13.94,.12,'0.7 0.7 0.7')]:
+    jack+=f'Transform {{ translation 0 {y/2.54} {6.5/2.54} children [ Shape {{ appearance Appearance {{ material Material {{ diffuseColor {color} }} }} geometry Cylinder {{ radius {r/2.54} height {h/2.54} }} }} ] }}\n'
+for x,y in [(0,0),(0,-6),(4.7,-3)]:jack+=box(x,y,-.8,1,1.6,3,'0.65 0.65 0.65')
+write('PJ_102AH_envelope',jack)
+write('TPSM53603_envelope',box(0,0,2,5,5.5,4,'0.12 0.12 0.14')+cylinder(-1.8,1.8,4.01,.23,.02,'0.8 0.8 0.8'))
 for n in [50,30]:
     s=box(0,0,2,(n-1)*.5+5.7,4.6,4,'0.08 0.09 0.1')
     for i in range(n):
         for y in [-1.85,1.85]:s+=box((i-(n-1)/2)*.5,y,.3,.2,1.1,.6,'0.72 0.58 0.25')
     write(f'LSHM_{n}_4mm',s)
 b=p.LoadBoard(str(F/(NAME+'.kicad_pcb')))
-title=b.GetTitleBlock();title.SetRevision('DAQHAT-01 6L');title.SetDate('2026-09-25');b.SetTitleBlock(title)
-custom={'J1':'Pi_Megastar_2x20','J80':'LSHM_50_4mm','J81':'LSHM_50_4mm','J82':'LSHM_30_4mm'}
+title=b.GetTitleBlock();title.SetRevision('DAQHAT-01 6L');title.SetDate('2026-09-30');b.SetTitleBlock(title)
+custom={'J1':'Pi_Megastar_2x20','J80':'LSHM_50_4mm','J81':'LSHM_50_4mm','J82':'LSHM_30_4mm','U23':'DLVR_E1BS','J83':'PJ_102AH_envelope','U80':'TPSM53603_envelope','U132':'TPSM53603_envelope'}
 for fp in b.GetFootprints():
     if fp.GetReference() in custom:model(fp,'${KIPRJMOD}/../../../shared/models/'+custom[fp.GetReference()]+'.wrl')
     else:
         for m in fp.Models():m.m_Filename=m.m_Filename.replace('${KICAD7_3DMODEL_DIR}','${KICAD9_3DMODEL_DIR}')
 # Mark each underside bank without covering the fine-pitch pads.
 for item in list(b.GetDrawings()):
+    if isinstance(item,p.PCB_TEXT) and item.GetText()=='OFF   ON':item.SetText('FPGA ON/OFF')
     if isinstance(item,p.PCB_TEXT) and (item.GetText().startswith('GPIO J8') or item.GetText() in ('JTAG','PI / FPGA LINK')):b.Delete(item)
 save_board(str(F/(NAME+'.kicad_pcb')),b)
 # Actual carrier + manufacturer's module geometry; separate assembly view file.
@@ -77,6 +93,7 @@ save_board(str(F/'pi-trenz-stack-concept.kicad_pcb'),b)
 # Conservative plug envelope starts at the header mouth; no insertion overlap
 # is credited without a supplier mated solid. Cables leave toward board +Y.
 service=box(14.19,-(58.9+16.1/2),11.1/2,12.22,16.1,11.1,'0.12 0.5 0.23')
+service+=box(95,14.6,6.5,12,30,12,'0.16 0.18 0.22')
 write('DAQHAT_01_service_envelopes',service)
 add(b,'MODEL_SERVICE','${KIPRJMOD}/../../../shared/models/DAQHAT_01_service_envelopes.wrl',(50,50))
 save_board(str(F/'stack-service-envelopes.kicad_pcb'),b)

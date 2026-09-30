@@ -9,7 +9,7 @@ from fabrication_audit import standard_process_issues
 
 class FabricationProcessTests(unittest.TestCase):
     def setUp(self):
-        self.profile = dict(copper_layers=6, thickness_mm=1.6, size_mm=[85, 56],
+        self.profile = dict(copper_layers=6, thickness_mm=1.6, size_mm=[140, 56],
                             stack_copper_layers=['F.Cu','In1.Cu','In2.Cu','In3.Cu','In4.Cu','B.Cu'],
                             tracks_by_layer={'F.Cu':1},
                             ground_planes=['In1.Cu', 'In4.Cu'],

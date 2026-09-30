@@ -1,0 +1,376 @@
+{
+  "status": "Pending catalog identities, current stock and numbered supplier-pad review; no fabrication release",
+  "manufacturer_evidence": [
+    "https://www.ti.com/lit/ds/symlink/mspm0l1105.pdf",
+    "https://www.ti.com/lit/ds/symlink/tps709.pdf",
+    "https://www.ti.com/lit/ds/symlink/tpsm53603.pdf",
+    "https://www.ti.com/lit/ds/symlink/tps22953.pdf",
+    "https://www.phoenixcontact.com/us/products/1803277/pdf"
+  ],
+  "input_range_V": [
+    8,
+    18
+  ],
+  "parts": [
+    {
+      "reference": "J130",
+      "manufacturer": "Phoenix Contact",
+      "mpn": "1803277",
+      "footprint": "SUP_PhoenixContact_MC_1,5_2-G-3.81_1x02_P3.81mm_Horizontal",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "F130",
+      "manufacturer": "Littelfuse",
+      "mpn": "0467004.NR",
+      "footprint": "SUP_Fuse_1206_3216Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "D130",
+      "manufacturer": "Diodes Incorporated",
+      "mpn": "B340A-13-F",
+      "footprint": "PWR_D_SMA",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "D131",
+      "manufacturer": "Diodes Incorporated",
+      "mpn": "SMAJ18A-13-F",
+      "footprint": "SUP_D_SMA",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "U131",
+      "manufacturer": "Texas Instruments",
+      "mpn": "TPS70933DBVR",
+      "footprint": "SUP_SOT-23-5",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "C130",
+      "manufacturer": "Murata",
+      "mpn": "GRM21BR71A475KA73L",
+      "footprint": "SUP_C_0805_2012Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "C131",
+      "manufacturer": "TDK",
+      "mpn": "CGA5L1X7R1H106K160AC",
+      "footprint": "PWR_C_1206_3216Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "U132",
+      "manufacturer": "Texas Instruments",
+      "mpn": "TPSM53603RDAR",
+      "footprint": "PWR_Texas_B3QFN-14-1EP_5x5.5mm_P0.65mm",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "C132",
+      "manufacturer": "TDK",
+      "mpn": "CGA5L1X7R1H106K160AC",
+      "footprint": "PWR_C_1206_3216Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "C133",
+      "manufacturer": "TDK",
+      "mpn": "CGA5L1X7R1H106K160AC",
+      "footprint": "PWR_C_1206_3216Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "C134",
+      "manufacturer": "Murata",
+      "mpn": "GRM188R71H104KA93D",
+      "footprint": "PWR_C_0603_1608Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "C135",
+      "manufacturer": "Panasonic",
+      "mpn": "EEE-FK1V470P",
+      "footprint": "PWR_CP_Elec_6.3x7.7",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "C136",
+      "manufacturer": "Murata",
+      "mpn": "GRM32ER71E226KE15L",
+      "footprint": "PWR_C_1210_3225Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "C137",
+      "manufacturer": "Murata",
+      "mpn": "GRM32ER71E226KE15L",
+      "footprint": "PWR_C_1210_3225Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "C138",
+      "manufacturer": "Murata",
+      "mpn": "GRM32ER71E226KE15L",
+      "footprint": "PWR_C_1210_3225Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "R130",
+      "manufacturer": "Yageo",
+      "mpn": "RT0603BRD0710KL",
+      "footprint": "PWR_R_0603_1608Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "R131",
+      "manufacturer": "Yageo",
+      "mpn": "RT0603BRD072K41L",
+      "footprint": "SUP_R_0603_1608Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "R132",
+      "manufacturer": "Yageo",
+      "mpn": "RC0603FR-07100KL",
+      "footprint": "PWR_R_0603_1608Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "U133",
+      "manufacturer": "Texas Instruments",
+      "mpn": "TPS22953DQCR",
+      "footprint": "SUP_Texas_WSON10_DQC0010A",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "C139",
+      "manufacturer": "Murata",
+      "mpn": "GRM188R71H103KA01D",
+      "footprint": "SUP_C_0603_1608Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "C140",
+      "manufacturer": "Murata",
+      "mpn": "GRM21BR61C106KE15L",
+      "footprint": "SUP_C_0805_2012Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "R133",
+      "manufacturer": "Yageo",
+      "mpn": "RC0603FR-072KL",
+      "footprint": "SUP_R_0603_1608Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "U130",
+      "manufacturer": "Texas Instruments",
+      "mpn": "MSPM0L1105TRHBR",
+      "footprint": "SUP_QFN-32-1EP_5x5mm_P0.5mm_EP3.45x3.45mm",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "C141",
+      "manufacturer": "Murata",
+      "mpn": "GRM188R71H104KA93D",
+      "footprint": "PWR_C_0603_1608Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "C142",
+      "manufacturer": "Murata",
+      "mpn": "GRM21BR61C106KE15L",
+      "footprint": "SUP_C_0805_2012Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "C143",
+      "manufacturer": "Murata",
+      "mpn": "GRM188R71C474KA88D",
+      "footprint": "SUP_C_0603_1608Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "R134",
+      "manufacturer": "Yageo",
+      "mpn": "RC0603FR-0747KL",
+      "footprint": "SUP_R_0603_1608Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "C144",
+      "manufacturer": "Murata",
+      "mpn": "GRM188R71H103KA01D",
+      "footprint": "SUP_C_0603_1608Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "R135",
+      "manufacturer": "Yageo",
+      "mpn": "RT0603BRD071ML",
+      "footprint": "SUP_R_0603_1608Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "R136",
+      "manufacturer": "Yageo",
+      "mpn": "RT0603BRD07150KL",
+      "footprint": "SUP_R_0603_1608Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "C145",
+      "manufacturer": "Murata",
+      "mpn": "GRM188R71H103KA01D",
+      "footprint": "SUP_C_0603_1608Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "Q130",
+      "manufacturer": "Nexperia",
+      "mpn": "2N7002,215",
+      "footprint": "SUP_SOT-23",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "R137",
+      "manufacturer": "Yageo",
+      "mpn": "RC0603FR-07100KL",
+      "footprint": "PWR_R_0603_1608Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "R138",
+      "manufacturer": "Yageo",
+      "mpn": "RT0603BRD0710KL",
+      "footprint": "PWR_R_0603_1608Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "Q131",
+      "manufacturer": "Nexperia",
+      "mpn": "2N7002,215",
+      "footprint": "SUP_SOT-23",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "R139",
+      "manufacturer": "Yageo",
+      "mpn": "RC0603FR-07100KL",
+      "footprint": "PWR_R_0603_1608Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "R140",
+      "manufacturer": "Yageo",
+      "mpn": "RC0603FR-07100KL",
+      "footprint": "PWR_R_0603_1608Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "J131",
+      "manufacturer": "Samtec",
+      "mpn": "FTS-105-01-L-S",
+      "footprint": "SUP_PinHeader_1x05_P1.27mm_Vertical",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "JP130",
+      "manufacturer": "Samtec",
+      "mpn": "TSW-102-07-G-S",
+      "footprint": "SUP_PinHeader_1x02_P2.54mm_Vertical",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    },
+    {
+      "reference": "R141",
+      "manufacturer": "Yageo",
+      "mpn": "RT0603BRD0710KL",
+      "footprint": "PWR_R_0603_1608Metric",
+      "catalog_identity": null,
+      "stock_observation": null,
+      "supplier_pad_fixture": null
+    }
+  ]
+}

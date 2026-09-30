@@ -40,13 +40,14 @@ def status(device, boot, sensor, code, detail, dropped=None):
     return validate(m)
 
 
-def batch(device, boot, sensor, sequence, acquired, raw=None, quality=1, revision=1, dropped=0):
+def batch(device, boot, sensor, sequence, acquired, raw=None, quality=1, revision=1, dropped=0, clock_domain=None):
     m = envelope(device, boot)
     b = m.batch
     b.sensor_id, b.configuration_revision = sensor, revision
     if dropped is not None: b.dropped_before = dropped
     s = b.samples.add(sequence=sequence, quality=quality if raw is not None else 2)
     s.time.domain = 2 if sensor in (7, 8) or sensor >= 10 else 1
+    if clock_domain is not None: s.time.domain = clock_domain
     s.time.acquisition_ns = acquired
     if raw is not None:
         name = "imu" if sensor <= 4 else {5: "tilt", 6: "gnss", 7: "magnetic", 8: "pressure", 9: "geophone", **{i: "gas" for i in range(10, 14)}, 14: "particulate", 15: "climate", 16: "barometer"}[sensor]

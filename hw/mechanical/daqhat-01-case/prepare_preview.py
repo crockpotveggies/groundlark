@@ -3,7 +3,7 @@ import cadquery as cq,json
 from pathlib import Path
 from case import ROOT
 out=ROOT/'.local/case';src=ROOT/'hw/shared/models/trenz/STP-TE0712-03-No Variations.step'
-levels=json.loads((ROOT/'hw/releases/groundlark-case-r2/evidence/levels.json').read_text())
+levels=json.loads((ROOT/'hw/releases/groundlark-case-r3/evidence/levels.json').read_text())
 s=cq.importers.importStep(str(src));groups={'pcb':[],'black':[],'metal':[]}
 for solid in s.solids().vals():
  b=solid.BoundingBox()

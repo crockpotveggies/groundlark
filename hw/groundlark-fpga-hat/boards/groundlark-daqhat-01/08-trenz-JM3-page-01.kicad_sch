@@ -1,4 +1,4 @@
-(kicad_sch (version 20230121) (generator eeschema) (uuid c7f06261-e13d-5b7b-800b-5771add2a17e) (paper "A3") (title_block (title "Groundlark DAQHAT-01 / 08-trenz-JM3-page-01") (date "2026-09-24") (rev "DAQHAT-01"))
+(kicad_sch (version 20230121) (generator eeschema) (uuid c7f06261-e13d-5b7b-800b-5771add2a17e) (paper "A3") (title_block (title "Groundlark DAQHAT-01 / 08-trenz-JM3-page-01") (date "2026-09-30") (rev "DAQHAT-01"))
 (lib_symbols
 (symbol "Groundlark:Part_J82" (pin_names (offset 0.6)) (in_bom yes) (on_board yes)
       (property "Reference" "J" (id 0) (at 0 43.18 0) (effects (font (size 1.27 1.27))))

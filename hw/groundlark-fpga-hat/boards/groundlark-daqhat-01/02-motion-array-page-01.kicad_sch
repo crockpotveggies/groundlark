@@ -1,4 +1,4 @@
-(kicad_sch (version 20230121) (generator eeschema) (uuid f946a4fe-6a88-5816-8946-7a3671784b6b) (paper "A3") (title_block (title "Groundlark DAQHAT-01 / 02-motion-array-page-01") (date "2026-09-24") (rev "DAQHAT-01"))
+(kicad_sch (version 20230121) (generator eeschema) (uuid f946a4fe-6a88-5816-8946-7a3671784b6b) (paper "A3") (title_block (title "Groundlark DAQHAT-01 / 02-motion-array-page-01") (date "2026-09-30") (rev "DAQHAT-01"))
 (lib_symbols
 (symbol "Groundlark:Part_U11" (pin_names (offset 0.6)) (in_bom yes) (on_board yes)
       (property "Reference" "U" (id 0) (at 0 12.7 0) (effects (font (size 1.27 1.27))))

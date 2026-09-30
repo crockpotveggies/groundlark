@@ -14,7 +14,7 @@ Its Phoenix 1803280 J90 header opens parallel to the PCB toward the geophone;
 the 1803581 cable plug retains positive, negative and shield pin order.
 See the [geophone circuit and acquisition](geophone-input.md).
 
-DAQHAT-01 is an **85 × 56 mm, six-layer FR-4** alternative to the A2 Coldfoot ASIC HAT.
+DAQHAT-01 is a **140 × 56 mm, six-layer FR-4** alternative to the A2 Coldfoot ASIC HAT.
 Electrical source: [`hw/groundlark-fpga-hat/elec/hat_trenz.ato`](../hw/groundlark-fpga-hat/elec/hat_trenz.ato).
 CAD: [`groundlark-daqhat-01.kicad_pcb`](../hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb).
 The original ASIC HAT and [Burrowlark (DAQUSB-01) USB sensor head](usb-sensor-head.md)
@@ -24,8 +24,22 @@ remain separate builds.
 
 From bottom to top: Raspberry Pi, Groundlark DAQHAT-01, **TE0712-03-81I36-A**.
 The FPGA stays on top for heatsink access. The HAT keeps the three LSM6DSO IMUs
-and ADS122C04 geophone input; the dedicated inclinometer is removed. The magnetometer and optional infrasound
-sensor stay on the separate USB head; they consume no HAT area.
+and ADS122C04 geophone input; the dedicated inclinometer is removed. The fitted
+DLVR-F50D-E1BS-I-NI3F pressure sensor U23 is on the HAT, with its pin-1 origin at
+(1.5,26) mm and orientation 270 degrees. Its conservative body/barb envelope is
+x=1.5–10.65, y=23.27–38.08 mm, clear of the Trenz outline. C24 is the local
+100 nF underside bypass. Keep the pressure tubing clear of IMUs and strain-relieve
+it to the enclosure. The RM3100 magnetometer remains on Burrowlark.
+
+U23 shares the isolated sensor-side I2C1 bus at address 0x28. Pins 1–4 are GND,
+SENS_3V3, SDA and SCL (All Sensors DS-0300 Rev J, E1BS front pin view). Existing
+I2C pull-ups are retained. No FPGA signal or extra Pi GPIO is consumed.
+The fast 3.3 V variant draws at most 4.3 mA; 15.2 mA reserve remains inside the
+50 mA sensor-domain allocation. The ±0.5 inH2O range is approximately ±125 Pa.
+Pneumatic inlet/reference volumes and tubing set the system response; the sensor
+alone does not establish an infrasound passband. Physical response, noise,
+thermal drift and vibration coupling remain unqualified. The existing Pi live
+acquisition command does not yet include U23; the workbench shows its new location.
 
 The Trenz outline occupies HAT coordinates x=30–80, y=8–48 mm, measured from
 the upper-left corner. Its mounting holes are (33,11), (77,11), (33,45), (77,45)
@@ -80,21 +94,58 @@ sensor/interface circuit. These are steady-state allocations; startup charging
 and the Pi's other loads must also fit the source. See the [power supply guide](power-supplies.md)
 for calculated charge, regulator dissipation and measurement requirements.
 
-**J83 requires an external regulated 3.3 V-class supply, not 5 V.** Pin 1 is positive;
-pin 2 is ground. It powers Trenz VIN and 3.3VIN through F80, a 5 A fast fuse.
-The Pi continues to supply the sensor circuit. Grounds are common; positive
-supplies are separate. There is no new USB connector on the HAT.
+**J83 accepts 12 V DC ±5%, center-positive, through a 5.5/2.1 mm barrel plug.**
+Use a supply rated at least 3 A, matching the Nexys Video adapter specification.
+The jack faces board -Y; J90's geophone plug faces +Y. The board is now
+140 × 56 mm, with the power section beyond the Trenz module's right edge.
+The original Pi and Trenz mounting points remain unchanged. Enclosures made
+for the earlier 85 mm board are superseded by the R3 enclosure with wider
+clearance, a rear jack opening and power-wing supports; physical fit remains pending.
 
-Start with a current-limited supply capable of module startup. The initial
-operating budget is 3 A; this is a design envelope, not a measured FPGA load.
-Set **3.35 V ±0.5% at J83** and keep **3.201–3.399 V at the module management
-supply under load**. The revised hot loop resistance budget is **30 mΩ total**,
-including positive and ground paths, fuse, PCB and mating contacts. At 3 A this
-leaves a calculated DC range of 3.243–3.367 V, before transients. This limit must
-be verified by differential voltage measurements; no extracted or measured
-resistance is claimed. Current-limit first startup and check inrush before raising
-the limit. This prototype input still has no reverse-polarity or overvoltage
-protection; those protections must be supplied by the external bench source.
+The independent FPGA power path is J83 → F80 (2 A input fuse) → D80
+(reverse-polarity Schottky) → U80 (TPSM53603 buck converter) → FPGA_VIN.
+D81 is a 15 V standoff transient suppressor; it is not a sustained overvoltage
+disconnect. C86/C87 are 50 V ceramic input capacitors, C88 is the local bypass,
+and C89 is 47 µF / 35 V input bulk. C110–C112 provide 66 µF nominal local output
+capacitance; verify at least 43 µF effective after tolerance, bias and temperature.
+The existing module-side decoupling remains fitted.
+
+SW80 OFF grounds converter EN; ON enables its undervoltage divider. The nominal
+turn-on threshold is 9.43 V at the protected input (approximately 9.04–9.83 V
+including threshold and 1% divider corners, before the diode drop). U80 PGOOD
+pulls Trenz EN1 low while the converter reports an out-of-window output. JP80
+can still inhibit module sequencing. PGOOD is a coarse sequencing signal;
+its thresholds do not certify the narrower Trenz supply limits.
+
+R120/R121 set **3.326 V nominal**, with a **3 A continuous design allocation**
+subject to thermal qualification. The 12 V adapter's 36 W rating does not raise
+the converter's approximately 10 W output allocation. The reference, 0.1%
+divider and FB-bias calculation gives 3.271–3.381 V at U80. A **15 mΩ total hot
+output-loop target**, including both copper paths and module contacts, gives
+3.226–3.381 V at up to 3 A. These are DC scenarios: load/line regulation,
+ripple and startup/transient behavior still need measurement. Keep the actual
+module management supply within **3.201–3.399 V** during operation.
+
+The routed board uses broad rear FPGA_VIN copper, a local front output pour,
+eight parallel output through-vias and nine ground/thermal through-vias under
+U80. All nine carrier VIN/3.3VIN contacts are connected: J80 pads 2/4/6/14/16
+and J81 pads 1/3/5/7. Ground return uses both internal reference planes.
+Filled/capped processing applies to converter, MCU/load-switch thermal-pad vias
+as well as the ADC supply-pad vias.
+No extracted resistance, measured current capacity or thermal signoff is claimed.
+
+The Pi header does not supply FPGA_VIN or the module's sequenced FPGA_3V3 rail.
+The switched Pi supply powers sensors and its side of the isolated interfaces; grounds remain
+common. Sensor acquisition can run with SW80 OFF. BCM6/13 serve power management; BCM24 remains spare.
+Disarm the FPGA link before switching it off; software must treat a power cycle
+as loss of FPGA state. Startup, shutdown and Pi-off/FPGA-on leakage remain bench
+qualification items.
+
+Manufacturer references: [Nexys Video power input](https://digilent.com/reference/_media/reference/programmable-logic/nexys-video/nexys-video_rm.pdf),
+[TPSM53603](https://www.ti.com/lit/ds/symlink/tpsm53603.pdf),
+[PJ-102AH](https://www.sameskydevices.com/product/resource/pj-102ah.pdf),
+[B340A](https://www.diodes.com/part/view/B340A), and
+[SMAJ15A](https://www.diodes.com/part/view/SMAJ15A).
 
 The module's sequenced 3.3 V output powers the exposed FPGA banks and the B
 side of the TXU0202 UART isolator. Pi GPIO25 enables that interface, with a
@@ -135,7 +186,7 @@ Bank supplies remain at 3.3 V. There are no externally exposed raw FPGA GPIOs.
 The cost-reduced revision uses conventional **six-layer FR-4**, nominal 1.6 mm,
 with through-vias only. Ground references are In1.Cu and In4.Cu. Signal layers
 are F.Cu, In2.Cu, In3.Cu and B.Cu. Minimum signal width/clearance is
-0.125/0.10 mm; vias have 0.30 mm drills and at least 0.45 mm pads.
+0.125/0.10 mm; vias have 0.30/0.40 mm drills and at least 0.45 mm pads.
 Native custom rules additionally enforce via copper, SMD pad and hole clearances.
 All through-vias are epoxy filled and copper capped, including solder-pad sites.
 
@@ -155,3 +206,6 @@ The portable lab checks circuit compilation, independent pin fixtures, ERC/DRC,
 route connectivity, sensor regressions, power/geophone models and stack envelopes.
 These checks do not establish physical power, timing, noise or thermal performance.
 Follow the [bench procedure](bench-procedure.md) for first-article qualification.
+
+The TI Pi supervisor, J130 input range, shutdown handshake, software placeholders
+and shared Pi/HAT budget are specified in [power supplies](power-supplies.md#pi-supervisor-and-battery-input).

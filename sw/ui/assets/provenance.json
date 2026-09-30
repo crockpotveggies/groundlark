@@ -1,12 +1,15 @@
 {
   "kicad": "9.0.9",
   "sha256": {
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb": "48533684ef4aa121f3e770630ce970668981d39c85e20b8e0f8fa8ca311aa00a",
-    "hw/groundlark-fpga-hat/layout/placement.json": "b6966d5422af2c3b401c4a032d48da201632b9e2993f2d1a75cadd52529ed01b",
-    "sw/ui/assets/daqhat-01.glb": "e37f472b49a8b1a0eb0acf7fc19df7d4178618df43bd0bb0861f0b5810704d53",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb": "0434eee91432fc5e35a01c40805387454fcfa30154485d54b435439d120c07d9",
+    "hw/groundlark-fpga-hat/layout/placement.json": "be501cb273bf5803fb9da5a098d1ea0dcc5e5a8ce35cb3abfdded6188cf611ca",
+    "sw/ui/assets/daqhat-01.glb": "eecc5f97100dbdcba2ddbc70b4de825a4ea3bdf7d2afb7745bc91c8a6c334118",
     "sw/ui/geophone_scene.py": "65ef0de9df78e2b7c1c4697367f5a5b81486dd95f2fe4f01d9fa6f35b8dd461a",
-    "hw/burrowlark-usb/layout/placement.json": "61502651d94f65edad7e1ab3fbc6a6be59421ab04044f33a9736ce3321b6fdee",
-    "sw/ui/main.py": "8134b0581ffcac4b51cf0c9277bcb8492e495f0c56fce959f699a33e5db332fc"
+    "hw/burrowlark-usb/layout/placement.json": "10bb5c31186a8ec9721f977918686614844617527086a94b03bf1bf46f988022",
+    "sw/ui/main.py": "02dba5cd8a6ef7c68cbc1da5aa0cb6b1289b77ca838d21ab820fc7f655673399",
+    "hw/shared/models/DLVR_E1BS.wrl": "cef03553881ccfc39cc5810789a92d578c0f9d8a636b5de29cd719bada7c4dad",
+    "hw/shared/models/PJ_102AH_envelope.wrl": "4ee72a8ea9a1d0d7c4afc079819353c87c9e6111557c5727d821b4f53b711c94",
+    "hw/shared/models/TPSM53603_envelope.wrl": "eec66b8373d0bce441527b2ec6ce28c3c2fcbe6ef56a7f0fad3883eb48f30604"
   },
-  "metadata_review": "Horizontal Phoenix 1803280 J90 faces native +Y, original hole row; D90 moved to (11.8,46.8) with local protection and ground stitch. Native KiCad GLB and assembly renders inspected; connector model present. Three IMUs and ADC positions/axes preserved. Pi gap 28.06 mm; physical mating, cable fit and noise remain unqualified."
+  "metadata_review": "140 x 56 mm supervised Pi supply and separate FPGA input. J130 accepts protected 8-18 V DC; U130 MSPM0L1105 controls U132/U133. Native KiCad 9.0.9 GLB; local VRML parts use explicit display envelopes. Physical fit, thermal behavior and battery policy remain unqualified."
 }

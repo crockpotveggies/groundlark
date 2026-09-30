@@ -22,3 +22,11 @@ This checks schemas, compatibility, acquisition/replay, modeled bus drivers,
 USB streams and recovery from injected faults. See the
 [software run guide](../docs/sensor-software.md). Burrowlark firmware and physical qualification remain pending. Skylark firmware is built and tested against modeled buses; its hardware bring-up remains pending. Tests do not emulate
 Pi/MCU instructions or enumerate a USB sensor head.
+
+## Pi power policy
+
+The optional TI supervisor has a disabled [configuration template](pi/deploy/power-policy.example.json)
+and a tested [validator](pi/groundlark/power_config.py). Battery thresholds are
+intentionally unset. MCU firmware, configuration delivery and the Pi shutdown
+service remain pending; loading the template does not change hardware power.
+See the [power operating specification](../docs/power-supplies.md#pi-supervisor-and-battery-input).

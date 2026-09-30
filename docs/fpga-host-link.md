@@ -1,6 +1,6 @@
 # DAQHAT-01: internal Pi / Trenz transport
 
-The 85 × 56 mm HAT now connects the Pi directly to the TE0712-03-81I36-A.
+The 140 × 56 mm HAT now connects the Pi directly to the TE0712-03-81I36-A.
 Six wires reserve SPI/QSPI, UART is retained, and a switch shares four wires
 with dedicated FPGA JTAG. J84–J89, their expansion fanout, all four ribbons,
 the guide and the offset spacer are removed from the active assembly.
@@ -24,7 +24,9 @@ In programming mode the switch selects dedicated JTAG contacts J81.94/96/98/100,
 not the application balls in the table. R80 keeps the module CPLD's JTAGEN low.
 The complete [contact map](trenz-pin-map.json) includes 149 unused ordinary I/Os;
 the audit checks all 260 module contacts against independent vendor fixtures.
-Sensors retain SPI0, I2C1 and their existing interrupts. Ethernet is not exposed.
+Sensors retain SPI0, I2C1 and their existing interrupts. The added DLVR U23
+uses I2C1 address 0x28, alongside the 0x20 link expander and 0x40 geophone ADC.
+It consumes no additional Pi or FPGA pins; BCM6/13 serve power management; BCM24 remains spare. Ethernet is not exposed.
 
 U100/U101 are TMUX1574 bidirectional switches. U102 is a TCA9534 at I2C1 address
 0x20: P0 selects JTAG; P1 requests enable. U103/U106 permit a connection only
@@ -39,7 +41,7 @@ CS/DQ3 parking contacts are open, so they cannot short Pi outputs to ground.
 TMUX1574 provides powered-off signal isolation at VDD=0 and fail-safe controls.
 Settled-state simulation does not characterize subthreshold power ramps.
 
-J83 still requires the [regulated external supply and operating envelope](trenz-hat.md#power-and-interfaces).
+J83 uses a separate Nexys-compatible 12 V adapter; see the [converter and operating envelope](trenz-hat.md#power-and-interfaces).
 The [assembly guide](stack-assembly.md) specifies the existing GPIO riser and
 four straight supports. Use the recorded six-layer stock stack and fill/cap all through-vias,
 including the ADC supply vias and the through-via at U101.4.

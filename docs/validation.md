@@ -1,5 +1,30 @@
 # A2 validation and release gates
 
+## Current DAQHAT-01 power revision
+
+The 140 × 56 mm board adds TI MSPM0L1105 Pi supervision, an 8–18 V protected
+battery/controller input and a switched 5.149 V / 3 A combined Pi/HAT supply.
+The independent FPGA adapter input remains separate. Native KiCad checks report
+zero ERC findings, zero DRC findings and zero unconnected items; the complete
+11,921-track/via SES reproduces identical copper. Manufacturer pin fixtures,
+no-connect audits, fabrication geometry and analog-layout checks pass.
+
+The R3 enclosure is 159 × 118 × 75 mm. Its geometric/component checks, 508 native
+PCB underside checks and 23 enclosure fault tests pass. Renders use current CAD.
+The portable software profile, power-policy tests and workbench HTTP/browser
+checks pass. The battery policy ships disabled with unset thresholds. MCU
+firmware and Pi shutdown integration remain pending.
+
+The full portable run stops at assembly regressions: 168 tests, 13 failures and
+16 errors caused by procurement-registry/source and supplier-pad mismatches.
+The procurement export hold remains; new parts have exact MPN review records
+with catalog/stock and supplier-pad evidence pending. No physical power, noise,
+thermal, first-print or battery qualification is implied. See
+[power operation](power-supplies.md#pi-supervisor-and-battery-input) and
+[assembly status](jlcpcb-assembly.md).
+
+## Earlier A2 validation scope
+
 The separate FPGA DAQHAT-01 variant has its own [validation report](trenz-hat.md#verification-and-release-limits).
 The A2 results below do not certify DAQHAT-01.
 

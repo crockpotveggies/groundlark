@@ -2,7 +2,7 @@
   "groundlark-daqhat-01": {
     "target": "trenz_hat",
     "size": [
-      85,
+      140,
       56
     ],
     "parts": [
@@ -1191,40 +1191,6 @@
         "type": "TZ60",
         "section": "08-trenz-JM3",
         "note": "Mates JM3; opposite parity; 8 mm board surface gap",
-        "names": {},
-        "dnp": false
-      },
-      {
-        "ref": "J83",
-        "value": "1715721",
-        "mpn": "1715721",
-        "footprint": "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal",
-        "local_fp": "TZ_TZ_POWER",
-        "xy": [
-          4.7,
-          12
-        ],
-        "angle": 270,
-        "type": "TZ_POWER",
-        "section": "08-trenz-carrier",
-        "note": "REGULATED 3.3 V ONLY; external current-limited supply; 3 A initial operating budget Shifted left to keep power-terminal tails out of the J86 ribbon corridor.",
-        "names": {},
-        "dnp": false
-      },
-      {
-        "ref": "F80",
-        "value": "0467005.NR",
-        "mpn": "0467005.NR",
-        "footprint": "Fuse:Fuse_1206_3216Metric",
-        "local_fp": "TZ_TZ_FUSE",
-        "xy": [
-          17,
-          8.5
-        ],
-        "angle": 0,
-        "type": "TZ_FUSE",
-        "section": "08-trenz-carrier",
-        "note": "5 A fast fuse; not reverse-polarity or overvoltage protection",
         "names": {},
         "dnp": false
       },
@@ -2444,6 +2410,1121 @@
         "section": "07-internal-link",
         "dnp": false,
         "note": ""
+      },
+      {
+        "ref": "U23",
+        "type": "P_35",
+        "value": "DLVR-F50D",
+        "xy": [
+          1.5,
+          26
+        ],
+        "angle": 270,
+        "section": "10-infrasound",
+        "dnp": false,
+        "note": "Fitted 3.3 V I2C 0x28; pneumatic response and thermal/vibration isolation require qualification.",
+        "mpn": "DLVR-F50D-E1BS-I-NI3F",
+        "footprint": "Groundlark:DLVR_E1BS",
+        "local_fp": "Groundlark__DLVR_E1BS",
+        "names": {
+          "1": "GND",
+          "2": "VS_3V3",
+          "3": "SDA",
+          "4": "SCL"
+        }
+      },
+      {
+        "ref": "C24",
+        "type": "P_6",
+        "value": "100n",
+        "xy": [
+          4.5,
+          28.54
+        ],
+        "angle": 180,
+        "section": "10-infrasound",
+        "dnp": false,
+        "note": "Local DLVR supply bypass",
+        "mpn": "GRM188R71H104KA93D",
+        "footprint": "Capacitor_SMD:C_0603_1608Metric",
+        "local_fp": "Capacitor_SMD__C_0603_1608Metric",
+        "names": {},
+        "side": "back"
+      },
+      {
+        "ref": "J83",
+        "value": "12V DC / CENTER +",
+        "footprint": "Connector_BarrelJack:BarrelJack_CUI_PJ-102AH_Horizontal",
+        "names": {
+          "1": "CENTER",
+          "2": "SLEEVE",
+          "3": "SWITCH_NC"
+        },
+        "xy": [
+          95,
+          14.1
+        ],
+        "section": "09-fpga-power",
+        "angle": 180,
+        "mpn": "PJ-102AH",
+        "note": "5.5/2.1 mm mating plug; mouth faces -Y, opposite J90 +Y; sleeve switch pin 3 NC",
+        "dnp": false,
+        "local_fp": "PWR_BarrelJack_CUI_PJ-102AH_Horizontal",
+        "type": "PWR_JACK"
+      },
+      {
+        "ref": "F80",
+        "value": "2A fast",
+        "footprint": "Fuse:Fuse_1206_3216Metric",
+        "names": {},
+        "xy": [
+          89,
+          18
+        ],
+        "section": "09-fpga-power",
+        "angle": 0,
+        "mpn": "0467002.NR",
+        "note": "Input fuse; output current controlled by buck converter",
+        "dnp": false,
+        "local_fp": "PWR_Fuse_1206_3216Metric",
+        "type": "PWR_FUSE"
+      },
+      {
+        "ref": "D80",
+        "value": "B340A",
+        "footprint": "Diode_SMD:D_SMA",
+        "names": {
+          "1": "K",
+          "2": "A"
+        },
+        "xy": [
+          95,
+          21
+        ],
+        "section": "09-fpga-power",
+        "angle": 180,
+        "mpn": "B340A-13-F",
+        "note": "3 A / 40 V Schottky; reverse-polarity series protection",
+        "dnp": false,
+        "local_fp": "PWR_D_SMA",
+        "type": "PWR_DIODE"
+      },
+      {
+        "ref": "D81",
+        "value": "SMAJ15A",
+        "footprint": "Diode_SMD:D_SMA",
+        "names": {
+          "1": "K",
+          "2": "A"
+        },
+        "xy": [
+          104,
+          23
+        ],
+        "section": "09-fpga-power",
+        "angle": 90,
+        "mpn": "SMAJ15A-13-F",
+        "note": "15 V standoff TVS; transient suppression, not sustained overvoltage cutoff",
+        "dnp": false,
+        "local_fp": "PWR_D_SMA",
+        "type": "PWR_TVS"
+      },
+      {
+        "ref": "U80",
+        "value": "TPSM53603",
+        "footprint": "Package_DFN_QFN:Texas_B3QFN-14-1EP_5x5.5mm_P0.65mm",
+        "names": {
+          "1": "VIN",
+          "2": "EN",
+          "3": "NC_GND",
+          "4": "DNC",
+          "5": "DNC",
+          "6": "PGOOD",
+          "7": "VOUT",
+          "8": "VOUT",
+          "9": "FB",
+          "10": "NC_GND",
+          "11": "NC_GND",
+          "12": "AGND",
+          "13": "V5V",
+          "14": "VIN",
+          "15": "PGND"
+        },
+        "xy": [
+          95,
+          32
+        ],
+        "section": "09-fpga-power",
+        "angle": 0,
+        "mpn": "TPSM53603RDAR",
+        "note": "Pins 4/5 DNC isolated; pin13 V5V NC; 3 A envelope, thermal qualification pending",
+        "dnp": false,
+        "local_fp": "PWR_Texas_B3QFN-14-1EP_5x5.5mm_P0.65mm",
+        "type": "PWR_BUCK"
+      },
+      {
+        "ref": "R120",
+        "value": "10k",
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "names": {},
+        "xy": [
+          100,
+          34
+        ],
+        "section": "09-fpga-power",
+        "angle": 0,
+        "mpn": "RT0603BRD0710KL",
+        "note": "0.1% feedback upper",
+        "dnp": false,
+        "local_fp": "PWR_R_0603_1608Metric",
+        "type": "PWR_10K"
+      },
+      {
+        "ref": "R121",
+        "value": "4.30k",
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "names": {},
+        "xy": [
+          100,
+          31
+        ],
+        "section": "09-fpga-power",
+        "angle": 0,
+        "mpn": "RT0603BRD074K3L",
+        "note": "0.1% feedback lower; nominal 3.32558 V",
+        "dnp": false,
+        "local_fp": "PWR_R_0603_1608Metric",
+        "type": "PWR_4K3"
+      },
+      {
+        "ref": "R122",
+        "value": "100k",
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "names": {},
+        "xy": [
+          87,
+          27
+        ],
+        "section": "09-fpga-power",
+        "angle": 90,
+        "mpn": "RC0603FR-07100KL",
+        "note": "UVLO upper",
+        "dnp": false,
+        "local_fp": "PWR_R_0603_1608Metric",
+        "type": "PWR_100K"
+      },
+      {
+        "ref": "R123",
+        "value": "15k",
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "names": {},
+        "xy": [
+          87,
+          30
+        ],
+        "section": "09-fpga-power",
+        "angle": 90,
+        "mpn": "RC0603FR-0715KL",
+        "note": "UVLO lower",
+        "dnp": false,
+        "local_fp": "PWR_R_0603_1608Metric",
+        "type": "PWR_15K"
+      },
+      {
+        "ref": "R124",
+        "value": "10k",
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "names": {},
+        "xy": [
+          89.5,
+          34
+        ],
+        "section": "09-fpga-power",
+        "angle": 0,
+        "mpn": "RT0603BRD0710KL",
+        "note": "Power-good pullup; module sequencing inhibited until converter PGOOD",
+        "dnp": false,
+        "local_fp": "PWR_R_0603_1608Metric",
+        "type": "PWR_10K"
+      },
+      {
+        "ref": "SW80",
+        "value": "FPGA OFF / ON",
+        "footprint": "Button_Switch_SMD:SW_SPDT_PCM12",
+        "names": {},
+        "xy": [
+          105,
+          10
+        ],
+        "section": "09-fpga-power",
+        "angle": 180,
+        "mpn": "PCM12SMTR",
+        "note": "OFF grounds converter EN; ON leaves divider active; no Pi required",
+        "dnp": false,
+        "local_fp": "PWR_SW_SPDT_PCM12",
+        "type": "PWR_SW"
+      },
+      {
+        "ref": "C86",
+        "value": "10u",
+        "footprint": "Capacitor_SMD:C_1206_3216Metric",
+        "names": {},
+        "xy": [
+          91,
+          27
+        ],
+        "section": "09-fpga-power",
+        "angle": 0,
+        "mpn": "CGA5L1X7R1H106K160AC",
+        "note": "50 V X7R 1206; TI recommended input capacitor",
+        "dnp": false,
+        "local_fp": "PWR_C_1206_3216Metric",
+        "type": "PWR_CIN"
+      },
+      {
+        "ref": "C87",
+        "value": "10u",
+        "footprint": "Capacitor_SMD:C_1206_3216Metric",
+        "names": {},
+        "xy": [
+          99,
+          27
+        ],
+        "section": "09-fpga-power",
+        "angle": 180,
+        "mpn": "CGA5L1X7R1H106K160AC",
+        "note": "50 V X7R 1206; TI recommended input capacitor",
+        "dnp": false,
+        "local_fp": "PWR_C_1206_3216Metric",
+        "type": "PWR_CIN"
+      },
+      {
+        "ref": "C88",
+        "value": "100n",
+        "footprint": "Capacitor_SMD:C_0603_1608Metric",
+        "names": {},
+        "xy": [
+          95,
+          28
+        ],
+        "section": "09-fpga-power",
+        "angle": 0,
+        "mpn": "GRM188R71H104KA93D",
+        "note": "50 V ceramic input bypass",
+        "dnp": false,
+        "local_fp": "PWR_C_0603_1608Metric",
+        "type": "PWR_100N"
+      },
+      {
+        "ref": "C89",
+        "value": "47u",
+        "footprint": "Capacitor_SMD:CP_Elec_6.3x7.7",
+        "names": {},
+        "xy": [
+          105,
+          45
+        ],
+        "section": "09-fpga-power",
+        "angle": 0,
+        "mpn": "EEE-FK1V470P",
+        "note": "35 V aluminum input bulk; observe polarity",
+        "dnp": false,
+        "local_fp": "PWR_CP_Elec_6.3x7.7",
+        "type": "PWR_BULK"
+      },
+      {
+        "ref": "C110",
+        "value": "22u",
+        "footprint": "Capacitor_SMD:C_1210_3225Metric",
+        "names": {},
+        "xy": [
+          91,
+          38
+        ],
+        "section": "09-fpga-power",
+        "angle": 270,
+        "mpn": "GRM32ER71E226KE15L",
+        "note": "25 V X7R 1210; three local caps must provide >=43 uF effective combined",
+        "dnp": false,
+        "local_fp": "PWR_C_1210_3225Metric",
+        "type": "PWR_COUT"
+      },
+      {
+        "ref": "C111",
+        "value": "22u",
+        "footprint": "Capacitor_SMD:C_1210_3225Metric",
+        "names": {},
+        "xy": [
+          96,
+          38
+        ],
+        "section": "09-fpga-power",
+        "angle": 270,
+        "mpn": "GRM32ER71E226KE15L",
+        "note": "25 V X7R 1210; three local caps must provide >=43 uF effective combined",
+        "dnp": false,
+        "local_fp": "PWR_C_1210_3225Metric",
+        "type": "PWR_COUT"
+      },
+      {
+        "ref": "C112",
+        "value": "22u",
+        "footprint": "Capacitor_SMD:C_1210_3225Metric",
+        "names": {},
+        "xy": [
+          101,
+          39
+        ],
+        "section": "09-fpga-power",
+        "angle": 270,
+        "mpn": "GRM32ER71E226KE15L",
+        "note": "25 V X7R 1210; three local caps must provide >=43 uF effective combined",
+        "dnp": false,
+        "local_fp": "PWR_C_1210_3225Metric",
+        "type": "PWR_COUT"
+      },
+      {
+        "ref": "J130",
+        "value": "PI BATTERY 8-18V",
+        "footprint": "Connector_Phoenix_MC:PhoenixContact_MC_1,5_2-G-3.81_1x02_P3.81mm_Horizontal",
+        "names": {
+          "1": "+",
+          "2": "GND"
+        },
+        "xy": [
+          120,
+          10
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 180,
+        "mpn": "1803277",
+        "note": "External protected battery/controller DC output; no solar panel or charging input",
+        "dnp": false,
+        "local_fp": "SUP_PhoenixContact_MC_1,5_2-G-3.81_1x02_P3.81mm_Horizontal",
+        "type": "SUP_INPUT"
+      },
+      {
+        "ref": "F130",
+        "value": "4A fast",
+        "footprint": "Fuse:Fuse_1206_3216Metric",
+        "names": {},
+        "xy": [
+          113,
+          16
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 0,
+        "mpn": "0467004.NR",
+        "note": "",
+        "dnp": false,
+        "local_fp": "SUP_Fuse_1206_3216Metric",
+        "type": "SUP_FUSE"
+      },
+      {
+        "ref": "D130",
+        "value": "B340A",
+        "footprint": "Diode_SMD:D_SMA",
+        "names": {},
+        "xy": [
+          120,
+          19
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 180,
+        "mpn": "B340A-13-F",
+        "note": "",
+        "dnp": false,
+        "local_fp": "PWR_D_SMA",
+        "type": "PWR_DIODE"
+      },
+      {
+        "ref": "D131",
+        "value": "SMAJ18A",
+        "footprint": "Diode_SMD:D_SMA",
+        "names": {},
+        "xy": [
+          135,
+          18
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 90,
+        "mpn": "SMAJ18A-13-F",
+        "note": "",
+        "dnp": false,
+        "local_fp": "SUP_D_SMA",
+        "type": "SUP_TVS"
+      },
+      {
+        "ref": "U131",
+        "value": "TPS70933",
+        "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+        "names": {
+          "1": "IN",
+          "2": "GND",
+          "3": "EN_FLOAT",
+          "4": "NC",
+          "5": "OUT"
+        },
+        "xy": [
+          113,
+          32
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 0,
+        "mpn": "TPS70933DBVR",
+        "note": "Always on; EN internally biased, never connect EN to raw battery",
+        "dnp": false,
+        "local_fp": "SUP_SOT-23-5",
+        "type": "SUP_LDO"
+      },
+      {
+        "ref": "C130",
+        "value": "4.7u",
+        "footprint": "Capacitor_SMD:C_0805_2012Metric",
+        "names": {},
+        "xy": [
+          112,
+          36
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 90,
+        "mpn": "GRM21BR71A475KA73L",
+        "note": "At least 2.2uF effective at 3.3V",
+        "dnp": false,
+        "local_fp": "SUP_C_0805_2012Metric",
+        "type": "SUP_4U7"
+      },
+      {
+        "ref": "C131",
+        "value": "10u",
+        "footprint": "Capacitor_SMD:C_1206_3216Metric",
+        "names": {},
+        "xy": [
+          111,
+          27
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 90,
+        "mpn": "CGA5L1X7R1H106K160AC",
+        "note": "",
+        "dnp": false,
+        "local_fp": "PWR_C_1206_3216Metric",
+        "type": "PWR_CIN"
+      },
+      {
+        "ref": "U132",
+        "value": "TPSM53603",
+        "footprint": "Package_DFN_QFN:Texas_B3QFN-14-1EP_5x5.5mm_P0.65mm",
+        "names": {
+          "1": "VIN",
+          "2": "EN",
+          "3": "NC_GND",
+          "4": "DNC",
+          "5": "DNC",
+          "6": "PGOOD_NC",
+          "7": "VOUT",
+          "8": "VOUT",
+          "9": "FB",
+          "10": "NC_GND",
+          "11": "NC_GND",
+          "12": "AGND",
+          "13": "V5V_NC",
+          "14": "VIN",
+          "15": "PGND"
+        },
+        "xy": [
+          124,
+          28
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 0,
+        "mpn": "TPSM53603RDAR",
+        "note": "5.149V / 3A total Pi+HAT allocation; EN pulldown gives default OFF",
+        "dnp": false,
+        "local_fp": "PWR_Texas_B3QFN-14-1EP_5x5.5mm_P0.65mm",
+        "type": "PWR_BUCK"
+      },
+      {
+        "ref": "C132",
+        "value": "10u",
+        "footprint": "Capacitor_SMD:C_1206_3216Metric",
+        "names": {},
+        "xy": [
+          120,
+          23
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 0,
+        "mpn": "CGA5L1X7R1H106K160AC",
+        "note": "",
+        "dnp": false,
+        "local_fp": "PWR_C_1206_3216Metric",
+        "type": "PWR_CIN"
+      },
+      {
+        "ref": "C133",
+        "value": "10u",
+        "footprint": "Capacitor_SMD:C_1206_3216Metric",
+        "names": {},
+        "xy": [
+          128,
+          23
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 180,
+        "mpn": "CGA5L1X7R1H106K160AC",
+        "note": "",
+        "dnp": false,
+        "local_fp": "PWR_C_1206_3216Metric",
+        "type": "PWR_CIN"
+      },
+      {
+        "ref": "C134",
+        "value": "100n",
+        "footprint": "Capacitor_SMD:C_0603_1608Metric",
+        "names": {},
+        "xy": [
+          124,
+          24
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 0,
+        "mpn": "GRM188R71H104KA93D",
+        "note": "",
+        "dnp": false,
+        "local_fp": "PWR_C_0603_1608Metric",
+        "type": "PWR_100N"
+      },
+      {
+        "ref": "C135",
+        "value": "47u",
+        "footprint": "Capacitor_SMD:CP_Elec_6.3x7.7",
+        "names": {},
+        "xy": [
+          135,
+          27
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 0,
+        "mpn": "EEE-FK1V470P",
+        "note": "",
+        "dnp": false,
+        "local_fp": "PWR_CP_Elec_6.3x7.7",
+        "type": "PWR_BULK"
+      },
+      {
+        "ref": "C136",
+        "value": "22u",
+        "footprint": "Capacitor_SMD:C_1210_3225Metric",
+        "names": {},
+        "xy": [
+          119,
+          34
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 270,
+        "mpn": "GRM32ER71E226KE15L",
+        "note": "Combined effective capacitance must be at least 44uF at 5.15V",
+        "dnp": false,
+        "local_fp": "PWR_C_1210_3225Metric",
+        "type": "PWR_COUT"
+      },
+      {
+        "ref": "C137",
+        "value": "22u",
+        "footprint": "Capacitor_SMD:C_1210_3225Metric",
+        "names": {},
+        "xy": [
+          124,
+          34
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 270,
+        "mpn": "GRM32ER71E226KE15L",
+        "note": "Combined effective capacitance must be at least 44uF at 5.15V",
+        "dnp": false,
+        "local_fp": "PWR_C_1210_3225Metric",
+        "type": "PWR_COUT"
+      },
+      {
+        "ref": "C138",
+        "value": "22u",
+        "footprint": "Capacitor_SMD:C_1210_3225Metric",
+        "names": {},
+        "xy": [
+          129,
+          35
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 270,
+        "mpn": "GRM32ER71E226KE15L",
+        "note": "Combined effective capacitance must be at least 44uF at 5.15V",
+        "dnp": false,
+        "local_fp": "PWR_C_1210_3225Metric",
+        "type": "PWR_COUT"
+      },
+      {
+        "ref": "R130",
+        "value": "10k",
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "names": {},
+        "xy": [
+          129,
+          30
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 0,
+        "mpn": "RT0603BRD0710KL",
+        "note": "",
+        "dnp": false,
+        "local_fp": "PWR_R_0603_1608Metric",
+        "type": "PWR_10K"
+      },
+      {
+        "ref": "R131",
+        "value": "2.41k",
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "names": {},
+        "xy": [
+          129,
+          27
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 90,
+        "mpn": "RT0603BRD072K41L",
+        "note": "",
+        "dnp": false,
+        "local_fp": "SUP_R_0603_1608Metric",
+        "type": "SUP_2K41"
+      },
+      {
+        "ref": "R132",
+        "value": "100k",
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "names": {},
+        "xy": [
+          116,
+          27
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 90,
+        "mpn": "RC0603FR-07100KL",
+        "note": "",
+        "dnp": false,
+        "local_fp": "PWR_R_0603_1608Metric",
+        "type": "PWR_100K"
+      },
+      {
+        "ref": "U133",
+        "value": "TPS22953",
+        "footprint": "Package_DFN_QFN:DFN-10-1EP_2x3mm_P0.5mm_EP0.64x2.4mm",
+        "names": {
+          "1": "IN",
+          "2": "IN",
+          "3": "BIAS",
+          "4": "EN",
+          "5": "GND",
+          "6": "CT",
+          "7": "PG_NC",
+          "8": "SNS",
+          "9": "OUT",
+          "10": "OUT",
+          "11": "GND"
+        },
+        "xy": [
+          134,
+          36
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 0,
+        "mpn": "TPS22953DQCR",
+        "note": "Reverse blocking while disabled; no simultaneous Pi USB-C supply",
+        "dnp": false,
+        "local_fp": "SUP_Texas_WSON10_DQC0010A",
+        "type": "SUP_SWITCH"
+      },
+      {
+        "ref": "C139",
+        "value": "10n",
+        "footprint": "Capacitor_SMD:C_0603_1608Metric",
+        "names": {},
+        "xy": [
+          135,
+          40
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 90,
+        "mpn": "GRM188R71H103KA01D",
+        "note": "50V slew capacitor; approximately 18ms output rise",
+        "dnp": false,
+        "local_fp": "SUP_C_0603_1608Metric",
+        "type": "SUP_10N"
+      },
+      {
+        "ref": "C140",
+        "value": "10u",
+        "footprint": "Capacitor_SMD:C_0805_2012Metric",
+        "names": {},
+        "xy": [
+          138,
+          34
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 90,
+        "mpn": "GRM21BR61C106KE15L",
+        "note": "",
+        "dnp": false,
+        "local_fp": "SUP_C_0805_2012Metric",
+        "type": "SUP_10U"
+      },
+      {
+        "ref": "R133",
+        "value": "2k",
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "names": {},
+        "xy": [
+          137,
+          42
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 90,
+        "mpn": "RC0603FR-072KL",
+        "note": "Output bleed; minimum OFF time must be qualified with actual Pi capacitance",
+        "dnp": false,
+        "local_fp": "SUP_R_0603_1608Metric",
+        "type": "SUP_2K"
+      },
+      {
+        "ref": "U130",
+        "value": "MSPM0L1105",
+        "footprint": "Package_DFN_QFN:QFN-32-1EP_5x5mm_P0.5mm_EP3.45x3.45mm",
+        "names": {
+          "3": "NRST",
+          "4": "VDD",
+          "5": "VSS",
+          "7": "PA3_RUN",
+          "8": "PA4_SHUTDOWN",
+          "9": "PA5_ACK_N",
+          "23": "PA19_SWDIO",
+          "24": "PA20_SWCLK",
+          "31": "PA27_A0",
+          "32": "VCORE",
+          "33": "GND"
+        },
+        "xy": [
+          122,
+          44
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 0,
+        "mpn": "MSPM0L1105TRHBR",
+        "note": "32k flash / 4k RAM. Internal clock; unused GPIO disabled in firmware. No external VCORE load.",
+        "dnp": false,
+        "local_fp": "SUP_QFN-32-1EP_5x5mm_P0.5mm_EP3.45x3.45mm",
+        "type": "SUP_MCU"
+      },
+      {
+        "ref": "C141",
+        "value": "100n",
+        "footprint": "Capacitor_SMD:C_0603_1608Metric",
+        "names": {},
+        "xy": [
+          117.5,
+          43.5
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 90,
+        "mpn": "GRM188R71H104KA93D",
+        "note": "",
+        "dnp": false,
+        "local_fp": "PWR_C_0603_1608Metric",
+        "type": "PWR_100N"
+      },
+      {
+        "ref": "C142",
+        "value": "10u",
+        "footprint": "Capacitor_SMD:C_0805_2012Metric",
+        "names": {},
+        "xy": [
+          114.5,
+          43
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 90,
+        "mpn": "GRM21BR61C106KE15L",
+        "note": "",
+        "dnp": false,
+        "local_fp": "SUP_C_0805_2012Metric",
+        "type": "SUP_10U"
+      },
+      {
+        "ref": "C143",
+        "value": "470n",
+        "footprint": "Capacitor_SMD:C_0603_1608Metric",
+        "names": {},
+        "xy": [
+          120,
+          39.5
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 180,
+        "mpn": "GRM188R71C474KA88D",
+        "note": "",
+        "dnp": false,
+        "local_fp": "SUP_C_0603_1608Metric",
+        "type": "SUP_470N"
+      },
+      {
+        "ref": "R134",
+        "value": "47k",
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "names": {},
+        "xy": [
+          116.5,
+          40
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 90,
+        "mpn": "RC0603FR-0747KL",
+        "note": "",
+        "dnp": false,
+        "local_fp": "SUP_R_0603_1608Metric",
+        "type": "SUP_47K"
+      },
+      {
+        "ref": "C144",
+        "value": "10n",
+        "footprint": "Capacitor_SMD:C_0603_1608Metric",
+        "names": {},
+        "xy": [
+          114,
+          39
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 90,
+        "mpn": "GRM188R71H103KA01D",
+        "note": "",
+        "dnp": false,
+        "local_fp": "SUP_C_0603_1608Metric",
+        "type": "SUP_10N"
+      },
+      {
+        "ref": "R135",
+        "value": "1M",
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "names": {},
+        "xy": [
+          130,
+          40
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 90,
+        "mpn": "RT0603BRD071ML",
+        "note": "",
+        "dnp": false,
+        "local_fp": "SUP_R_0603_1608Metric",
+        "type": "SUP_1M"
+      },
+      {
+        "ref": "R136",
+        "value": "150k",
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "names": {},
+        "xy": [
+          127,
+          40
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 90,
+        "mpn": "RT0603BRD07150KL",
+        "note": "",
+        "dnp": false,
+        "local_fp": "SUP_R_0603_1608Metric",
+        "type": "SUP_150K"
+      },
+      {
+        "ref": "C145",
+        "value": "10n",
+        "footprint": "Capacitor_SMD:C_0603_1608Metric",
+        "names": {},
+        "xy": [
+          123.5,
+          38
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 0,
+        "mpn": "GRM188R71H103KA01D",
+        "note": "",
+        "dnp": false,
+        "local_fp": "SUP_C_0603_1608Metric",
+        "type": "SUP_10N"
+      },
+      {
+        "ref": "Q130",
+        "value": "2N7002",
+        "footprint": "Package_TO_SOT_SMD:SOT-23",
+        "names": {
+          "1": "G",
+          "2": "S",
+          "3": "D"
+        },
+        "xy": [
+          112,
+          48
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 0,
+        "mpn": "2N7002,215",
+        "note": "",
+        "dnp": false,
+        "local_fp": "SUP_SOT-23",
+        "type": "SUP_NMOS"
+      },
+      {
+        "ref": "R137",
+        "value": "100k",
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "names": {},
+        "xy": [
+          113,
+          51
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 0,
+        "mpn": "RC0603FR-07100KL",
+        "note": "",
+        "dnp": false,
+        "local_fp": "PWR_R_0603_1608Metric",
+        "type": "PWR_100K"
+      },
+      {
+        "ref": "R138",
+        "value": "10k",
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "names": {},
+        "xy": [
+          109,
+          51
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 90,
+        "mpn": "RT0603BRD0710KL",
+        "note": "",
+        "dnp": false,
+        "local_fp": "PWR_R_0603_1608Metric",
+        "type": "PWR_10K"
+      },
+      {
+        "ref": "Q131",
+        "value": "2N7002",
+        "footprint": "Package_TO_SOT_SMD:SOT-23",
+        "names": {
+          "1": "G",
+          "2": "S",
+          "3": "D"
+        },
+        "xy": [
+          128,
+          46
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 0,
+        "mpn": "2N7002,215",
+        "note": "",
+        "dnp": false,
+        "local_fp": "SUP_SOT-23",
+        "type": "SUP_NMOS"
+      },
+      {
+        "ref": "R139",
+        "value": "100k",
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "names": {},
+        "xy": [
+          128,
+          49
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 0,
+        "mpn": "RC0603FR-07100KL",
+        "note": "",
+        "dnp": false,
+        "local_fp": "PWR_R_0603_1608Metric",
+        "type": "PWR_100K"
+      },
+      {
+        "ref": "R140",
+        "value": "100k",
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "names": {},
+        "xy": [
+          128,
+          43
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 0,
+        "mpn": "RC0603FR-07100KL",
+        "note": "",
+        "dnp": false,
+        "local_fp": "PWR_R_0603_1608Metric",
+        "type": "PWR_100K"
+      },
+      {
+        "ref": "J131",
+        "value": "SWD / 3V3 REF",
+        "footprint": "Connector_PinHeader_1.27mm:PinHeader_1x05_P1.27mm_Vertical",
+        "names": {
+          "1": "VTREF",
+          "2": "GND",
+          "3": "SWCLK",
+          "4": "SWDIO",
+          "5": "NRST"
+        },
+        "xy": [
+          134,
+          45
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 0,
+        "mpn": "FTS-105-01-L-S",
+        "note": "Probe voltage reference only; do not power target through header",
+        "dnp": false,
+        "local_fp": "SUP_PinHeader_1x05_P1.27mm_Vertical",
+        "type": "SUP_DEBUG"
+      },
+      {
+        "ref": "JP130",
+        "value": "BENCH RUN",
+        "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical",
+        "names": {},
+        "xy": [
+          117,
+          52
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 90,
+        "mpn": "TSW-102-07-G-S",
+        "note": "Open for supervised operation. Shunt is a manual run override with unprogrammed MCU; remove before firmware controls RUN.",
+        "dnp": false,
+        "local_fp": "SUP_PinHeader_1x02_P2.54mm_Vertical",
+        "type": "SUP_JUMPER"
+      },
+      {
+        "ref": "R141",
+        "value": "10k",
+        "footprint": "Resistor_SMD:R_0603_1608Metric",
+        "names": {},
+        "xy": [
+          118,
+          48
+        ],
+        "section": "11-pi-supervisor",
+        "angle": 90,
+        "mpn": "RT0603BRD0710KL",
+        "note": "Limits MCU pin current if bench shunt is left fitted; remove shunt for automatic power control",
+        "dnp": false,
+        "local_fp": "PWR_R_0603_1608Metric",
+        "type": "PWR_10K"
       }
     ],
     "copper_layers": 6,

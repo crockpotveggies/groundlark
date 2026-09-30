@@ -1,8 +1,0 @@
-Groundlark Trenz support check: dc_3.36675_0.1
-Vsource src 0 3.36675
-Rpath src module 0.030
-Iload module 0 0.1
-Cbulk module 0 26.4u
-.tran 1u 100u
-.measure tran vmodule FIND v(module) AT=99u
-.end

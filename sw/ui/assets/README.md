@@ -20,8 +20,9 @@ stock component models. It is not a manufacturing deliverable.
 
 KiCad's exporter cannot convert the local VRML bodies. The Python scene adds
 simplified envelopes for the selected 8.5 mm Megastar Pi socket and Trenz connectors. Selection rings use `hw/groundlark-fpga-hat/layout/placement.json` XY values.
-The remote head is a separate placement-based schematic 3D view; its optional
-pressure sensor is shown even though the default assembly is DNP.
+The fitted DLVR U23 is represented by a conservative upright E1BS envelope on
+the HAT; its custom VRML cannot be converted by KiCad. The remote head is a
+separate placement-based schematic 3D view containing the RM3100 magnetometer.
 
 The external geophone is authored in Python in `../geophone_scene.py`, with a
 25.4 mm diameter / 33 mm high Racotech body. Terminals and leads to J90 are
@@ -40,7 +41,7 @@ kicad-cli pcb export glb --force --no-dnp --include-pads --include-silkscreen \
 The exporter reports missing local VRML models and may return nonzero despite creating
 the GLB. Inspect the result and missing-model inventory before accepting it.
 Do not ignore other export failures. The scene converts GLB metres/Y-up to
-centimetres/Z-up, subtracts the CAD origin (50, 50 mm), then centres the 85 x 56 mm
+centimetres/Z-up, subtracts the CAD origin (50, 50 mm), then centres the current 140 x 56 mm
 board. The placement coordinates themselves are unchanged.
 
 `provenance.json` pins the PCB, placements and display asset. Update its SHA-256
@@ -58,7 +59,7 @@ the Groundlark favicon), pads and mask with the existing authored package
 models. Both front and rear components are included. The SGX bodies use the
 same 31.5 mm cell diameter and 4.88 mm socket standoff as the native CAD render.
 The current asset includes the guarded sensor region, 1206 C0G capacitor banks
-and corrected clamp packages. Cell tops are 20.38 mm above the PCB front.
+corrected clamp packages, HRO USB-C receptacle and 0805 gas output filter capacitors. Cell tops are 20.38 mm above the PCB front.
 `skylark_scene.py` adds selectable sensor targets and an illustrative PMS5003
 beside the board; this is an exploded inspection view, not enclosure placement.
 
@@ -72,7 +73,7 @@ python sw/ui/build_skylark_model.py .local/skylark-bare.glb
 ```
 
 Run the converter in a separate local build environment with `trimesh==4.8.3`
-and `numpy==2.4.3`; these are not runtime/UI dependencies. KiCad cannot import
+and `numpy==2.5.3`; these are not runtime/UI dependencies. KiCad cannot import
 these VRML bodies into GLB and reports each missing model. The converter reads
 the bounded Box/IndexedFaceSet subset of the authored models, preserves their
 colors, and places them using the current placement metadata. It rejects
@@ -80,3 +81,8 @@ unsupported geometry. It writes `skylark-provenance.json`, pinning every source
 model, PCB, placement, converter, scene and output. Inspect front/back alignment
 before accepting regenerated assets. Startup validates both board manifests.
 These authored envelopes are display geometry, not supplier-certified models.
+
+The 12 V revision re-exports the enlarged PCB and adds explicit PJ-102AH and
+TPSM53603 display envelopes because those native VRML models are omitted from
+GLB. Their dimensions come from manufacturer drawings; they are not certified
+mating solids. The jack faces away from the geophone exit.

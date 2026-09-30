@@ -8,14 +8,33 @@ calculation is not a USB compliance or physical power qualification result.
 
 | Input | Required allocation | Loads |
 | --- | --- | --- |
-| Pi header 5 V, pins 2/4 | Reserve 50 mA steady state | LDL1117, three IMUs, ADC and sensor-side interfaces |
+| Switched Pi header 5 V, pins 2/4 | Reserve 50 mA steady state within the combined 3 A budget | LDL1117, three IMUs, ADC, DLVR and sensor-side interfaces |
 | Pi header 3.3 V, pins 1/17 | Reserve 50 mA steady state | Pi-side interfaces, EEPROM, GPIO expander, logic and pull-ups |
-| J83 external supply | 3.35 V ±0.5%, 3 A design envelope | Trenz module and FPGA-side circuitry |
+| J83 external adapter | 12 V ±5%, center-positive, 5.5/2.1 mm plug, at least 3 A | Independent FPGA converter input |
+| U80 converter output | 3.326 V nominal, 3 A design allocation | Trenz module and FPGA-side circuitry |
 
-**The complete FPGA stack cannot run from the Pi header alone.** Keep J83's
-positive supply separate from both Pi rails. Never apply 5 V to J83. See the
-[Trenz power and protection requirements](trenz-hat.md#power-and-interfaces).
-The 3 A allowance depends on the bitstream and is not a measured module load.
+The Nexys Video 12 V adapter specification is compatible with J83. The FPGA
+power path is independent of both Pi header rails. J83 is now a 12 V input;
+the previous external regulated 3.35 V connection has been replaced. Never
+apply 12 V directly to the Trenz module or Pi header.
+
+SW80 controls FPGA power. The input includes a 2 A fuse, reverse-polarity diode
+and transient suppressor; U80 provides soft start, current-limit/hiccup and
+thermal shutdown. These protections need bench qualification. Its PGOOD output
+holds module EN1 low outside the converter's coarse power-good window.
+
+At a 3 A output allocation, 11.4 V input and an assumed 85% conversion efficiency,
+the converter draws about 1.03 A before series-diode loss and startup allowance.
+The output allocation is about 10 W, not the adapter's full 36 W. Output hot-loop
+resistance must remain within the 15 mΩ design target. See the
+[Trenz voltage, capacitance and protection limits](trenz-hat.md#power-and-interfaces).
+Actual FPGA current depends on the bitstream and remains unmeasured.
+
+The DLVR-F50D fast 3.3 V variant adds a 4.3 mA maximum load; the 5 V
+allocation retains 15.2 mA of reserve. Its 100 nF bypass adds nominally 0.33 µC
+of charge to the sensor rail. The current circuit does not switch sensor power:
+BCM26 controls signal-buffer enable, not the LDL1117 supply. BCM6/13 provide the power-supervisor handshake; BCM24 remains spare.
+Switching off the Pi 5 V input also removes sensor power.
 
 The two 50 mA allowances include interface switching and reserve; they are not
 the GPIO signal-pin drive rating. The Pi's supply must also support its own
@@ -30,6 +49,80 @@ At 50 mA output, 5.25 V input and 85 °C ambient, the LDL1117 dissipates about
 thermal sensitivity scenario; the actual copper, enclosure and FPGA heating
 determine the operating temperature. C42 must retain at least 4.7 µF effective
 capacitance for regulator stability.
+
+## Pi supervisor and battery input
+
+J130 is a two-pole Phoenix 1803277 header: **pin 1 positive, pin 2 ground**.
+Supply **8–18 V DC, with at least 3 A available**, from a battery with external
+protection/BMS and an appropriate solar charge controller. This circuit neither
+charges batteries nor accepts an unregulated solar-panel input. Battery chemistry
+is not fixed by the board; packs outside this voltage range need an external
+converter. The FPGA's J83 adapter remains a separate input.
+
+F130 (4 A), D130 and D131 provide input fusing, reverse-polarity protection and
+transient suppression. U131 (TPS70933) supplies U130 (MSPM0L1105) continuously.
+Its EN pin floats as specified by TI; it must not be tied to the battery. U130's
+VCORE pin connects only to C143 (470 nF). J131 exposes 3.3 V reference, ground,
+SWCLK, SWDIO and NRST in that pin order; the probe must not supply target power.
+
+U132 (TPSM53603) supplies nominal **5.149 V, 3 A combined for Pi and HAT**.
+U133 (TPS22953) switches that rail to both Pi header 5 V contacts and blocks
+reverse current while disabled. Its 10 nF CT capacitor gives approximately
+18 ms rise time. A 2 kΩ output bleed supports discharge after shutdown. RUN has
+an external pulldown, so reset or an unprogrammed MCU leaves Pi power **off**.
+The JP130 shunt forces manual bench power; remove it for automatic control.
+R141 limits GPIO current if the shunt is inadvertently left installed.
+
+**Do not power the Pi through USB-C while J130 is connected.** Off-state reverse
+blocking is not a power mux. This allocation targets the enclosed Pi 4 stack;
+it does not provide the Pi 5's full 5 A peripheral power budget.
+
+The full-temperature reference/divider scenario is about 5.06–5.24 V before
+load-switch and distribution drop. A 25 mΩ switch allowance and **50 mΩ total
+copper/contact loop target** leave approximately 4.83 V at 3 A. This target
+includes the GPIO riser contacts and return path and must be measured. Parallel
+2 mm back/In3 rails run along the extension; local clearance necks and the inner
+left-side feed retain both 5 V contacts. At 8 V input, an assumed 0.5 V diode
+drop and 85% conversion efficiency imply about 2.42 A input. Neither efficiency
+nor transient/thermal performance is qualified by these calculations.
+
+BCM6 (header 31) is an active-low shutdown request through Q130, pulled up to
+Pi 3.3 V. BCM13 (header 33) asserts high after halt and drives Q131; the MCU reads
+an inverted acknowledgement. The MOSFET interfaces prevent supervisor pull-ups
+from powering an off Pi. BCM24 stays spare; FPGA interfaces are unchanged.
+
+R135/R136 divide fused battery voltage by 7.6667 into PA27/A0. At 18 V the ADC
+input is below 2.36 V including 0.1% resistor tolerance. Use the internal 2.5 V
+reference, allow at least 10 ms settling and calibrate gain/offset. The divider
+alone draws about 10.4 µA at 12 V. MCU standby, regulator leakage, TVS leakage and
+ADC duty cycle must be included in measured idle consumption. Firmware must
+disable unused GPIO and must not assume the MCU watchdog runs in standby.
+
+### Configuration and implementation status
+
+[power-policy.example.json](../sw/pi/deploy/power-policy.example.json) deliberately
+ships with `enabled: false` and null battery description, voltage thresholds and
+timers. [power_config.py](../sw/pi/groundlark/power_config.py) validates a completed
+profile, including at least 0.5 V restart hysteresis, voltage limits and bounded
+delays. Loading it performs no I/O and does not program the MCU.
+
+Target MSPM0 firmware, configuration transfer/flash storage and the Pi shutdown
+service are **placeholders for implementation**. The firmware must request an
+orderly shutdown, wait for acknowledgement or a bounded timeout, cut RUN, wait
+for recharge and a minimum off interval, then restart. Invalid configuration,
+ADC faults and repeated failed boots must leave RUN off. Select thresholds with
+the actual battery/BMS and reserve enough energy for shutdown. Voltage alone
+is not a reliable state-of-charge measurement, especially for LiFePO₄.
+
+Before automatic field use, test brownout, failed acknowledgement, reset during
+shutdown, recovery hysteresis, output discharge, startup/inrush, standby current,
+3 A load/drop, enclosure temperature and geophone noise with the Pi converter
+running. Circuit/CAD tests do not establish those results.
+
+Manufacturer references: [MSPM0L1105](https://www.ti.com/lit/ds/symlink/mspm0l1105.pdf),
+[TPS709](https://www.ti.com/lit/ds/symlink/tps709.pdf),
+[TPSM53603](https://www.ti.com/lit/ds/symlink/tpsm53603.pdf),
+[TPS22953](https://www.ti.com/lit/ds/symlink/tps22953.pdf).
 
 ## Skylark USB
 

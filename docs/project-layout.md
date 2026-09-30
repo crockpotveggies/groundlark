@@ -4,7 +4,7 @@
 | --- | --- |
 | [hw/groundlark-fpga-hat/](../hw/groundlark-fpga-hat/README.md) | DAQHAT-01 Trenz FPGA HAT; active prototype. |
 | [hw/groundlark-coldfoot-hat/](../hw/groundlark-coldfoot-hat/README.md) | Separate A2 Coldfoot HAT; integration deferred. |
-| [hw/burrowlark-usb/](../hw/burrowlark-usb/README.md) | DAQUSB-01 magnetometer/infrasound USB sensor head. |
+| [hw/burrowlark-usb/](../hw/burrowlark-usb/README.md) | DAQUSB-01 magnetometer USB sensor head. |
 | [hw/skylark-usb/](../hw/skylark-usb/README.md) | Rev A USB air-quality circuit, routed PCB and bell enclosure; physical qualification pending. |
 | `hw/ato.yaml` | Shared build registry: `trenz_hat`, `hat`, `field_head` and `skylark`. |
 | `hw/shared/elec/` | Common atomic parts and component assets. |
