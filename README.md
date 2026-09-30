@@ -118,8 +118,12 @@ Open **http://127.0.0.1:8080**. Tools and dependencies stay in ignored `.local/`
 This is an actual browser screenshot with simulated data. Select the geophone
 can or its HAT input to highlight both and inspect the same ADC stream.
 Use the **Board** selector for the FPGA HAT, Burrowlark or Skylark.
-**Test selected board** runs the selected board’s checks; the HAT test runs eight simulated seconds through production Pi drivers
-on modeled buses, with signal checks and downloadable recordings/results.
+**Test selected board** runs the selected board’s checks; the HAT test covers all
+six sensors over eight simulated seconds. IMU, ADC and GNSS use production Pi
+drivers on modeled buses; infrasound uses a raw-response model pending its Pi
+driver. Signal checks and recordings/results are downloadable.
+The Groundlark GNSS panel also models disconnected or shorted antennas, lock
+loss and recovery, and PPS loss independently.
 The UI simulates and replays; physical acquisition uses the [Pi software](docs/sensor-software.md).
 Live seismic capture stores raw geophone and IMU counts locally as
 [miniSEED 3](docs/miniseed.md), with SSREC companions for diagnostics and replay.

@@ -50,7 +50,32 @@ class HatSignalsTests(unittest.TestCase):
         self.assertTrue(report["passed"], report)
         self.assertEqual(counts, dict(imu=624, tilt=0, geophone=2640))
         self.assertEqual(data, self.data)
-        self.assertEqual(len(report["checks"]), 11)
+        self.assertEqual(len(report["checks"]), 12)
+        self.assertEqual(report['samples'],4072)
+        self.assertIn('Pi DLVR driver pending',report['scope'])
+
+    def test_infrasound_gain_status_and_temperature_faults_fail(self):
+        for fault in ('gain','status','temperature'):
+            def edit(m):
+                if m.WhichOneof('body')=='batch' and m.batch.sensor_id==8:
+                    for sample in m.batch.samples:
+                        frame=bytearray(sample.pressure.response)
+                        if fault=='gain':frame[:2]=(8192+2*(int.from_bytes(frame[:2],'big')-8192)).to_bytes(2,'big')
+                        elif fault=='status':frame[0]|=0x40
+                        else:frame[2]^=1
+                        sample.pressure.response=bytes(frame)
+            with self.subTest(fault=fault):
+                if fault=='status':
+                    with self.assertRaisesRegex(ValueError,'non-normal pressure status'):
+                        check_recording(altered(self.data,edit))
+                else:self.assert_check_fails(altered(self.data,edit),'Infrasound raw response & waveform')
+
+    def test_infrasound_missing_sample_fails_quality(self):
+        def edit(m):
+            if m.WhichOneof('body')=='batch' and m.batch.sensor_id==8 and m.batch.samples[0].sequence==0:
+                m.batch.samples[0].ClearField('pressure')
+                m.batch.samples[0].quality=2
+        self.assert_check_fails(altered(self.data,edit),'Inventory & quality')
 
     def test_consistent_but_wrong_rocking_motion_is_rejected(self):
         profile = deepcopy(PROFILE)

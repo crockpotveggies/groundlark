@@ -83,6 +83,8 @@ application time are both retained. A sample sees the state at its own time.
 | `gnss_position` | Origin latitude degrees, longitude degrees, height metres; numbers only | `[49,-123,0]` |
 | `gnss_velocity_ned_m_s` | Constant north/east/down velocity until changed | `[0,0,0]` |
 | `gnss_fix` | Boolean 3D fix / no fix | `true` |
+| `gnss_pps` | Boolean presence of modeled BCM24 edges, independent of lock | `true` |
+| `gnss_antenna` | `normal`, `open` or `short`; open/short invalidate navigation and timing lock, leaving I2C available | `normal` |
 | `sensor_faults` | Map of ID strings to held faults: current IDs `"1"`, `"2"`, `"3"`, `"7"`, `"8"`, `"9"`; IDs 10–16 are Skylark; IDs 4–6 are legacy | `{}` |
 
 Signals accept a constant number or these optional waveform fields:

@@ -7,7 +7,7 @@ def run_bench(board="hat"):
     if board == "hat":
         from .hat_signals import run_bench as hat_bench
         data, report = hat_bench()
-        report["scope"] = "Modeled SPI/I2C buses through actual Pi drivers; no physical HAT connected"
+        report["scope"] += "; no physical HAT connected"
         return data, report
     if board not in ("burrowlark", "skylark"):
         raise ValueError("Board test is unavailable")

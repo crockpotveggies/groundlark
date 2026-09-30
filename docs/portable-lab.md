@@ -41,7 +41,7 @@ drive-sharing configuration. No host directory is mounted into the container.
 
 | Profile | Checks |
 | --- | --- |
-| `full` (default) | Fresh atopile builds for A2, Burrowlark DAQUSB-01 USB field head, and DAQHAT-01; numeric constraint solves; unsafe 5 V IMU rejection; independent hardware regressions; native KiCad ERC/DRC/connectivity; DAQHAT-01 power/clearance and pre-fab review; clean routing replay; SPICE; the software profile (22 stages). |
+| `full` (default) | Fresh atopile builds for A2, Burrowlark DAQUSB-01 USB field head, DAQHAT-01 and Skylark; numeric constraint solves; unsafe 5 V IMU rejection; independent hardware regressions; native KiCad ERC/DRC/connectivity; DAQHAT-01 power/clearance and pre-fab review; clean routing replay; SPICE; the software profile (27 stages). |
 | `quick` | Same GPIO/component fault, circuit/PCB consistency, routing replay, SPICE and software checks using saved compiled layouts. Does **not** prove `.ato` changes were rebuilt. |
 | `spice` | 27 A2/field, 14 Trenz, 15 geophone response, 8 geophone transient and 38 host-link switch/RC cases, including expected fault detection. |
 | `software` | RTL and Python-to-RTL co-simulation; recorded Vivado evidence/hash gate; Buf format/lint/build and compatibility; acquisition/replay, modeled driver and Linux TTY/worker fault tests; retained acquisition demo; Skylark native C fault tests and ARM firmware build. No physical hardware execution. |
@@ -50,6 +50,12 @@ The runner calls the existing project entrypoints. Routing reconstruction stays
 in a temporary tree; it does not rewrite source CAD, render images, or release fabrication files. A full test
 compares freshly compiled connectivity with the saved routed boards and should
 fail if they disagree.
+
+The runner records every check, including checks after a failure or timeout.
+Any failed check still fails the overall run; `run.json` lists `failed_steps`
+and each check has its own log. In particular, an assembly-registry mismatch
+does not suppress the later circuit, SPICE or software results. Checks with
+missing build prerequisites can fail as well; inspect the earlier build logs.
 
 These are bounded electrical models, RTL simulations and CAD checks. They do not
 emulate sensor silicon, USB enumeration, a booted Raspberry Pi or Coldfoot execution.

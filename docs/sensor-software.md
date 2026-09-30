@@ -5,6 +5,9 @@ For `calibration-observe`, `calibration-fit`, measured reference templates and i
 **New to the simulator?** Start with the [browser workbench walkthrough](sensor-workbench.md).
 This page covers command-line development and real Linux acquisition.
 The current HAT has three IMUs, a Racotech geophone input, infrasound and MAX-M10S GNSS. The fourth IMU and inclinometer remain legacy-only.
+DLVR infrasound is covered by simulation and the six-sensor browser bench;
+its Pi I2C hardware driver remains pending. The live factory currently supports
+the IMUs, geophone ADC and GNSS receiver.
 
 The runnable Pi application is in `sw/pi/groundlark/`; use
 `sw/tools/sensor.py` as its repository entry point. It has no FPGA, Coldfoot,

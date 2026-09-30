@@ -12,7 +12,7 @@ You need internet access for setup, a modern browser with WebGL, and Windows
 PowerShell or a Linux/macOS terminal. The scripts install the needed Python
 tools locally. Docker, KiCad, Node.js and an FPGA are not prerequisites.
 
-![Groundlark GNSS navigation and 11 passing modeled board checks](images/groundlark-gnss-workbench.png)
+![Groundlark GNSS navigation and modeled board checks](images/groundlark-gnss-workbench.png)
 
 ## 1. Get the project
 
@@ -230,10 +230,20 @@ Apply the controls, then watch the timeline's lock state, PPS presence and edge
 count. Navigation starts after receiver configuration; startup is not a zero fix.
 Disable lock while leaving PPS enabled to model an unlocked receiver emitting
 pulses; disable PPS alone to model a broken timing wire. Other sensors continue.
+Choose **Disconnected** or **Shorted** in **Antenna fault stimulus** and apply
+the controls to remove modeled reception while retaining receiver I2C access.
+Choose **Normal** to restore reception. These are conservative signal scenarios;
+they do not model reacquisition delay or short-circuit transients. The board has
+no antenna-current measurement or connected U141 FAULT output, so the selected
+fault is a simulation input, not detected hardware status. Recorded controls
+preserve the fault for replay, and unlocked timing cannot supply a UTC reference.
 
 **Test selected board** now exercises the production M10 I2C configuration and
 readback driver, TIM-TP/NAV-TIMEUTC parsing, modeled BCM24 PPS and navigation
-alongside the IMUs/geophone. Download its report and recording. Finish & save
+alongside the IMUs/geophone and the DLVR raw-response model. Its 12 checks cover
+4,072 samples from all six HAT sensors, including infrasound waveform, status
+and temperature bytes. The Pi DLVR hardware driver remains pending. Download
+its report and recording. Finish & save
 also retains timing events, controls and faults, and replay restores their state.
 The test uses an explicitly synthetic UTC epoch and ideal edges. It does not
 qualify physical sample times. Offline correlation uses the same bounded

@@ -201,6 +201,7 @@ def page():
             state, _ = engine.scenario.state_at(engine.now)
             gnss_fix.set_value(state["gnss_fix"])
             gnss_pps.set_value(state["gnss_pps"])
+            gnss_antenna.set_value(state["gnss_antenna"])
         geophone_controls.set_visibility(engine.board in ("all","hat"))
         air_controls.set_visibility(engine.board == "skylark")
         climate_controls.set_visibility(17 in engine.sensor_ids)
@@ -399,7 +400,9 @@ def page():
                 with ui.expansion("GNSS timing", icon="satellite_alt", value=True).classes("w-full") as gnss_controls:
                     gnss_fix = ui.switch("Satellite time lock", value=True)
                     gnss_pps = ui.switch("PPS signal present", value=True)
-                    ui.button("Apply GNSS signals", on_click=lambda: attempt(lambda: engine.controls({"gnss_fix": gnss_fix.value, "gnss_pps": gnss_pps.value}))).props("flat no-caps")
+                    gnss_antenna = ui.select({"normal": "Normal", "open": "Disconnected", "short": "Shorted"}, value="normal", label="Antenna fault stimulus").props("dense outlined").classes("w-full")
+                    ui.button("Apply GNSS signals", on_click=lambda: attempt(lambda: engine.controls({"gnss_fix": gnss_fix.value, "gnss_pps": gnss_pps.value, "gnss_antenna": gnss_antenna.value}))).props("flat no-caps")
+                    ui.label("Antenna faults model loss of reception. The receiver can still emit unlocked PPS. Antenna current and fault status are not measured by this board.").classes("fine-print")
                     ui.label("Modeled MAX-M10S I²C messages and BCM24 edges. Lock and PPS alone do not qualify sample timestamps. USB-head clocks remain independent.").classes("fine-print")
                 with ui.expansion("Magnetic field", icon="sensors").classes("w-full") as field_controls:
                     fields = [ui.number(f"Field {axis} (µT)", value=value, step=1).props("dense outlined").classes("w-full") for axis, value in zip("XYZ", (0, 20, -45))]

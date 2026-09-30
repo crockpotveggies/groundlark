@@ -62,6 +62,9 @@ def build_report():
         assert gp[key]==net,('Groundlark supply topology',key)
     from fpga_power_checks import verify, budget
     verify(gp)
+    import gnss_checks, pi_power_checks
+    gnss_checks.verify(gp)
+    pi_power_checks.verify(gp)
     limits=pm_limit(value(s['R3']))
     # Explicit allocations. Excess becomes a qualification failure, not an
     # excuse to increase a source's rating. STM32 at 48 MHz; SHT heater off.
@@ -80,12 +83,23 @@ def build_report():
                   'translators_switching':10,'bias_and_pullups':5,'LDO_Iq':.5,'DLVR_fast_max':4.3,'reserve':15.2,'GNSS_antenna':20,'antenna_LDO_and_reserve':5}
     ground_3v3_mA={'ISO1640_side2':10,'translators_and_muxes':10,'EEPROM_expander_logic':5,
                    'bias_and_pullups':10,'reserve':15,'MAX_M10S_acquisition':100}
+    ground_5v=sum(ground_5v_mA.values())/1000
+    ground_3v3=sum(ground_3v3_mA.values())/1000
+    # ILIM tied to IN selects the fixed 50..100 mA limit. These are
+    # sustained DC envelopes: overshoot, thermal cycling and recovery need a bench.
+    antenna_fault=dict(limit_A=[.05,.1],choke_rating_A=.28,
+        additional_pi_5V_A=.1-ground_5v_mA['GNSS_antenna']/1000,
+        pi_5V_fault_allocation_A=ground_5v+.1-ground_5v_mA['GNSS_antenna']/1000,
+        limiter_short_dissipation_W=3.366*.1,
+        ldo_fault=ldo_heat(5.25,3.234,.1,.000005,200,85),
+        fault_telemetry=False,transient_qualified=False)
+    assert antenna_fault['limit_A'][1]<antenna_fault['choke_rating_A']
     # Capacitive current scenarios are C*dV/dt, NOT simulated regulator startup.
     ramps=[]
     for t in (.0001,.001,.01):
         ramps.append(dict(ramp_s=t,
-            pi_5V_A=.075+charge_current(1.2*gc('PI_5V'),5.25,t)+charge_current(1.2*(gc('SENS_3V3')+gc('GNSS_BIAS')+gc('GNSS_LDO')),3.366,t),
-            pi_3V3_A=.15+charge_current(1.2*gc('PI_3V3'),3.366,t)))
+            pi_5V_A=ground_5v+charge_current(1.2*gc('PI_5V'),5.25,t)+charge_current(1.2*(gc('SENS_3V3')+gc('GNSS_BIAS')+gc('GNSS_LDO')),3.366,t),
+            pi_3V3_A=ground_3v3+charge_current(1.2*gc('PI_3V3'),3.366,t)))
     cables=[]
     for source in (4.35,4.75,5.0,5.1):
         for resistance in (.25,.5,1):
@@ -106,10 +120,11 @@ def build_report():
             ldo=ldo_heat(5.25,3.234,overhead,.00008,250,85),
             cable_scenarios=cables,pm_lead_and_switch_assumed_ohm=.25),
         groundlark=dict(pi_5V_allocations_mA=ground_5v_mA,pi_3V3_allocations_mA=ground_3v3_mA,
-            pi_5V_allocated_A=.075,pi_3V3_allocated_A=.15,
+            pi_5V_allocated_A=ground_5v,pi_3V3_allocated_A=ground_3v3,
+            antenna_short=antenna_fault,
             ldo=ldo_heat(5.25,3.234,.05,.0005,150,85),startup_scenarios=ramps,
             fpga_separate_source=budget(),
-            pi_supervisor_source=__import__("pi_power_checks").budget(),
+            pi_supervisor_source=pi_power_checks.budget(),
             powered_from_pi_header_only=False),
         analog=dict(reference_capacitance_F=refcap,divider_load_A=2.5/(rtop+rbot),
             divider_tau_s=tau,divider_0p1pct_settle_corner_s=tau*1.21*math.log(1000),

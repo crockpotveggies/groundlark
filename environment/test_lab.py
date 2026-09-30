@@ -4,10 +4,28 @@ import os
 from pathlib import Path
 import tempfile
 import unittest
+import subprocess
+from unittest.mock import patch
 from lab import MARKER, clean, lab_lock, managed_runs, source_files, write_json, commands
+from lab import run_steps
 
 
 class LabSafetyTests(unittest.TestCase):
+    def test_failures_and_timeouts_do_not_hide_remaining_checks(self):
+        steps=[('registry',['check']),('timeout',['slow']),('missing',['missing']),('simulation',['sim'])]
+        record={'steps':[],'status':'running'}
+        results=[subprocess.CompletedProcess(['check'],1),
+                 subprocess.TimeoutExpired(['slow'],600),FileNotFoundError('missing tool'),
+                 subprocess.CompletedProcess(['sim'],0)]
+        with patch('lab.subprocess.run',side_effect=results) as run:
+            failures=run_steps(steps,self.root,self.root,record)
+        self.assertEqual(failures,['registry','timeout','missing'])
+        self.assertEqual(run.call_count,4)
+        self.assertEqual([s['exit_code'] for s in record['steps']],[1,1,1,0])
+        saved=json.loads((self.root/'run.json').read_text())
+        self.assertEqual(saved['steps'],record['steps'])
+        self.assertIn('timed out',(self.root/'timeout.log').read_text())
+
     def test_product_sources_are_staged_without_generated_packages(self):
         inputs = [
             'hw/groundlark-fpga-hat/elec/hat_trenz.ato',

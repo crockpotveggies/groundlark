@@ -8,6 +8,7 @@ import struct
 from .gnss_timing import TimedGNSS
 from .sensors import ubx_packet
 from .simulation import Simulated
+from .stimulus import gnss_locked
 
 SECOND = 1_000_000_000
 EPOCH = 1790769600  # 2026-09-30 12:00:00 UTC, away from midnight guard.
@@ -37,7 +38,7 @@ class TimingBus:
             if self.configured and not self.pending and second != self.last and phase >= 250_000_000:
                 self.last = second
                 state, _ = self.scenario.state_at(self.clock())
-                locked = state['gnss_fix']
+                locked = gnss_locked(state)
                 stamp = EPOCH + second
                 d = datetime.fromtimestamp(stamp, timezone.utc)
                 nav = struct.pack('<IIiH6B', second * 1000, 25, 0,

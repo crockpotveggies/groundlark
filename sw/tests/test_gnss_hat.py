@@ -9,6 +9,7 @@ from groundlark.recording import Reader
 from groundlark.gnss_sim import EPOCH, modeled_policy
 from groundlark.utc import correlate
 from groundlark.miniseed import export
+from groundlark.stimulus import Scenario
 
 
 def advance(engine, milliseconds):
@@ -20,6 +21,40 @@ def advance(engine, milliseconds):
 
 
 class GNSShatTests(unittest.TestCase):
+    def test_antenna_fault_loses_lock_keeps_bus_and_other_sensors_then_recovers(self):
+        for fault in ('open','short'):
+            with self.subTest(fault=fault):
+                engine=Workbench(board='hat');advance(engine,2200)
+                engine.controls({'gnss_antenna':fault});advance(engine,2200)
+                state=engine.snapshot(6)
+                self.assertFalse(state['timing']['locked'])
+                self.assertTrue(state['timing']['pps_recent'])
+                self.assertEqual(state['latest'][6]['quality'],'Valid')
+                self.assertEqual(engine.snapshot(9)['latest'][9]['quality'],'Valid')
+                self.assertEqual(engine.snapshot(8)['latest'][8]['quality'],'Valid')
+                self.assertEqual(engine.scenario.state_at(engine.now)[0]['gnss_antenna'],fault)
+                engine.controls({'gnss_antenna':'normal'});advance(engine,2200)
+                self.assertTrue(engine.snapshot(6)['timing']['locked'])
+                raw=engine.finish()
+                engine.load_recording(raw);engine.seek(4)
+                self.assertFalse(engine.snapshot(6)['timing']['locked'])
+                engine.seek(6)
+                self.assertTrue(engine.snapshot(6)['timing']['locked'])
+
+    def test_antenna_fault_never_supplies_a_utc_reference(self):
+        engine=Workbench({'version':1,'initial':{'gnss_antenna':'short'}},board='hat')
+        advance(engine,6000);raw=engine.finish()
+        with tempfile.TemporaryDirectory() as directory:
+            src=Path(directory)/'raw.ssrec';src.write_bytes(raw)
+            with self.assertRaisesRegex(ValueError,'no unambiguous'):
+                correlate(src,Path(directory)/'utc.ssrec',modeled_policy(hashlib.sha256(raw).hexdigest()))
+
+    def test_antenna_control_validation_and_legacy_default(self):
+        self.assertEqual(Scenario({'version':1}).state_at(0)[0]['gnss_antenna'],'normal')
+        for value in (None,True,0,[],{},'overcurrent'):
+            with self.subTest(value=value),self.assertRaises(ValueError):
+                Scenario({'version':1,'initial':{'gnss_antenna':value}})
+
     def test_startup_then_lock_and_separate_pps_loss(self):
         engine=Workbench(board='hat')
         self.assertFalse(engine.snapshot(6)['timing']['locked'])

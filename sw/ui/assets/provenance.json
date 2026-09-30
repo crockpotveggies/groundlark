@@ -6,7 +6,7 @@
     "sw/ui/assets/daqhat-01.glb": "2dc7a979bcf662b88499a6a65d441a6622c94524fcbb5433fba8d47dc1c06dbb",
     "sw/ui/geophone_scene.py": "65ef0de9df78e2b7c1c4697367f5a5b81486dd95f2fe4f01d9fa6f35b8dd461a",
     "hw/burrowlark-usb/layout/placement.json": "049a0cdae7eab105f36448b234f84afc9cfedbed4c04333aad7730a901e1cc7a",
-    "sw/ui/main.py": "1d828e4df33e81e2e17b0a4d90586b492850df6aa340c5c9266e986653fd2206",
+    "sw/ui/main.py": "b5ad13a1a07ce9eea4b479e8a78e9e67175a76432fa1bb4012fa2d5614e3f1c5",
     "hw/shared/models/DLVR_E1BS.wrl": "cef03553881ccfc39cc5810789a92d578c0f9d8a636b5de29cd719bada7c4dad",
     "hw/shared/models/PJ_102AH_envelope.wrl": "4ee72a8ea9a1d0d7c4afc079819353c87c9e6111557c5727d821b4f53b711c94",
     "hw/shared/models/TPSM53603_envelope.wrl": "eec66b8373d0bce441527b2ec6ce28c3c2fcbe6ef56a7f0fad3883eb48f30604",

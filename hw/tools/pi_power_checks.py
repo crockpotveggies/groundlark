@@ -4,6 +4,7 @@ TPSM53603 and TPS22953 data sheets; Nexperia 2N7002 SOT23 pin table.
 These checks do not qualify battery thresholds, startup, thermals or noise.
 """
 from collections import Counter
+import math
 
 PINS = {
  ('U130','3'):'SUP_NRST', ('U130','4'):'SUP_3V3', ('U130','5'):'GND',
@@ -52,6 +53,9 @@ def verify(pins):
 
 
 def budget(current_a=3, switch_ohm=.025, copper_ohm=.05):
+    if any(type(v) not in (int,float) or not math.isfinite(v) or v<0
+           for v in (current_a,switch_ohm,copper_ohm)):
+        raise ValueError('Supply envelope requires finite nonnegative numbers')
     if not 0 <= current_a <= 3:raise ValueError('Pi and HAT combined allocation is 3 A')
     # TI full-temperature reference +/-1.5%; independent 0.1%, 25 ppm/K
     # resistors over -40..85 C (65 K from 25 C), 50 nA FB bias.

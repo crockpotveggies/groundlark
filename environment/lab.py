@@ -244,6 +244,28 @@ def collect(workspace, report, profile):
             shutil.copyfile(path, dest)
 
 
+def run_steps(steps, workspace, report, record):
+    """Collect every check result; a failed gate still fails the whole run."""
+    failed=[]
+    for name, cmd in steps:
+        print(f"RUN {name}", flush=True)
+        tick=time.monotonic()
+        error=None
+        with (report / f"{name}.log").open("w") as log:
+            try:
+                code=subprocess.run(cmd,cwd=workspace,stdout=log,stderr=subprocess.STDOUT,timeout=600).returncode
+            except (subprocess.TimeoutExpired,OSError) as exc:
+                code=1;error=str(exc);log.write('\n'+error+'\n')
+        step={"name":name,"exit_code":code,"seconds":round(time.monotonic()-tick,2)}
+        if error:step['error']=error
+        record['steps'].append(step)
+        write_json(report/'run.json',record)
+        if code:
+            failed.append(name)
+            print((report/f"{name}.log").read_text(errors="replace")[-5000:],flush=True)
+    return failed
+
+
 def test(source, root, workspace, profile, ident=None):
     # Retain at most five runs, including the new one. No hidden unlimited history.
     clean(root, keep=4, apply=True)
@@ -262,19 +284,13 @@ def test(source, root, workspace, profile, ident=None):
     try:
         write_json(report / "toolchain.json", versions())
         manifest = stage(source, workspace, report)
-        for name, cmd in commands(profile):
-            print(f"RUN {name}", flush=True)
-            tick = time.monotonic()
-            with (report / f"{name}.log").open("w") as log:
-                completed = subprocess.run(cmd, cwd=workspace, stdout=log, stderr=subprocess.STDOUT, timeout=600)
-            record["steps"].append({"name": name, "exit_code": completed.returncode, "seconds": round(time.monotonic()-tick, 2)})
-            if completed.returncode:
-                print((report / f"{name}.log").read_text(errors="replace")[-5000:], flush=True)
-                raise RuntimeError(f"{name} failed (see its log)")
+        record['failed_steps']=run_steps(commands(profile),workspace,report,record)
         # Detect source edits during the run as well as accidental writes.
         for rel, digest in manifest.items():
             if hashlib.sha256((source / rel).read_bytes()).hexdigest() != digest:
                 raise RuntimeError(f"Source changed during run: {rel}")
+        if record['failed_steps']:
+            raise RuntimeError('Failed checks: '+', '.join(record['failed_steps'])+' (see logs)')
         record["status"] = "passed"
         result = 0
     except Exception as error:

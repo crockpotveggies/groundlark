@@ -44,6 +44,7 @@ def main():
             with urlopen(f"http://127.0.0.1:{port}/board-assets/daqhat-01.glb", timeout=10) as response:
                 assert response.read(4) == b"glTF"
             assert 'GNSS timing' in page and 'MAX-M10S' in page and 'Apply GNSS signals' in page
+            assert 'Antenna fault stimulus' in page and 'Shorted' in page
             assert 'Test selected board' in page and 'Skylark USB' in page
             assert 'Air quality stimulus' in page and 'Coldfoot integration is deferred' in page
             assert 'Enclosure climate' in page and 'SHT45' in page

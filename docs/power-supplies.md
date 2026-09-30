@@ -42,6 +42,14 @@ workload, cooling, USB devices and other accessories. Do not hot-plug the HAT.
 The native-board power report calculates capacitor charging for 0.1, 1 and 10 ms ramps with 20% high capacitance, including GNSS and antenna bypass capacitors. Short ramps require substantially more current. This C·dV/dt calculation omits regulator current limiting and source
 control loops; verify startup on the intended Pi and power supply.
 
+The report also checks the antenna's sustained short-circuit envelope. U141's
+50–100 mA limit is below L140's 280 mA rating. At the 100 mA corner, the direct
+HAT 5 V allocation rises from 75 to 155 mA; reserve the extra 80 mA inside the
+combined Pi+HAT 3 A limit. The limiter can dissipate about 337 mW during a short.
+The antenna LDO scenario uses 200 °C/W and 85 °C ambient as explicit assumptions,
+not measured thermal performance. Current overshoot, thermal cycling and recovery
+still require measurement. No antenna fault or current telemetry is connected.
+
 At 50 mA output, 5.25 V input and 85 °C ambient, the LDL1117 dissipates about
 103 mW. Assuming 150 °C/W gives about 101 °C junction temperature. This is a
 thermal sensitivity scenario; the actual copper, enclosure and FPGA heating

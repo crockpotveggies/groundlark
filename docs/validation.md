@@ -20,11 +20,15 @@ with instrument/configuration binding and retains raw counts. Local miniSEED
 export preserves timing gaps and requires valid UTC intervals. See the
 [calibration guide](calibration.md) and [timing limits](utc-timing.md).
 
-The portable software profile runs 248 tests successfully, including device-tree
+The portable software checks run 253 tests successfully, including device-tree
 checks, contract compatibility and FPGA loopback.
 The workbench HTTP check and browser interaction check pass. Its Groundlark
-signal bench passes 11/11 checks on 3,272 modeled samples, including GNSS timing.
-Lock-loss and missing-PPS controls preserve independent sensor acquisition.
+signal bench passes 12/12 checks on 4,072 modeled samples from all six HAT sensors.
+Infrasound uses the raw-response model; its Pi hardware driver remains pending.
+Antenna open/short, lock-loss and missing-PPS controls preserve independent
+sensor acquisition. Fault/recovery, replay and rejection of invalid UTC references
+are covered. Supply checks include Pi temperature corners, invalid envelope
+inputs, antenna fault current and the added GNSS bypass charge.
 Modeled UTC correlation and miniSEED round trips do not qualify physical 1 ms
 sample alignment; receiver RF, acquisition latency and filter delay need measurement.
 
@@ -34,8 +38,9 @@ The README renders use current CAD. Physical first-print fit remains pending.
 The supervisor battery policy stays disabled with unset thresholds; target MCU
 firmware and Pi shutdown integration remain pending.
 
-The full portable run stops at assembly regressions: 180 tests, 13 failures and
-16 errors from procurement-registry/source and supplier-pad mismatches, retaining
+The full portable run executes all 27 stages; 26 pass. Hardware regressions
+report 185 tests, 13 failures and 16 errors from the existing
+procurement-registry/source and supplier-pad mismatches, retaining
 the existing assembly export hold. Exact GNSS and replacement-part stock
 observations are recorded; full procurement and supplier-pad/rotation approval
 remain pending. Ten focused GNSS pin/layout tests pass, including missing

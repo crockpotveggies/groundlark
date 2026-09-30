@@ -1,11 +1,11 @@
 {
-  "date_utc": "2026-09-30T22:29:10.998878+00:00",
+  "date_utc": "2026-09-30T22:46:18.816819+00:00",
   "revision": "DAQHAT-01 corrected I2C logic levels, antenna current limiting/RF bypass, 1206 fuses and Pi rail envelope; 140 x 56 mm",
   "physical_qualification": false,
   "manufacturing_package_released": false,
   "input_sha256": {
     "AGENTS.md": "ebfa13788e4315283b93c789e4c67ff8eda215c388982145205d3b044365dbb3",
-    "README.md": "fc5328e7fecb60f7f564f73d9dd274aaa7b5621c4edcca940f1fd0274b33b5dc",
+    "README.md": "948c3708c70a3eb9b0ceadbbb1c8af087a273f26e8996a5e246ad42b47c82dae",
     "docs/README.md": "fdb2ab9c720611c16a6df5ca63568a509ebf7c1f2fb23f987bafae5e9493e3cf",
     "docs/bench-procedure.md": "fa1c8cb6810b51d49691c86fd8db4f822bb1e40699e437a54eac96c97bdcbbe3",
     "docs/calibration.md": "db0fa77ae4b3f36736b8baa13c51e6958a50da57e9d6db540c9684b9731b4ddc",
@@ -14,20 +14,20 @@
     "docs/gnss-hardware.md": "144b29b84fea7ee2c4d574ca6b052c9dd0a2f4db526c92b058d0a8ba3e1ad678",
     "docs/images/groundlark-gnss-closed.json": "989ee1c8161e26384d3c184df5df0a7ce6fb842c80c00b0ac1dd6a1a153dcf27",
     "docs/images/groundlark-gnss-closed.png": "5b8444ae2751494fe8572e5ab015e817f358cf5c51203a4e7bda51c536aee1c7",
-    "docs/images/groundlark-gnss-workbench.png": "9b3b5558a50066ed3c72187689792369e6dce3fe5b2b3f3a8b542a60c1f9af5a",
+    "docs/images/groundlark-gnss-workbench.png": "567c0b0909190461a96a72ca2459e084839d5f40f855559952ee8d413242764e",
     "docs/images/groundlark-gnss.json": "ef59a858d09e3a65ab263d1fbe215d44b4444c9baf98d7a919e10e09c8d68c00",
     "docs/images/groundlark-gnss.png": "3fa5feb30f425bb7dc736e39d3f21e7c6b00946c18ffbed683589de409d9d4f8",
     "docs/jlcpcb-assembly.md": "52404c420db45a1d254c4455c880f5a9b486e8d9e22f0eca0c425c093c824b39",
     "docs/miniseed.md": "c7f824cadff5cf5760f276d2a0c3ddf4c11e55a87de561493b15eb3f6d8c0447",
-    "docs/portable-lab.md": "48548dd56003ad39aa84fa6dce5e03db53f9311a2e427d9de8395c26e6a1fda6",
-    "docs/power-supplies.md": "43d08e231abd7e22103fbb0333bb97c5ca4a42eb624e86548b3cd819e6602545",
+    "docs/portable-lab.md": "1b0ea1fdce12afc8856f5093d2b9f989f11ecfa5b40f891306dbf0ca04c6bcd0",
+    "docs/power-supplies.md": "2f79e047e0e4a2652e4941e82c3ef60070c3335f0d0d69b89b9b937ee4174436",
     "docs/sensor-contract.md": "e2b6937e03bc1789031a4125808a7a1ad4edb533d81e3cdf627c4ad2eb0fc0ae",
-    "docs/sensor-software.md": "5db60d1a40a91ca8c752ca329ec783c0bcc726a5d4131fe40fb5837d180b0f78",
-    "docs/sensor-workbench.md": "e1c270b0ce5317c9c2ed49f631f50e1b5f1f834c4e31cb7b7564817efb73deef",
-    "docs/stimulus-models.md": "6c35a93062f8c676b1e656f41d15e6bf6df8bc38272e11cd54aa165a7dc43f7b",
+    "docs/sensor-software.md": "d9dbea374c3c43dc30b4286e277107d3ba55e8dd8a851af81cb6912046939c37",
+    "docs/sensor-workbench.md": "344255f96a779920fad8e9158ec9034afbb3b0b8b54be2c71084fe9598445139",
+    "docs/stimulus-models.md": "4d601526083b40aeeb5110d3685514edff2b0afe0b2c803edf12c6921216848e",
     "docs/trenz-hat.md": "725695a8a9bdb3f3e6a871d3e992b7bb73cec2d6cd12dc16c6373fb397cb87ec",
     "docs/utc-timing.md": "e075a7086d73233f8d02a6493a8846217c1b4f0a2ca7affcbd5f91165fa77929",
-    "docs/validation.md": "8cd010e58688853eee508a27a483f009e95c6f2d2b7250a4fe8d4c87eb67f97e",
+    "docs/validation.md": "9ef94299bcb211702e9469b52ce8b823c11cd943a58dba098d7bd15107c5c1ce",
     "hw/assembly/groundlark-fpga-hat/daqhat-01-jlcpcb-parts.json": "44e99ce3c580c26fc7f501c75b7a22fa74151e304d9435bb47ef43607bf68f2c",
     "hw/assembly/groundlark-fpga-hat/gnss-review.json": "94838579d1540e837048dc0b1abd0ea8f7d6e657560f03625c59d30388a6db10",
     "hw/assembly/groundlark-fpga-hat/pi-supervisor-review.json": "910c2e776579ac6e9269070a07eed3ae1bcc29d4835a96296bd7e8ef36abeb87",
@@ -166,7 +166,7 @@
     "hw/tests/test_infrasound.py": "e1159ae694b1f6460572da6454598167650d454bde54f0cb68219954378dfe6e",
     "hw/tests/test_jlcpcb_quantity.py": "088ad9a054152f572bcb09a7f314f397ec431261e3e5018646ae85b43e86840f",
     "hw/tests/test_kicad_save.py": "bc5f4ed6ef1f23d94066e7d737a45939970635c6b9b50ff21f56e3f85e3ed71d",
-    "hw/tests/test_pi_power.py": "7cfb11cc40cb25367d893097e7af42c3fa494934c7e8826598e34f0050c2170d",
+    "hw/tests/test_pi_power.py": "0a8d473f3d449dcedbbfb8c705c6b6b1398dc78ae7a58419239085c36eb40f2a",
     "hw/tools/assemble_pcb.py": "1f597c8cd9ee13b5de8abae972af3ed3b051fb3187bb06b8dac665d6545470fa",
     "hw/tools/calibration_checks.py": "e6d5d3d2d2bcd61fe8c88709608aaf4d114a1b5a2f8630b7a6a3088ff490c9fc",
     "hw/tools/check_trenz.py": "c2d3a0bd89e757275eece2ba5e5139c4a5e12c1914195de3b7a6b4b6bc25adf9",
@@ -183,8 +183,8 @@
     "hw/tools/jlcpcb_package.py": "a43fe541fef26091cb3b2307308fc8940f2b6023290ac8fd3116ab20f70a942d",
     "hw/tools/jlcpcb_quantity.py": "f2deb991fe6bcb0d1eec49b1c98d1030326c89d3b7027e03794f2f733a2702f8",
     "hw/tools/kicad_support.py": "663fcc79a79049b6a9c889ed26e91d97563b7e13b5f3934b41ec1b5028c0891f",
-    "hw/tools/pi_power_checks.py": "5daceea0136526a431e34640f53490599a38bc16b7b8bbf5c478a4891571d2fc",
-    "hw/tools/power_review.py": "8f70549918191d7e1d67d3dedd99c1dc0dd6c6631ae2adba1d13656b0aee3942",
+    "hw/tools/pi_power_checks.py": "13ba59ae50d41412610add885fb8263db2c9da38f084600fe8217fad8008bd53",
+    "hw/tools/power_review.py": "d02e1fbf93247fae5333f06de422f43f7b2c9cff1153787f9952633c67aeaafc",
     "hw/tools/simulate_trenz.py": "a95f8de6915b92fa6f20fd52ad653af62ad238c7907af87605f7d19a18f5560d",
     "hw/tools/trenz_models.py": "aa272fbc7bb9b0cd7c850a49dd4e4960c1b4cdc3a44144d633c479511b917019",
     "hw/tools/trenz_power.py": "de9f3fdbb9b6c9c1fa48b58ec1ddf9c641ef71ca1697c474b796cebb82f22aab",
@@ -194,19 +194,19 @@
     "sw/pi/README.md": "fd43d2ea33d56fabb27f3bb6d420a4176cdd01bb5e602f219fd79edd68d6167e",
     "sw/pi/deploy/README.md": "7e5f7d368aa105000a8824e4f99f3b3bcf9fe528afca3c95aefa68412f4edfb6",
     "sw/pi/deploy/power-policy.example.json": "a2adf6f68dbf4b2e5a214893627eec4c395cbdc54e14821b7c42c26484cf2fc8",
-    "sw/pi/groundlark/board_bench.py": "daff7f1133a2319ece33b3e403983b197ca72a427a40c907a664399ce85d400d",
+    "sw/pi/groundlark/board_bench.py": "bed618511260e4637d394b19250a24eb0c66e35b326579faa2c6c1d5f1f866e9",
     "sw/pi/groundlark/calibration.py": "777ecdf6b2de1aa306e8d998f7424d840249911ae83eeac176fbedbfdcee1e4a",
     "sw/pi/groundlark/calibration_fit.py": "77bbc78ec8af9f36f6585931c44f8d34b3325a5ebd0c08dd501445d6a883a84a",
     "sw/pi/groundlark/cli.py": "1afcbce95409fd545309f2260578e453da54af44d934ce9cb2ce4ca560989157",
-    "sw/pi/groundlark/gnss_sim.py": "f70dd7e4f3d0bc7cf5b220b6b32a3c7160e3dbd75904fc69ad3efdd797b71cef",
-    "sw/pi/groundlark/hat_signals.py": "7855d4bc438270c0d22c0f885a975f1135f4d25be93734f07775f7e95d3b08f1",
+    "sw/pi/groundlark/gnss_sim.py": "6d364fbf92180f57333ccb594870206bf7ddcfcef04ca727418ed2f6a915de2d",
+    "sw/pi/groundlark/hat_signals.py": "d3bc9363dad58fed28a87f2f70f11f4b2e942c45a0feedb55b538087702d4f62",
     "sw/pi/groundlark/messages.py": "6c3cba126799f2a9f2902023e4ce381229f32e11e198af0b33201c8249f52b2f",
     "sw/pi/groundlark/miniseed.py": "312f833af206a419c24dc0ebb8c15d7039022e15ccfec58cab5c7eec5d72164f",
     "sw/pi/groundlark/power_config.py": "accb478f8ee35c8076a3eb32af07d78c6473eca34bf4ffceafca4548bc1aab60",
     "sw/pi/groundlark/runtime.py": "7cd85cb1bb5b421c532b0ccacd39d82c7e3aa78a3a399b15a6808345b1cb6fc3",
     "sw/pi/groundlark/session.py": "7c80d938321b3f2d64da0f8735d4aa86ab0e4cdccae0d5990f97c021d9525cd2",
     "sw/pi/groundlark/simulation.py": "b91367d917cf2747683efda353684519c445bd8ba9ba715c534ac62355304571",
-    "sw/pi/groundlark/stimulus.py": "e194f6dd10744d4e65d59b7ee3e51dae9e767ba740793df7d58a1fce082ddd90",
+    "sw/pi/groundlark/stimulus.py": "545ebcdfe3cefb488466fda2784c32165ed1d06ac6ca91a9738c759c8051aede",
     "sw/pi/groundlark/utc.py": "ad283c16fc97e3135a19e3618c2c39e4efcbfeda22c2d36b06ec7b318854b2a2",
     "sw/pi/groundlark/workbench.py": "2fb382725e4580427f602a4033652901335931a7dfd5f94f21a8ad3e19d3eb52",
     "sw/pi/profiles/daqhat-01.example.json": "169257bcf3a6f18035e25d3692bdd7e00c062a657c270621076af5f21d32c9a5",
@@ -216,8 +216,8 @@
     "sw/tests/test_calibration_fit.py": "197419f6e02f700e841f57eb394b440f6fc6b945cb44c4349a4314223065664b",
     "sw/tests/test_geophone.py": "c209fbfa56aafaddbbf70222bb51883b247db396b1741c2b04ab9c9b2e364826",
     "sw/tests/test_geophone_timing.py": "1c4d7aa9f30c24d56742df567ddb1b890d2405b69b6400ef1d085ae3e9fb1612",
-    "sw/tests/test_gnss_hat.py": "f593df311cc6ea83826b0a1f6254fdbf2c91241e55c33225e0f8736f7811947f",
-    "sw/tests/test_hat_signals.py": "ccac4d2400a0cc81be895500ee437cd7bcb91dde1a8e252da829abdedf45a854",
+    "sw/tests/test_gnss_hat.py": "f619195312f80eb99a9096e0f4b0810db943e7dd90103805fa76c8ecc719e6d0",
+    "sw/tests/test_hat_signals.py": "52b6fd0b12f0aafd2fbd474287501f720fab3c8e7b34553c6ab16ce649fbb2bd",
     "sw/tests/test_miniseed.py": "2d5607067dc04bd7ec043fe09ae4019c2eb4a03c6c8c09bd75342dbf02a6806e",
     "sw/tests/test_power_config.py": "3e27db03d937965ccb890633af89f311dca4d794a06c43940082d46e6fd143f6",
     "sw/tests/test_skylark.py": "151ce958a578e4f614db74b6c990b098a15190087994e937fbc9b304e6c20932",
@@ -226,9 +226,12 @@
     "sw/tests/test_workbench.py": "e3c5b58d28c836838d1ddf92a1ddade3cd5dab9e9dbf633df54ace6d9116d4c5",
     "sw/ui/assets/README.md": "890efb550e3dcb3e49752318ce5841829e69b97da3322e0a0c2a8a880c6c5d8e",
     "sw/ui/assets/daqhat-01.glb": "2dc7a979bcf662b88499a6a65d441a6622c94524fcbb5433fba8d47dc1c06dbb",
-    "sw/ui/assets/provenance.json": "7ecd002d16ea02d5bf81043edff7f92d831a1a59531a960920641a4d6ca3867b",
-    "sw/ui/check.py": "fb0ddeea08f68b8b64832370e3029566357b0155a1d0a6b84241e511c3fffcf3",
-    "sw/ui/main.py": "1d828e4df33e81e2e17b0a4d90586b492850df6aa340c5c9266e986653fd2206"
+    "sw/ui/assets/provenance.json": "7b6aa6882d88b922f2a5f65d8e4fe2ae83fa7ef185b8c8f66c7b9e654e629c6e",
+    "sw/ui/check.py": "d7cdc2fdfff238a29b2ade85e2e0c172c23d5a1a58ff5050f1829936f6fa163b",
+    "sw/ui/main.py": "b5ad13a1a07ce9eea4b479e8a78e9e67175a76432fa1bb4012fa2d5614e3f1c5",
+    "environment/lab.py": "107f7c8c3e75a75a7365dc11a8ccd9c12a7f5b4e21872cad32fabc3790e77374",
+    "environment/test_lab.py": "136e41bc3277bb707b3880e8cd49bb1b1384dde7656e10d1c6f1e17bbff14b87",
+    "hw/tests/test_power_review.py": "3680f10338562d1f356a4c9250d305eff547f9cd27f219d31ea6e7c882a97995"
   },
   "native_validation": {
     "status": "DAQHAT-01 engineering prototype; not fabrication released",
@@ -367,83 +370,162 @@
     "unconnected_items": 0
   },
   "portable_lab": {
-    "full_run": "20260930T221709Z-5292cfa7",
-    "full_status": "failed at existing assembly regressions",
-    "hardware_tests": 180,
+    "full_run": "20260930T224204Z-d18fd40c",
+    "full_status": "failed: existing assembly registry/source and supplier-pad mismatches; all 27 stages ran",
+    "hardware_tests": 185,
     "failures": 13,
     "errors": 16,
-    "software_run": "20260930T222035Z-86d25d6f",
-    "software_status": "passed",
-    "software_tests": 248,
-    "environment_unit_tests": 22,
+    "software_run": "20260930T224204Z-d18fd40c",
+    "software_status": "passed within full profile",
+    "software_tests": 253,
+    "environment_unit_tests": 23,
     "environment_unit_skips": 2,
     "focused_gnss_tests": 10,
-    "focused_power_tests": 6,
-    "supplemental_steps": [
+    "steps": [
       {
-        "step": "check_circuit",
-        "exit_code": 0
+        "name": "build-hat",
+        "exit_code": 0,
+        "seconds": 11.69
       },
       {
-        "step": "check_design",
-        "exit_code": 0
+        "name": "constraints-hat",
+        "exit_code": 0,
+        "seconds": 13.23
       },
       {
-        "step": "check_trenz",
-        "exit_code": 0
+        "name": "build-field_head",
+        "exit_code": 0,
+        "seconds": 6.27
       },
       {
-        "step": "daqhat_01_engineering",
-        "exit_code": 0
+        "name": "constraints-field_head",
+        "exit_code": 0,
+        "seconds": 4.92
       },
       {
-        "step": "prefab_review",
-        "exit_code": 0
+        "name": "build-trenz_hat",
+        "exit_code": 0,
+        "seconds": 17.55
       },
       {
-        "step": "check_skylark",
-        "exit_code": 0
+        "name": "constraints-trenz_hat",
+        "exit_code": 0,
+        "seconds": 19.6
       },
       {
-        "step": "replay_trenz",
-        "exit_code": 0
+        "name": "build-skylark",
+        "exit_code": 0,
+        "seconds": 7.93
       },
       {
-        "step": "simulate",
-        "exit_code": 0
+        "name": "constraints-skylark",
+        "exit_code": 0,
+        "seconds": 8.53
       },
       {
-        "step": "simulate_trenz",
-        "exit_code": 0
+        "name": "reject-overvoltage",
+        "exit_code": 0,
+        "seconds": 3.52
       },
       {
-        "step": "simulate_geophone",
-        "exit_code": 0
+        "name": "hardware-regressions",
+        "exit_code": 1,
+        "seconds": 17.55
       },
       {
-        "step": "simulate_geophone_review",
-        "exit_code": 0
+        "name": "check_circuit",
+        "exit_code": 0,
+        "seconds": 0.21
       },
       {
-        "step": "simulate_host_link",
-        "exit_code": 0
+        "name": "check_design",
+        "exit_code": 0,
+        "seconds": 2.17
       },
       {
-        "step": "signal_response",
-        "exit_code": 0
+        "name": "check_trenz",
+        "exit_code": 0,
+        "seconds": 3.17
       },
       {
-        "step": "power_review",
-        "exit_code": 0
+        "name": "daqhat_01_engineering",
+        "exit_code": 0,
+        "seconds": 0.46
+      },
+      {
+        "name": "prefab_review",
+        "exit_code": 0,
+        "seconds": 1.02
+      },
+      {
+        "name": "check_skylark",
+        "exit_code": 0,
+        "seconds": 1.42
+      },
+      {
+        "name": "routing-replay",
+        "exit_code": 0,
+        "seconds": 8.25
+      },
+      {
+        "name": "simulate",
+        "exit_code": 0,
+        "seconds": 4.37
+      },
+      {
+        "name": "simulate_trenz",
+        "exit_code": 0,
+        "seconds": 0.36
+      },
+      {
+        "name": "simulate_geophone",
+        "exit_code": 0,
+        "seconds": 0.11
+      },
+      {
+        "name": "simulate_geophone_review",
+        "exit_code": 0,
+        "seconds": 0.41
+      },
+      {
+        "name": "simulate_host_link",
+        "exit_code": 0,
+        "seconds": 0.16
+      },
+      {
+        "name": "signal_response",
+        "exit_code": 0,
+        "seconds": 0.51
+      },
+      {
+        "name": "power_review",
+        "exit_code": 0,
+        "seconds": 0.51
+      },
+      {
+        "name": "fpga-loopback-rtl",
+        "exit_code": 0,
+        "seconds": 42.49
+      },
+      {
+        "name": "fpga-implementation-evidence",
+        "exit_code": 0,
+        "seconds": 0.03
+      },
+      {
+        "name": "sensor-contracts",
+        "exit_code": 0,
+        "seconds": 11.83
       }
     ]
   },
   "workbench": {
     "http_smoke": true,
     "browser_checked": true,
-    "modeled_board_checks": 11,
-    "modeled_samples": 3272,
-    "scope": "Production modeled I2C GNSS timing, PPS/UTC association, fault isolation, replay and miniSEED; no physical timing qualification"
+    "modeled_board_checks": 12,
+    "modeled_samples": 4072,
+    "scope": "IMU/ADC/GNSS modeled buses through Pi drivers; DLVR raw-response model with Pi driver pending; antenna fault/recovery, replay and invalid UTC tests",
+    "antenna_fault_browser_check": true
   },
   "enclosure": {
     "revision": "R3",

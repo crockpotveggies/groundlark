@@ -14,7 +14,8 @@ DEFAULTS = {
     "pressure_pa": 0, "temperature_c": 25, "pressure_temperature_count": 768,
     "gnss_position": [49, -123, 0], "gnss_velocity_ned_m_s": [0, 0, 0],
     "so2_ppm": 0, "h2s_ppm": 0, "pm25_ug_m3": 5, "humidity_percent": 50, "ambient_pressure_pa": 101325,
-    "geophone_velocity_m_s": 0, "gnss_fix": True, "gnss_pps": True, "sensor_faults": {},
+    "geophone_velocity_m_s": 0, "gnss_fix": True, "gnss_pps": True,
+    "gnss_antenna": "normal", "sensor_faults": {},
 }
 VECTOR_SIGNALS = {"orientation_deg", "head_orientation_deg", "acceleration_m_s2", "magnetic_ut"}
 SCALAR_SIGNALS = {"pressure_pa", "temperature_c", "so2_ppm", "h2s_ppm", "pm25_ug_m3", "humidity_percent", "ambient_pressure_pa"}
@@ -55,7 +56,10 @@ def validate_changes(changes):
             for item in value: signal_spec(item, "orientation" in name)
         elif name in SCALAR_SIGNALS: signal_spec(value)
         elif name in ("gnss_fix", "gnss_pps"):
-            if type(value) is not bool: raise ValueError("gnss_fix must be boolean")
+            if type(value) is not bool: raise ValueError(f"{name} must be boolean")
+        elif name == "gnss_antenna":
+            if not isinstance(value, str) or value not in ("normal", "open", "short"):
+                raise ValueError("gnss_antenna must be normal, open or short")
         elif name == "sensor_faults":
             actions = {"none", "timeout", "nack", "disconnect", "not_ready", "saturation", "short_read"}
             if not isinstance(value, dict) or not set(value) <= {str(i) for i in range(1, 18)}:
@@ -163,6 +167,12 @@ def body_vector(vector, angles):
             (cr * sp * cy + sr * sy) * x + (cr * sp * sy - sr * cy) * n + cr * cp * z)
 
 
+def gnss_locked(state):
+    # Conservative loss-of-reception fixture, not RF/acquisition dynamics.
+    # U141 FAULT is NC: this stimulus is never reported as device telemetry.
+    return state["gnss_fix"] and state["gnss_antenna"] == "normal"
+
+
 def nav_pvt(now, state, displacement):
     latitude, longitude, height = state["gnss_position"]
     north, east, down = displacement
@@ -171,7 +181,7 @@ def nav_pvt(now, state, displacement):
     if not -89.9 <= latitude <= 89.9: raise ValueError("GNSS local-tangent model crossed polar bound")
     longitude = (longitude + 180) % 360 - 180
     vn, ve, vd = state["gnss_velocity_ned_m_s"]
-    fix = state["gnss_fix"]
+    fix = gnss_locked(state)
     data = bytearray(92)
     struct.pack_into("<I", data, 0, (now // 1_000_000) % 604800000)
     data[20], data[21], data[23] = (3, 1, 12) if fix else (0, 0, 0)

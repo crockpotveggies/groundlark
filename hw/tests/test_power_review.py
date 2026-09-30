@@ -32,6 +32,29 @@ class PowerTests(unittest.TestCase):
         self.assertTrue(any(c['pms_4p5V_met'] for c in s['cable_scenarios']))
         self.assertTrue(any(not c['pms_4p5V_met'] for c in s['cable_scenarios']))
         self.assertGreater(g['startup_scenarios'][0]['pi_5V_A'],2)
+        self.assertAlmostEqual(g['pi_5V_allocated_A'],sum(g['pi_5V_allocations_mA'].values())/1000)
+        fault=g['antenna_short']
+        self.assertEqual(fault['limit_A'],[.05,.1])
+        self.assertAlmostEqual(fault['additional_pi_5V_A'],.08)
+        self.assertAlmostEqual(fault['pi_5V_fault_allocation_A'],.155)
+        self.assertAlmostEqual(fault['limiter_short_dissipation_W'],.3366)
+        self.assertFalse(fault['fault_telemetry'])
+        self.assertFalse(fault['transient_qualified'])
+
+    def test_added_ldo_capacitance_is_in_startup_charge(self):
+        original=power.native
+        baseline=power.build_report()['groundlark']['startup_scenarios']
+        def mutated(name):
+            parts,pins,cap,sha=original(name)
+            if name=='groundlark-daqhat-01':
+                old=cap
+                cap=lambda net:old(net)+(1e-6 if net=='GNSS_LDO' else 0)
+            return parts,pins,cap,sha
+        with patch.object(power,'native',mutated):
+            changed=power.build_report()['groundlark']['startup_scenarios']
+        for before,after in zip(baseline,changed):
+            self.assertAlmostEqual(after['pi_5V_A']-before['pi_5V_A'],1.2e-6*3.366/before['ramp_s'])
+            self.assertEqual(after['pi_3V3_A'],before['pi_3V3_A'])
 
     def test_overcurrent_and_cross_power_faults_rejected(self):
         original=power.native
