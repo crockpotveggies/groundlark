@@ -12,19 +12,18 @@ heads. All share the sensor contracts, simulation tools and local workbench.
 
 ## Groundlark
 
-![Groundlark clear-PETG enclosure with its cover removed, rotated Pi/DAQHAT-01/Trenz stack and adjacent geophone](docs/images/groundlark-enclosure.png)
+![Groundlark GNSS revision: detailed routed HAT, side-facing SMA, Pi/Trenz stack and geophone in the updated enclosure](docs/images/groundlark-gnss.png)
 
 **Seismic monitoring on a Raspberry Pi.** The active
-[Groundlark FPGA HAT](hw/groundlark-fpga-hat/README.md), model **DAQHAT-01**, is an
+[Groundlark FPGA HAT](hw/groundlark-fpga-hat/README.md), model **DAQHAT-01**, is a
 140 × 56 mm, six-layer FR-4 board with three XYZ LSM6DSO IMUs and an ADS122C04
-input for an external Racotech geophone, plus a fitted DLVR infrasound sensor. The stack is **Pi → HAT → Trenz
+input for an external Racotech geophone, plus a fitted DLVR infrasound sensor and u-blox MAX-M10S GNSS with a side-facing SMA antenna connector. The stack is **Pi → HAT → Trenz
 Artix-7 200T FPGA**. Pi acquisition works independently of a configured FPGA.
 
 The [internal FPGA link](docs/fpga-host-link.md) provides six QSPI wires, UART,
 reset and switched Pi-driven JTAG. An SPI echo bitstream is implemented;
 accelerated sensor processing and native quad transfers remain future work.
-The FPGA needs a separate regulated 3.3 V-class supply within the
-[hardware guide's](docs/trenz-hat.md) voltage and power limits.
+The FPGA uses a separate Nexys Video-compatible 12 V, center-positive adapter through J83 and an onboard 3.326 V converter. See the [power limits](docs/trenz-hat.md).
 
 The [Groundlark Coldfoot HAT](hw/groundlark-coldfoot-hat/README.md) is a separate,
 retained A2 ASIC design. Coldfoot integration is deferred while development
@@ -37,10 +36,17 @@ The JLCPCB package targets one assembled HAT; sourcing, placement and J1 fit
 checks remain open. Fabrication packages stay local in ignored `hw/releases/`.
 
 *R3 [prototype enclosure](hw/mechanical/daqhat-01-case/README.md), current
-140 mm HAT CAD with infrasound, TI Pi supervision and independent FPGA power, vendor Trenz components and a detailed
+140 mm HAT CAD with GNSS/SMA, infrasound, TI Pi supervision and independent FPGA power, vendor Trenz components and a detailed
 [Pi 4B model](hw/shared/models/raspberrypi4/README.md) by integrated-circuit / FreeCAD
 community (CC BY 3.0). Clear PETG appearance, risers, geophone and wiring are approximate.
-Physical fit remains unqualified. [Render provenance](docs/images/groundlark-enclosure.json).*
+Physical fit remains unqualified. [Render provenance](docs/images/groundlark-gnss.json).*
+
+![Groundlark enclosure with the side SMA accessible](docs/images/groundlark-gnss-closed.png)
+
+[Closed enclosure render provenance](docs/images/groundlark-gnss-closed.json).
+Measured gain/offset workflows and PCB probe access are in the
+[calibration guide](docs/calibration.md). Seismic recordings support local
+[miniSEED export](docs/miniseed.md).
 
 ## Skylark
 
@@ -115,6 +121,8 @@ Use the **Board** selector for the FPGA HAT, Burrowlark or Skylark.
 **Test selected board** runs the selected board’s checks; the HAT test runs eight simulated seconds through production Pi drivers
 on modeled buses, with signal checks and downloadable recordings/results.
 The UI simulates and replays; physical acquisition uses the [Pi software](docs/sensor-software.md).
+Live seismic capture stores raw geophone and IMU counts locally as
+[miniSEED 3](docs/miniseed.md), with SSREC companions for diagnostics and replay.
 
 ## Project files and tests
 

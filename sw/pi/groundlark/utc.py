@@ -43,7 +43,7 @@ def policy_check(policy, digest, source):
     if not isinstance(policy['sample_error_ns'], dict) or not policy['sample_error_ns']:
         raise ValueError('per-sensor acquisition error bounds required')
     for key, value in policy['sample_error_ns'].items():
-        if key not in ('1', '2', '3', '4', '5', '6'): raise ValueError('local sensor bounds only')
+        if key not in ('1', '2', '3', '4', '5', '6', '8', '9'): raise ValueError('local sensor bounds only')
         integer(value, 1, 100_000_000, 'sample error')
 
 

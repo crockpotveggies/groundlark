@@ -1,10 +1,6 @@
 # Portable test environment
 
-**DAQHAT-01 revision:** GNSS is removed; one external Racotech vertical geophone
-uses an ADS122C04 input. See [current circuit, acquisition and validation](geophone-input.md).
-GNSS/PPS/RF details below describe the preceding revision or legacy recordings.
-The current physical bench template is version 3, with geophone and internal
-FPGA programming/transport measurements. See the [bench procedure](bench-procedure.md).
+**DAQHAT-01 GNSS revision:** MAX-M10S-00B uses Pi I2C1 and BCM24 PPS alongside the Racotech geophone. Portable tests exercise modeled timing; physical millisecond alignment remains unqualified.
 
 The project now has one disposable Docker test environment. Keep authored files
 in their existing locations and use the root `lab.ps1` or `lab.sh` launcher for

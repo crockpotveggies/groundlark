@@ -1,6 +1,7 @@
 """The same acquisition, validation and recording path for sim and Linux."""
 import argparse
 from collections import Counter
+from contextlib import ExitStack
 import hashlib
 import json
 import os
@@ -74,8 +75,25 @@ def export_scenario(recording, output):
 
 def run(args):
     simulated = args.command == "simulate"
+    mseed_path = getattr(args, 'miniseed', None)
+    if not simulated and not getattr(args, 'no_miniseed', False):
+        mseed_path = mseed_path or args.output.with_suffix('.mseed')
+    if getattr(args, 'no_miniseed', False) and mseed_path:
+        raise ValueError('--no-miniseed conflicts with --miniseed')
+    simulation_origin = getattr(args, 'mseed_start_utc', None)
+    if simulation_origin and (not simulated or not mseed_path):
+        raise ValueError('--mseed-start-utc requires simulate --miniseed')
+    if mseed_path and simulated and not simulation_origin:
+        raise ValueError('simulation miniSEED requires --mseed-start-utc (synthetic calendar origin)')
+    if mseed_path and mseed_path.resolve() == args.output.resolve():
+        raise ValueError('miniSEED and SSREC need different output paths')
+    if mseed_path and simulated and getattr(args, 'board', 'hat') != 'hat':
+        raise ValueError('miniSEED output currently supports HAT seismic channels')
+    if mseed_path and not simulated and args.mseed_time == 'recorded':
+        raise ValueError('DAQHAT-01 live acquisition has no qualified UTC; system mode marks timing unverified')
+    for path in (args.output, mseed_path):
+        if path is not None and path.exists(): raise FileExistsError(f'Output already exists: {path}')
     utc = getattr(args, 'utc', False)
-    if utc: raise ValueError("Current DAQHAT-01 has no GNSS/PPS; use legacy recordings for UTC correlation")
     if utc and not args.fifo: raise ValueError('--utc requires --fifo and PPS profile')
     faults = load_json(args.faults) if getattr(args, "faults", None) else []
     records = load_json(args.calibrations) if args.calibrations else []
@@ -114,6 +132,8 @@ def run(args):
         if set(profile) - {"device_id", "spi", "i2c", "sensor_enable", "imu_irq", "pps"} or len(profile["spi"]) != 3:
             raise ValueError("live profile requires three explicit SPI paths and sensor OE")
         if len(set(profile["spi"])) != 3: raise ValueError("each sensor needs a separate chip select")
+        if utc and (not profile.get('pps') or profile['pps'].get('line') != 24):
+            raise ValueError('DAQHAT-01 GNSS PPS requires BCM24; BCM4 is geophone DRDY')
         boot = secrets.randbits(64) or 1
         # Validate all identity/configuration fields before opening devices.
         configuration(profile["device_id"], boot, settings)
@@ -131,14 +151,33 @@ def run(args):
         if utc: metadata['utc_capture'] = 'm10-tim-tp-v1'
         if args.fifo:
             metadata.update(source='linux-fifo', timing='IMU device timestamp mapped to RAW; absolute uncertainty unknown; geophone poll completion')
+    seismic = None
+    if mseed_path:
+        metadata['miniseed'] = dict(format_version=3, station=args.mseed_station,
+            network=args.mseed_network, raw_counts=True,
+            timing='synthetic-origin' if simulated else args.mseed_time,
+            simulation_start_utc=simulation_origin)
     try:
         # Exclusive create prevents accidentally replacing a prior recording.
-        with open(args.output, "xb") as stream:
+        with ExitStack() as files:
+            stream = files.enter_context(open(args.output, "xb"))
             writer = Writer(stream, metadata, max_bytes=args.max_mib * 1024 * 1024)
+            if mseed_path:
+                from .miniseed import SeismicWriter, Mirror
+                target = files.enter_context(open(mseed_path, 'xb'))
+                seismic = SeismicWriter(target, metadata, station=args.mseed_station,
+                    network=args.mseed_network, max_bytes=args.max_mib * 1024 * 1024,
+                    simulation_start=simulation_origin)
+                def observe_system_clock():
+                    before = clock()
+                    unix = time.time_ns()
+                    after = clock()
+                    return dict(raw_ns=(before + after)//2, unix_ns=unix, bracket_ns=after-before)
+                writer = Mirror(writer, seismic,
+                    observe_system_clock if not simulated and args.mseed_time == 'system' else None)
             app = Acquisition(writer, sessions, channels, args.queue, ids)
             if not simulated:
                 enable = SensorEnable(**profile["sensor_enable"])
-                if profile.get("pps"): raise ValueError("BCM4 is now geophone DRDY, not PPS; update live profile")
                 if utc and not profile.get('pps'): raise ValueError('--utc requires PPS line')
                 if args.fifo:
                     irqs = profile.get('imu_irq')
@@ -147,7 +186,7 @@ def run(args):
                     if profile.get('pps'): pins.append((profile['pps']['chip'], profile['pps']['line']))
                     if len(set(pins)) != len(pins): raise ValueError('duplicate GPIO role')
                     for channel, mapping in zip(channels[:3], irqs): channel.adapter.irq = RisingEdges(**mapping)
-                    if profile.get('pps'): pps = RisingEdges(**profile['pps'])
+                    if utc: pps = RisingEdges(**profile['pps'])
                 enable.enabled(True)
                 if args.usb:
                     # Independent USB session state prevents peers replacing local identities.
@@ -176,6 +215,13 @@ def run(args):
                 if simulated: current += 1_000_000
                 else: time.sleep(.001)
             app.finish(clock())
+            if seismic:
+                seismic.flush()
+                os.fsync(target.fileno())
+                if not seismic.samples:
+                    raise ValueError('No timed seismic samples were written to miniSEED')
+                stream.flush()
+                os.fsync(stream.fileno())
     finally:
         # Close every independent resource even if one worker cannot be reaped.
         errors = []
@@ -184,7 +230,9 @@ def run(args):
                 try: obj.close()
                 except Exception as error: errors.append(error)
         if errors: raise errors[0]
-    return replay(args.output)
+    result = replay(args.output)
+    if seismic: result['miniseed'] = dict(path=str(mseed_path), **seismic.summary())
+    return result
 
 
 def main(argv=None):
@@ -198,6 +246,13 @@ def main(argv=None):
         p.add_argument("--drain-every", type=int, default=1)
         p.add_argument("--max-mib", type=int, default=64)
         p.add_argument("--calibrations", type=Path)
+        p.add_argument('--miniseed', type=Path, help='local miniSEED 3 file; live defaults to OUTPUT.mseed')
+        p.add_argument('--mseed-station', default='GL001')
+        p.add_argument('--mseed-network', default='XX')
+        p.add_argument('--mseed-start-utc', help='simulation only: explicit synthetic YYYY-MM-DDTHH:MM:SSZ origin')
+        p.add_argument('--mseed-time', choices=['system','recorded'], default='system',
+                       help='live: unverified Pi system time, or only sample timestamps with recorded UTC')
+        p.add_argument('--no-miniseed', action='store_true', help='retain SSREC-only capture')
         if name == "simulate":
             p.add_argument('--board', choices=['hat','burrowlark','skylark'], default='hat')
             p.add_argument("--seed", type=int, default=1)
@@ -208,7 +263,7 @@ def main(argv=None):
             p.add_argument("--profile", type=Path, required=True)
             p.add_argument("--usb")
             p.add_argument('--fifo', action='store_true', help='buffered IMUs with hardware timestamps and IRQ hints; explicit profile required')
-            p.add_argument('--utc', action='store_true', help='legacy option; rejected by current DAQHAT-01 hardware')
+            p.add_argument('--utc', action='store_true', help='capture MAX-M10S timing evidence and BCM24 PPS; offline correlation requires measured bounds')
     p = commands.add_parser('usb', help='capture a standalone USB board without Pi GPIO or an FPGA')
     p.add_argument('--board',choices=['skylark','burrowlark'],required=True)
     p.add_argument('--usb',required=True)
@@ -217,15 +272,46 @@ def main(argv=None):
     p.add_argument('--max-mib',type=int,default=8)
     p = commands.add_parser("replay")
     p.add_argument("recording", type=Path)
+    p = commands.add_parser('calibration-fit', help='fit static SI gain/offset from measured SSREC reference intervals')
+    p.add_argument('specification', type=Path)
+    p.add_argument('--output', type=Path, required=True)
+    p.add_argument('--allow-simulation', action='store_true', help='permit explicitly identified synthetic bench fixtures')
+    p = commands.add_parser('calibration-observe', help='inspect the raw mean and scatter of a calibration interval')
+    p.add_argument('recording', type=Path)
+    p.add_argument('--device', required=True)
+    p.add_argument('--sensor', type=int, choices=[1,2,3,9], required=True)
+    p.add_argument('--field', choices=['acceleration_m_s2','angular_rate_rad_s','temperature_k','geophone_input_v'], required=True)
+    p.add_argument('--first', type=int, required=True)
+    p.add_argument('--last', type=int, required=True)
+    p.add_argument('--allow-simulation', action='store_true')
     p = commands.add_parser("export-scenario", help="recover controls for another deterministic simulation")
     p.add_argument("recording", type=Path)
     p.add_argument("--output", type=Path, required=True)
+    p = commands.add_parser('export-miniseed', help='export raw HAT seismic channels from SSREC')
+    p.add_argument('recording', type=Path)
+    p.add_argument('--output', type=Path, required=True)
+    p.add_argument('--station', default='GL001')
+    p.add_argument('--network', default='XX')
+    p.add_argument('--simulation-start-utc', help='explicit synthetic origin; simulation recordings only')
+    p.add_argument('--max-mib', type=int, default=64)
     args = parser.parse_args(argv)
     try:
         if args.command == "replay": result = replay(args.recording)
+        elif args.command == 'calibration-fit':
+            from .calibration_fit import write_fit
+            result = write_fit(args.specification, args.output, args.allow_simulation)
+        elif args.command == 'calibration-observe':
+            from .calibration_fit import observe, SUPPORTED
+            if args.field not in SUPPORTED[args.sensor]: raise ValueError('field incompatible with sensor')
+            result = observe(args.recording, args.device, args.sensor, args.field,
+                             args.first, args.last, args.allow_simulation)
         elif args.command == 'usb':
             from .usb_capture import capture
             result = capture(args)
+        elif args.command == 'export-miniseed':
+            from .miniseed import export
+            result = export(args.recording, args.output, station=args.station, network=args.network,
+                simulation_start=args.simulation_start_utc, max_bytes=args.max_mib*1024*1024)
         elif args.command == "export-scenario": result = export_scenario(args.recording, args.output)
         else: result = run(args)
     except (ValueError, OSError, KeyError, TypeError) as error:

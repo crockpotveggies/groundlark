@@ -48,7 +48,9 @@ b=p.LoadBoard(str(F/(NAME+'.kicad_pcb')))
 title=b.GetTitleBlock();title.SetRevision('DAQHAT-01 6L');title.SetDate('2026-09-30');b.SetTitleBlock(title)
 custom={'J1':'Pi_Megastar_2x20','J80':'LSHM_50_4mm','J81':'LSHM_50_4mm','J82':'LSHM_30_4mm','U23':'DLVR_E1BS','J83':'PJ_102AH_envelope','U80':'TPSM53603_envelope','U132':'TPSM53603_envelope'}
 for fp in b.GetFootprints():
-    if fp.GetReference() in custom:model(fp,'${KIPRJMOD}/../../../shared/models/'+custom[fp.GetReference()]+'.wrl')
+    if fp.GetReference()=='J140':model(fp,'${KIPRJMOD}/../../../shared/models/HL_SMA_KWE_02.step')
+    elif fp.GetReference()=='U21':model(fp,'${KIPRJMOD}/../../../shared/models/MAX_M10S_envelope.step')
+    elif fp.GetReference() in custom:model(fp,'${KIPRJMOD}/../../../shared/models/'+custom[fp.GetReference()]+'.wrl')
     else:
         for m in fp.Models():m.m_Filename=m.m_Filename.replace('${KICAD7_3DMODEL_DIR}','${KICAD9_3DMODEL_DIR}')
 # Mark each underside bank without covering the fine-pitch pads.

@@ -8,8 +8,8 @@ calculation is not a USB compliance or physical power qualification result.
 
 | Input | Required allocation | Loads |
 | --- | --- | --- |
-| Switched Pi header 5 V, pins 2/4 | Reserve 50 mA steady state within the combined 3 A budget | LDL1117, three IMUs, ADC, DLVR and sensor-side interfaces |
-| Pi header 3.3 V, pins 1/17 | Reserve 50 mA steady state | Pi-side interfaces, EEPROM, GPIO expander, logic and pull-ups |
+| Switched Pi header 5 V, pins 2/4 | Reserve 75 mA within the combined 3 A budget | LDL1117, three IMUs, ADC, DLVR, interfaces and GNSS antenna LDO |
+| Pi header 3.3 V, pins 1/17 | Reserve 150 mA including receiver acquisition/startup allocation | GNSS receiver and Pi-side interfaces, EEPROM, GPIO expander, logic and pull-ups |
 | J83 external adapter | 12 V ±5%, center-positive, 5.5/2.1 mm plug, at least 3 A | Independent FPGA converter input |
 | U80 converter output | 3.326 V nominal, 3 A design allocation | Trenz module and FPGA-side circuitry |
 
@@ -33,15 +33,13 @@ Actual FPGA current depends on the bitstream and remains unmeasured.
 The DLVR-F50D fast 3.3 V variant adds a 4.3 mA maximum load; the 5 V
 allocation retains 15.2 mA of reserve. Its 100 nF bypass adds nominally 0.33 µC
 of charge to the sensor rail. The current circuit does not switch sensor power:
-BCM26 controls signal-buffer enable, not the LDL1117 supply. BCM6/13 provide the power-supervisor handshake; BCM24 remains spare.
+BCM26 controls signal-buffer enable, not the LDL1117 supply. BCM6/13 provide the power-supervisor handshake; BCM24 carries GNSS PPS.
 Switching off the Pi 5 V input also removes sensor power.
 
-The two 50 mA allowances include interface switching and reserve; they are not
+The 75/150 mA allowances include interface switching, GNSS acquisition and reserve; they are not
 the GPIO signal-pin drive rating. The Pi's supply must also support its own
 workload, cooling, USB devices and other accessories. Do not hot-plug the HAT.
-At an assumed 1 ms supply ramp, the PCB capacitor charge adds about 220 mA on
-5 V and 43 mA on 3.3 V with 20% high capacitance. A 0.1 ms ramp is much more
-demanding. This C·dV/dt calculation omits regulator current limiting and source
+The native-board power report calculates capacitor charging for 0.1, 1 and 10 ms ramps with 20% high capacitance, including GNSS and antenna bypass capacitors. Short ramps require substantially more current. This C·dV/dt calculation omits regulator current limiting and source
 control loops; verify startup on the intended Pi and power supply.
 
 At 50 mA output, 5.25 V input and 85 °C ambient, the LDL1117 dissipates about
@@ -89,7 +87,7 @@ nor transient/thermal performance is qualified by these calculations.
 BCM6 (header 31) is an active-low shutdown request through Q130, pulled up to
 Pi 3.3 V. BCM13 (header 33) asserts high after halt and drives Q131; the MCU reads
 an inverted acknowledgement. The MOSFET interfaces prevent supervisor pull-ups
-from powering an off Pi. BCM24 stays spare; FPGA interfaces are unchanged.
+from powering an off Pi. BCM24 carries GNSS PPS; FPGA interfaces are unchanged.
 
 R135/R136 divide fused battery voltage by 7.6667 into PA27/A0. At 18 V the ADC
 input is below 2.36 V including 0.1% resistor tolerance. Use the internal 2.5 V

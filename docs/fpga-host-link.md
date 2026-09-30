@@ -26,7 +26,7 @@ The complete [contact map](trenz-pin-map.json) includes 149 unused ordinary I/Os
 the audit checks all 260 module contacts against independent vendor fixtures.
 Sensors retain SPI0, I2C1 and their existing interrupts. The added DLVR U23
 uses I2C1 address 0x28, alongside the 0x20 link expander and 0x40 geophone ADC.
-It consumes no additional Pi or FPGA pins; BCM6/13 serve power management; BCM24 remains spare. Ethernet is not exposed.
+It consumes no additional Pi or FPGA pins; BCM6/13 serve power management; BCM24 carries GNSS PPS. Ethernet is not exposed.
 
 U100/U101 are TMUX1574 bidirectional switches. U102 is a TCA9534 at I2C1 address
 0x20: P0 selects JTAG; P1 requests enable. U103/U106 permit a connection only

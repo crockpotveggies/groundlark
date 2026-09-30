@@ -77,15 +77,15 @@ def build_report():
     attach_charge=1.2*(sc('USB_5V')*5.25+sc('V3')*3.366+sc('NRST')*3.366+sc('VBUS_SENSE')*2.625)
     assert attach_charge<50e-6,'USB attach charge needs inrush limiting review'
     ground_5v_mA={'three_IMUs':3,'ADS122C04':2,'ISO1640_side2':10,
-                  'translators_switching':10,'bias_and_pullups':5,'LDO_Iq':.5,'DLVR_fast_max':4.3,'reserve':15.2}
+                  'translators_switching':10,'bias_and_pullups':5,'LDO_Iq':.5,'DLVR_fast_max':4.3,'reserve':15.2,'GNSS_antenna':20,'antenna_LDO_and_reserve':5}
     ground_3v3_mA={'ISO1640_side1':10,'translators_and_muxes':10,'EEPROM_expander_logic':5,
-                   'bias_and_pullups':10,'reserve':15}
+                   'bias_and_pullups':10,'reserve':15,'MAX_M10S_acquisition':100}
     # Capacitive current scenarios are C*dV/dt, NOT simulated regulator startup.
     ramps=[]
     for t in (.0001,.001,.01):
         ramps.append(dict(ramp_s=t,
-            pi_5V_A=.05+charge_current(1.2*gc('PI_5V'),5.25,t)+charge_current(1.2*gc('SENS_3V3'),3.366,t),
-            pi_3V3_A=.05+charge_current(1.2*gc('PI_3V3'),3.366,t)))
+            pi_5V_A=.075+charge_current(1.2*gc('PI_5V'),5.25,t)+charge_current(1.2*(gc('SENS_3V3')+gc('GNSS_BIAS')),3.366,t),
+            pi_3V3_A=.15+charge_current(1.2*gc('PI_3V3'),3.366,t)))
     cables=[]
     for source in (4.35,4.75,5.0,5.1):
         for resistance in (.25,.5,1):
@@ -106,7 +106,7 @@ def build_report():
             ldo=ldo_heat(5.25,3.234,overhead,.00008,250,85),
             cable_scenarios=cables,pm_lead_and_switch_assumed_ohm=.25),
         groundlark=dict(pi_5V_allocations_mA=ground_5v_mA,pi_3V3_allocations_mA=ground_3v3_mA,
-            pi_5V_allocated_A=.05,pi_3V3_allocated_A=.05,
+            pi_5V_allocated_A=.075,pi_3V3_allocated_A=.15,
             ldo=ldo_heat(5.25,3.234,.05,.0005,150,85),startup_scenarios=ramps,
             fpga_separate_source=budget(),
             pi_supervisor_source=__import__("pi_power_checks").budget(),

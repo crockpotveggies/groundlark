@@ -12,7 +12,7 @@ You need internet access for setup, a modern browser with WebGL, and Windows
 PowerShell or a Linux/macOS terminal. The scripts install the needed Python
 tools locally. Docker, KiCad, Node.js and an FPGA are not prerequisites.
 
-![Workbench showing the geophone and a simulated 2 Hz signal](images/sensor-workbench.png)
+![Groundlark GNSS navigation and 11 passing modeled board checks](images/groundlark-gnss-workbench.png)
 
 ## 1. Get the project
 
@@ -221,3 +221,20 @@ recording for replay. The report checks that the unaffected sensor stays valid.
 The replay slider preserves both raw CRC-protected climate words. Camera movement
 only changes the view. The displayed PNI and SHT45 bodies are dimensional envelopes;
 this test does not qualify physical USB, sensor accuracy or enclosure response.
+
+## GNSS timing on Groundlark
+
+Select Groundlark, start a simulation, and select **GNSS / MAX-M10S**. The
+GNSS timing panel controls satellite time lock and the separate PPS signal.
+Apply the controls, then watch the timeline's lock state, PPS presence and edge
+count. Navigation starts after receiver configuration; startup is not a zero fix.
+Disable lock while leaving PPS enabled to model an unlocked receiver emitting
+pulses; disable PPS alone to model a broken timing wire. Other sensors continue.
+
+**Test selected board** now exercises the production M10 I2C configuration and
+readback driver, TIM-TP/NAV-TIMEUTC parsing, modeled BCM24 PPS and navigation
+alongside the IMUs/geophone. Download its report and recording. Finish & save
+also retains timing events, controls and faults, and replay restores their state.
+The test uses an explicitly synthetic UTC epoch and ideal edges. It does not
+qualify physical sample times. Offline correlation uses the same bounded
+[UTC association rules](utc-timing.md); USB-head clocks remain independent.

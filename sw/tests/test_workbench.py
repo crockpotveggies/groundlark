@@ -22,7 +22,7 @@ def advance(engine, milliseconds):
 class WorkbenchTests(unittest.TestCase):
     def test_pressure_moves_to_hat_with_pi_clock_and_remote_magnetometer_stays(self):
         hat, head = Workbench(board='hat'), Workbench(board='burrowlark')
-        self.assertEqual(set(hat.sensor_ids), {1,2,3,8,9})
+        self.assertEqual(set(hat.sensor_ids), {1,2,3,6,8,9})
         self.assertEqual(set(head.sensor_ids), {7,17})
         advance(hat, 20)
         self.assertEqual(hat.snapshot(8)['latest'][8]['clock_domain'], 1)
@@ -54,11 +54,11 @@ class WorkbenchTests(unittest.TestCase):
         engine.advance(100)
         self.assertEqual(engine.now, 50_000_000)
 
-    def test_zero_gravity_pose_and_all_six_sensors(self):
+    def test_zero_gravity_pose_and_all_sensors(self):
         engine = Workbench()
-        advance(engine, 200)
+        advance(engine, 300)
         snap = engine.snapshot(1)
-        self.assertEqual(set(snap["latest"]), {1, 2, 3, 9, 7, 8, 17})
+        self.assertEqual(set(snap["latest"]), {1, 2, 3, 6, 9, 7, 8, 17})
         self.assertTrue(all(snap["latest"].values()))
         self.assertEqual(snap["latest"][1]["primary"], [0, 0, 16393])
         engine.controls({"orientation_deg": [90, 0, 0]})
@@ -76,12 +76,12 @@ class WorkbenchTests(unittest.TestCase):
         self.assertEqual(snap["latest"][2]["quality"], "Valid")
         self.assertGreater(snap["missing"], 0)
 
-    def test_current_hat_has_geophone_and_no_gnss(self):
+    def test_current_hat_has_geophone_and_gnss(self):
         engine = Workbench()
         advance(engine, 1)
         point = engine.snapshot(9)["latest"][9]
         self.assertEqual(point["primary"], [0, None, None])
-        self.assertNotIn(6, engine.snapshot(9)["latest"])
+        self.assertIn(6, engine.snapshot(9)["latest"])
         self.assertIn("Racotech", point["detail"])
 
     def test_raw_signed_magnetic_counts_and_pressure_status(self):

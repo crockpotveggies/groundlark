@@ -1,5 +1,7 @@
 # Groundlark FPGA HAT — DAQHAT-01
 
+Underside TP90–TP93 provide passive calibration probe access; see the [bench calibration guide](../../docs/calibration.md). No additional GPIO or enclosure opening is required.
+
 The active 140 × 56 mm, six-layer Trenz carrier combines three XYZ IMUs and
 an ADS122C04 input for an external Racotech geophone, plus a fitted DLVR-F50D
 infrasound pressure sensor on I2C1 (0x28). The stack is Raspberry Pi,
@@ -50,3 +52,12 @@ Target MCU firmware and physical power qualification remain pending. An
 unprogrammed MCU leaves the Pi off; fitting the JP130 shunt provides manual
 bench operation. Remove it before automatic supervision. See the
 [operating specification](../../docs/power-supplies.md#pi-supervisor-and-battery-input).
+
+## GNSS timing
+
+U21 is a MAX-M10S-00B on Pi I2C1 (0x42); BCM24/header 18 captures PPS.
+J140 is a side-facing SMA for a 3.3 V active antenna drawing at most 20 mA.
+The 140 x 56 mm outline and independent FPGA power remain unchanged. Use the
+updated R3 enclosure with its +X antenna access slot. See [antenna setup](../../docs/gnss-hardware.md)
+and [timing capture/correlation](../../docs/utc-timing.md). Browser tests cover
+modeled lock/PPS loss and recording/replay; physical millisecond alignment remains unqualified.

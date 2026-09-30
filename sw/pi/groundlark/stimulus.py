@@ -14,7 +14,7 @@ DEFAULTS = {
     "pressure_pa": 0, "temperature_c": 25, "pressure_temperature_count": 768,
     "gnss_position": [49, -123, 0], "gnss_velocity_ned_m_s": [0, 0, 0],
     "so2_ppm": 0, "h2s_ppm": 0, "pm25_ug_m3": 5, "humidity_percent": 50, "ambient_pressure_pa": 101325,
-    "geophone_velocity_m_s": 0, "gnss_fix": True, "sensor_faults": {},
+    "geophone_velocity_m_s": 0, "gnss_fix": True, "gnss_pps": True, "sensor_faults": {},
 }
 VECTOR_SIGNALS = {"orientation_deg", "head_orientation_deg", "acceleration_m_s2", "magnetic_ut"}
 SCALAR_SIGNALS = {"pressure_pa", "temperature_c", "so2_ppm", "h2s_ppm", "pm25_ug_m3", "humidity_percent", "ambient_pressure_pa"}
@@ -54,7 +54,7 @@ def validate_changes(changes):
             if not isinstance(value, list) or len(value) != 3: raise ValueError("three-axis control required")
             for item in value: signal_spec(item, "orientation" in name)
         elif name in SCALAR_SIGNALS: signal_spec(value)
-        elif name == "gnss_fix":
+        elif name in ("gnss_fix", "gnss_pps"):
             if type(value) is not bool: raise ValueError("gnss_fix must be boolean")
         elif name == "sensor_faults":
             actions = {"none", "timeout", "nack", "disconnect", "not_ready", "saturation", "short_read"}

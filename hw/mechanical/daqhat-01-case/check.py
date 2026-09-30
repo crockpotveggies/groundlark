@@ -49,6 +49,12 @@ def validate(c,parts,refs,levels):
     for name in ('base','cover','geophone-jaw','cable-clamp'):
         assert common(parts[name],plug)<1e-5,'FPGA plug access blocked'
     assert power['J130']['xy']==[120,10] and power['J130']['angle']==180,'Battery connector pose'
+    assert power['J140']['xy']==[4,15.8] and power['J140']['angle']==0,'GNSS SMA pose'
+    sma=refs['gnss_sma'].val().BoundingBox()
+    assert abs(sma.xmax-92.5)<.001 and abs((sma.ymin+sma.ymax)/2+40.2)<.001,'GNSS SMA handedness'
+    antenna_plug=box(88,-45.2,levels['hat_top']+.85,112,-35.2,levels['hat_top']+11.85)
+    for name in ('base','cover','geophone-jaw','cable-clamp'):
+        assert common(parts[name],antenna_plug)<1e-5,'GNSS SMA plug access blocked'
     battery_plug=box(-38.5,-90,levels['hat_top']-.5,-25.5,-52.5,levels['hat_top']+12)
     for name in ('base','cover','geophone-jaw','cable-clamp'):
         assert common(parts[name],battery_plug)<1e-5,'Battery plug access blocked'
@@ -127,11 +133,12 @@ def validate(c,parts,refs,levels):
     for dz in (1,5,20,50):
         lifted=parts['cover'].translate((0,0,dz))
         assert common(lifted,plug)<1e-5,'Cover extraction blocked by DC plug'
+        assert common(lifted,antenna_plug)<1e-5,'Cover extraction blocked by antenna plug'
         assert common(lifted,battery_plug)<1e-5,'Cover extraction blocked by battery plug'
         for name,shape in refs.items():
             assert common(lifted,shape)<1e-5,f'Cover extraction collision: {name}'
     return dict(component_intersections_checked=len(overlaps),
-                collisions=0,service_windows=list(service)+['FPGA DC plug opposite geophone','FPGA switch roof access','Pi battery plug'],fpga_plug_max_diameter_mm=14,power_wing_supports=4,board_mm=[140,56],case_outer_mm=[159,118,75],
+                collisions=0,service_windows=list(service)+['FPGA DC plug opposite geophone','FPGA switch roof access','Pi battery plug','GNSS SMA antenna'],gnss_plug_max_diameter_mm=10,fpga_plug_max_diameter_mm=14,power_wing_supports=4,board_mm=[140,56],case_outer_mm=[159,118,75],
                 levels_mm=levels,geophone_body_clearance_diameter_mm=c['geophone_diametral_clearance'],
                 geophone_terminal_clearance_to_roof_mm=c['roof_z']-c['geophone_seat_z']-c['geophone_height']-c['geophone_terminal_headroom'],
                 fpga_heatsink_to_roof_mm=c['roof_z']-levels['hat_top']-24.16,

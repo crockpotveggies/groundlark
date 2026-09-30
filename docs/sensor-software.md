@@ -1,9 +1,10 @@
 # Sensor acquisition and recovery
 
+For `calibration-observe`, `calibration-fit`, measured reference templates and instrument-bound calibration records, see [Calibrating Groundlark](calibration.md).
+
 **New to the simulator?** Start with the [browser workbench walkthrough](sensor-workbench.md).
 This page covers command-line development and real Linux acquisition.
-The current HAT has three IMUs and a Racotech geophone input; GNSS and the
-inclinometer are removed. Legacy drivers remain for older recordings/tests.
+The current HAT has three IMUs, a Racotech geophone input, infrasound and MAX-M10S GNSS. The fourth IMU and inclinometer remain legacy-only.
 
 The runnable Pi application is in `sw/pi/groundlark/`; use
 `sw/tools/sensor.py` as its repository entry point. It has no FPGA, Coldfoot,
@@ -59,6 +60,7 @@ and a nonblocking USB CDC TTY. The initial profile is:
 | Sensor | Configuration and reading |
 | --- | --- |
 | Three LSM6DSO | 26 Hz, ±2 g, ±250 dps; identity/reset/readback; BDU/address increment; signed temperature, gyro and acceleration. |
+| MAX-M10S-00B | I²C 0x42, 1 Hz NAV-PVT; optional timing configuration/readback, TIM-TP, NAV-TIMEUTC and BCM24 PPS capture. |
 | ADS122C04 geophone input | I²C 0x40; 330 SPS, PGA64, internal 2.048 V reference; signed 24-bit counts, conversion counter and inverted-data integrity checks. |
 | Burrowlark DAQUSB-01 USB head | Receive v1 identity/configuration/batches/status over framed CDC; real firmware is still required. |
 
@@ -68,8 +70,7 @@ gyro bandwidth; sample rate is not flat signal bandwidth. See
 [sensor bandwidth and timing](sensor-response.md) for both boards' response and
 aliasing limits. Raw samples and existing timestamp uncertainty remain intact.
 
-SCL3300 and MAX-M10S code is retained for legacy use and is not part of the
-current HAT profile. GNSS/PPS references later in this guide concern that legacy path.
+SCL3300 is retained for legacy recordings. MAX-M10S is active at I2C address 0x42; add `--fifo --utc` to capture timing evidence and BCM24 PPS.
 
 Copy [the example profile](../sw/pi/profiles/daqhat-01.example.json) and verify paths
 on the actual Pi. `gpiochip0` is an example, not an assertion about Pi 5 GPIO
@@ -81,7 +82,8 @@ normal/error cleanup.
 | --- | --- | --- |
 | SPI0 MOSI / MISO / SCLK | 10 / 9 / 11 | 19 / 21 / 23 |
 | IMU1 / IMU2 / IMU3 chip select | 8 / 7 / 5 | 24 / 26 / 29 |
-| Spare, unconnected (former inclinometer CS) | 13 | 33 |
+| Supervisor shutdown request / halt acknowledgement | 6 / 13 | 31 / 33 |
+| GNSS TIMEPULSE | 24 | 18 |
 | Sensor buffer OE, active low | 26 | 37 |
 | Geophone ADC I²C SDA / SCL | 2 / 3 | 3 / 5 |
 
@@ -109,8 +111,8 @@ batches omit `dropped_before`. Sequences count scheduled application slots;
 overdue slots are skipped and unavailable scheduled samples are MISSING.
 Do not infer lossless acquisition or synchronized devices from polling time.
 The optional FIFO path below replaces these polling semantics for the IMUs.
-Sensor self-test qualification, board-axis transforms and
-GNSS fix decoding in the live CLI remain follow-on work. Legacy SCL3300
+Sensor self-test qualification and board-axis transforms remain follow-on work.
+GNSS preserves NAV-PVT bytes and records timing evidence when requested. Legacy SCL3300
 register reads are sequential, not an atomic six-axis snapshot.
 
 ## Buffered IMUs and PPS capture
@@ -139,7 +141,7 @@ absent), including after a FIFO flush; output queue losses remain accounted for.
 No samples are emitted for a healthy empty FIFO. Acquisition shuts down rather
 than continue using a failed GPIO event descriptor.
 
-BCM4 PPS edges are recorded as events with the original kernel MONOTONIC time,
+BCM24 PPS edges are recorded as events with the original kernel MONOTONIC time,
 an estimated RAW time and the clock-mapping read bracket. A bracket is not total
 timestamp uncertainty. No UTC value is assigned from receipt time or an assumed
 NAV-PVT-to-pulse relationship. Add `--utc` to configure/read back the receiver's
@@ -207,6 +209,11 @@ timestamps, contradictory known loss, stale configurations and decreasing loss
 totals are rejected. Reaching a capacity requires a new recording.
 
 ## Calibration and recordings
+
+Live HAT acquisition also writes a local `.mseed` file with raw geophone and
+IMU counts. See [miniSEED capture and export](miniseed.md) for channel codes,
+system-clock timing flags, simulation dates and storage limits. Keep the SSREC
+companion for full configuration, diagnostics, missing data and replay.
 
 `--calibrations` accepts a JSON list of at most 16 artifacts. Each has
 `sensor_id`, `configuration_sha256`, `provenance` and `fields`. SHA-256 binds

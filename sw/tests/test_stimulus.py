@@ -185,7 +185,7 @@ class ScenarioTests(unittest.TestCase):
             self.assertEqual(json.loads(exported.stdout)["seed"], 7)
             run(scenario_file, second)
             self.assertEqual(first.read_bytes(), second.read_bytes())
-            self.assertEqual(replay(first)["samples"], 1038)  # Three IMUs, geophone, magnetic/legacy pressure and two 1 Hz SHT45 frames.
+            self.assertEqual(replay(first)["samples"], 1040)  # Three IMUs, geophone, magnetic/legacy pressure and two 1 Hz SHT45 frames.
             self.assertEqual(replay(first)["saturated"], 50)
 
     def test_export_includes_interactive_events_absent_from_initial_metadata(self):

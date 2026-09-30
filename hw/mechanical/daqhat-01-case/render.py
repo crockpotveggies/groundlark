@@ -13,7 +13,7 @@ stack_rotation=(Matrix.Translation((42.5,-28,0))@Matrix.Rotation(math.radians(co
                 @Matrix.Translation((-42.5,28,0)))
 assert stack_rotation.to_3x3().determinant()>0,'Reflected stack transform'
 parser=argparse.ArgumentParser(description=__doc__)
-parser.add_argument('--view',default='all',choices=('all','assembly-open','assembly-closed','assembly-top','assembly-ports','assembly-power','cover-top','cover-interior'))
+parser.add_argument('--view',default='all',choices=('all','assembly-open','assembly-closed','assembly-top','assembly-ports','assembly-power','assembly-gnss','assembly-gnss-open','cover-top','cover-interior'))
 parser.add_argument('--material',default='teal',choices=('teal','clear-petg'))
 parser.add_argument('--quality',default='preview',choices=('preview','high'))
 parser.add_argument('--device',default='CPU',choices=('CPU','CUDA','OPTIX'))
@@ -98,7 +98,7 @@ base=stl(REF/'base-assembled.stl','base');cover=stl(REF/'cover-assembled.stl','c
 stl(REF/'geophone-jaw-assembled.stl','orange');stl(REF/'cable-clamp-assembled.stl','orange')
 for path in REF.glob('reference-*.stl'):
  name=path.stem[10:]
- if name in ('hat','fpga','geophone_terminals','geophone_header','geophone_plug','fpga_heatsink','j83','u80','c89','sw80','j130','u132','c135','infrasound','pi','gpio_stack') or (name.startswith('pi_') and not name.startswith('pi_spacer_')):continue
+ if name in ('hat','fpga','geophone_terminals','geophone_header','geophone_plug','fpga_heatsink','j83','u80','c89','sw80','j130','u132','c135','infrasound','gnss','gnss_sma','pi','gpio_stack') or (name.startswith('pi_') and not name.startswith('pi_spacer_')):continue
  material='pcb' if name=='pi' else ('can' if name=='geophone' else 'black' if name=='gpio_stack' else 'metal')
  obj=stl(path,material)
  if name=='geophone':obj['round_sides']=True
@@ -220,7 +220,7 @@ def render(name,pos,target,scale):
  scene.render.filepath=str(OUT/'preview'/(Path(name).stem+suffix+'.png'));bpy.ops.render.render(write_still=True)
  inputs=[Path(__file__),Path(__file__).with_name('parameters.json'),Path(__file__).with_name('case.py'),
          Path(__file__).with_name('prepare_preview.py'),ROOT/'sw/ui/assets/daqhat-01.glb',
-         ROOT/'sw/ui/assets/provenance.json',ROOT/'hw/shared/models/trenz/STP-TE0712-03-No Variations.step',
+         ROOT/'hw/shared/models/trenz/STP-TE0712-03-No Variations.step',
          ROOT/'hw/shared/models/raspberrypi4/raspberry-pi-4b.glb',ROOT/'hw/shared/models/raspberrypi4/provenance.json',
          ROOT/'hw/shared/models/raspberrypi4/mesh-provenance.json',Path(__file__).with_name('prepare_components.py'),
          ROOT/'hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb',
@@ -238,12 +238,14 @@ def render(name,pos,target,scale):
      limitations='Clear PETG is an approximate unpolished FDM material. Plug details and lead dressing are illustrative. Physical fit and print transparency remain unqualified.')
  Path(scene.render.filepath).with_suffix('.json').write_text(json.dumps(provenance,indent=2)+'\n')
 cover.location.x=-190
+render('assembly-gnss-open.png',(250,-300,275),(-65,-6,28),390)
 render('assembly-open.png',(-230,300,250),(-65,-4,29),410)
 render('assembly-top.png',(-65,-7,350),(-65,-7,0),380)
 cover.hide_render=True
 render('assembly-ports.png',(-170,205,150),(30,-8,27),210)
 cover.hide_render=False
 cover.location.x=0
+render('assembly-gnss.png',(220,-215,210),(20,-6,32),230)
 render('assembly-power.png',(-175,-240,180),(25,-10,37),235)
 render('assembly-closed.png',(-175,240,205),(42,-6,37),235)
 # Save an interactive assembly model without studio elements/lights/camera.

@@ -36,7 +36,7 @@ PINS = {
  ('J131','4'):'SUP_SWDIO', ('J131','5'):'SUP_NRST',
 }
 for pin in ('3','10','11','12','15'):PINS['U132',pin]='GND'
-NC = [('U131','3'),('U131','4'),('U132','4'),('U132','5'),('U132','6'),('U132','13'),('U133','7'),('J1','18')]
+NC = [('U131','3'),('U131','4'),('U132','4'),('U132','5'),('U132','6'),('U132','13'),('U133','7')]
 NC += [('U130',str(n)) for n in range(1,34) if ('U130',str(n)) not in PINS]
 
 
@@ -75,4 +75,4 @@ def verify_board(board, spec):
     pads={q.GetNumber():q for q in fps['U133'].Pads() if q.GetNumber()}
     assert abs(p.ToMM(pads['11'].GetSize().x)-.84)<.001 and abs(p.ToMM(pads['11'].GetSize().y)-2.4)<.001
     b=budget();assert b['minimum_V']>4.75 and b['maximum_V']<5.25 and b['adc_at_18V']<2.5,b
-    return dict(pin_checks=checks,deliberate_no_connects=len(NC),spare_bcm=[24],budget=b,firmware='configuration placeholder; MCU implementation pending',physical_qualification=False)
+    return dict(pin_checks=checks,deliberate_no_connects=len(NC),spare_bcm=[],budget=b,firmware='configuration placeholder; MCU implementation pending',physical_qualification=False)

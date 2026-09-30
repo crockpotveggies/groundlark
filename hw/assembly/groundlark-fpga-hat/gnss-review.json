@@ -1,0 +1,28 @@
+{
+  "status": "supplier-pad and procurement approval pending",
+  "date_utc": "2026-09-30",
+  "parts": [
+    {
+      "ref": "U21",
+      "manufacturer": "u-blox",
+      "mpn": "MAX-M10S-00B",
+      "catalog_id": "C4153167",
+      "source": "https://jlcpcb.com/partdetail/Ublox-MAX_M10S_00B/C4153167",
+      "manufacturer_evidence": "https://content.u-blox.com/sites/default/files/MAX-M10S_IntegrationManual_UBX-20053088.pdf"
+    },
+    {
+      "ref": "J140",
+      "manufacturer": "HenryTech",
+      "mpn": "HL-SMA-KWE-02",
+      "catalog_id": "C20617216",
+      "manufacturer_evidence": "https://datasheet.lcsc.com/datasheet/pdf/b2f602368ae573f1e0d7be688540576e.pdf?productCode=C20617216"
+    }
+  ],
+  "stock_observation": {
+    "date": "2026-09-30",
+    "method": "catalog/search-index review; not a live inventory reservation",
+    "orderable_quantity": null
+  },
+  "supplier_rotation_approved": false,
+  "manufacturing_release": false
+}

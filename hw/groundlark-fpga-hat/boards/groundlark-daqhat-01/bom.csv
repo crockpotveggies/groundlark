@@ -185,3 +185,17 @@ R140,100k,RC0603FR-07100KL,PWR_R_0603_1608Metric,False,
 J131,SWD / 3V3 REF,FTS-105-01-L-S,SUP_PinHeader_1x05_P1.27mm_Vertical,False,Probe voltage reference only; do not power target through header
 JP130,BENCH RUN,TSW-102-07-G-S,SUP_PinHeader_1x02_P2.54mm_Vertical,False,Open for supervised operation. Shunt is a manual run override with unprogrammed MCU; remove before firmware controls RUN.
 R141,10k,RT0603BRD0710KL,PWR_R_0603_1608Metric,False,Limits MCU pin current if bench shunt is left fitted; remove shunt for automatic power control
+TP90,GND,PCB copper,TestPoint__TestPoint_Pad_D1.5mm,True,Calibration probe pad; no fitted component. Use high impedance probe.
+TP91,GEO_VCM,PCB copper,TestPoint__TestPoint_Pad_D1.5mm,True,Calibration probe pad; no fitted component. Use high impedance probe.
+TP92,GEO_AVDD,PCB copper,TestPoint__TestPoint_Pad_D1.5mm,True,Calibration probe pad; no fitted component. Use high impedance probe.
+TP93,GEO_DRDY_N,PCB copper,TestPoint__TestPoint_Pad_D1.5mm,True,Calibration probe pad; no fitted component. Use high impedance probe.
+U21,MAX-M10S-00B,MAX-M10S-00B,RF_GPS__ublox_MAX,False,u-blox; JLCPCB C4153167. I2C 0x42; PPS BCM24. No backup supply.
+J140,GNSS ANT / 3V3,HL-SMA-KWE-02,GNSS_HL_SMA_KWE_02,False,HenryTech C20617216; female SMA 50 ohm; axis native -X. Active antenna 3.3V <=20mA. Not RP-SMA.
+C146,4.7u,GRM21BR71A475KA73L,Capacitor_SMD__C_0805_2012Metric,False,
+C147,100n,GRM188R71H104KA93D,Capacitor_SMD__C_0603_1608Metric,False,
+C148,47p C0G,GRM1555C1H470JA01D,GNSS_C0402,False,
+L140,27n,LQW15AN27NJ00D,GNSS_L0402,False,27nH wirewound RF choke; u-blox reference family. Verify impedance and RF matching on fabricated stack.
+U140,TPS70933,TPS70933DBVR,SUP_SOT-23-5,False,Dedicated current-limited/thermal-protected 3.3V antenna supply; EN internally enabled. 20mA antenna allocation; no fault telemetry.
+C149,4.7u,GRM21BR71A475KA73L,Capacitor_SMD__C_0805_2012Metric,False,
+C150,4.7u,GRM21BR71A475KA73L,Capacitor_SMD__C_0805_2012Metric,False,
+D140,PESD5V0F1BL,"PESD5V0F1BL,315",GNSS_SOD882,False,Nexperia low-capacitance unidirectional ESD; cathode pin1 to RF/bias.

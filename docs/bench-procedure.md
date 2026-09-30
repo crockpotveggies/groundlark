@@ -1,12 +1,12 @@
 # DAQHAT-01 physical bench procedure and report
 
-**DAQHAT-01 revision:** GNSS is removed; one external Racotech vertical geophone
-uses an ADS122C04 input. See [current circuit, acquisition and validation](geophone-input.md).
-GNSS/PPS/RF details below describe the preceding revision or legacy recordings.
-The current DAQHAT-01 physical bench template is version 3, with geophone
-response/noise/timing and internal FPGA programming/transport checks. Version 2
-reports cannot qualify this revision; create a new report and retain old evidence
-with its original hardware revision.
+Use the [calibration procedure](calibration.md) for PCB probe points, electrical injection, six-face IMU measurements and versioned calibration evidence. A static gain/offset fit does not satisfy the dynamic response or timing checks below.
+
+**DAQHAT-01 GNSS revision:** MAX-M10S-00B uses Pi I2C1 at 0x42 and
+BCM24 (header 18) for PPS. The Racotech/ADS122C04 geophone input remains on
+I2C 0x40 with DRDY on BCM4. GNSS provides a clock reference; sample/filter
+latency and multi-station millisecond alignment require physical measurement.
+See [antenna setup and RF limits](gnss-hardware.md).
 
 This procedure qualifies the assembled Pi/DAQHAT-01/Trenz stack. It is separate from
 preparing a prototype fabrication submission. Physical tests run when an assembly
@@ -120,7 +120,7 @@ Set `connector_cable_cooler_fit=true` only after the intended configuration fits
 ## 3. Geophone, IRQ and acquisition timing
 
 1. Follow [Pi deployment](../sw/pi/deploy/README.md) and capture with `--fifo`.
-   The DAQHAT-01 has no GNSS and rejects `--utc`. Read back ADC configuration;
+   The GNSS revision accepts `--fifo --utc`; capture BCM24 PPS and retain measured timing bounds. Read back ADC configuration;
    retain raw counts, conversion counters and host monotonic timestamps.
 2. Capture ADC DRDY, I²C transactions, IMU IRQ and SPI activity on a common
    logic-analyzer timebase. Measure conversion-to-read delay, delivered rate,

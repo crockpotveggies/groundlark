@@ -35,10 +35,8 @@
   },
   "pi_power": {
     "pin_checks": 76,
-    "deliberate_no_connects": 30,
-    "spare_bcm": [
-      24
-    ],
+    "deliberate_no_connects": 29,
+    "spare_bcm": [],
     "budget": {
       "nominal_V": 5.149377593360996,
       "minimum_V": 4.838470321709411,
@@ -57,15 +55,33 @@
     "firmware": "configuration placeholder; MCU implementation pending",
     "physical_qualification": false
   },
+  "calibration": {
+    "probe_pads": 4,
+    "additional_gpio": 0,
+    "active_injection": false
+  },
+  "gnss": {
+    "pin_checks": 30,
+    "deliberate_no_connects": 10,
+    "pps_bcm": 24,
+    "antenna": "3.3 V active SMA, <=20 mA; 50 ohm connector",
+    "sample_timing_qualified": false,
+    "rf_qualified": false,
+    "receiver_peak_allocation_mA": 100,
+    "antenna_allocation_mA": 20
+  },
   "infrasound": {
     "physical_pin_checks": 6,
     "i2c_address": "0x28",
     "existing_bus_addresses": [
       "0x20",
-      "0x40"
+      "0x40",
+      "0x42"
     ],
     "additional_pi_pins": 0,
     "reserved_bcm": [
+      6,
+      13,
       24
     ],
     "maximum_fast_current_mA": 4.3,
@@ -78,12 +94,12 @@
     "minimum_module_xy_clearance_mm": 19.35,
     "physical_qualification": false
   },
-  "compiled_pin_checks": 896,
+  "compiled_pin_checks": 939,
   "critical_module_pin_checks": 29,
   "drc_violations": 0,
   "unconnected_items": 0,
   "erc_violations": 0,
-  "tracks_and_vias": 11921,
+  "tracks_and_vias": 12704,
   "copper_layers": 6,
   "microvias": 0,
   "fabrication_process": "standard-six-layer-through-via",
@@ -94,7 +110,7 @@
     "J130: 8-18 V protected battery/controller DC input; U130 TI supervisor and 3 A combined Pi/HAT supply; MCU firmware and battery policy qualification pending",
     "Pi4 conceptual stack uses Megastar J1 and two SSQ-120-02-G-D risers; selected cooler, cables and mating need physical fit verification",
     "Loopback bitstream built separately; no physical sensor/rail/thermal/EMI/high-speed GPIO tests performed",
-    "Pi FIFO/IRQ and geophone polling are tested on modeled buses; no GNSS or absolute UTC source on DAQHAT-01",
+    "Pi FIFO/IRQ and geophone polling are tested on modeled buses; GNSS/PPS capture is implemented; sample timing and RF performance require physical qualification",
     "Trenz rendering uses vendor generic revision-03 STEP"
   ]
 }

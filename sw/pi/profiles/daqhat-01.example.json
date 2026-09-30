@@ -23,5 +23,9 @@
       "chip": "/dev/gpiochip0",
       "line": 23
     }
-  ]
+  ],
+  "pps": {
+    "chip": "/dev/gpiochip0",
+    "line": 24
+  }
 }

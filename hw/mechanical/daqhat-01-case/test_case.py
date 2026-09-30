@@ -9,6 +9,16 @@ class CaseTests(unittest.TestCase):
         cls.c=json.loads((HERE/'parameters.json').read_text())
         cls.parts,cls.refs,cls.levels=build(cls.c)
 
+    def test_blocked_sma_access_rejected(self):
+        parts=dict(self.parts);parts['cover']=parts['cover'].union(box(93,-46,42,95,-44,50))
+        with self.assertRaisesRegex(AssertionError,'GNSS SMA plug access'):
+            validate(self.c,parts,self.refs,self.levels)
+
+    def test_sma_on_wrong_side_rejected(self):
+        refs=dict(self.refs);refs['gnss_sma']=refs['gnss_sma'].mirror('YZ')
+        with self.assertRaisesRegex(AssertionError,'SMA handedness'):
+            validate(self.c,self.parts,refs,self.levels)
+
     def test_valid_enclosure(self):
         self.assertEqual(validate(self.c,self.parts,self.refs,self.levels)['collisions'],0)
 

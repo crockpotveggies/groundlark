@@ -2,7 +2,8 @@
 
 For a first experiment, use the [browser workbench walkthrough](sensor-workbench.md).
 This page describes advanced JSON inputs and model limits. The current HAT has
-three IMUs and one geophone input; GNSS/inclinometer controls below are legacy only.
+three IMUs, a geophone input, infrasound and MAX-M10S GNSS. Inclinometer controls
+remain for legacy recordings.
 
 `ideal-v1` replaces the old fixed counter patterns with controllable, time-based
 signals. It runs through the same acquisition, validation, calibration and
@@ -13,8 +14,11 @@ API, and saved scenarios can also run from the command line.
 
 The [demo scenario](../sw/pi/profiles/stimulus-demo.json) combines rocking and
 vibration, magnetic drift/a pulse, a separately rotated remote head, a pressure
-wave/overrange step. It also retains GNSS movement/fix-loss inputs for legacy
-experiments; those do not produce a GNSS stream on the current HAT. To excite
+wave/overrange step, and GNSS movement/fix-loss inputs. The browser Groundlark
+model also emits PPS and receiver timing messages through the production GNSS
+driver. Set `gnss_pps` to false to model missing edges independently of
+`gnss_fix`. CLI simulation emits navigation data; use the browser's board test
+for the full GNSS/PPS timing fixture. To excite
 the geophone, use its browser controls or add `geophone_velocity_m_s` to the JSON.
 
 ```sh

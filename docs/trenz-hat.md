@@ -1,5 +1,7 @@
 # Groundlark DAQHAT-01 — Pi-outline Trenz carrier
 
+Four bare underside calibration pads TP90–TP93 provide ground, geophone VCM, AVDD and DRDY access. No Pi/FPGA pins or active injection circuitry are added. The 140 x 56 mm outline and R3 enclosure remain unchanged; see [calibration](calibration.md).
+
 The front silkscreen carries a 7 mm monochrome Groundlark lark/waveform above
 the model name. It is native KiCad polygon artwork, included in layout rebuilds
 without adding BOM parts. See the [current 3D view](../hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/3d.png).
@@ -9,7 +11,7 @@ switched Pi-driven JTAG replace external expansion connectors and ribbons.
 See the [host-link circuit and bring-up guide](fpga-host-link.md). Pi 4 initially
 uses SPI6; native quad transfers are not supported by its controller.
 
-An external Racotech vertical geophone uses an ADS122C04 input; GNSS is not fitted.
+An external Racotech vertical geophone uses an ADS122C04 input; MAX-M10S-00B GNSS adds a UTC reference through I2C1 and BCM24 PPS. See [GNSS hardware and antenna setup](gnss-hardware.md).
 Its Phoenix 1803280 J90 header opens parallel to the PCB toward the geophone;
 the 1803581 cable plug retains positive, negative and shield pin order.
 See the [geophone circuit and acquisition](geophone-input.md).
@@ -89,8 +91,7 @@ motion sensors. Pi cooler compatibility needs a physical check.
 
 ## Power and interfaces
 
-Reserve 50 mA from each of the Pi header's 5 V and 3.3 V rails for this HAT's
-sensor/interface circuit. These are steady-state allocations; startup charging
+Reserve 75 mA from the Pi header 5 V rail and 150 mA from its 3.3 V rail for this HAT, including GNSS and a 20 mA active antenna. These are steady-state allocations; startup charging
 and the Pi's other loads must also fit the source. See the [power supply guide](power-supplies.md)
 for calculated charge, regulator dissipation and measurement requirements.
 
@@ -136,7 +137,7 @@ No extracted resistance, measured current capacity or thermal signoff is claimed
 
 The Pi header does not supply FPGA_VIN or the module's sequenced FPGA_3V3 rail.
 The switched Pi supply powers sensors and its side of the isolated interfaces; grounds remain
-common. Sensor acquisition can run with SW80 OFF. BCM6/13 serve power management; BCM24 remains spare.
+common. Sensor acquisition can run with SW80 OFF. BCM6/13 serve power management; BCM24 carries GNSS PPS.
 Disarm the FPGA link before switching it off; software must treat a power cycle
 as loss of FPGA state. Startup, shutdown and Pi-off/FPGA-on leakage remain bench
 qualification items.

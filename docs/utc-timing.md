@@ -1,16 +1,16 @@
 # GNSS pulse association and UTC recordings
 
-**DAQHAT-01 revision:** GNSS is removed; one external Racotech vertical geophone
-uses an ADS122C04 input. See [current circuit, acquisition and validation](geophone-input.md).
-GNSS/PPS/RF details below describe the preceding revision or legacy recordings.
-The current physical bench template is version 2, with geophone response/noise/timing
-checks replacing the GNSS UTC check.
+**DAQHAT-01 GNSS revision:** MAX-M10S-00B uses Pi I2C1 at 0x42 and
+BCM24 (header 18) for PPS. The Racotech/ADS122C04 geophone input remains on
+I2C 0x40 with DRDY on BCM4. GNSS provides a clock reference; sample/filter
+latency and multi-station millisecond alignment require physical measurement.
+See [antenna setup and RF limits](gnss-hardware.md).
 
 The Pi can now capture GNSS timepulse configuration, TIM-TP, NAV-TIMEUTC and PPS
 edges with `live --fifo --utc`. Correlation is an **offline second pass** which
 creates a new recording. The original counts, acquisition times, arrival order,
 qualities and gaps are preserved. It neither sets the Pi clock nor runs a time
-server. No PCB change is required for this software path.
+server. Use the GNSS revision of the PCB and its matching profile.
 
 ## Capture and correlate
 

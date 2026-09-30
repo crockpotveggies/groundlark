@@ -165,6 +165,9 @@ def build(c):
     # Rear, bottom-open slot admits a <=14 mm DC overmould and allows cover
     # removal while connected. Jack is recessed 7.2 mm from the inner wall.
     cover=cover.cut(box(-18,54,floor-.1,-2,y1+1,hat_top+14.5))
+    # Recessed SMA coupling nut reaches the nearest (+X) wall. Bottom-open
+    # access allows the cover to lift while the antenna remains connected.
+    cover=cover.cut(box(80,32.2,floor-.1,x1+1,48.2,hat_top+13))
     # Separate, keyed two-pole battery plug; bottom-open for cover removal.
     cover=cover.cut(box(-40,52,floor-.1,-24,y1+1,hat_top+13))
     for xx in (-40,-24):base=base.cut(box(xx-1,57,-.1,xx+1,61,floor+.1))
@@ -207,6 +210,8 @@ def build(c):
       'pi_heatsink':box(22,19,pi_top,40,37,pi_top+13.3),
       'fpga_heatsink':box(44,18,hat_top+12.16,70,40,hat_top+24.16),
       'gpio_stack':box(6.8,1.025,pi_top,58.2,5.975,hat_bottom),
+      'gnss':box(8.65,7.45,hat_bottom-2.5,18.35,17.55,hat_bottom),
+      'gnss_sma':box(1,12.8,hat_top,7,18.8,hat_top+9.5).union(hole_x(-7.5,15.8,hat_top+6.35,3.175,8.5)),
       'j83':box(90.5,.2,hat_top,99.5,14.6,hat_top+11),
       'j130':box(113.39,3.5,hat_top,122.8,12.7,hat_top+7.25),
       'u132':box(121.5,25.25,hat_top,126.5,30.75,hat_top+4),

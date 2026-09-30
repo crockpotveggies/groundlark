@@ -50,6 +50,10 @@ from fpga_power_checks import verify_board
 gpio_report['fpga_power']=verify_board(board,spec)
 from pi_power_checks import verify_board as verify_pi_power
 gpio_report['pi_power']=verify_pi_power(board,spec)
+from calibration_checks import verify_board as verify_calibration
+gpio_report['calibration']=verify_calibration(board)
+from gnss_checks import verify_board as verify_gnss
+gpio_report['gnss']=verify_gnss(board)
 assert len({'PI_5V','PI_3V3','EXT_12V','FPGA_VIN','FPGA_3V3'} & set(bp.values()))==5
 # Shared sensor circuitry must preserve A2 pad connectivity exactly.
 base=pins(p.LoadBoard(str(ROOT/'hw/groundlark-coldfoot-hat/boards/groundlark-hat/groundlark-hat.kicad_pcb')))
@@ -68,7 +72,7 @@ assert fps['C24'].IsFlipped(), 'DLVR bypass must clear the tall front body'
 assert {ref for ref,fp in fps.items() if fp.GetValue()=='LSM6DSOTR'}=={'U11','U12','U13'}, 'Expected exactly three XYZ IMUs'
 assert not {'U14','C18','C19','R14'} & fps.keys(), 'Fourth IMU circuitry remains'
 assert bp[('U41','8')]==bp[('U41','9')]==bp[('U42','17')]=='GND', 'Unused buffer inputs must not float'
-for key in [('J1','18'),('U41','16'),('U42','7'),('U41','15')]:
+for key in [('U41','16'),('U42','7'),('U41','15')]:
     net=bp[key]
     assert sum(n==net for n in bp.values())==1, ('Removed sensor pin must be NC',key)
 assert not {'U20','C20','C21','C22','C23','R20'} & fps.keys(), 'Inclinometer circuitry remains'
@@ -118,7 +122,7 @@ report['limits'] = [
  'J130: 8-18 V protected battery/controller DC input; U130 TI supervisor and 3 A combined Pi/HAT supply; MCU firmware and battery policy qualification pending',
  'Pi4 conceptual stack uses Megastar J1 and two SSQ-120-02-G-D risers; selected cooler, cables and mating need physical fit verification',
  'Loopback bitstream built separately; no physical sensor/rail/thermal/EMI/high-speed GPIO tests performed',
- 'Pi FIFO/IRQ and geophone polling are tested on modeled buses; no GNSS or absolute UTC source on DAQHAT-01',
+ 'Pi FIFO/IRQ and geophone polling are tested on modeled buses; GNSS/PPS capture is implemented; sample timing and RF performance require physical qualification',
  'Trenz rendering uses vendor generic revision-03 STEP']
 (F/'validation.json').write_text(json.dumps(report,indent=2));print(json.dumps(report,indent=2))
 assert not drc['violations'] and not drc['unconnected_items'] and not er

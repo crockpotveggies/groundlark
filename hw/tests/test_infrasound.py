@@ -7,7 +7,7 @@ from infrasound_checks import PINS, MPN, verify
 
 class InfrasoundTests(unittest.TestCase):
     def setUp(self):
-        self.pins={**PINS, **{('J1',str(n)):f'NC_{n}' for n in (18,31,33)}}
+        self.pins={**PINS, ('J1','18'):'GNSS_PPS',('J1','31'):'PI_SHUTDOWN_N',('J1','33'):'PI_HALTED'}
         self.pads={'1':(1.5,26), '2':(1.5,28.54), '3':(1.5,31.08), '4':(1.5,33.62)}
 
     def check(self, **changes):
@@ -30,5 +30,5 @@ class InfrasoundTests(unittest.TestCase):
         with self.assertRaises(ValueError):self.check(dnp=True)
 
     def test_rejects_consumed_power_control_pin(self):
-        for pin in ('18',):
+        for pin in ('18','31','33'):
             with self.assertRaises(ValueError):self.check(pins={**self.pins,('J1',pin):'I2C_SDA'})

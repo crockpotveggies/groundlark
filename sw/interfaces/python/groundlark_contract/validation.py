@@ -147,7 +147,7 @@ def validate_batch(batch):
             require(bool(batch.calibration_id) and sample.quality in (1, 3), "calibration identity/usable raw data required")
             allowed = {"imu": {"acceleration_m_s2", "angular_rate_rad_s", "temperature_k"},
                        "tilt": {"acceleration_m_s2", "angle_rad", "temperature_k"},
-                       "magnetic": {"magnetic_t"}, "pressure": {"pressure_pa", "temperature_k"}, "gnss": set(), "geophone": set(), "gas": set(), "particulate": set(), "climate": set(), "barometer": set()}[raw]
+                       "magnetic": {"magnetic_t"}, "pressure": {"pressure_pa", "temperature_k"}, "gnss": set(), "geophone": {"geophone_input_v"}, "gas": set(), "particulate": set(), "climate": set(), "barometer": set()}[raw]
             fields = sample.calibrated.ListFields()
             require(bool(fields), "empty calibrated measurement")
             for field, value in fields:

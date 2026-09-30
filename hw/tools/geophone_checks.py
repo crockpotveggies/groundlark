@@ -46,8 +46,6 @@ def verify_connector(pads, orientation, footprint):
 def verify(pins, orientations):
     for key, net in PINS.items():
         if pins.get(key) != net: raise ValueError(f'geophone physical pin mismatch: {key}')
-    if any('GNSS' in net for net in pins.values()) or any(ref in ('U21','J2') for ref,_ in pins):
-        raise ValueError('GNSS remains on current DAQHAT-01')
     for ref in ('U11','U12','U13'):
         if orientations.get(ref) != (0,False):
             raise ValueError(f'{ref}: package axes changed; explicit software remapping required')

@@ -38,7 +38,7 @@ class SkylarkTests(unittest.TestCase):
         with self.assertRaises(ValueError):a.reset(board='coldfoot')
         self.assertEqual(a.board,'skylark');self.assertEqual(b.now,0)
         a.reset(board='burrowlark');self.assertEqual(set(a.sensor_ids),{7,17})
-        self.assertEqual(set(b.sensor_ids),{1,2,3,8,9})
+        self.assertEqual(set(b.sensor_ids),{1,2,3,6,8,9})
 
     def test_reject_corrupt_raw_frames_and_gas_overflow(self):
         e=Workbench(board='skylark');e.running=True;e.advance(100)

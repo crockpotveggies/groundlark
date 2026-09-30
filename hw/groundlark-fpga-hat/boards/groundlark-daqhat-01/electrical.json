@@ -92,7 +92,7 @@
         "15": "PI_IMU2_INT",
         "16": "PI_IMU3_INT",
         "17": "PI_3V3",
-        "18": null,
+        "18": "GNSS_PPS",
         "19": "PI_SPI_MOSI",
         "20": "GND",
         "21": "PI_SPI_MISO",
@@ -4651,6 +4651,334 @@
       "pins": {
         "1": "SUP_RUN_DRIVE",
         "2": "SUP_RUN"
+      }
+    },
+    {
+      "ref": "TP90",
+      "value": "GND",
+      "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+      "names": {},
+      "xy": [
+        6.6,
+        47.0
+      ],
+      "section": "03-geophone-page-02",
+      "angle": 0,
+      "mpn": "PCB copper",
+      "note": "Calibration probe pad; no fitted component. Use high impedance probe.",
+      "dnp": true,
+      "local_fp": "TestPoint__TestPoint_Pad_D1.5mm",
+      "side": "back",
+      "pins": {
+        "1": "GND"
+      }
+    },
+    {
+      "ref": "TP91",
+      "value": "GEO_VCM",
+      "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+      "names": {},
+      "xy": [
+        4.05,
+        47.0
+      ],
+      "section": "03-geophone-page-02",
+      "angle": 0,
+      "mpn": "PCB copper",
+      "note": "Calibration probe pad; no fitted component. Use high impedance probe.",
+      "dnp": true,
+      "local_fp": "TestPoint__TestPoint_Pad_D1.5mm",
+      "side": "back",
+      "pins": {
+        "1": "GEO_VCM"
+      }
+    },
+    {
+      "ref": "TP92",
+      "value": "GEO_AVDD",
+      "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+      "names": {},
+      "xy": [
+        7.3,
+        40.65
+      ],
+      "section": "03-geophone-page-02",
+      "angle": 0,
+      "mpn": "PCB copper",
+      "note": "Calibration probe pad; no fitted component. Use high impedance probe.",
+      "dnp": true,
+      "local_fp": "TestPoint__TestPoint_Pad_D1.5mm",
+      "side": "back",
+      "pins": {
+        "1": "GEO_AVDD"
+      }
+    },
+    {
+      "ref": "TP93",
+      "value": "GEO_DRDY_N",
+      "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+      "names": {},
+      "xy": [
+        9.175,
+        38.5
+      ],
+      "section": "03-geophone-page-02",
+      "angle": 0,
+      "mpn": "PCB copper",
+      "note": "Calibration probe pad; no fitted component. Use high impedance probe.",
+      "dnp": true,
+      "local_fp": "TestPoint__TestPoint_Pad_D1.5mm",
+      "side": "back",
+      "pins": {
+        "1": "GEO_DRDY_N"
+      }
+    },
+    {
+      "ref": "U21",
+      "value": "MAX-M10S-00B",
+      "mpn": "MAX-M10S-00B",
+      "footprint": "Groundlark:RF_GPS__ublox_MAX",
+      "local_fp": "RF_GPS__ublox_MAX",
+      "xy": [
+        13.5,
+        12.5
+      ],
+      "angle": 180,
+      "section": "04-gnss-page-01",
+      "names": {
+        "1": "GND",
+        "2": "TXD_NC",
+        "3": "RXD_NC",
+        "4": "TIMEPULSE",
+        "5": "EXTINT",
+        "6": "V_BCKP",
+        "7": "VCC_IO",
+        "8": "VCC",
+        "9": "RESET_N",
+        "10": "GND",
+        "11": "RF_IN",
+        "12": "GND",
+        "13": "LNA_EN",
+        "14": "VCC_RF",
+        "15": "VIO_SEL",
+        "16": "SDA",
+        "17": "SCL",
+        "18": "SAFEBOOT_N"
+      },
+      "side": "back",
+      "dnp": false,
+      "note": "u-blox; JLCPCB C4153167. I2C 0x42; PPS BCM24. No backup supply.",
+      "pins": {
+        "1": "GND",
+        "2": null,
+        "3": null,
+        "4": "GNSS_PPS",
+        "5": "GND",
+        "6": null,
+        "7": "PI_3V3",
+        "8": "PI_3V3",
+        "9": null,
+        "10": "GND",
+        "11": "GNSS_RF",
+        "12": "GND",
+        "13": null,
+        "14": null,
+        "15": null,
+        "16": "PI_I2C_SDA",
+        "17": "PI_I2C_SCL",
+        "18": null
+      }
+    },
+    {
+      "ref": "J140",
+      "value": "GNSS ANT / 3V3",
+      "mpn": "HL-SMA-KWE-02",
+      "footprint": "Groundlark:GNSS_HL_SMA_KWE_02",
+      "local_fp": "GNSS_HL_SMA_KWE_02",
+      "xy": [
+        4,
+        15.8
+      ],
+      "angle": 0,
+      "section": "04-gnss-page-01",
+      "names": {},
+      "side": "front",
+      "dnp": false,
+      "note": "HenryTech C20617216; female SMA 50 ohm; axis native -X. Active antenna 3.3V <=20mA. Not RP-SMA.",
+      "pins": {
+        "1": "GNSS_ANT",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "C146",
+      "value": "4.7u",
+      "mpn": "GRM21BR71A475KA73L",
+      "footprint": "Groundlark:Capacitor_SMD__C_0805_2012Metric",
+      "local_fp": "Capacitor_SMD__C_0805_2012Metric",
+      "xy": [
+        21.5,
+        17.4
+      ],
+      "angle": 0,
+      "section": "04-gnss-page-01",
+      "names": {},
+      "side": "back",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "PI_3V3",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "C147",
+      "value": "100n",
+      "mpn": "GRM188R71H104KA93D",
+      "footprint": "Groundlark:Capacitor_SMD__C_0603_1608Metric",
+      "local_fp": "Capacitor_SMD__C_0603_1608Metric",
+      "xy": [
+        25,
+        17.4
+      ],
+      "angle": 0,
+      "section": "04-gnss-page-01",
+      "names": {},
+      "side": "back",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "PI_3V3",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "C148",
+      "value": "47p C0G",
+      "mpn": "GRM1555C1H470JA01D",
+      "footprint": "Groundlark:GNSS_C0402",
+      "local_fp": "GNSS_C0402",
+      "xy": [
+        6.4,
+        15.8
+      ],
+      "angle": 0,
+      "section": "04-gnss-page-01",
+      "names": {},
+      "side": "back",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "GNSS_ANT",
+        "2": "GNSS_RF"
+      }
+    },
+    {
+      "ref": "L140",
+      "value": "27n",
+      "mpn": "LQW15AN27NJ00D",
+      "footprint": "Groundlark:GNSS_L0402",
+      "local_fp": "GNSS_L0402",
+      "xy": [
+        4,
+        11.5
+      ],
+      "angle": 270,
+      "section": "04-gnss-page-01",
+      "names": {},
+      "side": "front",
+      "dnp": false,
+      "note": "27nH wirewound RF choke; u-blox reference family. Verify impedance and RF matching on fabricated stack.",
+      "pins": {
+        "1": "GNSS_BIAS",
+        "2": "GNSS_ANT"
+      }
+    },
+    {
+      "ref": "U140",
+      "value": "TPS70933",
+      "mpn": "TPS70933DBVR",
+      "footprint": "Groundlark:SUP_SOT-23-5",
+      "local_fp": "SUP_SOT-23-5",
+      "xy": [
+        24,
+        34
+      ],
+      "angle": 0,
+      "section": "04-gnss-page-01",
+      "names": {},
+      "side": "front",
+      "dnp": false,
+      "note": "Dedicated current-limited/thermal-protected 3.3V antenna supply; EN internally enabled. 20mA antenna allocation; no fault telemetry.",
+      "pins": {
+        "1": "PI_5V",
+        "2": "GND",
+        "3": null,
+        "4": null,
+        "5": "GNSS_BIAS"
+      }
+    },
+    {
+      "ref": "C149",
+      "value": "4.7u",
+      "mpn": "GRM21BR71A475KA73L",
+      "footprint": "Groundlark:Capacitor_SMD__C_0805_2012Metric",
+      "local_fp": "Capacitor_SMD__C_0805_2012Metric",
+      "xy": [
+        20,
+        34
+      ],
+      "angle": 0,
+      "section": "04-gnss-page-01",
+      "names": {},
+      "side": "front",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "PI_5V",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "C150",
+      "value": "4.7u",
+      "mpn": "GRM21BR71A475KA73L",
+      "footprint": "Groundlark:Capacitor_SMD__C_0805_2012Metric",
+      "local_fp": "Capacitor_SMD__C_0805_2012Metric",
+      "xy": [
+        28,
+        34
+      ],
+      "angle": 0,
+      "section": "04-gnss-page-01",
+      "names": {},
+      "side": "front",
+      "dnp": false,
+      "note": "",
+      "pins": {
+        "1": "GNSS_BIAS",
+        "2": "GND"
+      }
+    },
+    {
+      "ref": "D140",
+      "value": "PESD5V0F1BL",
+      "mpn": "PESD5V0F1BL,315",
+      "footprint": "Groundlark:GNSS_SOD882",
+      "local_fp": "GNSS_SOD882",
+      "xy": [
+        4,
+        21.2
+      ],
+      "angle": 270,
+      "section": "04-gnss-page-01",
+      "names": {},
+      "side": "front",
+      "dnp": false,
+      "note": "Nexperia low-capacitance unidirectional ESD; cathode pin1 to RF/bias.",
+      "pins": {
+        "1": "GNSS_ANT",
+        "2": "GND"
       }
     }
   ]

@@ -61,5 +61,5 @@ def defaults(remote=False, legacy_gnss=False):
                      pressure_max_pa=250, pressure_part_number="SIMULATED-DLVR"), dict(CLIMATE_SETTINGS)]
     if not legacy_gnss:
         from .geophone import SETTINGS
-        entries = entries[:3] + [dict(SETTINGS)]
+        entries = entries[:3] + [dict(SETTINGS), dict(sensor_id=6, enabled=True, period_ns=1_000_000_000)]
     return entries

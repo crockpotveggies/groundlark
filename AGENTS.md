@@ -9,10 +9,10 @@ External J84-J89 and their ribbons/guide are removed. This supersedes the
 155-breakout requirement. Keep the circuit, routed CAD, model and validation evidence synchronized. Preserve vendor GPIO/ground
 fixtures and audit all module contacts, including deliberate no-connects, when
 implementing the revision. Keep three XYZ IMUs U11-U13, geophone input and the 140 x 56 mm outline with its dedicated FPGA power extension.
-U14/C18/C19/R14 are removed; sensor IDs 4/5 are legacy-only. U20/C20-C23/R20 are removed. Pi BCM6/13 serve power management; BCM24 is spare.
+U14/C18/C19/R14 are removed; sensor IDs 4/5 are legacy-only. U20/C20-C23/R20 are removed. Pi BCM6/13 serve power management; BCM24 is GNSS PPS.
 Unused U41.8/U41.9 and U42.17 inputs must be grounded; U41.15/U41.16/U42.7 outputs are NC.
 DAQHAT-01 uses a conventional six-layer stock FR-4 stack with through-vias only and a complete native SES
-routing snapshot. Fabrication approval is owned by the user. DAQHAT-01 removes GNSS and adds one Racotech/ADS122C04 input. Preserve its
+routing snapshot. Fabrication approval is owned by the user. DAQHAT-01 has MAX-M10S-00B GNSS on Pi I2C1 (0x42), PPS on BCM24, a native -X SMA antenna exit, and one Racotech/ADS122C04 input. Preserve its
 independent pin/axis checks, GPIO riser assembly, and explicit
 power envelope in docs/trenz-hat.md. Geophone noise/response measurements, actual stack
 fit and GPIO signal integrity still need qualification. Ethernet is not exposed.
@@ -57,7 +57,7 @@ authoring inputs. Do not silently reroute or rewrite checked CAD during tests.
 
 Sensor acquisition uses Pi drivers/runtime software. The separate TI MSPM0L1105
 power supervisor has configuration placeholders; its target firmware remains pending. The DLVR-F50D infrasound sensor U23/C24 is on DAQHAT-01 I2C1 at 0x28;
-BCM6 requests Pi shutdown and BCM13 acknowledges halt; BCM24 remains spare. Burrowlark U3/C5 are removed.
+BCM6 requests Pi shutdown and BCM13 acknowledges halt; BCM24 carries GNSS PPS. Burrowlark U3/C5 are removed.
 The remote USB magnetometer sensor board is
 named Burrowlark, model DAQUSB-01. Firmware belongs to that USB sensor head.
 The Trenz variant needs an FPGA bitstream. Pi acquisition/simulation and bounded
@@ -92,8 +92,7 @@ qualification and Burrowlark MCU firmware remain pending. Preserve Skylark raw W
 
 The optional live FIFO path pairs IMU tags by slot counter, preserves buffered
 samples and rejects overrun/parity/timestamp faults. Retain unknown loss and timing
-uncertainty semantics. `--utc` is rejected by current DAQHAT-01 live acquisition; legacy GNSS timing and PPS
-evidence remain supported for recorded-data correlation. Offline correlation requires a recording-bound timing policy, never
+uncertainty semantics. `live --fifo --utc` captures MAX-M10S timing and BCM24 PPS evidence; physical sample-time bounds remain unqualified. Recorded timing evidence supports offline correlation. Offline correlation requires a recording-bound timing policy, never
 extrapolates across invalid intervals, and preserves raw data. See docs/utc-timing.md
 and docs/bench-procedure.md; missing measurements/limits must never pass a bench
 report. Pi deployment and measurement tooling live under sw/pi/deploy and sw/tools.

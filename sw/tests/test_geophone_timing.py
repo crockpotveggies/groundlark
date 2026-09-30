@@ -109,7 +109,7 @@ class GeophoneTimingTests(unittest.TestCase):
         for hz in (100_000,400_000):
             for oscillator in (.98,1,1.02):
                 row=exercise(hz,oscillator);rows.append(row)
-                self.assertEqual(row['other_sensor_ids'],[1,2,3,9])
+                self.assertEqual(row['other_sensor_ids'],[1,2,3,6,9])
                 self.assertGreater(row['valid'],300)
                 self.assertEqual(row['ambiguous'],0)
                 self.assertEqual(row['recoveries'],0)

@@ -1,0 +1,8 @@
+# Bare copper measurement pads: no additional GPIO or active injection path.
+#pragma experiment("TRAITS")
+import is_atomic_part
+import has_designator_prefix
+component CAL_TP:
+    trait is_atomic_part<manufacturer="PCB", partnumber="Calibration test pad", footprint="../../shared/elec/TestPoint__TestPoint_Pad_D1.5mm.kicad_mod", symbol="../../shared/elec/symbols/CAL_TP.kicad_sym">
+    trait has_designator_prefix<prefix="TP">
+    signal p1 ~ pin 1

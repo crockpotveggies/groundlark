@@ -1,15 +1,20 @@
 {
   "kicad": "9.0.9",
   "sha256": {
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb": "0434eee91432fc5e35a01c40805387454fcfa30154485d54b435439d120c07d9",
-    "hw/groundlark-fpga-hat/layout/placement.json": "be501cb273bf5803fb9da5a098d1ea0dcc5e5a8ce35cb3abfdded6188cf611ca",
-    "sw/ui/assets/daqhat-01.glb": "eecc5f97100dbdcba2ddbc70b4de825a4ea3bdf7d2afb7745bc91c8a6c334118",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb": "ea7fea2524d2612f5d8b17a0dfb1ef6ff84d383784a0dbc8371181f6afca0b76",
+    "hw/groundlark-fpga-hat/layout/placement.json": "85f341e1b77414a6a4eb48020bffa80ba7fbd9c3f505afc208f1199a27bd1db7",
+    "sw/ui/assets/daqhat-01.glb": "de8faa876a77d288457a4708c9355694cdc2e354112d4da28df02e3db02cf8d9",
     "sw/ui/geophone_scene.py": "65ef0de9df78e2b7c1c4697367f5a5b81486dd95f2fe4f01d9fa6f35b8dd461a",
     "hw/burrowlark-usb/layout/placement.json": "049a0cdae7eab105f36448b234f84afc9cfedbed4c04333aad7730a901e1cc7a",
-    "sw/ui/main.py": "ed322713c9e36d5fc659382cd91812c20b844f2b9101f0bc765f64496e8ab0a6",
+    "sw/ui/main.py": "1b6a9204b33d126d19c12088fbac28b085b052b7075fbdacc103765562fae33e",
     "hw/shared/models/DLVR_E1BS.wrl": "cef03553881ccfc39cc5810789a92d578c0f9d8a636b5de29cd719bada7c4dad",
     "hw/shared/models/PJ_102AH_envelope.wrl": "4ee72a8ea9a1d0d7c4afc079819353c87c9e6111557c5727d821b4f53b711c94",
-    "hw/shared/models/TPSM53603_envelope.wrl": "eec66b8373d0bce441527b2ec6ce28c3c2fcbe6ef56a7f0fad3883eb48f30604"
+    "hw/shared/models/TPSM53603_envelope.wrl": "eec66b8373d0bce441527b2ec6ce28c3c2fcbe6ef56a7f0fad3883eb48f30604",
+    "hw/shared/models/HL_SMA_KWE_02.step": "b18f2a60e4e25e77c107b980174833ed797862ffed13c80aa63308e2b27086b1",
+    "hw/shared/models/MAX_M10S_envelope.step": "fb429633d752229d4ccc5102222635e8f39344ec0800070b13eefb6b7e76faf1",
+    "hw/tools/gnss_model.py": "ea896b8d2cc842f850764704ec253bbfcdccf26920b368a6103345208ba15d61"
   },
-  "metadata_review": "140 x 56 mm supervised Pi supply and separate FPGA input. J130 accepts protected 8-18 V DC; U130 MSPM0L1105 controls U132/U133. Native KiCad 9.0.9 GLB; local VRML parts use explicit display envelopes. Physical fit, thermal behavior and battery policy remain unqualified."
+  "metadata_review": "140 x 56 mm supervised Pi supply and separate FPGA input. J130 accepts protected 8-18 V DC; U130 MSPM0L1105 controls U132/U133. Native KiCad 9.0.9 GLB; local VRML parts use explicit display envelopes. Physical fit, thermal behavior and battery policy remain unqualified.",
+  "calibration_access": "Four underside passive probe pads TP90-TP93; outline and assembly height unchanged. Native PCB fit checks pass; physical calibration pending.",
+  "gnss": "MAX-M10S underside package envelope and drawing-based HL-SMA-KWE-02 STEP; native -X antenna. Timing evidence is modeled; physical RF/timing/fit qualification pending."
 }

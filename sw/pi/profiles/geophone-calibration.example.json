@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "device_id": "GL-HAT-001",
+  "sensor_id": 9,
+  "provenance": "REPLACE: operator, calibration date and reference certificate",
+  "conditions": "REPLACE: board/sensor serials, temperature, fixture and reference uncertainty coverage",
+  "fields": {
+    "geophone_input_v": {
+      "max_stddev_counts": [
+        null
+      ],
+      "max_residual_si": [
+        null
+      ],
+      "observations": [
+        {
+          "recording": "negative.ssrec",
+          "first_sequence": null,
+          "last_sequence": null,
+          "reference_si": [
+            null
+          ],
+          "reference_uncertainty_si": [
+            null
+          ]
+        },
+        {
+          "recording": "zero.ssrec",
+          "first_sequence": null,
+          "last_sequence": null,
+          "reference_si": [
+            null
+          ],
+          "reference_uncertainty_si": [
+            null
+          ]
+        },
+        {
+          "recording": "positive.ssrec",
+          "first_sequence": null,
+          "last_sequence": null,
+          "reference_si": [
+            null
+          ],
+          "reference_uncertainty_si": [
+            null
+          ]
+        }
+      ]
+    }
+  }
+}

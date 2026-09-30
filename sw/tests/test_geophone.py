@@ -83,7 +83,7 @@ class GeophoneTests(unittest.TestCase):
         with self.assertRaises(ValueError):validate(m)
         m.batch.samples[0].time.domain=1;m.batch.samples[0].geophone.counts=8388608
         with self.assertRaises(ValueError):validate(m)
-        self.assertEqual([s['sensor_id'] for s in defaults()],[1,2,3,9])
+        self.assertEqual([s['sensor_id'] for s in defaults()],[1,2,3,9,6])
         self.assertEqual(defaults(legacy_gnss=True)[-1]['sensor_id'],6)
 
     def test_duplicate_polls_cannot_hide_a_full_counter_rollover(self):

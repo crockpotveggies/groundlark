@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "device_id": "GL-HAT-001",
+  "sensor_id": 1,
+  "provenance": "REPLACE: operator, calibration date and reference certificate",
+  "conditions": "REPLACE: board/sensor serials, temperature, fixture and reference uncertainty coverage",
+  "fields": {
+    "acceleration_m_s2": {
+      "max_stddev_counts": [
+        null,
+        null,
+        null
+      ],
+      "max_residual_si": [
+        null,
+        null,
+        null
+      ],
+      "observations": [
+        {
+          "recording": "plus-x.ssrec",
+          "first_sequence": null,
+          "last_sequence": null,
+          "reference_si": [
+            null,
+            null,
+            null
+          ],
+          "reference_uncertainty_si": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "recording": "minus-x.ssrec",
+          "first_sequence": null,
+          "last_sequence": null,
+          "reference_si": [
+            null,
+            null,
+            null
+          ],
+          "reference_uncertainty_si": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "recording": "plus-y.ssrec",
+          "first_sequence": null,
+          "last_sequence": null,
+          "reference_si": [
+            null,
+            null,
+            null
+          ],
+          "reference_uncertainty_si": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "recording": "minus-y.ssrec",
+          "first_sequence": null,
+          "last_sequence": null,
+          "reference_si": [
+            null,
+            null,
+            null
+          ],
+          "reference_uncertainty_si": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "recording": "plus-z.ssrec",
+          "first_sequence": null,
+          "last_sequence": null,
+          "reference_si": [
+            null,
+            null,
+            null
+          ],
+          "reference_uncertainty_si": [
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "recording": "minus-z.ssrec",
+          "first_sequence": null,
+          "last_sequence": null,
+          "reference_si": [
+            null,
+            null,
+            null
+          ],
+          "reference_uncertainty_si": [
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    }
+  }
+}

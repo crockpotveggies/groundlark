@@ -1,3 +1,8 @@
+from "gnss_parts.ato" import GNSS_SMA
+from "gnss_parts.ato" import GNSS_47P
+from "gnss_parts.ato" import GNSS_27N
+from "gnss_parts.ato" import GNSS_ESD
+from "calibration_parts.ato" import CAL_TP
 from "supervisor_parts.ato" import SUP_FUSE
 from "supervisor_parts.ato" import SUP_SWITCH
 from "supervisor_parts.ato" import SUP_INPUT
@@ -253,7 +258,7 @@ module TrenzHat:
     j1.p15 ~ PI_IMU2_INT
     j1.p16 ~ PI_IMU3_INT
     j1.p17 ~ PI_3V3
-    # J1.18: spare BCM24, intentionally unconnected
+    j1.p18 ~ GNSS_PPS
     j1.p19 ~ PI_SPI_MOSI
     j1.p20 ~ GND
     j1.p21 ~ PI_SPI_MISO
@@ -1575,3 +1580,106 @@ module TrenzHat:
     trait r141 has_designator<designator="R141">
     r141.p1 ~ SUP_RUN_DRIVE
     r141.p2 ~ SUP_RUN
+
+    # Bottom-side bench probe; enclosure removed for calibration.
+    tp90 = new CAL_TP
+    trait tp90 has_designator<designator="TP90">
+    tp90.p1 ~ GND
+
+    # Bottom-side bench probe; enclosure removed for calibration.
+    tp91 = new CAL_TP
+    trait tp91 has_designator<designator="TP91">
+    tp91.p1 ~ GEO_VCM
+
+    # Bottom-side bench probe; enclosure removed for calibration.
+    tp92 = new CAL_TP
+    trait tp92 has_designator<designator="TP92">
+    tp92.p1 ~ GEO_AVDD
+
+    # Bottom-side bench probe; enclosure removed for calibration.
+    tp93 = new CAL_TP
+    trait tp93 has_designator<designator="TP93">
+    tp93.p1 ~ GEO_DRDY_N
+
+    signal GNSS_PPS
+    trait GNSS_PPS has_net_name_suggestion<name="GNSS_PPS", level="EXPECTED">
+
+    signal GNSS_RF
+    trait GNSS_RF has_net_name_suggestion<name="GNSS_RF", level="EXPECTED">
+
+    signal GNSS_ANT
+    trait GNSS_ANT has_net_name_suggestion<name="GNSS_ANT", level="EXPECTED">
+
+    signal GNSS_BIAS
+    trait GNSS_BIAS has_net_name_suggestion<name="GNSS_BIAS", level="EXPECTED">
+
+    # MAX-M10S-00B: u-blox; JLCPCB C4153167. I2C 0x42; PPS BCM24. No backup supply.
+    u21 = new P_12
+    trait u21 has_designator<designator="U21">
+    u21.p1 ~ GND
+    u21.p4 ~ GNSS_PPS
+    u21.p5 ~ GND
+    u21.p7 ~ PI_3V3
+    u21.p8 ~ PI_3V3
+    u21.p10 ~ GND
+    u21.p11 ~ GNSS_RF
+    u21.p12 ~ GND
+    u21.p16 ~ PI_I2C_SDA
+    u21.p17 ~ PI_I2C_SCL
+
+    # GNSS ANT / 3V3: HenryTech C20617216; female SMA 50 ohm; axis native -X. Active antenna 3.3V <=20mA. Not RP-SMA.
+    j140 = new GNSS_SMA
+    trait j140 has_designator<designator="J140">
+    j140.p1 ~ GNSS_ANT
+    j140.p2 ~ GND
+
+    # 4.7u:
+    c146 = new P_13
+    trait c146 has_designator<designator="C146">
+    c146.p1 ~ PI_3V3
+    c146.p2 ~ GND
+
+    # 100n:
+    c147 = new P_6
+    trait c147 has_designator<designator="C147">
+    c147.p1 ~ PI_3V3
+    c147.p2 ~ GND
+
+    # 47p C0G:
+    c148 = new GNSS_47P
+    trait c148 has_designator<designator="C148">
+    c148.p1 ~ GNSS_ANT
+    c148.p2 ~ GNSS_RF
+
+    # 27n: 27nH wirewound RF choke; u-blox reference family. Verify impedance and RF matching on fabricated stack.
+    l140 = new GNSS_27N
+    trait l140 has_designator<designator="L140">
+    l140.p1 ~ GNSS_BIAS
+    l140.p2 ~ GNSS_ANT
+
+    # TPS70933: Dedicated current-limited/thermal-protected 3.3V antenna supply; EN internally enabled. 20mA antenna allocation; no fault telemetry.
+    u140 = new SUP_LDO
+    trait u140 has_designator<designator="U140">
+    u140.p1 ~ PI_5V
+    u140.p2 ~ GND
+    u140.p5 ~ GNSS_BIAS
+
+    # 4.7u:
+    c149 = new P_13
+    trait c149 has_designator<designator="C149">
+    c149.p1 ~ PI_5V
+    c149.p2 ~ GND
+
+    # 4.7u:
+    c150 = new P_13
+    trait c150 has_designator<designator="C150">
+    c150.p1 ~ GNSS_BIAS
+    c150.p2 ~ GND
+
+    # PESD5V0F1BL: Nexperia 0.4pF bidirectional ESD; pin1 to RF/bias.
+    d140 = new GNSS_ESD
+    trait d140 has_designator<designator="D140">
+    d140.p1 ~ GNSS_ANT
+    d140.p2 ~ GND
+    u21.power ~ pi_supply
+    u21.io ~ pi_supply

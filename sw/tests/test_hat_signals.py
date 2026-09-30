@@ -50,7 +50,7 @@ class HatSignalsTests(unittest.TestCase):
         self.assertTrue(report["passed"], report)
         self.assertEqual(counts, dict(imu=624, tilt=0, geophone=2640))
         self.assertEqual(data, self.data)
-        self.assertEqual(len(report["checks"]), 9)
+        self.assertEqual(len(report["checks"]), 11)
 
     def test_consistent_but_wrong_rocking_motion_is_rejected(self):
         profile = deepcopy(PROFILE)

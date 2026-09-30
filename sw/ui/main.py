@@ -44,11 +44,12 @@ HEAD_ASSET_VERSION = hashlib.sha256((ASSETS / "burrowlark.glb").read_bytes()).he
 TEAL, MUTED = "#44d9c2", "#98aabd"
 COLORS = [TEAL, "#a7a3ff", "#f3bd64"]
 LABELS = {**{i: ("Acceleration · raw counts", "Angular rate · raw counts") for i in range(1, 5)},
+          6: ("GNSS velocity N/E/D · mm/s", "PPS timing evidence"),
           5: ("Acceleration · raw counts", "Inclination · raw counts"),
           9: ("Geophone ADC · raw counts", "Single vertical velocity-sensitive channel"),
           7: ("Magnetic field · raw counts", "XYZ samples • no calibration applied"),
           8: ("Differential pressure · raw counts", "Temperature · raw counts")}
-MODELS = {**{i: "LSM6DSO" for i in range(1, 5)}, 5: "SCL3300", 9: "Racotech / ADS122C04", 7: "RM3100", 8: "DLVR · HAT"}
+MODELS = {**{i: "LSM6DSO" for i in range(1, 5)}, 5: "SCL3300", 6: "MAX-M10S", 9: "Racotech / ADS122C04", 7: "RM3100", 8: "DLVR · HAT"}
 
 LABELS.update({**{i: ("Gas ADC · raw counts", "Uncalibrated") for i in range(10,14)},
                14: ("Atmospheric particulate · µg/m³", ""), 15: ("Temperature · °C", "Humidity · %RH"),
@@ -97,12 +98,13 @@ def board_scene(scene, select):
                     scene.cylinder(.28, .28, .015).move(x, y+1.38, .81).material('#08090b')
                 if ref in ('U80', 'U132'):
                     scene.box(.5, .55, .4).move(x, y, .36).material('#28282c')
-                sid = {"U11": 1, "U12": 2, "U13": 3, "U22": 9, "U23": 8}.get(ref)
+                sid = {"U11": 1, "U12": 2, "U13": 3, "U21": 6, "U22": 9, "U23": 8}.get(ref)
                 if sid:
                     radius = .29 if sid <= 4 else .72
-                    target = scene.cylinder(radius, radius, .07).rotate(math.pi / 2, 0, 0).move(x, y, .63).material(TEAL, .28).with_name(f"sensor-{sid}")
+                    target_z = -.27 if sid == 6 else .63
+                    target = scene.cylinder(radius, radius, .07).rotate(math.pi / 2, 0, 0).move(x, y, target_z).material(TEAL, .28).with_name(f"sensor-{sid}")
                     targets[target.id] = sid
-                    ring = scene.ring(radius, radius + .06, 48).move(x, y, .68).material(TEAL).with_name(f"sensor-{sid}")
+                    ring = scene.ring(radius, radius + .06, 48).rotate(math.pi if sid == 6 else 0,0,0).move(x, y, target_z + (-.05 if sid == 6 else .05)).material(TEAL).with_name(f"sensor-{sid}")
                     rings.setdefault(sid, []).append(ring)
                     targets[ring.id] = sid
                     scene.text(NAMES[sid], "color:#e8f5ff;font-size:11px;background:#172534dc;padding:2px 5px;border-radius:4px;pointer-events:none").move(x, y, 1.12)
@@ -193,6 +195,12 @@ def page():
         pose_target.set_options(pose_options, value=next(iter(pose_options)))
         field_controls.set_visibility(engine.board in ("all","burrowlark"))
         pressure_controls.set_visibility(8 in engine.sensor_ids)
+        gnss_controls.set_visibility(6 in engine.sensor_ids)
+        timing_label.set_visibility(6 in engine.sensor_ids)
+        if engine.mode == "Simulate":
+            state, _ = engine.scenario.state_at(engine.now)
+            gnss_fix.set_value(state["gnss_fix"])
+            gnss_pps.set_value(state["gnss_pps"])
         geophone_controls.set_visibility(engine.board in ("all","hat"))
         air_controls.set_visibility(engine.board == "skylark")
         climate_controls.set_visibility(17 in engine.sensor_ids)
@@ -211,6 +219,7 @@ def page():
         engine.reset(document, int(seed.value))
         verified_capture, signal_report = None, None
         verification_panel.set_visibility(False)
+        sync_board()
         ui.notify("New run ready. Press Start; save the recording before starting another run.")
 
     def save_recording():
@@ -325,7 +334,7 @@ def page():
             ui.label("DEVICES").classes("eyebrow")
             ui.label("Select a sensor").classes("section-title")
             sensor_buttons, statuses = {}, {}
-            for sid in (1, 2, 3, 9, 7, 17, 8, 10, 11, 12, 13, 14, 15, 16):
+            for sid in (1, 2, 3, 9, 6, 7, 17, 8, 10, 11, 12, 13, 14, 15, 16):
                 name = NAMES[sid]
                 with ui.button(on_click=lambda sid=sid: choose(sid)).props("flat no-caps align=left").classes("sensor-button") as b:
                     with ui.column().classes("gap-0 items-start"):
@@ -387,6 +396,11 @@ def page():
                     amp = ui.number("Vertical amplitude (m/s²)", value=.3, min=0, max=20, step=.1).props("dense outlined").classes("w-full")
                     frequency = ui.number("Frequency (Hz)", value=2, min=0, max=12, step=.1).props("dense outlined").classes("w-full")
                     ui.button("Apply vibration", on_click=lambda: attempt(lambda: engine.controls({"acceleration_m_s2": [0, 0, {"amplitude": amp.value, "frequency_hz": frequency.value}]}))).props("flat no-caps")
+                with ui.expansion("GNSS timing", icon="satellite_alt", value=True).classes("w-full") as gnss_controls:
+                    gnss_fix = ui.switch("Satellite time lock", value=True)
+                    gnss_pps = ui.switch("PPS signal present", value=True)
+                    ui.button("Apply GNSS signals", on_click=lambda: attempt(lambda: engine.controls({"gnss_fix": gnss_fix.value, "gnss_pps": gnss_pps.value}))).props("flat no-caps")
+                    ui.label("Modeled MAX-M10S I²C messages and BCM24 edges. Lock and PPS alone do not qualify sample timestamps. USB-head clocks remain independent.").classes("fine-print")
                 with ui.expansion("Magnetic field", icon="sensors").classes("w-full") as field_controls:
                     fields = [ui.number(f"Field {axis} (µT)", value=value, step=1).props("dense outlined").classes("w-full") for axis, value in zip("XYZ", (0, 20, -45))]
                     ui.button("Apply field", on_click=lambda: attempt(lambda: engine.controls({"magnetic_ut": [f.value for f in fields]}))).props("flat no-caps")
@@ -443,31 +457,34 @@ def page():
                 busy = False
         timeline.on("change", seek)
         event_label = ui.label("Ready to start. Ideal sensor models; hardware qualification remains separate.").classes("small muted")
+        timing_label = ui.label().classes("small muted")
         error_label = ui.label().classes("small text-amber-300")
 
     def update_charts():
         snap = engine.snapshot(selected)
         for chart, field, label in ((primary, "primary", LABELS[selected][0]), (secondary, "secondary", LABELS[selected][1])):
             chart.options["title"]["text"] = label
-            names = ["PM1", "PM2.5", "PM10"] if selected == 14 else ["Value", "", ""] if selected in (8,9,10,11,12,13,15,16,17) else list("XYZ")
-            chart.options["legend"]["show"] = selected in (1,2,3,7,14)
+            names = ["PM1", "PM2.5", "PM10"] if selected == 14 else ["Value", "", ""] if selected in (8,9,10,11,12,13,15,16,17) else list("NED") if selected == 6 else list("XYZ")
+            chart.options["legend"]["show"] = selected in (1,2,3,6,7,14)
             for axis, series in enumerate(chart.options["series"]):
                 series["name"] = names[axis]
                 series["data"] = [[p["t"], p[field][axis]] for p in snap["points"]]
             chart.update()
-        secondary.set_visibility(selected not in (7,9,10,11,12,13,14))
-        primary.style("grid-column:1 / -1" if selected in (7,9,10,11,12,13,14) else "grid-column:auto")
+        secondary.set_visibility(selected not in (6,7,9,10,11,12,13,14))
+        primary.style("grid-column:1 / -1" if selected in (6,7,9,10,11,12,13,14) else "grid-column:auto")
         point = snap["latest"].get(selected)
         detail.set_text(f'{point["quality"]} · {point["detail"]}' if point else "Waiting for samples")
         heading.set_text(f"{NAMES[selected]}  /  {MODELS[selected]}")
         metrics.set_text(f'{snap["samples"]:,} samples · {snap["missing"]:,} missing')
         for sid, point in snap["latest"].items():
-            if sid not in statuses: continue  # Legacy GNSS is retained in recordings, not displayed on DAQHAT-01.
+            if sid not in statuses: continue  # Unknown legacy streams remain in recordings.
             status = point["quality"] if point else "waiting"
             if point and snap["seconds"] - point["t"] > 2.5:
                 status = "Stale"
             statuses[sid].set_text(f"{MODELS[sid]} · {status}")
             statuses[sid].style(f'color:{TEAL if status == "Valid" else "#f3bd64"}')
+        timing = snap["timing"]
+        timing_label.set_text(f'GNSS {"locked" if timing["locked"] else "unlocked"} · PPS {"present" if timing["pps_recent"] else "missing / waiting"} · {timing["pps_count"]} edges · {timing["source"]} evidence; sample UTC unqualified')
         mode.set_text(snap["mode"].upper())
         state_label.set_text("Running" if snap["running"] else "Finished" if snap["ended"] else "Paused")
         play.set_text("Pause" if snap["running"] else "Play" if snap["mode"] == "Replay" else "Start")

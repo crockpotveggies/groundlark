@@ -1,5 +1,7 @@
 # Sensor contract v1
 
+`Calibrated.geophone_input_v` (optional field 7) carries measured J90 differential volts from a static electronics calibration. It is not velocity. Raw ADC counts remain unchanged. Version 2 calibration artifacts bind to device identity and effective sensor configuration; see [calibration](calibration.md).
+
 Status: implemented schema, Python reference checks and USB framing; Pi drivers and Skylark STM32 firmware implemented; Burrowlark firmware and physical qualification remain pending. This document owns semantic rules. The
 [Protobuf schema](../sw/interfaces/proto/groundlark/sensor/v1/sensor.proto) owns
 field numbers/types. Both apply. Coldfoot and a configured FPGA are unnecessary.

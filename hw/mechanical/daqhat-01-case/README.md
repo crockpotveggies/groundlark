@@ -140,3 +140,15 @@ physically. The two extra wing saddles support the enlarged board.
 J130 is **8–18 V DC**, positive on pin 1. It is separate from the 12 V FPGA
 barrel input. The HAT now powers the Pi; leave the Pi USB-C power input unused
 while J130 is connected. Access JP130 and J131 with the cover removed.
+
+## GNSS antenna access
+
+The GNSS revision adds a bottom-open slot on physical **+X**, nearest J140.
+The SMA axis is at Y=-40.2 mm and Z=47.61 mm in the assembly frame. Its mouth
+is X=92.5 mm, recessed 2.5 mm from the outer wall. A male SMA coupling nut up
+to 10 mm diameter can enter the slot and the lid can lift while it remains fitted.
+The connector body is 9.5 mm high; its axis is 6.35 mm above the HAT. Verify the
+actual plug, cable bend radius and strain relief before field use. The MAX-M10S
+is underneath the HAT; overall board and enclosure dimensions remain unchanged.
+The native board, conservative SMA body and plug withdrawal envelope are checked
+separately. This vented enclosure has no assigned ingress rating.

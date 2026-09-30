@@ -1,5 +1,7 @@
 # DAQHAT-01: one Racotech geophone
 
+TP90–TP93 expose ground, VCM, AVDD and DRDY on the underside for external bench measurements. Use J90 for isolated differential stimuli; the [calibration procedure](calibration.md) covers floating shorts and measured DC gain.
+
 The active 140 × 56 mm DAQHAT-01 carrier replaces MAX-M10S U21, U.FL J2 and the
 GNSS support capacitors with one external passive vertical geophone input.
 Historical A2 and the remote USB magnetometer/infrasound board are unchanged.

@@ -23,7 +23,8 @@
 ## Interfaces and reproducible builds
 
 - [Sensor data contract](sensor-contract.md) and [schema tools](../sw/interfaces/README.md).
-- [GNSS timing](utc-timing.md): legacy hardware/recording support; GNSS is absent from DAQHAT-01.
+- [GNSS hardware](gnss-hardware.md): MAX-M10S, side SMA, antenna and power requirements.
+- [GNSS timing](utc-timing.md): BCM24 PPS capture, recording-bound UTC correlation and timing qualification.
 - [Hardware build](build.md), [portable tests](portable-lab.md) and [SPICE scope](../hw/shared/simulation/README.md).
 - [Component and vendor references](sources.md).
 

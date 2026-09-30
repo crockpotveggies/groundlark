@@ -1,0 +1,28 @@
+# GNSS RF interface. MAX-M10S itself uses shared P_12.
+#pragma experiment("TRAITS")
+import is_atomic_part
+import has_designator_prefix
+
+component GNSS_SMA:
+    trait is_atomic_part<manufacturer="HenryTech", partnumber="HL-SMA-KWE-02", footprint="../../shared/elec/GNSS_HL_SMA_KWE_02.kicad_mod", symbol="../../shared/elec/symbols/GNSS_SMA.kicad_sym">
+    trait has_designator_prefix<prefix="J">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component GNSS_47P:
+    trait is_atomic_part<manufacturer="Murata", partnumber="GRM1555C1H470JA01D", footprint="../../shared/elec/GNSS_C0402.kicad_mod", symbol="../../shared/elec/symbols/GNSS_47P.kicad_sym">
+    trait has_designator_prefix<prefix="C">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component GNSS_27N:
+    trait is_atomic_part<manufacturer="Murata", partnumber="LQW15AN27NJ00D", footprint="../../shared/elec/GNSS_L0402.kicad_mod", symbol="../../shared/elec/symbols/GNSS_27N.kicad_sym">
+    trait has_designator_prefix<prefix="L">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+component GNSS_ESD:
+    trait is_atomic_part<manufacturer="Nexperia", partnumber="PESD5V0F1BL,315", footprint="../../shared/elec/GNSS_SOD882.kicad_mod", symbol="../../shared/elec/symbols/GNSS_ESD.kicad_sym">
+    trait has_designator_prefix<prefix="D">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2

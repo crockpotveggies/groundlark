@@ -15,12 +15,13 @@ from .session import Sessions
 from .simulation import Simulated, defaults
 from .stimulus import Scenario
 from . import skylark
+from .gnss_sim import GNSSSimulation, emit_pps
 
 MAX_BYTES = 8 * 1024 * 1024
 MAX_SECONDS = 180
 POINTS = 400
 NAMES = {1: "IMU 1", 2: "IMU 2", 3: "IMU 3", 4: "IMU 4", 5: "Inclinometer",
-         7: "Magnetometer", 8: "Infrasound", 9: "Geophone"}
+         6: "GNSS", 7: "Magnetometer", 8: "Infrasound", 9: "Geophone"}
 NAMES.update(skylark.NAMES)
 NAMES[17] = "Enclosure climate"
 BOARDS = {"all": "HAT + Burrowlark", "hat": "Groundlark FPGA HAT",
@@ -94,6 +95,7 @@ class TraceSink:
 
     def event(self, code, detail, arrived, **fields):
         self.writer.event(code, detail, arrived, **fields)
+        self.owner.observe_event(code, arrived, fields)
         self.owner.events.append((arrived / 1e9, code, str(detail)))
 
 
@@ -106,6 +108,7 @@ class Workbench:
         self.traces = {i: deque(maxlen=POINTS) for i in self.sensor_ids}
         self.events = deque(maxlen=20)
         self.samples = self.missing = 0
+        self.timing = dict(pps_count=0, last_pps_ns=None, locked=False, source="modeled" if getattr(self, "mode", "") == "Simulate" else "recorded", qualified=False)
 
     def reset(self, document=None, seed=1, board=None):
         # Validate before replacing the existing run.
@@ -126,15 +129,30 @@ class Workbench:
             self.error = ""
             self.clear_traces()
             self.stream = BytesIO()
-            self.writer = Writer(self.stream, dict(format="groundlark-acquisition-v1", source="simulation",
-                calibrations=[], timing="poll completion; uncertainty unknown", seed=seed, faults=[],
+            self.writer = Writer(self.stream, dict(format="groundlark-acquisition-v1", source="modeled-timing" if board in ("hat", "all") else "simulation",
+                calibrations=[], utc_capture="m10-tim-tp-v1" if board in ("hat", "all") else None, timing="modeled GNSS/PPS evidence; UTC requires correlation", seed=seed, faults=[],
                 remote=board in ("all", "burrowlark"), board=board, stimulus_model="ideal-v1", scenario=scenario.export()), max_bytes=MAX_BYTES)
             channels = [Channel("sim-head" if cfg["sensor_id"] in (7, 17) else "sim-skylark" if cfg["sensor_id"] in skylark.SENSORS else "sim-pi",
                 2 if cfg["sensor_id"] in (7, 17) else 1, cfg,
-                Simulated(cfg["sensor_id"], seed, scenario=scenario, clock=lambda: self.now))
+                GNSSSimulation(scenario, lambda: self.now) if cfg["sensor_id"] == 6 else Simulated(cfg["sensor_id"], seed, scenario=scenario, clock=lambda: self.now))
                 for cfg in configs]
             self.acquisition = Acquisition(TraceSink(self, self.writer), Sessions(), channels)
             self.acquisition.start(0)
+
+    def observe_event(self, code, arrived, fields):
+        if code == "pps_edge":
+            self.timing["pps_count"] += 1
+            self.timing["last_pps_ns"] = arrived
+        elif code == "gnss_tim_tp":
+            from .utc import tim_tp
+            try:
+                tim_tp(bytes.fromhex(fields["payload_hex"]))
+                self.timing["locked"] = True
+                self.timing["last_lock_ns"] = arrived
+            except (ValueError, KeyError):
+                self.timing["locked"] = False
+        elif code in ("timing_fault", "gnss_timing_config"):
+            self.timing["locked"] = False
 
     def observe(self, message, arrived):
         kind = message.WhichOneof("body")
@@ -149,6 +167,8 @@ class Workbench:
                 self.samples += 1
                 self.missing += sample.quality == 2
         elif kind == "status":
+            if message.status.sensor_id == 6 and message.status.code != 1:
+                self.timing["locked"] = False
             self.events.append((arrived / 1e9, NAMES.get(message.status.sensor_id, "Device"), message.status.detail))
 
     def controls(self, changes):
@@ -183,6 +203,7 @@ class Workbench:
                         break
                     for change in self.scenario.advance(self.now):
                         self.acquisition.event("stimulus_change", "simulation controls changed", self.now, **change)
+                    if 6 in self.sensor_ids: emit_pps(self.scenario, self.now, self.acquisition.event)
                     self.acquisition.tick(lambda: self.now)
                     self.acquisition.drain()
                     self.now += 1_000_000
@@ -242,6 +263,7 @@ class Workbench:
             arrived, item = self.pending
             relative = arrived - self.origin
             if isinstance(item, dict):
+                self.observe_event(item.get("code"), relative, item)
                 self.events.append((relative / 1e9, item.get("code", "event"), item.get("detail", "")))
             else:
                 self.observe(item, relative)
@@ -267,4 +289,5 @@ class Workbench:
             latest = {sid: dict(points[-1]) if points else None for sid, points in self.traces.items()}
             return dict(mode=self.mode, running=self.running, ended=self.ended, seconds=self.now / 1e9,
                 duration=self.duration / 1e9, error=self.error, samples=self.samples, missing=self.missing,
-                latest=latest, points=list(self.traces.get(sensor, ())), events=list(self.events))
+                latest=latest, points=list(self.traces.get(sensor, ())), events=list(self.events),
+                timing={**self.timing, "locked": self.timing["locked"] and self.now-self.timing.get("last_lock_ns", 0) <= 1_500_000_000, "pps_recent": self.timing["last_pps_ns"] is not None and self.now-self.timing["last_pps_ns"] <= 1_500_000_000})

@@ -22,14 +22,16 @@ bring-up procedure; no workstation boot configuration is changed by the lab.
 5. From the repository, run `python sw/tools/sensor.py live --fifo --profile
    sw/pi/profiles/daqhat-01.example.json --seconds 60 --output sw/build/bench-001.ssrec`.
    Use a new output filename each time. Start with the FPGA supply off.
+   Capture also creates `bench-001.mseed` locally; keep it with the SSREC file.
+   Check/synchronize the Pi's date first. Absolute timing is marked unverified;
+   see the [miniSEED guide](../../../docs/miniseed.md) for station codes and limits.
 
 Chip-select order is BCM8,7,5. IRQ order is BCM27,22,23. Sensor OE is
 BCM26; geophone DRDY is BCM4 (currently polled over I2C). IRQs are rising-edge hints, backed by a 20 ms periodic drain
 so an event missed while servicing the FIFO does not strand data. The application
 requests GPIO inputs without a bias; the board drives them through U42.
 
-DAQHAT-01 uses the ADS122C04 at I2C address 0x40. Remove `pps` from old profiles.
-The active profile has no GNSS and rejects `--utc`. Geophone conversion counters
+DAQHAT-01 uses ADS122C04 at I2C address 0x40 and MAX-M10S at 0x42. The updated profile assigns PPS to BCM24 (header 18). Use `live --fifo --utc` for timing capture; do not also enable the kernel `pps-gpio` overlay. Geophone conversion counters
 report gaps, but polling timestamps do not establish exact sample times.
 Conversion gaps do not reset a healthy ADC; real bus faults still trigger bounded
 recovery. Modeled independent-clock tests show that current polling does not

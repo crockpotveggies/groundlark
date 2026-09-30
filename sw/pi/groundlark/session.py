@@ -83,6 +83,6 @@ class Sessions:
                 require(first.time.acquisition_ns > previous[1], "acquisition clock moved backwards")
             if b.calibration_id:
                 require(self.calibrations is not None, "calibration metadata missing")
-                self.calibrations.verify(b.calibration_id, b.sensor_id, cfg)
+                self.calibrations.verify(b.calibration_id, b.sensor_id, cfg, device)
             state.last[b.sensor_id] = (last.sequence, last.time.acquisition_ns)
         return kind

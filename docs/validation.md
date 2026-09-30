@@ -1,25 +1,41 @@
 # A2 validation and release gates
 
-## Current DAQHAT-01 power revision
+## Current DAQHAT-01 GNSS, calibration and power revision
 
-The 140 × 56 mm board adds TI MSPM0L1105 Pi supervision, an 8–18 V protected
-battery/controller input and a switched 5.149 V / 3 A combined Pi/HAT supply.
-The independent FPGA adapter input remains separate. Native KiCad checks report
-zero ERC findings, zero DRC findings and zero unconnected items; the complete
-11,921-track/via SES reproduces identical copper. Manufacturer pin fixtures,
-no-connect audits, fabrication geometry and analog-layout checks pass.
+The 140 × 56 mm board includes MAX-M10S-00B GNSS on I2C1, BCM24 PPS and a
+side-facing SMA with a 3.3 V active-antenna supply. BCM4 remains geophone DRDY;
+BCM6/13 retain the TI power-supervisor handshake. FPGA interfaces and the
+independent adapter supply remain unchanged. Native checks report zero ERC
+findings, zero DRC findings and zero unconnected items. The complete
+12,704-track/via SES reproduces identical copper. Independent pin/no-connect,
+power, RF geometry, fabrication and analog-layout checks pass.
 
-The R3 enclosure is 159 × 118 × 75 mm. Its geometric/component checks, 508 native
-PCB underside checks and 23 enclosure fault tests pass. Renders use current CAD.
-The portable software profile, power-policy tests and workbench HTTP/browser
-checks pass. The battery policy ships disabled with unset thresholds. MCU
+Four underside calibration pads expose ground, geophone bias, analog supply and
+data-ready without adding GPIO. Static calibration fits measured gain/offset
+with instrument/configuration binding and retains raw counts. Local miniSEED
+export preserves timing gaps and requires valid UTC intervals. See the
+[calibration guide](calibration.md) and [timing limits](utc-timing.md).
+
+The commit-isolated software suite runs 246 tests successfully (two optional
+device-tree checks skipped in the local Python environment). The portable
+software profile passes, including contract compatibility and FPGA loopback.
+The workbench HTTP check and browser interaction check pass. Its Groundlark
+signal bench passes 11/11 checks on 3,272 modeled samples, including GNSS timing.
+Lock-loss and missing-PPS controls preserve independent sensor acquisition.
+Modeled UTC correlation and miniSEED round trips do not qualify physical 1 ms
+sample alignment; receiver RF, acquisition latency and filter delay need measurement.
+
+The 159 × 118 × 75 mm R3 enclosure adds a side SMA slot. Geometric/component
+checks, 560 native PCB underside checks and 25 enclosure fault tests pass.
+The README renders use current CAD. Physical first-print fit remains pending.
+The supervisor battery policy stays disabled with unset thresholds; target MCU
 firmware and Pi shutdown integration remain pending.
 
-The full portable run stops at assembly regressions: 168 tests, 13 failures and
-16 errors caused by procurement-registry/source and supplier-pad mismatches.
-The procurement export hold remains; new parts have exact MPN review records
-with catalog/stock and supplier-pad evidence pending. No physical power, noise,
-thermal, first-print or battery qualification is implied. See
+The full portable run stops at assembly regressions: 176 tests, 13 failures and
+16 errors from procurement-registry/source and supplier-pad mismatches, retaining
+the existing assembly export hold. Exact GNSS part identities are recorded;
+current stock and supplier-pad/rotation approval remain pending. No physical
+power, noise, thermal, battery or RF qualification is implied. See
 [power operation](power-supplies.md#pi-supervisor-and-battery-input) and
 [assembly status](jlcpcb-assembly.md).
 

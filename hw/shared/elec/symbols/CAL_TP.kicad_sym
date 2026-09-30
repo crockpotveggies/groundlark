@@ -1,0 +1,7 @@
+(kicad_symbol_lib (version 20231120) (generator "Groundlark")
+(symbol "CAL_TP" (pin_names (offset 0.6)) (in_bom yes) (on_board yes)
+      (property "Reference" "TP" (id 0) (at 0 5.08 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "Calibration test pad" (id 1) (at 0 -5.08 0) (effects (font (size 1.27 1.27))))
+      (symbol "CAL_TP_0_1" (rectangle (start -12.7 2.54) (end 12.7 -2.54) (stroke (width 0.254) (type default)) (fill (type background))))
+      (symbol "CAL_TP_1_1" (pin passive line (at -15.24 0.0 0) (length 2.54) (name "1" (effects (font (size 1.0 1.0)))) (number "1" (effects (font (size 1.0 1.0)))))))
+)

@@ -47,8 +47,8 @@ board. The placement coordinates themselves are unchanged.
 `provenance.json` pins the PCB, placements and display asset. Update its SHA-256
 values only after re-export and alignment review. For a path-only relocation,
 retain the previous hashes and verify unchanged normalized CAD, placement data,
-model bytes and display assets before refreshing their bindings. The current asset was re-exported for the horizontal J90 connector and relocated
-D90 protection diode. The lead approaches the header parallel to the PCB. Startup fails on stale inputs.
+model bytes and display assets before refreshing their bindings. The current asset includes the horizontal J90 connector, relocated D90 protection
+diode and four passive underside calibration pads TP90–TP93. The lead approaches the header parallel to the PCB. Startup fails on stale inputs.
 Stock KiCad component geometry retains its upstream attribution/license; see
 [KiCad's library licensing](https://www.kicad.org/libraries/license/).
 
@@ -106,3 +106,8 @@ Use a separate build environment with `trimesh==4.8.3` and `numpy==2.5.3`.
 The three local VRML parts are the expected missing native GLB models and are
 added by the converter. Inspect alignment before accepting the hashes in
 `burrowlark-provenance.json`. Runtime/UI dependencies remain unchanged.
+
+The GNSS revision includes the underside authored MAX-M10S package envelope and an authored
+HenryTech SMA STEP (`hw/tools/gnss_model.py`) using its published dimensions.
+Unlike local VRML bodies, this STEP is included by native GLB export. The antenna
+points along PCB -X. PPS and lock overlays describe modeled evidence, not hardware measurements.

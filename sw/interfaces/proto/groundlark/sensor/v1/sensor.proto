@@ -181,6 +181,9 @@ message Calibrated {
   Vector3d magnetic_t = 4;
   optional double pressure_pa = 5;
   optional double temperature_k = 6;
+  // Measured DC transfer from J90 differential volts to ADC counts.
+  // Electrical calibration only; not ground velocity or inverse response.
+  optional double geophone_input_v = 7;
 }
 
 message Sample {

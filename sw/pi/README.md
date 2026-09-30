@@ -1,8 +1,12 @@
 # Raspberry Pi software
 
+Use `calibration-observe` and `calibration-fit` for measured static gain/offset. The [calibration guide](../../docs/calibration.md) covers fixtures, templates, evidence and instrument binding.
+
 Executable acquisition, calibration, bounded recording/replay, Linux adapters
 and deterministic simulation are in `groundlark/`. No configured FPGA is needed.
 See the [run guide and recovery policy](../../docs/sensor-software.md).
+Live HAT capture writes local [miniSEED 3 seismic files](../../docs/miniseed.md)
+alongside SSREC diagnostics. Counts remain raw; Pi system timing is marked unverified.
 Use the [stimulus guide](../../docs/stimulus-models.md) for motion/field/pressure
 waveforms, GNSS trajectories and timed faults. Example: add
 `--scenario sw/pi/profiles/stimulus-demo.json` to the simulation command.
