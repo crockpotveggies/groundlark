@@ -492,45 +492,6 @@
         "names": {}
       },
       {
-        "ref": "U3",
-        "type": "P_35",
-        "value": "DLVR-F50D option",
-        "xy": [
-          46,
-          33
-        ],
-        "angle": 0,
-        "section": "03-sensors",
-        "dnp": true,
-        "note": "",
-        "mpn": "DLVR-F50D-E1BS-I-NI3F",
-        "footprint": "Groundlark:DLVR_E1BS",
-        "local_fp": "Groundlark__DLVR_E1BS",
-        "names": {
-          "1": "GND",
-          "2": "VS_3V3",
-          "3": "SDA",
-          "4": "SCL"
-        }
-      },
-      {
-        "ref": "C5",
-        "type": "P_6",
-        "value": "100n",
-        "xy": [
-          43,
-          34
-        ],
-        "angle": 0,
-        "section": "03-sensors",
-        "dnp": false,
-        "note": "",
-        "mpn": "GRM188R71H104KA93D",
-        "footprint": "Capacitor_SMD:C_0603_1608Metric",
-        "local_fp": "Capacitor_SMD__C_0603_1608Metric",
-        "names": {}
-      },
-      {
         "ref": "H1",
         "value": "M2.5 NPTH",
         "footprint": "MountingHole:MountingHole_2.7mm_M2.5",

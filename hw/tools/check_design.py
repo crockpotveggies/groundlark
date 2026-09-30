@@ -3,15 +3,16 @@
 This does not perform analog simulation, SI/PI signoff or bench validation.
 """
 from pathlib import Path
-from project_paths import compiled_dir
+from project_paths import board_dir, compiled_dir
+from burrowlark_checks import magnetometer_only
 from collections import Counter
-import json,subprocess,xml.etree.ElementTree as ET
+import argparse,json,subprocess,xml.etree.ElementTree as ET
 import pcbnew as pcb
 
 ROOT=Path(__file__).resolve().parents[2]
-def main():
+def main(boards=('groundlark-hat','groundlark-field-head')):
     board_failures=[]
-    for folder in [ROOT/'hw/groundlark-coldfoot-hat/boards/groundlark-hat',ROOT/'hw/burrowlark-usb/boards/groundlark-field-head']:
+    for folder in map(board_dir, boards):
         name=folder.name
         subprocess.run(['kicad-cli','sch','export','netlist','--format','kicadxml','-o',str(folder/'schematic-netlist.xml'),str(folder/(name+'.kicad_sch'))],check=True)
         tree=ET.parse(folder/'schematic-netlist.xml')
@@ -24,6 +25,14 @@ def main():
         degree=Counter(actual.values())
         target='hat' if name.endswith('-hat') else 'field_head'
         compiled=pcb.LoadBoard(str(compiled_dir(target)/(target+'.kicad_pcb')))
+        if target=='field_head':
+            for refs in (
+                (f.GetReference() for f in board.GetFootprints()),
+                (f.GetReference() for f in compiled.GetFootprints()),
+                (part['ref'] for part in expected['parts']),
+                (node.get('ref') for node in tree.findall('.//components/comp')),
+            ):
+                magnetometer_only(refs)
         compiler_pins={(fp.GetReference(),pad.GetNumber()):pad.GetNetname() for fp in compiled.GetFootprints() for pad in fp.Pads() if pad.GetNumber()}
         failures=[];checks=0
         for key,net in compiler_pins.items():
@@ -52,4 +61,8 @@ def main():
         if failures or errors or erc_findings:board_failures.append({'board':name,'connectivity':failures,'drc':dict(types),'erc':len(erc_findings)})
     if board_failures:raise AssertionError(board_failures)
 
-if __name__=='__main__':main()
+if __name__=='__main__':
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--board',choices=('groundlark-hat','groundlark-field-head'))
+    args=parser.parse_args()
+    main((args.board,) if args.board else ('groundlark-hat','groundlark-field-head'))

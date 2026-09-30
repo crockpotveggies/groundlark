@@ -1,12 +1,12 @@
 {
-  "pin_checks": 131,
-  "atopile_pin_checks": 131,
+  "pin_checks": 125,
+  "atopile_pin_checks": 125,
   "connectivity_errors": [],
   "drc_findings_by_type": {},
   "drc_errors": 0,
   "erc_findings": 0,
   "unconnected_items": 0,
-  "tracks_and_vias": 348,
+  "tracks_and_vias": 329,
   "status": "A2 PROTOTYPE - NOT FABRICATION RELEASED",
   "limits": [
     "USB sensor firmware is not implemented; enumeration, suspend and USB signal integrity are unvalidated",

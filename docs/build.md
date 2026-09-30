@@ -107,4 +107,16 @@ Do not use the empty BOM emitted by atopile's automatic picker: this design uses
 manual manufacturer parts. The explicit per-board `bom.csv` files are the review
 BOMs. No purchase, assembly order or board fabrication was submitted.
 
-Render the optional pressure sensor population with `python3 hw/tools/render_option.py`. This changes only a temporary render board; U3 stays DNP in the delivered assembly.
+Render the current magnetometer-only Burrowlark PCB with
+`python3 hw/tools/render_burrowlark.py`. It verifies that U3/C5 are absent and
+records PCB, model and image hashes in `render-provenance.json`. Refresh its
+schematic, assembly and layout previews with
+`python3 hw/tools/export_previews.py groundlark-field-head`. These commands
+read the native CAD without rerouting or rewriting it; KiCad models, Xvfb for
+headless rendering, and `rsvg-convert` for preview PNGs must be installed.
+
+For a Burrowlark-only CAD check, run
+`python3 hw/tools/check_circuit.py --board groundlark-field-head` and
+`python3 hw/tools/check_design.py --board groundlark-field-head`. The latter
+refreshes its ERC, DRC, netlist and validation reports without changing the PCB.
+The full portable lab remains the required cross-product regression check.

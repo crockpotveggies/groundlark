@@ -74,14 +74,20 @@ fasteners and cable dressing are illustrative. [Render provenance](docs/images/s
 
 ## Burrowlark
 
-**Remote magnetic and infrasound sensing over USB.**
+![Burrowlark DAQUSB-01: USB-C magnetometer PCB with the PNI RM3100 XYZ module](hw/burrowlark-usb/boards/groundlark-field-head/3d.png)
+
+**Remote magnetic sensing over USB.**
 [Burrowlark USB](hw/burrowlark-usb/README.md), model **DAQUSB-01**, carries an
-RM3100 magnetometer and an optional DLVR infrasound sensor. It connects to the
-Pi through USB-C for power and data, keeping these sensors separate from the HAT.
+RM3100 magnetometer. It connects to the Pi through USB-C for power and data.
+The DLVR infrasound sensor is fitted on Groundlark DAQHAT-01.
 
 **Status:** hardware design and workbench simulation are present; MCU firmware
 and physical qualification remain pending. See the
 [USB sensor-head guide](docs/usb-sensor-head.md) for interfaces and assembly details.
+
+*Render: native 70 × 45 mm PCB with the RM3100 module; the former infrasound
+footprint and bypass capacitor are removed. Module and fuse bodies are simplified
+dimensional envelopes. [Render provenance](hw/burrowlark-usb/boards/groundlark-field-head/render-provenance.json).*
 
 ## Sensor workbench
 

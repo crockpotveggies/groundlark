@@ -1,0 +1,35 @@
+{
+  "renderer": "9.0.9",
+  "source_board": "groundlark-field-head.kicad_pcb",
+  "source_sha256": "1875452999dbd5438eadb2d2b7e51b210ece6ba3e23d010ac0aea820720cfa7a",
+  "generator": "hw/tools/render_burrowlark.py",
+  "generator_sha256": "3df9f96d9114311a967d239821c15f702d128f37298e1fbb304f1e975a6c22c8",
+  "models_sha256": {
+    "${KICAD9_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-23-5.step": "720a6eab0024069bbee68e7cb4c3ff1149468a34611225cdc852662c5d0ec2b7",
+    "${KICAD9_3DMODEL_DIR}/Package_QFP.3dshapes/LQFP-32_7x7mm_P0.8mm.step": "be0e412f1c66fee70039b0e109e0cc7c823161dda97593718afa97569bc61ce3",
+    "${KICAD9_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step": "4857b3dc717675bf1fb22edda622ac3b3ae03cf44d81eefaf3fa3ba3a86d84c1",
+    "${KICAD9_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0603_1608Metric.step": "1875571c326d0d9e96f36b4efeb8094068ef7619f0a449c781caf0b49c2e5861",
+    "${KICAD9_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-23-6.step": "c9fe686b4d1b56927a41fa84a9bc1efb61d8a45a123a3db43bcaa05c2891d635",
+    "${KIPRJMOD}/../../../shared/models/PNI14190.wrl": "71b906e9b88bf53675e91c76582e58dff1ca1249736d70346dbee2ac9dc33815",
+    "${KICAD9_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-363_SC-70-6.step": "045cc95e18ee7a13d1623c3ce6604fc833049bdb4f952f68c26e3c5767d122e4",
+    "${KIPRJMOD}/../../../shared/models/PTC1812.wrl": "08432feb6826846a43080c5604656fbcbd35b567e1c4411ab52e65de5d733e6e",
+    "${KICAD9_3DMODEL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x05_P2.54mm_Vertical.step": "f03b716e453f6d4f2a111a227c671d96f92708e72a5a663cd4889296d021f4c3",
+    "${KICAD9_3DMODEL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x02_P2.54mm_Vertical.step": "ea4d0799007ebdd3945072bf255d673d2fe87eb05fda85fd8d7993ad9397da41",
+    "${KICAD9_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c",
+    "${KICAD9_3DMODEL_DIR}/Connector_USB.3dshapes/USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal.step": "6338ce740fa231c2d3dcc6384e0576994a47240a312a21413cb85d76990a69a0"
+  },
+  "images": [
+    {
+      "file": "3d.png",
+      "sha256": "39407f0e8f1a8b1bd97465d3296c9e4a18c797be1c7376644c7100e9c7d40bed",
+      "side": "top",
+      "rotation": "325,0,25",
+      "zoom": 0.9,
+      "size_px": [
+        1800,
+        1100
+      ]
+    }
+  ],
+  "scope": "Native 70 x 45 mm routed DAQUSB-01 PCB with RM3100; U3/C5 absent. PNI14190 and PTC bodies are simplified dimensional envelopes. No enclosure or cable shown; physical qualification remains pending."
+}

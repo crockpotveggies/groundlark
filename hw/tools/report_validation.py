@@ -60,7 +60,8 @@ conversion are restored before layout checks. No DRC violations are excluded.
 - `hw/tools/check_circuit.py`: compiled pin assignments, source/BOM agreement,
   module bond/connector mapping, supply/clock/reset/UART direction and bypass
   invariants pass. Removed supervisor bypass and incorrect UART supply mutations
-  are rejected.
+  are rejected. Burrowlark checks also reject reintroduced U3/C5 pressure parts
+  and removal of the RM3100 module or its C4 bypass capacitor.
 - **27 ngspice cases pass**: rail/load/USB cable corners, I2C rise time, UART RC,
   USB CC resistor corners, ideal buck power stage and behavioral reset.
   See [simulation scope](../hw/shared/simulation/README.md) and the actual decks/logs.
@@ -77,9 +78,8 @@ signal-integrity, magnetic-noise or physical bench qualification is claimed.
 ## Before fabrication
 
 1. Independently review the run-1 bond map, mating connector orientation,
-   current per contact, exact package revisions and ordered parts. Confirm the
-   optional DLVR suffix. The selected run-1 module replaces the earlier run-2
-   incompatibility; its complete support circuit is now present.
+   current per contact, exact package revisions and ordered parts. The selected
+   run-1 module replaces the earlier run-2 incompatibility; its complete support circuit is now present.
 2. Select a fabrication stackup and review routing: power drops/neck-downs,
    decoupling and buck switching loops, copper thermal paths, via return paths,
    USB data pair geometry and GNSS RF impedance. Clean DRC is not SI/PI signoff.
@@ -102,7 +102,7 @@ signal-integrity, magnetic-noise or physical bench qualification is claimed.
 | Timing/links | Sensor IDs, CRC/FIFO behavior, SPI modes, USB enumeration/suspend and local I2C timing, PPS timestamp uncertainty and 2 Mbaud runtime round trips |
 | Motion/level | Axis orientation, known-angle calibration, stationary noise, thermal drift and correlated noise across four IMUs |
 | Magnetics | Remote installation offsets, orientation, hard/soft-iron calibration and noise with Pi/fan/Coldfoot active; reference-station comparison |
-| Infrasound option | Pressure calibration, noise, reference-volume/leak transfer function, wind response and saturation recovery |
+| Infrasound (DAQHAT-01 only) | See the [DAQHAT-01 guide](trenz-hat.md) for pressure calibration, noise, tubing response and saturation qualification |
 | Coldfoot | Measured rail/contact currents and clocks, then deterministic recorded-input comparisons through its existing runtime |
 
 The remote magnetometer needs its own orientation calibration; the HAT's

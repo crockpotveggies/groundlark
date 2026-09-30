@@ -1,8 +1,8 @@
 # Burrowlark DAQUSB-01 — USB sensor head
 
 **Burrowlark** (model **DAQUSB-01**) is Groundlark's 70 × 45 mm remote USB-C
-sensor board, carrying an RM3100 magnetometer and an optional DLVR infrasound
-sensor. Its circuit source is [`hw/burrowlark-usb/elec/field_head.ato`](../hw/burrowlark-usb/elec/field_head.ato),
+sensor board, carrying an RM3100 magnetometer. The DLVR infrasound sensor and
+its bypass capacitor have moved to Groundlark DAQHAT-01 as U23/C24. Its circuit source is [`hw/burrowlark-usb/elec/field_head.ato`](../hw/burrowlark-usb/elec/field_head.ato),
 its native CAD is in [`hw/burrowlark-usb/boards/groundlark-field-head/`](../hw/burrowlark-usb/boards/groundlark-field-head),
 and its firmware belongs in [`sw/field-head/`](../sw/field-head/README.md).
 
@@ -24,9 +24,9 @@ power output or PCA9615 transceiver on the HAT.
   10 kohm pull-down and a boot jumper. SWD provides debug/programming access.
 - U5: TPS22919DCKR switches the sensor rail; PA0 enables it, a 100 kohm pull-down
   defaults it off. QOD joins output for discharge through the internal resistor.
-- PB6/PB7 read RM3100 (0x20) and optional DLVR (0x28) over local I2C. Pull-ups
-  connect to the switched rail. PB0 reads RM3100 data-ready. The DLVR remains DNP
-  by default and needs pneumatic hardware for infrasound measurements.
+- PB6/PB7 read RM3100 (0x20) over local I2C. Pull-ups connect to the switched
+  rail. PB0 reads RM3100 data-ready. U3/C5 and their pressure-sensor branches
+  are removed; the USB board remains 70 × 45 mm.
 
 J2 SWD pins: 1 = 3.3 V reference, 2 = SWDIO, 3 = GND, 4 = SWCLK, 5 = NRST.
 Use its 3.3 V pin as a probe reference; do not power it externally while USB is
@@ -46,7 +46,8 @@ clock synchronization, sensor power and acquisition on resume. Measure current
 in every USB state; component budgets and a PTC are not compliance evidence.
 
 Start with a 100 kHz local sensor bus. Preserve signed 24-bit magnetic samples,
-pressure status bits, sequence numbers and MCU acquisition timestamps. Report
+sequence numbers and MCU acquisition timestamps. Legacy recordings may retain
+pressure status bits from the former optional DLVR population. Report
 sensor identity, configuration, overruns and reset reasons. The Pi correlates
 timestamps and calibrates/stores readings; Coldfoot integration is deferred.
 Use the [sensor v1 contract](sensor-contract.md) for Protobuf messages, explicit
@@ -59,6 +60,17 @@ against real modes, temperature and module variants. Startup capacitance is
 2.2 + 4.7 + 0.4 = 7.3 uF nominal on the unswitched rails, plus NRST charge and
 parasitics. Sensor capacitors/module load are behind the initially off switch.
 Capacitor tolerance, inrush and USB suspend behavior require measurement.
+
+## CAD and previews
+
+The routed PCB, compiled layout, review schematic and BOM contain the RM3100
+and its C4 bypass capacitor, with no U3/C5 pressure-sensor population. The
+70 × 45 mm outline, USB interface and native SES routing snapshot are retained.
+[PCB render](../hw/burrowlark-usb/boards/groundlark-field-head/3d.png) and
+[schematic/assembly previews](../hw/burrowlark-usb/boards/groundlark-field-head/preview/)
+show this population; [rebuild commands](build.md) regenerate them from native CAD.
+The circuit and CAD checks reject removed pressure parts in both compiled and
+routed boards, placement metadata and review schematics.
 
 ## Layout and validation limits
 

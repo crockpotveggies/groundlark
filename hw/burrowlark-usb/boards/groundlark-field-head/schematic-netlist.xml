@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="E">
   <design>
-    <source>/work/hw/burrowlark-usb/boards/groundlark-field-head/groundlark-field-head.kicad_sch</source>
-    <date>2026-09-26T05:30:32+0000</date>
-    <tool>Eeschema 9.0.9</tool>
+    <source>/mnt/p/Personal/groundlark/hw/burrowlark-usb/boards/groundlark-field-head/groundlark-field-head.kicad_sch</source>
+    <date>2026-09-29T23:28:21-0700</date>
+    <tool>Eeschema 9.0.9-9.0.9~ubuntu24.04.1</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
         <title/>
@@ -22,7 +22,7 @@
         <comment number="9" value=""/>
       </title_block>
     </sheet>
-    <sheet number="2" name="/01-usb-power-page-01/" tstamps="/afcd2cab-ea33-531e-8aa3-b4956a224de3/">
+    <sheet number="2" name="/01-usb-power-page-01/" tstamps="/d6693e67-c66d-5c5a-8823-e5de021d6177/">
       <title_block>
         <title>groundlark-field-head / 01-usb-power-page-01</title>
         <company/>
@@ -40,7 +40,7 @@
         <comment number="9" value=""/>
       </title_block>
     </sheet>
-    <sheet number="3" name="/02-controller-page-01/" tstamps="/e231ccbc-5d19-533a-9a39-02eb5ecbd109/">
+    <sheet number="3" name="/02-controller-page-01/" tstamps="/fc7d5532-6c14-5c58-945d-ed7a9463f825/">
       <title_block>
         <title>groundlark-field-head / 02-controller-page-01</title>
         <company/>
@@ -58,7 +58,7 @@
         <comment number="9" value=""/>
       </title_block>
     </sheet>
-    <sheet number="4" name="/03-sensors-page-01/" tstamps="/7bec89a2-520f-51ab-8226-ae13c36b967f/">
+    <sheet number="4" name="/03-sensors-page-01/" tstamps="/ab979e54-c171-5922-9bbc-4aaabc504545/">
       <title_block>
         <title>groundlark-field-head / 03-sensors-page-01</title>
         <company/>
@@ -91,8 +91,8 @@
       <property name="MPN" value="GRM21BR71E225KA73L"/>
       <property name="Sheetname" value="01-usb-power-page-01"/>
       <property name="Sheetfile" value="01-usb-power-page-01.kicad_sch"/>
-      <sheetpath names="/01-usb-power-page-01/" tstamps="/afcd2cab-ea33-531e-8aa3-b4956a224de3/"/>
-      <tstamps>8e57a2ad-52f5-52f9-8db7-90dcc68c618a</tstamps>
+      <sheetpath names="/01-usb-power-page-01/" tstamps="/d6693e67-c66d-5c5a-8823-e5de021d6177/"/>
+      <tstamps>2a382125-2e86-53b3-9719-8f7f9708881a</tstamps>
     </comp>
     <comp ref="C2">
       <value>4.7u</value>
@@ -107,8 +107,8 @@
       <property name="MPN" value="GRM21BR71A475KA73L"/>
       <property name="Sheetname" value="01-usb-power-page-01"/>
       <property name="Sheetfile" value="01-usb-power-page-01.kicad_sch"/>
-      <sheetpath names="/01-usb-power-page-01/" tstamps="/afcd2cab-ea33-531e-8aa3-b4956a224de3/"/>
-      <tstamps>351d3af0-ebdc-564e-af7e-8650504d502a</tstamps>
+      <sheetpath names="/01-usb-power-page-01/" tstamps="/d6693e67-c66d-5c5a-8823-e5de021d6177/"/>
+      <tstamps>cf39ef63-5863-518d-ac09-f02331971720</tstamps>
     </comp>
     <comp ref="D1">
       <value>USBLC6-2SC6</value>
@@ -123,8 +123,8 @@
       <property name="MPN" value="USBLC6-2SC6"/>
       <property name="Sheetname" value="01-usb-power-page-01"/>
       <property name="Sheetfile" value="01-usb-power-page-01.kicad_sch"/>
-      <sheetpath names="/01-usb-power-page-01/" tstamps="/afcd2cab-ea33-531e-8aa3-b4956a224de3/"/>
-      <tstamps>b8976fa0-8b97-5451-b87d-b2fb4909188f</tstamps>
+      <sheetpath names="/01-usb-power-page-01/" tstamps="/d6693e67-c66d-5c5a-8823-e5de021d6177/"/>
+      <tstamps>c9645f54-4c59-5247-add6-517e75d0fead</tstamps>
     </comp>
     <comp ref="D2">
       <value>USBLC6-2SC6</value>
@@ -139,8 +139,8 @@
       <property name="MPN" value="USBLC6-2SC6"/>
       <property name="Sheetname" value="01-usb-power-page-01"/>
       <property name="Sheetfile" value="01-usb-power-page-01.kicad_sch"/>
-      <sheetpath names="/01-usb-power-page-01/" tstamps="/afcd2cab-ea33-531e-8aa3-b4956a224de3/"/>
-      <tstamps>b625ed78-7689-5b67-9ec6-5ec34dbb0e5e</tstamps>
+      <sheetpath names="/01-usb-power-page-01/" tstamps="/d6693e67-c66d-5c5a-8823-e5de021d6177/"/>
+      <tstamps>d5214479-acdb-5f25-9c89-d7d020663c3f</tstamps>
     </comp>
     <comp ref="F1">
       <value>500mA PTC</value>
@@ -155,8 +155,8 @@
       <property name="MPN" value="MF-MSMF050-2"/>
       <property name="Sheetname" value="01-usb-power-page-01"/>
       <property name="Sheetfile" value="01-usb-power-page-01.kicad_sch"/>
-      <sheetpath names="/01-usb-power-page-01/" tstamps="/afcd2cab-ea33-531e-8aa3-b4956a224de3/"/>
-      <tstamps>9209a611-9997-5e48-b8f8-a8cb92446791</tstamps>
+      <sheetpath names="/01-usb-power-page-01/" tstamps="/d6693e67-c66d-5c5a-8823-e5de021d6177/"/>
+      <tstamps>b819271d-be77-58c3-b62d-a2bea24e28ca</tstamps>
     </comp>
     <comp ref="J1">
       <value>USB-C DEVICE</value>
@@ -171,8 +171,8 @@
       <property name="MPN" value="USB4105-GF-A"/>
       <property name="Sheetname" value="01-usb-power-page-01"/>
       <property name="Sheetfile" value="01-usb-power-page-01.kicad_sch"/>
-      <sheetpath names="/01-usb-power-page-01/" tstamps="/afcd2cab-ea33-531e-8aa3-b4956a224de3/"/>
-      <tstamps>09be8596-df03-5f50-9b33-96baf2eedc22</tstamps>
+      <sheetpath names="/01-usb-power-page-01/" tstamps="/d6693e67-c66d-5c5a-8823-e5de021d6177/"/>
+      <tstamps>752bf570-9ca2-5fcd-9f4b-95560cfd100a</tstamps>
     </comp>
     <comp ref="R1">
       <value>5.1k</value>
@@ -187,8 +187,8 @@
       <property name="MPN" value="RC0603FR-075K1L"/>
       <property name="Sheetname" value="01-usb-power-page-01"/>
       <property name="Sheetfile" value="01-usb-power-page-01.kicad_sch"/>
-      <sheetpath names="/01-usb-power-page-01/" tstamps="/afcd2cab-ea33-531e-8aa3-b4956a224de3/"/>
-      <tstamps>c1d0a91f-a982-56c1-a71a-fa10c630801a</tstamps>
+      <sheetpath names="/01-usb-power-page-01/" tstamps="/d6693e67-c66d-5c5a-8823-e5de021d6177/"/>
+      <tstamps>b303cacc-f7af-564c-b836-b97927f65b83</tstamps>
     </comp>
     <comp ref="R2">
       <value>5.1k</value>
@@ -203,8 +203,8 @@
       <property name="MPN" value="RC0603FR-075K1L"/>
       <property name="Sheetname" value="01-usb-power-page-01"/>
       <property name="Sheetfile" value="01-usb-power-page-01.kicad_sch"/>
-      <sheetpath names="/01-usb-power-page-01/" tstamps="/afcd2cab-ea33-531e-8aa3-b4956a224de3/"/>
-      <tstamps>30e6c2f1-e107-53c6-bc3a-77095d4d4b6e</tstamps>
+      <sheetpath names="/01-usb-power-page-01/" tstamps="/d6693e67-c66d-5c5a-8823-e5de021d6177/"/>
+      <tstamps>d0fb681d-9098-5699-be4b-e702cc69701e</tstamps>
     </comp>
     <comp ref="U4">
       <value>AP2112K-3.3</value>
@@ -219,8 +219,8 @@
       <property name="MPN" value="AP2112K-3.3TRG1"/>
       <property name="Sheetname" value="01-usb-power-page-01"/>
       <property name="Sheetfile" value="01-usb-power-page-01.kicad_sch"/>
-      <sheetpath names="/01-usb-power-page-01/" tstamps="/afcd2cab-ea33-531e-8aa3-b4956a224de3/"/>
-      <tstamps>929a7d40-b67c-5b47-a172-5752c1028e5d</tstamps>
+      <sheetpath names="/01-usb-power-page-01/" tstamps="/d6693e67-c66d-5c5a-8823-e5de021d6177/"/>
+      <tstamps>4735ec92-a0e7-5a2a-8093-9dbc00d9d971</tstamps>
     </comp>
     <comp ref="C3">
       <value>100n</value>
@@ -235,8 +235,8 @@
       <property name="MPN" value="GRM188R71H104KA93D"/>
       <property name="Sheetname" value="02-controller-page-01"/>
       <property name="Sheetfile" value="02-controller-page-01.kicad_sch"/>
-      <sheetpath names="/02-controller-page-01/" tstamps="/e231ccbc-5d19-533a-9a39-02eb5ecbd109/"/>
-      <tstamps>59973fe5-25f5-563f-b34a-952dca00c3db</tstamps>
+      <sheetpath names="/02-controller-page-01/" tstamps="/fc7d5532-6c14-5c58-945d-ed7a9463f825/"/>
+      <tstamps>8736722c-d7c0-542e-9e53-5bedd8a26571</tstamps>
     </comp>
     <comp ref="C6">
       <value>100n</value>
@@ -251,8 +251,8 @@
       <property name="MPN" value="GRM188R71H104KA93D"/>
       <property name="Sheetname" value="02-controller-page-01"/>
       <property name="Sheetfile" value="02-controller-page-01.kicad_sch"/>
-      <sheetpath names="/02-controller-page-01/" tstamps="/e231ccbc-5d19-533a-9a39-02eb5ecbd109/"/>
-      <tstamps>c0f75792-7eec-5940-91ae-769ee4ccbfb7</tstamps>
+      <sheetpath names="/02-controller-page-01/" tstamps="/fc7d5532-6c14-5c58-945d-ed7a9463f825/"/>
+      <tstamps>fd2aca32-bbaa-5f92-a5bc-7e6f80299da6</tstamps>
     </comp>
     <comp ref="C7">
       <value>100n</value>
@@ -267,8 +267,8 @@
       <property name="MPN" value="GRM188R71H104KA93D"/>
       <property name="Sheetname" value="02-controller-page-01"/>
       <property name="Sheetfile" value="02-controller-page-01.kicad_sch"/>
-      <sheetpath names="/02-controller-page-01/" tstamps="/e231ccbc-5d19-533a-9a39-02eb5ecbd109/"/>
-      <tstamps>a0bda68c-5b10-5a72-8d5c-8601980dc1c2</tstamps>
+      <sheetpath names="/02-controller-page-01/" tstamps="/fc7d5532-6c14-5c58-945d-ed7a9463f825/"/>
+      <tstamps>cd97d54b-f4a4-5a82-8dfa-d61e0daf8295</tstamps>
     </comp>
     <comp ref="C8">
       <value>100n</value>
@@ -283,8 +283,8 @@
       <property name="MPN" value="GRM188R71H104KA93D"/>
       <property name="Sheetname" value="02-controller-page-01"/>
       <property name="Sheetfile" value="02-controller-page-01.kicad_sch"/>
-      <sheetpath names="/02-controller-page-01/" tstamps="/e231ccbc-5d19-533a-9a39-02eb5ecbd109/"/>
-      <tstamps>f5c7f0bb-39a5-5688-8c11-3f4d7d7b643e</tstamps>
+      <sheetpath names="/02-controller-page-01/" tstamps="/fc7d5532-6c14-5c58-945d-ed7a9463f825/"/>
+      <tstamps>d7574d35-a4a2-50c5-a422-ae587c342898</tstamps>
     </comp>
     <comp ref="J2">
       <value>SWD / 3V3 SENSE</value>
@@ -299,8 +299,8 @@
       <property name="MPN" value="M20-9990545"/>
       <property name="Sheetname" value="02-controller-page-01"/>
       <property name="Sheetfile" value="02-controller-page-01.kicad_sch"/>
-      <sheetpath names="/02-controller-page-01/" tstamps="/e231ccbc-5d19-533a-9a39-02eb5ecbd109/"/>
-      <tstamps>094ed727-2faa-5441-a6fd-7e5859ee5954</tstamps>
+      <sheetpath names="/02-controller-page-01/" tstamps="/fc7d5532-6c14-5c58-945d-ed7a9463f825/"/>
+      <tstamps>ed66ef64-961e-5c7b-a1c1-2fe9392a7a10</tstamps>
     </comp>
     <comp ref="J3">
       <value>BOOT0 jumper</value>
@@ -315,8 +315,8 @@
       <property name="MPN" value="EEPROM write enable"/>
       <property name="Sheetname" value="02-controller-page-01"/>
       <property name="Sheetfile" value="02-controller-page-01.kicad_sch"/>
-      <sheetpath names="/02-controller-page-01/" tstamps="/e231ccbc-5d19-533a-9a39-02eb5ecbd109/"/>
-      <tstamps>b7cc3be6-a1ce-5c59-9f56-f2e98731f9c4</tstamps>
+      <sheetpath names="/02-controller-page-01/" tstamps="/fc7d5532-6c14-5c58-945d-ed7a9463f825/"/>
+      <tstamps>be025cc0-50b8-563e-9b5f-bef28c7ffe9d</tstamps>
     </comp>
     <comp ref="R3">
       <value>10k</value>
@@ -331,8 +331,8 @@
       <property name="MPN" value="RC0603FR-0710KL"/>
       <property name="Sheetname" value="02-controller-page-01"/>
       <property name="Sheetfile" value="02-controller-page-01.kicad_sch"/>
-      <sheetpath names="/02-controller-page-01/" tstamps="/e231ccbc-5d19-533a-9a39-02eb5ecbd109/"/>
-      <tstamps>510e098a-0e7a-5fde-b196-be75a758d2bd</tstamps>
+      <sheetpath names="/02-controller-page-01/" tstamps="/fc7d5532-6c14-5c58-945d-ed7a9463f825/"/>
+      <tstamps>cf2f1e8f-9e4e-5fbd-93e6-7f4216341aeb</tstamps>
     </comp>
     <comp ref="R4">
       <value>10k</value>
@@ -347,8 +347,8 @@
       <property name="MPN" value="RC0603FR-0710KL"/>
       <property name="Sheetname" value="02-controller-page-01"/>
       <property name="Sheetfile" value="02-controller-page-01.kicad_sch"/>
-      <sheetpath names="/02-controller-page-01/" tstamps="/e231ccbc-5d19-533a-9a39-02eb5ecbd109/"/>
-      <tstamps>ae1bb8f3-2a28-5383-9862-e1d58145c220</tstamps>
+      <sheetpath names="/02-controller-page-01/" tstamps="/fc7d5532-6c14-5c58-945d-ed7a9463f825/"/>
+      <tstamps>6e356c18-4980-539a-94bd-6426e0013a4d</tstamps>
     </comp>
     <comp ref="U1">
       <value>STM32F042K6T6</value>
@@ -363,8 +363,8 @@
       <property name="MPN" value="STM32F042K6T6"/>
       <property name="Sheetname" value="02-controller-page-01"/>
       <property name="Sheetfile" value="02-controller-page-01.kicad_sch"/>
-      <sheetpath names="/02-controller-page-01/" tstamps="/e231ccbc-5d19-533a-9a39-02eb5ecbd109/"/>
-      <tstamps>c2e963fa-58f7-5f05-a554-96fe0e3ea88a</tstamps>
+      <sheetpath names="/02-controller-page-01/" tstamps="/fc7d5532-6c14-5c58-945d-ed7a9463f825/"/>
+      <tstamps>6b5518c6-fb46-59e3-a883-8e1d8aeda5ee</tstamps>
     </comp>
     <comp ref="C4">
       <value>100n</value>
@@ -379,24 +379,8 @@
       <property name="MPN" value="GRM188R71H104KA93D"/>
       <property name="Sheetname" value="03-sensors-page-01"/>
       <property name="Sheetfile" value="03-sensors-page-01.kicad_sch"/>
-      <sheetpath names="/03-sensors-page-01/" tstamps="/7bec89a2-520f-51ab-8226-ae13c36b967f/"/>
-      <tstamps>c5642850-5413-5b3b-b0c1-f299b47c1f52</tstamps>
-    </comp>
-    <comp ref="C5">
-      <value>100n</value>
-      <footprint>Groundlark:Capacitor_SMD__C_0603_1608Metric</footprint>
-      <fields>
-        <field name="MPN">GRM188R71H104KA93D</field>
-        <field name="Footprint">Groundlark:Capacitor_SMD__C_0603_1608Metric</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Groundlark" part="Part_C5" description=""/>
-      <property name="MPN" value="GRM188R71H104KA93D"/>
-      <property name="Sheetname" value="03-sensors-page-01"/>
-      <property name="Sheetfile" value="03-sensors-page-01.kicad_sch"/>
-      <sheetpath names="/03-sensors-page-01/" tstamps="/7bec89a2-520f-51ab-8226-ae13c36b967f/"/>
-      <tstamps>101ef389-9430-5657-aaa7-b7cc0b77501a</tstamps>
+      <sheetpath names="/03-sensors-page-01/" tstamps="/ab979e54-c171-5922-9bbc-4aaabc504545/"/>
+      <tstamps>363ebc15-a84e-5c88-994c-72d30999ff2d</tstamps>
     </comp>
     <comp ref="C9">
       <value>100n</value>
@@ -411,8 +395,8 @@
       <property name="MPN" value="GRM188R71H104KA93D"/>
       <property name="Sheetname" value="03-sensors-page-01"/>
       <property name="Sheetfile" value="03-sensors-page-01.kicad_sch"/>
-      <sheetpath names="/03-sensors-page-01/" tstamps="/7bec89a2-520f-51ab-8226-ae13c36b967f/"/>
-      <tstamps>37068a9e-781b-5b1f-97e7-57b75e28f0fd</tstamps>
+      <sheetpath names="/03-sensors-page-01/" tstamps="/ab979e54-c171-5922-9bbc-4aaabc504545/"/>
+      <tstamps>d9ed3b6c-c51f-56cb-99ca-fd731912de41</tstamps>
     </comp>
     <comp ref="R5">
       <value>100k</value>
@@ -427,8 +411,8 @@
       <property name="MPN" value="RC0603FR-07100KL"/>
       <property name="Sheetname" value="03-sensors-page-01"/>
       <property name="Sheetfile" value="03-sensors-page-01.kicad_sch"/>
-      <sheetpath names="/03-sensors-page-01/" tstamps="/7bec89a2-520f-51ab-8226-ae13c36b967f/"/>
-      <tstamps>ef8e954c-a4bf-5cfa-87f7-10d1cbd09e2c</tstamps>
+      <sheetpath names="/03-sensors-page-01/" tstamps="/ab979e54-c171-5922-9bbc-4aaabc504545/"/>
+      <tstamps>5443123b-5156-5aab-b7fb-40849f85b7c3</tstamps>
     </comp>
     <comp ref="R7">
       <value>4.7k</value>
@@ -443,8 +427,8 @@
       <property name="MPN" value="RC0603FR-074K7L"/>
       <property name="Sheetname" value="03-sensors-page-01"/>
       <property name="Sheetfile" value="03-sensors-page-01.kicad_sch"/>
-      <sheetpath names="/03-sensors-page-01/" tstamps="/7bec89a2-520f-51ab-8226-ae13c36b967f/"/>
-      <tstamps>362e9235-c529-5b01-9dcb-ed2af29a5aba</tstamps>
+      <sheetpath names="/03-sensors-page-01/" tstamps="/ab979e54-c171-5922-9bbc-4aaabc504545/"/>
+      <tstamps>ab5bb1aa-8a8d-5522-8269-d7381712ffb1</tstamps>
     </comp>
     <comp ref="R8">
       <value>4.7k</value>
@@ -459,8 +443,8 @@
       <property name="MPN" value="RC0603FR-074K7L"/>
       <property name="Sheetname" value="03-sensors-page-01"/>
       <property name="Sheetfile" value="03-sensors-page-01.kicad_sch"/>
-      <sheetpath names="/03-sensors-page-01/" tstamps="/7bec89a2-520f-51ab-8226-ae13c36b967f/"/>
-      <tstamps>2d54c785-9611-5238-8355-405b46c1f3c9</tstamps>
+      <sheetpath names="/03-sensors-page-01/" tstamps="/ab979e54-c171-5922-9bbc-4aaabc504545/"/>
+      <tstamps>fc27de2f-9279-53c3-b692-df9c65d77131</tstamps>
     </comp>
     <comp ref="U2">
       <value>RM3100 XYZ</value>
@@ -475,25 +459,8 @@
       <property name="MPN" value="PNI 14190"/>
       <property name="Sheetname" value="03-sensors-page-01"/>
       <property name="Sheetfile" value="03-sensors-page-01.kicad_sch"/>
-      <sheetpath names="/03-sensors-page-01/" tstamps="/7bec89a2-520f-51ab-8226-ae13c36b967f/"/>
-      <tstamps>590c5b82-4df1-5045-854c-1330006afefd</tstamps>
-    </comp>
-    <comp ref="U3">
-      <value>DLVR-F50D option</value>
-      <footprint>Groundlark:Groundlark__DLVR_E1BS</footprint>
-      <fields>
-        <field name="MPN">DLVR-F50D-E1BS-I-NI3F</field>
-        <field name="Footprint">Groundlark:Groundlark__DLVR_E1BS</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Groundlark" part="Part_U3" description=""/>
-      <property name="MPN" value="DLVR-F50D-E1BS-I-NI3F"/>
-      <property name="Sheetname" value="03-sensors-page-01"/>
-      <property name="Sheetfile" value="03-sensors-page-01.kicad_sch"/>
-      <property name="dnp"/>
-      <sheetpath names="/03-sensors-page-01/" tstamps="/7bec89a2-520f-51ab-8226-ae13c36b967f/"/>
-      <tstamps>df6b6402-2754-5334-ab6f-92cced68263c</tstamps>
+      <sheetpath names="/03-sensors-page-01/" tstamps="/ab979e54-c171-5922-9bbc-4aaabc504545/"/>
+      <tstamps>22eaabde-65c0-5cea-8227-63f631a39695</tstamps>
     </comp>
     <comp ref="U5">
       <value>TPS22919</value>
@@ -508,8 +475,8 @@
       <property name="MPN" value="TPS22919DCKR"/>
       <property name="Sheetname" value="03-sensors-page-01"/>
       <property name="Sheetfile" value="03-sensors-page-01.kicad_sch"/>
-      <sheetpath names="/03-sensors-page-01/" tstamps="/7bec89a2-520f-51ab-8226-ae13c36b967f/"/>
-      <tstamps>db2eb6f3-8504-5471-8118-ba4fc4ff8e39</tstamps>
+      <sheetpath names="/03-sensors-page-01/" tstamps="/ab979e54-c171-5922-9bbc-4aaabc504545/"/>
+      <tstamps>aaf6b54e-d79e-520f-bf47-622b3680b98c</tstamps>
     </comp>
   </components>
   <libparts>
@@ -553,19 +520,6 @@
       </pins>
     </libpart>
     <libpart lib="Groundlark" part="Part_C4">
-      <fields>
-        <field name="Reference">C</field>
-        <field name="Value">100n</field>
-        <field name="Footprint"/>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <pins>
-        <pin num="1" name="1" type="passive"/>
-        <pin num="2" name="2" type="passive"/>
-      </pins>
-    </libpart>
-    <libpart lib="Groundlark" part="Part_C5">
       <fields>
         <field name="Reference">C</field>
         <field name="Value">100n</field>
@@ -893,21 +847,6 @@
         <pin num="14" name="DVSS" type="power_in"/>
       </pins>
     </libpart>
-    <libpart lib="Groundlark" part="Part_U3">
-      <fields>
-        <field name="Reference">U</field>
-        <field name="Value">DLVR-F50D option</field>
-        <field name="Footprint"/>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <pins>
-        <pin num="1" name="GND" type="power_in"/>
-        <pin num="2" name="VS_3V3" type="passive"/>
-        <pin num="3" name="SDA" type="passive"/>
-        <pin num="4" name="SCL" type="passive"/>
-      </pins>
-    </libpart>
     <libpart lib="Groundlark" part="Part_U4">
       <fields>
         <field name="Reference">U</field>
@@ -944,7 +883,7 @@
   </libparts>
   <libraries>
     <library logical="Groundlark">
-      <uri>/work/hw/burrowlark-usb/boards/groundlark-field-head/Groundlark.kicad_sym</uri>
+      <uri>/mnt/p/Personal/groundlark/hw/burrowlark-usb/boards/groundlark-field-head/Groundlark.kicad_sym</uri>
     </library>
   </libraries>
   <nets>
@@ -958,7 +897,6 @@
       <node ref="C2" pin="2" pinfunction="2" pintype="passive"/>
       <node ref="C3" pin="2" pinfunction="2" pintype="passive"/>
       <node ref="C4" pin="2" pinfunction="2" pintype="passive"/>
-      <node ref="C5" pin="2" pinfunction="2" pintype="passive"/>
       <node ref="C6" pin="2" pinfunction="2" pintype="passive"/>
       <node ref="C7" pin="2" pinfunction="2" pintype="passive"/>
       <node ref="C8" pin="2" pinfunction="2" pintype="passive"/>
@@ -981,7 +919,6 @@
       <node ref="U2" pin="2" pinfunction="SA1" pintype="passive"/>
       <node ref="U2" pin="4" pinfunction="SA0" pintype="passive"/>
       <node ref="U2" pin="7" pinfunction="AVSS" pintype="power_in"/>
-      <node ref="U3" pin="1" pinfunction="GND" pintype="power_in"/>
       <node ref="U4" pin="2" pinfunction="GND" pintype="power_in"/>
       <node ref="U5" pin="2" pinfunction="GND" pintype="power_in"/>
     </net>
@@ -999,13 +936,11 @@
       <node ref="R8" pin="1" pinfunction="1" pintype="passive"/>
       <node ref="U1" pin="29" pinfunction="I2C_SCL" pintype="passive"/>
       <node ref="U2" pin="1" pinfunction="SCL" pintype="passive"/>
-      <node ref="U3" pin="4" pinfunction="SCL" pintype="passive"/>
     </net>
     <net code="6" name="SDA" class="Default">
       <node ref="R7" pin="1" pinfunction="1" pintype="passive"/>
       <node ref="U1" pin="30" pinfunction="I2C_SDA" pintype="passive"/>
       <node ref="U2" pin="3" pinfunction="SDA" pintype="passive"/>
-      <node ref="U3" pin="3" pinfunction="SDA" pintype="passive"/>
     </net>
     <net code="7" name="SENSOR_EN" class="Default">
       <node ref="R5" pin="1" pinfunction="1" pintype="passive"/>
@@ -1078,13 +1013,11 @@
     </net>
     <net code="17" name="V3_SENSOR" class="Default">
       <node ref="C4" pin="1" pinfunction="1" pintype="passive"/>
-      <node ref="C5" pin="1" pinfunction="1" pintype="passive"/>
       <node ref="R7" pin="2" pinfunction="2" pintype="passive"/>
       <node ref="R8" pin="2" pinfunction="2" pintype="passive"/>
       <node ref="U2" pin="10" pinfunction="I2CEN" pintype="passive"/>
       <node ref="U2" pin="12" pinfunction="DVDD" pintype="power_in"/>
       <node ref="U2" pin="13" pinfunction="AVDD" pintype="power_in"/>
-      <node ref="U3" pin="2" pinfunction="VS_3V3" pintype="passive"/>
       <node ref="U5" pin="5" pinfunction="QOD" pintype="passive"/>
       <node ref="U5" pin="6" pinfunction="OUT" pintype="passive"/>
     </net>

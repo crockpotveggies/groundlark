@@ -1,7 +1,8 @@
 """Independent circuit invariants against the actual atopile-compiled PCB."""
 from pathlib import Path
 from project_paths import compiled_dir, load_layout
-import csv,json,re
+from burrowlark_checks import magnetometer_only
+import argparse,csv,json,re
 import pcbnew as p
 ROOT=Path(__file__).resolve().parents[2]
 def require(pins,ref,expected):
@@ -34,8 +35,8 @@ def validate_hat(pins):
     for ref in ['U41','U42']:require(pins,ref,{1:'PI_3V3',11:'GND',12:'GND',13:'GND',22:'SENSOR_OE_N',23:'SENS_3V3',24:'SENS_3V3'})
     require(pins,'U41',{2:'PI_3V3'});require(pins,'U42',{2:'GND'})
 
-def main():
-    metadata=load_layout('groundlark-hat', 'groundlark-field-head');source=(ROOT/'hw/shared/elec/parts.ato').read_text()
+def main(boards=('groundlark-hat','groundlark-field-head')):
+    metadata=load_layout(*boards);source=(ROOT/'hw/shared/elec/parts.ato').read_text()
     blocks={m[1]:m[2] for m in re.finditer(r'^component (\w+):\n(.*?)(?=^component |\Z)',source,re.M|re.S)}
     reports=[]
     for name,meta in metadata.items():
@@ -59,7 +60,8 @@ def main():
                 else:raise AssertionError('Mutation escaped: '+mutation)
         else:
             require(pins,'U2',{1:'SCL',2:'GND',3:'SDA',4:'GND',5:'MAG_DRDY',7:'GND',10:'V3_SENSOR',12:'V3_SENSOR',13:'V3_SENSOR',14:'GND'})
-            require(pins,'U3',{1:'GND',2:'V3_SENSOR',3:'SDA',4:'SCL'})
+            magnetometer_only(f.GetReference() for f in b.GetFootprints())
+            magnetometer_only(part['ref'] for part in meta['parts'])
             require(pins,'U1',{1:'V3',5:'V3',16:'GND',17:'V3',32:'GND',4:'NRST',6:'SENSOR_EN',14:'MAG_DRDY',21:'USB_DM',22:'USB_DP',23:'SWDIO',24:'SWCLK',29:'SCL',30:'SDA',31:'BOOT0'})
             require(pins,'J1',{'A5':'USB_CC1','B5':'USB_CC2','A6':'USB_DP','B6':'USB_DP','A7':'USB_DM','B7':'USB_DM','A4':'USB_VBUS','A9':'USB_VBUS','B4':'USB_VBUS','B9':'USB_VBUS','A1':'GND','A12':'GND','B1':'GND','B12':'GND','S1':'GND'})
             require(pins,'R1',{1:'USB_CC1',2:'GND'});require(pins,'R2',{1:'USB_CC2',2:'GND'})
@@ -70,8 +72,14 @@ def main():
             require(pins,'C1',{1:'USB_5V',2:'GND'})
             require(pins,'C8',{1:'NRST',2:'GND'})
             for n in [2,3,6,7,9]:require(pins,f'C{n}',{1:'V3',2:'GND'})
-            for n in [4,5]:require(pins,f'C{n}',{1:'V3_SENSOR',2:'GND'})
+            require(pins,'C4',{1:'V3_SENSOR',2:'GND'})
         reports.append({'board':name,'compiled_pins':len(pins),'source_bom_agreement':'PASS','circuit_invariants':'PASS'})
-    result={'boards':reports,'negative_mutations':['missing supervisor bypass rejected','5V on Coldfoot UART VCC rejected']}
-    (ROOT/'hw/shared/simulation/circuit-checks.json').write_text(json.dumps(result,indent=2));print(json.dumps(result,indent=2))
-if __name__=='__main__':main()
+    result={'boards':reports,'negative_mutations':['missing supervisor bypass rejected','5V on Coldfoot UART VCC rejected'] if 'groundlark-hat' in boards else []}
+    if len(boards)==2:
+        (ROOT/'hw/shared/simulation/circuit-checks.json').write_text(json.dumps(result,indent=2))
+    print(json.dumps(result,indent=2))
+if __name__=='__main__':
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--board',choices=('groundlark-hat','groundlark-field-head'))
+    args=parser.parse_args()
+    main((args.board,) if args.board else ('groundlark-hat','groundlark-field-head'))

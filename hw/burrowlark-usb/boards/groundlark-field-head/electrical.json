@@ -5,6 +5,12 @@
     45
   ],
   "copper_layers": 4,
+  "ground_layers": [
+    "In1.Cu",
+    "In2.Cu"
+  ],
+  "stackup": null,
+  "fabrication": {},
   "parts": [
     {
       "ref": "J1",
@@ -628,53 +634,6 @@
       "xy": [
         33,
         15
-      ],
-      "angle": 0,
-      "section": "03-sensors-page-01",
-      "dnp": false,
-      "note": "",
-      "mpn": "GRM188R71H104KA93D",
-      "footprint": "Capacitor_SMD:C_0603_1608Metric",
-      "local_fp": "Capacitor_SMD__C_0603_1608Metric",
-      "names": {},
-      "pins": {
-        "1": "V3_SENSOR",
-        "2": "GND"
-      }
-    },
-    {
-      "ref": "U3",
-      "value": "DLVR-F50D option",
-      "xy": [
-        46,
-        33
-      ],
-      "angle": 0,
-      "section": "03-sensors-page-01",
-      "dnp": true,
-      "note": "",
-      "mpn": "DLVR-F50D-E1BS-I-NI3F",
-      "footprint": "Groundlark:DLVR_E1BS",
-      "local_fp": "Groundlark__DLVR_E1BS",
-      "names": {
-        "1": "GND",
-        "2": "VS_3V3",
-        "3": "SDA",
-        "4": "SCL"
-      },
-      "pins": {
-        "1": "GND",
-        "2": "V3_SENSOR",
-        "3": "SDA",
-        "4": "SCL"
-      }
-    },
-    {
-      "ref": "C5",
-      "value": "100n",
-      "xy": [
-        43,
-        34
       ],
       "angle": 0,
       "section": "03-sensors-page-01",

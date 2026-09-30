@@ -10,7 +10,6 @@ from "../../shared/elec/parts.ato" import P_26
 from "../../shared/elec/parts.ato" import P_27
 from "../../shared/elec/parts.ato" import P_28
 from "../../shared/elec/parts.ato" import P_34
-from "../../shared/elec/parts.ato" import P_35
 from "../../shared/elec/parts.ato" import P_5
 from "../../shared/elec/parts.ato" import P_6
 from "../../shared/elec/parts.ato" import FieldUsbConnector
@@ -230,25 +229,12 @@ module FieldHead:
     c4.p1 ~ V3_SENSOR
     c4.p2 ~ GND
 
-    u3 = new P_35
-    trait u3 has_designator<designator="U3">
-    u3.p1 ~ GND
-    u3.p2 ~ V3_SENSOR
-    u3.p3 ~ SDA
-    u3.p4 ~ SCL
-
-    c5 = new P_6
-    trait c5 has_designator<designator="C5">
-    c5.p1 ~ V3_SENSOR
-    c5.p2 ~ GND
-
     u1.power ~ supply
     u4.input_power ~ usb_supply
     u4.output_power ~ supply
     u5.power ~ supply
     u2.power ~ sensor_supply
     u2.io ~ sensor_supply
-    u3.power ~ sensor_supply
     trait BOOT0 has_net_name_suggestion<name="BOOT0", level="EXPECTED">
     trait GND has_net_name_suggestion<name="GND", level="EXPECTED">
     trait MAG_DRDY has_net_name_suggestion<name="MAG_DRDY", level="EXPECTED">

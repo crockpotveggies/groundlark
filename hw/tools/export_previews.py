@@ -1,9 +1,12 @@
 """Export actual KiCad CAD to reviewable SVG/PNG previews; not manufacturing data."""
 from pathlib import Path
 from project_paths import board_dir
-import subprocess
+import argparse, subprocess
 ROOT=Path(__file__).resolve().parents[2]
-for name in ['groundlark-hat','groundlark-field-head']:
+parser=argparse.ArgumentParser(description=__doc__)
+parser.add_argument('boards',nargs='*',choices=['groundlark-hat','groundlark-field-head'])
+args=parser.parse_args()
+for name in args.boards or ['groundlark-hat','groundlark-field-head']:
     folder=board_dir(name); preview=folder/'preview';preview.mkdir(exist_ok=True)
     # Clear only this tool's generated previews before exporting current sheets.
     for suffix in ('*.svg','*.png'):
