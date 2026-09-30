@@ -128,7 +128,7 @@ C106,100n,GRM188R71H104KA93D,Capacitor_SMD__C_0603_1608Metric,False,
 U23,DLVR-F50D,DLVR-F50D-E1BS-I-NI3F,Groundlark__DLVR_E1BS,False,Fitted 3.3 V I2C 0x28; pneumatic response and thermal/vibration isolation require qualification.
 C24,100n,GRM188R71H104KA93D,Capacitor_SMD__C_0603_1608Metric,False,Local DLVR supply bypass
 J83,12V DC / CENTER +,PJ-102AH,PWR_BarrelJack_CUI_PJ-102AH_Horizontal,False,"5.5/2.1 mm mating plug; mouth faces -Y, opposite J90 +Y; sleeve switch pin 3 NC"
-F80,2A fast,0467002.NR,PWR_Fuse_1206_3216Metric,False,Input fuse; output current controlled by buck converter
+F80,0466002.NRHF,0466002.NRHF,PWR_Fuse_1206_3216Metric,False,Input fuse; output current controlled by buck converter
 D80,B340A,B340A-13-F,PWR_D_SMA,False,3 A / 40 V Schottky; reverse-polarity series protection
 D81,SMAJ15A,SMAJ15A-13-F,PWR_D_SMA,False,"15 V standoff TVS; transient suppression, not sustained overvoltage cutoff"
 U80,TPSM53603,TPSM53603RDAR,PWR_Texas_B3QFN-14-1EP_5x5.5mm_P0.65mm,False,"Pins 4/5 DNC isolated; pin13 V5V NC; 3 A envelope, thermal qualification pending"
@@ -146,11 +146,11 @@ C110,22u,GRM32ER71E226KE15L,PWR_C_1210_3225Metric,False,25 V X7R 1210; three loc
 C111,22u,GRM32ER71E226KE15L,PWR_C_1210_3225Metric,False,25 V X7R 1210; three local caps must provide >=43 uF effective combined
 C112,22u,GRM32ER71E226KE15L,PWR_C_1210_3225Metric,False,25 V X7R 1210; three local caps must provide >=43 uF effective combined
 J130,PI BATTERY 8-18V,1803277,"SUP_PhoenixContact_MC_1,5_2-G-3.81_1x02_P3.81mm_Horizontal",False,External protected battery/controller DC output; no solar panel or charging input
-F130,4A fast,0467004.NR,SUP_Fuse_1206_3216Metric,False,
+F130,4A fuse,0466004.NRHF,SUP_Fuse_1206_3216Metric,False,
 D130,B340A,B340A-13-F,PWR_D_SMA,False,
 D131,SMAJ18A,SMAJ18A-13-F,SUP_D_SMA,False,
 U131,TPS70933,TPS70933DBVR,SUP_SOT-23-5,False,"Always on; EN internally biased, never connect EN to raw battery"
-C130,4.7u,GRM21BR71A475KA73L,SUP_C_0805_2012Metric,False,At least 2.2uF effective at 3.3V
+C130,4.7u,GRM21BR71C475KA73L,SUP_C_0805_2012Metric,False,At least 2.2uF effective at 3.3V
 C131,10u,CGA5L1X7R1H106K160AC,PWR_C_1206_3216Metric,False,
 U132,TPSM53603,TPSM53603RDAR,PWR_Texas_B3QFN-14-1EP_5x5.5mm_P0.65mm,False,5.149V / 3A total Pi+HAT allocation; EN pulldown gives default OFF
 C132,10u,CGA5L1X7R1H106K160AC,PWR_C_1206_3216Metric,False,
@@ -161,13 +161,13 @@ C136,22u,GRM32ER71E226KE15L,PWR_C_1210_3225Metric,False,Combined effective capac
 C137,22u,GRM32ER71E226KE15L,PWR_C_1210_3225Metric,False,Combined effective capacitance must be at least 44uF at 5.15V
 C138,22u,GRM32ER71E226KE15L,PWR_C_1210_3225Metric,False,Combined effective capacitance must be at least 44uF at 5.15V
 R130,10k,RT0603BRD0710KL,PWR_R_0603_1608Metric,False,
-R131,2.41k,RT0603BRD072K41L,SUP_R_0603_1608Metric,False,
+R131,2.43k,RT0603BRD072K43L,SUP_R_0603_1608Metric,False,
 R132,100k,RC0603FR-07100KL,PWR_R_0603_1608Metric,False,
 U133,TPS22953,TPS22953DQCR,SUP_Texas_WSON10_DQC0010A,False,Reverse blocking while disabled; no simultaneous Pi USB-C supply
 C139,10n,GRM188R71H103KA01D,SUP_C_0603_1608Metric,False,50V slew capacitor; approximately 18ms output rise
 C140,10u,GRM21BR61C106KE15L,SUP_C_0805_2012Metric,False,
 R133,2k,RC0603FR-072KL,SUP_R_0603_1608Metric,False,Output bleed; minimum OFF time must be qualified with actual Pi capacitance
-U130,MSPM0L1105,MSPM0L1105TRHBR,SUP_QFN-32-1EP_5x5mm_P0.5mm_EP3.45x3.45mm,False,32k flash / 4k RAM. Internal clock; unused GPIO disabled in firmware. No external VCORE load.
+U130,MSPM0L1106,MSPM0L1106TRHBR,SUP_QFN-32-1EP_5x5mm_P0.5mm_EP3.45x3.45mm,False,32k flash / 4k RAM. Internal clock; unused GPIO disabled in firmware. No external VCORE load.
 C141,100n,GRM188R71H104KA93D,PWR_C_0603_1608Metric,False,
 C142,10u,GRM21BR61C106KE15L,SUP_C_0805_2012Metric,False,
 C143,470n,GRM188R71C474KA88D,SUP_C_0603_1608Metric,False,
@@ -191,11 +191,14 @@ TP92,GEO_AVDD,PCB copper,TestPoint__TestPoint_Pad_D1.5mm,True,Calibration probe 
 TP93,GEO_DRDY_N,PCB copper,TestPoint__TestPoint_Pad_D1.5mm,True,Calibration probe pad; no fitted component. Use high impedance probe.
 U21,MAX-M10S-00B,MAX-M10S-00B,RF_GPS__ublox_MAX,False,u-blox; JLCPCB C4153167. I2C 0x42; PPS BCM24. No backup supply.
 J140,GNSS ANT / 3V3,HL-SMA-KWE-02,GNSS_HL_SMA_KWE_02,False,HenryTech C20617216; female SMA 50 ohm; axis native -X. Active antenna 3.3V <=20mA. Not RP-SMA.
-C146,4.7u,GRM21BR71A475KA73L,Capacitor_SMD__C_0805_2012Metric,False,
+C146,4.7u,GRM21BR71C475KA73L,Capacitor_SMD__C_0805_2012Metric,False,
 C147,100n,GRM188R71H104KA93D,Capacitor_SMD__C_0603_1608Metric,False,
 C148,47p C0G,GRM1555C1H470JA01D,GNSS_C0402,False,
 L140,27n,LQW15AN27NJ00D,GNSS_L0402,False,27nH wirewound RF choke; u-blox reference family. Verify impedance and RF matching on fabricated stack.
-U140,TPS70933,TPS70933DBVR,SUP_SOT-23-5,False,Dedicated current-limited/thermal-protected 3.3V antenna supply; EN internally enabled. 20mA antenna allocation; no fault telemetry.
-C149,4.7u,GRM21BR71A475KA73L,Capacitor_SMD__C_0805_2012Metric,False,
-C150,4.7u,GRM21BR71A475KA73L,Capacitor_SMD__C_0805_2012Metric,False,
+U140,TPS70933,TPS70933DBVR,SUP_SOT-23-5,False,3.3 V antenna LDO; downstream U141 limits sustained shorts to 100 mA maximum. 20 mA antenna allocation.
+C149,4.7u,GRM21BR71C475KA73L,Capacitor_SMD__C_0805_2012Metric,False,
+C150,4.7u,GRM21BR71C475KA73L,Capacitor_SMD__C_0805_2012Metric,False,
 D140,PESD5V0F1BL,"PESD5V0F1BL,315",GNSS_SOD882,False,Nexperia low-capacitance unidirectional ESD; cathode pin1 to RF/bias.
+U141,TPS2553,TPS2553DBVR,GNSS_SOT23_6,False,"TI DBV pin table: 1 IN, 2 GND, 3 EN, 4 FAULT NC, 5 ILIM tied IN, 6 OUT. 50..100 mA limit."
+C151,10n,GRM188R71H103KA01D,SUP_C_0603_1608Metric,False,Local RF bypass at L140 cold end; short ground stitch.
+C152,100n,GRM188R71H104KA93D,Capacitor_SMD__C_0603_1608Metric,False,U141 input bypass.

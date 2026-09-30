@@ -2,9 +2,9 @@
 
 TP90–TP93 expose ground, VCM, AVDD and DRDY on the underside for external bench measurements. Use J90 for isolated differential stimuli; the [calibration procedure](calibration.md) covers floating shorts and measured DC gain.
 
-The active 140 × 56 mm DAQHAT-01 carrier replaces MAX-M10S U21, U.FL J2 and the
-GNSS support capacitors with one external passive vertical geophone input.
-Historical A2 and the remote USB magnetometer/infrasound board are unchanged.
+The active 140 × 56 mm DAQHAT-01 carrier has one external passive vertical
+geophone input, alongside MAX-M10S GNSS and its side-facing SMA antenna port.
+Burrowlark is the separate remote USB magnetometer.
 The current internal host link uses nine ordinary Trenz I/Os; all 260 module
 contacts, including deliberate no-connects, are independently checked.
 
@@ -88,7 +88,8 @@ completion timestamps have unknown absolute uncertainty, and overwritten
 conversion loss is unknown. Scheduler/IPC throughput must be measured on the
 target Pi; 330 SPS conversion rate does not guarantee 330 delivered samples/s.
 ADC data validity does not prove coil continuity; automatic open-coil detection
-is not implemented. The current DAQHAT-01 rejects `--utc`; it contains neither GNSS nor a UTC/PPS source.
+is not implemented. The current DAQHAT-01 supports `live --fifo --utc` through MAX-M10S and BCM24 PPS.
+Physical geophone sample-time bounds remain unqualified; see [UTC timing](utc-timing.md).
 
 Duplicate reads do not extend the counter ambiguity window. Conversion gaps emit
 missing records with unknown loss, without resetting an otherwise healthy ADC.

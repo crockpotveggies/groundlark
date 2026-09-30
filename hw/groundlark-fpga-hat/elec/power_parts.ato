@@ -43,7 +43,7 @@ component PWR_TVS:
     signal p2 ~ pin 2
 
 component PWR_FUSE:
-    trait is_atomic_part<manufacturer="Littelfuse", partnumber="0467002.NR", footprint="../../shared/elec/PWR_Fuse_1206_3216Metric.kicad_mod", symbol="../../shared/elec/symbols/PWR_FUSE.kicad_sym">
+    trait is_atomic_part<manufacturer="Littelfuse", partnumber="0466002.NRHF", footprint="../../shared/elec/PWR_Fuse_1206_3216Metric.kicad_mod", symbol="../../shared/elec/symbols/PWR_FUSE.kicad_sym">
     trait has_designator_prefix<prefix="F">
     signal p1 ~ pin 1
     signal p2 ~ pin 2

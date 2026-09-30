@@ -57,16 +57,17 @@ charges batteries nor accepts an unregulated solar-panel input. Battery chemistr
 is not fixed by the board; packs outside this voltage range need an external
 converter. The FPGA's J83 adapter remains a separate input.
 
-F130 (4 A), D130 and D131 provide input fusing, reverse-polarity protection and
-transient suppression. U131 (TPS70933) supplies U130 (MSPM0L1105) continuously.
+F130 (4 A, 1206), D130 and D131 provide input fusing, reverse-polarity protection and
+transient suppression. U131 (TPS70933) supplies U130 (MSPM0L1106) continuously.
 Its EN pin floats as specified by TI; it must not be tied to the battery. U130's
 VCORE pin connects only to C143 (470 nF). J131 exposes 3.3 V reference, ground,
 SWCLK, SWDIO and NRST in that pin order; the probe must not supply target power.
 
-U132 (TPSM53603) supplies nominal **5.149 V, 3 A combined for Pi and HAT**.
+U132 (TPSM53603) supplies nominal **5.115 V, 3 A combined for Pi and HAT**.
 U133 (TPS22953) switches that rail to both Pi header 5 V contacts and blocks
 reverse current while disabled. Its 10 nF CT capacitor gives approximately
-18 ms rise time. A 2 kΩ output bleed supports discharge after shutdown. RUN has
+18 ms rise time. Its unused PG output (pin 7) is grounded as TI specifies.
+A 2 kΩ output bleed supports discharge after shutdown. RUN has
 an external pulldown, so reset or an unprogrammed MCU leaves Pi power **off**.
 The JP130 shunt forces manual bench power; remove it for automatic control.
 R141 limits GPIO current if the shunt is inadvertently left installed.
@@ -75,14 +76,22 @@ R141 limits GPIO current if the shunt is inadvertently left installed.
 blocking is not a power mux. This allocation targets the enclosed Pi 4 stack;
 it does not provide the Pi 5's full 5 A peripheral power budget.
 
-The full-temperature reference/divider scenario is about 5.06–5.24 V before
+The 10 kΩ / 2.43 kΩ divider sets 5.115 V. Including the reference limit,
+0.1% resistor tolerance, independent 25 ppm/K drift over −40…85 °C and an
+allocated ±20 mV ripple/transient allowance gives about 5.00–5.234 V before
 load-switch and distribution drop. A 25 mΩ switch allowance and **50 mΩ total
-copper/contact loop target** leave approximately 4.83 V at 3 A. This target
+copper/contact loop target** leave approximately 4.772 V at 3 A. This target
 includes the GPIO riser contacts and return path and must be measured. Parallel
 2 mm back/In3 rails run along the extension; local clearance necks and the inner
 left-side feed retain both 5 V contacts. At 8 V input, an assumed 0.5 V diode
-drop and 85% conversion efficiency imply about 2.42 A input. Neither efficiency
-nor transient/thermal performance is qualified by these calculations.
+drop and 85% conversion efficiency imply about 2.41 A input. Neither efficiency
+nor transient/thermal performance is qualified by these calculations. The ±20 mV
+allowance is a bench acceptance limit, not a measured result. At this low-input,
+full-load scenario D130 dissipates about 1.2 W and the converter about 2.7 W at
+85% efficiency. Qualify both in the closed enclosure. F130 is the 1206
+Littelfuse 0466004.NRHF; its temperature/current derating and startup I²t must
+be checked with the selected battery and load. Do not assume 3 A output is
+available at every enclosure temperature.
 
 BCM6 (header 31) is an active-low shutdown request through Q130, pulled up to
 Pi 3.3 V. BCM13 (header 33) asserts high after halt and drives Q131; the MCU reads
@@ -117,7 +126,7 @@ shutdown, recovery hysteresis, output discharge, startup/inrush, standby current
 3 A load/drop, enclosure temperature and geophone noise with the Pi converter
 running. Circuit/CAD tests do not establish those results.
 
-Manufacturer references: [MSPM0L1105](https://www.ti.com/lit/ds/symlink/mspm0l1105.pdf),
+Manufacturer references: [MSPM0L1106](https://www.ti.com/lit/ds/symlink/mspm0l1105.pdf),
 [TPS709](https://www.ti.com/lit/ds/symlink/tps709.pdf),
 [TPSM53603](https://www.ti.com/lit/ds/symlink/tpsm53603.pdf),
 [TPS22953](https://www.ti.com/lit/ds/symlink/tps22953.pdf).

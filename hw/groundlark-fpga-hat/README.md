@@ -9,6 +9,11 @@ DAQHAT-01, then Trenz TE0712-03-81I36-A. Physical qualification remains pending.
 J90 uses a horizontal Phoenix 1803280 header with the existing 1803581 cable
 plug. Pin order remains positive, negative, shield.
 
+MAX-M10S GNSS uses Pi I²C1 and BCM24 PPS, with a side-facing SMA and a
+TPS2553 antenna fault limiter. ISO1640 side 2 faces the Pi/GNSS bus. J130 feeds
+the separate MSPM0L1106 supervisor and 5.115 V Pi supply; battery policy and
+MCU firmware remain pending. See [GNSS setup](../../docs/gnss-hardware.md).
+
 J83 takes a Nexys Video-compatible 12 V, center-positive 5.5/2.1 mm adapter
 rated at least 3 A. It faces the opposite edge from the geophone. U80 supplies
 the FPGA independently of the Pi, with a 3 A output allocation; SW80 turns this

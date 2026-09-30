@@ -1,7 +1,7 @@
 {
-  "status": "Pending catalog identities, current stock and numbered supplier-pad review; no fabrication release",
+  "status": "Partial dated catalog observations recorded; full procurement and numbered supplier-pad review pending; no fabrication release",
   "manufacturer_evidence": [
-    "https://www.ti.com/lit/ds/symlink/mspm0l1105.pdf",
+    "https://www.ti.com/lit/ds/symlink/mspm0l1106.pdf",
     "https://www.ti.com/lit/ds/symlink/tps709.pdf",
     "https://www.ti.com/lit/ds/symlink/tpsm53603.pdf",
     "https://www.ti.com/lit/ds/symlink/tps22953.pdf",
@@ -24,11 +24,18 @@
     {
       "reference": "F130",
       "manufacturer": "Littelfuse",
-      "mpn": "0467004.NR",
+      "mpn": "0466004.NRHF",
       "footprint": "SUP_Fuse_1206_3216Metric",
-      "catalog_identity": null,
-      "stock_observation": null,
-      "supplier_pad_fixture": null
+      "catalog_identity": "C187596",
+      "stock_observation": {
+        "checked_at": "2026-09-30T21:56:52.935978+00:00",
+        "available_order_quantity": 3541,
+        "displayed_stock": 3566,
+        "evidence_url": "https://jlcpcb.com/partdetail/0466004.NRHF/C187596",
+        "snapshot_sha256": "e2bb8e63173963d2764fcec35ce38bbf8698443b6949eb247c2665db131e8968"
+      },
+      "supplier_pad_fixture": null,
+      "manufacturer_evidence": "https://www.littelfuse.com/assetdocs/fuse-466-datasheet?assetguid=dbe9bcd7-6072-4adf-bf5b-d33e52a6b90f"
     },
     {
       "reference": "D130",
@@ -60,11 +67,18 @@
     {
       "reference": "C130",
       "manufacturer": "Murata",
-      "mpn": "GRM21BR71A475KA73L",
+      "mpn": "GRM21BR71C475KA73L",
       "footprint": "SUP_C_0805_2012Metric",
-      "catalog_identity": null,
-      "stock_observation": null,
-      "supplier_pad_fixture": null
+      "catalog_identity": "C86040",
+      "stock_observation": {
+        "checked_at": "2026-09-30T21:56:52.240554+00:00",
+        "available_order_quantity": 11988,
+        "displayed_stock": 12044,
+        "evidence_url": "https://jlcpcb.com/partdetail/GRM21BR71C475KA73L/C86040",
+        "snapshot_sha256": "d2a33c5c0623641035e24cb03607decb83564e1325993097a685a02dd561847e"
+      },
+      "supplier_pad_fixture": null,
+      "manufacturer_evidence": "https://www.murata.com/en-us/products/productdetail?partno=GRM21BR71C475KA73%23"
     },
     {
       "reference": "C131",
@@ -159,11 +173,18 @@
     {
       "reference": "R131",
       "manufacturer": "Yageo",
-      "mpn": "RT0603BRD072K41L",
+      "mpn": "RT0603BRD072K43L",
       "footprint": "SUP_R_0603_1608Metric",
-      "catalog_identity": null,
-      "stock_observation": null,
-      "supplier_pad_fixture": null
+      "catalog_identity": "C861298",
+      "stock_observation": {
+        "checked_at": "2026-09-30T21:56:50.757663+00:00",
+        "available_order_quantity": 4165,
+        "displayed_stock": 4165,
+        "evidence_url": "https://jlcpcb.com/partdetail/RT0603BRD072K43L/C861298",
+        "snapshot_sha256": "8ee1640017edff729ec64c3956c907868b82c893426c58a7c11dbd59cbd1becf"
+      },
+      "supplier_pad_fixture": null,
+      "manufacturer_evidence": "https://yageogroup.com/content/datasheet/asset/file/PYU-RT_1-TO-0-01_ROHS_L"
     },
     {
       "reference": "R132",
@@ -213,11 +234,18 @@
     {
       "reference": "U130",
       "manufacturer": "Texas Instruments",
-      "mpn": "MSPM0L1105TRHBR",
+      "mpn": "MSPM0L1106TRHBR",
       "footprint": "SUP_QFN-32-1EP_5x5mm_P0.5mm_EP3.45x3.45mm",
-      "catalog_identity": null,
-      "stock_observation": null,
-      "supplier_pad_fixture": null
+      "catalog_identity": "C19189332",
+      "stock_observation": {
+        "checked_at": "2026-09-30T21:56:51.391206+00:00",
+        "available_order_quantity": 19,
+        "displayed_stock": 19,
+        "evidence_url": "https://jlcpcb.com/partdetail/MSPM0L1106TRHBR/C19189332",
+        "snapshot_sha256": "bdac397991d9c9a721b7b3cad89f821a380015956004cd9a6fa2f6785e5ef9dd"
+      },
+      "supplier_pad_fixture": null,
+      "manufacturer_evidence": "https://www.ti.com/lit/ds/symlink/mspm0l1106.pdf"
     },
     {
       "reference": "C141",

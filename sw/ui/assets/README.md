@@ -17,6 +17,9 @@ using build-only `fonttools` (verified with 4.63.0). No font binary is distribut
 `daqhat-01.glb` is a display asset exported with KiCad 9.0.9 from the checked DAQHAT-01 PCB.
 It includes the routed board's outline, holes, pads, mask, silkscreen and available
 stock component models. It is not a manufacturing deliverable.
+The current revision includes U141 antenna current limiting, local C151/C152
+bypasses and the corrected power and I²C routing. Package bodies are display
+models; procurement and physical qualification remain separate checks.
 
 KiCad's exporter cannot convert the local VRML bodies. The Python scene adds
 simplified envelopes for the selected 8.5 mm Megastar Pi socket and Trenz connectors. Selection rings use `hw/groundlark-fpga-hat/layout/placement.json` XY values.

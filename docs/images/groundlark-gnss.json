@@ -22,19 +22,19 @@
     ],
     "orthographic_scale": 390
   },
-  "image_sha256": "e5f2fa09a2ffca6ecf5149168c46c2c18ed0f9055966ab76c34ae807bf08f24a",
+  "image_sha256": "3fa5feb30f425bb7dc736e39d3f21e7c6b00946c18ffbed683589de409d9d4f8",
   "source_sha256": {
     "hw/mechanical/daqhat-01-case/render.py": "f67e0c487f576fb6b3a8671c294d392ed52e50c562758ee114bc05ec8dd0e6c5",
     "hw/mechanical/daqhat-01-case/parameters.json": "18476b62c142003d243d2f2ce80c0ca729a696df58f6d2ec10fd1c8dd8d37e2b",
     "hw/mechanical/daqhat-01-case/case.py": "b1ccfdec3256d007ba32ed47443a3dad2929864dbbe69a0259ffcfa975daf374",
     "hw/mechanical/daqhat-01-case/prepare_preview.py": "7f1602a1b425e0c1af1900c6fe0db50a6b44177ac5e5fb3bb798c3ad1779645b",
-    "sw/ui/assets/daqhat-01.glb": "de8faa876a77d288457a4708c9355694cdc2e354112d4da28df02e3db02cf8d9",
+    "sw/ui/assets/daqhat-01.glb": "2dc7a979bcf662b88499a6a65d441a6622c94524fcbb5433fba8d47dc1c06dbb",
     "hw/shared/models/trenz/STP-TE0712-03-No Variations.step": "23b1905a356912d70b7223cae260809c84728a5ad717ad9dc25c828ff8283697",
     "hw/shared/models/raspberrypi4/raspberry-pi-4b.glb": "b02e8f8b40303afa7171a14dad3f21f09905d75df9c9bc8a5ca61f5ec656841f",
     "hw/shared/models/raspberrypi4/provenance.json": "67ad4b6621de3357ee195e74fedecf63422b6ea6770f4c89287f0c2cfed0a187",
     "hw/shared/models/raspberrypi4/mesh-provenance.json": "1b8731d0de288bc979ced98dfb31bf8c86dabe3e9cb8ee142c6aeb4bf45c9437",
     "hw/mechanical/daqhat-01-case/prepare_components.py": "821a146c8bf8a1ffa82376228effddfe63aee30ae82e64ab59284df71821252d",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb": "ea7fea2524d2612f5d8b17a0dfb1ef6ff84d383784a0dbc8371181f6afca0b76",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb": "4d630fe92d5d42bad19889ceed4c918c6e6d0d58bcbf6d13e238a32765aa503c",
     "hw/releases/groundlark-case-r3/evidence/levels.json": "9d2f27e0faea2b72e5bad8968003b3eaf423ebc8764272ff18b90bc6a3e3b453",
     ".local/case/fpga-bodies.json": "256154aa740101962d199cce9feccc3ce8dcfe9f1750981c7031fe0264274890",
     ".local/case/reference/base-assembled.stl": "34352d5eb8be416bb67a87cea8c91ee7ff4b781dce63f5079c90e3bc23580cea",
@@ -95,13 +95,13 @@
     "hw/mechanical/daqhat-01-case/parameters.json": "18476b62c142003d243d2f2ce80c0ca729a696df58f6d2ec10fd1c8dd8d37e2b",
     "hw/mechanical/daqhat-01-case/case.py": "b1ccfdec3256d007ba32ed47443a3dad2929864dbbe69a0259ffcfa975daf374",
     "hw/mechanical/daqhat-01-case/prepare_preview.py": "ef4d58a13f7dc56a636abfea703f6f8fdf6809637874c726f8822f8820c78c87",
-    "sw/ui/assets/daqhat-01.glb": "de8faa876a77d288457a4708c9355694cdc2e354112d4da28df02e3db02cf8d9",
+    "sw/ui/assets/daqhat-01.glb": "2dc7a979bcf662b88499a6a65d441a6622c94524fcbb5433fba8d47dc1c06dbb",
     "hw/shared/models/trenz/STP-TE0712-03-No Variations.step": "23b1905a356912d70b7223cae260809c84728a5ad717ad9dc25c828ff8283697",
     "hw/shared/models/raspberrypi4/raspberry-pi-4b.glb": "b02e8f8b40303afa7171a14dad3f21f09905d75df9c9bc8a5ca61f5ec656841f",
     "hw/shared/models/raspberrypi4/provenance.json": "248f8f05d12fa606bf4c8e0cea79b67d24e87b81de0017ad6662bb0d906a9d7b",
     "hw/shared/models/raspberrypi4/mesh-provenance.json": "1b8731d0de288bc979ced98dfb31bf8c86dabe3e9cb8ee142c6aeb4bf45c9437",
     "hw/mechanical/daqhat-01-case/prepare_components.py": "821a146c8bf8a1ffa82376228effddfe63aee30ae82e64ab59284df71821252d",
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb": "ea7fea2524d2612f5d8b17a0dfb1ef6ff84d383784a0dbc8371181f6afca0b76"
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb": "4d630fe92d5d42bad19889ceed4c918c6e6d0d58bcbf6d13e238a32765aa503c"
   },
   "hash_policy": "source_sha256 records literal render-time input bytes. git_source_sha256 records the same tracked inputs with repository LF line endings; binary assets are unchanged."
 }

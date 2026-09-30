@@ -4,7 +4,7 @@ import is_atomic_part
 import has_designator_prefix
 
 component SUP_FUSE:
-    trait is_atomic_part<manufacturer="Littelfuse", partnumber="0467004.NR", footprint="../../shared/elec/SUP_Fuse_1206_3216Metric.kicad_mod", symbol="../../shared/elec/symbols/SUP_FUSE.kicad_sym">
+    trait is_atomic_part<manufacturer="Littelfuse", partnumber="0466004.NRHF", footprint="../../shared/elec/SUP_Fuse_1206_3216Metric.kicad_mod", symbol="../../shared/elec/symbols/SUP_FUSE.kicad_sym">
     trait has_designator_prefix<prefix="F">
     signal p1 ~ pin 1
     signal p2 ~ pin 2
@@ -45,8 +45,8 @@ component SUP_JUMPER:
     signal p1 ~ pin 1
     signal p2 ~ pin 2
 
-component SUP_2K41:
-    trait is_atomic_part<manufacturer="Yageo", partnumber="RT0603BRD072K41L", footprint="../../shared/elec/SUP_R_0603_1608Metric.kicad_mod", symbol="../../shared/elec/symbols/SUP_2K41.kicad_sym">
+component SUP_2K43:
+    trait is_atomic_part<manufacturer="Yageo", partnumber="RT0603BRD072K43L", footprint="../../shared/elec/SUP_R_0603_1608Metric.kicad_mod", symbol="../../shared/elec/symbols/SUP_2K43.kicad_sym">
     trait has_designator_prefix<prefix="R">
     signal p1 ~ pin 1
     signal p2 ~ pin 2
@@ -82,7 +82,7 @@ component SUP_10U:
     signal p2 ~ pin 2
 
 component SUP_MCU:
-    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="MSPM0L1105TRHBR", footprint="../../shared/elec/SUP_QFN-32-1EP_5x5mm_P0.5mm_EP3.45x3.45mm.kicad_mod", symbol="../../shared/elec/symbols/SUP_MCU.kicad_sym">
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="MSPM0L1106TRHBR", footprint="../../shared/elec/SUP_QFN-32-1EP_5x5mm_P0.5mm_EP3.45x3.45mm.kicad_mod", symbol="../../shared/elec/symbols/SUP_MCU.kicad_sym">
     trait has_designator_prefix<prefix="U">
     signal p1 ~ pin 1
     signal p2 ~ pin 2
@@ -153,7 +153,7 @@ component SUP_10N:
     signal p2 ~ pin 2
 
 component SUP_4U7:
-    trait is_atomic_part<manufacturer="Murata", partnumber="GRM21BR71A475KA73L", footprint="../../shared/elec/SUP_C_0805_2012Metric.kicad_mod", symbol="../../shared/elec/symbols/SUP_4U7.kicad_sym">
+    trait is_atomic_part<manufacturer="Murata", partnumber="GRM21BR71C475KA73L", footprint="../../shared/elec/SUP_C_0805_2012Metric.kicad_mod", symbol="../../shared/elec/symbols/SUP_4U7.kicad_sym">
     trait has_designator_prefix<prefix="C">
     signal p1 ~ pin 1
     signal p2 ~ pin 2

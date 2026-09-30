@@ -1,3 +1,5 @@
+from "gnss_parts.ato" import GNSS_LIMIT
+from "gnss_parts.ato" import GNSS_4U7
 from "gnss_parts.ato" import GNSS_SMA
 from "gnss_parts.ato" import GNSS_47P
 from "gnss_parts.ato" import GNSS_27N
@@ -8,7 +10,7 @@ from "supervisor_parts.ato" import SUP_SWITCH
 from "supervisor_parts.ato" import SUP_INPUT
 from "supervisor_parts.ato" import SUP_DEBUG
 from "supervisor_parts.ato" import SUP_JUMPER
-from "supervisor_parts.ato" import SUP_2K41
+from "supervisor_parts.ato" import SUP_2K43
 from "supervisor_parts.ato" import SUP_1M
 from "supervisor_parts.ato" import SUP_150K
 from "supervisor_parts.ato" import SUP_2K
@@ -647,23 +649,23 @@ module TrenzHat:
     # ISO1640BDR: ISO1640BDR
     u43 = new P_25
     trait u43 has_designator<designator="U43">
-    u43.p1 ~ PI_3V3
-    u43.p2 ~ PI_I2C_SDA
-    u43.p3 ~ PI_I2C_SCL
+    u43.p1 ~ SENS_3V3
+    u43.p2 ~ I2C_SDA
+    u43.p3 ~ I2C_SCL
     u43.p4 ~ GND
     u43.p5 ~ GND
-    u43.p6 ~ I2C_SCL
-    u43.p7 ~ I2C_SDA
-    u43.p8 ~ SENS_3V3
+    u43.p6 ~ PI_I2C_SCL
+    u43.p7 ~ PI_I2C_SDA
+    u43.p8 ~ PI_3V3
     # 100n: GRM188R71H104KA93D
     c48 = new P_6
     trait c48 has_designator<designator="C48">
-    c48.p1 ~ PI_3V3
+    c48.p1 ~ SENS_3V3
     c48.p2 ~ GND
     # 100n: GRM188R71H104KA93D
     c49 = new P_6
     trait c49 has_designator<designator="C49">
-    c49.p1 ~ SENS_3V3
+    c49.p1 ~ PI_3V3
     c49.p2 ~ GND
     # 4.7k: RC0603FR-074K7L
     r52 = new P_26
@@ -708,8 +710,9 @@ module TrenzHat:
     u41.sensor_power ~ sensor_supply
     u42.host_power ~ pi_supply
     u42.sensor_power ~ sensor_supply
-    u43.host_power ~ pi_supply
-    u43.sensor_power ~ sensor_supply
+    # P_25 names describe the original orientation; side 2 now faces the GNSS.
+    u43.host_power ~ sensor_supply
+    u43.sensor_power ~ pi_supply
 
     u51 = new CF_U51
     trait u51 has_designator<designator="U51">
@@ -1439,7 +1442,7 @@ module TrenzHat:
     r130.p1 ~ PI_RAW_5V
     r130.p2 ~ PI_BUCK_FB
 
-    r131 = new SUP_2K41
+    r131 = new SUP_2K43
     trait r131 has_designator<designator="R131">
     r131.p1 ~ PI_BUCK_FB
     r131.p2 ~ GND
@@ -1457,6 +1460,7 @@ module TrenzHat:
     u133.p4 ~ SUP_RUN
     u133.p5 ~ GND
     u133.p6 ~ PI_SWITCH_CT
+    u133.p7 ~ GND
     u133.p8 ~ PI_RAW_5V
     u133.p9 ~ PI_5V
     u133.p10 ~ PI_5V
@@ -1634,7 +1638,7 @@ module TrenzHat:
     j140.p2 ~ GND
 
     # 4.7u:
-    c146 = new P_13
+    c146 = new GNSS_4U7
     trait c146 has_designator<designator="C146">
     c146.p1 ~ PI_3V3
     c146.p2 ~ GND
@@ -1662,18 +1666,18 @@ module TrenzHat:
     trait u140 has_designator<designator="U140">
     u140.p1 ~ PI_5V
     u140.p2 ~ GND
-    u140.p5 ~ GNSS_BIAS
+    u140.p5 ~ GNSS_LDO
 
     # 4.7u:
-    c149 = new P_13
+    c149 = new GNSS_4U7
     trait c149 has_designator<designator="C149">
     c149.p1 ~ PI_5V
     c149.p2 ~ GND
 
     # 4.7u:
-    c150 = new P_13
+    c150 = new GNSS_4U7
     trait c150 has_designator<designator="C150">
-    c150.p1 ~ GNSS_BIAS
+    c150.p1 ~ GNSS_LDO
     c150.p2 ~ GND
 
     # PESD5V0F1BL: Nexperia 0.4pF bidirectional ESD; pin1 to RF/bias.
@@ -1683,3 +1687,26 @@ module TrenzHat:
     d140.p2 ~ GND
     u21.power ~ pi_supply
     u21.io ~ pi_supply
+
+    signal GNSS_LDO
+    trait GNSS_LDO has_net_name_suggestion<name="GNSS_LDO", level="EXPECTED">
+    # TPS2553 DBV: ILIM tied IN selects 50..100 mA, below L140's 280 mA rating.
+    u141 = new GNSS_LIMIT
+    trait u141 has_designator<designator="U141">
+    u141.p1 ~ GNSS_LDO
+    u141.p2 ~ GND
+    u141.p3 ~ GNSS_LDO
+    u141.p5 ~ GNSS_LDO
+    u141.p6 ~ GNSS_BIAS
+    # Unused open-drain FAULT pin 4 is deliberately unconnected.
+    signal GNSS_FAULT_NC
+    trait GNSS_FAULT_NC has_net_name_suggestion<name="GNSS_FAULT_NC", level="EXPECTED">
+    u141.p4 ~ GNSS_FAULT_NC
+    c151 = new SUP_10N
+    trait c151 has_designator<designator="C151">
+    c151.p1 ~ GNSS_BIAS
+    c151.p2 ~ GND
+    c152 = new P_6
+    trait c152 has_designator<designator="C152">
+    c152.p1 ~ GNSS_LDO
+    c152.p2 ~ GND

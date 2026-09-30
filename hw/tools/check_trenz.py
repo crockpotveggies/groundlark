@@ -57,7 +57,9 @@ gpio_report['gnss']=verify_gnss(board)
 assert len({'PI_5V','PI_3V3','EXT_12V','FPGA_VIN','FPGA_3V3'} & set(bp.values()))==5
 # Shared sensor circuitry must preserve A2 pad connectivity exactly.
 base=pins(p.LoadBoard(str(ROOT/'hw/groundlark-coldfoot-hat/boards/groundlark-hat/groundlark-hat.kicad_pcb')))
-sensor_refs={'U11','U12','U13','U40','U41','U42','U43'}
+# U43 intentionally reverses sides for MAX-M10S logic levels; gnss_checks
+# independently verifies all its signal/supply connections above.
+sensor_refs={'U11','U12','U13','U40','U41','U42'}
 degrees=Counter(base.values())
 for k,n in base.items():
     if k[0] in sensor_refs and degrees[n]>1 and 'GNSS' not in n and 'IMU4' not in n and 'TILT' not in n:assert bp[k]==n,(k,n,bp[k])

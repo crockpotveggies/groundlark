@@ -12,7 +12,7 @@ heads. All share the sensor contracts, simulation tools and local workbench.
 
 ## Groundlark
 
-![Groundlark GNSS revision: detailed routed HAT, side-facing SMA, Pi/Trenz stack and geophone in the updated enclosure](docs/images/groundlark-gnss.png)
+![Groundlark revised power and GNSS circuit: routed HAT with antenna current limiting, side SMA, Pi/Trenz stack and geophone](docs/images/groundlark-gnss.png)
 
 **Seismic monitoring on a Raspberry Pi.** The active
 [Groundlark FPGA HAT](hw/groundlark-fpga-hat/README.md), model **DAQHAT-01**, is a

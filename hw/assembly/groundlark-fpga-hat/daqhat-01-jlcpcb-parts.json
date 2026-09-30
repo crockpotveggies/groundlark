@@ -1218,5 +1218,6 @@
     "maximum_component_moq": 1,
     "allow_preorder": false,
     "scope": "Selected PCB components. Dated observations are not live inventory or a stock reservation; recheck at order time."
-  }
+  },
+  "revision_status": "Superseded source coverage: do not upload. See power-gnss-selection.json; full registry reconciliation required."
 }

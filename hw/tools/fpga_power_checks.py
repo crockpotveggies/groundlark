@@ -58,7 +58,7 @@ def verify_board(board,spec):
  fps={f.GetReference():f for f in board.GetFootprints()}
  pins={(f.GetReference(),q.GetNumber()):q.GetNetname() for f in board.GetFootprints() for q in f.Pads() if q.GetNumber()}
  checks=verify(pins);meta={x['ref']:x for x in spec['parts']}
- for ref,mpn in {'J83':'PJ-102AH','U80':'TPSM53603RDAR','F80':'0467002.NR','D80':'B340A-13-F','D81':'SMAJ15A-13-F','R120':'RT0603BRD0710KL','R121':'RT0603BRD074K3L'}.items():
+ for ref,mpn in {'J83':'PJ-102AH','U80':'TPSM53603RDAR','F80':'0466002.NRHF','D80':'B340A-13-F','D81':'SMAJ15A-13-F','R120':'RT0603BRD0710KL','R121':'RT0603BRD074K3L'}.items():
   assert meta[ref]['mpn']==mpn and not fps[ref].IsDNP(),('Fitted power part',ref)
  assert fps['R120'].GetValue()=='10k' and fps['R121'].GetValue()=='4.30k'
  assert fps['J83'].GetOrientationDegrees()%360==180 and not fps['J83'].IsFlipped()

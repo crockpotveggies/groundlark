@@ -1,0 +1,146 @@
+{
+  "status": "Engineering selections; full supplier-pad and procurement release remains on hold",
+  "date_utc": "2026-09-30",
+  "parts": [
+    {
+      "designators": [
+        "F80"
+      ],
+      "mpn": "0466002.NRHF",
+      "manufacturer": "Littelfuse",
+      "package": "1206",
+      "lcsc": "C3105",
+      "manufacturer_evidence": "https://www.littelfuse.com/assetdocs/fuse-466-datasheet?assetguid=dbe9bcd7-6072-4adf-bf5b-d33e52a6b90f",
+      "evidence_url": "https://jlcpcb.com/partdetail/0466002.NRHF/C3105",
+      "checked_at": "2026-09-30T21:56:52.162204+00:00",
+      "available_order_quantity": 38787,
+      "displayed_stock": 39204,
+      "assembly_mode": "smtWeld",
+      "snapshot_sha256": "d2a522214e4c0b6bce8a5ceab5d95120458f753a59b9373ff4a4465d94463ead"
+    },
+    {
+      "designators": [
+        "F130"
+      ],
+      "mpn": "0466004.NRHF",
+      "manufacturer": "Littelfuse",
+      "package": "1206",
+      "lcsc": "C187596",
+      "manufacturer_evidence": "https://www.littelfuse.com/assetdocs/fuse-466-datasheet?assetguid=dbe9bcd7-6072-4adf-bf5b-d33e52a6b90f",
+      "evidence_url": "https://jlcpcb.com/partdetail/0466004.NRHF/C187596",
+      "checked_at": "2026-09-30T21:56:52.935978+00:00",
+      "available_order_quantity": 3541,
+      "displayed_stock": 3566,
+      "assembly_mode": "smtWeld",
+      "snapshot_sha256": "e2bb8e63173963d2764fcec35ce38bbf8698443b6949eb247c2665db131e8968"
+    },
+    {
+      "designators": [
+        "U130"
+      ],
+      "mpn": "MSPM0L1106TRHBR",
+      "manufacturer": "Texas Instruments",
+      "package": "VQFN-32(5x5)",
+      "lcsc": "C19189332",
+      "manufacturer_evidence": "https://www.ti.com/lit/ds/symlink/mspm0l1106.pdf",
+      "evidence_url": "https://jlcpcb.com/partdetail/MSPM0L1106TRHBR/C19189332",
+      "checked_at": "2026-09-30T21:56:51.391206+00:00",
+      "available_order_quantity": 19,
+      "displayed_stock": 19,
+      "assembly_mode": "smtWeld",
+      "snapshot_sha256": "bdac397991d9c9a721b7b3cad89f821a380015956004cd9a6fa2f6785e5ef9dd"
+    },
+    {
+      "designators": [
+        "U141"
+      ],
+      "mpn": "TPS2553DBVR",
+      "manufacturer": "Texas Instruments",
+      "package": "SOT-23-6",
+      "lcsc": "C55266",
+      "manufacturer_evidence": "https://www.ti.com/lit/ds/symlink/tps2553.pdf",
+      "evidence_url": "https://jlcpcb.com/partdetail/TPS2553DBVR/C55266",
+      "checked_at": "2026-09-30T21:56:50.721628+00:00",
+      "available_order_quantity": 58210,
+      "displayed_stock": 58788,
+      "assembly_mode": "smtWeld",
+      "snapshot_sha256": "343d4d017258871b49d2f1c798a380be1508b1e7f007674aeb8e6d49839645a9"
+    },
+    {
+      "designators": [
+        "R131"
+      ],
+      "mpn": "RT0603BRD072K43L",
+      "manufacturer": "YAGEO",
+      "package": "0603",
+      "lcsc": "C861298",
+      "manufacturer_evidence": "https://yageogroup.com/content/datasheet/asset/file/PYU-RT_1-TO-0-01_ROHS_L",
+      "evidence_url": "https://jlcpcb.com/partdetail/RT0603BRD072K43L/C861298",
+      "checked_at": "2026-09-30T21:56:50.757663+00:00",
+      "available_order_quantity": 4165,
+      "displayed_stock": 4165,
+      "assembly_mode": "smtWeld",
+      "snapshot_sha256": "8ee1640017edff729ec64c3956c907868b82c893426c58a7c11dbd59cbd1becf"
+    },
+    {
+      "designators": [
+        "C130",
+        "C146",
+        "C149",
+        "C150"
+      ],
+      "mpn": "GRM21BR71C475KA73L",
+      "manufacturer": "Murata Electronics",
+      "package": "0805",
+      "lcsc": "C86040",
+      "manufacturer_evidence": "https://www.murata.com/en-us/products/productdetail?partno=GRM21BR71C475KA73%23",
+      "evidence_url": "https://jlcpcb.com/partdetail/GRM21BR71C475KA73L/C86040",
+      "checked_at": "2026-09-30T21:56:52.240554+00:00",
+      "available_order_quantity": 11988,
+      "displayed_stock": 12044,
+      "assembly_mode": "smtWeld",
+      "snapshot_sha256": "d2a33c5c0623641035e24cb03607decb83564e1325993097a685a02dd561847e"
+    },
+    {
+      "designators": [
+        "C151"
+      ],
+      "mpn": "GRM188R71H103KA01D",
+      "manufacturer": "Murata Electronics",
+      "package": "0603",
+      "lcsc": "C77053",
+      "manufacturer_evidence": "https://www.murata.com/en-us/products/productdetail?partno=GRM188R71H103KA01%23",
+      "evidence_url": "https://jlcpcb.com/partdetail/GRM188R71H103KA01D/C77053",
+      "checked_at": "2026-09-30T21:56:51.412507+00:00",
+      "available_order_quantity": 524784,
+      "displayed_stock": 532296,
+      "assembly_mode": "smtWeld",
+      "snapshot_sha256": "737fff6438f3d3483cdf66762faa3d89248d5f620304c2ed9f1ca7c5f654b063"
+    },
+    {
+      "designators": [
+        "C152"
+      ],
+      "mpn": "GRM188R71H104KA93D",
+      "manufacturer": "Murata Electronics",
+      "package": "0603",
+      "lcsc": "C77055",
+      "manufacturer_evidence": "https://www.murata.com/en-us/products/productdetail?partno=GRM188R71H104KA93%23",
+      "evidence_url": "https://jlcpcb.com/partdetail/GRM188R71H104KA93D/C77055",
+      "checked_at": "2026-09-30T21:35:08.236786+00:00",
+      "available_order_quantity": 1311011,
+      "displayed_stock": 1449791,
+      "assembly_mode": "smtWeld",
+      "snapshot_sha256": "227204a7623f00423e66e6eef9ce2e07bb03399adae03dfbe37526ef4919492a"
+    }
+  ],
+  "constraints": [
+    "Live public catalog observations are not reservation or order allocation.",
+    "MSPM0L1106 replaces unavailable exact L1105 selection; same TI RHB pinout and larger flash. Target firmware remains pending.",
+    "Fuses use 466-series 1206 bodies; retain the 2 A FPGA and 4 A Pi input ratings. Qualify hot derating and inrush.",
+    "DLVR-F50D-E1BS-I-NI3F has no confirmed exact JLCPCB match; do not substitute another pressure range or interface.",
+    "The older full assembly registries do not cover this revision; export must remain blocked until all numbered supplier pads and exact parts are reconciled."
+  ],
+  "supplier_rotation_approved": false,
+  "manufacturing_release": false
+}

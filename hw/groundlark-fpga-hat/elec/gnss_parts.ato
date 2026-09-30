@@ -26,3 +26,19 @@ component GNSS_ESD:
     trait has_designator_prefix<prefix="D">
     signal p1 ~ pin 1
     signal p2 ~ pin 2
+
+component GNSS_LIMIT:
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="TPS2553DBVR", footprint="../../shared/elec/GNSS_SOT23_6.kicad_mod", symbol="../../shared/elec/symbols/GNSS_LIMIT.kicad_sym">
+    trait has_designator_prefix<prefix="U">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+    signal p4 ~ pin 4
+    signal p5 ~ pin 5
+    signal p6 ~ pin 6
+
+component GNSS_4U7:
+    trait is_atomic_part<manufacturer="Murata", partnumber="GRM21BR71C475KA73L", footprint="../../shared/elec/Capacitor_SMD__C_0805_2012Metric.kicad_mod", symbol="../../shared/elec/symbols/GNSS_4U7.kicad_sym">
+    trait has_designator_prefix<prefix="C">
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2

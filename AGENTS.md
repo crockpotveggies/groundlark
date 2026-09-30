@@ -55,7 +55,7 @@ Keep custom model/library paths relative and preserve the existing 3D artifacts.
 Do not invoke `bootstrap_trenz.py` or `pack_trenz.py` as validation: they overwrite
 authoring inputs. Do not silently reroute or rewrite checked CAD during tests.
 
-Sensor acquisition uses Pi drivers/runtime software. The separate TI MSPM0L1105
+Sensor acquisition uses Pi drivers/runtime software. The separate TI MSPM0L1106
 power supervisor has configuration placeholders; its target firmware remains pending. The DLVR-F50D infrasound sensor U23/C24 is on DAQHAT-01 I2C1 at 0x28;
 BCM6 requests Pi shutdown and BCM13 acknowledges halt; BCM24 carries GNSS PPS. Burrowlark U3/C5 are removed.
 The remote USB magnetometer sensor board is
@@ -135,10 +135,15 @@ After enclosure changes regenerate the local R3 STEP/STL package and run its
 `test_case.py` fault fixtures.
 Refresh render provenance; CAD checks do not establish first-print or thermal fit.
 
-DAQHAT-01 U130 (MSPM0L1105TRHBR) supervises the Pi, independently of FPGA power.
+DAQHAT-01 U130 (MSPM0L1106TRHBR) supervises the Pi, independently of FPGA power.
+ISO1640 U43 side 2 faces Pi/GNSS; side 1 faces sensors. Preserve C48/C49 supply
+assignments and the independent GNSS pin fixture. U141 TPS2553DBVR limits
+antenna faults to 50–100 mA with ILIM tied IN; pin 4 FAULT is NC. Keep C151's
+local L140 bypass and connected ground stitch, and C152's input bypass.
+F80/F130 use 466-series 1206 fuses (2 A/4 A); 467-series parts do not fit.
 J130 accepts protected battery/controller DC output from 8 to 18 V; it is not a
 charger or direct solar-panel input. U131 is the always-on TPS70933; U132 makes
-5.149 V / 3 A total Pi+HAT power; U133 disconnects it with off-state reverse
+5.115 V / 3 A total Pi+HAT power; U133 disconnects it with off-state reverse
 blocking. BCM6 is active-low shutdown, BCM13 active-high halt acknowledgement
 through Q130/Q131. Preserve default-OFF RUN, VCORE's sole 470 nF load, SWD and
 all unused-pin checks. JP130 is a bench override; remove its shunt for automatic

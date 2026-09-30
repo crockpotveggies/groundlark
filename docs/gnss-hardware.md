@@ -6,6 +6,11 @@ at address **0x42**, powered from PI_3V3. TIMEPULSE connects directly to
 power-supervisor handshake. FPGA connections and its separate supply remain
 unchanged. GNSS needs no configured FPGA.
 
+The Pi and GNSS face ISO1640 side 2 (pins 6–8). Its 0.4 V maximum low output
+fits the MAX-M10S 0.63 V low-input limit. The sensor bus faces side 1, whose
+0.71 V maximum low output fits the sensors’ 3.3 V input thresholds. Keep the
+C48 sensor-side and C49 Pi-side supply bypass assignments with this orientation.
+
 ## Antenna connection
 
 J140 is a HenryTech **HL-SMA-KWE-02**, conventional female SMA, 50 ohms.
@@ -16,10 +21,15 @@ actual cable before printing a batch. Support the cable to avoid bending the PCB
 
 Use a GNSS antenna rated for **3.3 V bias and at most 20 mA**. U140 TPS70933
 derives its supply from switched PI_5V, with local 4.7 µF input/output bypass.
-L140 (27 nH) feeds DC onto the coax; C148 (47 pF C0G) blocks antenna DC at RF_IN.
+U141 TPS2553 follows the LDO. ILIM and EN connect to its input, selecting a
+50–100 mA sustained current limit (75 mA typical), below L140’s 280 mA rating.
+C152 (100 nF) bypasses the limiter input. C151 (10 nF) bypasses the cold end of
+L140 beside the SMA with a local ground-plane stitch. L140 (27 nH) feeds DC onto
+the coax; C148 (47 pF C0G) blocks antenna DC at RF_IN.
 D140 PESD5V0F1BL provides 0.4 pF nominal ESD protection. There is no antenna
-open/short telemetry. The LDO's current and thermal limiting require physical
-fault testing; the 20 mA antenna allocation is not a precise current trip setting.
+open/short telemetry; the limiter’s unused open-drain FAULT output is NC.
+Current-limit response, repeated shorts and thermal recovery require physical
+fault testing. The 20 mA antenna allocation is separate from the fault limit.
 Do not connect an externally powered coax source that supplies DC to J140.
 
 U21 has 4.7 µF and 100 nF local bypass. EXTINT is grounded. Unused UART,
@@ -60,6 +70,7 @@ across stations before claiming millisecond alignment.
 | --- | --- | --- |
 | MAX-M10S-00B | JLCPCB C4153167 | [u-blox integration manual](https://content.u-blox.com/sites/default/files/MAX-M10S_IntegrationManual_UBX-20053088.pdf) |
 | HL-SMA-KWE-02 | JLCPCB/LCSC C20617216 | [HenryTech drawing](https://datasheet.lcsc.com/datasheet/pdf/b2f602368ae573f1e0d7be688540576e.pdf?productCode=C20617216) |
+| TPS2553DBVR | JLCPCB C55266, SOT-23-6 | [TI datasheet](https://www.ti.com/lit/ds/symlink/tps2553.pdf) |
 | TPS70933DBVR | TI, 3.3 V antenna regulator | [TI datasheet](https://www.ti.com/lit/ds/symlink/tps709.pdf) |
 | PESD5V0F1BL,315 | Nexperia, SOD882 | [Manufacturer specification](https://www.nexperia.com/product/PESD5V0F1BL) |
 

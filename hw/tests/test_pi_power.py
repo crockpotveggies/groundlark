@@ -7,7 +7,7 @@ class PiPowerTests(unittest.TestCase):
  def fixture(self):return {**PINS,**{key:'NC_'+key[0]+'_'+key[1] for key in NC}}
  def test_manufacturer_pin_faults(self):
   verify(self.fixture())
-  for key in [('U130','32'),('U131','5'),('U133','3'),('Q130','3'),('Q131','1'),('J130','1'),('J1','31')]:
+  for key in [('U130','32'),('U131','5'),('U133','3'),('U133','7'),('Q130','3'),('Q131','1'),('J130','1'),('J1','31')]:
    with self.subTest(key=key),self.assertRaises(ValueError):verify({**self.fixture(),key:'PI_3V3'})
  def test_unused_pins_and_core_load(self):
   for key in NC:

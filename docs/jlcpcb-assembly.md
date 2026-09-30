@@ -7,7 +7,10 @@ registry still describes the earlier 117-placement, 38-line assembly.
 **Export hold:** U23/C24, the 12 V FPGA input and the TI Pi supervisor require procurement
 and numbered supplier-pad review. J83/F80 changed part identity; U80, SW80,
 D80/D81, R120–R124, C86–C89 and C110–C112 are new. No current stock or supplier
-rotation is claimed for these selections. Full assembly regression remains
+rotation is claimed for these selections. Dated live stock observations for the
+corrected fuse, supervisor, divider and antenna parts are recorded in
+[power-gnss-selection.json](../hw/assembly/groundlark-fpga-hat/power-gnss-selection.json).
+The exact DLVR-F50D-E1BS-I-NI3F still has no confirmed JLCPCB match. Full assembly regression remains
 blocked by this mismatch; native circuit, DRC/ERC and routing replay are checked
 separately. The 40 Pi supply/supervisor additions are listed in
 `hw/assembly/groundlark-fpga-hat/pi-supervisor-review.json` with catalog and

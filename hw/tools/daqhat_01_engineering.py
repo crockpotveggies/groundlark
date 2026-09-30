@@ -57,7 +57,7 @@ POWER_PINS = {
     ('U42','1'):'PI_3V3', ('U42','23'):'SENS_3V3', ('U42','24'):'SENS_3V3',
     ('U41','22'):'SENSOR_OE_N', ('U42','22'):'SENSOR_OE_N',
     ('R50','1'):'SENSOR_OE_N', ('R50','2'):'PI_3V3',
-    ('U43','1'):'PI_3V3', ('U43','8'):'SENS_3V3',
+    ('U43','1'):'SENS_3V3', ('U43','8'):'PI_3V3',
     ('U51','3'):'PI_3V3', ('U51','7'):'FPGA_3V3', ('U51','6'):'FPGA_IO_ENABLE',
     ('R62','1'):'FPGA_IO_ENABLE', ('R62','2'):'GND',
     ('Q1','1'):'FPGA_RESET_GATE', ('Q1','2'):'GND', ('Q1','3'):'FPGA_RESET_N',

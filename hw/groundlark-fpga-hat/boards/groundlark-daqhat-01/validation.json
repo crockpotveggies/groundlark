@@ -34,19 +34,24 @@
     "physical_qualification": false
   },
   "pi_power": {
-    "pin_checks": 76,
-    "deliberate_no_connects": 29,
+    "pin_checks": 77,
+    "deliberate_no_connects": 28,
     "spare_bcm": [],
     "budget": {
-      "nominal_V": 5.149377593360996,
-      "minimum_V": 4.838470321709411,
-      "maximum_V": 5.235550425444115,
+      "nominal_V": 5.11522633744856,
+      "minimum_V": 4.771771481703282,
+      "maximum_V": 5.234442772515668,
       "total_A": 3,
       "input_range_V": [
         8,
         18
       ],
-      "input_scenario_A": 2.423236514522822,
+      "input_scenario_A": 2.4071653352699105,
+      "resistor_temperature_range_C": [
+        -40,
+        85
+      ],
+      "ripple_transient_allowance_V": 0.02,
       "adc_at_18V": 2.3519122829917762,
       "copper_budget_ohm": 0.05,
       "switch_budget_ohm": 0.025,
@@ -61,11 +66,20 @@
     "active_injection": false
   },
   "gnss": {
-    "pin_checks": 30,
-    "deliberate_no_connects": 10,
+    "pin_checks": 47,
+    "deliberate_no_connects": 11,
     "pps_bcm": 24,
     "antenna": "3.3 V active SMA, <=20 mA; 50 ohm connector",
     "sample_timing_qualified": false,
+    "sustained_short_limit_mA": [
+      50,
+      100
+    ],
+    "choke_rated_mA": 280,
+    "rf_bypass_path_mm": 1.445,
+    "rf_bypass_ground_path_mm": 1.5,
+    "input_bypass_path_mm": 4.981370849898476,
+    "host_bus_low_margin_V": 0.22999999999999998,
     "rf_qualified": false,
     "receiver_peak_allocation_mA": 100,
     "antenna_allocation_mA": 20
@@ -94,12 +108,12 @@
     "minimum_module_xy_clearance_mm": 19.35,
     "physical_qualification": false
   },
-  "compiled_pin_checks": 939,
+  "compiled_pin_checks": 949,
   "critical_module_pin_checks": 29,
   "drc_violations": 0,
   "unconnected_items": 0,
   "erc_violations": 0,
-  "tracks_and_vias": 12704,
+  "tracks_and_vias": 13010,
   "copper_layers": 6,
   "microvias": 0,
   "fabrication_process": "standard-six-layer-through-via",

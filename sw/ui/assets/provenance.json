@@ -1,9 +1,9 @@
 {
   "kicad": "9.0.9",
   "sha256": {
-    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb": "ea7fea2524d2612f5d8b17a0dfb1ef6ff84d383784a0dbc8371181f6afca0b76",
-    "hw/groundlark-fpga-hat/layout/placement.json": "85f341e1b77414a6a4eb48020bffa80ba7fbd9c3f505afc208f1199a27bd1db7",
-    "sw/ui/assets/daqhat-01.glb": "de8faa876a77d288457a4708c9355694cdc2e354112d4da28df02e3db02cf8d9",
+    "hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb": "4d630fe92d5d42bad19889ceed4c918c6e6d0d58bcbf6d13e238a32765aa503c",
+    "hw/groundlark-fpga-hat/layout/placement.json": "bc4407ee7af29052e239c410e7204252749d404c738df566c0a08be4dc11f64b",
+    "sw/ui/assets/daqhat-01.glb": "2dc7a979bcf662b88499a6a65d441a6622c94524fcbb5433fba8d47dc1c06dbb",
     "sw/ui/geophone_scene.py": "65ef0de9df78e2b7c1c4697367f5a5b81486dd95f2fe4f01d9fa6f35b8dd461a",
     "hw/burrowlark-usb/layout/placement.json": "049a0cdae7eab105f36448b234f84afc9cfedbed4c04333aad7730a901e1cc7a",
     "sw/ui/main.py": "1d828e4df33e81e2e17b0a4d90586b492850df6aa340c5c9266e986653fd2206",
@@ -14,7 +14,7 @@
     "hw/shared/models/MAX_M10S_envelope.step": "fb429633d752229d4ccc5102222635e8f39344ec0800070b13eefb6b7e76faf1",
     "hw/tools/gnss_model.py": "ea896b8d2cc842f850764704ec253bbfcdccf26920b368a6103345208ba15d61"
   },
-  "metadata_review": "140 x 56 mm supervised Pi supply and separate FPGA input. J130 accepts protected 8-18 V DC; U130 MSPM0L1105 controls U132/U133. Native KiCad 9.0.9 GLB; local VRML parts use explicit display envelopes. Physical fit, thermal behavior and battery policy remain unqualified.",
+  "metadata_review": "140 x 56 mm supervised Pi supply and separate FPGA input. J130 accepts protected 8-18 V DC; U130 MSPM0L1106 controls U132/U133. Native KiCad 9.0.9 GLB; local VRML parts use explicit display envelopes. Physical fit, thermal behavior and battery policy remain unqualified.",
   "calibration_access": "Four underside passive probe pads TP90-TP93; outline and assembly height unchanged. Native PCB fit checks pass; physical calibration pending.",
   "gnss": "MAX-M10S underside package envelope and drawing-based HL-SMA-KWE-02 STEP; native -X antenna. Timing evidence is modeled; physical RF/timing/fit qualification pending."
 }

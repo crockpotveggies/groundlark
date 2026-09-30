@@ -12,6 +12,11 @@ See the [host-link circuit and bring-up guide](fpga-host-link.md). Pi 4 initiall
 uses SPI6; native quad transfers are not supported by its controller.
 
 An external Racotech vertical geophone uses an ADS122C04 input; MAX-M10S-00B GNSS adds a UTC reference through I2C1 and BCM24 PPS. See [GNSS hardware and antenna setup](gnss-hardware.md).
+
+The Pi/GNSS bus uses ISO1640 side 2 for compatible low logic levels. Antenna
+power includes a TPS2553 50–100 mA fault limiter and local RF bypassing. The Pi
+supply is 5.115 V nominal, with temperature drift and a bench ripple/transient
+allowance included in the [power envelope](power-supplies.md).
 Its Phoenix 1803280 J90 header opens parallel to the PCB toward the geophone;
 the 1803581 cable plug retains positive, negative and shield pin order.
 See the [geophone circuit and acquisition](geophone-input.md).

@@ -14,7 +14,7 @@ PINS = {
  ('U132','1'):'BAT_PROTECTED', ('U132','14'):'BAT_PROTECTED', ('U132','2'):'SUP_RUN',
  ('U132','7'):'PI_RAW_5V', ('U132','8'):'PI_RAW_5V', ('U132','9'):'PI_BUCK_FB',
  ('U133','1'):'PI_RAW_5V', ('U133','2'):'PI_RAW_5V', ('U133','3'):'PI_RAW_5V',
- ('U133','4'):'SUP_RUN', ('U133','5'):'GND', ('U133','6'):'PI_SWITCH_CT',
+ ('U133','4'):'SUP_RUN', ('U133','5'):'GND', ('U133','6'):'PI_SWITCH_CT', ('U133','7'):'GND',
  ('U133','8'):'PI_RAW_5V', ('U133','9'):'PI_5V', ('U133','10'):'PI_5V', ('U133','11'):'GND',
  ('J130','1'):'BAT_INPUT', ('J130','2'):'GND',
  ('F130','1'):'BAT_INPUT', ('F130','2'):'BAT_FUSED',
@@ -36,7 +36,7 @@ PINS = {
  ('J131','4'):'SUP_SWDIO', ('J131','5'):'SUP_NRST',
 }
 for pin in ('3','10','11','12','15'):PINS['U132',pin]='GND'
-NC = [('U131','3'),('U131','4'),('U132','4'),('U132','5'),('U132','6'),('U132','13'),('U133','7')]
+NC = [('U131','3'),('U131','4'),('U132','4'),('U132','5'),('U132','6'),('U132','13')]
 NC += [('U130',str(n)) for n in range(1,34) if ('U130',str(n)) not in PINS]
 
 
@@ -53,12 +53,15 @@ def verify(pins):
 
 def budget(current_a=3, switch_ohm=.025, copper_ohm=.05):
     if not 0 <= current_a <= 3:raise ValueError('Pi and HAT combined allocation is 3 A')
-    # TPSM53603 full-temperature reference +/-1.5%; 0.1% resistors, 50 nA FB bias.
-    low=.985*(1+10000*.999/(2410*1.001))-50e-9*10000*1.001
-    high=1.015*(1+10000*1.001/(2410*.999))+50e-9*10000*1.001
-    return dict(nominal_V=1+10000/2410, minimum_V=low-current_a*(switch_ohm+copper_ohm),
+    # TI full-temperature reference +/-1.5%; independent 0.1%, 25 ppm/K
+    # resistors over -40..85 C (65 K from 25 C), 50 nA FB bias.
+    tolerance=.001+25e-6*65
+    low=.985*(1+10000*(1-tolerance)/(2430*(1+tolerance)))-50e-9*10000*(1+tolerance)-.02
+    high=1.015*(1+10000*(1+tolerance)/(2430*(1-tolerance)))+50e-9*10000*(1+tolerance)+.02
+    return dict(nominal_V=1+10000/2430, minimum_V=low-current_a*(switch_ohm+copper_ohm),
                 maximum_V=high, total_A=current_a, input_range_V=[8,18],
-                input_scenario_A=(1+10000/2410)*current_a/(7.5*.85),
+                input_scenario_A=(1+10000/2430)*current_a/(7.5*.85),
+                resistor_temperature_range_C=[-40,85], ripple_transient_allowance_V=.02,
                 adc_at_18V=18*150000*1.001/(1000000*.999+150000*1.001),
                 copper_budget_ohm=copper_ohm, switch_budget_ohm=switch_ohm,
                 measured=False)
@@ -68,9 +71,9 @@ def verify_board(board, spec):
     import pcbnew as p
     pins={(f.GetReference(),q.GetNumber()):q.GetNetname() for f in board.GetFootprints() for q in f.Pads() if q.GetNumber()}
     checks=verify(pins); fps={f.GetReference():f for f in board.GetFootprints()};meta={x['ref']:x for x in spec['parts']}
-    for ref,mpn in {'U130':'MSPM0L1105TRHBR','U131':'TPS70933DBVR','U132':'TPSM53603RDAR','U133':'TPS22953DQCR','J130':'1803277','F130':'0467004.NR'}.items():
+    for ref,mpn in {'U130':'MSPM0L1106TRHBR','U131':'TPS70933DBVR','U132':'TPSM53603RDAR','U133':'TPS22953DQCR','J130':'1803277','F130':'0466004.NRHF'}.items():
         assert meta[ref]['mpn']==mpn and not fps[ref].IsDNP(),ref
-    for ref,value in {'C143':'470n','R130':'10k','R131':'2.41k','R135':'1M','R136':'150k'}.items():assert fps[ref].GetValue()==value,ref
+    for ref,value in {'C143':'470n','R130':'10k','R131':'2.43k','R135':'1M','R136':'150k'}.items():assert fps[ref].GetValue()==value,ref
     assert fps['J130'].GetOrientationDegrees()%360==180 and not fps['J130'].IsFlipped()
     pads={q.GetNumber():q for q in fps['U133'].Pads() if q.GetNumber()}
     assert abs(p.ToMM(pads['11'].GetSize().x)-.84)<.001 and abs(p.ToMM(pads['11'].GetSize().y)-2.4)<.001

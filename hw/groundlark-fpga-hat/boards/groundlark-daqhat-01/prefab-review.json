@@ -1,7 +1,7 @@
 {
   "scope": "pre-fab engineering review; no physical qualification",
   "disposition": "analog and internal-link stack reviewed; physical power/noise/fit and link throughput remain unqualified",
-  "board_sha256": "ea7fea2524d2612f5d8b17a0dfb1ef6ff84d383784a0dbc8371181f6afca0b76",
+  "board_sha256": "4d630fe92d5d42bad19889ceed4c918c6e6d0d58bcbf6d13e238a32765aa503c",
   "physical_pin_checks": 51,
   "purchasing_package_checks": 18,
   "analog": {
