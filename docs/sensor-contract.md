@@ -4,7 +4,7 @@
 
 Status: implemented schema, Python reference checks and USB framing; Pi drivers and Skylark STM32 firmware implemented; Burrowlark firmware and physical qualification remain pending. This document owns semantic rules. The
 [Protobuf schema](../sw/interfaces/proto/groundlark/sensor/v1/sensor.proto) owns
-field numbers/types. Both apply. Coldfoot and a configured FPGA are unnecessary.
+field numbers/types. Both apply. A configured FPGA is unnecessary.
 
 ## Identity and versioning
 

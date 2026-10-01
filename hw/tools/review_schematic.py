@@ -7,7 +7,7 @@ import pcbnew as p
 from kicad_support import schematic,uid
 ROOT=Path(__file__).resolve().parents[2]
 def main():
-    for name in sys.argv[1:] or ['groundlark-hat','groundlark-field-head']:
+    for name in sys.argv[1:] or ['groundlark-field-head']:
         folder=board_dir(name);path=folder/(name+'.kicad_pcb');b=p.LoadBoard(str(path))
         data=json.loads((folder/'electrical.json').read_text());fps={f.GetReference():f for f in b.GetFootprints()}
         degree=collections.Counter(pad.GetNetname() for f in b.GetFootprints() for pad in f.Pads() if pad.GetNumber())

@@ -6,9 +6,8 @@ Groundlark is a family of hardware boards and companion software for seismic
 and environmental monitoring. Each board has its own hardware directory, with
 shared component libraries, interfaces and validation tools.
 
-The family has **three products and four hardware designs**: Groundlark has
-separate FPGA and Coldfoot HAT variants; Skylark and Burrowlark are USB sensor
-heads. All share the sensor contracts, simulation tools and local workbench.
+The family has **three products**: the Groundlark FPGA HAT, Skylark and
+Burrowlark USB sensor heads. All share the sensor contracts, simulation tools and local workbench.
 
 ## Groundlark
 
@@ -24,10 +23,6 @@ The [internal FPGA link](docs/fpga-host-link.md) provides six QSPI wires, UART,
 reset and switched Pi-driven JTAG. An SPI echo bitstream is implemented;
 accelerated sensor processing and native quad transfers remain future work.
 The FPGA uses a separate Nexys Video-compatible 12 V, center-positive adapter through J83 and an onboard 3.326 V converter. See the [power limits](docs/trenz-hat.md).
-
-The [Groundlark Coldfoot HAT](hw/groundlark-coldfoot-hat/README.md) is a separate,
-retained A2 ASIC design. Coldfoot integration is deferred while development
-focuses on sensor acquisition with the Pi/DAQHAT-01/Trenz stack.
 
 **Status:** active prototype. Physical power, fit, timing, noise and thermal
 qualification remain pending. See the [stack assembly guide](docs/stack-assembly.md),
@@ -144,7 +139,6 @@ for Linux commands, test scope, five-run retention and cleanup.
 
 Hardware sources: [DAQHAT-01 circuit](hw/groundlark-fpga-hat/elec/hat_trenz.ato),
 [KiCad PCB](hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb),
-[A2 HAT](hw/groundlark-coldfoot-hat/boards/groundlark-hat/groundlark-hat.kicad_pcb),
 [Burrowlark DAQUSB-01](hw/burrowlark-usb/boards/groundlark-field-head/groundlark-field-head.kicad_pcb), and
 [Skylark USB](hw/skylark-usb/boards/skylark-usb/skylark-usb.kicad_pcb).
 See [build instructions](docs/build.md) and [source references](docs/sources.md).

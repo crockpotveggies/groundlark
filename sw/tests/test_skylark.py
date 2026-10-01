@@ -35,7 +35,7 @@ class SkylarkTests(unittest.TestCase):
         a,b=Workbench(board='skylark'),Workbench(board='hat')
         a.controls({'pm25_ug_m3':80});a.running=True;a.advance(100)
         self.assertEqual(a.snapshot(14)['latest'][14]['primary'][1],80)
-        with self.assertRaises(ValueError):a.reset(board='coldfoot')
+        with self.assertRaises(ValueError):a.reset(board='unsupported-board')
         self.assertEqual(a.board,'skylark');self.assertEqual(b.now,0)
         a.reset(board='burrowlark');self.assertEqual(set(a.sensor_ids),{7,17})
         self.assertEqual(set(b.sensor_ids),{1,2,3,6,8,9})

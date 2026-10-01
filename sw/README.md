@@ -2,12 +2,12 @@
 
 The sensor HAT is driven by Pi software; it does not need separate MCU firmware.
 The [acquisition software](../docs/sensor-software.md) supports sensors on the
-DAQHAT-01 FPGA stack and runs without Coldfoot or a configured FPGA.
+DAQHAT-01 FPGA stack and runs without a configured FPGA.
 The sensor contracts and Pi acquisition application are executable:
 
 - [interfaces/](interfaces/README.md): Protobuf schemas, semantic validation and bounded USB framing.
 - [pi/](pi/README.md): Pi device configuration, sensor drivers/adapters, acquisition,
-  calibration and timestamps. Coldfoot host integration is deferred.
+  calibration and timestamps.
 - [field-head/](field-head/README.md): microcontroller firmware for Burrowlark
   (DAQUSB-01), the remote USB-C magnetometer board.
 - [skylark/](skylark/README.md): buildable STM32 USB air-quality firmware, native driver fault tests and shared v1 capture.

@@ -1,20 +1,11 @@
 {
   "boards": [
     {
-      "board": "groundlark-hat",
-      "compiled_pins": 538,
-      "source_bom_agreement": "PASS",
-      "circuit_invariants": "PASS"
-    },
-    {
       "board": "groundlark-field-head",
       "compiled_pins": 131,
       "source_bom_agreement": "PASS",
       "circuit_invariants": "PASS"
     }
   ],
-  "negative_mutations": [
-    "missing supervisor bypass rejected",
-    "5V on Coldfoot UART VCC rejected"
-  ]
+  "negative_mutations": []
 }

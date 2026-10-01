@@ -104,7 +104,7 @@ The PMS5003 is shown beside the PCB for inspection, not in its mounted bell pose
 
 Changing boards starts a new run, so save the current recording first. The menu
 supports the FPGA HAT, Burrowlark, their combined simulation, and Skylark.
-Coldfoot remains deferred. Choose an individual board to enable its test button.
+Choose an individual board to enable its test button.
 Imported recordings select their board automatically.
 
 The HAT has three IMUs and one geophone input. The optional remote head adds

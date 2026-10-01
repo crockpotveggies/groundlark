@@ -3,8 +3,8 @@
 import has_designator
 import ElectricPower
 import has_net_name_suggestion
-from "../../shared/elec/parts.ato" import CF_R64
-from "../../shared/elec/parts.ato" import CF_R66
+from "../../shared/elec/parts.ato" import IF_R64
+from "../../shared/elec/parts.ato" import IF_R66
 from "../../shared/elec/parts.ato" import P_13
 from "../../shared/elec/parts.ato" import P_26
 from "../../shared/elec/parts.ato" import P_27
@@ -162,12 +162,12 @@ module FieldHead:
     c8.p1 ~ NRST
     c8.p2 ~ GND
 
-    r3 = new CF_R64
+    r3 = new IF_R64
     trait r3 has_designator<designator="R3">
     r3.p1 ~ V3
     r3.p2 ~ NRST
 
-    r4 = new CF_R64
+    r4 = new IF_R64
     trait r4 has_designator<designator="R4">
     r4.p1 ~ BOOT0
     r4.p2 ~ GND
@@ -193,7 +193,7 @@ module FieldHead:
     u5.p5 ~ V3_SENSOR
     u5.p6 ~ V3_SENSOR
 
-    r5 = new CF_R66
+    r5 = new IF_R66
     trait r5 has_designator<designator="R5">
     r5.p1 ~ SENSOR_EN
     r5.p2 ~ GND

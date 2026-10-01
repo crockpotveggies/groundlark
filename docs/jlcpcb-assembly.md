@@ -16,7 +16,7 @@ separately. The 40 Pi supply/supervisor additions are listed in
 `hw/assembly/groundlark-fpga-hat/pi-supervisor-review.json` with catalog and
 supplier-pad evidence pending. Earlier packages do not describe the enlarged board.
 The Pi, Trenz module, geophone, riser, supply and mounting hardware are separate
-purchases. The remote sensor head and A2 ASIC HAT are not included.
+purchases. The USB sensor heads are not included.
 
 ## Files to upload
 

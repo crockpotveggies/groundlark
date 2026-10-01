@@ -10,7 +10,7 @@ its Pi I2C hardware driver remains pending. The live factory currently supports
 the IMUs, geophone ADC and GNSS receiver.
 
 The runnable Pi application is in `sw/pi/groundlark/`; use
-`sw/tools/sensor.py` as its repository entry point. It has no FPGA, Coldfoot,
+`sw/tools/sensor.py` as its repository entry point. It has no FPGA,
 network service or database dependency. Simulation and Linux device adapters
 use the same scheduler, calibration, session validation and recording path.
 Physical acceptance follows the [bench procedure](bench-procedure.md).

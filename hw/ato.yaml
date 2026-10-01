@@ -15,12 +15,6 @@ builds:
     entry: groundlark-fpga-hat/elec/hat_trenz.ato:TrenzHat
     paths:
       layout: groundlark-fpga-hat/layout/trenz_hat/trenz_hat.kicad_pcb
-  hat:
-    standardize_designators: false
-    keep_net_names: false
-    entry: groundlark-coldfoot-hat/elec/hat.ato:Hat
-    paths:
-      layout: groundlark-coldfoot-hat/layout/hat/hat.kicad_pcb
   field_head:
     standardize_designators: false
     keep_net_names: false

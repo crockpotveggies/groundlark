@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="E">
   <design>
-    <source>/mnt/p/Personal/groundlark/hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_sch</source>
-    <date>2026-09-30T15:26:35-0700</date>
-    <tool>Eeschema 9.0.9-9.0.9~ubuntu24.04.1</tool>
+    <source>/work/hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_sch</source>
+    <date>2026-10-01T21:37:51+0000</date>
+    <tool>Eeschema 9.0.9</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
         <title/>
@@ -130,13 +130,13 @@
         <comment number="9" value=""/>
       </title_block>
     </sheet>
-    <sheet number="8" name="/05-coldfoot-interface-page-01/" tstamps="/e698ceff-fa25-5efc-82bf-1acfc4d4bd14/">
+    <sheet number="8" name="/05-fpga-interface-page-01/" tstamps="/e698ceff-fa25-5efc-82bf-1acfc4d4bd14/">
       <title_block>
-        <title>Groundlark DAQHAT-01 / 05-coldfoot-interface-page-01</title>
+        <title>Groundlark DAQHAT-01 / 05-fpga-interface-page-01</title>
         <company/>
         <rev>DAQHAT-01</rev>
         <date>2026-09-30</date>
-        <source>05-coldfoot-interface-page-01.kicad_sch</source>
+        <source>05-fpga-interface-page-01.kicad_sch</source>
         <comment number="1" value=""/>
         <comment number="2" value=""/>
         <comment number="3" value=""/>
@@ -1360,16 +1360,16 @@
       <value>FPGA test UART/reset</value>
       <footprint>Groundlark:Connector_PinHeader_2.54mm__PinHeader_1x04_P2.54mm_Vertical</footprint>
       <fields>
-        <field name="MPN">Coldfoot UART service ONLY</field>
+        <field name="MPN">FPGA UART service ONLY</field>
         <field name="Footprint">Groundlark:Connector_PinHeader_2.54mm__PinHeader_1x04_P2.54mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="Groundlark" part="Part_J4" description=""/>
-      <property name="MPN" value="Coldfoot UART service ONLY"/>
-      <property name="Sheetname" value="05-coldfoot-interface-page-01"/>
-      <property name="Sheetfile" value="05-coldfoot-interface-page-01.kicad_sch"/>
-      <sheetpath names="/05-coldfoot-interface-page-01/" tstamps="/e698ceff-fa25-5efc-82bf-1acfc4d4bd14/"/>
+      <property name="MPN" value="FPGA UART service ONLY"/>
+      <property name="Sheetname" value="05-fpga-interface-page-01"/>
+      <property name="Sheetfile" value="05-fpga-interface-page-01.kicad_sch"/>
+      <sheetpath names="/05-fpga-interface-page-01/" tstamps="/e698ceff-fa25-5efc-82bf-1acfc4d4bd14/"/>
       <tstamps>1aa7ec34-4e40-5752-be27-811f3703278c</tstamps>
     </comp>
     <comp ref="C40">
@@ -6679,7 +6679,7 @@
   </libparts>
   <libraries>
     <library logical="Groundlark">
-      <uri>/mnt/p/Personal/groundlark/hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/Groundlark.kicad_sym</uri>
+      <uri>/work/hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/Groundlark.kicad_sym</uri>
     </library>
   </libraries>
   <nets>

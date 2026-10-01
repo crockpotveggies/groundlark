@@ -11,7 +11,6 @@ from kicad_support import save_board
 import pcbnew as p
 from kicad_support import add_shape,add_text,schematic,uid,v,unique_ids
 from restore_keepouts import restore
-from fixed_routes import add as add_fixed_fanout
 from silkscreen import add_logo, MODEL_CENTER
 ROOT=Path(__file__).resolve().parents[2]
 
@@ -43,7 +42,7 @@ def export_dsn(b,path,signal_via_mm=(.6,.3),ground_layers=None,track_mm=.15,clea
     tree=sx.loads(data.replace('(string_quote ")','(string_quote quote)').replace('[','__LB__').replace(']','__RB__'))
     network=next(x for x in tree if isinstance(x,list) and str(x[0])=='network')
     default=next(x for x in network if isinstance(x,list) and str(x[0])=='class')
-    power=[x for x in default[2:] if not isinstance(x,list) and str(x) in {'PI_5V','PI_3V3','SENS_3V3','EXT_3V3','EXT_12V','FUSED_12V','PROTECTED_12V','FPGA_VIN','FPGA_3V3','USB_VBUS','USB_5V','V3_SENSOR','V3','CF_REG_3V3','CF_3V3','CF_SW'}]
+    power=[x for x in default[2:] if not isinstance(x,list) and str(x) in {'PI_5V','PI_3V3','SENS_3V3','EXT_3V3','EXT_12V','FUSED_12V','PROTECTED_12V','FPGA_VIN','FPGA_3V3','USB_VBUS','USB_5V','V3_SENSOR','V3'}]
     default[:]=[x for x in default if isinstance(x,list) or x not in power]
     # Fine escapes route first; widen_power.py subsequently retains wider
     # power copper wherever actual KiCad DRC allows it.
@@ -67,11 +66,11 @@ def export_dsn(b,path,signal_via_mm=(.6,.3),ground_layers=None,track_mm=.15,clea
     path.write_text(sx.dumps(tree).replace('(string_quote quote)','(string_quote ")').replace('__LB__','[').replace('__RB__',']'))
 
 def main():
-    names = ('groundlark-daqhat-01',) if '--trenz' in sys.argv else ('groundlark-hat', 'groundlark-field-head')
+    names = ('groundlark-daqhat-01',) if '--trenz' in sys.argv else ('groundlark-field-head',)
     for name,spec in load_layout(*names).items():
         if len(sys.argv)>1 and '--trenz' not in sys.argv and name not in sys.argv[1:]:continue
-        target=spec.get('target','hat' if name.endswith('-hat') else 'field_head')
-        ishat=target in ('hat','trenz_hat')
+        target=spec.get('target','field_head')
+        ishat=target=='trenz_hat'
         folder=board_dir(name);folder.mkdir(parents=True,exist_ok=True)
         b=p.LoadBoard(str(compiled_dir(target)/(target+'.kicad_pcb')))
         assert b.GetFootprints(),'Run ato build first'
@@ -127,24 +126,12 @@ def main():
             b.Add(z)
         if ishat:
             z=p.ZONE(b);z.SetLayer(p.F_Cu);z.SetIsRuleArea(True);z.SetDoNotAllowTracks(True);z.SetDoNotAllowVias(True);z.SetDoNotAllowCopperPour(True);z.SetDoNotAllowPads(False);z.SetDoNotAllowFootprints(False);z.Outline().NewOutline()
-            tiltbox=[(92.2,73.7),(97.8,73.7),(97.8,82.3),(92.2,82.3)] if target=='trenz_hat' else [(88.2,74.7),(93.8,74.7),(93.8,83.3),(88.2,83.3)]
+            tiltbox=[(92.2,73.7),(97.8,73.7),(97.8,82.3),(92.2,82.3)]
             for x,y in tiltbox:z.Outline().Append(v(x,y))
             if any(part.ref == "U20" for part in parts): b.Add(z)
-            # Short RF connection uses retained reviewed coordinates; impedance
-            # remains subject to the selected fabrication stackup.
-            if target=='hat':
-                nets=b.GetNetsByName()
-                pts=[(68.75,97.3),(69.8,97.3),(71.95,95.15),(71.95,94)] if target=='hat' else [(68.75,99.3),(72.1,99.3),(73.95,97.45),(73.95,96)]
-                for a,c in zip(pts,pts[1:]):
-                    t=p.PCB_TRACK(b);t.SetStart(v(*a));t.SetEnd(v(*c));t.SetWidth(p.FromMM(spec.get('rf',{}).get('width_mm',.3)));t.SetLayer(p.F_Cu);t.SetNet(nets['GNSS_RF']);t.SetLocked(True);b.Add(t)
-            if target=='hat':
-                add_text(b,'Groundlark A2 | atopile',87,104.5,.85)
-                add_text(b,'COLDFOOT / RUN-1',145,53,.8)
-                add_text(b,'XYZ MOTION',70,61,.8)
-                add_text(b,'NO GEOPHONE',83,87,.8)
             # Raised module envelope on assembly layer. Components beneath must
             # clear the 3mm mating stack; no tall parts under this rectangle.
-            outline=[(30,8),(80,8),(80,48),(30,48)] if target=='trenz_hat' else [(90,19),(104,19),(104,35),(90,35)]
+            outline=[(30,8),(80,8),(80,48),(30,48)]
             for a,c in zip(outline,outline[1:]+outline[:1]):add_shape(b,50+a[0],50+a[1],50+c[0],50+c[1],p.Dwgs_User,.12)
             if target=='trenz_hat':
                 add_text(b,'Groundlark DAQHAT-01 / 200T',*MODEL_CENTER,.8)
@@ -164,7 +151,6 @@ def main():
         if target=='trenz_hat':
             for fp in b.GetFootprints():
                 for zone in fp.Zones():zone.SetLayerSet(p.LSET.AllCuMask())
-        if target=='hat':add_fixed_fanout(b)
         # Stock models are resolved by KiCad 9. Portable custom models are added
         # by hw/tools/models.py after routing, without changing connectivity.
         path=folder/(name+'.kicad_pcb');unique_ids(b);save_board(str(path),b)

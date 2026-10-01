@@ -1,7 +1,7 @@
 # Groundlark repository guidance
 
 Current priority is [sensor acquisition](docs/sensor-software.md)
-on the Pi/DAQHAT-01/Trenz stack. Defer Coldfoot ASIC/runtime/RTL integration. Keep sensor
+on the Pi/DAQHAT-01/Trenz stack. Keep sensor
 software independent of a configured FPGA; preserve the existing FPGA interfaces.
 The DAQHAT-01 revision follows docs/fpga-host-link.md: six internal
 QSPI signals, retained UART and four shared pins for isolated Pi-driven JTAG.
@@ -16,7 +16,6 @@ routing snapshot. Fabrication approval is owned by the user. DAQHAT-01 has MAX-M
 independent pin/axis checks, GPIO riser assembly, and explicit
 power envelope in docs/trenz-hat.md. Geophone noise/response measurements, actual stack
 fit and GPIO signal integrity still need qualification. Ethernet is not exposed.
-Keep the A2 ASIC design deferred for this phase.
 
 Keep authored inputs separate from disposable build output. Preserve unrelated
 work. Hardware changes belong under `hw/`, software under `sw/`, shared design
@@ -37,8 +36,8 @@ regressions after assembly exporter/registry changes; the integration test rebui
 both full and overlay exports without depending on ignored release archives.
 See `docs/jlcpcb-assembly.md`. Offline tests never establish current inventory.
 
-Hardware products live in `hw/groundlark-fpga-hat/`, `hw/groundlark-coldfoot-hat/`,
-`hw/burrowlark-usb/` and `hw/skylark-usb/`. Coldfoot remains deferred. Skylark Rev A
+Hardware products live in `hw/groundlark-fpga-hat/`,
+`hw/burrowlark-usb/` and `hw/skylark-usb/`. Skylark Rev A
 uses the `skylark` target: a vertical USB PCB with socketed SGX SO2/H2S cells,
 an external PMS5003, SHT40 and BMP388. Preserve its direct USB route, sensor-finger
 keepouts, socket pin-view checks and native SES snapshot. Prototype firmware and
@@ -52,7 +51,7 @@ tools/tests remain in `hw/tools/` and `hw/tests/`; use `project_paths.py` for pr
 paths. Group procurement overrides and ignored releases by product under
 `hw/assembly/` and `hw/releases/` respectively. Firmware remains under `sw/`.
 Keep custom model/library paths relative and preserve the existing 3D artifacts.
-Do not invoke `bootstrap_trenz.py` or `pack_trenz.py` as validation: they overwrite
+Do not invoke `pack_trenz.py` as validation: they overwrite
 authoring inputs. Do not silently reroute or rewrite checked CAD during tests.
 
 Sensor acquisition uses Pi drivers/runtime software. The separate TI MSPM0L1106

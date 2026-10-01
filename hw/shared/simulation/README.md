@@ -5,7 +5,7 @@ The active DAQHAT-01 adds 15 ngspice cases in `geophone/`, run with
 loading, passive input filtering, bias and PGA common-mode headroom at nominal
 and tolerance corners. See [the circuit and limits](../../../docs/geophone-input.md).
 These models omit ADC digital filtering, self-noise, parasitic coupling and
-physical mounting. The older A2 GNSS circuit below remains historical.
+physical mounting.
 
 `simulate_geophone_review.py` adds eight passive startup/pulse/recovery cases in
 `geophone-review/`, with asymmetric components and leakage. A 50 mV input exceeds
@@ -23,7 +23,7 @@ resistance limit. Four load-step cases add 50/200 nH, 20 mΩ capacitor ESR and
 26.4 μF effective capacitance for 0.1↔3 A ramps lasting 100 μs. They do not
 qualify sub-microsecond FPGA load edges, startup inrush or source control loops.
 
-Run `python3 hw/tools/simulate.py` with ngspice. It writes all 27 circuit decks,
+Run `python3 hw/tools/simulate.py` with ngspice. It writes all 18 circuit decks,
 simulator logs and measured limits to `results.json`, failing on a missing or
 out-of-range measurement.
 
@@ -34,22 +34,15 @@ out-of-range measurement.
 | 3 | 4.7 kohm +1% I2C pull-up; 50/100/200 pF; 20 ohm open-drain switch | Rise <1 us, low <0.4 V; 100 kHz bus target |
 | 1 | 2 Mbaud UART; 47 ohm series, assumed 25 ohm driver and 100 pF | Rise <50 ns; mid-bit high >2.31 V |
 | 2 | USB CC 5.1 kohm ±1% pull-down with a 56 kohm source pull-up at 5 V | CC 0.40–0.43 V |
-| 8 | Buck power stage: 4.75/5.25 V; 50/600 mA; 4.7 uH ±20%; 31.2 mohm DCR; 26.4 uF effective output capacitance; 0.1 ohm shunt; 45 mohm core connection | Chip rail 3.0–3.6 V; ripple <100 mV; peak inductor current <2 A |
-| 1 | Behavioral 200 ms reset release; actual 10 kohm pull-up; assumed 30 pF | Valid low before release, high afterwards |
 
-These are **behavioral/passive support-circuit models**, not full sensor or
-Coldfoot silicon models. The buck uses complementary switches with specified
-on-resistances and fixed duty adjusted for input voltage. It does not model the
-AP63203 compensation, PFM, protection, startup overshoot or load-step recovery.
-The sensor supply assumes a regulated source; it does not simulate TLV1117 loop
-stability. Reset timing is nominal, not a supervisor tolerance model. Parasitics
+These are **behavioral/passive support-circuit models**, not full sensor
+silicon models. The sensor supply assumes a regulated source; it does not simulate TLV1117 loop
+stability. Parasitics
 are assumed bounds, not extracted PCB values. UART RC analysis is not IBIS/SI signoff.
 
 The LDO thermal budget assumes 200 mA, 5.25 V input, 3.18 V output, 60 °C ambient
 and **100 °C/W assumed board thermal resistance**: 101.4 °C estimated junction.
-This is not a measured temperature. Coldfoot has a 600 mA total design envelope,
-with at most 500 mA through the two core contacts and 300 mA through any contact.
-Its actual current remains to be measured.
+This is not a measured temperature.
 
 Bench work must cover capacitor DC-bias derating, regulator startup/stability,
 clock edges at the chip, reset/brownout, maximum-activity rail droop, cable

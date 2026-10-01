@@ -1,8 +1,6 @@
 """Attach real stock package models plus explicit simplified module envelopes.
 
-Custom VRMLs represent dimensions, not qualified supplier STEP geometry. The
-Coldfoot PCB envelope follows the actual run-1 14x16mm outline and 3mm mating
-stack; die/encapsulation is a visualization envelope, not a wirebond drawing.
+Custom VRMLs represent dimensions, not qualified supplier STEP geometry.
 """
 from pathlib import Path
 from project_paths import board_dir
@@ -14,7 +12,6 @@ def write(name,geometry): (DEST/(name+'.wrl')).write_text('#VRML V2.0 utf8\n# Si
 write('SCL3300',box(0,0,1.5,7.6,8.6,3,'0.12 0.13 0.15'))
 write('MAX_M10S',box(0,0,.4,9.7,10.1,.8,'0.06 0.14 0.22')+box(0,0,1.7,8.3,8.7,1.8,'0.65 0.66 0.68'))
 write('PTC1812',box(0,0,.6,4.5,3.2,1.2,'0.63 0.53 0.21'))
-write('Coldfoot_Run1',box(0,0,1.45,16.6,3.42,2.9,'0.1 0.1 0.11')+box(0,0,3.4,16,14,.8,'0.06 0.23 0.11')+box(0,0,4.0,5.122,3.932,.4,'0.18 0.2 0.22')+box(0,0,4.7,8.5,7,1.2,'0.06 0.06 0.065'))
 write('PNI14190',box(0,0,2,25.4,25.4,1,'0.05 0.23 0.1')+box(0,-8,4,18,3.2,3,'0.22 0.13 0.055')+box(-8,0,4,3.2,18,3,'0.22 0.13 0.055')+box(7,7,5.5,4,4,6,'0.22 0.13 0.055')+box(1,1,3,4,4,1,'0.1 0.1 0.1'))
 # Correct bottom-mounted socket envelope aligned to the PTH pad array. The
 # cavities are separate dark boxes over a gold contact row, not a solid header.
@@ -24,9 +21,9 @@ for i in range(20):
         socket+=box(x,-i*2.54,-9.55,1.25,1.25,.15,'0.01 0.01 0.012')
         socket+=box(x,-i*2.54,.5,.64,.64,2,'0.65 0.52 0.22')
 write('Pi_bottom_socket',socket)
-for name in ['groundlark-hat','groundlark-field-head']:
+for name in ['groundlark-field-head']:
     path=board_dir(name)/(name+'.kicad_pcb');b=p.LoadBoard(str(path))
-    custom={'U20':'SCL3300','U21':'MAX_M10S','F1':'PTC1812','J5':'Coldfoot_Run1','J1':'Pi_bottom_socket'} if name.endswith('-hat') else {'U2':'PNI14190','F1':'PTC1812'}
+    custom={'U2':'PNI14190','F1':'PTC1812'}
     missing=[]
     for fp in b.GetFootprints():
         if fp.GetReference() in custom:

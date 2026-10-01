@@ -12,5 +12,10 @@ def restore(b):
             fp.Add(copy)
         print('Restored',fp.GetReference(),'library keepouts')
 if __name__=='__main__':
-    path=ROOT/'hw/groundlark-coldfoot-hat/boards/groundlark-hat/groundlark-hat.kicad_pcb'
+    import argparse
+    from project_paths import PRODUCTS, board_dir
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('board', choices=PRODUCTS)
+    args=parser.parse_args()
+    path=board_dir(args.board)/(args.board+'.kicad_pcb')
     b=p.LoadBoard(str(path));restore(b);p.ZONE_FILLER(b).Fill(b.Zones());p.SaveBoard(str(path),b)

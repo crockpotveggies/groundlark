@@ -56,8 +56,8 @@ measure the actual clock before changing the native GPIO adapter calibration.
 The [reference RTL](../sw/fpga/rtl/daqhat_01_link.sv) is an echo/mailbox bring-up design.
 It uses the module's default 50 MHz CLK50M2 at R4; the exact revision-03 schematic
 shows its 1.5 V level translation and bank supply, so its XDC uses LVCMOS15.
-Application bank 14 uses LVCMOS33. The bitstream does not configure DDR, Ethernet,
-Coldfoot or the Si5338. Verify the clock generator still has its factory settings.
+Application bank 14 uses LVCMOS33. The bitstream does not configure DDR, Ethernet
+or the Si5338. Verify the clock generator still has its factory settings.
 
 At this conservative rate, SPI is oversampled in one 50 MHz domain through
 three-stage synchronizers. A one-frame mailbox replaces the proposed asynchronous

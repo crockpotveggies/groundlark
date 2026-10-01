@@ -14,13 +14,6 @@ def child(node, name):
 def inspect():
     for pdf in (ROOT/'hw/shared/reference').glob('*.pdf'):
         subprocess.run(['pdftotext', '-layout', str(pdf), str(pdf.with_suffix('.txt'))], check=True)
-    pcb=sx.load(open(ROOT/'hw/shared/vendor/wafer-space/0p5x0p5-cob.kicad_pcb'))
-    for fp in children(pcb,'footprint'):
-        props={x[1]:x[2] for x in children(fp,'property')}
-        if len(children(fp,'pad')) < 40: continue
-        print('FOOTPRINT',fp[1],props.get('Reference'),child(fp,'at'))
-        for pad in children(fp,'pad'):
-            print(pad[1], child(pad,'at'), child(pad,'net'), child(pad,'pinfunction'))
     for lib in ['Sensor_Motion','Sensor_Pressure','Interface','RF_GPS','Regulator_Linear','Memory_EEPROM']:
         path=Path('/usr/share/kicad/symbols')/(lib+'.kicad_sym')
         syms=sx.load(open(path))

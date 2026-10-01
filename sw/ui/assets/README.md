@@ -114,3 +114,7 @@ The GNSS revision includes the underside authored MAX-M10S package envelope and 
 HenryTech SMA STEP (`hw/tools/gnss_model.py`) using its published dimensions.
 Unlike local VRML bodies, this STEP is included by native GLB export. The antenna
 points along PCB -X. PPS and lock overlays describe modeled evidence, not hardware measurements.
+
+Interface identifier and service-label updates preserve normalized placement
+geometry, PCB/model bytes and GLB assets. Their provenance bindings can be
+refreshed after verifying those equalities; no mesh regeneration is needed.

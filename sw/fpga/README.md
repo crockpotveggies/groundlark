@@ -7,7 +7,7 @@ wires switch to dedicated JTAG for programming directly from the Pi. See the
 
 The initial Pi 4 transport is ordinary SPI6, with DQ2/DQ3 unused. Quad needs a
 separate host engine and reviewed slave RTL. Keep sensor acquisition independent
-of FPGA configuration. Coldfoot integration remains deferred; an existing Nexys
+of FPGA configuration. An existing Nexys
 Video bitstream is not a Trenz port.
 
 `rtl/daqhat_01_link.sv` is a single-clock 50 MHz SPI echo mailbox with length/CRC/sequence

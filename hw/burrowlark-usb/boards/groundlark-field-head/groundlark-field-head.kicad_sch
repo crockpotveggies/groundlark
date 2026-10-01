@@ -14,5 +14,5 @@
           (property "Sheetname" "03-sensors-page-01" (at 30 93 0) (effects (font (size 1.27 1.27)) (justify left)))
           (property "Sheetfile" "03-sensors-page-01.kicad_sch" (at 30 127 0) (effects (font (size 1.27 1.27)) (justify left)))
           (instances (project "groundlark-field-head" (path "/e1043b90-5a3a-5d7b-9b91-8488ec3f38a4" (page "4")))))
-(text "Atopile-derived review schematic - prototype, not released.\nThe Pi hosts acquisition and Coldfoot processing; the USB head has a local MCU.\nGlobal net labels connect functional sheets." (at 30 25 0) (effects (font (size 1.5 1.5)) (justify left)) (uuid a462fa62-501a-516c-abce-bb2e0b5c10cc))
+(text "Atopile-derived review schematic - prototype, not released.\nThe Pi hosts acquisition; the USB head has a local MCU.\nGlobal net labels connect functional sheets." (at 30 25 0) (effects (font (size 1.5 1.5)) (justify left)) (uuid a462fa62-501a-516c-abce-bb2e0b5c10cc))
 (sheet_instances (path "/" (page "1"))))

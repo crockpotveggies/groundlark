@@ -3,8 +3,8 @@ from pathlib import Path
 import hashlib,json,datetime
 ROOT=Path(__file__).resolve().parents[2];path=ROOT/'docs/artifact-manifest.json';j=json.loads(path.read_text())
 sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
-protected=['hw/groundlark-coldfoot-hat/elec/hat.ato','hw/burrowlark-usb/elec/field_head.ato','hw/shared/elec/parts.ato','hw/groundlark-coldfoot-hat/layout/placement.json','hw/burrowlark-usb/layout/placement.json',
- 'hw/groundlark-coldfoot-hat/boards/groundlark-hat/groundlark-hat.kicad_pcb','hw/burrowlark-usb/boards/groundlark-field-head/groundlark-field-head.kicad_pcb']
+protected=['hw/burrowlark-usb/elec/field_head.ato','hw/burrowlark-usb/layout/placement.json',
+ 'hw/burrowlark-usb/boards/groundlark-field-head/groundlark-field-head.kicad_pcb']
 for name in protected:
     if name in j['sha256']:assert sha(ROOT/name)==j['sha256'][name],name+' unexpectedly changed'
 files=[ROOT/'hw/ato.yaml',ROOT/'hw/groundlark-fpga-hat/layout/placement.json',ROOT/'hw/groundlark-fpga-hat/elec/hat_trenz.ato',ROOT/'hw/groundlark-fpga-hat/elec/trenz_parts.ato',ROOT/'docs/trenz-pin-map.json',ROOT/'docs/trenz-hat.md']
@@ -17,4 +17,4 @@ j['trenz_update_utc']=datetime.datetime.now(datetime.timezone.utc).isoformat()
 validation=json.loads((ROOT/'hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/validation.json').read_text())
 assert all(validation[k]==0 for k in ['drc_violations','unconnected_items','erc_violations']), 'Cannot record a passing board before native checks close'
 j['trenz_status']='DAQHAT-01 Pi-outline 6-layer through-via prototype; internal SPI6/QSPI reservation, UART and switched JTAG; native CAD, loopback RTL and portable checks; physical qualification pending'
-path.write_text(json.dumps(j,indent=2)+'\n',encoding='utf-8',newline='\n');print('DAQHAT-01 artifacts recorded; original A2 circuit/layout hashes preserved')
+path.write_text(json.dumps(j,indent=2)+'\n',encoding='utf-8',newline='\n');print('DAQHAT-01 artifacts recorded; USB head circuit/layout hashes preserved')

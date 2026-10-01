@@ -5,7 +5,7 @@ import subprocess,json,sys
 from kicad_support import save_board
 import pcbnew as p
 ROOT=Path(__file__).resolve().parents[2]
-for name in sys.argv[1:] or ['groundlark-hat','groundlark-field-head']:
+for name in sys.argv[1:] or ['groundlark-field-head']:
     folder=board_dir(name);path=folder/(name+'.kicad_pcb');out=folder/'drc.json'
     for iteration in range(80):
         subprocess.run(['kicad-cli','pcb','drc','--format','json','-o',str(out),str(path)],check=True,stdout=subprocess.DEVNULL)

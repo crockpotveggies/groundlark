@@ -10,7 +10,7 @@ import argparse,json,subprocess,xml.etree.ElementTree as ET
 import pcbnew as pcb
 
 ROOT=Path(__file__).resolve().parents[2]
-def main(boards=('groundlark-hat','groundlark-field-head')):
+def main(boards=('groundlark-field-head',)):
     board_failures=[]
     for folder in map(board_dir, boards):
         name=folder.name
@@ -23,7 +23,7 @@ def main(boards=('groundlark-hat','groundlark-field-head')):
         board=pcb.LoadBoard(str(folder/(name+'.kicad_pcb')))
         actual={(fp.GetReference(),pad.GetNumber()):pad.GetNetname() for fp in board.GetFootprints() for pad in fp.Pads() if pad.GetNumber()}
         degree=Counter(actual.values())
-        target='hat' if name.endswith('-hat') else 'field_head'
+        target='field_head'
         compiled=pcb.LoadBoard(str(compiled_dir(target)/(target+'.kicad_pcb')))
         if target=='field_head':
             for refs in (
@@ -44,18 +44,13 @@ def main(boards=('groundlark-hat','groundlark-field-head')):
                     if actual.get(key)!=net: failures.append(f'PCB {key}: {actual.get(key)} != {net}')
                     if sch.get(key)!=net: failures.append(f'SCH {key}: {sch.get(key)} != {net}')
                 elif degree[actual.get(key,'')]>1: failures.append(f'NC connected {key}')
-        if name=='groundlark-hat':
-            f=next(f for f in board.GetFootprints() if f.GetReference()=='J1')
-            pos={pad.GetNumber():(round(pcb.ToMM(pad.GetPosition().x)-50,3),round(pcb.ToMM(pad.GetPosition().y)-50,3)) for pad in f.Pads()}
-            for pin,xy in {'1':(8.38,4.77),'2':(8.38,2.23),'39':(56.64,4.77),'40':(56.64,2.23)}.items():
-                if pos[pin]!=xy: failures.append(f'Pi header {pin} at {pos[pin]} expected {xy}')
         subprocess.run(['kicad-cli','pcb','drc','--format','json','-o',str(folder/'drc.json'),str(folder/(name+'.kicad_pcb'))],check=True)
         subprocess.run(['kicad-cli','sch','erc','--format','json','-o',str(folder/'erc.json'),str(folder/(name+'.kicad_sch'))],check=True)
         drc=json.loads((folder/'drc.json').read_text());erc=json.loads((folder/'erc.json').read_text())
         findings=drc['violations']+drc['unconnected_items'];erc_findings=[x for sheet in erc['sheets'] for x in sheet['violations']]
         types=Counter(x['type'] for x in findings)
         errors=[x for x in findings if x['severity']=='error']
-        result={'pin_checks':checks,'atopile_pin_checks':len(compiler_pins),'connectivity_errors':failures,'drc_findings_by_type':dict(types),'drc_errors':len(errors),'erc_findings':len(erc_findings),'unconnected_items':len(drc['unconnected_items']),'tracks_and_vias':len(board.GetTracks()),'status':'A2 PROTOTYPE - NOT FABRICATION RELEASED','limits':['USB sensor firmware is not implemented; enumeration, suspend and USB signal integrity are unvalidated','No bench, magnetic-noise, RF impedance, EMC or mechanical stack validation','SPICE models are supporting-circuit behavioral/passive models, not full sensor/Coldfoot silicon models','Run-1 Coldfoot bond map must accompany module assembly; current draw remains a bounded design assumption']}
+        result={'pin_checks':checks,'atopile_pin_checks':len(compiler_pins),'connectivity_errors':failures,'drc_findings_by_type':dict(types),'drc_errors':len(errors),'erc_findings':len(erc_findings),'unconnected_items':len(drc['unconnected_items']),'tracks_and_vias':len(board.GetTracks()),'status':'A2 PROTOTYPE - NOT FABRICATION RELEASED','limits':['Prototype USB sensor firmware is implemented; physical enumeration, suspend and USB signal integrity are unvalidated','No bench, magnetic-noise, RF impedance, EMC or mechanical stack validation','SPICE models are supporting-circuit behavioral/passive models, not full sensor silicon models']}
         (folder/'validation.json').write_text(json.dumps(result,indent=2))
         print(name,json.dumps(result,indent=2))
         if failures or errors or erc_findings:board_failures.append({'board':name,'connectivity':failures,'drc':dict(types),'erc':len(erc_findings)})
@@ -63,6 +58,6 @@ def main(boards=('groundlark-hat','groundlark-field-head')):
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--board',choices=('groundlark-hat','groundlark-field-head'))
+    parser.add_argument('--board',choices=('groundlark-field-head',))
     args=parser.parse_args()
-    main((args.board,) if args.board else ('groundlark-hat','groundlark-field-head'))
+    main((args.board,) if args.board else ('groundlark-field-head',))

@@ -622,9 +622,9 @@
         82.5,
         37
       ],
-      "section": "05-coldfoot-interface-page-01",
+      "section": "05-fpga-interface-page-01",
       "angle": 0,
-      "mpn": "Coldfoot UART service ONLY",
+      "mpn": "FPGA UART service ONLY",
       "note": "Test points for assembled module UART and active-low reset; do not connect a second driving host.",
       "dnp": false,
       "local_fp": "Connector_PinHeader_2.54mm__PinHeader_1x04_P2.54mm_Vertical",

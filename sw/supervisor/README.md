@@ -2,7 +2,7 @@
 
 `firmware/` targets MSPM0L1106TRHBR. The default image leaves RUN off because
 the battery/controller policy is disabled. JP130 remains a bench override;
-automatic operation requires removing its shunt. Coldfoot is outside this target.
+automatic operation requires removing its shunt.
 
 The production C state machine checks voltage hysteresis, confirmation intervals,
 minimum off time and halt acknowledgement. Invalid ADC readings request orderly

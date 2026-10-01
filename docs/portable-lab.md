@@ -41,9 +41,9 @@ drive-sharing configuration. No host directory is mounted into the container.
 
 | Profile | Checks |
 | --- | --- |
-| `full` (default) | Fresh atopile builds for A2, Burrowlark DAQUSB-01 USB field head, DAQHAT-01 and Skylark; numeric constraint solves; unsafe 5 V IMU rejection; independent hardware regressions; native KiCad ERC/DRC/connectivity; DAQHAT-01 power/clearance and pre-fab review; clean routing replay; SPICE; the software profile (27 stages). |
+| `full` (default) | Fresh atopile builds for Burrowlark DAQUSB-01 USB field head, DAQHAT-01 and Skylark; numeric constraint solves; unsafe 5 V IMU rejection; independent hardware regressions; native KiCad ERC/DRC/connectivity; DAQHAT-01 power/clearance and pre-fab review; clean routing replay; SPICE; the software profile (25 stages). |
 | `quick` | Same GPIO/component fault, circuit/PCB consistency, routing replay, SPICE and software checks using saved compiled layouts. Does **not** prove `.ato` changes were rebuilt. |
-| `spice` | 27 A2/field, 14 Trenz, 15 geophone response, 8 geophone transient and 38 host-link switch/RC cases, including expected fault detection. |
+| `spice` | 18 shared/USB, 14 Trenz, 15 geophone response, 8 geophone transient and 38 host-link switch/RC cases, including expected fault detection. |
 | `software` | RTL and Python-to-RTL co-simulation; recorded Vivado evidence/hash gate; Buf format/lint/build and compatibility; acquisition/replay, modeled driver and Linux TTY/worker fault tests; retained acquisition demo; Skylark native C fault tests and ARM firmware build. No physical hardware execution. |
 
 The runner calls the existing project entrypoints. Routing reconstruction stays
@@ -58,7 +58,7 @@ does not suppress the later circuit, SPICE or software results. Checks with
 missing build prerequisites can fail as well; inspect the earlier build logs.
 
 These are bounded electrical models, RTL simulations and CAD checks. They do not
-emulate sensor silicon, USB enumeration, a booted Raspberry Pi or Coldfoot execution.
+emulate sensor silicon, USB enumeration, a booted Raspberry Pi or FPGA execution.
 They do not establish regulator stability, extracted signal/power integrity,
 thermal performance, physical mating, or fabrication readiness.
 
@@ -127,7 +127,7 @@ shared with its KiCad base. Normal test runs do not rebuild or grow this image.
 Use `docker system df` to inspect storage. To remove this
 project's image, use `docker image rm groundlark/lab:1` after tests have stopped.
 Do not use global `docker system prune` or `docker volume prune` as project
-cleanup: other projects, including Coldfoot, share this Docker installation.
+cleanup: other projects share this Docker installation.
 
 ## Moving or updating it
 

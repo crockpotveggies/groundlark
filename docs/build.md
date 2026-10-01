@@ -1,9 +1,9 @@
-# Reproducible A2 build
+# Reproducible hardware builds
 
 For validation in an isolated, portable environment, use the
 [portable lab](portable-lab.md). It does not depend on the migrated local venvs.
 
-The separate Pi-outline DAQHAT-01 build and rendering commands are in
+The Pi-outline DAQHAT-01 build and rendering commands are in
 [Trenz carrier documentation](trenz-hat.md#rebuild).
 
 Used environment: WSL Ubuntu 24.04, atopile 0.15.9 with Python 3.14.7,
@@ -44,7 +44,9 @@ with common definitions in `hw/shared/elec/`. Each product's
 `layout/placement.json` has no pin net assignments. Review BOM presentation
 metadata when changing a selected MPN.
 
-The checked route sessions are supplied with both boards. Reconstruct the
+The commands below rebuild Burrowlark. DAQHAT-01 and Skylark have dedicated
+authoring and validation commands in their product guides.
+The checked route sessions are supplied with the boards. Reconstruct the
 delivered layout after `assemble_pcb.py` with:
 
 ```sh
@@ -55,11 +57,8 @@ python3 hw/tools/review_schematic.py
 python3 hw/tools/models.py
 python3 hw/tools/check_circuit.py
 python3 hw/tools/check_design.py
-python3 hw/tools/report_validation.py
 ```
 
-The HAT assembly step includes reviewed connector escapes and the short RF
-trace; route sessions omit these fixed objects. Do not remove them before import.
 The power-width pass tries 0.4/0.3/0.25/0.2 mm and uses native DRC to retain only
 legal widening. Remaining 0.15 mm sections and per-net lengths are recorded in
 `power-widths.json`; this is not an ampacity or extracted voltage-drop analysis.
@@ -68,9 +67,8 @@ For a changed placement/circuit, reroute each board and repeat the checks:
 
 ```sh
 xvfb-run -a java -jar hw/tools/freerouting-1.9.0.jar \
-  -de hw/groundlark-coldfoot-hat/boards/groundlark-hat/groundlark-hat.dsn \
-  -do hw/groundlark-coldfoot-hat/boards/groundlark-hat/groundlark-hat.ses -mp 25 -mt 1 -da
-# Repeat for groundlark-field-head.
+  -de hw/burrowlark-usb/boards/groundlark-field-head/groundlark-field-head.dsn \
+  -do hw/burrowlark-usb/boards/groundlark-field-head/groundlark-field-head.ses -mp 25 -mt 1 -da
 python3 hw/tools/import_routes.py
 python3 hw/tools/trim_dangling.py
 python3 hw/tools/widen_power.py
@@ -80,24 +78,13 @@ python3 hw/tools/check_design.py
 ```
 
 The restricted SES importer verifies placements and rejects unsupported route
-objects. The HAT session retains the previous routing with an explicit allowlist of removed cable parts/nets; fixed geometry includes the replacement ground-plane via. KiCad performs independent DRC afterwards. Review schematics use local
+objects. KiCad performs independent DRC afterwards. Review schematics use local
 symbols with physical pin numbers, explicit no-connects and documented supply
 flags. They are derived artifacts, not a second electrical source.
 
-Routing needed interactive engineering decisions: restore the library U.FL
-keepout, reserve the ground planes, and explicitly fan out three adjacent
-mezzanine pins before routing their inner-layer connections. Autorouter
-completion is never assumed from a successful process exit; the independent
-unconnected-net check is required.
-
-Render the actual PCB with KiCad (repeat for the field head):
-
-```sh
-xvfb-run -a kicad-cli pcb render --width 1800 --height 1000 \
-  --quality high --background opaque --rotate 325,0,25 --zoom 0.9 \
-  -o hw/groundlark-coldfoot-hat/boards/groundlark-hat/3d.png \
-  hw/groundlark-coldfoot-hat/boards/groundlark-hat/groundlark-hat.kicad_pcb
-```
+Autorouter completion is never assumed from a successful process exit; the
+independent unconnected-net check is required. Use each product's documented
+render command to refresh its actual native PCB view.
 
 The KiCad project opens directly in PCB Editor; use Alt+3 for its interactive 3D
 viewer. Stock models require KiCad's 3D packages. Custom envelopes are portable

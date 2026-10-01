@@ -84,6 +84,7 @@
     "receiver_peak_allocation_mA": 100,
     "antenna_allocation_mA": 20
   },
+  "shared_sensor_pin_checks": 73,
   "infrasound": {
     "physical_pin_checks": 6,
     "i2c_address": "0x28",

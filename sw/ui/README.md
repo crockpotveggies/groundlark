@@ -36,7 +36,7 @@ on Vue, Quasar, Three.js and ECharts. There is no custom JavaScript application,
 Node dependency install, npm build, or separate frontend server in this project.
 
 The board selector switches experiments and models between the FPGA HAT,
-Burrowlark and Skylark. Coldfoot remains deferred. `skylark_scene.py` adds
+Burrowlark and Skylark. `skylark_scene.py` adds
 selectable gas/climate/PM targets to the native PCB/package GLB.
 `build_skylark_model.py` is build-only tooling; its dependencies are separate
 from the locked UI environment. See [asset provenance](assets/README.md).

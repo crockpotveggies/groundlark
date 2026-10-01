@@ -23,8 +23,8 @@ from project_paths import board_dir, compiled_dir, placement_path, PRODUCTS
 
 MARKER = "groundlark-lab-v1"
 RUN_RE = re.compile(r"\d{8}T\d{6}Z-[0-9a-f]{8}")
-BOARDS = ("groundlark-hat", "groundlark-field-head", "groundlark-daqhat-01", "skylark-usb")
-TARGETS = ("hat", "field_head", "trenz_hat", "skylark")
+BOARDS = ("groundlark-field-head", "groundlark-daqhat-01", "skylark-usb")
+TARGETS = ("field_head", "trenz_hat", "skylark")
 MiB = 1024 * 1024
 
 
@@ -129,7 +129,6 @@ def clean(root, keep=5, apply=False):
 
 def source_files(source):
     files = [source / "hw/ato.yaml"] + [placement_path(b, source) for b in BOARDS]
-    files.append(source / "hw/groundlark-coldfoot-hat/layout/fixed-routes.json")
     for folder, patterns in {
         "hw/shared/elec": ("*.ato", "*.kicad_mod", "*.kicad_sym"),
         **{f"hw/{product}/elec": ("*.ato",) for product in PRODUCTS.values()},

@@ -9,9 +9,9 @@ import json,subprocess,collections,sys
 from kicad_support import save_board
 import pcbnew as p
 ROOT=Path(__file__).resolve().parents[2]
-power={'PI_5V','PI_3V3','SENS_3V3','USB_VBUS','USB_5V','V3_SENSOR','V3','CF_REG_3V3','CF_3V3','CF_SW','FPGA_VIN','FPGA_3V3','EXT_3V3','EXT_12V','FUSED_12V','PROTECTED_12V'}
+power={'PI_5V','PI_3V3','SENS_3V3','USB_VBUS','USB_5V','V3_SENSOR','V3','FPGA_VIN','FPGA_3V3','EXT_3V3','EXT_12V','FUSED_12V','PROTECTED_12V'}
 if 'skylark-usb' in sys.argv: power |= {'PM_5V','VA'}
-for name in sys.argv[1:] or ['groundlark-hat','groundlark-field-head']:
+for name in sys.argv[1:] or ['groundlark-field-head']:
     folder=board_dir(name);path=folder/(name+'.kicad_pcb')
     b=p.LoadBoard(str(path));trials={}
     for width in ([1.2,.8,.6,.4,.3,.25,.2] if name=='groundlark-daqhat-01' else [.4,.3,.25,.2]):

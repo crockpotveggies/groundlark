@@ -17,7 +17,7 @@ ROOT=Path(__file__).resolve().parents[2]
 os.chdir(ROOT/'hw')
 negative='--negative' in sys.argv
 if not negative and '--target' not in sys.argv:
-    for name in ['hat','field_head']:
+    for name in ['field_head','trenz_hat','skylark']:
         subprocess.run([sys.executable,__file__,'--target',name],check=True)
     sys.exit(0)
 entry=str(ROOT/'hw/tests/overvoltage.ato')+':InvalidVoltage' if negative else str(ROOT/'hw')

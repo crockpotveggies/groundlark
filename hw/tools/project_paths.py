@@ -5,13 +5,11 @@ import json
 ROOT = Path(__file__).resolve().parents[2]
 PRODUCTS = {
     'groundlark-daqhat-01': 'groundlark-fpga-hat',
-    'groundlark-hat': 'groundlark-coldfoot-hat',
     'groundlark-field-head': 'burrowlark-usb',
     'skylark-usb': 'skylark-usb',
 }
 TARGETS = {
     'trenz_hat': 'groundlark-daqhat-01',
-    'hat': 'groundlark-hat',
     'field_head': 'groundlark-field-head',
     'skylark': 'skylark-usb',
 }

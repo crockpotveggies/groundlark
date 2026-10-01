@@ -1,6 +1,0 @@
-#VRML V2.0 utf8
-# Simplified mechanical envelope; dimensions in 0.1 inch model units.
-Transform { translation 0.0 0.0 0.5708661417322834 children [ Shape { appearance Appearance { material Material { diffuseColor 0.1 0.1 0.11 } } geometry Box { size 6.535433070866143 1.3464566929133859 1.141732283464567 } } ] }
-Transform { translation 0.0 0.0 1.3385826771653542 children [ Shape { appearance Appearance { material Material { diffuseColor 0.06 0.23 0.11 } } geometry Box { size 6.299212598425196 5.511811023622047 0.31496062992125984 } } ] }
-Transform { translation 0.0 0.0 1.574803149606299 children [ Shape { appearance Appearance { material Material { diffuseColor 0.18 0.2 0.22 } } geometry Box { size 2.016535433070866 1.5480314960629922 0.15748031496062992 } } ] }
-Transform { translation 0.0 0.0 1.8503937007874016 children [ Shape { appearance Appearance { material Material { diffuseColor 0.06 0.06 0.065 } } geometry Box { size 3.3464566929133857 2.7559055118110236 0.47244094488188976 } } ] }

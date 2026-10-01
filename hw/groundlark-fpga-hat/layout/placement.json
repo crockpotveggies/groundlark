@@ -426,9 +426,9 @@
           82.5,
           37
         ],
-        "section": "05-coldfoot-interface",
+        "section": "05-fpga-interface",
         "angle": 0,
-        "mpn": "Coldfoot UART service ONLY",
+        "mpn": "FPGA UART service ONLY",
         "note": "Test points for assembled module UART and active-low reset; do not connect a second driving host.",
         "dnp": false,
         "local_fp": "Connector_PinHeader_2.54mm__PinHeader_1x04_P2.54mm_Vertical",
@@ -946,7 +946,7 @@
         "note": "",
         "dnp": false,
         "local_fp": "Package_SO__VSSOP-8_2.3x2mm_P0.5mm",
-        "type": "CF_U51"
+        "type": "IF_U51"
       },
       {
         "ref": "C75",
@@ -963,7 +963,7 @@
         "note": "",
         "dnp": false,
         "local_fp": "Capacitor_SMD__C_0603_1608Metric",
-        "type": "CF_C75"
+        "type": "IF_C75"
       },
       {
         "ref": "C76",
@@ -980,7 +980,7 @@
         "note": "",
         "dnp": false,
         "local_fp": "Capacitor_SMD__C_0603_1608Metric",
-        "type": "CF_C76"
+        "type": "IF_C76"
       },
       {
         "ref": "R61",
@@ -997,7 +997,7 @@
         "note": "",
         "dnp": false,
         "local_fp": "Resistor_SMD__R_0603_1608Metric",
-        "type": "CF_R61"
+        "type": "IF_R61"
       },
       {
         "ref": "R62",
@@ -1014,7 +1014,7 @@
         "note": "",
         "dnp": false,
         "local_fp": "Resistor_SMD__R_0603_1608Metric",
-        "type": "CF_R62"
+        "type": "IF_R62"
       },
       {
         "ref": "R63",
@@ -1031,7 +1031,7 @@
         "note": "",
         "dnp": false,
         "local_fp": "Resistor_SMD__R_0603_1608Metric",
-        "type": "CF_R63"
+        "type": "IF_R63"
       },
       {
         "ref": "U52",
@@ -1052,7 +1052,7 @@
         "note": "3.0V falling threshold, 200ms nominal release delay; open-drain output.",
         "dnp": false,
         "local_fp": "Package_TO_SOT_SMD__SOT-23",
-        "type": "CF_U52"
+        "type": "IF_U52"
       },
       {
         "ref": "C77",
@@ -1069,7 +1069,7 @@
         "note": "",
         "dnp": false,
         "local_fp": "Capacitor_SMD__C_0603_1608Metric",
-        "type": "CF_C77"
+        "type": "IF_C77"
       },
       {
         "ref": "R64",
@@ -1086,7 +1086,7 @@
         "note": "",
         "dnp": false,
         "local_fp": "Resistor_SMD__R_0603_1608Metric",
-        "type": "CF_R64"
+        "type": "IF_R64"
       },
       {
         "ref": "Q1",
@@ -1107,7 +1107,7 @@
         "note": "Pi GPIO17 HIGH asserts chip reset; does not drive a live voltage into unpowered chip.",
         "dnp": false,
         "local_fp": "Package_TO_SOT_SMD__SOT-23",
-        "type": "CF_Q1"
+        "type": "IF_Q1"
       },
       {
         "ref": "R65",
@@ -1124,7 +1124,7 @@
         "note": "",
         "dnp": false,
         "local_fp": "Resistor_SMD__R_0603_1608Metric",
-        "type": "CF_R65"
+        "type": "IF_R65"
       },
       {
         "ref": "R66",
@@ -1141,7 +1141,7 @@
         "note": "",
         "dnp": false,
         "local_fp": "Resistor_SMD__R_0603_1608Metric",
-        "type": "CF_R66"
+        "type": "IF_R66"
       },
       {
         "ref": "J80",
@@ -2267,7 +2267,7 @@
         "mpn": "RC0603FR-07100KL",
         "footprint": "Resistor_SMD:R_0603_1608Metric",
         "local_fp": "Resistor_SMD__R_0603_1608Metric",
-        "type": "CF_R62",
+        "type": "IF_R62",
         "xy": [
           44,
           19
@@ -2303,7 +2303,7 @@
         "mpn": "RC0603FR-07100KL",
         "footprint": "Resistor_SMD:R_0603_1608Metric",
         "local_fp": "Resistor_SMD__R_0603_1608Metric",
-        "type": "CF_R62",
+        "type": "IF_R62",
         "xy": [
           44,
           21
@@ -2339,7 +2339,7 @@
         "mpn": "RC0603FR-07100KL",
         "footprint": "Resistor_SMD:R_0603_1608Metric",
         "local_fp": "Resistor_SMD__R_0603_1608Metric",
-        "type": "CF_R62",
+        "type": "IF_R62",
         "xy": [
           56,
           25
@@ -2357,7 +2357,7 @@
         "mpn": "RC0603FR-07100KL",
         "footprint": "Resistor_SMD:R_0603_1608Metric",
         "local_fp": "Resistor_SMD__R_0603_1608Metric",
-        "type": "CF_R62",
+        "type": "IF_R62",
         "xy": [
           44,
           35

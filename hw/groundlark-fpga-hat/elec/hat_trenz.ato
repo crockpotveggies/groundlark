@@ -56,18 +56,18 @@ from "geophone_parts.ato" import GEO_R22
 from "geophone_parts.ato" import GEO_C100N
 from "geophone_parts.ato" import GEO_C1N
 import has_net_name_suggestion
-from "../../shared/elec/parts.ato" import CF_C75
-from "../../shared/elec/parts.ato" import CF_C76
-from "../../shared/elec/parts.ato" import CF_C77
-from "../../shared/elec/parts.ato" import CF_Q1
-from "../../shared/elec/parts.ato" import CF_R61
-from "../../shared/elec/parts.ato" import CF_R62
-from "../../shared/elec/parts.ato" import CF_R63
-from "../../shared/elec/parts.ato" import CF_R64
-from "../../shared/elec/parts.ato" import CF_R65
-from "../../shared/elec/parts.ato" import CF_R66
-from "../../shared/elec/parts.ato" import CF_U51
-from "../../shared/elec/parts.ato" import CF_U52
+from "../../shared/elec/parts.ato" import IF_C75
+from "../../shared/elec/parts.ato" import IF_C76
+from "../../shared/elec/parts.ato" import IF_C77
+from "../../shared/elec/parts.ato" import IF_Q1
+from "../../shared/elec/parts.ato" import IF_R61
+from "../../shared/elec/parts.ato" import IF_R62
+from "../../shared/elec/parts.ato" import IF_R63
+from "../../shared/elec/parts.ato" import IF_R64
+from "../../shared/elec/parts.ato" import IF_R65
+from "../../shared/elec/parts.ato" import IF_R66
+from "../../shared/elec/parts.ato" import IF_U51
+from "../../shared/elec/parts.ato" import IF_U52
 from "../../shared/elec/parts.ato" import P_1
 from "../../shared/elec/parts.ato" import P_10
 from "../../shared/elec/parts.ato" import P_11
@@ -714,7 +714,7 @@ module TrenzHat:
     u43.host_power ~ sensor_supply
     u43.sensor_power ~ pi_supply
 
-    u51 = new CF_U51
+    u51 = new IF_U51
     trait u51 has_designator<designator="U51">
     u51.p1 ~ FPGA_UART_TX
     u51.p2 ~ GND
@@ -725,59 +725,59 @@ module TrenzHat:
     u51.p7 ~ FPGA_3V3
     u51.p8 ~ FPGA_UART_DRIVE
     # 100n / GRM188R71H104KA93D
-    c75 = new CF_C75
+    c75 = new IF_C75
     trait c75 has_designator<designator="C75">
     c75.p1 ~ PI_3V3
     c75.p2 ~ GND
     # 100n / GRM188R71H104KA93D
-    c76 = new CF_C76
+    c76 = new IF_C76
     trait c76 has_designator<designator="C76">
     c76.p1 ~ FPGA_3V3
     c76.p2 ~ GND
     # 47 / RC0603FR-0747RL
-    r61 = new CF_R61
+    r61 = new IF_R61
     trait r61 has_designator<designator="R61">
     r61.p1 ~ FPGA_UART_DRIVE
     r61.p2 ~ FPGA_UART_RX
     # 100k / RC0603FR-07100KL
-    r62 = new CF_R62
+    r62 = new IF_R62
     trait r62 has_designator<designator="R62">
     r62.p1 ~ FPGA_IO_ENABLE
     r62.p2 ~ GND
     # 10k / RC0603FR-0710KL
-    r63 = new CF_R63
+    r63 = new IF_R63
     trait r63 has_designator<designator="R63">
     r63.p1 ~ FPGA_UART_RX
     r63.p2 ~ FPGA_3V3
     # TLV803EA30DBZR / TLV803EA30DBZR
-    u52 = new CF_U52
+    u52 = new IF_U52
     trait u52 has_designator<designator="U52">
     u52.p1 ~ GND
     u52.p2 ~ FPGA_RESET_N
     u52.p3 ~ FPGA_3V3
     # 100n / GRM188R71H104KA93D
-    c77 = new CF_C77
+    c77 = new IF_C77
     trait c77 has_designator<designator="C77">
     c77.p1 ~ FPGA_3V3
     c77.p2 ~ GND
     # 10k / RC0603FR-0710KL
-    r64 = new CF_R64
+    r64 = new IF_R64
     trait r64 has_designator<designator="R64">
     r64.p1 ~ FPGA_RESET_N
     r64.p2 ~ FPGA_3V3
     # 2N7002 / 2N7002
-    q1 = new CF_Q1
+    q1 = new IF_Q1
     trait q1 has_designator<designator="Q1">
     q1.p1 ~ FPGA_RESET_GATE
     q1.p2 ~ GND
     q1.p3 ~ FPGA_RESET_N
     # 1k / RC0603FR-071KL
-    r65 = new CF_R65
+    r65 = new IF_R65
     trait r65 has_designator<designator="R65">
     r65.p1 ~ FPGA_RESET_GPIO
     r65.p2 ~ FPGA_RESET_GATE
     # 100k / RC0603FR-07100KL
-    r66 = new CF_R66
+    r66 = new IF_R66
     trait r66 has_designator<designator="R66">
     r66.p1 ~ FPGA_RESET_GATE
     r66.p2 ~ GND
@@ -1165,7 +1165,7 @@ module TrenzHat:
     r111.p1 ~ FPGA_LINK_CS_N
     r111.p2 ~ FPGA_3V3
 
-    r112 = new CF_R62
+    r112 = new IF_R62
     trait r112 has_designator<designator="R112">
     r112.p1 ~ FPGA_LINK_SCLK
     r112.p2 ~ GND
@@ -1175,7 +1175,7 @@ module TrenzHat:
     r113.p1 ~ JTAG_TMS
     r113.p2 ~ FPGA_3V3
 
-    r114 = new CF_R62
+    r114 = new IF_R62
     trait r114 has_designator<designator="R114">
     r114.p1 ~ JTAG_TCK
     r114.p2 ~ GND
@@ -1185,12 +1185,12 @@ module TrenzHat:
     r115.p1 ~ JTAG_TDI
     r115.p2 ~ FPGA_3V3
 
-    r116 = new CF_R62
+    r116 = new IF_R62
     trait r116 has_designator<designator="R116">
     r116.p1 ~ FPGA_LINK_DQ2
     r116.p2 ~ GND
 
-    r117 = new CF_R62
+    r117 = new IF_R62
     trait r117 has_designator<designator="R117">
     r117.p1 ~ FPGA_LINK_DQ3
     r117.p2 ~ GND

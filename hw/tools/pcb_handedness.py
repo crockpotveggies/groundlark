@@ -44,7 +44,7 @@ def audit():
                 if {str(i) for i in range(1,41)}<={q.GetNumber() for q in f.Pads()})
     expected=header_coordinates(template,header.GetReference())
     report={'physical_qualification':False,'Pi_template_sha256':hashlib.sha256(reference.read_bytes()).hexdigest(),'boards':{}}
-    for product,name in [('groundlark-fpga-hat','groundlark-daqhat-01'),('groundlark-coldfoot-hat','groundlark-hat')]:
+    for product,name in [('groundlark-fpga-hat','groundlark-daqhat-01')]:
         source=ROOT/f'hw/{product}/boards/{name}/{name}.kicad_pcb'
         before=hashlib.sha256(source.read_bytes()).hexdigest();board=p.LoadBoard(str(source))
         count=check_header(header_coordinates(board,'J1'),expected)

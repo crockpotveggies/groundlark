@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="E">
   <design>
-    <source>/mnt/p/Personal/groundlark/hw/burrowlark-usb/boards/groundlark-field-head/groundlark-field-head.kicad_sch</source>
-    <date>2026-09-30T10:32:49-0700</date>
-    <tool>Eeschema 9.0.9-9.0.9~ubuntu24.04.1</tool>
+    <source>/work/hw/burrowlark-usb/boards/groundlark-field-head/groundlark-field-head.kicad_sch</source>
+    <date>2026-10-01T21:37:49+0000</date>
+    <tool>Eeschema 9.0.9</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
         <title/>
@@ -943,7 +943,7 @@
   </libparts>
   <libraries>
     <library logical="Groundlark">
-      <uri>/mnt/p/Personal/groundlark/hw/burrowlark-usb/boards/groundlark-field-head/Groundlark.kicad_sym</uri>
+      <uri>/work/hw/burrowlark-usb/boards/groundlark-field-head/Groundlark.kicad_sym</uri>
     </library>
   </libraries>
   <nets>

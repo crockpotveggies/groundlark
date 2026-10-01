@@ -128,7 +128,7 @@ class ExactAssemblyBOMTests(unittest.TestCase):
         for row in bom:
             self.assertEqual(row['Comment'],row['MPN'])
             self.assertNotIn('__',row['Footprint'])
-            self.assertNotIn('Coldfoot',row['Comment'])
+            self.assertNotIn('service ONLY',row['Comment'])
         self.assertEqual(sum(bool(row['JLCPCB Part #']) for row in bom),len(bom))
 
     def test_placeholder_and_generic_device_resolutions_are_explicit(self):

@@ -9,9 +9,8 @@
   "tracks_and_vias": 579,
   "status": "A2 PROTOTYPE - NOT FABRICATION RELEASED",
   "limits": [
-    "USB sensor firmware is not implemented; enumeration, suspend and USB signal integrity are unvalidated",
+    "Prototype USB sensor firmware is implemented; physical enumeration, suspend and USB signal integrity are unvalidated",
     "No bench, magnetic-noise, RF impedance, EMC or mechanical stack validation",
-    "SPICE models are supporting-circuit behavioral/passive models, not full sensor/Coldfoot silicon models",
-    "Run-1 Coldfoot bond map must accompany module assembly; current draw remains a bounded design assumption"
+    "SPICE models are supporting-circuit behavioral/passive models, not full sensor silicon models"
   ]
 }

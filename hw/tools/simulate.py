@@ -8,7 +8,7 @@ import subprocess,json,re,itertools,math
 ROOT=Path(__file__).resolve().parents[2]; OUT=ROOT/'hw/shared/simulation';OUT.mkdir(exist_ok=True)
 results=[]
 def run(name,body,checks):
-    deck='Groundlark A2 supporting circuit: '+name+'\n'+body+'\n.end\n'
+    deck='Groundlark supporting circuit: '+name+'\n'+body+'\n.end\n'
     (OUT/(name+'.cir')).write_text(deck)
     proc=subprocess.run(['ngspice','-b',str(OUT/(name+'.cir'))],capture_output=True,text=True)
     log=proc.stdout+proc.stderr;(OUT/(name+'.log')).write_text(log)
@@ -82,44 +82,6 @@ Cload receiver 0 100p
 .measure tran rise TRIG v(receiver) VAL=0.9405 RISE=1 TARG v(receiver) VAL=2.1945 RISE=1
 .measure tran sampled FIND v(receiver) AT=350n
 ''',{'rise':(0,50e-9),'sampled':(2.31,3.465)})
-
-# Coldfoot converter power-stage model. Ideal complementary switches and fixed
-# compensated duty; no claim of AP63203 compensation/PFM/current-limit validation.
-for vin,load,lscale in itertools.product([4.75,5.25],[.05,.6],[.8,1.2]):
-    period=1/1.1e6; on=period*3.3/vin
-    run(f'cf_buck_{vin}_{load}_{lscale}'.replace('.','p'),f'''Vin vin 0 {vin}
-Vgate gate 0 PULSE(0 1 0 1n 1n {on} {period})
-Bngate ngate 0 V=1-v(gate)
-Shi vin sw gate 0 HI
-Slo sw 0 ngate 0 LO
-.model HI SW(Ron=0.125 Roff=1e9 Vt=0.5 Vh=0)
-.model LO SW(Ron=0.068 Roff=1e9 Vt=0.5 Vh=0)
-Lout sw lx {4.7e-6*lscale}
-Rdcr lx reg 0.0312
-Rcap reg cn 0.01
-Cout cn 0 26.4u IC=3.3
-Rshunt reg module 0.1
-Rconnector module chip 0.045
-Cchip chip 0 9.6u IC=3.3
-Iload chip 0 {load}
-.tran 5n 1m UIC
-.measure tran vmin MIN v(chip) FROM=800u TO=1m
-.measure tran vmax MAX v(chip) FROM=800u TO=1m
-.measure tran ripple PP v(chip) FROM=800u TO=1m
-.measure tran peak_current MAX i(Lout) FROM=800u TO=1m
-''',{'vmin':(3.0,3.6),'vmax':(3.0,3.6),'ripple':(0,.1),'peak_current':(0,2.0)})
-
-# Reset delay logic plus actual 10k pullup and assumed 30pF total pad load.
-run('reset_release', '''Vsupply vdd 0 PWL(0 0 1m 3.3 0.25 3.3)
-Vreset drive 0 PWL(0 1 0.2009 1 0.201 0 0.25 0)
-Rpull vdd rst 10000
-Cpin rst 0 30p
-Sreset rst 0 drive 0 RESET
-.model RESET SW(Ron=50 Roff=1e12 Vt=0.5 Vh=0)
-.tran 1u 0.22
-.measure tran before FIND v(rst) AT=0.19
-.measure tran after FIND v(rst) AT=0.202
-''',{'before':(0,.4),'after':(2.31,3.465)})
 
 # Conservative budget envelope, to be replaced with measured worst-case currents.
 budget={'input_max_v':5.25,'regulated_min_v':3.18,'sensor_budget_a':.2,'ambient_max_c':60,'assumed_theta_ja_c_per_w':100}

@@ -2,12 +2,13 @@
   "kicad": "9.0.9",
   "scope": "Native routed board/stock models with existing simplified PNI/PTC/SHT45 envelopes; no physical qualification.",
   "sha256": {
-    "hw/burrowlark-usb/layout/placement.json": "049a0cdae7eab105f36448b234f84afc9cfedbed4c04333aad7730a901e1cc7a",
+    "hw/burrowlark-usb/layout/placement.json": "0a41c4d62e305121748801b6d8382ece764ea68c39fd33471924e88f3f4e30bc",
     "hw/burrowlark-usb/boards/groundlark-field-head/groundlark-field-head.kicad_pcb": "407d031b6b2a42187b1871b7d026fe11e131fc9a9cfc89dbb83f3b51821948ba",
     "sw/ui/build_burrowlark_model.py": "1f2a8db1227b69fb27a6ed80692a0511aa5380af30f46c2cbee74e311f8f47cd",
     "hw/shared/models/PTC1812.wrl": "08432feb6826846a43080c5604656fbcbd35b567e1c4411ab52e65de5d733e6e",
     "hw/shared/models/PNI14190.wrl": "71b906e9b88bf53675e91c76582e58dff1ca1249736d70346dbee2ac9dc33815",
     "hw/shared/models/SHT45.wrl": "a9285f921528b102576e3109c79b1a0d298df52588b6b63715305b73dd4ba36c",
     "sw/ui/assets/burrowlark.glb": "dc92cb3984c71d2c868e429f1ef3894247ef501e6b2e38cdf010a63ca818654a"
-  }
+  },
+  "label_review": "Interface component identifiers and service labels updated; normalized placement geometry, native PCB, model and GLB bytes unchanged. UI notice wording only."
 }

@@ -4,9 +4,9 @@ from project_paths import board_dir
 import argparse, subprocess
 ROOT=Path(__file__).resolve().parents[2]
 parser=argparse.ArgumentParser(description=__doc__)
-parser.add_argument('boards',nargs='*',choices=['groundlark-hat','groundlark-field-head'])
+parser.add_argument('boards',nargs='*',choices=['groundlark-field-head'])
 args=parser.parse_args()
-for name in args.boards or ['groundlark-hat','groundlark-field-head']:
+for name in args.boards or ['groundlark-field-head']:
     folder=board_dir(name); preview=folder/'preview';preview.mkdir(exist_ok=True)
     # Clear only this tool's generated previews before exporting current sheets.
     for suffix in ('*.svg','*.png'):

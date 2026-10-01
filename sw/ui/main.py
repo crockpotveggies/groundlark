@@ -350,7 +350,7 @@ def page():
                 sensor_buttons[sid] = b
             ui.separator().classes("my-2")
             ui.label("MODELED DEVICES").classes("eyebrow")
-            ui.label("No hardware connected. Coldfoot integration is deferred. The FPGA is not required for sensor experiments.").classes("small muted")
+            ui.label("No hardware connected. The FPGA is not required for sensor experiments.").classes("small muted")
             metrics = ui.label("0 samples · 0 missing").classes("small")
             ui.space()
             with ui.expansion("Recordings & scenarios", icon="folder_open").classes("w-full small"):

@@ -29,7 +29,6 @@ class LabSafetyTests(unittest.TestCase):
     def test_product_sources_are_staged_without_generated_packages(self):
         inputs = [
             'hw/groundlark-fpga-hat/elec/hat_trenz.ato',
-            'hw/groundlark-coldfoot-hat/elec/hat.ato',
             'hw/burrowlark-usb/elec/field_head.ato',
             'hw/shared/elec/parts.ato',
             'hw/shared/reference/raspberrypi_hat.kicad_pcb',

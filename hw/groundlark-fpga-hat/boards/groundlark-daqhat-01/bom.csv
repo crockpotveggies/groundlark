@@ -20,7 +20,7 @@ U13,LSM6DSOTR,LSM6DSOTR,Package_LGA__LGA-14_3x2.5mm_P0.5mm_LayoutBorder3x4y,Fals
 C16,100n,GRM155R71C104KA88D,Capacitor_SMD__C_0402_1005Metric,False,
 C17,100n,GRM155R71C104KA88D,Capacitor_SMD__C_0402_1005Metric,False,
 R13,10k,RC0603FR-0710KL,Resistor_SMD__R_0603_1608Metric,False,
-J4,FPGA test UART/reset,Coldfoot UART service ONLY,Connector_PinHeader_2.54mm__PinHeader_1x04_P2.54mm_Vertical,False,Test points for assembled module UART and active-low reset; do not connect a second driving host.
+J4,FPGA test UART/reset,FPGA UART service ONLY,Connector_PinHeader_2.54mm__PinHeader_1x04_P2.54mm_Vertical,False,Test points for assembled module UART and active-low reset; do not connect a second driving host.
 H1,M2.5 NPTH,M2.5 NPTH,MountingHole__MountingHole_2.7mm_M2.5,False,Nonmagnetic standoffs.
 H2,M2.5 NPTH,M2.5 NPTH,MountingHole__MountingHole_2.7mm_M2.5,False,Nonmagnetic standoffs.
 H3,M2.5 NPTH,M2.5 NPTH,MountingHole__MountingHole_2.7mm_M2.5,False,Nonmagnetic standoffs.

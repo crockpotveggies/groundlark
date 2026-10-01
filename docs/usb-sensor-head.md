@@ -11,8 +11,7 @@ framing and boot journal. Native fault fixtures and ARM linking are software
 evidence; real enumeration, suspend current, sensors and timing remain unqualified.
 
 Connect Burrowlark directly to an existing Raspberry Pi USB host port with a
-USB data cable. The HAT communicates with the Pi over its 40-pin header; the
-A2 ASIC HAT retains the run-1 Coldfoot module. There is no USB connector, cable
+USB data cable. The HAT communicates with the Pi over its 40-pin header. There is no USB connector, cable
 power output or PCA9615 transceiver on the HAT.
 
 ## Circuit
@@ -57,7 +56,7 @@ Start with a 100 kHz local sensor bus. Preserve signed 24-bit magnetic samples,
 sequence numbers and MCU acquisition timestamps. Legacy recordings may retain
 pressure status bits from the former optional DLVR population. Report
 sensor identity, configuration, overruns and reset reasons. The Pi correlates
-timestamps and calibrates/stores readings; Coldfoot integration is deferred.
+timestamps and calibrates/stores readings.
 Use the [sensor v1 contract](sensor-contract.md) for Protobuf messages, explicit
 timestamp domains, loss reporting and bounded COBS/CRC framing. Its reference
 codec and prototype MCU implementation are tested in software; physical enumeration remains pending.
@@ -82,10 +81,10 @@ routed boards, placement metadata and review schematics.
 
 ## Layout and validation limits
 
-Keep the complete head away from the Pi, fan and Coldfoot. Its own USB MCU and
+Keep the complete head away from the Pi, fan and FPGA. Its own USB MCU and
 cable current can still contaminate magnetics; compare quiet and active USB
 conditions, calibrate the installed orientation and use nonferrous hardware.
-The 27 SPICE cases include bounded USB cable/PTC loss, ideal LDO headroom,
+The 18 shared SPICE cases include bounded USB cable/PTC loss, ideal LDO headroom,
 sensor-switch on resistance and CC pull-down corners. They do not simulate USB
 enumeration, signal integrity, regulator stability, ESD or firmware behavior.
 

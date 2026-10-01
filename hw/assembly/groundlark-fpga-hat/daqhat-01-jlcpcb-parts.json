@@ -243,7 +243,7 @@
       "jlc_match_status": "catalog_listed"
     },
     {
-      "source_mpn": "Coldfoot UART service ONLY",
+      "source_mpn": "FPGA UART service ONLY",
       "source_value": "FPGA test UART/reset",
       "source_footprint": "Connector_PinHeader_2.54mm__PinHeader_1x04_P2.54mm_Vertical",
       "designators": [

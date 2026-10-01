@@ -12,8 +12,6 @@ import pcbnew as p
 import sexpdata as sx
 
 ROOT=Path(__file__).resolve().parents[2]
-REMOVED_HAT_REFS={'U30','C30','C31','R30','R31','R32','R33','R34','R35','J3','F1','C50','D1','D2','TP3'}
-REMOVED_HAT_NETS={'REMOTE_3V3','D_SCL_N','D_SCL_P','D_SDA_N','D_SDA_P'}
 def children(n,key): return [x for x in n if isinstance(x,list) and x and str(x[0])==key]
 def child(n,key): return next(iter(children(n,key)))
 def vec(x,y): return p.VECTOR2I(round(x),round(y))
@@ -27,7 +25,6 @@ def main(name):
     fps={f.GetReference():f for f in b.GetFootprints()}
     for c in children(child(s,'placement'),'component'):
         for pl in children(c,'place'):
-            if name=='groundlark-hat' and str(pl[1]) in REMOVED_HAT_REFS:continue
             fp=fps[str(pl[1])]; xy=fp.GetPosition()
             assert abs(xy.x-float(pl[2])*factor)<101 and abs(xy.y+float(pl[3])*factor)<101, pl
             assert str(pl[4])==('back' if fp.IsFlipped() else 'front'),pl
@@ -48,7 +45,6 @@ def main(name):
         zone=b.GetArea(i)
         if not zone.GetIsRuleArea(): b.Delete(zone)
     for net in children(child(routes,'network_out'),'net'):
-        if name=='groundlark-hat' and str(net[1]) in REMOVED_HAT_NETS:continue
         ni=nets[str(net[1])]
         for obj in net[2:]:
             typ=str(obj[0])
@@ -90,4 +86,4 @@ def main(name):
     print(name,len(b.GetTracks()),'tracks/vias; inner GND planes filled')
 
 if __name__=='__main__':
-    for name in sys.argv[1:] or ['groundlark-hat','groundlark-field-head']: main(name)
+    for name in sys.argv[1:] or ['groundlark-field-head']: main(name)

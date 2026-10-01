@@ -1,4 +1,4 @@
-Groundlark A2 supporting circuit: power_3p42_0p4_0p2
+Groundlark supporting circuit: power_3p42_0p4_0p2
 Vreg source 0 3.42
 Rsource source feed 0.2
 Ltrace feed board 500n

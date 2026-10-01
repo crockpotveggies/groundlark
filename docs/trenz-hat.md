@@ -21,11 +21,11 @@ Its Phoenix 1803280 J90 header opens parallel to the PCB toward the geophone;
 the 1803581 cable plug retains positive, negative and shield pin order.
 See the [geophone circuit and acquisition](geophone-input.md).
 
-DAQHAT-01 is a **140 × 56 mm, six-layer FR-4** alternative to the A2 Coldfoot ASIC HAT.
+DAQHAT-01 is a **140 × 56 mm, six-layer FR-4** Raspberry Pi acquisition HAT.
 Electrical source: [`hw/groundlark-fpga-hat/elec/hat_trenz.ato`](../hw/groundlark-fpga-hat/elec/hat_trenz.ato).
 CAD: [`groundlark-daqhat-01.kicad_pcb`](../hw/groundlark-fpga-hat/boards/groundlark-daqhat-01/groundlark-daqhat-01.kicad_pcb).
-The original ASIC HAT and [Burrowlark (DAQUSB-01) USB sensor head](usb-sensor-head.md)
-remain separate builds.
+[Burrowlark (DAQUSB-01)](usb-sensor-head.md) and Skylark USB sensor heads
+have separate builds.
 
 ## Stack and sensor placement
 

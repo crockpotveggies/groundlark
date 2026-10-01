@@ -14,9 +14,7 @@ waveforms, GNSS trajectories and timed faults. Example: add
 Separate pure processing/protocol logic from Linux I2C/SPI/UART/USB adapters so
 the same application can run against recorded samples and fault-injecting fakes.
 Use the [DAQHAT-01 sensor/carrier design](../../docs/trenz-hat.md) and
-[USB interface contract](../../docs/usb-sensor-head.md). Coldfoot integration is
-deferred; if resumed, its host semantics remain owned by the current
-`docs/runtime_contract.md` in the separate Coldfoot SoC repository.
+[USB interface contract](../../docs/usb-sensor-head.md).
 
 Run `./lab.ps1 test -Profile software` for the complete portable demo and tests.
 Live adapters cover LSM6DSO, legacy SCL3300, ADS122C04, DLVR-F50D and MAX-M10S.
