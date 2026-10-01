@@ -41,7 +41,7 @@ def analyze(path):
         reader = Reader(stream)
         metadata = reader.metadata
         if not is_acquisition_metadata(metadata): raise ValueError('recording format')
-        sessions = Sessions(Calibrations(metadata.get('calibrations', [])))
+        sessions = Sessions(Calibrations(metadata.get('calibrations', [])), checkpoint=metadata.get("session_checkpoint"))
         for arrival, item in reader:
             complete = isinstance(item, dict) and item.get('code') == 'acquisition_summary'
             if isinstance(item, dict):

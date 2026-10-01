@@ -231,7 +231,7 @@ class Workbench:
         reader = Reader(BytesIO(data))
         if not is_acquisition_metadata(reader.metadata):
             raise ValueError("Recording application metadata")
-        sessions = Sessions(Calibrations(reader.metadata.get("calibrations", [])))
+        sessions = Sessions(Calibrations(reader.metadata.get("calibrations", [])), checkpoint=reader.metadata.get("session_checkpoint"))
         first, last, completed = None, 0, False
         inventory = set()
         for arrived, item in reader:

@@ -42,7 +42,7 @@ def observe(path, device, sensor, field, first, last, allow_simulation=False):
         require(is_acquisition_metadata(reader.metadata), "acquisition recording required")
         simulated = reader.metadata.get("source") == "simulation"
         require(allow_simulation or not simulated, "simulation requires --allow-simulation")
-        sessions = Sessions(Calibrations(reader.metadata.get("calibrations", [])))
+        sessions = Sessions(Calibrations(reader.metadata.get("calibrations", [])), checkpoint=reader.metadata.get("session_checkpoint"))
         completed = False
         for _, item in reader:
             completed = isinstance(item, dict) and item.get("code") == "acquisition_summary"

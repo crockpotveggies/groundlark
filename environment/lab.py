@@ -109,7 +109,11 @@ def managed_runs(root):
 def clean(root, keep=5, apply=False):
     if keep < 0:
         raise ValueError("keep must be nonnegative")
-    paths = managed_runs(root)[keep:]
+    runs = managed_runs(root)
+    active = [p for p in runs if json.loads((p/'run.json').read_text()).get('active_soak') is True]
+    if len(active)>keep:
+        raise RuntimeError('Active soak occupies retained lab storage; stop it before cleanup')
+    paths = [p for p in runs if p not in active][keep-len(active):]
     for path in paths:
         # Resolve and check the final absolute target immediately before removal.
         no_links(path)
@@ -138,6 +142,9 @@ def source_files(source):
         "sw/pi": ("*.py", "*.json", "*.dts", "*.cfg"),
         "sw/skylark/firmware": ("*.c", "*.h", "*.ld", "Makefile"),
         "sw/skylark/tests": ("*.c", "*.h"),
+        "sw/field-head/firmware": ("*.c", "*.h", "*.ld", "Makefile"),
+        "sw/field-head/tests": ("*.c", "*.h"),
+        "sw/supervisor": ("*.c", "*.h", "*.ld", "*.py", "Makefile"),
         "sw/fpga": ("*.py", "*.sv", "*.xdc", "*.tcl", "*.rpt", "*.json"),
     }.items():
         for pattern in patterns:
@@ -227,6 +234,9 @@ def commands(profile):
 def collect(workspace, report, profile):
     files = [workspace / "sw/build" / name for name in ("verification.json", "demo.ssrec", "demo-summary.json", "hat-signals.ssrec", "hat-signals.json", "acquisition-stress.json")]
     files += [workspace/'sw/build/skylark-arm'/name for name in ('skylark.elf','skylark.bin','skylark.map','firmware.json')]
+    files += [workspace/'sw/build/burrowlark-arm'/name for name in ('burrowlark.elf','burrowlark.bin','burrowlark.map')]
+    files += [workspace/'sw/build/supervisor-arm'/name for name in ('supervisor.elf','supervisor.bin','supervisor.map')]
+    files += [workspace/'sw/build/schema.binpb']
     for pattern in ("*.json", "*.cir", "*.log"):
         for folder in ("hw/shared/simulation", "hw/groundlark-fpga-hat/simulation"):
             files.extend((workspace / folder).rglob(pattern))

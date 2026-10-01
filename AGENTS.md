@@ -56,12 +56,12 @@ Do not invoke `bootstrap_trenz.py` or `pack_trenz.py` as validation: they overwr
 authoring inputs. Do not silently reroute or rewrite checked CAD during tests.
 
 Sensor acquisition uses Pi drivers/runtime software. The separate TI MSPM0L1106
-power supervisor has configuration placeholders; its target firmware remains pending. The DLVR-F50D infrasound sensor U23/C24 is on DAQHAT-01 I2C1 at 0x28;
+power supervisor has prototype target firmware in `sw/supervisor/`; its battery policy remains disabled and physical qualification pending. The DLVR-F50D infrasound sensor U23/C24 is on DAQHAT-01 I2C1 at 0x28;
 BCM6 requests Pi shutdown and BCM13 acknowledges halt; BCM24 carries GNSS PPS. Burrowlark U3/C5 are removed.
 The remote USB magnetometer sensor board is
 named Burrowlark, model DAQUSB-01. Firmware belongs to that USB sensor head.
 The Trenz variant needs an FPGA bitstream. Pi acquisition/simulation and bounded
-recovery are implemented; Burrowlark firmware and physical qualification remain pending. Skylark STM32 firmware is implemented in `sw/skylark/`, with native C driver/journal tests and an ARM build in the shared software profile. A DAQHAT-01
+recovery are implemented; Burrowlark prototype firmware is in `sw/field-head/` with native and ARM checks; physical qualification remains pending. Skylark STM32 firmware is implemented in `sw/skylark/`, with native C driver/journal tests and an ARM build in the shared software profile. A DAQHAT-01
 SPI echo bitstream is implemented and simulated; accelerated models and native
 quad remain future work. Do not claim emulation or
 fabrication readiness from CAD/SPICE checks.
@@ -88,7 +88,7 @@ The Buf baseline is a compatibility fixture, not routine generated output.
 Do not refresh it just to bypass a breaking change. Generated descriptors belong
 in ignored `sw/build/` inside the lab. Follow `docs/sensor-software.md` for runtime,
 loss and recovery rules. Linux drivers have modeled-bus tests; physical sensor
-qualification and Burrowlark MCU firmware remain pending. Preserve Skylark raw WE/AE channels, startup missing data, USB power sequencing and boot-journal identity across updates.
+qualification remains pending. Preserve both USB heads' raw precision, USB power sequencing and boot-journal identity across updates, plus Skylark raw WE/AE channels and startup missing data.
 
 The optional live FIFO path pairs IMU tags by slot counter, preserves buffered
 samples and rejects overrun/parity/timestamp faults. Retain unknown loss and timing
@@ -148,6 +148,20 @@ blocking. BCM6 is active-low shutdown, BCM13 active-high halt acknowledgement
 through Q130/Q131. Preserve default-OFF RUN, VCORE's sole 470 nF load, SWD and
 all unused-pin checks. JP130 is a bench override; remove its shunt for automatic
 operation. Battery policy fields remain null and disabled until selected and
-qualified; no MCU firmware or automatic battery operation is claimed. Keep
+qualified; prototype MCU firmware defaults to RUN off and does not establish automatic battery qualification. Keep
 `pi_power_checks.py`, software configuration tests, 140 x 56 mm CAD, native SES
 and the 159 x 118 x 75 mm R3 enclosure synchronized.
+
+Continuous station acquisition lives in `sw/pi/groundlark/station.py`, independently
+of NiceGUI browser sessions. Keep loopback API authentication, bounded source
+recovery, per-segment session checkpoints and storage reserve tests. SD provisioning
+requires a nominal 32 GB minimum. Local transport only; SensorThings and LoRa
+remain deferred. Active software soaks count toward the lab's five retained runs;
+never claim a 168-hour pass until the elapsed run finishes successfully.
+
+The DAQHAT profile enables autonomous geophone DRDY capture on BCM4. Preserve
+the 256-reading buffer, ordered overflow/DataGap markers, 32-reading IPC drains
+and stuck-reader deadline. Timestamps remain RAW read completion; GPIO edges do
+not qualify conversion timing. Keep the legacy independent-clock polling fixtures
+and physical throughput findings. Exhausted continuous-source channel retries
+enter station backoff with a new session; bounded CLI captures stay finite.

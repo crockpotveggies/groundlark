@@ -37,11 +37,11 @@ class ThreeImuTests(unittest.TestCase):
         self.assertNotIn(5, current.snapshot(1)['latest'])
 
     @unittest.skipUnless(sys.platform.startswith('linux'), 'Linux live acquisition')
-    def test_live_inventory_opens_only_three_imus_geophone_and_gnss(self):
+    def test_live_inventory_opens_three_imus_geophone_gnss_and_pressure(self):
         profile=ROOT/'sw/pi/profiles/daqhat-01.example.json'
         opened=[]
-        def factory(sid,path,fifo,utc):
-            opened.append((sid,path,fifo,utc))
+        def factory(sid,path,fifo,utc,drdy):
+            opened.append((sid,path,fifo,utc,drdy))
             return Simulated(sid)
         with tempfile.TemporaryDirectory() as tmp:
             args=SimpleNamespace(command='live',utc=False,fifo=False,calibrations=None,
@@ -56,9 +56,10 @@ class ThreeImuTests(unittest.TestCase):
             self.assertEqual(waveform.read_bytes()[:4], b'MS\x03\x02')
             self.assertGreater(result['miniseed']['channel_samples'],0)
             self.assertEqual(result['miniseed']['omitted_without_calendar_time'],0)
-        self.assertEqual(opened,[(1,'/dev/spidev0.0',False,False),
-            (2,'/dev/spidev0.1',False,False),(3,'/dev/spidev0.2',False,False),
-            (9,'/dev/i2c-1',False,False),(6,'/dev/i2c-1',False,False)])
+        self.assertEqual(opened,[(1,'/dev/spidev0.0',False,False,None),
+            (2,'/dev/spidev0.1',False,False,None),(3,'/dev/spidev0.2',False,False,None),
+            (9,'/dev/i2c-1',False,False,{'chip':'/dev/gpiochip0','line':4}),
+            (6,'/dev/i2c-1',False,False,None),(8,'/dev/i2c-1',False,False,None)])
 
     @unittest.skipUnless(sys.platform.startswith('linux'), 'Linux live acquisition')
     def test_old_four_device_profile_fails_before_opening_hardware(self):
@@ -72,6 +73,19 @@ class ThreeImuTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError,'three explicit SPI'):
                     run(args)
                 factory.assert_not_called()
+
+    @unittest.skipUnless(sys.platform.startswith('linux'), 'Linux live acquisition')
+    def test_wrong_drdy_or_conflicting_gpio_rejected_before_open(self):
+        for role, line in [('geophone_drdy',24),('sensor_enable',4),('pps',4)]:
+            profile=json.loads((ROOT/'sw/pi/profiles/daqhat-01.example.json').read_text())
+            profile[role]['line']=line
+            with tempfile.TemporaryDirectory() as tmp:
+                path=Path(tmp)/'profile.json';path.write_text(json.dumps(profile))
+                args=SimpleNamespace(command='live',utc=False,fifo=True,calibrations=None,
+                    seconds=1,drain_every=1,profile=str(path),output=Path(tmp)/'bad.ssrec',mseed_time='system')
+                with patch('groundlark.live.Factory') as factory:
+                    with self.assertRaisesRegex(ValueError,'BCM4|duplicate GPIO'): run(args)
+                    factory.assert_not_called()
 
     @unittest.skipUnless(sys.platform.startswith('linux'), 'Linux live acquisition')
     def test_legacy_pps_pin_rejected_before_opening_hardware(self):

@@ -93,13 +93,14 @@ class GPIOEventRequest(c.Structure):
 
 class RisingEdges:
     """GPIO v1 rising-edge notifications; timestamps are MONOTONIC, NOT RAW."""
+    edge_kind = 1
     def __init__(self, chip, line):
         import fcntl
         if not re.fullmatch(r"/dev/gpiochip\d+", chip) or not 0 <= line < 1024: raise ValueError("GPIO chip/line")
         chipfd = os.open(chip, os.O_RDONLY | os.O_CLOEXEC)
         self.fd = None
         try:
-            request = GPIOEventRequest(offset=line, handleflags=1, eventflags=1,
+            request = GPIOEventRequest(offset=line, handleflags=1, eventflags=self.edge_kind,
                                        consumer=b'groundlark-edge')
             data = bytearray(bytes(request))
             ioctl(chipfd, (3 << 30) | (c.sizeof(request) << 16) | (0xb4 << 8) | 4, data, True)
@@ -116,11 +117,20 @@ class RisingEdges:
         if not data or len(data) % 16: raise OSError('short GPIO edge record')
         result = []
         for timestamp, kind in struct.iter_unpack('=QI4x', data):
-            if kind != 1: raise OSError('unexpected GPIO edge')
+            if kind != self.edge_kind: raise OSError('unexpected GPIO edge')
             result.append(timestamp)
         return result
 
     def poll(self): return bool(self.read())
 
+    def wait(self, timeout):
+        import select
+        return self.read() if select.select([self.fd], [], [], timeout)[0] else []
+
     def close(self):
         if self.fd is not None: os.close(self.fd); self.fd = None
+
+
+class FallingEdges(RisingEdges):
+    """Active-low ADC DRDY; GPIO v1 falling-edge event ID and flag are both 2."""
+    edge_kind = 2

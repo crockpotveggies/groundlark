@@ -14,6 +14,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends device-tree-com
     && rm -rf /var/lib/apt/lists/*
 COPY install_skylark.py /opt/install_skylark.py
 RUN /opt/atopile/bin/python /opt/install_skylark.py
+COPY install_supervisor.py /opt/install_supervisor.py
+RUN /opt/atopile/bin/python /opt/install_supervisor.py
 COPY system-requirements.txt /opt/system-requirements.txt
 RUN uv pip install --python /usr/bin/python3 --break-system-packages --require-hashes --no-deps -r /opt/system-requirements.txt
 ENV HOME=/tmp/home XDG_CACHE_HOME=/tmp/cache XDG_CONFIG_HOME=/tmp/config \

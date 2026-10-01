@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def check(root=ROOT):
     errors = []
     counts = {"python_files": 0, "markdown_links": 0, "cad_references": 0}
-    for folder in ("environment", "hw/tools", "hw/tests", "sw/interfaces/python", "sw/pi", "sw/fpga", "sw/tools", "sw/tests", "sw/ui"):
+    for folder in ("environment", "hw/tools", "hw/tests", "sw/interfaces/python", "sw/pi", "sw/fpga", "sw/tools", "sw/tests", "sw/ui", "sw/supervisor"):
         for path in (root / folder).rglob("*.py"):
             ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
             counts["python_files"] += 1

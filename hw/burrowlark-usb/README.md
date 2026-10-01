@@ -2,8 +2,9 @@
 
 Burrowlark is the separate 70 × 45 mm USB-C magnetometer and enclosure-climate
 sensor head. It uses the PNI 14190 RM3100 XYZ module; U3/C5 and their pressure-sensor
-branches are removed. The DLVR pressure sensor is on DAQHAT-01. USB-head firmware
-and physical qualification remain pending.
+branches are removed. The DLVR pressure sensor is on DAQHAT-01. Prototype
+[USB-head firmware](../../sw/field-head/README.md) has native and ARM checks;
+physical qualification remains pending.
 
 ![Burrowlark DAQUSB-01 Rev A2 with favicon, RM3100 and SHT45](boards/groundlark-field-head/3d.png)
 

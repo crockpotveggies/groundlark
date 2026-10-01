@@ -5,6 +5,13 @@ On Linux/macOS, use `sh ./setup-ui.sh --check`, then `sh ./ui.sh`.
 Open `http://127.0.0.1:8080`; Ctrl+C in the terminal stops the server.
 See the [beginner walkthrough](../../docs/sensor-workbench.md).
 
+The same app serves `/station` for persistent simulation or live acquisition.
+Set the UI service's `GROUNDLARK_STATION_TOKEN` to match the local station service;
+the browser never receives that API credential. Use the
+[deployment guide](../pi/deploy/README.md) for station setup, storage, LAN login
+and source profiles. Closing `/station` leaves capture running. Pause/resume,
+completed-recording downloads and validated configuration editing are local.
+
 Rerun `./ui.ps1 -Check` / `sh ./ui.sh --check` for the HTTP and scene tests.
 The full acquisition/controller tests use the portable software profile.
 

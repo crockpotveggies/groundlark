@@ -1,5 +1,12 @@
 # Run your first Groundlark sensor experiment
 
+For continuous station capture, open **Station** from this same app. The station
+page connects to a separate local acquisition service, so closing it leaves
+capture running. It shows source mode, raw samples, missing/known/unknown loss,
+storage and raw-count RSAM summaries. Pause/resume controls apply per source.
+Completed SSREC downloads replay in this workbench. Configuration edits are
+validated and restart the service; see the [station setup](../sw/pi/deploy/README.md).
+
 The sensor workbench is a local browser app for trying virtual sensors and
 replaying recordings. Choose a board, click a sensor in its 3D view, change an input, and watch
 its signal. **No Raspberry Pi or sensor hardware is required.**

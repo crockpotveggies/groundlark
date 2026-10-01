@@ -16,6 +16,10 @@ sys.path[:0] = [str(ROOT / "sw/pi"), str(ROOT / "sw/interfaces/python")]
 
 
 def build_descriptor():
+    if os.environ.get('GROUNDLARK_DESCRIPTOR'):
+        if not Path(os.environ['GROUNDLARK_DESCRIPTOR']).is_file():
+            raise RuntimeError('Configured sensor descriptor is missing')
+        return
     from grpc_tools import protoc
     target = ROOT / "sw/build/ui-schema.binpb"
     target.parent.mkdir(parents=True, exist_ok=True)
@@ -29,6 +33,7 @@ def build_descriptor():
 
 build_descriptor()
 from nicegui import app, run, ui  # noqa: E402
+import station_page  # noqa: E402,F401
 from groundlark.workbench import MAX_BYTES, NAMES, BOARDS, Workbench  # noqa: E402
 from groundlark.board_bench import run_bench  # noqa: E402
 from skylark_scene import add_skylark
@@ -148,6 +153,7 @@ def page():
     ui.dark_mode().enable()
     ui.colors(primary=TEAL, secondary="#a7a3ff", dark="#131c26", dark_page="#0d131c")
     ui.add_css((Path(__file__).parent / "style.css").read_text())
+    ui.link('Station · live acquisition and storage', '/station').classes('text-teal-300')
 
     def attempt(action):
         if busy:

@@ -11,6 +11,7 @@ class Factory:
     path: str
     fifo: bool = False
     utc: bool = False
+    drdy: dict | None = None
 
     def __call__(self):
         from .linux_io import SPI, I2C
@@ -22,7 +23,18 @@ class Factory:
         if self.sensor == 5: return SCL3300(SPI(self.path))
         if self.sensor == 9:
             from .geophone import ADS122C04
-            return ADS122C04(I2C(self.path))
+            device = ADS122C04(I2C(self.path))
+            if self.drdy:
+                from .drdy import AutonomousADC
+                from .linux_io import FallingEdges
+                try: return AutonomousADC(device, FallingEdges(**self.drdy))
+                except BaseException:
+                    device.close()
+                    raise
+            return device
+        if self.sensor == 8:
+            from .pressure import DLVR
+            return DLVR(I2C(self.path))
         if self.sensor == 6:
             if self.utc:
                 from .gnss_timing import TimedGNSS

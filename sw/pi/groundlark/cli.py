@@ -32,7 +32,7 @@ def replay(path):
         if not is_acquisition_metadata(reader.metadata):
             raise ValueError("recording application metadata")
         calibrations = Calibrations(reader.metadata.get("calibrations", []))
-        sessions = Sessions(calibrations)
+        sessions = Sessions(calibrations, checkpoint=reader.metadata.get("session_checkpoint"))
         for arrived, item in reader:
             completed = isinstance(item, dict) and item.get("code") == "acquisition_summary"
             if isinstance(item, dict):
@@ -75,6 +75,8 @@ def export_scenario(recording, output):
 
 def run(args):
     simulated = args.command == "simulate"
+    service_writer = getattr(args, 'writer_factory', None)
+    service_stop = getattr(args, 'stop_event', None)
     mseed_path = getattr(args, 'miniseed', None)
     if not simulated and not getattr(args, 'no_miniseed', False):
         mseed_path = mseed_path or args.output.with_suffix('.mseed')
@@ -102,7 +104,7 @@ def run(args):
     for ident, record in calibrations.records.items():
         if record["sensor_id"] in ids: raise ValueError("one active calibration per sensor")
         ids[record["sensor_id"]] = ident
-    if not 0 < args.seconds <= 3600 or not 1 <= args.drain_every <= 10000: raise ValueError("run bounds")
+    if (not service_writer and not 0 < args.seconds <= 3600) or not 1 <= args.drain_every <= 10000: raise ValueError("run bounds")
     board = getattr(args, 'board', 'hat')
     if simulated and board != 'hat' and args.remote:
         raise ValueError('--remote applies to the HAT simulation; select the USB board directly')
@@ -110,6 +112,9 @@ def run(args):
         from .workbench import board_configs
         settings = board_configs(board)
     else: settings = defaults()
+    if board == 'hat' and (service_writer or not simulated):
+        from .pressure import SETTINGS as PRESSURE_SETTINGS
+        settings.append(dict(PRESSURE_SETTINGS))
     channels, enable, usb, pps = [], None, None, None
     if simulated:
         # Human-readable JSON may exceed its bounded canonical representation.
@@ -122,6 +127,11 @@ def run(args):
         if args.remote:
             for cfg in defaults(True):
                 channels.append(Channel("sim-head", 2, cfg, Simulated(cfg["sensor_id"], args.seed, faults, scenario, clock)))
+        if service_writer:
+            service_boot = getattr(args, 'station_boot', None) or secrets.randbits(64) or 1
+            for channel in channels:
+                channel.device = args.station_device
+                channel.boot = service_boot
     else:
         if not sys.platform.startswith("linux"): raise ValueError("live acquisition requires Linux")
         from .live import Factory, USB
@@ -129,18 +139,29 @@ def run(args):
         from .worker import Worker
         from .transport import Receiver
         profile = load_json(args.profile)
-        if set(profile) - {"device_id", "spi", "i2c", "sensor_enable", "imu_irq", "pps"} or len(profile["spi"]) != 3:
+        if service_writer: profile['device_id'] = args.station_device
+        if set(profile) - {"device_id", "spi", "i2c", "sensor_enable", "imu_irq", "pps", "geophone_drdy"} or len(profile["spi"]) != 3:
             raise ValueError("live profile requires three explicit SPI paths and sensor OE")
         if len(set(profile["spi"])) != 3: raise ValueError("each sensor needs a separate chip select")
         if utc and (not profile.get('pps') or profile['pps'].get('line') != 24):
             raise ValueError('DAQHAT-01 GNSS PPS requires BCM24; BCM4 is geophone DRDY')
+        drdy = profile.get('geophone_drdy')
+        if drdy is not None:
+            if set(drdy) != {'chip', 'line'} or type(drdy['line']) is not int or drdy['line'] != 4:
+                raise ValueError('DAQHAT-01 geophone DRDY requires BCM4')
+            mappings = [profile['sensor_enable'], *profile.get('imu_irq', [])]
+            if profile.get('pps'): mappings.append(profile['pps'])
+            if any((x['chip'], x['line']) == (drdy['chip'], drdy['line']) for x in mappings):
+                raise ValueError('duplicate GPIO role')
         boot = secrets.randbits(64) or 1
         # Validate all identity/configuration fields before opening devices.
         configuration(profile["device_id"], boot, settings)
         for cfg in settings:
             sid = cfg["sensor_id"]
             path = profile["spi"][(1, 2, 3).index(sid)] if sid in (1, 2, 3) else profile["i2c"]
-            channels.append(Channel(profile["device_id"], boot, cfg, Worker(Factory(sid, path, args.fifo and sid in (1, 2, 3), utc and sid == 6), cfg)))
+            channels.append(Channel(profile["device_id"], boot, cfg, Worker(Factory(
+                sid, path, args.fifo and sid in (1, 2, 3), utc and sid == 6,
+                drdy if sid == 9 else None), cfg)))
         clock = lambda: time.clock_gettime_ns(time.CLOCK_MONOTONIC_RAW)
     sessions = Sessions(calibrations)
     metadata = dict(format="groundlark-acquisition-v1", source="simulation" if simulated else "linux-polling",
@@ -151,6 +172,9 @@ def run(args):
         if utc: metadata['utc_capture'] = 'm10-tim-tp-v1'
         if args.fifo:
             metadata.update(source='linux-fifo', timing='IMU device timestamp mapped to RAW; absolute uncertainty unknown; geophone poll completion')
+        if drdy:
+            metadata['geophone_capture'] = 'autonomous-drdy-v1'
+            metadata['timing'] = metadata['timing'].replace('geophone poll completion', 'geophone RAW read completion')
     seismic = None
     if mseed_path:
         metadata['miniseed'] = dict(format_version=3, station=args.mseed_station,
@@ -160,8 +184,12 @@ def run(args):
     try:
         # Exclusive create prevents accidentally replacing a prior recording.
         with ExitStack() as files:
-            stream = files.enter_context(open(args.output, "xb"))
-            writer = Writer(stream, metadata, max_bytes=args.max_mib * 1024 * 1024)
+            if service_writer:
+                writer = service_writer(metadata)
+                files.callback(writer.close, False)
+            else:
+                stream = files.enter_context(open(args.output, "xb"))
+                writer = Writer(stream, metadata, max_bytes=args.max_mib * 1024 * 1024)
             if mseed_path:
                 from .miniseed import SeismicWriter, Mirror
                 target = files.enter_context(open(mseed_path, 'xb'))
@@ -194,11 +222,19 @@ def run(args):
             start = clock()
             app.start(start)
             end, tick = clock() + int(args.seconds * 1e9), 0
-            while clock() < end:
+            # Python 3.12 on Windows uses a 15.6 ms GetTickCount clock for
+            # monotonic_ns. QPC/perf_counter is monotonic and resolves 330 SPS.
+            wall_start = time.perf_counter_ns()
+            while (service_writer or clock() < end) and not (service_stop and service_stop.is_set()):
                 if simulated:
                     for change in scenario.advance(current):
                         app.event("stimulus_change", "simulation controls changed", current, **change)
                 app.tick(clock)
+                exhausted = [c.settings['sensor_id'] for c in channels
+                             if c.offline and c.retries >= app.retry_limit]
+                if service_writer and exhausted:
+                    app.event('source_recovery', 'sensor retry budget exhausted', clock(), sensors=exhausted)
+                    raise OSError('sensor retry budget exhausted: ' + ','.join(map(str, exhausted)))
                 if pps:
                     raw_before = clock()
                     mono = time.clock_gettime_ns(time.CLOCK_MONOTONIC)
@@ -212,9 +248,15 @@ def run(args):
                     usb.poll(clock(), lambda m, t: app.emit(m, t), app.event)
                 tick += 1
                 if tick % args.drain_every == 0: app.drain()
-                if simulated: current += 1_000_000
+                if simulated and service_writer:
+                    time.sleep(.001)
+                    current = time.perf_counter_ns() - wall_start
+                elif simulated: current += 1_000_000
                 else: time.sleep(.001)
+                if service_writer:
+                    writer.heartbeat()
             app.finish(clock())
+            if service_writer: writer.close()
             if seismic:
                 seismic.flush()
                 os.fsync(target.fileno())
@@ -230,6 +272,7 @@ def run(args):
                 try: obj.close()
                 except Exception as error: errors.append(error)
         if errors: raise errors[0]
+    if service_writer: return dict(stopped=True)
     result = replay(args.output)
     if seismic: result['miniseed'] = dict(path=str(mseed_path), **seismic.summary())
     return result

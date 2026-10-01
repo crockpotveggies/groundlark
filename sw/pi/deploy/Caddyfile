@@ -1,0 +1,14 @@
+# Supply a LAN DNS name, username and `caddy hash-password` hash in Caddy's environment.
+{$GROUNDLARK_HOST} {
+    bind {$GROUNDLARK_LAN_IP}
+    tls internal
+    basic_auth {
+        {$GROUNDLARK_UI_USER} {$GROUNDLARK_UI_PASSWORD_HASH}
+    }
+    header {
+        X-Content-Type-Options nosniff
+        Referrer-Policy same-origin
+        X-Frame-Options SAMEORIGIN
+    }
+    reverse_proxy 127.0.0.1:8080
+}

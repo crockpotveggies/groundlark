@@ -4,3 +4,4 @@
 !system-requirements.txt
 !install_buf.py
 !install_skylark.py
+!install_supervisor.py

@@ -1,0 +1,30 @@
+[Unit]
+Description=Groundlark continuous acquisition
+After=local-fs.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=notify
+User=groundlark
+Group=groundlark
+SupplementaryGroups=spi i2c gpio dialout
+WorkingDirectory=/opt/groundlark/current
+EnvironmentFile=/etc/groundlark/runtime.env
+ExecStart=/opt/groundlark/current/.venv/bin/python sw/tools/station.py --config /var/lib/groundlark/station.json --data /var/lib/groundlark/recordings
+Restart=always
+RestartSec=10
+WatchdogSec=45
+TimeoutStopSec=45
+KillMode=control-group
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ReadWritePaths=/var/lib/groundlark
+RestrictAddressFamilies=AF_UNIX AF_INET
+UMask=0077
+TasksMax=64
+MemoryMax=512M
+
+[Install]
+WantedBy=multi-user.target

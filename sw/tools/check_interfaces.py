@@ -40,6 +40,9 @@ def main():
     run(sys.executable, "-m", "unittest", "discover", "-s", str(ROOT / "sw/tests"), "-p", "test_*.py", "-v", env=env)
     run('make', '-C', str(ROOT/'sw/skylark/firmware'), 'LIBOPENCM3=/opt/skylark/libopencm3',
         'EXTRA_CFLAGS=-isystem/usr/include/newlib', 'BUILD='+str(BUILD/'skylark-arm'))
+    run('make', '-C', str(ROOT/'sw/field-head/firmware'), 'LIBOPENCM3=/opt/skylark/libopencm3',
+        'EXTRA_CFLAGS=-isystem/usr/include/newlib', 'BUILD='+str(BUILD/'burrowlark-arm'))
+    run('make', '-C', str(ROOT/'sw/supervisor/firmware'), 'BUILD='+str(BUILD/'supervisor-arm'))
     arm = BUILD/'skylark-arm'
     size = run('arm-none-eabi-size',str(arm/'skylark.elf'),capture_output=True,text=True).stdout.splitlines()[1].split()
     text_bytes,data_bytes,bss_bytes=map(int,size[:3])

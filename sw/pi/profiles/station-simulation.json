@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "station_id": "bench-001",
+  "sources": [
+    {"name": "hat", "board": "hat", "mode": "simulation"},
+    {"name": "head", "board": "burrowlark", "mode": "simulation"},
+    {"name": "air", "board": "skylark", "mode": "simulation"}
+  ],
+  "storage": {"reserve_mib": 2048, "fraction": 0.8, "segment_mib": 8, "segment_seconds": 300}
+}

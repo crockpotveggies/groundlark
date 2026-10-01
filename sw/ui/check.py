@@ -48,6 +48,10 @@ def main():
             assert 'Test selected board' in page and 'Skylark USB' in page
             assert 'Air quality stimulus' in page and 'Coldfoot integration is deferred' in page
             assert 'Enclosure climate' in page and 'SHT45' in page
+            with urlopen(f"http://127.0.0.1:{port}/station",timeout=3) as response:
+                station_page=html.unescape(response.read().decode())
+            assert 'Station configuration' in station_page and 'Download SSREC' in station_page
+            assert 'Simulation and replay' in station_page
             with urlopen(f"http://127.0.0.1:{port}/board-assets/burrowlark.glb", timeout=10) as response:
                 assert response.read(4) == b'glTF'
             with urlopen(f"http://127.0.0.1:{port}/board-assets/skylark.glb", timeout=10) as response:

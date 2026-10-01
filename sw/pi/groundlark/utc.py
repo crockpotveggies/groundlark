@@ -186,7 +186,7 @@ def correlate(source, output, policy):
         reader = Reader(src)
         header = dict(metadata, utc_correlation=dict(policy=policy, source_sha256=digest, algorithm='bracketed-utc-v1'))
         writer = Writer(dst, header)
-        sessions = Sessions(Calibrations(metadata.get('calibrations', [])))
+        sessions = Sessions(Calibrations(metadata.get('calibrations', [])), checkpoint=metadata.get("session_checkpoint"))
         for arrival, item in reader:
             if isinstance(item, dict):
                 if item.get('code') == 'usb_disconnected' and item.get('device') is not None:

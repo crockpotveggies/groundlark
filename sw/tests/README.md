@@ -50,6 +50,12 @@ six speed/clock cases; its throughput qualification remains false. The worker
 tests also exercise the new conversion-gap exception over actual subprocess IPC.
 These tests do not run on a Raspberry Pi or establish its maximum acquisition rate.
 
+`test_drdy.py` exercises autonomous geophone capture, a paused IPC consumer,
+bounded overflow with ordered unknown-loss markers, terminal faults after a
+valid buffered prefix, falling-edge wire records and recording/recovery semantics.
+It also rejects a stuck reader that would otherwise return empty healthy drains.
+Physical ADC throughput and timing remain unqualified.
+
 `test_fpga_link.py` checks independent framing/CRC, transfer failures at every
 stage, late responses, stale results, dropped ACKs, readback faults, ownership
 restoration and SIGTERM isolation. `test_fpga_evidence.py` injects timing and

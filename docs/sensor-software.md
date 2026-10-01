@@ -188,9 +188,33 @@ Geophone conversion discontinuities are separate from I/O failures: the bus can
 be healthy while the host misses ADC conversions. `DataGap` survives worker IPC,
 emits a discontinuity status and MISSING record with unknown loss, and clears the
 consecutive I/O-failure count. It does not reset the ADC. Duplicate reads do not
-extend the counter-wrap ambiguity timer. Current polling does not preserve every
-conversion under modeled load; exact sample timing and lossless capture are not
-qualified. Follow the [bench procedure](bench-procedure.md) for physical measurements.
+extend the counter-wrap ambiguity timer. The legacy polling path does not preserve
+every conversion under modeled load; those stress fixtures remain in the suite.
+Exact sample timing and lossless capture are not qualified. Follow the
+[bench procedure](bench-procedure.md) for physical measurements.
+
+The current DAQHAT profile supplies `geophone_drdy` on BCM4. This starts an
+autonomous reader inside the ADC worker: falling edges wake I2C reads, with a
+20 ms readiness fallback if an edge is missed. Recording, other sensor workers
+and parent IPC calls do not schedule these reads. Linux bus contention and
+scheduling can still overwrite conversions because the ADC has no FIFO.
+GPIO timestamps are not used as sample times; each sample retains its RAW
+read-completion timestamp and unknown timing uncertainty/physical loss.
+
+The worker buffers at most 256 readings and one overflow marker, delivering
+at most 32 readings per IPC request. Overflow preserves the queued prefix and
+then emits MISSING with unknown loss before accepting new samples. Conversion
+gaps produce the same ordered marker without resetting the ADC. Actual bus faults
+preserve the buffered prefix before entering bounded recovery. A reader that
+makes no progress for 250 ms fails instead of returning empty drains forever.
+Omit `geophone_drdy` only when deliberately testing the legacy polling path.
+
+For continuous station capture, an exhausted channel retry budget ends that
+source attempt and enters the station's 2–300 second restart backoff. A new
+attempt has a new boot/session identity; discontinuities remain visible in the
+recordings. Bounded command-line captures retain their finite recovery policy.
+Continuous simulation retains the final scenario state beyond the one-hour
+control schedule, with monotonic acquisition time and no automatic hourly reset.
 
 The queue defaults to 64 batches (configurable 1–4096). It drops newest data on
 overflow, carries known/unknown loss into the next accepted batch and retains
@@ -255,7 +279,8 @@ remote acquisition time.
 It uses the existing framing, session checks and `.ssrec` format. The portable
 software profile builds its ARM image and runs native C sensor/journal fault
 fixtures. This is software verification; USB enumeration and physical sensor
-qualification remain pending. Burrowlark firmware remains pending.
+qualification remain pending. [Burrowlark prototype firmware](../sw/field-head/README.md)
+also has native C fault fixtures and an STM32F042 ARM build.
 
 After generating the current descriptor, use the existing entry point:
 
@@ -281,4 +306,21 @@ acquisition profile. A separate write/STOP, conversion wait and six-byte read
 preserve both original CRC-protected words. The Burrowlark simulation publishes
 sensor 17 with RM3100 sensor 7 under one USB-head identity. Runtime validation,
 bounded recording and replay preserve raw values, MCU clock identity and missing
-readings. Real Burrowlark firmware and physical qualification remain pending.
+readings. Target firmware implements this profile; physical qualification remains pending.
+
+## Continuous stations
+
+The [station deployment guide](../sw/pi/deploy/README.md) covers Pi OS Lite,
+systemd supervision, Caddy LAN HTTPS, multiple acquisition sources and the shared
+NiceGUI `/station` view. The persistent service uses capacity-based rolling
+SSREC retention with validated session checkpoints. Interrupted recordings remain
+incomplete; loss and raw precision survive segment boundaries.
+
+Live HAT acquisition includes fitted DLVR-F50D pressure at I2C 0x28, using its
+actual ±125 Pa nominal range and preserving all four response bytes. Busy data
+is missing, and diagnostic/command states are faults. The sensor has no identity
+or writable range register; its installed part must be checked during bring-up.
+
+The [supervisor target](../sw/supervisor/README.md) defaults to RUN off. Its
+state-machine tests and ARM link do not qualify battery operation. SensorThings,
+LoRa radios and secure external forwarding remain deferred.

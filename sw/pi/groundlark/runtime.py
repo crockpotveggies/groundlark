@@ -168,7 +168,9 @@ class Acquisition:
                 c.offline, c.restart_at = True, clock() + self.cooldown
                 self.report(c, 2, 'FIFO offline; finite retry policy active', clock())
             return
-        for reading in drain.readings:
+        for index, reading in enumerate(drain.readings):
+            gap = getattr(drain, 'gaps', {}).get(index)
+            if gap: self.report(c, 4, gap, clock())
             sid, at = c.settings['sensor_id'], reading.acquisition_ns
             message = messages.batch(c.device, c.boot, sid, c.sequence, at, reading.raw,
                                      reading.quality, dropped=None)
@@ -179,6 +181,7 @@ class Acquisition:
             c.sequence += 1
             c.last_time = at
             self.reads += 1
+            self.missing += reading.raw is None
 
     def finish(self, now):
         self.drain()

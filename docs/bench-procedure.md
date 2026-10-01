@@ -125,8 +125,12 @@ Set `connector_cable_cooler_fit=true` only after the intended configuration fits
 2. Capture ADC DRDY, I²C transactions, IMU IRQ and SPI activity on a common
    logic-analyzer timebase. Measure conversion-to-read delay, delivered rate,
    latency variation, inter-IMU skew and drift under CPU/storage/network load,
-   with the FPGA off, idle and active. The current ADC driver polls; it does
-   not turn DRDY into a hardware timestamp.
+   with the FPGA off, idle and active. The current profile uses a dedicated
+   falling-edge DRDY reader with bounded delivery buffering; timestamps remain
+   RAW read-completion times. It does not turn DRDY into a hardware timestamp.
+   Compare against the legacy polling profile (omit `geophone_drdy`) and retain
+   both results. Modeled polling-loss findings remain open until actual throughput,
+   shared-I2C contention and timing bounds are measured on the assembly.
 3. Stop/resume acquisition deliberately. Confirm IMU FIFO behavior and that
    ADC overwrites, integrity faults and ambiguous counter wraps produce faults
    with unknown physical loss. The ADC has no FIFO. Confirm recovery without

@@ -68,6 +68,15 @@ class LabSafetyTests(unittest.TestCase):
         self.assertEqual(marker.read_text(), MARKER)
         self.assertTrue(path.exists())
 
+    def test_active_soak_counts_towards_five_and_cannot_be_pruned(self):
+        paths=[self.run_folder(i) for i in range(7)]
+        marker=paths[0]/'run.json';data=json.loads(marker.read_text())
+        data['active_soak']=True;write_json(marker,data)
+        clean(self.root,keep=5,apply=True)
+        self.assertEqual(len(managed_runs(self.root)),5)
+        self.assertTrue(paths[0].exists())
+        with self.assertRaises(RuntimeError):clean(self.root,keep=0,apply=True)
+
     def symlink(self, link, target, directory=False):
         try:
             link.symlink_to(target, target_is_directory=directory)

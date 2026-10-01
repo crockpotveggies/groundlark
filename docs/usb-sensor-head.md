@@ -6,6 +6,10 @@ its bypass capacitor have moved to Groundlark DAQHAT-01 as U23/C24. Its circuit 
 its native CAD is in [`hw/burrowlark-usb/boards/groundlark-field-head/`](../hw/burrowlark-usb/boards/groundlark-field-head),
 and its firmware belongs in [`sw/field-head/`](../sw/field-head/README.md).
 
+Prototype target firmware now implements the fixed RM3100/SHT45 profile, USB
+framing and boot journal. Native fault fixtures and ARM linking are software
+evidence; real enumeration, suspend current, sensors and timing remain unqualified.
+
 Connect Burrowlark directly to an existing Raspberry Pi USB host port with a
 USB data cable. The HAT communicates with the Pi over its 40-pin header; the
 A2 ASIC HAT retains the run-1 Coldfoot module. There is no USB connector, cable
@@ -36,9 +40,9 @@ J2 SWD pins: 1 = 3.3 V reference, 2 = SWDIO, 3 = GND, 4 = SWCLK, 5 = NRST.
 Use its 3.3 V pin as a probe reference; do not power it externally while USB is
 connected. J3 connects BOOT0 to 3.3 V when fitted. Keep it open for normal boot.
 
-## Firmware contract — implementation pending
+## Firmware contract
 
-The PCB alone will not enumerate: USB firmware must be written and flashed.
+The PCB alone will not enumerate: the prototype USB firmware must be flashed.
 Configure HSI48 and CRS according to ST's USB clock requirements. Implement a
 full-speed USB CDC interface with a maximum 100 mA descriptor (bMaxPower = 50).
 Use a properly assigned VID/PID before distribution. Do not invent an identity.
@@ -56,7 +60,7 @@ sensor identity, configuration, overruns and reset reasons. The Pi correlates
 timestamps and calibrates/stores readings; Coldfoot integration is deferred.
 Use the [sensor v1 contract](sensor-contract.md) for Protobuf messages, explicit
 timestamp domains, loss reporting and bounded COBS/CRC framing. Its reference
-codec is tested; MCU implementation and enumeration are still pending.
+codec and prototype MCU implementation are tested in software; physical enumeration remains pending.
 USB arrival time must not be represented as exact sensor acquisition time.
 
 Target operating envelope: 25 mA controller plus 25 mA sensors = 50 mA; verify

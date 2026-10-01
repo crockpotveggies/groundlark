@@ -19,9 +19,11 @@ deferred; if resumed, its host semantics remain owned by the current
 `docs/runtime_contract.md` in the separate Coldfoot SoC repository.
 
 Run `./lab.ps1 test -Profile software` for the complete portable demo and tests.
-Live adapters cover LSM6DSO, SCL3300 and MAX-M10S. Bus logic has modeled-response
-tests. [Pi 4 deployment](deploy/README.md), IRQ-assisted FIFO acquisition and PPS
+Live adapters cover LSM6DSO, legacy SCL3300, ADS122C04, DLVR-F50D and MAX-M10S.
+Bus logic has modeled-response tests. The geophone has a dedicated DRDY worker
+with bounded buffering and explicit loss reporting.
+[Pi 4 deployment](deploy/README.md), IRQ-assisted FIFO acquisition and PPS
 edge recording are implemented. [UTC capture/correlation](../../docs/utc-timing.md)
 and [bench report tools](../../docs/bench-procedure.md) are available; physical
 timing bounds and validation remain bring-up work. USB ingestion expects a v1 producer;
-the STM32 head still needs firmware.
+both STM32 heads have prototype firmware with native fault tests and ARM builds.

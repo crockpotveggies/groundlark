@@ -8,6 +8,9 @@ from .sensors import Reading
 
 G = 9.80665
 LIMIT_NS = 3_600_000_000_000
+# Authored control schedules stay bounded to one hour. Evaluating their final
+# state must continue for unattended station capture without restarting clocks.
+TIME_LIMIT_NS = (1 << 63) - 1
 DEFAULTS = {
     "orientation_deg": [0, 0, 0], "head_orientation_deg": [0, 0, 0],
     "acceleration_m_s2": [0, 0, 0], "magnetic_ut": [0, 20, -45],
@@ -117,7 +120,7 @@ class Scenario:
         self._document = candidate
 
     def advance(self, now):
-        if type(now) is not int or not self.now <= now <= LIMIT_NS: raise ValueError("scenario clock regressed/out of range")
+        if type(now) is not int or not self.now <= now <= TIME_LIMIT_NS: raise ValueError("scenario clock regressed/out of range")
         self.now = now
         start = self.emitted
         events = self._document["events"]
@@ -125,7 +128,7 @@ class Scenario:
         return deepcopy(events[start:self.emitted])
 
     def state_at(self, now):
-        if type(now) is not int or not 0 <= now <= LIMIT_NS: raise ValueError("scenario time")
+        if type(now) is not int or not 0 <= now <= TIME_LIMIT_NS: raise ValueError("scenario time")
         state = deepcopy(DEFAULTS)
         state.update(self._document["initial"])
         displacement, previous = [0., 0., 0.], 0

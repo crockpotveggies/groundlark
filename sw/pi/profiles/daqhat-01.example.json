@@ -24,6 +24,10 @@
       "line": 23
     }
   ],
+  "geophone_drdy": {
+    "chip": "/dev/gpiochip0",
+    "line": 4
+  },
   "pps": {
     "chip": "/dev/gpiochip0",
     "line": 24

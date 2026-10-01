@@ -76,7 +76,7 @@ class SeismicWriter:
         self.origin = utc_origin(simulation_start) if simulation_start is not None else None
         self.stream, self.limit, self.written = stream, max_bytes, 0
         self.station, self.network = station, network
-        self.sessions = Sessions(Calibrations(metadata.get('calibrations', [])))
+        self.sessions = Sessions(Calibrations(metadata.get('calibrations', [])), checkpoint=metadata.get("session_checkpoint"))
         self.pending, self.last_times = {}, {}
         self.device = None
         self.clock_observation = None
