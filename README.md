@@ -142,3 +142,8 @@ Hardware sources: [DAQHAT-01 circuit](hw/groundlark-fpga-hat/elec/hat_trenz.ato)
 [Burrowlark DAQUSB-01](hw/burrowlark-usb/boards/groundlark-field-head/groundlark-field-head.kicad_pcb), and
 [Skylark USB](hw/skylark-usb/boards/skylark-usb/skylark-usb.kicad_pcb).
 See [build instructions](docs/build.md) and [source references](docs/sources.md).
+
+## License
+
+Project-authored code, hardware designs and documentation use the [MIT License](LICENSE).
+Third-party assets and dependencies retain their own licenses and attribution.

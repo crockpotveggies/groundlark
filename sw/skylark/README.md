@@ -25,7 +25,7 @@ The lab uses Debian ARM GCC 12.2.1 and libopencm3 commit
 `2da12dc96e0b9e42a3332348dd9b02a0a17981f8`, fetched and SHA-256 verified by
 [install_skylark.py](../../environment/install_skylark.py). Complete upstream
 sources and licenses remain under `/opt/skylark/libopencm3` in the image.
-The application is GPL-3.0-only; libopencm3 retains its LGPL-3.0-or-later license.
+The application is MIT; libopencm3 retains its LGPL-3.0-or-later license.
 Preserve corresponding sources and license notices when distributing firmware.
 
 For a direct Linux build with that library and an ARM GCC toolchain:

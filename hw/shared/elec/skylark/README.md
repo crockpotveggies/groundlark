@@ -1,7 +1,7 @@
 # Skylark atomic component assets
 
 `parts.ato` defines physical pin maps used by the Skylark circuit. The accompanying
-symbols and custom footprints are authored for this project under its GPL-3.0
+symbols and custom footprints are authored for this project under its MIT
 license, except for the KiCad-derived footprints listed below.
 
 ## KiCad library attribution

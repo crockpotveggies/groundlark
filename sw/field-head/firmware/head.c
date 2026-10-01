@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: GPL-3.0-only
+/* SPDX-License-Identifier: MIT
  * Burrowlark fixed 10 Hz RM3100 / 1 Hz SHT45 profile. No heap or RTOS.
  * PNI RM3100 breakout manual r08; Sensirion SHT4x high-precision command.
  */

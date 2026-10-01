@@ -1,4 +1,5 @@
-/* SPDX-License-Identifier: GPL-3.0-only -- power-cut journal fixture. */
+/* SPDX-License-Identifier: MIT */
+/* power-cut journal fixture. */
 #include "boot.h"
 #include <assert.h>
 #include <setjmp.h>

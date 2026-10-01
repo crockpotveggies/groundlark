@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: GPL-3.0-only
+/* SPDX-License-Identifier: MIT
  * Skylark Rev A, STM32F072CBT6. USB and peripheral registers via libopencm3.
  */
 #include "platform.h"

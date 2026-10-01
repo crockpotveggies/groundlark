@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: GPL-3.0-only */
+/* SPDX-License-Identifier: MIT */
 #include "boot.h"
 #ifndef BOOT_PAGE_WORDS
 #define BOOT_PAGE_WORDS 512

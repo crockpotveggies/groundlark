@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: GPL-3.0-only
+/* SPDX-License-Identifier: MIT
  * Inject delayed/stuck hardware and coincident flags into production drivers.
  * Bit numbers come from RM0091, independent of driver-local constants.
  */

@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: GPL-3.0-only */
+/* SPDX-License-Identifier: MIT */
 #include "power.h"
 #include <assert.h>
 static const power_policy policy={true,11000,12500,1000,1000,10000,30000};

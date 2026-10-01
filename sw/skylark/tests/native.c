@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: GPL-3.0-only
+/* SPDX-License-Identifier: MIT
  * Independent register/UART fixture. Links the production encoder and drivers.
  * stdout is the real binary USB stream; assertions and checks run on the host.
  */

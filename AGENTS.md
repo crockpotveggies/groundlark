@@ -74,7 +74,7 @@ Generated runs belong in ignored `.lab/`, which retains five runs. Local tool
 installations and legacy caches belong in ignored `.local/`. Never commit
 virtualenvs, logs, credentials, downloaded tool binaries, or Docker image archives.
 Use the lab cleanup commands; do not run global Docker prune for this project.
-Keep vendor attribution and the existing GPL-3.0 license.
+Keep vendor attribution and the existing MIT license.
 
 Sensor v1 semantics live in `docs/sensor-contract.md`; field layouts are in
 `sw/interfaces/proto/`. Run the portable software profile when changing either.

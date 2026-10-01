@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: GPL-3.0-only
+/* SPDX-License-Identifier: MIT
  * DAQHAT-01 MSPM0L1106TRHBR. GPIO mapping follows the independent pin fixture.
  * Target build evidence does not qualify ADC accuracy, shutdown timing or power.
  */

@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: GPL-3.0-only
+/* SPDX-License-Identifier: MIT
  * TI ADS122C04 SBAS751B, Sensirion SHT4x, Bosch BMP388 and PMS5003 v2.3.
  * Raw transport bytes and factory trim are preserved; no gas calibration here.
  */

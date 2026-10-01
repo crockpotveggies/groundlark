@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: GPL-3.0-only
+/* SPDX-License-Identifier: MIT
  * STM32F072 RM0091 register bits; ES0223 Rev 6 sections 2.4.3 and 2.11.8.
  */
 #include "platform.h"

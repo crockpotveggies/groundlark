@@ -233,7 +233,7 @@ establish physical qualification.
 The service arrangement is inspired by
 [AirGradient's Open Air assembly guide](https://www.airgradient.com/documentation/kb/kb-old-instructions-the-airgradient-open-air-outdoor-air-quality-monitor-presoldered-version-pcb-version-1-1).
 Skylark's CAD uses its own dimensions; no AirGradient mesh is included. Authored
-source retains the repository GPL-3.0 license.
+source retains the repository MIT license.
 
 The [Plantower PMS5003 manual, v2.3](https://evelta.com/content/datasheets/203-PMS5003.pdf)
 provides body/port dimensions (page 12) and inlet/exhaust separation guidance

@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: GPL-3.0-only */
+/* SPDX-License-Identifier: MIT */
 #ifndef SK_BOOT_H
 #define SK_BOOT_H
 #include <stdint.h>

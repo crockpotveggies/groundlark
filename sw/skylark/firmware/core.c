@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: GPL-3.0-only
+/* SPDX-License-Identifier: MIT
  * Shared by the STM32 image and native fault-injection tests. No heap/RTOS.
  * A bounded, write-only v1 protobuf encoder; wire compatibility is verified by
  * decoding actual C output with the repository's independent Protobuf runtime.

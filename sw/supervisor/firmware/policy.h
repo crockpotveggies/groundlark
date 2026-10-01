@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: GPL-3.0-only
+/* SPDX-License-Identifier: MIT
  * No battery/controller is selected. Default firmware must leave RUN off.
  * Generate a separately reviewed policy header with configure.py for bench use.
  */

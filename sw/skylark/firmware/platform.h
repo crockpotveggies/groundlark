@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: GPL-3.0-only */
+/* SPDX-License-Identifier: MIT */
 #ifndef SK_PLATFORM_H
 #define SK_PLATFORM_H
 #include "skylark.h"

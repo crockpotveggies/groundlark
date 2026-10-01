@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: GPL-3.0-only */
+/* SPDX-License-Identifier: MIT */
 #ifndef SK_PERIPHERALS_H
 #define SK_PERIPHERALS_H
 #include <stdbool.h>

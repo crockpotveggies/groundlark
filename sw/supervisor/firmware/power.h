@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: GPL-3.0-only */
+/* SPDX-License-Identifier: MIT */
 #ifndef GL_POWER_H
 #define GL_POWER_H
 #include <stdint.h>
